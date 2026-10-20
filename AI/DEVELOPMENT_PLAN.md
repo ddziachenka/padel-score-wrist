@@ -1,13 +1,13 @@
 # Development plan
 
-**Status:** направление и план одобрены владельцем; M00–M02 завершены
+**Status:** направление и план одобрены владельцем; M00–M03 завершены
 **Approved by:** владелец проекта, сообщение «одобряю»
 **Approved on:** 2026-10-20
 **Updated:** 2026-10-20
 
 План следует [промпту инициализации](prompts/initialize-product.md) и
-[brief](PRODUCT_BRIEF.md). M00, M01 и M02 имеют статус `DONE`; H2 закрыт владельцем
-2026-10-20. Активного этапа нет, следующий — M03; остальные имеют статус `PLANNED`.
+[brief](PRODUCT_BRIEF.md). M00–M03 имеют статус `DONE`; H2 закрыт владельцем
+2026-10-20. Активного этапа нет, следующий — M04; остальные имеют статус `PLANNED`.
 Одобрение направления не выбирает молча ответы на отдельные открытые вопросы.
 
 ## Contracts
@@ -31,7 +31,7 @@ Xcode-проекта и доступности настоящих часов.
 | [M00 — Watch-only Bootstrap](milestones/M00-template-bootstrap.md) — DONE | Настоящий проект, свой симулятор, сборка и реальные тесты; [evidence](handoffs/M00-handoff.md) | Направление, watchOS 10 и название одобрены; создание проекта и выбор bundle IDs делегированы агенту |
 | [M01 — Match Scoring](milestones/M01-match-scoring.md) — DONE | Корректные очки/геймы/сеты, три deuce rules, тай-брейк H2, очередь подачи; [evidence](handoffs/M01-handoff.md) | M00; решение H2 (закрыт 2026-10-20) |
 | [M02 — Americano Scoring](milestones/M02-americano-scoring.md) — DONE | Общая сумма розыгрышей, ничья, серии подачи и проверяемое исправление раунда; [evidence](handoffs/M02-handoff.md) | M01 |
-| [M03 — Persistence and Recovery](milestones/M03-persistence-recovery.md) | Атомарная запись, точная отмена, восстановление после закрытия | M02 |
+| [M03 — Persistence and Recovery](milestones/M03-persistence-recovery.md) — DONE | Атомарная запись, точная отмена, восстановление после закрытия; [evidence](handoffs/M03-handoff.md) | M02 |
 | [M04 — New Game](milestones/M04-new-game.md) | Создание обоих форматов на часах | M03 |
 | [M05 — Live Score](milestones/M05-live-score.md) | Главный экран, одно касание на очко, подающий и Undo | M04 |
 | [M06 — Score and Settings Correction](milestones/M06-corrections.md) | Черновики исправления всех введённых данных | M05 |
