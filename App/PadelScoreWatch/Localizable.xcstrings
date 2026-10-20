@@ -1,30 +1,927 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ first" : {
+      "comment" : "Setup, Serving row: who serves first while the second server is still to be chosen. Argument: a role, such as You.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ first"
+          }
+        }
+      }
+    },
+    "%@, then %@" : {
+      "comment" : "Setup, Serving row: the first server, then the second. Arguments: two roles, such as You and Opponent 1.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, then %2$@"
+          }
+        }
+      }
+    },
+    "%lld rallies in total, %lld per server." : {
+      "comment" : "Americano game screen: the round's rules. Arguments: the total rallies for both teams, the rallies one player serves in a row.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@total@, %2$lld per server."
+          },
+          "substitutions" : {
+            "total" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg rally in total"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg rallies in total"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "A fixed total of rallies" : {
+      "comment" : "Explains the Americano format on New game.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A fixed total of rallies"
+          }
+        }
+      }
+    },
+    "A new game can’t start right now." : {
+      "comment" : "The access policy refused a new game.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A new game can’t start right now."
+          }
+        }
+      }
+    },
+    "AD" : {
+      "comment" : "A team's advantage at 40–40, shown in place of its points. VoiceOver reads it as Advantage.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AD"
+          }
+        }
+      }
+    },
     "About" : {
       "comment" : "Button and navigation title for app information.",
       "extractionState" : "manual",
-      "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "About" } } }
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
+          }
+        }
+      }
     },
-    "Padel Score" : {
-      "comment" : "First line of the app wordmark on the small Watch display.",
+    "Advantage" : {
+      "comment" : "Rule at 40–40: win by two points, without limit.",
       "extractionState" : "manual",
-      "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Padel Score" } } }
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advantage"
+          }
+        }
+      }
+    },
+    "Americano" : {
+      "comment" : "Game format: a round to a fixed total of rallies.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Americano"
+          }
+        }
+      }
+    },
+    "At 40–40" : {
+      "comment" : "Setup row and screen title: the rule that decides a game at 40–40.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At 40–40"
+          }
+        }
+      }
+    },
+    "At 40–40, the next point wins the game." : {
+      "comment" : "Explains the Golden point rule.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At 40–40, the next point wins the game."
+          }
+        }
+      }
+    },
+    "At 40–40: %@" : {
+      "comment" : "Game screen: the 40–40 rule of this match. Argument: the rule's name, such as Golden point.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At 40–40: %@"
+          }
+        }
+      }
+    },
+    "At the second deuce, the next point wins." : {
+      "comment" : "Explains the One advantage rule.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At the second deuce, the next point wins."
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "comment" : "Gives up an action and goes back without changing anything.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "Choose" : {
+      "comment" : "Setup: a value not chosen yet. Tapping the row opens its choices.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose"
+          }
+        }
+      }
+    },
+    "Choose the rallies per server." : {
+      "comment" : "Setup: shown at Rallies per server when Start game was tapped without it.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the rallies per server."
+          }
+        }
+      }
+    },
+    "Choose the total rallies." : {
+      "comment" : "Setup: shown at Total rallies when Start game was tapped without it.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the total rallies."
+          }
+        }
+      }
+    },
+    "Choose what happens at 40–40." : {
+      "comment" : "Setup: shown at the 40–40 rule when Start game was tapped without it.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose what happens at 40–40."
+          }
+        }
+      }
+    },
+    "Choose who serves first." : {
+      "comment" : "Setup and Serving: who serves first is still to be chosen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose who serves first."
+          }
+        }
+      }
+    },
+    "Choose who serves second." : {
+      "comment" : "Setup: shown at Serving when Start game was tapped before the second server was chosen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose who serves second."
+          }
+        }
+      }
+    },
+    "Couldn’t save. Nothing has changed." : {
+      "comment" : "Recovery: starting over could not be saved; the unreadable data is still there.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t save. Nothing has changed."
+          }
+        }
+      }
+    },
+    "Couldn’t save. The game hasn’t started." : {
+      "comment" : "Starting a game failed to save; nothing changed.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t save. The game hasn’t started."
+          }
+        }
+      }
+    },
+    "Decrease" : {
+      "comment" : "VoiceOver label of the − button of a number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decrease"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "comment" : "Applies the choice on this screen and goes back.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "Earlier save restored" : {
+      "comment" : "Alert title at launch: the latest save could not be read and the one before it was restored.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earlier save restored"
+          }
+        }
+      }
+    },
+    "First server" : {
+      "comment" : "Serving: heading of the choice of who serves first.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First server"
+          }
+        }
+      }
+    },
+    "For both teams together." : {
+      "comment" : "Explains the americano total under its number: it is shared, not each team's target.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For both teams together."
+          }
+        }
+      }
+    },
+    "From %lld to %lld." : {
+      "comment" : "Number editor: the lowest and the highest number that can be chosen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From %1$lld to %2$lld."
+          }
+        }
+      }
+    },
+    "From 40–40, win two points in a row." : {
+      "comment" : "Explains the Advantage rule.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From 40–40, win two points in a row."
+          }
+        }
+      }
+    },
+    "From your last game. Check before you start." : {
+      "comment" : "Setup: the values were repeated from the last game started, for the person to check.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From your last game. Check before you start."
+          }
+        }
+      }
+    },
+    "Games" : {
+      "comment" : "Game screen: games won in the current set, between the two teams' counts.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Games"
+          }
+        }
+      }
+    },
+    "Games and sets" : {
+      "comment" : "Explains the Match format on New game.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Games and sets"
+          }
+        }
+      }
+    },
+    "Golden point" : {
+      "comment" : "Rule at 40–40: the next point wins the game.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Golden point"
+          }
+        }
+      }
+    },
+    "Increase" : {
+      "comment" : "VoiceOver label of the + button of a number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Increase"
+          }
+        }
+      }
+    },
+    "It was saved by a newer version of this app. Update the app, then try again." : {
+      "comment" : "Recovery: the saved game comes from a newer version of the app, which this version does not overwrite.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It was saved by a newer version of this app. Update the app, then try again."
+          }
+        }
+      }
+    },
+    "Loading game…" : {
+      "comment" : "Shown when reading the saved game takes more than a second.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading game…"
+          }
+        }
+      }
+    },
+    "Match" : {
+      "comment" : "Game format: a regular match of games and sets.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match"
+          }
+        }
+      }
+    },
+    "New game" : {
+      "comment" : "Title of the screen where a new game is created.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New game"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "comment" : "Acknowledges a message.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "One advantage" : {
+      "comment" : "Rule at 40–40: one advantage, then a deciding point. Not Star Point.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One advantage"
+          }
+        }
+      }
+    },
+    "Opponent 1" : {
+      "comment" : "Role: one of the two opponents.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opponent 1"
+          }
+        }
+      }
+    },
+    "Opponent 2" : {
+      "comment" : "Role: the other opponent.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opponent 2"
+          }
+        }
+      }
+    },
+    "Our score, %@" : {
+      "comment" : "VoiceOver label of our team's score. Argument: the points, such as 15.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Our score, %@"
+          }
+        }
+      }
     },
     "Padel Score — Wrist" : {
       "comment" : "Full product name.",
       "extractionState" : "manual",
-      "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Padel Score — Wrist" } } }
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Padel Score — Wrist"
+          }
+        }
+      }
+    },
+    "Partner" : {
+      "comment" : "Role: the wearer's teammate.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partner"
+          }
+        }
+      }
+    },
+    "Rallies left" : {
+      "comment" : "Americano game screen: rallies still to be played before the round reaches its total.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rallies left"
+          }
+        }
+      }
+    },
+    "Rallies per server" : {
+      "comment" : "Title of the americano service block editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rallies per server"
+          }
+        }
+      }
+    },
+    "Retry" : {
+      "comment" : "Tries to save the same action again after saving failed.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        }
+      }
+    },
+    "Saving…" : {
+      "comment" : "Shown on a button when saving takes more than a second.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving…"
+          }
+        }
+      }
+    },
+    "Second server" : {
+      "comment" : "Serving: heading of the choice of who serves second; it is one of the first server's opponents.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Second server"
+          }
+        }
+      }
+    },
+    "Serve %lld of %lld" : {
+      "comment" : "Americano game screen: the next rally's place in the server's block. Arguments: the place, the rallies per server.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serve %1$lld of %2$lld"
+          }
+        }
+      }
+    },
+    "Served in a row by one player, whoever wins." : {
+      "comment" : "Explains rallies per server under its number: the serve passes after this many rallies.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Served in a row by one player, whoever wins."
+          }
+        }
+      }
+    },
+    "Service order" : {
+      "comment" : "Serving: heading of the four players numbered in the order they serve.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Service order"
+          }
+        }
+      }
+    },
+    "Serving" : {
+      "comment" : "Who serves the next point; the Setup row and screen title for choosing the serving order.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serving"
+          }
+        }
+      }
+    },
+    "Set %lld" : {
+      "comment" : "Game screen title: the set being played. Argument: the set's number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set %lld"
+          }
+        }
+      }
+    },
+    "Sets" : {
+      "comment" : "Game screen: sets won, between the two teams' counts.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sets"
+          }
+        }
+      }
+    },
+    "Sets aren’t limited. Finish the match whenever you like." : {
+      "comment" : "Match setup: the match has no number of sets and is finished by hand.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sets aren’t limited. Finish the match whenever you like."
+          }
+        }
+      }
+    },
+    "Start game" : {
+      "comment" : "Starts the game set up on this screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start game"
+          }
+        }
+      }
+    },
+    "Start over" : {
+      "comment" : "Recovery: sets the unreadable data aside and starts without a game, after confirming.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start over"
+          }
+        }
+      }
+    },
+    "Start over?" : {
+      "comment" : "Alert title confirming Start over.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start over?"
+          }
+        }
+      }
+    },
+    "Still saving…" : {
+      "comment" : "Shown on a button when saving takes more than five seconds.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Still saving…"
+          }
+        }
+      }
+    },
+    "THEM" : {
+      "comment" : "The opponents' team. Always on the right.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "THEM"
+          }
+        }
+      }
+    },
+    "The data that couldn’t be read is kept aside, not deleted." : {
+      "comment" : "Alert message confirming Start over.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The data that couldn’t be read is kept aside, not deleted."
+          }
+        }
+      }
+    },
+    "The game couldn’t start. Nothing has changed." : {
+      "comment" : "Starting a game was refused.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The game couldn’t start. Nothing has changed."
+          }
+        }
+      }
+    },
+    "The round ends when both teams’ points add up to the total." : {
+      "comment" : "Americano setup: the total is shared by both teams, not each team's target.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The round ends when both teams’ points add up to the total."
+          }
+        }
+      }
+    },
+    "Their score, %@" : {
+      "comment" : "VoiceOver label of the opponents' score. Argument: the points, such as 15.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Their score, %@"
+          }
+        }
+      }
+    },
+    "Total rallies" : {
+      "comment" : "Americano setup row and editor title: the rallies both teams play together.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total rallies"
+          }
+        }
+      }
+    },
+    "Try again" : {
+      "comment" : "Recovery: reads the saved game again.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again"
+          }
+        }
+      }
+    },
+    "US" : {
+      "comment" : "Our team: the wearer and their partner. Always on the left.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US"
+          }
+        }
+      }
+    },
+    "Us %lld, them %lld" : {
+      "comment" : "VoiceOver value of a count on the game screen. Arguments: our count, their count.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Us %1$lld, them %2$lld"
+          }
+        }
+      }
     },
     "Version %@ (%@)" : {
       "comment" : "Installed marketing version followed by build number.",
       "extractionState" : "manual",
-      "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Version %1$@ (%2$@)" } } }
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %1$@ (%2$@)"
+          }
+        }
+      }
     },
-    "Wrist" : {
-      "comment" : "Second line of the app wordmark.",
+    "We couldn’t read this game." : {
+      "comment" : "Recovery title: the saved game could not be read.",
       "extractionState" : "manual",
-      "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Wrist" } } }
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We couldn’t read this game."
+          }
+        }
+      }
+    },
+    "You" : {
+      "comment" : "Role: the person wearing the Watch.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You"
+          }
+        }
+      }
+    },
+    "Your latest change couldn’t be read, so the game saved before it was restored." : {
+      "comment" : "Alert message at launch after restoring the previous save.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your latest change couldn’t be read, so the game saved before it was restored."
+          }
+        }
+      }
+    },
+    "Your saved data has not been deleted." : {
+      "comment" : "Recovery: reassures that the unreadable game is still on the Watch.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your saved data has not been deleted."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

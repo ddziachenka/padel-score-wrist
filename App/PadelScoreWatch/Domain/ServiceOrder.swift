@@ -19,6 +19,12 @@ enum ServiceOrder: String, Hashable, Sendable, CaseIterable, Codable {
         self = afterYou == .opponent1 ? .youThenOpponent1 : .youThenOpponent2
     }
 
+    /// The rotation in which `second` serves straight after `first`. They must be on different
+    /// teams; their partners serve third and fourth.
+    init(first: Player, second: Player) throws(MatchError) {
+        try self.init([first, second, first.partner, second.partner])
+    }
+
     func player(after player: Player) -> Player {
         switch (self, player) {
         case (.youThenOpponent1, .you): .opponent1

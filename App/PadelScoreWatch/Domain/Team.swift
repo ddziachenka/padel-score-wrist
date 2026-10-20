@@ -25,4 +25,14 @@ enum Player: String, Hashable, Sendable, CaseIterable, Codable {
         case .opponent1, .opponent2: .them
         }
     }
+
+    /// The other player of the same team.
+    var partner: Player {
+        switch self {
+        case .you: .partner
+        case .partner: .you
+        case .opponent1: .opponent2
+        case .opponent2: .opponent1
+        }
+    }
 }

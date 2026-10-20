@@ -11,6 +11,14 @@ struct AppConfigurationTests {
         #expect(bundle.object(forInfoDictionaryKey: "MinimumOSVersion") as? String == "10.0")
     }
 
+    @Test("The installed Watch app carries its own icon")
+    func appIcon() {
+        let icons = Bundle.main.object(forInfoDictionaryKey: "CFBundleIcons") as? [String: Any]
+        let primary = icons?["CFBundlePrimaryIcon"] as? [String: Any]
+        #expect(primary?["CFBundleIconName"] as? String == "AppIcon")
+        #expect(Bundle.main.url(forResource: "Assets", withExtension: "car") != nil)
+    }
+
     @Test("The installed bundle has the approved English identity")
     func productIdentity() {
         let bundle = Bundle.main
