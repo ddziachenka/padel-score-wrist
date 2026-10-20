@@ -159,9 +159,10 @@ private struct ScoreScreen: View {
     /// take their full height first; the score areas take what is left.
     private func columns(clockRow: CGFloat, width: CGFloat) -> some View {
         VStack(spacing: Spacing.xs) {
+            // The system clock takes the right of this row: about a third of it on the smallest Watch.
             ContextLine(board: board, live: live)
                 .frame(height: clockRow)
-                .padding(.trailing, max(56, width * 0.3))
+                .padding(.trailing, max(52, width * 0.3))
             ScoreArea(board: board, live: live, layout: .columns, open: open)
                 .frame(minHeight: 0, idealHeight: comfortableScoreHeight, maxHeight: .infinity)
             DetailRows(details: board.details)
@@ -228,7 +229,7 @@ private struct ContextLine: View {
         .lineLimit(1)
         .minimumScaleFactor(0.8)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, Spacing.sm)
+        .padding(.leading, Spacing.sm)
         .accessibilityIdentifier("game.context")
         .accessibilitySortPriority(7)
         .task(id: live.lastChange?.number) {
