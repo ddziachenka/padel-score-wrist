@@ -1,7 +1,7 @@
 # M04 — New Game
 
 **ID:** M04
-**Status:** PLANNED
+**Status:** IN_PROGRESS
 **Depends on:** M03
 **Validation:** make milestone ID=M04
 **Handoff:** AI/handoffs/M04-handoff.md
