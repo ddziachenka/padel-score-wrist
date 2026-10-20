@@ -1,0 +1,226 @@
+/*
+ * The whole site's stylesheet. One file, no build step, no framework, no web
+ * font — the pages it dresses are legal text and support instructions, and the
+ * fastest thing to serve someone looking for a privacy policy is plain HTML.
+ *
+ * Two rules keep it honest as products change it:
+ *
+ *   Colour is only ever a custom property. Both appearances are defined here, so
+ *   a product that recolours the site edits the two blocks at the top and nothing
+ *   below them changes.
+ *
+ *   Direction-sensitive properties are logical (inline-start, padding-block,
+ *   margin-inline), never left/right. AI/DESIGN.md requires the site to cover
+ *   every language the app ships, and right-to-left is not an afterthought that
+ *   can be bolted on later.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  --background: #ffffff;
+  --surface: #f7f7f8;
+  --text: #1a1a1c;
+  --text-muted: #5c5c63;
+  --accent: #0b5fbe;
+  --border: #e2e2e6;
+  --focus: #0b5fbe;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-synthesis: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #131315;
+    --surface: #1e1e21;
+    --text: #f1f1f3;
+    --text-muted: #a6a6ae;
+    --accent: #6fa8f5;
+    --border: #303035;
+    --focus: #6fa8f5;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-width: 280px;
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- Links and focus ----------------------------------------------------- */
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.14em;
+}
+
+/* Never removed, never replaced by a colour change alone: the outline is the
+   only thing telling a keyboard user where they are. */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+  border-radius: 0.35rem;
+}
+
+/* Off-screen until focused, then the first stop on the page. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 10;
+  min-height: 44px;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.65rem;
+  background: var(--text);
+  color: var(--background);
+  transform: translateY(-180%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* --- Layout -------------------------------------------------------------- */
+
+.shell {
+  width: min(100% - 2rem, 760px);
+  margin-inline: auto;
+}
+
+.site-header {
+  padding-block: 1rem;
+}
+
+.site-nav,
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+}
+
+/* 44x44 is the minimum tap target AI/DESIGN.md requires of the app, and a
+   support page opened one-handed on a phone is no different. */
+.site-nav a,
+.footer-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 0.5rem;
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-footer {
+  margin-block-start: 3rem;
+  padding-block: 1.5rem 2.5rem;
+  border-block-start: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.footer-row p {
+  margin: 0;
+  margin-inline-end: auto;
+}
+
+/* --- Content ------------------------------------------------------------- */
+
+.eyebrow {
+  margin-block-end: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  margin-block: 0 0.5rem;
+  font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+h2 {
+  margin-block-start: 2.25rem;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.meta {
+  margin-block: 0 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.lede {
+  font-size: 1.1rem;
+}
+
+.document ul {
+  padding-inline-start: 1.25rem;
+}
+
+.document li + li {
+  margin-block-start: 0.4rem;
+}
+
+/* A callout, not a warning: used for the one-paragraph summary at the top of
+   the privacy policy, which is the part most people actually read. */
+.notice {
+  margin-block: 1rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.notice p {
+  margin: 0;
+}
+
+.card-links {
+  display: grid;
+  gap: 1rem;
+  margin-block-start: 2rem;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.card-links li {
+  padding: 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.card-links h2 {
+  margin-block: 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.card-links p {
+  margin-block: 0 0.6rem;
+  color: var(--text-muted);
+}

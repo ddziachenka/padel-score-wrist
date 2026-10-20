@@ -1,0 +1,411 @@
+<div id="padel-flow">
+  <div class="viz-carousel viz-dotted-background" aria-label="Экраны приложения" data-previous-label="Назад" data-next-label="Далее">
+    <section data-variant="Создание" aria-label="Создание игры">
+      <div class="pf-stage"><div class="pf-case"><div class="pf-watch" data-entry="create" aria-label="Создание новой игры"></div></div></div>
+    </section>
+    <section data-variant="Счёт" aria-label="Редактирование счёта" hidden>
+      <div class="pf-stage"><div class="pf-case"><div class="pf-watch" data-entry="score" aria-label="Исправление счёта во время игры"></div></div></div>
+    </section>
+    <section data-variant="Настройки" aria-label="Настройки во время игры" hidden>
+      <div class="pf-stage"><div class="pf-case"><div class="pf-watch" data-entry="settings" aria-label="Изменение правил и подачи"></div></div></div>
+    </section>
+    <section data-variant="Завершение" aria-label="Завершение игры" hidden>
+      <div class="pf-stage"><div class="pf-case"><div class="pf-watch" data-entry="finish" aria-label="Завершение и сохранение результата"></div></div></div>
+    </section>
+  </div>
+</div>
+<style>
+  #padel-flow { --pf-accent: #dcf79b; --pf-ink: #f5f5f7; --pf-secondary: #a6a6ae; --pf-panel: #19191c; }
+  #padel-flow * { box-sizing: border-box; }
+  #padel-flow .pf-stage { height: 396px; display: grid; place-items: center; padding: 14px; }
+  #padel-flow .pf-case { position: relative; padding: 9px; border-radius: 46px; background: #303135; box-shadow: inset 0 0 0 2px #4b4b50, inset 0 0 0 5px #202124, 0 12px 24px #00000026; transform: scale(1.32); }
+  #padel-flow .pf-case::after { content: ""; position: absolute; top: 66px; right: -6px; width: 6px; height: 28px; background: #44454a; border-radius: 0 4px 4px 0; }
+  #padel-flow .pf-watch { width: 198px; height: 242px; border-radius: 36px; overflow: hidden; color: var(--pf-ink); background: #000; font: 13px/1.25 -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased; color-scheme: dark; display: flex; flex-direction: column; padding: 7px 8px 8px; position: relative; }
+  #padel-flow .pf-watch button, #padel-flow .pf-watch input, #padel-flow .pf-watch select { font: inherit; }
+  #padel-flow .pf-watch button { color: inherit; border: 0; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  #padel-flow .pf-watch button:active { filter: brightness(1.25); }
+  #padel-flow .pf-header { min-height: 34px; flex-shrink: 0; display: flex; align-items: center; gap: 3px; padding-right: 9px; }
+  #padel-flow .pf-header-title { font-size: 13px; font-weight: 600; flex: 1; letter-spacing: -.2px; }
+  #padel-flow .pf-header time { font-size: 11px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  #padel-flow .pf-back { width: 30px; min-height: 34px; padding: 0; background: transparent; color: var(--pf-accent) !important; display: grid; place-items: center; flex-shrink: 0; }
+  #padel-flow .pf-back svg { width: 19px; height: 19px; }
+  #padel-flow .pf-header[data-back="false"] { padding-left: 10px; }
+  #padel-flow .pf-body { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #53535a transparent; overscroll-behavior: contain; padding: 3px 1px 5px; }
+  #padel-flow .pf-footer { flex-shrink: 0; padding-top: 5px; background: #000; }
+  #padel-flow .pf-footer:empty { display: none; }
+  #padel-flow .pf-primary, #padel-flow .pf-secondary-button { min-height: 42px; width: 100%; border-radius: 21px; padding: 9px 12px; font-size: 13px !important; font-weight: 600 !important; background: var(--pf-accent); color: #181e0e !important; }
+  #padel-flow .pf-secondary-button { background: #242427; color: var(--pf-ink) !important; }
+  #padel-flow .pf-footer .pf-secondary-button { margin-top: 5px; }
+  #padel-flow .pf-row { width: 100%; display: flex; align-items: center; text-align: left; gap: 7px; padding: 10px 11px; background: var(--pf-panel); border-radius: 15px; min-height: 50px; margin-bottom: 6px; }
+  #padel-flow .pf-row-text { min-width: 0; flex: 1; }
+  #padel-flow .pf-row-label { display: block; font-size: 11px; line-height: 1.25; color: var(--pf-secondary); margin-bottom: 3px; }
+  #padel-flow .pf-row-value { display: block; font-size: 14px; line-height: 1.25; font-weight: 500; overflow-wrap: anywhere; }
+  #padel-flow .pf-row-chevron { width: 13px; height: 13px; flex-shrink: 0; color: #85858d; }
+  #padel-flow .pf-row-icon { width: 20px; height: 20px; color: var(--pf-accent); flex-shrink: 0; margin-right: 2px; }
+  #padel-flow .pf-mode { min-height: 70px; padding: 12px; }
+  #padel-flow .pf-mode .pf-row-value { font-size: 18px; font-weight: 600; margin-bottom: 5px; }
+  #padel-flow .pf-mode .pf-row-label { font-size: 11px; margin: 0; }
+  #padel-flow .pf-caption { font-size: 11px; line-height: 1.4; color: var(--pf-secondary); margin: 5px 7px 9px; }
+  #padel-flow .pf-section-label { font-size: 11px; color: var(--pf-secondary); padding: 4px 7px 6px; }
+  #padel-flow .pf-choice { min-height: 52px; display: flex; gap: 7px; align-items: center; width: 100%; padding: 10px 11px; margin-bottom: 6px; border-radius: 15px; background: var(--pf-panel); text-align: left; }
+  #padel-flow .pf-choice[aria-pressed="true"] { background: color-mix(in srgb, var(--pf-accent) 12%, #000); }
+  #padel-flow .pf-choice[aria-pressed="true"] .pf-row-value { color: var(--pf-accent); }
+  #padel-flow .pf-choice .pf-row-label { margin: 5px 0 0; }
+  #padel-flow .pf-choice-mark { width: 15px; height: 15px; color: var(--pf-accent); flex-shrink: 0; }
+  #padel-flow .pf-team-head { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; text-align: center; padding: 2px 0 7px; font-size: 11px; letter-spacing: .7px; font-weight: 600; }
+  #padel-flow .pf-team-head span:first-child { color: var(--pf-accent); }
+  #padel-flow .pf-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  #padel-flow .pf-pair button { min-height: 51px; background: var(--pf-panel); border-radius: 15px; font-size: 36px; line-height: 1.1; font-weight: 600; font-variant-numeric: tabular-nums; padding: 5px 0; }
+  #padel-flow .pf-pair button:first-child { color: var(--pf-accent); background: color-mix(in srgb, var(--pf-accent) 9%, #000); }
+  #padel-flow .pf-pair.pf-pair-small button { min-height: 44px; font-size: 26px; }
+  #padel-flow .pf-score-label { text-align: center; margin: 6px 0 4px; color: var(--pf-secondary); font-size: 11px; }
+  #padel-flow .pf-score-gap { margin-top: 9px; }
+  #padel-flow .pf-number { display: flex; align-items: center; justify-content: space-between; gap: 2px; margin: 8px 0; }
+  #padel-flow .pf-number input { appearance: textfield; -moz-appearance: textfield; width: 82px; min-width: 0; background: transparent; border: 0; color: var(--pf-accent); text-align: center; font-size: 49px; font-weight: 600; padding: 0; font-variant-numeric: tabular-nums; }
+  #padel-flow .pf-number input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  #padel-flow .pf-step { width: 44px; height: 44px; border-radius: 50%; padding: 0; flex-shrink: 0; display: grid; place-items: center; background: #242427; }
+  #padel-flow .pf-step svg { width: 18px; height: 18px; }
+  #padel-flow .pf-error { color: #ffb0a8; font-size: 11px; line-height: 1.35; margin: 5px 7px 8px; }
+  #padel-flow .pf-inline-action { min-height: 40px; width: 100%; background: transparent; color: var(--pf-accent) !important; font-size: 12px !important; padding: 8px; }
+  #padel-flow .pf-danger { color: #ffaaa3 !important; }
+  #padel-flow .pf-queue { display: flex; flex-direction: column; padding: 0 8px; margin: 4px 0 10px; gap: 8px; }
+  #padel-flow .pf-queue-line { display: flex; gap: 9px; align-items: center; font-size: 12px; }
+  #padel-flow .pf-queue-num { font-size: 11px; color: var(--pf-secondary); width: 12px; }
+  #padel-flow .pf-queue-line:first-child { color: var(--pf-accent); }
+  #padel-flow .pf-total { text-align: center; padding: 3px 0 7px; }
+  #padel-flow .pf-total-label { font-size: 11px; color: var(--pf-secondary); margin-bottom: 2px; }
+  #padel-flow .pf-total-value { font-size: 40px; line-height: 1.1; letter-spacing: -1px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  #padel-flow .pf-total-value span:first-child { color: var(--pf-accent); }
+  #padel-flow .pf-result-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin: 0 5px; padding: 9px 3px; border-bottom: 1px solid #27272b; font-size: 12px; font-variant-numeric: tabular-nums; }
+  #padel-flow .pf-result-row small { display: block; color: var(--pf-secondary); font-size: 11px; margin-top: 3px; }
+  #padel-flow .pf-result-row strong { font-weight: 500; font-size: 15px; }
+  #padel-flow .pf-status { text-align: center; color: var(--pf-accent); font-size: 11px; margin: 3px 0 8px; }
+  #padel-flow .pf-watch[data-page="result"] .pf-total { display: flex; align-items: center; justify-content: space-between; padding: 0 7px 7px; }
+  #padel-flow .pf-watch[data-page="result"] .pf-total-label { max-width: 90px; text-align: left; margin: 0; }
+  #padel-flow .pf-watch[data-page="result"] .pf-total-value { font-size: 31px; }
+  #padel-flow .pf-watch[data-page="settings"] .pf-caption { margin: 3px 6px; }
+  #padel-flow .pf-confirm-note { font-size: 11px; color: var(--pf-secondary); line-height: 1.35; margin: 4px 6px 7px; text-align: center; }
+  #padel-flow .pf-main { display: flex; flex-direction: column; min-height: 100%; }
+  #padel-flow .pf-live-pair { flex: 1; }
+  #padel-flow .pf-live-pair button { display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 49px; letter-spacing: -1.5px; }
+  #padel-flow .pf-live-pair small { font-size: 11px; letter-spacing: .7px; padding-top: 3px; }
+  #padel-flow .pf-stat { display: grid; grid-template-columns: 1fr 42px 1fr; text-align: center; align-items: center; padding: 3px 9px; font-size: 15px; font-variant-numeric: tabular-nums; }
+  #padel-flow .pf-stat small { font-size: 11px; color: var(--pf-secondary); }
+  #padel-flow .pf-live-tools { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; padding-top: 2px; }
+  #padel-flow .pf-tool { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: transparent; padding: 0; }
+  #padel-flow .pf-tool svg { width: 17px; height: 17px; }
+  #padel-flow .pf-tool:disabled { opacity: .35; }
+  #padel-flow .pf-serving { text-align: center; font-size: 11px; color: var(--pf-secondary); }
+  #padel-flow .pf-serving strong { display: block; font-size: 12px; color: var(--pf-ink); margin-top: 2px; font-weight: 600; }
+  #padel-flow .pf-live-summary { padding-top: 4px; }
+  #padel-flow .pf-live-summary .pf-caption { margin: 3px 0; text-align: center; }
+  #padel-flow .pf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  #padel-flow .pf-watch[data-size="small"] { width: 162px; height: 197px; border-radius: 29px; padding: 5px 6px 6px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-header { min-height: 31px; padding-right: 7px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-header-title { font-size: 12px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-header time { font-size: 11px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-back { width: 25px; min-height: 31px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-row { padding: 9px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-row-value { font-size: 13px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-number input { font-size: 39px; width: 58px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-live-pair button { font-size: 41px; min-height: 60px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-stat { padding-top: 1px; padding-bottom: 1px; font-size: 14px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-serving strong { font-size: 11px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-total-value { font-size: 32px; }
+  #padel-flow .pf-watch[data-size="small"] .pf-confirm-note { margin: 1px 3px 4px; }
+  #padel-flow .pf-watch[data-size="small"][data-page="finish"] .pf-total { display: flex; align-items: center; justify-content: space-between; padding: 0 5px 2px; }
+  #padel-flow .pf-watch[data-size="small"][data-page="finish"] .pf-total-label { max-width: 65px; text-align: left; }
+  #padel-flow .pf-watch[data-size="small"][data-page="finish"] .pf-primary { padding-left: 4px; padding-right: 4px; font-size: 11px !important; }
+</style>
+<script>
+(() => {
+  const root = document.getElementById("padel-flow");
+  const clone = x => JSON.parse(JSON.stringify(x));
+  const names = ["Ты", "Партнёр", "Соперник 1", "Соперник 2"];
+  const rules = {
+    golden: ["Голден-пойнт", "При 40:40 следующий мяч решает гейм."],
+    one: ["Одно преимущество", "При повторных 40:40 — решающий мяч."],
+    classic: ["До разницы в два", "Преимущество разыгрывается без ограничения."]
+  };
+  const base = mode => ({ mode, points: [3, 2], games: [3, 2], sets: [[6, 4]], rule: "golden", phase: "first", order: [0, 2, 1, 3], serving: 2, within: 1, total: 32, series: 4, ended: false, tie: false });
+  const fresh = mode => ({ ...base(mode), points: [0, 0], games: [0, 0], sets: [], serving: 0 });
+  const seed = mode => mode === "americano" ? { ...base(mode), points: [14, 10] } : base(mode);
+  const counts = game => game.sets.reduce((out, set) => { out[set[0] > set[1] ? 0 : 1]++; return out; }, [0, 0]);
+  const scoreText = game => game.mode === "americano" || game.tie ? game.points.map(String) : game.points.map(n => ["0", "15", "30", "40", "AD"][Math.min(n, 4)]);
+  const icon = (name, cls = "") => `<i data-lucide="${name}" class="${cls}" aria-hidden="true"></i>`;
+  const button = (text, action, cls = "pf-primary") => `<button type="button" class="${cls} cursor-interaction" data-act="${action}">${text}</button>`;
+  const row = (label, value, action) => `<button type="button" class="pf-row cursor-interaction" data-act="${action}"><span class="pf-row-text"><span class="pf-row-label">${label}</span><span class="pf-row-value">${value}</span></span>${icon("chevron-right", "pf-row-chevron")}</button>`;
+  const optionsMarkup = (items, current) => items.map(item => `<button type="button" class="pf-choice cursor-interaction" data-value="${item.value}" aria-pressed="${String(item.value === current)}"><span class="pf-row-text"><span class="pf-row-value">${item.label}</span>${item.note ? `<span class="pf-row-label">${item.note}</span>` : ""}</span>${item.value === current ? icon("check", "pf-choice-mark") : ""}</button>`).join("");
+  const sessions = [];
+  const persisted = window.openai?.widgetState?.privateContent;
+  const persist = () => {
+    if (!window.openai?.setWidgetState) return;
+    window.openai.setWidgetState({
+      modelContent: { concept: "Создание → игра → исправления → завершение. Правки применяются вместе, счёт и подающий проверяются отдельно." },
+      privateContent: { version: "flow-1", items: sessions.map(s => ({ entry: s.entry, game: s.game, past: s.past.slice(-8), design: s.design })) }
+    }).catch(() => {});
+  };
+  root.querySelectorAll(".pf-watch").forEach(watch => {
+    const entry = watch.dataset.entry;
+    const old = persisted?.version === "flow-1" ? persisted.items?.find(item => item.entry === entry) : null;
+    const session = { entry, game: old?.game || seed("match"), past: old?.past || [], design: old?.design || { size: "large", mode: "match" } };
+    sessions.push(session);
+    let draft = null, creating = false, returnFromEditor = null, viewName = "", error = "";
+    const bind = (name, fn) => { const element = watch.querySelector(`[data-act="${name}"]`); if (element) element.onclick = () => fn(); };
+    const snapshot = () => { session.past.push(clone(session.game)); if (session.past.length > 30) session.past.shift(); };
+    const view = (title, content, footer = "", back = null) => {
+      watch.dataset.size = session.design.size;
+      watch.dataset.page = viewName;
+      watch.innerHTML = `<div class="pf-header" data-back="${Boolean(back)}">${back ? button(icon("chevron-left"), "back", "pf-back") : ""}<span class="pf-header-title">${title}</span><time>10:09</time></div><div class="pf-body">${content}</div><div class="pf-footer">${footer}</div><span class="pf-sr" aria-live="polite"></span>`;
+      if (back) { bind("back", back); watch.querySelector('[data-act="back"]').setAttribute("aria-label", "Назад"); }
+      if (globalThis.lucide) globalThis.lucide.createIcons();
+    };
+    const say = text => { const el = watch.querySelector(".pf-sr"); if (el) el.textContent = text; };
+    const numberPicker = (title, value, min, max, done, back, note = "") => {
+      view(title, `<div class="pf-number">${button(icon("minus"), "minus", "pf-step")}<input type="number" inputmode="numeric" aria-label="${title}" min="${min}" max="${max}" step="1" value="${value}">${button(icon("plus"), "plus", "pf-step")}</div>${note ? `<p class="pf-caption">${note}</p>` : ""}<p class="pf-error" role="alert"></p>`, button("Готово", "done"), back);
+      const field = watch.querySelector("input");
+      watch.querySelector('[data-act="minus"]').setAttribute("aria-label", "Уменьшить");
+      watch.querySelector('[data-act="plus"]').setAttribute("aria-label", "Увеличить");
+      bind("minus", () => { field.value = Math.max(min, (Number(field.value) || min) - 1); });
+      bind("plus", () => { field.value = Math.min(max, (Number(field.value) || min) + 1); });
+      bind("done", () => {
+        const n = Number(field.value);
+        if (!field.value || !Number.isInteger(n) || n < min || n > max) { watch.querySelector(".pf-error").textContent = `Выбери число от ${min} до ${max}.`; return; }
+        done(n);
+      });
+    };
+    const choicePicker = (title, items, value, done, back) => {
+      let choice = value;
+      const paint = () => {
+        view(title, optionsMarkup(items, choice), button("Готово", "done"), back);
+        watch.querySelectorAll("[data-value]").forEach(el => el.onclick = () => { choice = el.dataset.value; paint(); });
+        bind("done", () => done(choice));
+      };
+      paint();
+    };
+    const rulePicker = back => choicePicker("При 40:40", Object.entries(rules).map(([value, [label, note]]) => ({ value, label, note })), draft.rule, value => { draft.rule = value; back(); }, back);
+    const validation = game => {
+      if (game.mode === "americano") {
+        const sum = game.points[0] + game.points[1];
+        if (game.total < sum) return `Уже разыграно ${sum}. Увеличь общее число или исправь очки.`;
+        if (game.within > game.series) return `Серия теперь из ${game.series}. Уточни номер текущей подачи.`;
+      } else {
+        if (!game.tie && game.points.includes(4)) {
+          if (game.rule === "golden") return "При голден-пойнте нет AD. Исправь очки или правило.";
+          if (game.points[0] === 4 && game.points[1] !== 3 || game.points[1] === 4 && game.points[0] !== 3) return "Преимущество возможно только против 40.";
+        }
+      }
+      return "";
+    };
+    const save = backOnError => {
+      error = validation(draft);
+      if (error) { backOnError(); return; }
+      const completes = draft.mode === "americano" && draft.points[0] + draft.points[1] === draft.total;
+      const commit = () => {
+        snapshot(); session.game = clone(draft); session.game.ended = completes || session.game.ended; persist();
+        if (session.game.ended) result(); else live("Изменения сохранены");
+      };
+      if (completes && !session.game.ended) {
+        view("Все очки сыграны", `<div class="pf-total"><div class="pf-total-label">Мы — они</div><div class="pf-total-value"><span>${draft.points[0]}</span> : <span>${draft.points[1]}</span></div></div><p class="pf-caption">После сохранения раунд завершится.</p>`, button("Сохранить результат", "apply"), backOnError);
+        bind("apply", commit);
+      } else commit();
+    };
+    const createHome = () => {
+      creating = true; viewName = "create";
+      view("Новая игра", `<button type="button" class="pf-row pf-mode cursor-interaction" data-act="match">${icon("circle-dot", "pf-row-icon")}<span class="pf-row-text"><span class="pf-row-value">Матч</span><span class="pf-row-label">Геймы и сеты</span></span></button><button type="button" class="pf-row pf-mode cursor-interaction" data-act="americano">${icon("hash", "pf-row-icon")}<span class="pf-row-text"><span class="pf-row-value">Американо</span><span class="pf-row-label">Всего розыгрышей</span></span></button>`);
+      ["match", "americano"].forEach(mode => bind(mode, () => {
+        draft = fresh(mode);
+        draft.rule = session.game.rule; draft.total = session.game.total; draft.series = session.game.series; draft.order = [...session.game.order];
+        setup();
+      }));
+    };
+    const setup = () => {
+      viewName = "setup";
+      const content = draft.mode === "match"
+        ? row("При 40:40", rules[draft.rule][0], "rule") + row("Первая подача", names[draft.order[draft.serving]], "serve") + `<p class="pf-caption">Заверши матч, когда решишь. Число сетов не ограничено.</p>`
+        : row("Всего розыгрышей", `${draft.total} на обе команды`, "total") + row("Серия подачи", `${draft.series} подряд`, "series") + row("Первая подача", names[draft.order[draft.serving]], "serve");
+      view(draft.mode === "match" ? "Матч" : "Американо", content, button("Начать игру", "start"), createHome);
+      bind("rule", () => rulePicker(setup));
+      bind("serve", () => serveEditor(setup));
+      bind("total", () => numberPicker("Розыгрыши", draft.total, 1, 999, n => { draft.total = n; setup(); }, setup, "Общее число для обеих команд."));
+      bind("series", () => numberPicker("Серия подачи", draft.series, 1, 99, n => { draft.series = n; setup(); }, setup, "Розыгрышей подряд у одного игрока."));
+      bind("start", () => { session.game = clone(draft); session.past = []; creating = false; persist(); live(); });
+    };
+    const menu = () => {
+      viewName = "menu";
+      view("Игра", row("Счёт и сеты", "Исправить счёт", "score") + row("Правила и очередь", "Настройки", "settings") + row("Сохранить результат", "Завершить матч", "finish"), "", live);
+      bind("score", () => beginEdit("score")); bind("settings", () => beginEdit("settings")); bind("finish", finish);
+    };
+    const beginEdit = destination => {
+      creating = false; draft = clone(session.game); error = ""; returnFromEditor = session.game.ended ? result : live;
+      if (destination === "settings") settings(); else editScore();
+    };
+    const settings = () => {
+      viewName = "settings";
+      let content = draft.mode === "match" ? row("При 40:40", rules[draft.rule][0], "rule") : row("Всего розыгрышей", `${draft.total}`, "total") + row("Серия подачи", `${draft.series} подряд`, "series");
+      content += row("Подача и очередь", names[draft.order[draft.serving]], "serve");
+      content += `<p class="pf-caption">Сыгранный счёт сохраняется.</p>`;
+      if (error) content = `<p class="pf-error" role="alert">${error}</p>` + row("Проверить", "Текущий счёт", "score") + content;
+      view("Настройки", content, button("Сохранить", "save"), returnFromEditor || live);
+      bind("rule", () => rulePicker(settings)); bind("serve", () => serveEditor(settings));
+      bind("total", () => numberPicker("Розыгрыши", draft.total, 1, 999, n => { draft.total = n; settings(); }, settings, `Уже разыграно ${draft.points[0] + draft.points[1]}.`));
+      bind("series", () => numberPicker("Серия подачи", draft.series, 1, 99, n => { draft.series = n; settings(); }, settings));
+      bind("score", editScore); bind("save", () => save(settings));
+    };
+    const editScore = () => {
+      viewName = "score";
+      const points = scoreText(draft);
+      let content = `${error ? `<p class="pf-error" role="alert">${error}</p>` : ""}<div class="pf-team-head"><span>МЫ</span><span>ОНИ</span></div><div class="pf-pair">${button(points[0], "p0", "")}${button(points[1], "p1", "")}</div>`;
+      if (draft.mode === "match") {
+        content += `<div class="pf-score-label">Геймы текущего сета</div><div class="pf-pair pf-pair-small">${button(draft.games[0], "g0", "")}${button(draft.games[1], "g1", "")}</div>`;
+        content += `<div class="pf-score-gap">${row("Завершённые сеты", draft.sets.length ? draft.sets.map(set => set.join(":")).join(" · ") : "Пока нет", "sets")}</div>`;
+        content += row("Текущий гейм", draft.tie ? "Тай-брейк" : "Обычный", "kind");
+        if (!draft.tie && draft.points[0] === 3 && draft.points[1] === 3 && draft.rule === "one") content += row("Стадия 40:40", draft.phase === "first" ? "Первое равенство" : "Решающий мяч", "phase");
+      }
+      content += row("Подаёт сейчас", names[draft.order[draft.serving]], "serve");
+      content += `<p class="pf-caption">Проверь подающего. Он не меняется при ручной правке счёта.</p>`;
+      if (error) content += row("Проверить", "Правила игры", "settings");
+      view("Счёт", content, button("Сохранить", "save"), returnFromEditor || live);
+      for (let team = 0; team < 2; team++) {
+        bind(`p${team}`, () => {
+          const done = value => { draft.points[team] = Number(value); error = ""; editScore(); };
+          if (draft.mode === "americano" || draft.tie) numberPicker(team === 0 ? "Наши очки" : "Их очки", draft.points[team], 0, 999, done, editScore);
+          else choicePicker(team === 0 ? "Наши очки" : "Их очки", ["0", "15", "30", "40", "AD"].map((label, value) => ({ value: String(value), label })), String(draft.points[team]), done, editScore);
+        });
+        bind(`g${team}`, () => numberPicker(team === 0 ? "Наши геймы" : "Их геймы", draft.games[team], 0, 99, n => { draft.games[team] = n; editScore(); }, editScore));
+      }
+      bind("sets", setsEditor); bind("serve", () => serveEditor(editScore)); bind("settings", settings);
+      bind("phase", () => choicePicker("При 40:40", [{ value: "first", label: "Первое равенство" }, { value: "deciding", label: "Решающий мяч" }], draft.phase, value => { draft.phase = value; editScore(); }, editScore));
+      bind("kind", () => choicePicker("Текущий гейм", [{ value: "normal", label: "Обычный гейм", note: "Очки 0, 15, 30, 40." }, { value: "tie", label: "Тай-брейк", note: "Очки 0, 1, 2, 3…" }], draft.tie ? "tie" : "normal", value => {
+        const nextTie = value === "tie";
+        if (nextTie !== draft.tie) { draft.tie = nextTie; draft.points = [0, 0]; error = "Укажи очки для выбранного типа гейма."; }
+        editScore();
+      }, editScore));
+      bind("save", () => save(editScore));
+    };
+    const setsEditor = () => {
+      view("Сеты", draft.sets.map((set, i) => row(`Сет ${i + 1}`, set.join(" : "), `set${i}`)).join("") + button("Добавить сет", "add", "pf-inline-action"), button("Готово", "done"), editScore);
+      draft.sets.forEach((_, i) => bind(`set${i}`, () => setEditor(i)));
+      bind("add", () => setEditor(-1)); bind("done", editScore);
+    };
+    const setEditor = index => {
+      let values = index < 0 ? [6, 0] : [...draft.sets[index]];
+      const paint = message => {
+        view(index < 0 ? "Добавить сет" : `Сет ${index + 1}`, `<div class="pf-team-head"><span>МЫ</span><span>ОНИ</span></div><div class="pf-pair">${button(values[0], "left", "")}${button(values[1], "right", "")}</div><p class="pf-caption">Завершённый сет</p>${message ? `<p class="pf-error" role="alert">${message}</p>` : ""}${index >= 0 ? button("Удалить этот сет", "remove", "pf-inline-action pf-danger") : ""}`, button("Готово", "done"), setsEditor);
+        ["left", "right"].forEach((key, team) => bind(key, () => numberPicker(team === 0 ? "Наши геймы" : "Их геймы", values[team], 0, 99, n => { values[team] = n; paint(); }, () => paint())));
+        bind("done", () => {
+          if (values[0] === values[1]) return paint("В завершённом сете счёт не может быть равным.");
+          if (index < 0) draft.sets.push(values); else draft.sets[index] = values;
+          setsEditor();
+        });
+        bind("remove", () => { draft.sets.splice(index, 1); setsEditor(); });
+      };
+      paint();
+    };
+    const serveEditor = back => {
+      const current = draft.order[draft.serving];
+      const next = draft.order[(draft.serving + 1) % 4];
+      const queue = Array.from({ length: 4 }, (_, i) => draft.order[(draft.serving + i) % 4]);
+      const repaint = () => serveEditor(back);
+      view("Подача", row(creating ? "Первым подаёт" : "Подаёт сейчас", names[current], "current") + row("После него", names[next], "next") + (draft.mode === "americano" ? row("Номер в серии", `${draft.within} из ${draft.series}`, "within") : "") + `<div class="pf-section-label">Очередь дальше</div><div class="pf-queue">${queue.map((person, i) => `<div class="pf-queue-line"><span class="pf-queue-num">${i + 1}</span><span>${names[person]}</span></div>`).join("")}</div>`, button("Готово", "done"), back);
+      bind("current", () => choicePicker(creating ? "Первая подача" : "Кто подаёт", names.map((label, i) => ({ value: String(i), label })), String(current), v => { draft.serving = draft.order.indexOf(Number(v)); repaint(); }, repaint));
+      bind("next", () => choicePicker("Следом подаёт", names.map((label, i) => ({ value: String(i), label })).filter(item => (Number(item.value) < 2) !== (current < 2)), String(next), v => {
+        const target = (draft.serving + 1) % 4, other = draft.order.indexOf(Number(v));
+        [draft.order[target], draft.order[other]] = [draft.order[other], draft.order[target]]; repaint();
+      }, repaint));
+      bind("within", () => numberPicker("Номер в серии", Math.min(draft.within, draft.series), 1, draft.series, n => { draft.within = n; repaint(); }, repaint, "Какой розыгрыш будет следующим."));
+      bind("done", back);
+    };
+    const live = notice => {
+      viewName = "live"; creating = false;
+      const g = session.game, p = scoreText(g), setCounts = counts(g);
+      const golden = g.mode === "match" && !g.tie && g.points[0] === 3 && g.points[1] === 3 && (g.rule === "golden" || g.rule === "one" && g.phase === "deciding");
+      const summary = g.mode === "match" ? `<div class="pf-stat"><span>${g.games[0]}</span><small>Геймы</small><span>${g.games[1]}</span></div><div class="pf-stat"><span>${setCounts[0]}</span><small>Сеты</small><span>${setCounts[1]}</span></div>` : `<p class="pf-caption">Осталось ${g.total - g.points[0] - g.points[1]} из ${g.total}</p><p class="pf-caption">Серия ${g.within} из ${g.series}</p>`;
+      view(g.mode === "americano" ? "Американо" : golden ? "Голден-пойнт" : g.tie ? "Тай-брейк" : `Сет ${g.sets.length + 1}`, `<div class="pf-main"><div class="pf-pair pf-live-pair">${button(`<small>МЫ</small>${p[0]}`, "add0", "")}${button(`<small>ОНИ</small>${p[1]}`, "add1", "")}</div><div class="pf-live-summary">${summary}</div><div class="pf-live-tools">${button(icon("undo-2"), "undo", "pf-tool")}<div class="pf-serving">Подаёт<strong>${names[g.order[g.serving]]}</strong></div>${button(icon("ellipsis"), "menu", "pf-tool")}</div></div>`);
+      for (let team = 0; team < 2; team++) bind(`add${team}`, () => addPoint(team));
+      const undo = watch.querySelector('[data-act="undo"]');
+      undo.disabled = !session.past.length; undo.setAttribute("aria-label", "Отменить последнее действие");
+      watch.querySelector('[data-act="menu"]').setAttribute("aria-label", "Меню игры");
+      bind("undo", () => { if (session.past.length) { session.game = session.past.pop(); persist(); live("Последнее действие отменено"); } });
+      bind("menu", menu); if (notice) say(notice);
+    };
+    const addPoint = team => {
+      const g = session.game; if (g.ended) return; snapshot();
+      const before = g.points[0] === 3 && g.points[1] === 3;
+      g.points[team]++;
+      if (g.mode === "americano") {
+        if (g.within >= g.series) { g.within = 1; g.serving = (g.serving + 1) % 4; } else g.within++;
+        if (g.points[0] + g.points[1] >= g.total) { g.ended = true; persist(); result(); return; }
+      } else {
+        const wins = g.tie ? g.points[team] >= 7 && g.points[team] - g.points[1 - team] >= 2 :
+          (before && (g.rule === "golden" || g.rule === "one" && g.phase === "deciding")) || (g.points[team] >= 4 && g.points[team] - g.points[1 - team] >= 2);
+        if (wins) {
+          const wasTie = g.tie;
+          if (wasTie && g.tieStarter !== undefined) g.serving = (g.tieStarter + 1) % 4;
+          else g.serving = (g.serving + 1) % 4;
+          g.games[team]++; g.points = [0, 0]; g.phase = "first";
+          if (wasTie || g.games[team] >= 6 && g.games[team] - g.games[1 - team] >= 2) { g.sets.push([...g.games]); g.games = [0, 0]; g.tie = false; delete g.tieStarter; }
+          else if (g.games[0] === 6 && g.games[1] === 6) { g.tie = true; g.tieStarter = g.serving; }
+        } else if (g.tie) {
+          const total = g.points[0] + g.points[1];
+          if (total % 2 === 1) g.serving = (g.serving + 1) % 4;
+        } else if (g.points[0] === 4 && g.points[1] === 4) { g.points = [3, 3]; g.phase = "deciding"; }
+      }
+      persist(); live();
+    };
+    const resultDetails = g => g.mode === "match"
+      ? g.sets.map((set, i) => `<div class="pf-result-row"><span>Сет ${i + 1}</span><strong>${set.join(" : ")}</strong></div>`).join("") +
+        (g.games.some(Boolean) || g.points.some(Boolean) ? `<div class="pf-result-row"><span>Сет ${g.sets.length + 1}<small>Не завершён</small></span><span><strong>${g.games.join(" : ")}</strong><small>Очки ${scoreText(g).join(" : ")}</small></span></div>` : "")
+      : `<div class="pf-result-row"><span>Разыграно</span><strong>${g.points[0] + g.points[1]} / ${g.total}</strong></div>`;
+    const finish = () => {
+      viewName = "finish"; creating = false;
+      const g = session.game, values = g.mode === "match" ? counts(g) : g.points;
+      view("Завершить?", `<div class="pf-total"><div class="pf-total-label">${g.mode === "match" ? "Сеты" : "Очки"} · мы — они</div><div class="pf-total-value"><span>${values[0]}</span> : <span>${values[1]}</span></div></div><p class="pf-confirm-note">${g.mode === "match" ? `Сет ${g.sets.length + 1}: ${g.games.join(":")} · очки ${scoreText(g).join(":")}` : `Сыграно ${g.points[0] + g.points[1]} из ${g.total}`}</p>`, button("Завершить и сохранить", "confirm") + button("Продолжить игру", "continue", "pf-secondary-button"), live);
+      bind("continue", live);
+      bind("confirm", () => { snapshot(); session.game.ended = true; persist(); result(); });
+    };
+    const result = () => {
+      viewName = "result";
+      const g = session.game, values = g.mode === "match" ? counts(g) : g.points;
+      view("Сохранено", `<div class="pf-total"><div class="pf-total-label">${g.mode === "match" ? "Сеты" : "Очки"} · мы — они</div><div class="pf-total-value"><span>${values[0]}</span> : <span>${values[1]}</span></div></div>${resultDetails(g)}${button("Исправить результат", "edit", "pf-inline-action")}${button("Продолжить эту игру", "resume", "pf-inline-action")}`, button("Новая игра", "new"));
+      bind("edit", () => beginEdit("score")); bind("new", createHome);
+      bind("resume", () => {
+        if (g.mode === "americano" && g.points[0] + g.points[1] >= g.total) {
+          beginEdit("settings"); draft.ended = false; error = "Все розыгрыши сыграны. Чтобы продолжить, увеличь их число."; settings();
+          return;
+        }
+        snapshot(); session.game.ended = false; persist(); live();
+      });
+    };
+    const launch = () => {
+      error = ""; draft = clone(session.game); creating = false; returnFromEditor = live;
+      if (entry === "create") createHome();
+      else if (entry === "score") editScore();
+      else if (entry === "settings") settings();
+      else if (session.game.ended) result(); else finish();
+    };
+    launch();
+    session.launch = launch;
+    if (globalThis.Tweak) {
+      let priorMode = session.design.mode;
+      const tweak = new Tweak({ container: watch, onChange: () => {
+        watch.dataset.size = session.design.size;
+        if (priorMode !== session.design.mode) { priorMode = session.design.mode; session.game = seed(priorMode); session.past = []; launch(); }
+        persist();
+      }});
+      tweak.addSelect(session.design, "size", { label: "Размер часов", options: [{ value: "large", label: "Крупный экран" }, { value: "small", label: "Компактный экран" }] });
+      if (entry !== "create") tweak.addSelect(session.design, "mode", { label: "Формат игры", options: [{ value: "match", label: "Матч" }, { value: "americano", label: "Американо" }] });
+    }
+  });
+  window.addEventListener("openai:set_globals", event => {
+    const state = event.detail?.globals?.widgetState?.privateContent;
+    if (state?.version !== "flow-1" || !Array.isArray(state.items)) return;
+    sessions.forEach(session => {
+      const next = state.items.find(item => item.entry === session.entry);
+      if (!next?.game || !next?.design) return;
+      if (JSON.stringify(session.game) === JSON.stringify(next.game) && JSON.stringify(session.design) === JSON.stringify(next.design)) return;
+      session.game = clone(next.game); session.past = clone(next.past || []); Object.assign(session.design, next.design); session.launch();
+    });
+  });
+})();
+</script>

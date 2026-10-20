@@ -1,0 +1,17 @@
+# Cloudflare Pages response headers.
+#
+# This site is four static documents. It runs no script, loads no font, embeds no
+# image, and talks to nothing — so the policy below is written as a deny-list of
+# one: default-src 'none', with the single stylesheet allowed back in. A privacy
+# policy is exactly the kind of page whose integrity matters, and the cheapest way
+# to keep it trustworthy is to give a future injection nothing to reach for.
+#
+# Adding a real asset means widening the matching directive here, deliberately.
+# Do not replace the policy with a permissive one to make an addition work.
+/*
+  Content-Security-Policy: default-src 'none'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=()

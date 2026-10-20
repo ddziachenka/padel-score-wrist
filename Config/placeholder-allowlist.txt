@@ -1,0 +1,15 @@
+# Config/placeholder-allowlist.txt
+#
+# Exact non-shipping files where verify-static tolerates deliberate placeholder
+# markers. Product sources and Config/project.env can never be exempt.
+#
+# Format:
+#
+#   <repository-relative path> | <specific reason> | <expiry YYYY-MM-DD>
+#
+# Glob metacharacters are rejected. The path must contain Tests, UITests,
+# Fixtures, Documentation, or Preview Content. Reasons must be real and expiry
+# dates must be in the future. Prefer finishing the text over adding an entry.
+#
+# Example:
+# App/YourAppTests/Fixtures/PlaceholderSamples.swift | fixture for placeholder scanning | 2027-01-01

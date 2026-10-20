@@ -1,0 +1,20 @@
+{
+  // Cloudflare Pages project configuration for the legal and support site.
+  //
+  // "name" MUST equal the first label of SUPPORT_SITE_URL's host in
+  // Config/project.env, because that is what produces <name>.pages.dev.
+  // Scripts/deploy-site.sh derives the expected value from the configuration and
+  // refuses to deploy when the two disagree, so this file cannot quietly send the
+  // site to a project no one names.
+  //
+  // Cloudflare accepts alphanumerics and dashes in a project name.
+  "name": "yourapp",
+
+  // Relative to this file. Only what is under it is uploaded, which is why this
+  // config and Web/README.md live outside it.
+  "pages_build_output_dir": "./public",
+
+  // Pins the Pages runtime's behaviour. Bump it deliberately, never as a
+  // side effect of an unrelated change.
+  "compatibility_date": "2026-08-16"
+}

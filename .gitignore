@@ -1,0 +1,38 @@
+# macOS and local editor state
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+
+# Build products and verification evidence
+.artifacts/*
+!.artifacts/.gitkeep
+DerivedData/
+.build/
+build/
+*.xcresult
+*.xcarchive
+*.ipa
+*.dSYM/
+*.dSYM.zip
+xcuserdata/
+*.xcuserstate
+
+# Local dependencies and publishing caches
+node_modules/
+.wrangler/
+
+# Credentials and signing material
+.env
+.env.*
+!.env.example
+!.env.sample
+*.p8
+*.p12
+*.pfx
+*.key
+*.pem
+*.mobileprovision
+*.provisionprofile
+*.keystore

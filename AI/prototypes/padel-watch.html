@@ -1,0 +1,308 @@
+<div id="padel-watch-concept">
+  <div class="viz-carousel viz-dotted-background" aria-label="Главный экран Apple Watch" data-previous-label="Назад" data-next-label="Далее">
+    <section data-variant="Матч" aria-label="Обычный матч">
+      <div class="pw-stage"><div class="pw-case"><div class="pw-screen" data-mode="match" aria-label="Экран счёта матча"></div></div></div>
+    </section>
+    <section data-variant="Американо" aria-label="Раунд американо" hidden>
+      <div class="pw-stage"><div class="pw-case"><div class="pw-screen" data-mode="americano" aria-label="Экран счёта американо"></div></div></div>
+    </section>
+  </div>
+</div>
+<style>
+  #padel-watch-concept { --pw-ink: #f5f5f7; --pw-muted: #a5a5ad; --pw-accent: #dcf79b; --pw-panel: #151517; --pw-bg: #000; }
+  #padel-watch-concept .pw-stage { height: 396px; display: grid; place-items: center; padding: 14px; box-sizing: border-box; }
+  #padel-watch-concept .pw-case { position: relative; padding: 9px; border-radius: 46px; background: #303135; box-shadow: inset 0 0 0 2px #4b4b50, inset 0 0 0 5px #202124, 0 12px 24px #00000026; transform: scale(1.32); }
+  #padel-watch-concept .pw-case::after { content: ""; position: absolute; top: 66px; right: -6px; width: 6px; height: 28px; background: #44454a; border-radius: 0 4px 4px 0; }
+  #padel-watch-concept .pw-screen { position: relative; box-sizing: border-box; width: 198px; height: 242px; padding: 8px 8px 7px; display: grid; grid-template-rows: 25px 1fr 42px 50px; gap: 4px; background: var(--pw-bg); color: var(--pw-ink); border-radius: 36px; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif; font-size: 13px; line-height: 1.2; color-scheme: dark; -webkit-font-smoothing: antialiased; }
+  #padel-watch-concept .pw-screen button, #padel-watch-concept .pw-screen input, #padel-watch-concept .pw-screen select { font: inherit; }
+  #padel-watch-concept .pw-screen button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  #padel-watch-concept .pw-top { display: flex; align-items: center; justify-content: space-between; padding: 0 11px; gap: 6px; font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  #padel-watch-concept .pw-context { color: var(--pw-muted); white-space: nowrap; font-size: 11.5px; }
+  #padel-watch-concept .pw-context[data-important="true"] { color: #efd48b; }
+  #padel-watch-concept .pw-points { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; min-height: 0; }
+  #padel-watch-concept .pw-point { border: 0; color: var(--pw-ink); background: var(--pw-panel); border-radius: 18px; padding: 5px 0 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0; min-width: 0; }
+  #padel-watch-concept .pw-point:first-child { color: var(--pw-accent); background: color-mix(in srgb, var(--pw-accent) 9%, #000); }
+  #padel-watch-concept .pw-team { font-size: 11.5px; font-weight: 600; letter-spacing: .65px; }
+  #padel-watch-concept .pw-value { font-size: 55px; line-height: 1.02; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -2px; }
+  #padel-watch-concept .pw-value[data-long="true"] { font-size: 40px; letter-spacing: -1.5px; }
+  #padel-watch-concept .pw-point:active { background: #333438; transform: scale(.97); }
+  #padel-watch-concept .pw-point:first-child:active { background: color-mix(in srgb, var(--pw-accent) 23%, #000); }
+  #padel-watch-concept .pw-point:disabled { opacity: .65; }
+  #padel-watch-concept .pw-summary { display: flex; flex-direction: column; justify-content: center; }
+  #padel-watch-concept .pw-stat { display: grid; grid-template-columns: 1fr 46px 1fr; align-items: center; text-align: center; min-height: 21px; }
+  #padel-watch-concept .pw-stat span { color: var(--pw-muted); font-size: 11px; }
+  #padel-watch-concept .pw-stat strong { font-size: 17px; line-height: 1.05; font-weight: 500; font-variant-numeric: tabular-nums; }
+  #padel-watch-concept .pw-stat strong:first-child { padding-left: 22px; }
+  #padel-watch-concept .pw-stat strong:last-child { padding-right: 22px; }
+  #padel-watch-concept .pw-stat + .pw-stat strong { font-size: 15px; color: #d0d0d6; }
+  #padel-watch-concept .pw-footer { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; }
+  #padel-watch-concept .pw-icon { display: grid; place-items: center; border: 0; padding: 0; width: 44px; height: 44px; background: transparent; color: var(--pw-ink); border-radius: 50%; }
+  #padel-watch-concept .pw-icon::before { content: ""; position: absolute; width: 30px; height: 30px; background: #202023; border-radius: 50%; z-index: 0; }
+  #padel-watch-concept .pw-icon > * { position: relative; z-index: 1; }
+  #padel-watch-concept .pw-icon svg { width: 16px; height: 16px; stroke-width: 2; }
+  #padel-watch-concept .pw-icon:active::before { background: #48484e; }
+  #padel-watch-concept .pw-icon:disabled { opacity: .35; }
+  #padel-watch-concept .pw-server { text-align: center; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  #padel-watch-concept .pw-server-label { font-size: 11px; color: var(--pw-muted); }
+  #padel-watch-concept .pw-server-name { font-size: 12px; font-weight: 600; white-space: nowrap; letter-spacing: -.15px; }
+  #padel-watch-concept .pw-remaining { text-align: center; font-size: 12px; color: #d0d0d6; }
+  #padel-watch-concept .pw-remaining strong { color: var(--pw-ink); font-weight: 600; }
+  #padel-watch-concept .pw-series { text-align: center; font-size: 11px; color: var(--pw-muted); margin-top: 5px; }
+  #padel-watch-concept .pw-overlay { position: absolute; inset: 0; padding: 8px 9px 14px; background: #09090b; z-index: 5; overflow-y: auto; scrollbar-width: none; }
+  #padel-watch-concept .pw-overlay[hidden] { display: none; }
+  #padel-watch-concept .pw-overlay-head { display: flex; align-items: center; min-height: 35px; margin: 0 0 6px; gap: 5px; font-size: 14px; font-weight: 600; }
+  #padel-watch-concept .pw-back { border: 0; background: transparent; color: var(--pw-accent); width: 44px; height: 35px; padding: 0; display: grid; place-items: center; }
+  #padel-watch-concept .pw-back svg { width: 18px; height: 18px; }
+  #padel-watch-concept .pw-action { display: flex; align-items: center; gap: 8px; min-height: 44px; width: 100%; margin: 5px 0; padding: 9px 11px; box-sizing: border-box; color: var(--pw-ink); background: #222225; border: 0; border-radius: 13px; font-size: 12px; text-align: left; }
+  #padel-watch-concept .pw-action svg { width: 15px; height: 15px; flex-shrink: 0; }
+  #padel-watch-concept .pw-action-danger { color: #ff9c97; }
+  #padel-watch-concept .pw-action-primary { color: #15180e; background: var(--pw-accent); justify-content: center; font-weight: 600; }
+  #padel-watch-concept .pw-dialog-copy { font-size: 12px; line-height: 1.45; color: #c7c7cd; margin: 8px 5px 12px; }
+  #padel-watch-concept .pw-edit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  #padel-watch-concept .pw-field { display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: var(--pw-muted); margin-bottom: 8px; }
+  #padel-watch-concept .pw-field input, #padel-watch-concept .pw-field select { box-sizing: border-box; width: 100%; min-height: 36px; padding: 6px; border: 1px solid #45454b; border-radius: 9px; background: #202023; color: var(--pw-ink); font-size: 14px; }
+  #padel-watch-concept .pw-history-row { display: flex; justify-content: space-between; padding: 12px 8px; border-bottom: 1px solid #28282d; font-size: 13px; font-variant-numeric: tabular-nums; }
+  #padel-watch-concept .pw-error { color: #ffb0a8; font-size: 11px; margin: 5px; }
+  #padel-watch-concept .pw-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+  #padel-watch-concept .pw-screen[data-size="small"] { width: 162px; height: 197px; padding: 6px 6px 4px; border-radius: 29px; grid-template-rows: 22px 1fr 36px 44px; gap: 2px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-top { padding: 0 9px; font-size: 11px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-context { font-size: 11px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-value { font-size: 45px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-value[data-long="true"] { font-size: 32px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-team { font-size: 11px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-point { border-radius: 15px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-stat { min-height: 18px; grid-template-columns: 1fr 40px 1fr; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-stat strong:first-child { padding-left: 20px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-stat strong:last-child { padding-right: 20px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-server-name { font-size: 11px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-server { gap: 2px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-series { margin-top: 3px; }
+  #padel-watch-concept .pw-screen[data-size="small"] .pw-stat + .pw-stat strong { font-size: 14px; }
+  @media (prefers-reduced-motion: no-preference) {
+    #padel-watch-concept .pw-point { transition: background 110ms ease, transform 110ms ease; }
+  }
+</style>
+<script>
+(() => {
+  const root = document.getElementById("padel-watch-concept");
+  const names = ["Ты", "Соперник 1", "Партнёр", "Соперник 2"];
+  const copy = x => JSON.parse(JSON.stringify(x));
+  const instances = [];
+  const initial = mode => mode === "match"
+    ? { points: [3, 2], games: [3, 2], sets: [1, 0], history: [[6, 4]], server: 2, deuce: 0, rule: "golden", tie: false, ended: false }
+    : { points: [14, 10], total: 32, series: 4, offset: 0, ended: false };
+  const saved = window.openai?.widgetState?.privateContent;
+  const persist = () => {
+    if (!window.openai?.setWidgetState) return;
+    const snapshots = instances.map(i => ({ mode: i.mode, state: i.state, past: i.past.slice(-20), design: i.design }));
+    window.openai.setWidgetState({ modelContent: { concept: "Две колонки; МЫ слева; общая нижняя строка подачи и действий" }, privateContent: { version: 1, snapshots } }).catch(() => {});
+  };
+  const icon = name => `<i data-lucide="${name}" aria-hidden="true"></i>`;
+  const hydrateIcons = () => { if (globalThis.lucide) globalThis.lucide.createIcons(); };
+  root.querySelectorAll(".pw-screen").forEach(screen => {
+    const mode = screen.dataset.mode;
+    const stored = saved?.version === 1 ? saved.snapshots?.find(s => s.mode === mode) : null;
+    const instance = {
+      mode, state: stored?.state || initial(mode), past: stored?.past || [],
+      design: stored?.design || { size: "large", accent: "#dcf79b", scenario: "Игра" }
+    };
+    instances.push(instance);
+    const resetScenario = () => {
+      instance.state = initial(mode);
+      instance.past = [];
+      const s = instance.state;
+      if (mode === "match") {
+        if (instance.design.scenario === "Голден-пойнт") s.points = [3, 3];
+        if (instance.design.scenario === "Преимущество") { s.points = [4, 3]; s.rule = "classic"; }
+        if (instance.design.scenario === "Тай-брейк") { s.points = [6, 5]; s.games = [6, 6]; s.tie = true; s.server = 0; }
+      } else if (instance.design.scenario === "Последний розыгрыш") s.points = [17, 14];
+    };
+    screen.innerHTML = `
+      <div class="pw-top"><span class="pw-context"></span><span aria-label="Время на часах">10:09</span></div>
+      <div class="pw-points">
+        <button type="button" class="pw-point cursor-interaction" data-team="0"><span class="pw-team">МЫ</span><span class="pw-value"></span></button>
+        <button type="button" class="pw-point cursor-interaction" data-team="1"><span class="pw-team">ОНИ</span><span class="pw-value"></span></button>
+      </div>
+      <div class="pw-summary"></div>
+      <div class="pw-footer">
+        <button type="button" class="pw-icon cursor-interaction" data-action="undo" aria-label="Отменить последнее действие">${icon("undo-2")}</button>
+        <div class="pw-server"><span class="pw-server-label">Подаёт</span><span class="pw-server-name"></span></div>
+        <button type="button" class="pw-icon cursor-interaction" data-action="menu" aria-label="Меню игры">${icon("ellipsis")}</button>
+      </div>
+      <span class="pw-sr" aria-live="polite" data-announcement></span>
+      <div class="pw-overlay" hidden></div>`;
+    const overlay = screen.querySelector(".pw-overlay");
+    const currentServer = () => {
+      const s = instance.state;
+      if (mode === "americano") return ((Math.floor((s.points[0] + s.points[1]) / s.series) + s.offset) % 4 + 4) % 4;
+      if (s.tie) { const p = s.points[0] + s.points[1]; return (s.server + (p === 0 ? 0 : Math.floor((p - 1) / 2) + 1)) % 4; }
+      return s.server;
+    };
+    const formatPoints = () => {
+      const s = instance.state;
+      if (mode === "americano" || s.tie) return s.points.map(String);
+      if (s.points[0] >= 3 && s.points[1] >= 3) {
+        if (s.points[0] === s.points[1]) return ["40", "40"];
+        return s.points[0] > s.points[1] ? ["AD", "40"] : ["40", "AD"];
+      }
+      return s.points.map(x => ["0", "15", "30", "40"][Math.min(x, 3)]);
+    };
+    const render = () => {
+      const s = instance.state;
+      screen.dataset.size = instance.design.size;
+      screen.style.setProperty("--pw-accent", instance.design.accent);
+      const p = formatPoints();
+      screen.querySelectorAll("[data-team]").forEach((b, team) => {
+        b.querySelector(".pw-value").textContent = p[team];
+        b.querySelector(".pw-value").dataset.long = String(p[team].length > 2);
+        b.setAttribute("aria-label", `${team === 0 ? "Мы" : "Они"}: ${p[team]}. Добавить очко.`);
+        b.disabled = s.ended;
+      });
+      const context = screen.querySelector(".pw-context");
+      const isGolden = mode === "match" && !s.tie && s.points[0] >= 3 && s.points[1] >= 3 && s.points[0] === s.points[1] &&
+        (s.rule === "golden" || (s.rule === "one" && s.deuce >= 1));
+      context.dataset.important = String(isGolden);
+      context.textContent = s.ended ? "Завершено" : mode === "americano" ? "Американо" : s.tie ? "Тай-брейк" : isGolden ? "Голден-пойнт" : `Сет ${s.sets[0] + s.sets[1] + 1}`;
+      const summary = screen.querySelector(".pw-summary");
+      if (mode === "match") {
+        summary.innerHTML = `<div class="pw-stat"><strong>${s.games[0]}</strong><span>Геймы</span><strong>${s.games[1]}</strong></div><div class="pw-stat"><strong>${s.sets[0]}</strong><span>Сеты</span><strong>${s.sets[1]}</strong></div>`;
+      } else {
+        const remaining = s.total - s.points[0] - s.points[1];
+        const position = (s.points[0] + s.points[1]) % s.series + 1;
+        summary.innerHTML = `<div class="pw-remaining">${s.ended ? (remaining === 0 ? "Раунд завершён" : "Раунд остановлен") : `Осталось <strong>${remaining}</strong> из ${s.total}`}</div><div class="pw-series">${s.ended ? `${s.points[0] === s.points[1] ? "Ничья" : s.points[0] > s.points[1] ? "Победа нашей пары" : "Победа соперников"}` : `Серия ${position} из ${s.series}`}</div>`;
+      }
+      screen.querySelector(".pw-server-label").textContent = s.ended ? "Игра" : "Подаёт";
+      screen.querySelector(".pw-server-name").textContent = s.ended ? "Завершена" : names[currentServer()];
+      screen.querySelector('[data-action="undo"]').disabled = instance.past.length === 0;
+    };
+    const checkpoint = () => { instance.past.push(copy(instance.state)); if (instance.past.length > 60) instance.past.shift(); };
+    const announce = text => { screen.querySelector("[data-announcement]").textContent = text; };
+    const finishSet = winner => {
+      const s = instance.state;
+      s.history.push([...s.games]); s.sets[winner]++; s.games = [0, 0]; s.points = [0, 0]; s.tie = false; s.deuce = 0;
+    };
+    const winGame = winner => {
+      const s = instance.state;
+      s.games[winner]++; s.points = [0, 0]; s.deuce = 0; s.server = (s.server + 1) % 4;
+      if (s.games[winner] >= 6 && s.games[winner] - s.games[1 - winner] >= 2) finishSet(winner);
+      else if (s.games[0] === 6 && s.games[1] === 6) s.tie = true;
+    };
+    const addPoint = team => {
+      const s = instance.state;
+      if (s.ended) return;
+      checkpoint();
+      const wasDeuce = s.points[0] >= 3 && s.points[1] >= 3 && s.points[0] === s.points[1];
+      s.points[team]++;
+      if (mode === "americano") s.ended = s.points[0] + s.points[1] >= s.total;
+      else if (s.tie) {
+        if (s.points[team] >= 7 && s.points[team] - s.points[1 - team] >= 2) {
+          s.games[team]++; s.server = (s.server + 1) % 4; finishSet(team);
+        }
+      } else {
+        const deciding = wasDeuce && (s.rule === "golden" || (s.rule === "one" && s.deuce >= 1));
+        if (deciding || (s.points[team] >= 4 && s.points[team] - s.points[1 - team] >= 2)) winGame(team);
+        else if (s.points[0] >= 4 && s.points[0] === s.points[1]) { s.points = [3, 3]; s.deuce++; }
+      }
+      render(); persist(); announce(`Очко ${team === 0 ? "нашей паре" : "соперникам"}. Счёт ${formatPoints().join(" — ")}.`);
+    };
+    const close = () => { overlay.hidden = true; overlay.innerHTML = ""; render(); screen.querySelector('[data-action="menu"]').focus({ preventScroll: true }); };
+    const show = (title, content, back = close) => {
+      overlay.innerHTML = `<div class="pw-overlay-head"><button type="button" class="pw-back cursor-interaction" aria-label="Назад">${icon("chevron-left")}</button><span>${title}</span></div>${content}`;
+      overlay.hidden = false; overlay.scrollTop = 0;
+      overlay.querySelector(".pw-back").onclick = back; hydrateIcons();
+      overlay.querySelector("button")?.focus({ preventScroll: true });
+    };
+    const menu = () => {
+      show("Игра", `<button type="button" class="pw-action cursor-interaction" data-menu="edit">${icon("sliders-horizontal")}Исправить игру</button><button type="button" class="pw-action cursor-interaction" data-menu="history">${icon("list")}Счёт по ${mode === "match" ? "сетам" : "раунду"}</button><button type="button" class="pw-action pw-action-danger cursor-interaction" data-menu="end">${icon(instance.state.ended ? "play" : "square")}${instance.state.ended ? "Продолжить" : "Завершить"}</button>`);
+      overlay.querySelector('[data-menu="edit"]').onclick = edit;
+      overlay.querySelector('[data-menu="history"]').onclick = () => {
+        const s = instance.state;
+        show("Счёт", mode === "match"
+          ? s.history.map((set, i) => `<div class="pw-history-row"><span>Сет ${i + 1}</span><span>${set[0]} : ${set[1]}</span></div>`).join("") + `<div class="pw-history-row"><span>Текущий</span><span>${s.games[0]} : ${s.games[1]}</span></div>`
+          : `<div class="pw-history-row"><span>Мы — они</span><span>${s.points[0]} : ${s.points[1]}</span></div><div class="pw-history-row"><span>Разыграно</span><span>${s.points[0] + s.points[1]} / ${s.total}</span></div>`, menu);
+      };
+      overlay.querySelector('[data-menu="end"]').onclick = () => {
+        if (instance.state.ended) {
+          if (mode === "americano" && instance.state.points[0] + instance.state.points[1] >= instance.state.total) {
+            show("Раунд завершён", `<p class="pw-dialog-copy">Все розыгрыши сыграны. Можно исправить счёт или увеличить число розыгрышей.</p><button type="button" class="pw-action cursor-interaction" data-edit>Исправить игру</button>`, menu);
+            overlay.querySelector("[data-edit]").onclick = edit;
+          } else { checkpoint(); instance.state.ended = false; close(); persist(); }
+          return;
+        }
+        show("Завершить?", `<p class="pw-dialog-copy">Текущий счёт сохранится. Игру можно будет продолжить.</p><button type="button" class="pw-action pw-action-danger cursor-interaction" data-confirm>Завершить игру</button><button type="button" class="pw-action cursor-interaction" data-cancel>Продолжить игру</button>`, menu);
+        overlay.querySelector("[data-cancel]").onclick = close;
+        overlay.querySelector("[data-confirm]").onclick = () => { checkpoint(); instance.state.ended = true; close(); persist(); };
+      };
+    };
+    const input = (label, key, value, max = 999) => `<label class="pw-field">${label}<input name="${key}" type="number" min="0" max="${max}" step="1" required value="${value}"></label>`;
+    const edit = () => {
+      const s = instance.state;
+      const pointSelect = team => `<label class="pw-field">${team === 0 ? "Наши очки" : "Их очки"}<select name="p${team}">${["0", "15", "30", "40", "AD"].map((label, i) => `<option value="${i}" ${s.points[team] === i ? "selected" : ""}>${label}</option>`).join("")}</select></label>`;
+      let fields = `<div class="pw-edit-grid">${mode === "match" && !s.tie ? pointSelect(0) + pointSelect(1) : input("Наши очки", "p0", s.points[0]) + input("Их очки", "p1", s.points[1])}</div>`;
+      if (mode === "match") {
+        fields += `<div class="pw-edit-grid">${input("Наши геймы", "g0", s.games[0], 7)}${input("Их геймы", "g1", s.games[1], 7)}</div>`;
+        s.history.forEach((set, i) => { fields += `<div class="pw-edit-grid">${input(`Сет ${i + 1}: мы`, `h${i}a`, set[0])}${input(`Сет ${i + 1}: они`, `h${i}b`, set[1])}</div>`; });
+        fields += `<label class="pw-field">Правило 40:40<select name="rule"><option value="golden" ${s.rule === "golden" ? "selected" : ""}>Голден-пойнт</option><option value="one" ${s.rule === "one" ? "selected" : ""}>Одно преимущество</option><option value="classic" ${s.rule === "classic" ? "selected" : ""}>До разницы в два</option></select></label>`;
+        fields += input("Возвратов к 40:40", "deuce", s.deuce, 99);
+      } else fields += `<div class="pw-edit-grid">${input("Всего розыгрышей", "total", s.total)}${input("Длина серии", "series", s.series)}</div>`;
+      fields += `<label class="pw-field">Подаёт сейчас<select name="server">${names.map((name, i) => `<option value="${i}" ${i === currentServer() ? "selected" : ""}>${name}</option>`).join("")}</select></label>`;
+      show("Исправить", `<form>${fields}<p class="pw-error" role="alert"></p><button type="submit" class="pw-action pw-action-primary cursor-interaction">Сохранить</button></form>`, menu);
+      overlay.querySelector("form").onsubmit = event => {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        const n = name => Number(data.get(name));
+        const next = copy(s);
+        next.points = [n("p0"), n("p1")];
+        const fail = text => { overlay.querySelector(".pw-error").textContent = text; };
+        if (mode === "match") {
+          if (!s.tie && ((next.points[0] === 4 && next.points[1] !== 3) || (next.points[1] === 4 && next.points[0] !== 3))) return fail("Преимущество возможно только против 40.");
+          next.games = [n("g0"), n("g1")]; next.rule = String(data.get("rule")); next.deuce = n("deuce");
+          if (next.rule === "golden" && !s.tie && next.points.includes(4)) return fail("Для AD выберите игру с преимуществом.");
+          next.history = s.history.map((_, i) => [n(`h${i}a`), n(`h${i}b`)]);
+          if (next.history.some(set => set[0] === set[1])) return fail("В завершённом сете нужна победившая пара.");
+          next.sets = [0, 0]; next.history.forEach(set => next.sets[set[0] > set[1] ? 0 : 1]++);
+          const p = next.points[0] + next.points[1];
+          next.server = s.tie ? (n("server") - (p === 0 ? 0 : Math.floor((p - 1) / 2) + 1) % 4 + 4) % 4 : n("server");
+        } else {
+          next.total = n("total"); next.series = n("series");
+          if (next.total < 1 || next.series < 1) return fail("Число розыгрышей и длина серии должны быть больше нуля.");
+          if (next.points[0] + next.points[1] > next.total) return fail("Сумма очков превышает число розыгрышей.");
+          next.offset = (n("server") - Math.floor((next.points[0] + next.points[1]) / next.series) % 4 + 4) % 4;
+          next.ended = next.points[0] + next.points[1] === next.total;
+        }
+        checkpoint(); instance.state = next; close(); persist();
+      };
+    };
+    screen.querySelectorAll("[data-team]").forEach(button => button.onclick = () => addPoint(Number(button.dataset.team)));
+    screen.querySelector('[data-action="undo"]').onclick = () => {
+      if (!instance.past.length) return;
+      instance.state = instance.past.pop(); render(); persist(); announce("Последнее действие отменено.");
+    };
+    screen.querySelector('[data-action="menu"]').onclick = menu;
+    screen.addEventListener("keydown", event => { if (event.key === "Escape" && !overlay.hidden) close(); });
+    render();
+    instance.render = render;
+    if (globalThis.Tweak) {
+      let scenario = instance.design.scenario;
+      const tweak = new Tweak({ container: screen, onChange: () => {
+        if (scenario !== instance.design.scenario) { scenario = instance.design.scenario; resetScenario(); overlay.hidden = true; }
+        render(); persist();
+      }});
+      tweak.addSelect(instance.design, "size", { label: "Размер часов", options: [{ label: "Крупный экран", value: "large" }, { label: "Компактный экран", value: "small" }] });
+      tweak.addColorPicker(instance.design, "accent", { label: "Акцент нашей пары", reference: "--pw-accent" });
+      tweak.addSelect(instance.design, "scenario", { label: "Состояние игры", options: mode === "match" ? ["Игра", "Голден-пойнт", "Преимущество", "Тай-брейк"] : ["Игра", "Последний розыгрыш"] });
+    }
+  });
+  window.addEventListener("openai:set_globals", event => {
+    const next = event.detail?.globals?.widgetState?.privateContent;
+    if (next?.version !== 1 || !Array.isArray(next.snapshots)) return;
+    instances.forEach(instance => {
+      const snapshot = next.snapshots.find(s => s.mode === instance.mode);
+      if (!snapshot?.state || !snapshot?.design) return;
+      instance.state = copy(snapshot.state); instance.past = copy(snapshot.past || []);
+      Object.assign(instance.design, snapshot.design); instance.render();
+    });
+  });
+  hydrateIcons();
+})();
+</script>

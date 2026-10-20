@@ -1,0 +1,81 @@
+# schema: release-requirements/3
+# id	channel	domains	allow_inapplicable	description
+#
+# This is the minimum maintained coverage for the six final domain audits. A row
+# may belong to more than one audit when two perspectives are intentionally useful.
+# Every applicable row is recorded by each owning audit as VERIFIED with evidence,
+# or as INAPPLICABLE with a reason when this column explicitly permits it.
+#
+# Platform exception: REL-208 and REL-209 permit INAPPLICABLE with a specific
+# Watch-only reason only when APP_PLATFORM=watchOS; their iOS policy stays no.
+# domains: comma-separated values from functional, ui-ux, content, accessibility,
+#          product, release
+# channel: all, app-store, or internal
+# allow_inapplicable: yes only when a product can genuinely lack the capability
+#                     described by the row; an unavailable environment is not a
+#                     reason to mark required coverage inapplicable
+REL-101	all	functional	no	Clean install on a wiped simulator or device reaches a usable first launch
+REL-102	all	functional,ui-ux	no	First-run onboarding and empty states are correct with no stale data
+REL-103	all	functional	yes	Upgrade from the previously shipped build preserves realistic existing data
+REL-104	all	functional	yes	Migration succeeds with realistic data volume
+REL-105	all	functional,ui-ux	no	Launch time is acceptable on the oldest supported device
+REL-106	all	functional	no	The app remains stable on first launch relaunch and backgrounding
+REL-201	all	functional,product	no	Every primary journey in AI/DESIGN.md completes end to end
+REL-202	all	functional,product	no	The app behaves as AI/PRODUCT.md specifies when walked as a user
+REL-203	all	functional,ui-ux,product	yes	Specified empty states appear with a clear action
+REL-204	all	functional,ui-ux	yes	Loading states are bounded and recoverable
+REL-205	all	functional,ui-ux,product	no	Error states explain what happened and what to do next
+REL-206	all	functional,ui-ux,product	yes	Destructive actions are confirmed or reversible
+REL-207	all	functional	no	Interrupted flows recover after background termination and device lock
+REL-208	app-store	product,release	no	The review request appears only at its qualifying moment and never during onboarding an error or a purchase flow
+REL-209	app-store	product,release	no	The manual rate entry point opens the App Store review page and the app behaves correctly when the system prompt never appears
+REL-301	all	functional,release	yes	Sensitive permission prompts appear in context with honest copy
+REL-302	all	functional,release	yes	Permission denial has a usable recovery path
+REL-303	all	functional,release	yes	Permission revocation while the app runs is handled
+REL-304	all	release	yes	The narrowest sufficient permission scope is requested
+REL-401	all	functional,product,release	yes	Sandbox purchase succeeds and applies the entitlement
+REL-402	all	functional,product,release	yes	Cancelled declined and pending purchases behave correctly
+REL-403	all	functional,product,release	yes	Restore Purchases works on a fresh install
+REL-404	all	functional,product,release	yes	Expiry and refund remove entitlement without violating the product contract
+REL-405	all	content,product,release	yes	StoreKit prices display in the correct currency
+REL-406	all	content,product,release	yes	The paywall has Terms and Privacy links and is honestly dismissible
+REL-407	all	ui-ux,product,release	yes	No prohibited paywall pattern from AI/DESIGN.md is present
+REL-408	all	content,product,release	yes	Every comparison price saving and offer term on the paywall matches the products StoreKit returns
+REL-501	all	release	yes	The privacy manifest matches networking and required-reason API use
+REL-502	app-store	release	no	App Store nutrition labels match reality
+REL-503	app-store	content,release	no	The privacy policy URL works and describes this app
+REL-504	all	release	no	Release-build logging contains no personal data
+REL-505	all	functional,release	yes	User-data deletion genuinely removes everything
+REL-506	app-store	content,release	no	The in-app Terms Privacy and Support links each open their intended page or provide corresponding readable content on watchOS
+REL-601	all	accessibility	no	VoiceOver completes every primary journey in a logical order
+REL-602	all	ui-ux,accessibility	no	Largest accessibility Dynamic Type is usable without clipping
+REL-603	all	ui-ux,accessibility	no	Reduce Motion is honoured throughout
+REL-604	all	ui-ux,accessibility	no	Contrast meets WCAG AA in every appearance supported by the approved design
+REL-605	all	ui-ux,accessibility	no	Every tap target is at least 44 by 44 points
+REL-606	all	ui-ux,accessibility	no	Nothing is conveyed by colour alone
+REL-701	all	ui-ux	yes	Dark appearance is verified on every screen when supported by the approved design
+REL-702	all	ui-ux	yes	Light appearance is verified on every screen when supported by the approved design
+REL-703	all	ui-ux	no	The smallest supported screen has no clipped or unreachable content
+REL-704	all	ui-ux	yes	iPad layout and multitasking sizes are verified
+REL-705	all	ui-ux	yes	Landscape layout is verified
+REL-706	all	ui-ux	yes	No visual regression exists from the last release
+REL-801	all	content,release	no	No placeholder copy exists anywhere a user can reach
+REL-802	all	content	no	Every user-visible string is finished and proofread
+REL-803	all	content	yes	Every shipped language is complete and reviewed in context
+REL-804	all	ui-ux,content	yes	The longest shipped language does not break layout
+REL-805	all	ui-ux,content	yes	Right-to-left layout is verified
+REL-901	all	functional	yes	Offline behavior matches AI/DESIGN.md
+REL-902	all	functional	yes	Slow and lossy network behavior is verified
+REL-903	all	functional	yes	Server errors and timeouts produce comprehensible messages
+REL-904	all	functional	yes	Connectivity loss during a request is handled
+REL-1004	app-store	content,release	no	The App Store support URL works
+REL-1005	app-store	release	no	App Store age rating and category are correct
+REL-1007	app-store	release	yes	Review notes include access instructions for gated functionality
+REL-1008	app-store	content,release	no	The published terms page states the Apple Standard EULA governs and links to it
+REL-1101	all	release	no	No debug menu developer screen or test-only launch path is reachable
+REL-1102	all	release	no	Version and build numbers are correct and incremented
+REL-1103	all	release	no	No open P0 or P1 finding remains
+REL-1105	all	functional,release	yes	A recovery plan exists for releases that change persisted data
+REL-1201	internal	release	no	The build installs on a wiped device through the intended internal channel
+REL-1202	internal	release	no	Internal certificate profile entitlements and expiry are verified
+REL-1203	internal	content,release	no	Recipients know how to obtain the internal build and what changed
