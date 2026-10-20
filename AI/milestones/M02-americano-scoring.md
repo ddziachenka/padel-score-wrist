@@ -1,7 +1,7 @@
 # M02 — Americano Scoring
 
 **ID:** M02
-**Status:** PLANNED
+**Status:** IN_PROGRESS
 **Depends on:** M01
 **Validation:** make milestone ID=M02
 **Handoff:** AI/handoffs/M02-handoff.md
