@@ -7,15 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28A6B373ADD3A67027016762 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD19914E46ABA6C661F2FB /* Team.swift */; };
+		303A09764356A50622CBEF1D /* MatchValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCBB719701FB4BEF9F2D1D1 /* MatchValidationTests.swift */; };
 		3801669637E693DD61C3DCE6 /* AppConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F597AB6F42EB8E35AA3A9625 /* AppConfigurationTests.swift */; };
+		38036E01E5B24775349239E5 /* MatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858F799F166B8AFB1C28C70 /* MatchState.swift */; };
+		57B021A22738CDBFE2302253 /* ServiceOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54139A07D60A816766E23F /* ServiceOrder.swift */; };
 		60027FE1DE4DAFD4E4E4A656 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E77973021AD853966AB557 /* Foundation.framework */; };
 		63A7F12752FBC251CA2BBF67 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D8FCF69E42A73057F0ED2F /* HomeView.swift */; };
 		6B39455141E6AA364ACE1E32 /* BootstrapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE58C6C69ED10F11602FE4 /* BootstrapUITests.swift */; };
+		7B48E58279A7189F96957AE8 /* MatchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2747452052B941818F8E046C /* MatchEngine.swift */; };
 		7B60E549D8B0DAD8B6815CF5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 36FA2EF51DB4D5898B609966 /* Localizable.xcstrings */; };
 		7C53890C6CFE6AD9CF2E686B /* PadelScoreWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 61DDBB426516CEA7720E17E7 /* PadelScoreWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		94B79F58F3AD1B2D5BD9EA56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F86A22EC68F07FF5AE5C7035 /* Foundation.framework */; };
+		9AE9E13B8B82DF2D894F734F /* MatchTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0255F540104B8B6B9251C1EF /* MatchTestSupport.swift */; };
+		A3C35C3163486B9294AF3E73 /* GameScoringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F223CA4B9A2806DD94C42 /* GameScoringTests.swift */; };
 		ABDB0CF7D0D267E483651B91 /* PadelScoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F00D188ECAA809FBCE9F612 /* PadelScoreApp.swift */; };
+		AFE6142A63BA7885BF59A2FA /* SetScoringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D66805A3816BB0BAB1D10A /* SetScoringTests.swift */; };
 		BCF8F1AAB243CC353F246EB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E77973021AD853966AB557 /* Foundation.framework */; };
+		CC7AD11A2D0EB83EB59F3EFB /* MatchRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58631B4BDF55255D6FF4A0E9 /* MatchRules.swift */; };
+		D3B37EC9903D2E7E560C977C /* MatchValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE45CF8142C8BEE246C7961 /* MatchValidation.swift */; };
+		E156340A077E639251F6816A /* ServiceRotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EACD2EB848E7A58C99847A /* ServiceRotationTests.swift */; };
 		E9C75670EF6364C555DB4294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F8F698582982EF4E47FBA49 /* Assets.xcassets */; };
 		FE2276C9177E0EAD563FC4FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E77973021AD853966AB557 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -59,18 +70,29 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0255F540104B8B6B9251C1EF /* MatchTestSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MatchTestSupport.swift; sourceTree = "<group>"; };
 		1F8F698582982EF4E47FBA49 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2747452052B941818F8E046C /* MatchEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MatchEngine.swift; sourceTree = "<group>"; };
+		31EACD2EB848E7A58C99847A /* ServiceRotationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ServiceRotationTests.swift; sourceTree = "<group>"; };
 		35934F2194CA18F4253E0674 /* PadelScore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PadelScore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FA2EF51DB4D5898B609966 /* Localizable.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		43E77973021AD853966AB557 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		56D8FCF69E42A73057F0ED2F /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		58631B4BDF55255D6FF4A0E9 /* MatchRules.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MatchRules.swift; sourceTree = "<group>"; };
+		59BD19914E46ABA6C661F2FB /* Team.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		61DDBB426516CEA7720E17E7 /* PadelScoreWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PadelScoreWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F00D188ECAA809FBCE9F612 /* PadelScoreApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PadelScoreApp.swift; sourceTree = "<group>"; };
 		76AE58C6C69ED10F11602FE4 /* BootstrapUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BootstrapUITests.swift; sourceTree = "<group>"; };
+		7BCBB719701FB4BEF9F2D1D1 /* MatchValidationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MatchValidationTests.swift; sourceTree = "<group>"; };
 		90B81947F6FD97B6DF256422 /* PadelScoreWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadelScoreWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88E7CD2B9E6D9BBC58247DE /* PadelScoreWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadelScoreWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD9F223CA4B9A2806DD94C42 /* GameScoringTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GameScoringTests.swift; sourceTree = "<group>"; };
+		DB54139A07D60A816766E23F /* ServiceOrder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ServiceOrder.swift; sourceTree = "<group>"; };
+		E0D66805A3816BB0BAB1D10A /* SetScoringTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SetScoringTests.swift; sourceTree = "<group>"; };
 		F597AB6F42EB8E35AA3A9625 /* AppConfigurationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppConfigurationTests.swift; sourceTree = "<group>"; };
+		F858F799F166B8AFB1C28C70 /* MatchState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MatchState.swift; sourceTree = "<group>"; };
 		F86A22EC68F07FF5AE5C7035 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FAE45CF8142C8BEE246C7961 /* MatchValidation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MatchValidation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +139,18 @@
 			name = watchOS;
 			sourceTree = "<group>";
 		};
+		376A246F2149F96C19B8984D /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				BD9F223CA4B9A2806DD94C42 /* GameScoringTests.swift */,
+				0255F540104B8B6B9251C1EF /* MatchTestSupport.swift */,
+				7BCBB719701FB4BEF9F2D1D1 /* MatchValidationTests.swift */,
+				31EACD2EB848E7A58C99847A /* ServiceRotationTests.swift */,
+				E0D66805A3816BB0BAB1D10A /* SetScoringTests.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		691D7FB3D84E58B7BBF08649 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +163,7 @@
 		776730C04EA1B6FBCCA57B3C /* PadelScoreWatchTests */ = {
 			isa = PBXGroup;
 			children = (
+				376A246F2149F96C19B8984D /* Domain */,
 				F597AB6F42EB8E35AA3A9625 /* AppConfigurationTests.swift */,
 			);
 			name = PadelScoreWatchTests;
@@ -138,6 +173,7 @@
 		9AB621FD8AFF69AFCE4C162A /* PadelScoreWatch */ = {
 			isa = PBXGroup;
 			children = (
+				D4B97F6576E5F8D86E31A3E7 /* Domain */,
 				56D8FCF69E42A73057F0ED2F /* HomeView.swift */,
 				6F00D188ECAA809FBCE9F612 /* PadelScoreApp.swift */,
 				1F8F698582982EF4E47FBA49 /* Assets.xcassets */,
@@ -164,6 +200,19 @@
 				F86A22EC68F07FF5AE5C7035 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		D4B97F6576E5F8D86E31A3E7 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				2747452052B941818F8E046C /* MatchEngine.swift */,
+				58631B4BDF55255D6FF4A0E9 /* MatchRules.swift */,
+				F858F799F166B8AFB1C28C70 /* MatchState.swift */,
+				FAE45CF8142C8BEE246C7961 /* MatchValidation.swift */,
+				DB54139A07D60A816766E23F /* ServiceOrder.swift */,
+				59BD19914E46ABA6C661F2FB /* Team.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		EB6463C62D5F36EBA9B54CF0 /* PadelScoreWatchUITests */ = {
@@ -347,6 +396,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3801669637E693DD61C3DCE6 /* AppConfigurationTests.swift in Sources */,
+				A3C35C3163486B9294AF3E73 /* GameScoringTests.swift in Sources */,
+				9AE9E13B8B82DF2D894F734F /* MatchTestSupport.swift in Sources */,
+				303A09764356A50622CBEF1D /* MatchValidationTests.swift in Sources */,
+				E156340A077E639251F6816A /* ServiceRotationTests.swift in Sources */,
+				AFE6142A63BA7885BF59A2FA /* SetScoringTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +418,12 @@
 			files = (
 				63A7F12752FBC251CA2BBF67 /* HomeView.swift in Sources */,
 				ABDB0CF7D0D267E483651B91 /* PadelScoreApp.swift in Sources */,
+				7B48E58279A7189F96957AE8 /* MatchEngine.swift in Sources */,
+				CC7AD11A2D0EB83EB59F3EFB /* MatchRules.swift in Sources */,
+				38036E01E5B24775349239E5 /* MatchState.swift in Sources */,
+				D3B37EC9903D2E7E560C977C /* MatchValidation.swift in Sources */,
+				57B021A22738CDBFE2302253 /* ServiceOrder.swift in Sources */,
+				28A6B373ADD3A67027016762 /* Team.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
