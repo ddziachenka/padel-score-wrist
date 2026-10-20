@@ -39,9 +39,9 @@ struct AmericanoServiceTests {
         #expect(serveBlocks(anchors) == (0..<10).map { ServeBlock(server: sequence[$0 % 4], rallies: 4) })
     }
 
-    @Test("Who wins the rallies does not change who serves them")
-    func winnersDoNotMoveTheServe() throws {
-        let round = AmericanoState.fixture(total: 30, perServer: 3, order: .youThenOpponent2, server: .partner)
+    @Test("Who wins the rallies does not change who serves them", arguments: [1, 3, 4])
+    func winnersDoNotMoveTheServe(perServer: Int) throws {
+        let round = AmericanoState.fixture(total: 30, perServer: perServer, order: .youThenOpponent2, server: .partner)
         let patterns = [
             rallies(String(repeating: "U", count: 24)),
             rallies(String(repeating: "T", count: 24)),
@@ -52,7 +52,7 @@ struct AmericanoServiceTests {
         for winners in patterns.dropFirst() {
             #expect(try round.anchors(playing: winners) == reference)
         }
-        #expect(serveBlocks(reference).map(\.rallies) == Array(repeating: 3, count: 8))
+        #expect(serveBlocks(reference).map(\.rallies) == Array(repeating: perServer, count: 24 / perServer))
     }
 
     @Test("With one rally per server the serve passes after every rally", arguments: ServiceOrder.allCases)

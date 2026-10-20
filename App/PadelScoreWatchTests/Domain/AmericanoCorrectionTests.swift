@@ -1,3 +1,4 @@
+import Foundation
 @testable import PadelScoreWatch
 import Testing
 
@@ -175,7 +176,7 @@ struct AmericanoCorrectionTests {
 
     @Test("A regular match does not take an americano correction: changing format is a replacement")
     func matchRefusesAmericanoCorrection() {
-        let match = GameSnapshot(id: GameSnapshot.americano(inPlay).id, format: .match(.fixture()))
+        let match = GameSnapshot(id: GameID(rawValue: UUID()), format: .match(.fixture()))
         let copy = match
 
         #expect(throws: AmericanoError.notAmericano) {
