@@ -1,7 +1,7 @@
 # M01 — Match Scoring
 
 **ID:** M01
-**Status:** PLANNED
+**Status:** IN_PROGRESS
 **Depends on:** M00
 **Validation:** make milestone ID=M01
 **Handoff:** AI/handoffs/M01-handoff.md
