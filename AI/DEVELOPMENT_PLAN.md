@@ -1,13 +1,13 @@
 # Development plan
 
-**Status:** направление и план одобрены владельцем; M00 завершён
+**Status:** направление и план одобрены владельцем; M00 и M01 завершены
 **Approved by:** владелец проекта, сообщение «одобряю»
 **Approved on:** 2026-10-20
 **Updated:** 2026-10-20
 
 План следует [промпту инициализации](prompts/initialize-product.md) и
-[brief](PRODUCT_BRIEF.md). M00 имеет статус `DONE`. H2 закрыт владельцем
-2026-10-20, поэтому M01 начат; остальные этапы имеют статус `PLANNED`.
+[brief](PRODUCT_BRIEF.md). M00 и M01 имеют статус `DONE`; H2 закрыт владельцем
+2026-10-20. Активного этапа нет, следующий — M02; остальные имеют статус `PLANNED`.
 Одобрение направления не выбирает молча ответы на отдельные открытые вопросы.
 
 ## Contracts
@@ -29,7 +29,7 @@ Xcode-проекта и доступности настоящих часов.
 | Этап | Наблюдаемый результат | Зависит от |
 | --- | --- | --- |
 | [M00 — Watch-only Bootstrap](milestones/M00-template-bootstrap.md) — DONE | Настоящий проект, свой симулятор, сборка и реальные тесты; [evidence](handoffs/M00-handoff.md) | Направление, watchOS 10 и название одобрены; создание проекта и выбор bundle IDs делегированы агенту |
-| [M01 — Match Scoring](milestones/M01-match-scoring.md) | Корректные очки/геймы/сеты, три deuce rules, очередь подачи | M00; решение H2 |
+| [M01 — Match Scoring](milestones/M01-match-scoring.md) — DONE | Корректные очки/геймы/сеты, три deuce rules, тай-брейк H2, очередь подачи; [evidence](handoffs/M01-handoff.md) | M00; решение H2 (закрыт 2026-10-20) |
 | [M02 — Americano Scoring](milestones/M02-americano-scoring.md) | Общая сумма розыгрышей и серии подачи | M01 |
 | [M03 — Persistence and Recovery](milestones/M03-persistence-recovery.md) | Атомарная запись, точная отмена, восстановление после закрытия | M02 |
 | [M04 — New Game](milestones/M04-new-game.md) | Создание обоих форматов на часах | M03 |
