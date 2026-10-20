@@ -36,10 +36,13 @@ final class NewGameFlow {
     var path: [Route] = [] {
         didSet {
             if !path.contains(.setup) { discardDraft() }
+            if path.last == .setup, let left = oldValue.last, left != .setup { returnedFrom = left }
         }
     }
 
     private(set) var draft: SetupDraft?
+    /// The editor the person last came back to setup from, so its row takes the focus again.
+    private(set) var returnedFrom: Route?
     private(set) var startState = StartState.editing
     /// Set by a Start with values missing, so each missing value explains itself at its field.
     private(set) var showsMissingFields = false
@@ -140,6 +143,7 @@ final class NewGameFlow {
     private func discardDraft() {
         guard draft != nil else { return }
         draft = nil
+        returnedFrom = nil
         showsMissingFields = false
         cancelFailedStart()
     }

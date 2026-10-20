@@ -44,7 +44,7 @@ final class NewGameUITests: XCTestCase {
         app.buttons["setup.start"].scrollToAndTap(in: app)
         let rule = app.buttons["setup.deuceRule"]
         XCTAssertTrue(rule.waitForExistence(timeout: 5))
-        assertLabel(rule, contains: "Choose what happens at 40–40.")
+        assertLabel(rule, contains: "Choose what happens at 40")
         assertLabel(app.buttons["setup.serving"], contains: "Choose who serves first.")
         XCTAssertFalse(app.descendants(matching: .any)["game.server"].exists)
         attachScreenshot("Match setup with values missing")

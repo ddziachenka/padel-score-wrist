@@ -40,7 +40,7 @@ context.setFillColor(canvas)
 context.fill(CGRect(x: 0, y: 0, width: side, height: side))
 
 let center = CGPoint(x: side / 2, y: side / 2)
-let radius = side * 0.355
+let radius = side * 0.405
 let ball = CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2)
 
 // The ball, lit softly from the upper left.

@@ -132,37 +132,37 @@
       }
     },
     "At 40–40" : {
-      "comment" : "Setup row and screen title: the rule that decides a game at 40–40.",
+      "comment" : "Setup row and screen title: the rule that decides a game at 40–40. The score 40–40 is kept on one line with word joiners around the dash.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "At 40–40"
+            "value" : "At 40\u2060–\u206040"
           }
         }
       }
     },
     "At 40–40, the next point wins the game." : {
-      "comment" : "Explains the Golden point rule.",
+      "comment" : "Explains the Golden point rule. The score 40–40 is kept on one line with word joiners around the dash.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "At 40–40, the next point wins the game."
+            "value" : "At 40\u2060–\u206040, the next point wins the game."
           }
         }
       }
     },
     "At 40–40: %@" : {
-      "comment" : "Game screen: the 40–40 rule of this match. Argument: the rule's name, such as Golden point.",
+      "comment" : "Game screen: the 40–40 rule of this match. Argument: the rule's name, such as Golden point. The score 40–40 is kept on one line with word joiners around the dash.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "At 40–40: %@"
+            "value" : "At 40\u2060–\u206040: %@"
           }
         }
       }
@@ -228,13 +228,13 @@
       }
     },
     "Choose what happens at 40–40." : {
-      "comment" : "Setup: shown at the 40–40 rule when Start game was tapped without it.",
+      "comment" : "Setup: shown at the 40–40 rule when Start game was tapped without it. The score 40–40 is kept on one line with word joiners around the dash.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Choose what happens at 40–40."
+            "value" : "Choose what happens at 40\u2060–\u206040."
           }
         }
       }
@@ -360,13 +360,13 @@
       }
     },
     "From 40–40, win two points in a row." : {
-      "comment" : "Explains the Advantage rule.",
+      "comment" : "Explains the Advantage rule. The score 40–40 is kept on one line with word joiners around the dash.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "From 40–40, win two points in a row."
+            "value" : "From 40\u2060–\u206040, win two points in a row."
           }
         }
       }

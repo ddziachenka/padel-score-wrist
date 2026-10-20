@@ -32,6 +32,9 @@ struct SetupView: View {
                     reportRefusedStart(scrollingWith: proxy)
                 }
             }
+            .onAppear {
+                focusedRow = flow.returnedFrom.flatMap(SetupRow.init)
+            }
             .navigationTitle(Text(draft.kind.name))
             .sensoryFeedback(.error, trigger: flow.refusedStarts)
         }
@@ -110,6 +113,17 @@ private enum SetupRow: Hashable {
         case .totalRallies: self = .totalRallies
         case .ralliesPerServer: self = .ralliesPerServer
         case .firstServer, .secondServer: self = .serving
+        }
+    }
+
+    /// The row an editor belongs to.
+    init?(_ route: NewGameFlow.Route) {
+        switch route {
+        case .deuceRule: self = .deuceRule
+        case .totalRallies: self = .totalRallies
+        case .ralliesPerServer: self = .ralliesPerServer
+        case .serving: self = .serving
+        case .setup, .about: return nil
         }
     }
 

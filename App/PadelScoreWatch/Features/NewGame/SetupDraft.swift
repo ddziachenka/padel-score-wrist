@@ -26,10 +26,10 @@ struct SetupDraft: Hashable, Sendable {
     let kind: GameKind
     var deuceRule: DeuceRule?
     var totalRallies: Int? {
-        didSet { totalRallies = totalRallies.flatMap { Self.totalRalliesRange.contains($0) ? $0 : nil } }
+        didSet { totalRallies = Self.offered(totalRallies, in: Self.totalRalliesRange) }
     }
     var ralliesPerServer: Int? {
-        didSet { ralliesPerServer = ralliesPerServer.flatMap { Self.ralliesPerServerRange.contains($0) ? $0 : nil } }
+        didSet { ralliesPerServer = Self.offered(ralliesPerServer, in: Self.ralliesPerServerRange) }
     }
     var serving: ServingChoice
     /// Whether the draft began with the settings of the last game rather than empty.
@@ -42,11 +42,15 @@ struct SetupDraft: Hashable, Sendable {
         case .match:
             deuceRule = recent.match?.deuceRule
         case .americano:
-            totalRallies = recent.americano.map(\.totalRallies).flatMap { Self.totalRalliesRange.contains($0) ? $0 : nil }
-            ralliesPerServer = recent.americano.map(\.ralliesPerServer)
-                .flatMap { Self.ralliesPerServerRange.contains($0) ? $0 : nil }
+            totalRallies = Self.offered(recent.americano?.totalRallies, in: Self.totalRalliesRange)
+            ralliesPerServer = Self.offered(recent.americano?.ralliesPerServer, in: Self.ralliesPerServerRange)
         }
         repeatsLastSettings = recent.serving != nil || (kind == .match ? recent.match != nil : recent.americano != nil)
+    }
+
+    /// A number the editors offer is kept; any other counts as not chosen.
+    private static func offered(_ number: Int?, in range: ClosedRange<Int>) -> Int? {
+        number.flatMap { range.contains($0) ? $0 : nil }
     }
 
     /// The values this format needs, in the order setup shows them.

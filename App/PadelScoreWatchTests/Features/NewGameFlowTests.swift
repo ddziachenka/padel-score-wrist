@@ -56,6 +56,23 @@ final class NewGameFlowTests {
         #expect(flow.draft?.deuceRule == nil)
     }
 
+    @Test("Coming back from an editor remembers it, so its row takes the focus again")
+    func remembersTheEditorLeft() async {
+        let flow = NewGameFlow(store: await openStore())
+        flow.choose(.americano)
+        #expect(flow.returnedFrom == nil)
+
+        flow.path.append(.ralliesPerServer)
+        flow.path.removeLast()
+        #expect(flow.returnedFrom == .ralliesPerServer)
+        flow.path.append(.serving)
+        flow.path.removeLast()
+        #expect(flow.returnedFrom == .serving)
+
+        flow.path = []
+        #expect(flow.returnedFrom == nil)
+    }
+
     @Test("Start with values missing names each at its field and saves nothing")
     func startNamesMissingValues() async {
         let store = await openStore()
