@@ -360,8 +360,8 @@ executable, выполняет Watch unit/UI tests. `APP_TARGET` и `BUNDLE_IDEN
 
 ## Testing strategy
 
-Watch unit/UI targets поддерживаются инструментами Apple; при M00 их нужно
-подключить к общему scheme и проверить фактический запуск.
+В M00 Watch unit/UI targets подключены к общему scheme; их фактический запуск
+проверен на собственном Watch simulator.
 [Apple: setting up tests for a watchOS app](https://developer.apple.com/documentation/watchos-apps/setting-up-tests-for-your-watchos-app).
 
 | Level | Framework | What it covers | What it does not | Where it lives |
@@ -390,8 +390,9 @@ advantage и возврат к deciding point; длинный deuce; начал�
 выполнения проверок на соответствующей среде. В M00 добавлены два hosted
 Swift Testing теста bundle identity и один UI-тест Home → About → Back.
 `make fast` 2026-10-20 прошёл на watchOS 26.5: 3/3, без failures/skips.
-Доказательства точного milestone SHA принадлежат handoff M00; fast сам по себе
-не завершает этап и не доказывает работу на watchOS 10.
+Clean-HEAD и explicit-candidate milestone gates прошли для одного SHA;
+команды, отчёты и counts записаны в [handoff M00](handoffs/M00-handoff.md).
+Эти результаты не доказывают работу на watchOS 10.
 
 ## Migration strategy
 

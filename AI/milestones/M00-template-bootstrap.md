@@ -1,7 +1,7 @@
 # M00 — Watch-only Bootstrap
 
 **ID:** M00
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** none
 **Validation:** make milestone ID=M00
 **Handoff:** AI/handoffs/M00-handoff.md
@@ -32,11 +32,11 @@
 - [x] Xcode показывает shared scheme с Watch app, container и настоящим test target; вложенного .git в App нет.
 - [x] Config/project.env использует APP_PLATFORM=watchOS, TEMPLATE_REPOSITORY=false, managed mode и выбранные реальные identifiers; маркер записывает main и честное происхождение инструментария.
 - [x] Проверены WKWatchOnly, embedded Watch app и совпадение version/build в container; на managed Watch simulator приложение запускается и принимает действие.
-- [ ] Есть успешные make template-check, make static, make fast; make milestone ID=M00 и повтор той же проверки с CANDIDATE=<full-SHA> дают ненулевые обязательные тесты без failures/skips.
-- [ ] make release CANDIDATE=<тот же full-SHA> ожидаемо возвращает NOT_READY до Final Product Polish; это не успешная release-проверка.
-- [ ] Существует точное доказательство self-test инструментария, а handoff различает его и реальные результаты Xcode.
-- [ ] ARCHITECTURE содержит фактическую платформу и ограничения покрытия minimum OS; hooksPath не менялся без выбора владельца.
-- [ ] ./Scripts/project-status.sh validate проходит; handoff содержит полный SHA, команды, время, пути отчётов и counts.
+- [x] Есть успешные make template-check, make static, make fast; make milestone ID=M00 и повтор той же проверки с CANDIDATE=<full-SHA> дают ненулевые обязательные тесты без failures/skips.
+- [x] make release CANDIDATE=<тот же full-SHA> ожидаемо возвращает NOT_READY до Final Product Polish; это не успешная release-проверка.
+- [x] Существует точное доказательство self-test инструментария, а handoff различает его и реальные результаты Xcode.
+- [x] ARCHITECTURE содержит фактическую платформу и ограничения покрытия minimum OS; hooksPath не менялся без выбора владельца.
+- [x] ./Scripts/project-status.sh validate проходит; handoff содержит полный SHA, команды, время, пути отчётов и counts.
 
 ## Validation
 
