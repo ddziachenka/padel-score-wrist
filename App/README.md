@@ -30,7 +30,9 @@ Its local binding is ignored by Git. Follow `AI/WORKFLOW.md` when driving it.
 No signing team is stored in the project; select the owner's development team in
 Xcode when preparing a physical-device build.
 
-M00 provides the launch screen and About navigation only. Scoring, creation,
-editing, persistence, commerce and the finished app icon belong to subsequent
-milestones. A successful test on a recent simulator does not prove watchOS 10
-runtime compatibility.
+M00 provides the launch screen and About navigation. M01 adds the regular-match
+scoring engine in `PadelScoreWatch/Domain` — pure Swift with no UI, storage or
+clock — and its Swift Testing suites in `PadelScoreWatchTests/Domain`. Americano,
+the game screens, creation, editing, persistence, commerce and the finished app
+icon belong to subsequent milestones. A successful test on a recent simulator does
+not prove watchOS 10 runtime compatibility.
