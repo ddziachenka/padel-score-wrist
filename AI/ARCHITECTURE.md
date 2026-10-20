@@ -161,6 +161,14 @@ App composition root → Features → Domain
 а подтверждение может поменять игроков внутри пар, но не пару, которой правило
 отдаёт первую подачу.
 
+В коде с M02 `GameSnapshot` хранит `GameID` и формат: `MatchState` либо
+`AmericanoState`; lifecycle, finish metadata, revision и history добавляются
+с хранением в M03. Anchor американо — отдельный `AmericanoServiceAnchor`: порядок,
+подающий и место следующего розыгрыша в серии от 1 до B. Начисление сдвигает его и
+после N-го розыгрыша, поэтому он называет подающего, если исправление освободит место
+для новых розыгрышей. Исправление раунда принимает все значения явно, проверяет их
+целиком и сохраняет `GameID` той же игры.
+
 Команды: create, award point, undo, replace current snapshot from draft, finish,
 resume, delete local game data. Запись history содержит предыдущее полное игровое
 состояние без вложенной history, тип команды и revision. Undo восстанавливает всё:

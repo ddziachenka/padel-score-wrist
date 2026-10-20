@@ -32,7 +32,8 @@ Xcode when preparing a physical-device build.
 
 M00 provides the launch screen and About navigation. M01 adds the regular-match
 scoring engine in `PadelScoreWatch/Domain` — pure Swift with no UI, storage or
-clock — and its Swift Testing suites in `PadelScoreWatchTests/Domain`. Americano,
-the game screens, creation, editing, persistence, commerce and the finished app
-icon belong to subsequent milestones. A successful test on a recent simulator does
-not prove watchOS 10 runtime compatibility.
+clock — and its Swift Testing suites in `PadelScoreWatchTests/Domain`. M02 adds the
+americano engine beside it, and `GameSnapshot`, which gives a game the stable
+identity its corrections keep. The game screens, creation, editing, persistence,
+commerce and the finished app icon belong to subsequent milestones. A successful
+test on a recent simulator does not prove watchOS 10 runtime compatibility.
