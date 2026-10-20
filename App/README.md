@@ -38,7 +38,25 @@ identity its corrections keep. M03 adds the session — the game or its result, 
 previous result, recent settings, the free-use ledger and full undo history — as a
 Domain value, and in `PadelScoreWatch/Services` its versioned file, the repository
 actor that saves it atomically with a backup and recovers from damage, and the
-main-actor `SessionStore`; their suites are in `PadelScoreWatchTests/Services`. The
-game screens, creation, editing, commerce and the finished app icon belong to
-subsequent milestones. A successful test on a recent simulator does not prove
-watchOS 10 runtime compatibility.
+main-actor `SessionStore`; their suites are in `PadelScoreWatchTests/Services`.
+
+M04 adds the screens that create a game. `PadelScoreWatch/App` is the composition root:
+it builds the one `SessionStore` over the Watch's Application Support folder. In Debug
+builds only, a UI test can give the app a store of its own through the launch
+environment (`UITestStore.swift`: `PADEL_UITEST_STORE`, `PADEL_UITEST_SEED`,
+`PADEL_UITEST_FAIL_SAVES`); a Release build has no such path. `PadelScoreWatch/Features`
+holds the views: `Root` opens the saved game, New game, loading or recovery from the
+store's state; `NewGame` holds the in-memory `SetupDraft` and the `NewGameFlow` that
+starts the game; `Editors` are the field editors (40–40 rule, a number with the Digital
+Crown, serving order) that later corrections reuse; `Game` shows the started game until
+the live score replaces it; `Shared` holds the design tokens of `AI/DESIGN.md`. The
+semantic colors and the app icon live in `Assets.xcassets`; the icon is drawn by
+`App/Design/render-app-icon.swift`, which writes the committed PNG:
+
+```sh
+swift App/Design/render-app-icon.swift App/PadelScoreWatch/Assets.xcassets/AppIcon.appiconset/AppIcon.png
+```
+
+Scoring on the game screen, editing, finishing and commerce belong to subsequent
+milestones. A successful test on a recent simulator does not prove watchOS 10 runtime
+compatibility.

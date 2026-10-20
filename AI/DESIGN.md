@@ -373,6 +373,11 @@ One strong asset is worth more than several decorative ones.
 подписей внутри bitmap, с исходником и результатом в репозитории. Никакие картинки
 не загружаются во время матча. Наличие инструмента генерации не создаёт новую фичу.
 
+Иконка M04 — оригинальный мяч для падела цвета accent со швом `text.onAccent` на чёрном
+холсте, без текста и прозрачности. Исходник — `App/Design/render-app-icon.swift`
+(CoreGraphics), результат — `AppIcon.png` 1024×1024 в каталоге Watch target; watchOS сам
+вписывает его в круг.
+
 ## Semantic colors
 
 Предложенная палитра берёт визуальный тон макетов. Значения определяются один раз
@@ -398,6 +403,13 @@ One strong asset is worth more than several decorative ones.
 Increase Contrast увеличивает различимость интерактивных границ; Reduce Transparency
 оставляет непрозрачные поверхности. Состояние сервера и команд понятно в grayscale.
 
+С M04 токены — color sets каталога `Assets.xcassets` (`BackgroundPrimary`,
+`BackgroundSecondary`, `BackgroundElevated`, `TextPrimary`, `TextSecondary`, `TextOnAccent`,
+`AccentColor`, `Destructive`, `Success`, `Warning`, `Separator`) с одним значением для всех
+appearance; views берут их через `Palette`. Hosted-тест по фактическим значениям каталога
+проверяет 4.5:1 для текстовых цветов на трёх фонах и `text.onAccent` на accent, 3:1 для
+`separator`. Это не заменяет проверку рендера на настоящих часах.
+
 ## Typography and layout
 
 | Token | Dynamic Type style | Weight | Use |
@@ -407,6 +419,8 @@ Increase Contrast увеличивает различимость интерак
 | `body` | body | regular | Значения настроек, ошибки, legal |
 | `caption` | caption с масштабированием | regular/medium | Контекст и вторичные подписи; важное не превращается в микротекст |
 | `numeric` | Системный масштабируемый title с monospaced digits | semibold | Основные очки; `AD` полностью видно |
+
+С M04 эти токены — `Typography` и `Spacing` в `Features/Shared/DesignSystem.swift`: title — title3.
 
 Использовать системный шрифт и семантическое масштабирование. Не копировать
 фиксированные размеры HTML. На стандартном размере основной счёт заметно крупнее
@@ -537,6 +551,11 @@ VoiceOver должен позволять провести J1–J4 без зре
 `Keep playing`, `Saved`, `Match finished`, `Round finished`, `Incomplete`, `Edit result`, `Resume game`.
 Правило `One advantage` поясняется: `At the second deuce, the next point wins.`
 Никакая подпись не использует `Star Point` как один из согласованных режимов.
+M04 добавил тексты создания и восстановления: `Choose`, `From your last game. Check
+before you start.`, `Second server`, `Sets aren’t limited. Finish the match
+whenever you like.`, `The round ends when both teams’ points add up to the total.`,
+`From 1 to 999.`, `Couldn’t save. The game hasn’t started.`, `Earlier save restored`,
+`Start over`; полный список с комментариями — `Localizable.xcstrings`.
 
 ## Appearance and device coverage
 
