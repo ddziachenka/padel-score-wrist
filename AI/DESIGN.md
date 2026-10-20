@@ -595,7 +595,7 @@ hardware-проверки на утверждённой ОС. Не обещат�
 
 | ID | Question | Options | Blocks | Developer decision needed |
 | --- | --- | --- | --- | --- |
-| PRODUCT H1 | Публичное имя, сайт и контакт | См. варианты в PRODUCT | Финальная копия About/legal/store | Да, в PRODUCT |
+| PRODUCT H1 | Публичный разработчик, сайт и контакт; имя Padel Score — Wrist выбрано | См. варианты в PRODUCT | Финальная копия About/legal/store | Да, в PRODUCT |
 | PRODUCT H2 | Правила сета/тай-брейка и подачи | См. варианты в PRODUCT | Конкретные дополнительные поля и тексты счёта | Да, в PRODUCT |
 | PRODUCT H4 | Условия lifetime и бесплатного опыта | См. варианты в PRODUCT | Окончательная копия Unlock, моменты предложения и доступ после лимита | Да, в PRODUCT |
 

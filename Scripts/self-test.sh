@@ -89,6 +89,7 @@ CASES="config_parser
 watch_platform
 watch_coverage
 watch_builds
+watch_plist_paths
 watch_simulator
 simulator_isolation
 simulator_leases
@@ -864,6 +865,44 @@ case_watch_builds() {
     cp "${work}/target" "${fx}/Config/project.env"
     rc="$(PATH="${STUB_BIN}:$PATH" run_capture "${work}/container" bash -c '. "$1/Scripts/lib/common.sh"; load_project_config --required; app_target_build_setting MARKETING_VERSION' _ "$fx")"
     expect_exit 65 "$rc" 'APP_TARGET cannot select the packaging container'
+}
+
+case_watch_plist_paths() {
+    local fx="${SELFTEST_DIR}/watch-plist-paths" work="${SELFTEST_DIR}/watch-plist-paths-work"
+    local root plist alias rc path spelling
+    mkdir -p "${fx}/Scripts/lib" "$work"
+    # Only library fixtures are needed: no Xcode, simulator, project or Git writes.
+    cp "${IOSAI_ROOT}/Scripts/lib/common.sh" "${IOSAI_ROOT}/Scripts/lib/platform.sh" \
+        "${IOSAI_ROOT}/Scripts/lib/simulator.sh" "${fx}/Scripts/lib/"
+    root="$(bash -c '. "$1/Scripts/lib/common.sh"; path="$(derived_data_default_path)"; ensure_derived_data_root "$path"; derived_data_owned_root' _ "$fx")"
+    plist="${root}/DerivedData/Watch.app/Info.plist"
+    mkdir -p "$(dirname "$plist")"
+    printf '{"fixture":"owned"}' | plutil -convert xml1 -o "$plist" -
+    alias="${plist#/private}"
+    rc="$(run_capture "${work}/canonical" bash -c '. "$1/Scripts/lib/common.sh"; platform_built_plist "$2"' _ "$fx" "$plist")"
+    expect_exit 0 "$rc" 'canonical owned Watch plist is readable'
+    rc="$(run_capture "${work}/tmp-alias" bash -c '. "$1/Scripts/lib/common.sh"; platform_built_plist "$2"' _ "$fx" "$alias")"
+    expect_exit 0 "$rc" 'Xcode /tmp spelling of the owned Watch plist is readable'
+    expect_same "$(cat "${work}/canonical")" "$(cat "${work}/tmp-alias")" 'system alias reads the same owned plist'
+
+    # Normalizing the system prefix must not resolve any later symlink or `..`.
+    ln -s "${root}/DerivedData/Watch.app" "${root}/DerivedData/linked-app"
+    ln -s "$plist" "${root}/DerivedData/linked.plist"
+    for spelling in canonical tmp; do
+        for path in \
+            "${root}/DerivedData/linked-app/Info.plist" \
+            "${root}/DerivedData/linked.plist" \
+            "${root}/DerivedData/../DerivedData/Watch.app/Info.plist" \
+            "${root}-sibling/Info.plist"; do
+            [ "$spelling" != tmp ] || path="${path#/private}"
+            rc="$(run_capture "${work}/rejected" bash -c '. "$1/Scripts/lib/common.sh"; platform_built_plist "$2"' _ "$fx" "$path")"
+            expect_exit 64 "$rc" "$spelling plist path refuses symlinks, traversal and sibling roots: $path"
+            expect_absent "$(cat "${work}/rejected")" '"fixture":"owned"' 'rejected path does not expose plist contents'
+        done
+    done
+    ln -s "$root" "${work}/arbitrary-alias"
+    rc="$(run_capture "${work}/arbitrary-alias.txt" bash -c '. "$1/Scripts/lib/common.sh"; platform_built_plist "$2"' _ "$fx" "${work}/arbitrary-alias/DerivedData/Watch.app/Info.plist")"
+    expect_exit 64 "$rc" 'an arbitrary alias to the owned root is refused'
 }
 
 case_watch_simulator() {

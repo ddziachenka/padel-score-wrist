@@ -4,6 +4,8 @@
 .LSOverride
 *.swp
 *.swo
+.idea/
+.iosai-local/
 
 # Build products and verification evidence
 .artifacts/*

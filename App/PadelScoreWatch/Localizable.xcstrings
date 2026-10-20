@@ -1,0 +1,31 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "About" : {
+      "comment" : "Button and navigation title for app information.",
+      "extractionState" : "manual",
+      "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "About" } } }
+    },
+    "Padel Score" : {
+      "comment" : "First line of the app wordmark on the small Watch display.",
+      "extractionState" : "manual",
+      "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Padel Score" } } }
+    },
+    "Padel Score — Wrist" : {
+      "comment" : "Full product name.",
+      "extractionState" : "manual",
+      "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Padel Score — Wrist" } } }
+    },
+    "Version %@ (%@)" : {
+      "comment" : "Installed marketing version followed by build number.",
+      "extractionState" : "manual",
+      "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Version %1$@ (%2$@)" } } }
+    },
+    "Wrist" : {
+      "comment" : "Second line of the app wordmark.",
+      "extractionState" : "manual",
+      "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Wrist" } } }
+    }
+  },
+  "version" : "1.0"
+}

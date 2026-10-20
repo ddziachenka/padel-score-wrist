@@ -55,31 +55,39 @@ Apple описывает SwiftUI как основу нативного watchOS 
 совместимости приложения. Проверка на watchOS 10 остаётся обязательной, а подбор
 конкретных моделей и runtime — инженерная задача в этих границах.
 
-**Toolchain — наблюдение среды, не доказательство работы приложения:**
+**Toolchain — фактическая среда M00; результаты проверок записываются отдельно:**
 
 | Field | Value |
 | --- | --- |
 | Xcode version | Локально обнаружен Xcode 27.0, build 27A266a, 2026-10-20 |
-| Swift version | Swift 6 language mode предложен; точную версию `xcrun swift --version` записать в M00 перед конфигурацией |
-| SDK used to build | watchOS SDK выбранного Xcode; ни одной сборки приложения ещё нет, точную версию закрепить в M00 |
-| Oldest runtime tested against | Ни один runtime ещё не проверен приложением; совместимый runtime минимальной утверждённой ОС обязателен для проверки, его наличие не следует из нового SDK |
+| Swift version | Swift 6 language mode, strict concurrency; локальный компилятор Apple Swift 6.4 (`swiftlang-6.4.0.34.1`) |
+| SDK used to build | watchOS SDK 27.0; Debug Watch executable и packaging container собраны Xcode 27.0 в M00 |
+| Oldest runtime tested against | watchOS 26.5 (`23T570`), Apple Watch SE 40 mm (2nd generation): запуск и 3 unit/UI tests. watchOS 10 ещё не проверена; её проверка обязательна до финальной готовности |
 
 Инвентаризация 2026-10-20 обнаружила доступный Watch runtime watchOS 26.5
 (build 23T570), `com.apple.CoreSimulator.SimRuntime.watchOS-26-5`. Совместимый
 компактный device type — Apple Watch SE (40mm), 2nd generation,
 `com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-40mm-2nd-generation`.
-Эта пара предложена для основной managed среды M00; она не доказывает
-работу на watchOS 10. Runtime минимальной ОС сейчас не подтверждён. Ни устройство,
-ни runtime в рамках инициализации контрактов не создавались и не устанавливались.
+Эта пара выбрана для основной managed среды M00 и создан отдельный симулятор
+проекта; она не доказывает работу на watchOS 10. Runtime минимальной ОС сейчас
+не установлен. Во время инициализации контрактов устройства не создавались;
+создание выполнено позже по поручению подготовить Xcode-проект.
 
-M00 инспектирует `xcrun simctl list -j`, выбирает доступные совместимые Watch device
-type/runtime, передаёт их в `configure-project.sh --platform watchOS` и выполняет
-`make simulator-setup`. Managed simulator принадлежит этому checkout; чужое устройство
+M00 проверил inventory, передал выбранные Watch device type/runtime в
+`configure-project.sh --platform watchOS` и выполнил `make simulator-setup`.
+Managed simulator принадлежит этому checkout; чужое устройство
 или paired iPhone не нужны. Если для принятого минимума нет доступного runtime или
 другой требуемой среды, зависимая проверка остаётся заблокированной; наличие более
 нового симулятора не доказывает работу на минимальной ОС.
 
 ## Dependency boundaries
+
+**Identity:** проект `App/PadelScore.xcodeproj`, shared scheme `PadelScore`.
+Watch executable `PadelScoreWatch` — `com.dziachenka.padelscore.watchapp`;
+packaging container `PadelScore` — `com.dziachenka.padelscore`. Название
+`Padel Score — Wrist` задаётся обоим targets; version/build синхронизированы.
+Bundle IDs выбраны агентом по прямому поручению владельца; они пока не
+зарегистрированы в Apple Developer / App Store Connect.
 
 Стрелка означает «импортирует / зависит от»:
 
@@ -342,7 +350,7 @@ Deployment сайта не выполняется verification gate.
 | Single target, or several? | Современный Xcode Watch-only: один executable Watch target, его packaging container, unit/UI test targets; без отдельного WatchKit extension или iPhone executable |
 | Local Swift packages? | Нет на старте; логические слои каталогами и API, без преждевременного дробления маленького продукта |
 | Where new files go | `App/<Project>/Domain`, `Services`, `Features`, `Resources`, `App`; тесты рядом в test targets, test fixtures в их ресурсах |
-| Are folders synchronized groups? | Предложено: Xcode synchronized groups внутри известных source/test roots; проверять membership ресурсов и privacy manifest; конкретная структура фиксируется M00 |
+| Are folders synchronized groups? | В M00 выбраны явные PBXGroups и membership source/resource/test файлов; проект редактируется напрямую в Xcode, отдельный генератор для сборки не требуется |
 
 Packaging container нужен Xcode для упаковки Watch-only продукта; это не companion
 приложение и не устанавливаемый iPhone UI. Shared scheme собирает container и Watch
@@ -379,8 +387,11 @@ advantage и возврат к deciding point; длинный deuce; начал�
 сохранённого очка; resume результата не расходует новую бесплатную игру.
 
 Минимум watchOS 10 утверждён, но совместимость не считается проверенной до
-выполнения проверок на соответствующей среде. Нет тестов приложения, result bundles или доказанного build
-на этапе написания этих контрактов.
+выполнения проверок на соответствующей среде. В M00 добавлены два hosted
+Swift Testing теста bundle identity и один UI-тест Home → About → Back.
+`make fast` 2026-10-20 прошёл на watchOS 26.5: 3/3, без failures/skips.
+Доказательства точного milestone SHA принадлежат handoff M00; fast сам по себе
+не завершает этап и не доказывает работу на watchOS 10.
 
 ## Migration strategy
 
@@ -419,7 +430,7 @@ advantage и возврат к deciding point; длинный deuce; начал�
 
 | # | Question | Options | Blocks | Who decides |
 | --- | --- | --- | --- | --- |
-| H1 → PRODUCT | Название, bundle identity, публичные контакты/URLs, support retention | Варианты и требуемые данные в [PRODUCT.md](PRODUCT.md#unresolved-decisions); не выдумывать идентификаторы для release | Конфигурация M00 и Legal and Support | Владелец |
+| H1 → PRODUCT | Публичные контакты/URLs и support retention; локальная identity уже задана | Варианты и требуемые данные в [PRODUCT.md](PRODUCT.md#unresolved-decisions); имя в App Store Connect ещё не зарезервировано | Legal and Support и финальные материалы | Владелец |
 | H2 → PRODUCT | Правила завершения сета/tie-break и подачи | Варианты в PRODUCT; domain engine принимает только однозначно утверждённое правило | Движок обычного матча и его тесты | Владелец |
 | H4 → PRODUCT | Lifetime/trial contract, доступ, deletion/reinstall semantics | Варианты в PRODUCT; StoreKit и local usage не выбирают коммерческую модель сами | Entitlement/paywall и audit покупок | Владелец |
 

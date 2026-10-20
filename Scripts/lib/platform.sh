@@ -56,6 +56,14 @@ platform_application_entries() {
 # explicit plists therefore have the same verification boundary.
 platform_built_plist() {
     local path="$1"
+    # Xcode may report /tmp for our /private/tmp cache. Normalize only this
+    # system alias; resolving the whole path would hide a nested symlink.
+    case "$path" in
+        /tmp/*)
+            [ -L /tmp ] && [ "$(physical_path /tmp)" = /private/tmp ] \
+                || die "$EX_USAGE" 'system /tmp does not resolve to /private/tmp'
+            path="/private${path}" ;;
+    esac
     assert_path_inside "$path" "$(derived_data_owned_root)" \
         || die "$EX_USAGE" 'built product plist escapes the owned build cache'
     assert_no_symlink_ancestry "$path" || exit "$EX_USAGE"

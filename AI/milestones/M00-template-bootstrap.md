@@ -1,7 +1,7 @@
 # M00 — Watch-only Bootstrap
 
 **ID:** M00
-**Status:** PLANNED
+**Status:** REVIEW
 **Depends on:** none
 **Validation:** make milestone ID=M00
 **Handoff:** AI/handoffs/M00-handoff.md
@@ -12,8 +12,8 @@
 
 ## Scope
 
-- Вход: владелец одобрил направление контрактов и минимум watchOS 10 (H3 закрыт 2026-10-20); идентичность приложения H1 ещё требуется. Изучить `AI/ARCHITECTURE.md` и текущий Xcode; deployment target — watchOS 10.0, фактическая совместимость требует проверки.
-- Проект в `App/` создаётся владельцем в Xcode из современного Watch-only App template: исполняемое Watch-приложение и packaging container, общий shared scheme, собирающий оба, и настоящий Watch unit-test target. Если проекта нет, записать этот конкретный шаг как BLOCKED; не генерировать проект и не начинать следующие этапы.
+- Вход: владелец одобрил направление контрактов, минимум watchOS 10 и название Padel Score — Wrist; выбор bundle identifier делегирован агенту. Deployment target — watchOS 10.0, фактическая совместимость требует проверки.
+- По явному поручению владельца от 2026-10-20 агент создаёт проект в `App/`, следуя установленному современному Watch-only App template Xcode: исполняемое Watch-приложение и packaging container, общий shared scheme, собирающий оба, и настоящий Watch unit-test target. Это поручение заменяет прежнее условие о создании только владельцем. Требования сборки и проверки сохранены.
 - Сохранить существующую Git-историю. Не запускать `make initialize`: этот скрипт сбрасывает историю. Подготовить `.iosai-project` без сброса репозитория с primary_branch=main и честной записью происхождения шаблона; исходный upstream SHA пока неизвестен. Импортированный baseline доступен в первом коммите, но сам по себе не доказывает прохождение self-test.
 - До перехода в product mode получить проверяемую исходную запись self-test либо прогнать `make self-test` на отдельной временной копии импортированного шаблона с точным SHA. Записать SHA, команду и результат; не заявлять унаследованные гарантии без доказательства. Это проверка инструментария, а не приложения.
 - Выполнить `xcrun simctl list -j`. По утверждённой H3 выбрать доступную совместимую Watch-модель и runtime; передать `--platform watchOS`, `--simulator-device-type` и `--simulator-runtime` в `Scripts/configure-project.sh` вместе с реальными project/scheme/app-target/bundle-id. APP_TARGET и BUNDLE_IDENTIFIER принадлежат Watch executable.
@@ -29,9 +29,9 @@
 
 ## Acceptance criteria
 
-- [ ] Xcode показывает shared scheme с Watch app, container и настоящим test target; вложенного .git в App нет.
-- [ ] Config/project.env использует APP_PLATFORM=watchOS, TEMPLATE_REPOSITORY=false, managed mode и выбранные реальные identifiers; маркер записывает main и честное происхождение инструментария.
-- [ ] Проверены WKWatchOnly, embedded Watch app и совпадение version/build в container; на managed Watch simulator приложение запускается и принимает действие.
+- [x] Xcode показывает shared scheme с Watch app, container и настоящим test target; вложенного .git в App нет.
+- [x] Config/project.env использует APP_PLATFORM=watchOS, TEMPLATE_REPOSITORY=false, managed mode и выбранные реальные identifiers; маркер записывает main и честное происхождение инструментария.
+- [x] Проверены WKWatchOnly, embedded Watch app и совпадение version/build в container; на managed Watch simulator приложение запускается и принимает действие.
 - [ ] Есть успешные make template-check, make static, make fast; make milestone ID=M00 и повтор той же проверки с CANDIDATE=<full-SHA> дают ненулевые обязательные тесты без failures/skips.
 - [ ] make release CANDIDATE=<тот же full-SHA> ожидаемо возвращает NOT_READY до Final Product Polish; это не успешная release-проверка.
 - [ ] Существует точное доказательство self-test инструментария, а handoff различает его и реальные результаты Xcode.
