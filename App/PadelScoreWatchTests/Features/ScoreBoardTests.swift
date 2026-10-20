@@ -20,7 +20,6 @@ struct ScoreBoardTests {
         #expect(scored.us == .game(.thirty))
         #expect(scored.them == .game(.fifteen))
         #expect([scored.us.shown, scored.them.shown] == ["30", "15"])
-        #expect(scored.points(of: .us) == .game(.thirty))
         #expect(scored.context == .set(1))
         #expect(scored.serving == .next(.opponent2))
         #expect(scored.acceptsPoints)

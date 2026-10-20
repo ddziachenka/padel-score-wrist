@@ -123,11 +123,6 @@ struct ScoreBoard: Hashable, Sendable {
         case .ended: nil
         }
     }
-
-    /// The team's points.
-    func points(of team: Team) -> Points {
-        team == .us ? us : them
-    }
 }
 
 extension ScoreBoard.Points {
