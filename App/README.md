@@ -34,6 +34,11 @@ M00 provides the launch screen and About navigation. M01 adds the regular-match
 scoring engine in `PadelScoreWatch/Domain` — pure Swift with no UI, storage or
 clock — and its Swift Testing suites in `PadelScoreWatchTests/Domain`. M02 adds the
 americano engine beside it, and `GameSnapshot`, which gives a game the stable
-identity its corrections keep. The game screens, creation, editing, persistence,
-commerce and the finished app icon belong to subsequent milestones. A successful
-test on a recent simulator does not prove watchOS 10 runtime compatibility.
+identity its corrections keep. M03 adds the session — the game or its result, the
+previous result, recent settings, the free-use ledger and full undo history — as a
+Domain value, and in `PadelScoreWatch/Services` its versioned file, the repository
+actor that saves it atomically with a backup and recovers from damage, and the
+main-actor `SessionStore`; their suites are in `PadelScoreWatchTests/Services`. The
+game screens, creation, editing, commerce and the finished app icon belong to
+subsequent milestones. A successful test on a recent simulator does not prove
+watchOS 10 runtime compatibility.

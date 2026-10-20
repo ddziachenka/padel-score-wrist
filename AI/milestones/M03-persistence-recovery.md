@@ -1,7 +1,7 @@
 # M03 — Persistence and Recovery
 
 **ID:** M03
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M02
 **Validation:** make milestone ID=M03
 **Handoff:** AI/handoffs/M03-handoff.md
