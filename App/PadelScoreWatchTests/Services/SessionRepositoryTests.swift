@@ -157,6 +157,41 @@ final class SessionRepositoryTests {
         #expect(await folder.repository().load() == .loaded(expected, notice: nil))
     }
 
+    @Test("If the damaged file cannot be kept aside, the backup is still restored, and the next save keeps the backup")
+    func recoveryWhenDamagedCopyCannotBeKept() async throws {
+        let files = FaultyFileSystem(location: folder.location)
+        _ = try await savedTwice(files: files)
+        try folder.write(Data("{".utf8), to: folder.location.main)
+        var restored = earlier
+        restored.usage = earlier.usage.uncertain()
+
+        files.inject(.writeFails)
+        let repository = folder.repository(files: files)
+        #expect(await repository.load() == .loaded(restored, notice: .restoredFromBackup))
+        #expect(await folder.repository(files: files).load() == .loaded(restored, notice: .restoredFromBackup))
+        #expect(folder.contents(of: folder.location.main) == Data("{".utf8))
+        #expect(folder.contents(of: folder.location.damaged) == nil)
+
+        files.repair()
+        let next = try restored.after(.awardPoint(to: .us))
+        try await repository.save(next, notice: .restoredFromBackup)
+        #expect(folder.reading(folder.location.main) == .valid(SessionFile(session: next, notice: .restoredFromBackup)))
+        #expect(folder.reading(folder.location.backup) == .valid(SessionFile(session: earlier)))
+    }
+
+    @Test("A backup that cannot be used is never restored")
+    func unusableBackupNotRestored() async throws {
+        var newer = SessionFile(session: SessionFixtures.match)
+        newer.schemaVersion = 2
+        try folder.write(Data("{".utf8), to: folder.location.backup)
+        #expect(await folder.repository().load() == .unreadable(.damaged))
+
+        try folder.write(Data("{".utf8), to: folder.location.main)
+        try folder.write(try newer.encoded(), to: folder.location.backup)
+        #expect(await folder.repository().load() == .unreadable(.newerVersion(2)))
+        #expect(folder.fileNames == ["session.json", "session-backup.json"])
+    }
+
     @Test("A main file that is missing after an interrupted save gives way to the backup, which is the last saved session")
     func missingMainUsesBackup() async throws {
         _ = try await savedTwice()

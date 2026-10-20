@@ -44,6 +44,7 @@ final class SessionStore {
         case .notLoaded, .unreadable: break
         case .loading, .ready: return
         }
+        guard !isSaving else { return }
         status = .loading
         switch await repository.load() {
         case .empty:

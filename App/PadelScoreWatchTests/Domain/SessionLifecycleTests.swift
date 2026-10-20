@@ -84,6 +84,15 @@ struct SessionLifecycleTests {
         }
     }
 
+    @Test("A serving order is confirmed only in a regular match")
+    func confirmationOnlyInMatch() throws {
+        let round = try Session.empty.after(.start(.americano(), id: .number(1)))
+
+        #expect(throws: SessionError.notAMatch) {
+            try round.transition(.confirmService(order: .youThenOpponent1, firstServer: .you))
+        }
+    }
+
     @Test("Without a game, nothing can be played, finished, resumed, corrected or undone")
     func nothingWithoutGame() {
         let commands: [(SessionCommand, SessionError)] = [
