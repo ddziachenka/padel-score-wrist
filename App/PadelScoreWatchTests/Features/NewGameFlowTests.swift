@@ -242,11 +242,17 @@ final class NewGameFlowTests {
         completeMatch(in: flow)
 
         files.close()
+        defer { files.open() }
         let starting = Task { await flow.start() }
-        while !flow.isSaving { await Task.yield() }
+        // Bounded, so a start that never begins saving fails the test rather than hanging it.
+        for _ in 0..<10_000 where !flow.isSaving { await Task.yield() }
+        try #require(flow.isSaving)
         flow.edit { $0.deuceRule = .advantage }
         await flow.start()
         flow.choose(.americano)
+        #expect(flow.isSaving)
+        #expect(flow.draft?.kind == .match)
+        #expect(flow.draft?.deuceRule == .goldenPoint)
         files.open()
         await starting.value
 

@@ -138,19 +138,22 @@ struct ServingChoiceTests {
         }
     }
 
-    @Test("The first server's partner cannot serve second")
+    @Test("The first server's partner cannot serve second, and a refused choice leaves no trace")
     func secondMustBeOpponent() {
         var serving = ServingChoice()
         serving.choose(second: .opponent1)
         #expect(serving.second == nil)
 
         serving.choose(first: .you)
+        serving.choose(second: .you)
         serving.choose(second: .partner)
         #expect(serving.second == nil)
         serving.choose(second: .opponent2)
         #expect(serving.second == .opponent2)
-        serving.choose(second: .you)
-        #expect(serving.second == .opponent2)
+
+        // Once the other team serves first, our first server is still You, not the refused Partner.
+        serving.choose(first: .opponent1)
+        #expect(serving.second == .you)
     }
 
     @Test("Each team keeps its own first server when the other team is chosen to serve first")
