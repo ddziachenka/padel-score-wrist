@@ -2,16 +2,19 @@
 
 Технический контракт самостоятельного приложения для Apple Watch. Прямые решения
 владельца — Watch-only, оба формата счёта, исправление всех введённых данных и
-английская v1 — сохранены. Остальные решения ниже **предложены для утверждения**;
-они не означают, что приложение уже реализовано или проверено.
+английская v1 — сохранены. Архитектурное направление одобрено владельцем 2026-10-20;
+минимальная watchOS 10 выбрана отдельно в тот же день. H1/H2/H4 и условные варианты
+покупки остаются открытыми. Одобрение не означает,
+что приложение уже реализовано или проверено.
 
-**Status:** proposed — ожидает утверждения владельцем
-**Approved by:** ещё не утверждено
+**Status:** approved direction — открытые решения сохранены
+**Approved by:** владелец проекта, сообщение «одобряю»
+**Approved on:** 2026-10-20
 **Updated:** 2026-10-20
 
 Поведение и бизнес-решения принадлежат [PRODUCT.md](PRODUCT.md), интерфейс —
 [DESIGN.md](DESIGN.md), выполнение и доказательства — [WORKFLOW.md](WORKFLOW.md).
-Открытые H1/H2/H4 в PRODUCT и H3 ниже блокируют зависимую реализацию, а не заменяются
+Открытые H1/H2/H4 в PRODUCT блокируют зависимую реализацию, а не заменяются
 примерными значениями из HTML-макетов.
 
 ---
@@ -31,7 +34,7 @@
 
 Apple описывает SwiftUI как основу нативного watchOS UI. Observation доступен для
 приложений с минимумом watchOS 10, а NavigationStack — watchOS 9. Поэтому требование
-более новой ОС из этих API не следует; выбор охвата остаётся H3.
+более новой ОС из этих API не следует; владелец выбрал watchOS 10 в решении H3.
 [SwiftUI для watchOS](https://developer.apple.com/documentation/watchos-apps/building_a_watchos_app),
 [Observation](https://developer.apple.com/documentation/SwiftUI/Monitoring-model-data-changes-in-your-app),
 [NavigationStack](https://developer.apple.com/documentation/swiftui/migrating-to-new-navigation-types).
@@ -41,11 +44,16 @@ Apple описывает SwiftUI как основу нативного watchOS 
 | Field | Value |
 | --- | --- |
 | App platform: iOS or watchOS Watch-only | **Подтверждено: watchOS Watch-only**; нет iPhone companion, телефонного UI и Watch Connectivity как зависимости |
-| Minimum iOS or watchOS version | **Предложено: watchOS 10.0; H3 не решён** |
+| Minimum iOS or watchOS version | **Подтверждено: watchOS 10.0; H3 закрыт владельцем 2026-10-20** |
 | Why that version | Достаточен для Observation, NavigationStack и локальной модели; более высокий минимум сокращает охват без необходимой для счётчика функции |
-| Devices | Apple Watch, совместимые с утверждённой watchOS; компактный и крупный размер в матрице M00; точный список зависит от H3 |
+| Devices | Apple Watch, совместимые с watchOS 10 и новее; конкретные компактный и крупный размеры и доступные среды проверки фиксируются в M00 |
 | Orientations | Системная ориентация часов, настройки запястья и Digital Crown; ручного portrait/landscape режима нет |
 | Additional surfaces supported by the chosen platform | Только основное Watch-приложение в MVP; complications, widgets, App Intents и Action button не включены |
+
+**Решение H3:** владелец явно выбрал «watchOS 10: достаточно нужных API,
+шире охват устройств». Минимум утверждён; выбор не является доказательством
+совместимости приложения. Проверка на watchOS 10 остаётся обязательной, а подбор
+конкретных моделей и runtime — инженерная задача в этих границах.
 
 **Toolchain — наблюдение среды, не доказательство работы приложения:**
 
@@ -60,7 +68,7 @@ Apple описывает SwiftUI как основу нативного watchOS 
 (build 23T570), `com.apple.CoreSimulator.SimRuntime.watchOS-26-5`. Совместимый
 компактный device type — Apple Watch SE (40mm), 2nd generation,
 `com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-40mm-2nd-generation`.
-Эта пара предложена для основной managed среды M00 после H3; она не доказывает
+Эта пара предложена для основной managed среды M00; она не доказывает
 работу на watchOS 10. Runtime минимальной ОС сейчас не подтверждён. Ни устройство,
 ни runtime в рамках инициализации контрактов не создавались и не устанавливались.
 
@@ -92,7 +100,7 @@ App composition root → Features → Domain
 
 | Dependency | Version | What it does | Why not Apple's framework | Approval/rationale |
 | --- | --- | --- | --- | --- |
-| Сторонних библиотек нет | Не применимо | Системные SwiftUI, Foundation, StoreKit и WatchKit покрывают MVP | Причины заменять их пока нет | Предложение для утверждения; новая внешняя зависимость — отдельное человеческое решение |
+| Сторонних библиотек нет | Не применимо | Системные SwiftUI, Foundation, StoreKit и WatchKit покрывают MVP | Причины заменять их пока нет | Направление одобрено; новая внешняя зависимость — отдельное человеческое решение |
 
 Локальные Swift packages на старте не предлагаются. Если появятся внешние SPM
 зависимости, зафиксировать версию, причину и разрешённый сетевой resolve в соответствии
@@ -245,7 +253,7 @@ HealthKit workout или extended runtime session ради обхода сист
 
 | Integration | Present? | Purpose | Fallback when unavailable | Approval/rationale |
 | --- | --- | --- | --- | --- |
-| Backend service | Предложено: нет | Сценарий локальный | Не требуется | Подтверждается общим архитектурным направлением |
+| Backend service | Нет | Сценарий локальный | Не требуется | Подтверждено общим архитектурным направлением 2026-10-20 |
 | Authentication provider | Нет | Собственный аккаунт не нужен | Не требуется | Apple Account обслуживает только Apple |
 | StoreKit | Предложено: StoreKit 2, зависит от H4 | Lifetime non-consumable entitlement | Retry/restore; не прерывать активную игру | Реализация после утверждения коммерческого контракта |
 | Review request (StoreKit) | INAPPLICABLE | Watch-only не имеет обязательного rating flow в этом workflow | Нет запроса оценки и ручного rate-entry | REL-208/REL-209: платформенное исключение watchOS, не пропуск проверки |
@@ -370,8 +378,8 @@ advantage и возврат к deciding point; длинный deuce; начал�
 ручная коррекция в той же видимой фазе с другим подающим; перезапуск сразу после
 сохранённого очка; resume результата не расходует новую бесплатную игру.
 
-Проверка watchOS 10 как минимумом не заявляется до решения H3 и выполнения на
-соответствующей среде. Нет тестов приложения, result bundles или доказанного build
+Минимум watchOS 10 утверждён, но совместимость не считается проверенной до
+выполнения проверок на соответствующей среде. Нет тестов приложения, result bundles или доказанного build
 на этапе написания этих контрактов.
 
 ## Migration strategy
@@ -389,8 +397,8 @@ advantage и возврат к deciding point; длинный deuce; начал�
 
 ## Rejected alternatives
 
-Это отклонённые варианты **в предлагаемом направлении**, не отдельно утверждённые
-владельцем изменения продукта.
+Это отклонённые варианты в одобренном направлении. Условия пересмотра не означают
+одобрения новых возможностей или выбора открытых H-решений.
 
 | # | Alternative | Rejected because | Reconsider when |
 | --- | --- | --- | --- |
@@ -411,7 +419,6 @@ advantage и возврат к deciding point; длинный deuce; начал�
 
 | # | Question | Options | Blocks | Who decides |
 | --- | --- | --- | --- | --- |
-| H3 | Минимальная watchOS и охват устройств | **watchOS 10 (Recommended)** — достаточно выбранных API и широкий охват; watchOS 11 — сократить legacy-матрицу ценой части устройств; watchOS 26 — ориентироваться на новую платформу ценой более узкого охвата. Для выбранного варианта нужна доступная проверяемая среда, а не только новый SDK | M00 deployment/device/runtime, layout matrix, availability проверки и release evidence | Владелец после подтверждения доступной тестовой среды |
 | H1 → PRODUCT | Название, bundle identity, публичные контакты/URLs, support retention | Варианты и требуемые данные в [PRODUCT.md](PRODUCT.md#unresolved-decisions); не выдумывать идентификаторы для release | Конфигурация M00 и Legal and Support | Владелец |
 | H2 → PRODUCT | Правила завершения сета/tie-break и подачи | Варианты в PRODUCT; domain engine принимает только однозначно утверждённое правило | Движок обычного матча и его тесты | Владелец |
 | H4 → PRODUCT | Lifetime/trial contract, доступ, deletion/reinstall semantics | Варианты в PRODUCT; StoreKit и local usage не выбирают коммерческую модель сами | Entitlement/paywall и audit покупок | Владелец |
