@@ -23,8 +23,6 @@ final class LiveScore {
         let outcome: SessionOutcome
         /// What VoiceOver says about it.
         let announcement: String?
-        /// Whether someone else serves next.
-        let serverChanged: Bool
     }
 
     /// A second tap on a team this soon after the last recorded rally counts as the same tap: no
@@ -36,6 +34,8 @@ final class LiveScore {
     /// The request whose save failed. No other is sent until it is retried or given up.
     private(set) var failed: Action?
     private(set) var lastChange: Change?
+    /// Counts the saves that failed, so each one is told, a retry that fails again too.
+    private(set) var failedSaves = 0
     /// A round its last rally finished while it was on screen. It stays there, read only, until
     /// the person moves on, so the result and Undo are not taken away by the rally that ended it.
     private(set) var finishedRound: GameID?
@@ -101,16 +101,25 @@ final class LiveScore {
     }
 
     /// Sends the request whose save failed again, with the same identity, so it is recorded once.
+    /// The failure stays until the retry is saved, so its choice does not vanish and come back.
     func retry() async {
-        guard let action = failed else { return }
+        guard failed != nil, saving == nil else { return }
         let before = board
-        failed = nil
-        saving = action
+        saving = failed
         defer { saving = nil }
         do {
-            accept(try await store.retryFailedRequest(), before: before)
+            let outcome = try await store.retryFailedRequest()
+            failed = nil
+            accept(outcome, before: before)
         } catch {
-            refuse(action, error)
+            if error == .saveFailed {
+                failedSaves += 1
+                haptics.play(.failure)
+            } else {
+                // The request can no longer be applied, so nothing of it is waiting.
+                store.discardFailedRequest()
+                failed = nil
+            }
         }
     }
 
@@ -121,9 +130,11 @@ final class LiveScore {
         failed = nil
     }
 
-    /// Lets a finished round leave the screen.
+    /// Lets a finished round leave the screen. Nothing of it carries over to the next game's.
     func leaveFinishedRound() {
         finishedRound = nil
+        lastChange = nil
+        lastRally = nil
     }
 
     private func send(_ command: SessionCommand, as action: Action) async {
@@ -133,16 +144,13 @@ final class LiveScore {
         do {
             accept(try await store.perform(command, id: CommandID(rawValue: UUID()), revision: store.session.revision), before: before)
         } catch {
-            refuse(action, error)
+            // Only a failed save leaves something to retry. A request the store refused changed
+            // nothing, and there is nothing to tell.
+            guard error == .saveFailed else { return }
+            failed = action
+            failedSaves += 1
+            haptics.play(.failure)
         }
-    }
-
-    /// Only a failed save leaves something to retry. A request the store refused changed nothing,
-    /// and there is nothing to tell.
-    private func refuse(_ action: Action, _ error: SessionStoreError) {
-        guard error == .saveFailed else { return }
-        failed = action
-        haptics.play(.failure)
     }
 
     private func accept(_ outcome: SessionOutcome, before: ScoreBoard?) {
@@ -153,8 +161,7 @@ final class LiveScore {
         lastChange = Change(
             number: changes,
             outcome: outcome,
-            announcement: ScoreAnnouncement.text(for: outcome, before: before, after: after),
-            serverChanged: before?.server != after.server
+            announcement: ScoreAnnouncement.text(for: outcome, before: before, after: after)
         )
     }
 }

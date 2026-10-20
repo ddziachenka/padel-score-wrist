@@ -57,6 +57,19 @@ semantic colors and the app icon live in `Assets.xcassets`; the icon is drawn by
 swift App/Design/render-app-icon.swift App/PadelScoreWatch/Assets.xcassets/AppIcon.appiconset/AppIcon.png
 ```
 
-Scoring on the game screen, editing, finishing and commerce belong to subsequent
-milestones. A successful test on a recent simulator does not prove watchOS 10 runtime
-compatibility.
+M05 replaces the read-only game screen with the live score in `PadelScoreWatch/Features/Game`.
+`ScoreBoard` is what the screen shows of a saved game — the line above the score, each team's
+points, the counts under them and who serves next — and `ScoreAnnouncement` is what VoiceOver
+says after each saved change. `LiveScore` is the screen's model: it sends a rally, Undo or a new
+set's serving order to the session store one at a time, treats a second tap within half a second
+as the same tap, plays a haptic and posts the announcement only after the save, and holds a failed
+save for Retry or Cancel. `LiveScoreView` lays the score out in two columns while they fit and as
+stacked, scrolling sections at larger text, and shows it read only in Always On; `SetServingView`
+confirms a new set's serving order and `GameMenuView` holds the rules and About. Haptics go
+through the `HapticPlayer` protocol in `Services/Haptics.swift`; the composition root passes the
+WatchKit adapter. Debug UI tests can also seed a match at 0–0, at set point or in a tie-break and
+two americano rounds, and `PADEL_UITEST_ALWAYS_ON=1` draws the live score as in Always On.
+
+Editing the score, finishing a game and commerce belong to subsequent milestones. A successful
+test on a recent simulator does not prove watchOS 10 runtime compatibility, and the simulator
+does not prove how a haptic feels.

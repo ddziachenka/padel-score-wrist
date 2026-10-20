@@ -88,7 +88,11 @@ final class UITestStoreTests {
         let round = try #require(try await openStore(["PADEL_UITEST_SEED": "americanoStart"]).session.round)
         #expect(round == .start(rules: AmericanoRules(totalRallies: 6, ralliesPerServer: 2), order: .youThenOpponent1, firstServer: .you))
 
-        for seed in [UITestStore.Seed.matchStart, .matchSetPoint, .matchTieBreak, .americanoStart] {
+        let long = try #require(try await openStore(["PADEL_UITEST_SEED": "americanoLong"]).session.round)
+        #expect(long.score == AmericanoScore(us: 149, them: 149))
+        #expect(long.remaining == 2)
+
+        for seed in [UITestStore.Seed.matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong] {
             let session = try #require(UITestStore.session(for: seed))
             #expect(session.issues.isEmpty, "\(seed)")
             #expect(session.activeGame != nil, "\(seed)")

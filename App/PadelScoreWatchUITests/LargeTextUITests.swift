@@ -53,6 +53,47 @@ final class LargeTextUITests: XCTestCase {
         attachScreenshot("Americano started, largest text")
     }
 
+    func testTheLiveScoreFitsWithoutScrollingAtLargeText() {
+        for seed in ["matchSetPoint", "americanoStart"] {
+            let app = launchApp(store: "large-live-\(seed)", seed: seed, textSize: "UICTContentSizeCategoryL")
+            let us = app.buttons["game.us"]
+            let them = app.buttons["game.them"]
+            XCTAssertTrue(us.waitForExistence(timeout: 10))
+            let screen = app.windows.firstMatch.frame
+            let rows = seed == "americanoStart" ? ["game.ralliesLeft", "game.serve"] : ["game.games", "game.sets"]
+            for identifier in ["game.context", "game.us", "game.them"] + rows + ["game.server", "game.undo", "game.menu"] {
+                let element = app.descendants(matching: .any)[identifier]
+                XCTAssertTrue(element.exists, identifier)
+                XCTAssertTrue(screen.contains(element.frame), "\(identifier) at \(element.frame) is outside the screen \(screen)")
+            }
+            XCTAssertEqual(us.frame.minY, them.frame.minY, accuracy: 1, "the teams stay side by side")
+            XCTAssertTrue(us.isHittable)
+            XCTAssertTrue(app.buttons["game.menu"].isHittable)
+            attachScreenshot("Live score, Large text, \(seed)")
+            app.terminate()
+        }
+    }
+
+    func testTheLiveScoreStacksAndScrollsAtTheLargestTextSize() {
+        let app = launchApp(store: "large-live-max", seed: "matchSetPoint", textSize: largest)
+        let us = app.buttons["game.us"]
+        let them = app.buttons["game.them"]
+        XCTAssertTrue(us.waitForExistence(timeout: 10))
+        XCTAssertLessThanOrEqual(us.frame.maxY, them.frame.minY, "THEM is under US")
+        XCTAssertEqual(us.label, "Our score, 40")
+        attachScreenshot("Live score, largest text")
+
+        award(them, showing: "Their score, 15")
+        let server = app.descendants(matching: .any)["game.server"]
+        XCTAssertTrue(server.exists)
+        assertLabel(server, contains: "Opponent 1")
+        app.buttons["game.undo"].scrollToAndTap(in: app)
+        waitForLabel(them, "Their score, 0")
+        attachScreenshot("Live score, largest text, scrolled")
+        app.buttons["game.menu"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.descendants(matching: .any)["game.rules"].waitForExistence(timeout: 5))
+    }
+
     func testMatchRuleChoicesReadInFullAtTheLargestTextSize() {
         let app = launchApp(store: "large-text-match", textSize: largest)
         app.buttons["newGame.match"].scrollToAndTap(in: app)

@@ -324,7 +324,7 @@
       }
     },
     "Couldn’t save." : {
-      "comment" : "Alert title: a change to the score could not be saved.",
+      "comment" : "Game screen: a change to the score could not be saved. Retry and Cancel follow.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -355,6 +355,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn’t save. The game hasn’t started."
+          }
+        }
+      }
+    },
+    "Couldn’t save. Your last saved score is unchanged." : {
+      "comment" : "VoiceOver, when a change to the score could not be saved.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t save. Your last saved score is unchanged."
           }
         }
       }
@@ -1332,7 +1344,7 @@
       }
     },
     "Your last saved score is unchanged." : {
-      "comment" : "Alert message after a change could not be saved: the score shown is the one last saved.",
+      "comment" : "Game screen, under Couldn’t save.: the score shown is the one last saved.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

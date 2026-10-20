@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B25C7F148DD76475B3BE595F /* LiveScoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F1A6C6AC9C65950FE1503D /* LiveScoreUITests.swift */; };
 		8602690F4461EBB6D452AC8A /* LiveScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3C2936D5F52C6B8D064CA /* LiveScoreTests.swift */; };
 		8CFF17D864B72E97F149F0EA /* ScoreAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBC5A62C5087429728F0DF6 /* ScoreAnnouncementTests.swift */; };
 		12D67D542FE2F34C8A09DA14 /* ScoreBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DC5A45ACBD3D4DE82BFA02 /* ScoreBoardTests.swift */; };
@@ -137,6 +138,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F8F1A6C6AC9C65950FE1503D /* LiveScoreUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LiveScoreUITests.swift; sourceTree = "<group>"; };
 		3EC3C2936D5F52C6B8D064CA /* LiveScoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LiveScoreTests.swift; sourceTree = "<group>"; };
 		BBBC5A62C5087429728F0DF6 /* ScoreAnnouncementTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreAnnouncementTests.swift; sourceTree = "<group>"; };
 		21DC5A45ACBD3D4DE82BFA02 /* ScoreBoardTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreBoardTests.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		EB6463C62D5F36EBA9B54CF0 /* PadelScoreWatchUITests */ = {
 			isa = PBXGroup;
 			children = (
+				F8F1A6C6AC9C65950FE1503D /* LiveScoreUITests.swift */,
 				76AE58C6C69ED10F11602FE4 /* BootstrapUITests.swift */,
 				2E1568D97716E441DEF45624 /* NewGameUITests.swift */,
 				71186ECC27FE38B2616A5239 /* UITestSupport.swift */,
@@ -731,6 +734,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B25C7F148DD76475B3BE595F /* LiveScoreUITests.swift in Sources */,
 				6B39455141E6AA364ACE1E32 /* BootstrapUITests.swift in Sources */,
 				27BBD00EA610E124345AB1CE /* NewGameUITests.swift in Sources */,
 				52C82235AC6E456908C1D094 /* UITestSupport.swift in Sources */,

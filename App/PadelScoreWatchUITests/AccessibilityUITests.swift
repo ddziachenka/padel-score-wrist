@@ -47,6 +47,45 @@ final class AccessibilityUITests: XCTestCase {
         try audit(app, "Game")
     }
 
+    func testTheLiveScorePassesTheAccessibilityAudit() throws {
+        let app = launchApp(store: "audit-live", seed: "matchSetPoint")
+        let us = app.buttons["game.us"]
+        XCTAssertTrue(us.waitForExistence(timeout: 10))
+        try audit(app, "Live score")
+
+        us.tap()
+        let confirm = app.buttons["game.confirmServing"]
+        XCTAssertTrue(confirm.waitForExistence(timeout: 5))
+        try audit(app, "New set, serving to confirm")
+        confirm.tap()
+        XCTAssertTrue(app.buttons["serving.first.partner"].waitForExistence(timeout: 5))
+        try audit(app, "Set serving")
+        app.goBack()
+
+        app.buttons["game.menu"].tap()
+        XCTAssertTrue(app.descendants(matching: .any)["game.rules"].waitForExistence(timeout: 5))
+        try audit(app, "Game menu")
+    }
+
+    func testAFinishedRoundPassesTheAccessibilityAudit() throws {
+        let app = launchApp(store: "audit-round", seed: "americanoStart")
+        let us = app.buttons["game.us"]
+        XCTAssertTrue(us.waitForExistence(timeout: 10))
+        for points in 1...5 {
+            award(us, showing: "Our score, \(points)")
+        }
+        us.tap()
+        XCTAssertTrue(app.descendants(matching: .any)["game.context"].waitForExistence(timeout: 5))
+        waitForLabel(app.descendants(matching: .any)["game.context"], "Round finished")
+        try audit(app, "Round finished")
+    }
+
+    func testTheLiveScoreAtTheLargestTextPassesTheAccessibilityAudit() throws {
+        let app = launchApp(store: "audit-live-large", seed: "matchSetPoint", textSize: "UICTContentSizeCategoryAccessibilityXXXL")
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        try audit(app, "Live score, largest text")
+    }
+
     func testRecoveryPassesTheAccessibilityAudit() throws {
         let app = launchApp(store: "audit-damaged", seed: "damaged")
         XCTAssertTrue(app.buttons["recovery.tryAgain"].waitForExistence(timeout: 10))

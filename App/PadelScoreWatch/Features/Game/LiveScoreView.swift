@@ -20,32 +20,24 @@ enum GameRoute: Hashable, Sendable {
 struct LiveScoreView: View {
     let live: LiveScore
     @State private var path: [GameRoute] = []
-    @State private var showsFailure = false
     @Environment(\.scenePhase) private var scenePhase
+    #if DEBUG
+    @Environment(\.drawsAlwaysOnForUITest) private var drawsAlwaysOnForUITest
+    #endif
 
     var body: some View {
-        NavigationStack(path: $path) {
-            Group {
-                if let board = live.board {
-                    ScoreScreen(board: board, live: live) { path.append($0) }
-                }
-            }
-            .navigationDestination(for: GameRoute.self) { route in
-                destination(for: route)
+        ZStack {
+            stack
+                .accessibilityHidden(live.failed != nil)
+            // A save that failed covers the game, wherever the person is, until Retry or Cancel.
+            if live.failed != nil {
+                SaveFailureView(live: live)
             }
         }
-        .alert(Text("Couldn’t save."), isPresented: $showsFailure) {
-            Button("Retry") {
-                Task { await live.retry() }
-            }
-            Button("Cancel", role: .cancel) {
-                live.giveUp()
-            }
-        } message: {
-            Text("Your last saved score is unchanged.")
-        }
-        .onChange(of: live.failed, initial: true) {
-            showsFailure = live.failed != nil
+        .onChange(of: live.failedSaves) {
+            AccessibilityNotification.Announcement(
+                String(localized: "Couldn’t save. Your last saved score is unchanged.", comment: "VoiceOver, when a change to the score could not be saved.")
+            ).post()
         }
         .onChange(of: live.lastChange) { _, change in
             guard let text = change?.announcement else { return }
@@ -61,6 +53,25 @@ struct LiveScoreView: View {
         }
     }
 
+    private var stack: some View {
+        NavigationStack(path: $path) {
+            Group {
+                if let board = live.board {
+                    ScoreScreen(board: board, live: live) { path.append($0) }
+                        #if DEBUG
+                        // The system sets Always On again inside the stack, so a test sets it here.
+                        .transformEnvironment(\.isLuminanceReduced) { isReduced in
+                            if drawsAlwaysOnForUITest { isReduced = true }
+                        }
+                        #endif
+                }
+            }
+            .navigationDestination(for: GameRoute.self) { route in
+                destination(for: route)
+            }
+        }
+    }
+
     @ViewBuilder
     private func destination(for route: GameRoute) -> some View {
         switch route {
@@ -71,6 +82,46 @@ struct LiveScoreView: View {
         case let .serving(proposed, set):
             SetServingView(live: live, setNumber: set, proposed: proposed)
         }
+    }
+}
+
+/// A change that could not be saved: the last saved score stands, and nothing else is recorded
+/// until the person retries it or gives it up (E3).
+private struct SaveFailureView: View {
+    let live: LiveScore
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Spacing.md) {
+                Image(systemName: "exclamationmark.triangle")
+                    .font(Typography.title)
+                    .foregroundStyle(Palette.warning)
+                    .accessibilityHidden(true)
+                Text("Couldn’t save.")
+                    .font(Typography.heading)
+                    .foregroundStyle(Palette.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
+                Text("Your last saved score is unchanged.")
+                    .font(Typography.body)
+                    .foregroundStyle(Palette.textSecondary)
+                Button {
+                    Task { await live.retry() }
+                } label: {
+                    SavingLabel("Retry", isSaving: live.saving != nil)
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                .allowsHitTesting(live.saving == nil)
+                .accessibilityIdentifier("failure.retry")
+                Button("Cancel") {
+                    live.giveUp()
+                }
+                .buttonStyle(SecondaryButtonStyle())
+                .allowsHitTesting(live.saving == nil)
+                .accessibilityIdentifier("failure.cancel")
+            }
+            .fixedSize(horizontal: false, vertical: true)
+        }
+        .background(Palette.backgroundPrimary.ignoresSafeArea())
     }
 }
 
@@ -110,8 +161,7 @@ private struct ScoreScreen: View {
         VStack(spacing: Spacing.xs) {
             ContextLine(board: board, live: live)
                 .frame(height: clockRow)
-                .padding(.leading, Spacing.sm)
-                .padding(.trailing, width * 0.4)
+                .padding(.trailing, max(56, width * 0.3))
             ScoreArea(board: board, live: live, layout: .columns, open: open)
                 .frame(minHeight: 0, idealHeight: comfortableScoreHeight, maxHeight: .infinity)
             DetailRows(details: board.details)
@@ -120,7 +170,7 @@ private struct ScoreScreen: View {
             // so a role such as Opponent 1 keeps its words whole.
             ZStack {
                 ServingBlock(board: board, live: live, layout: .columns)
-                    .padding(.horizontal, IconButton.visibleSize + 2)
+                    .padding(.horizontal, IconButton.circleInset)
                 HStack(spacing: 0) {
                     UndoButton(live: live)
                     Spacer(minLength: 0)
@@ -145,7 +195,11 @@ private struct ScoreScreen: View {
                     MenuButton { open(.menu) }
                 }
             }
+            // Scrolled to the end, the round buttons clear the screen's rounded corners.
+            .padding(.bottom, Spacing.lg)
         }
+        // Nothing scrolls into the clock's row above.
+        .clipped()
     }
 }
 
@@ -395,6 +449,7 @@ private struct CountRow: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(label))
         .accessibilityValue(Text("Us \(counts.us), them \(counts.them)"))
+        .accessibilityAddTraits(.isStaticText)
     }
 }
 
@@ -418,14 +473,13 @@ private struct ValueRow: View {
     }
 }
 
-/// Who serves next, by role, or how a finished round ended. It briefly lifts when the server
-/// changes, without taking the VoiceOver focus.
+/// Who serves next, by role, or how a finished round ended. When the server changes, the new
+/// role fades in where the old one was: a short cross-fade, also with Reduce Motion, that takes
+/// no VoiceOver focus.
 private struct ServingBlock: View {
     let board: ScoreBoard
     let live: LiveScore
     let layout: ScoreLayout
-    @State private var isLifted = false
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         VStack(spacing: 0) {
@@ -441,6 +495,8 @@ private struct ServingBlock: View {
                     .foregroundStyle(Palette.textPrimary)
                     .lineLimit(layout == .columns ? 1 : 2)
                     .minimumScaleFactor(layout == .columns ? 0.75 : 1)
+                    .id(player)
+                    .transition(.opacity)
             case .ended(let result):
                 if let result {
                     Text(result.title)
@@ -451,18 +507,10 @@ private struct ServingBlock: View {
             }
         }
         .multilineTextAlignment(.center)
-        .padding(.horizontal, Spacing.xs)
-        .padding(.vertical, 2)
-        .background(isLifted ? Palette.backgroundElevated : .clear, in: Capsule())
+        .animation(.easeOut(duration: 0.3), value: board.server)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("game.server")
         .accessibilitySortPriority(3)
-        .task(id: live.lastChange?.number) {
-            guard live.lastChange?.serverChanged == true, case .next = board.serving else { return }
-            withAnimation(reduceMotion ? nil : .easeOut(duration: 0.18)) { isLifted = true }
-            try? await Task.sleep(for: .seconds(1.2))
-            withAnimation(reduceMotion ? nil : .easeOut(duration: 0.3)) { isLifted = false }
-        }
     }
 }
 
@@ -470,12 +518,15 @@ private struct ServingBlock: View {
 private struct IconButton: View {
     /// The drawn circle; the tap area around it is larger.
     static let visibleSize: CGFloat = 32
+    /// How far the drawn circle reaches in from the screen edge, with a small gap.
+    static let circleInset = (Metrics.minimumTap + visibleSize) / 2 + 2
 
     let symbol: String
     let label: LocalizedStringKey
     let action: () -> Void
     @Environment(\.isEnabled) private var isEnabled
     @Environment(\.isLuminanceReduced) private var isLuminanceReduced
+    @Environment(\.colorSchemeContrast) private var contrast
 
     var body: some View {
         Button(action: action) {
@@ -484,6 +535,11 @@ private struct IconButton: View {
                 .foregroundStyle(Palette.textPrimary)
                 .frame(width: Self.visibleSize, height: Self.visibleSize)
                 .background(isLuminanceReduced ? .clear : Palette.backgroundElevated, in: Circle())
+                .overlay {
+                    if contrast == .increased {
+                        Circle().strokeBorder(Palette.separator, lineWidth: 1)
+                    }
+                }
                 .opacity(isEnabled ? 1 : 0.4)
                 .frame(width: Metrics.minimumTap, height: Metrics.minimumTap)
                 .contentShape(Circle())
@@ -525,3 +581,10 @@ private extension Team {
         }
     }
 }
+
+#if DEBUG
+extension EnvironmentValues {
+    /// A UI test draws the live score as in Always On, with the wrist lowered. Debug builds only.
+    @Entry var drawsAlwaysOnForUITest = false
+}
+#endif

@@ -37,7 +37,8 @@ struct SetServingView: View {
                         .accessibilityIdentifier("serving.second.\(player.rawValue)")
                     }
                 }
-                .disabled(!live.isIdle)
+                // A save of under a second does not dim the choices; they only stop taking taps.
+                .allowsHitTesting(live.isIdle)
                 if let sequence = choice.sequence {
                     SectionHeading("Service order")
                     ServiceOrderList(sequence: sequence)

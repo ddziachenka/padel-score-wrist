@@ -22,6 +22,57 @@ final class ManualClock {
     }
 }
 
+/// The device's files, except that while failing every write fails, and while held a write waits
+/// for `release` before it does: a slow save that cannot finish.
+final class SlowFailingFileSystem: StorageFileSystem, @unchecked Sendable {
+    private let lock = NSLock()
+    private var isFailing = false
+    private var isHeld = false
+    private let released = DispatchSemaphore(value: 0)
+    private let real = LocalFileSystem()
+
+    func fail(holding: Bool) {
+        lock.lock()
+        isFailing = true
+        isHeld = holding
+        lock.unlock()
+    }
+
+    func release() {
+        lock.lock()
+        let wasHeld = isHeld
+        isHeld = false
+        lock.unlock()
+        if wasHeld { released.signal() }
+    }
+
+    func contents(of file: URL) throws -> Data? {
+        try real.contents(of: file)
+    }
+
+    /// A held write that is never released fails after ten seconds rather than hanging the test.
+    func writeDurably(_ data: Data, to file: URL) throws {
+        lock.lock()
+        let (failing, held) = (isFailing, isHeld)
+        lock.unlock()
+        if held { _ = released.wait(timeout: .now() + 10) }
+        if failing { throw CocoaError(.fileWriteOutOfSpace) }
+        try real.writeDurably(data, to: file)
+    }
+
+    func move(_ source: URL, to destination: URL) throws {
+        try real.move(source, to: destination)
+    }
+
+    func removeIfPresent(_ file: URL) throws {
+        try real.removeIfPresent(file)
+    }
+
+    func createDirectory(_ directory: URL) throws {
+        try real.createDirectory(directory)
+    }
+}
+
 @MainActor
 final class LiveScoreTests {
     let folder = TestFolder()
@@ -184,10 +235,14 @@ final class LiveScoreTests {
         #expect(haptics.played == [.failure])
         #expect(!live.isIdle)
         #expect(!live.canUndo)
+        #expect(live.failedSaves == 1)
+        // Nothing else is sent while the choice waits.
         await tap(.us, on: live)
         await live.undo()
+        #expect(live.failedSaves == 1)
         #expect(store.session == saved)
         #expect(live.failed == .point(.them))
+        #expect(haptics.played == [.failure])
         #expect(await openStore().session == saved)
     }
 
@@ -200,6 +255,8 @@ final class LiveScoreTests {
 
         await live.retry()
         #expect(live.failed == .point(.them))
+        #expect(live.saving == nil)
+        #expect(live.failedSaves == 2, "a retry that fails again is told again")
         #expect(store.session.current?.history.count == 1)
 
         files.repair()
@@ -209,6 +266,32 @@ final class LiveScoreTests {
         #expect(live.board?.them == .game(.fifteen))
         #expect(haptics.played == [.failure, .failure, .point])
         #expect(await openStore().session == store.session)
+    }
+
+    @Test("While a retry is saved the failure and its choice stay, and nothing else is sent")
+    func failureStaysDuringRetry() async throws {
+        let files = SlowFailingFileSystem()
+        let (live, store) = try await live(after: points("U"), files: files)
+        files.fail(holding: false)
+        await tap(.them, on: live)
+        try #require(live.failed == .point(.them))
+
+        files.fail(holding: true)
+        let retrying = Task { await live.retry() }
+        // Bounded, so a retry that never begins saving fails the test rather than hanging it.
+        for _ in 0..<10_000 where live.saving == nil { await Task.yield() }
+        try #require(live.saving == .point(.them))
+        #expect(live.failed == .point(.them))
+        await live.retry()
+        await tap(.us, on: live)
+        #expect(store.session.current?.history.count == 1)
+
+        files.release()
+        await retrying.value
+        #expect(live.saving == nil)
+        #expect(live.failed == .point(.them))
+        #expect(live.failedSaves == 2)
+        #expect(haptics.played == [.failure, .failure])
     }
 
     @Test("Giving up keeps the last saved score, and the next tap is recorded")
@@ -292,7 +375,8 @@ final class LiveScoreTests {
         #expect(live.proposedServing == nil)
         #expect(live.board?.serving == .next(.you))
 
-        await tap(.them, on: live)
+        // The tap the set could not take recorded nothing, so it starts no settle time either.
+        await live.award(.them)
         #expect(live.board?.them == .game(.fifteen))
         await live.undo()
         await live.undo()
@@ -334,24 +418,24 @@ final class LiveScoreTests {
 
         live.leaveFinishedRound()
         #expect(live.finishedRound == nil)
+        #expect(live.lastChange == nil)
         #expect(LaunchScreen(status: store.status, session: store.session, finishedOnScreen: live.finishedRound) == .newGame)
     }
 
-    @Test("Each saved change carries its announcement and says whether the server changed")
+    @Test("Each saved change carries its outcome and its announcement, numbered so alike ones differ")
     func changes() async throws {
         let (live, _) = try await live(after: points("UUU"))
 
         await tap(.them, on: live)
         let point = try #require(live.lastChange)
+        #expect(point.outcome == .match(.point))
         #expect(point.announcement == "Us 40, them 15.")
-        #expect(!point.serverChanged)
 
         await tap(.us, on: live)
         let game = try #require(live.lastChange)
         #expect(game.number == point.number + 1)
         #expect(game.outcome == .match(.game(wonBy: .us)))
         #expect(game.announcement == "Game to us. Games: us 1, them 0. Serving: Opponent 1.")
-        #expect(game.serverChanged)
     }
 
     @Test("A recorded rally is there, with its server and Undo, after the app is closed and opened again")

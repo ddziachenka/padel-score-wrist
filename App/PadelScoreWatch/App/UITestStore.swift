@@ -28,6 +28,8 @@ struct UITestStore {
         case matchTieBreak
         /// An americano round of 6 rallies, 2 per server, at 0–0 with You serving first.
         case americanoStart
+        /// An americano round of 300 rallies, 4 per server, at 149–149 with two rallies left.
+        case americanoLong
     }
 
     let directory: URL
@@ -67,7 +69,7 @@ struct UITestStore {
         case .restorable:
             write(lastSettings, to: location.backup)
             write(damaged, to: location.main)
-        case .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart:
+        case .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong:
             write(Self.session(for: seed).flatMap { try? SessionFile(session: $0).encoded() }, to: location.main)
         }
     }
@@ -102,17 +104,19 @@ struct UITestStore {
             serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
         )
         let americano = GameSetup(
-            rules: .americano(AmericanoRules(totalRallies: 6, ralliesPerServer: 2)),
+            rules: .americano(AmericanoRules(totalRallies: seed == .americanoLong ? 300 : 6, ralliesPerServer: seed == .americanoLong ? 4 : 2)),
             serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
         )
         let rallies: String
         switch seed {
         case .matchSetPoint: rallies = String(repeating: "UUUUTTTT", count: 4) + "UUUU" + "UUU"
         case .matchTieBreak: rallies = String(repeating: "UUUUTTTT", count: 6) + "UTUTUTUTUTU"
+        case .americanoLong: rallies = String(repeating: "UT", count: 149)
         default: rallies = ""
         }
         let points = rallies.map { SessionCommand.awardPoint(to: $0 == "U" ? .us : .them) }
-        return session(after: [.start(seed == .americanoStart ? americano : match, id: GameID(rawValue: UUID()))] + points)
+        let setup = seed == .americanoStart || seed == .americanoLong ? americano : match
+        return session(after: [.start(setup, id: GameID(rawValue: UUID()))] + points)
     }
 
     private static func session(after commands: [SessionCommand]) -> Session? {

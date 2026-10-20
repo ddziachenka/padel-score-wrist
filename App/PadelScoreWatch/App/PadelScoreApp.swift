@@ -9,9 +9,7 @@ struct PadelScoreApp: App {
             RootView(store: store, haptics: WatchHaptics())
                 .tint(Palette.accent)
                 #if DEBUG
-                .transformEnvironment(\.isLuminanceReduced) { isReduced in
-                    if AppComposition.drawsAlwaysOnForUITest { isReduced = true }
-                }
+                .environment(\.drawsAlwaysOnForUITest, AppComposition.drawsAlwaysOnForUITest)
                 #endif
         }
     }
