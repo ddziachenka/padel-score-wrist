@@ -1,590 +1,597 @@
 # Product design contract
 
-This document owns journeys, screens, navigation, interface states, visual rules,
-accessibility, localization, and appearance. Product purpose belongs in
-`PRODUCT.md`; technical implementation belongs in `ARCHITECTURE.md`.
+Документ задаёт пути, экраны, состояния, визуальный язык, доступность и локализацию.
+Поведение счёта и бизнес-решения принадлежат [PRODUCT.md](PRODUCT.md), хранение,
+платформа и приватность — [ARCHITECTURE.md](ARCHITECTURE.md).
 
-**Status:** not initialized
-**Approved by:** TBD
-**Updated:** TBD
+**Status:** proposed — направление подготовлено, ожидает одобрения владельца
+**Approved by:** ещё не одобрено; создание документа не означает согласия
+**Updated:** 2026-10-20
+
+Подтверждены Watch-only, два формата своей игры, исправление всех введённых данных,
+ручное завершение обычного матча, английский язык v1 и премиальный минимализм.
+Описанные ниже компоновка, обратная связь и восстановление — конкретное предложение
+для утверждения. Числа и русские подписи HTML-макетов не задают правила или язык v1.
 
 ## Information architecture
 
-Record the complete hierarchy, including tabs, stacks, sheets, full-screen flows,
-settings, paywalls, and the default launch destination.
-
 ```text
-TBD
+Launch
+├─ Active game → Live score
+│  ├─ Undo
+│  └─ Game menu
+│     ├─ Edit score → points / games / completed sets / deuce stage
+│     ├─ Game settings → mode / rules / Serving
+│     ├─ Finish match / Finish round → Result
+│     ├─ Last result → read-only previous result
+│     └─ About → Access / Privacy / Terms / Support
+├─ No active game, latest result exists → Result
+│  ├─ New game
+│  ├─ Edit result → editor draft
+│  ├─ Resume game → Live score or correction draft
+│  └─ About
+└─ No game → New game
+   ├─ Match → Setup → rule / Serving → Start game
+   ├─ Americano → Setup → total rallies / service block / Serving → Start game
+   └─ About
+
+Shared field editors: choice picker / number picker / serving order / set editor.
+About → Settings → Delete local data (confirmed destructive action).
+Access: proposed one-time unlock / Restore purchases, subject to PRODUCT H4.
+Legal: readable on-watch pages with public URLs and support contact.
 ```
 
 | Question | Answer |
 | --- | --- |
-| Where does the app open? | TBD |
-| What appears before any data exists? | TBD |
-| Maximum navigation depth | TBD |
-| Which navigation state survives relaunch? | TBD |
+| Where does the app open? | Сохранённая активная игра имеет приоритет, затем последний результат, затем `New game`. После восстановления не открывать paywall поверх матча. |
+| What appears before any data exists? | Два выбора `Match` и `Americano`, короткое пояснение каждого, доступ к `About`. Без регистрации, демонстрационного счёта и обязательного onboarding. |
+| Maximum navigation depth | До пяти уровней для редкой правки предыдущего сета: игра → меню → редактор → сеты → конкретный сет. Числа сета редактируются там же через нативный picker; дополнительную цепочку экранов не добавлять. Основной ввод очка не меняет экран. |
+| Which navigation state survives relaunch? | Только сохранённая игра/результат. Черновик живёт в памяти процесса и сохраняется при переходах внутри редактора и background, пока процесс жив; после холодного запуска открывается последний сохранённый счёт. Меню, черновик, покупка и подтверждение завершения автоматически не восстанавливаются. |
+
+Один navigation stack, без постоянных вкладок. Digital Crown прокручивает длинные
+экраны и меняет значение только у явно активного редактора. Вращение Crown на
+игровом экране никогда не начисляет очки. Для всех редактируемых значений есть
+доступное касанием управление.
 
 ## Primary journeys
 
-Every journey records the start, ordered interaction, success, recovery, abandonment
-behavior, and the behavior that must never regress.
-
-### J1 — TBD
+### J1 — Начать игру и вести счёт
 
 | Field | Value |
 | --- | --- |
-| Goal | TBD |
-| Entry point and starting condition | TBD |
-| Steps | TBD |
-| Success looks like | TBD |
-| Recovery path | TBD |
-| Abandonment: what is kept | TBD |
-| Must never break | TBD |
-| Acceptance evidence | TBD |
+| Goal | Видеть собственный счёт и подающего, отмечать каждый розыгрыш одним касанием. |
+| Entry point and starting condition | `New game`; активной игры нет, условия доступа проверены по PRODUCT. |
+| Steps | Выбрать `Match` или `Americano` → проверить параметры → указать первого подающего и очередь → `Start game` → нажимать область `US` или `THEM` после розыгрыша. |
+| Success looks like | Очки, вторичный счёт и следующий подающий согласованно обновились, экран остался на месте. |
+| Recovery path | `Undo` возвращает предыдущее действие целиком; `Edit score` исправляет произвольную ошибку. |
+| Abandonment: what is kept | До старта черновик настройки живёт в памяти процесса; после старта каждое принятое действие и активная игра сохраняются на устройстве. |
+| Must never break | `US` означает нашу пару, `THEM` — соперников. Не начислять очко от касания меню, Crown или активации дисплея. Число сетов у матча не запрашивается. |
+| Acceptance evidence | M04/M05: оба режима от первого запуска до очков, маленький и большой поддерживаемые экраны; M05/M10: проверка на настоящих часах между розыгрышами. |
+
+### J2 — Исправить ошибку без потери контекста
+
+| Field | Value |
+| --- | --- |
+| Goal | Вернуть правильные очки, правила и подачу, включая прошлые сеты. |
+| Entry point and starting condition | `Undo` на Live score либо меню → `Edit score` / `Game settings`; возможна правка последнего результата. |
+| Steps | Быстрая ошибка: `Undo`. Сложная: открыть черновик → исправить поля → проверить подающего → `Save changes`. Вложенное `Done` меняет только черновик. |
+| Success looks like | Один атомарный сохранённый переход; все связанные числа и подача соответствуют показанному черновику. |
+| Recovery path | При конфликте перейти к названному полю; при ошибке записи `Retry`; исходная игра остаётся доступной. |
+| Abandonment: what is kept | Возврат внутри редактора сохраняет черновик в памяти. Выход из всего редактора предлагает `Keep editing` / `Discard changes`. Background сохраняет черновик, пока жив процесс; termination теряет несохранённый черновик, но оставляет исходную игру. Подсказка редактора: `Changes are saved when you tap Save.` |
+| Must never break | Правка очков не угадывает подающего. Смена правила не пересчитывает прошлое. Смена формата требует явного целевого счёта; ничего не стирается молча. |
+| Acceptance evidence | M06: текущие очки/геймы, предыдущие сеты добавить/исправить/удалить, стадия 40:40, формат, правила, очередь и позиция в серии; отмена через переход гейма/сета; конфликт и отказ записи. |
+
+### J3 — Завершить, проверить и продолжить
+
+| Field | Value |
+| --- | --- |
+| Goal | Закончить свою игру при фактическом счёте и исправить случайное завершение. |
+| Entry point and starting condition | Меню → `Finish match / Finish round`; американо также достигает принятого общего числа розыгрышей. |
+| Steps | Увидеть сводку → `Finish` → результат; затем `New game`, `Edit result` или `Resume game`. |
+| Success looks like | `Match finished` или `Round finished`, отдельно подтверждение `Saved`; счёт с устойчивыми подписями команд, незавершённый сет явно `Incomplete`. |
+| Recovery path | До сохранения `Keep playing`; после — `Resume game`. Для исчерпанного американо сначала увеличить лимит или исправить очки. |
+| Abandonment: what is kept | Закрытие подтверждения не завершает игру. Закрытие результата сохраняет результат. |
+| Must never break | Обычный матч не завершается после фиксированного числа сетов и не получает вымышленного общего победителя. Сохранение результата не объявляется до успешной записи. После старта следующей игры предыдущий результат доступен только для просмотра до следующего завершения; Edit/Resume больше не доступны. |
+| Acceptance evidence | M07: завершение посреди гейма/сета, на границе сета, раннее/полное американо по PRODUCT, повторный запуск и продолжение без дублирования. |
+
+### J4 — Разблокировать доступ и найти помощь
+
+| Field | Value |
+| --- | --- |
+| Goal | Понять условия, приобрести согласованный доступ или прочитать правила и поддержку на часах. |
+| Entry point and starting condition | `About` в состоянии до игры/результата/меню; предложение покупки только в согласованной точке между играми. |
+| Steps | Прочитать предложение и цену StoreKit → системная покупка или `Restore purchases`; `Privacy`, `Terms`, `Support` открываются без оплаты. |
+| Success looks like | Проверенное право доступа видно; разрешённая новая игра доступна. Юридический текст и контакт читаются на Watch. |
+| Recovery path | Закрыть предложение, повторить покупку/restore после ошибки, прочитать локальные legal-страницы без сети. |
+| Abandonment: what is kept | Результат и активная игра не теряются; черновик остаётся в живом процессе. Отмена покупки не считается покупкой. |
+| Must never break | Ни доступ к поддержке, ни текущая игра не зависят от наличия приложения для iPhone. |
+| Acceptance evidence | M08/M09: согласованные условия H4, все StoreKit-состояния, legal offline, корректные публичные страницы и контакт. |
 
 ## Screen inventory and navigation
 
-A surface missing from this table has no contract.
-
 | ID | Screen/surface | Purpose | Entry | Exit | Empty | Loading | Error | Offline | Persistent state |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| S1 | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
+| S1 | New game | Выбрать свой формат | Первый запуск, результат | S2, S11 | Два режима с пояснениями | Чтение локального состояния | E5, без ложного обнуления | Работает | Черновик создания |
+| S2 | Setup | Проверить правила и подачу | S1 | S3 или назад | Обязательные поля помечены `Choose` | Сохранение старта | E1/E3 | Работает при разрешённом доступе | Параметры черновика |
+| S3 | Live score | Очко, счёт и подающий | S2, resume, relaunch | S4 или результат американо | 0–0 — обычное состояние | Краткая запись действия, без замены счёта spinner | E3 | Полностью работает | Текущая игра, undo |
+| S4 | Game menu | Вход в редактирование и завершение | S3 | S5/S6/S9/S11 или S3 | Не бывает при активной игре | Не нужен | Ошибки дочерних экранов | Работает | Нет |
+| S5 | Edit score / Edit result | Все числа, сеты и стадия игры | S4/S10 | S7/S8 или Save/Discard | Нет завершённых сетов → `Add set` | Сохранение всего черновика | E1/E2/E3 | Работает | Отдельный черновик |
+| S6 | Game settings | Формат, правило, лимит, серия | S4 или S5 | S7/S8 или Save/Discard | Незаполненное новое поле при смене формата | Сохранение всего черновика | E1/E2/E3 | Работает | Тот же черновик |
+| S7 | Field / Set editors | Выбрать значение или изменить прошлый сет | S2/S5/S6/S8 | `Done` к родителю | Только новый обязательный параметр | Не нужен | E1/E2 | Работает | Значение в черновике |
+| S8 | Serving | Кто подаёт, порядок, позиция в серии | S2/S5/S6 | `Done` к родителю | Выбор первого подающего | Не нужен | E2 | Работает | Подача в черновике |
+| S9 | Finish match / Finish round | Проверить фактический результат | S4 | S10 либо S3 | 0–0 показывается честно | Сохранение | E3 | Работает | До подтверждения игра активна |
+| S10 | Result / Last result | Счёт последней игры и восстановление | S9, полный американо, relaunch, S4 → Last result | S1/S5/S11 или Resume; во время следующей игры только просмотр и Back | Игры нет → S1 | Чтение/правка/продолжение | E3/E5 | Работает | Последний результат |
+| S11 | About / Access | Информация, доступ и legal | S1/S4/S10 | S12/S13 либо назад | Разблокировка ещё не куплена | Проверка entitlement по ARCHITECTURE | E4 | Сохранённый статус + legal | Проверенное право доступа |
+| S12 | Unlock | Согласованные условия одной покупки | Доступ или новая игра после лимита | StoreKit, S2 или назад | Продукт недоступен → цена не выдумывается | Загрузка продукта/покупка/restore | E4 | Покупка/restore недоступны, чтение доступно | StoreKit entitlement |
+| S13 | Privacy / Terms / Support | Читаемая информация на Watch | S11/S12 | Назад | Не допускается в релизе | Локальный текст сразу; URL отдельно | E6 | Локальный текст доступен | Версия legal-контента |
+| S14 | Recovery | Не скрыть сбой хранения | Launch или E3/E5 | Retry или доступные сохранённые данные | Нет достоверного снимка → объяснение | Повторное чтение | Причина без технического дампа | Работает | Сохраняет существующие данные |
+| S15 | Settings / Delete local data | Управление локальными данными | S11 | Подтверждение удаления или Back | Нет данных → описание и недоступное удаление | Атомарная очистка | E3 | Работает | Игра, результат, настройки удаляются только после подтверждения |
+
+В колонке Persistent state черновик означает состояние в памяти до явного Save,
+а не долговременное восстановление после termination. Долговременно сохраняется
+только принятый результат записи по ARCHITECTURE.
 
 | Navigation question | Answer |
 | --- | --- |
-| Pattern: tabs, stack, modal, or mixed | TBD |
-| Back behavior from the deepest screen | TBD |
-| Modal surfaces and dismissal behavior | TBD |
-| Surfaces that block dismissal and why | TBD |
-| Deep links and invalid-link recovery | TBD |
-| Selection/focus restoration | TBD |
-
-A dismissible modal must be safe to dismiss. A surface holding unsaved work either
-persists a draft or names the loss and asks for confirmation.
+| Pattern: tabs, stack, modal, or mixed | Один нативный stack; alerts для подтверждения потери черновика; системный StoreKit. Основные экраны не перекрываются каскадом sheets. |
+| Back behavior from the deepest screen | Вернуться на один уровень с черновиком; явный `Cancel` конкретного поля возвращает его предыдущее значение. Уход из редактора с изменениями — выбор discard/keep. |
+| Modal surfaces and dismissal behavior | Подтверждения завершения/отбрасывания; dismiss отменяет действие. Покупкой управляет системный экран; отмена оставляет доступный исходный экран. |
+| Surfaces that block dismissal and why | Нет бессрочных ловушек. На время локальной атомарной записи повторные действия блокируются, но сбой возвращает `Retry` и безопасный выход. Pending-покупка не блокирует приложение. |
+| Deep links and invalid-link recovery | Публичного контракта deep links в MVP нет; системный запуск открывает сохранённое состояние. Внешняя ошибка URL не закрывает legal-текст. |
+| Selection/focus restoration | Возврат из поля фокусирует его строку; после Save — изменённое значение или счёт; после модального отказа — инициировавший контроль. Автообновление подающего не крадёт VoiceOver-фокус. |
 
 ## Interface states
 
-Every relevant screen answers every row. “Cannot happen” requires a reason.
-
 | State | Required contract |
 | --- | --- |
-| Empty | Explanation and one clear action; never a blank unexplained list |
-| First run | Onboarding, sample content, and contextual permission timing |
-| Loading | Immediate feedback, thresholds, stale-data behavior, timeout, and cancellation |
-| Partial | What appears while some data is available and what remains hidden |
-| Recoverable error | Plain-language cause, preserved input, and a retry/recovery action |
-| Unrecoverable error | Honest explanation and a safe destination that still works |
-| Offline | Available work, refused or queued actions, status, and reconnection behavior |
-| Interrupted | Background, termination, lock, call, cancellation, and resume behavior |
-| Destructive | Consequence, reversibility, confirmation, and undo policy |
-| Success | Visible result or explicit confirmation; silence is allowed when the result is obvious |
+| Empty | `New game` вместо пустой истории. В редакторе `No completed sets` и `Add set`. |
+| First run | Без регистрации, запросов разрешений и вымышленного примера. В выборе режима одна строка смысла: `Games and sets` / `A fixed total of rallies`. |
+| Loading | Сохранять контекст и цифры; disable только повторное конфликтующее действие; по длительности показывать понятный статус. |
+| Partial | Достоверный снимок остаётся виден; неподтверждённое право покупки помечается `Checking access…`. Повреждённые числа не дорисовывать. |
+| Recoverable error | Сохранить поля, назвать конфликт/сбой, дать действие рядом. Не показывать технический код вместо причины. |
+| Unrecoverable error | `We couldn’t read this game.` Без автоматического сброса данных; Retry и доступная помощь. Восстановление из последнего валидного снимка явно обозначается. |
+| Offline | Счёт, исправления, завершение и legal работают локально. Сеть относится к покупке/restore и открытию публичных страниц. |
+| Interrupted | Активная игра восстанавливается; черновик переживает background только пока жив процесс. Закрытие/блокировка не завершают матч. |
+| Destructive | Удаление сета в черновике обратимо до Save; весь Save отменим. Потеря черновика требует подтверждения. |
+| Success | Видимое изменение счёта достаточно для очка. `Changes saved`, `Saved`, `Access unlocked` появляются только после подтверждённого результата. |
 
 ### Empty and loading details
 
 | Screen | Empty reason | Empty copy | Primary action |
 | --- | --- | --- | --- |
-| TBD | TBD | TBD | TBD |
+| S1 | Игра ещё не начата | `New game` | Выбрать `Match` или `Americano` |
+| S5 | Нет предыдущих сетов | `No completed sets` | `Add set` |
+| S11 | Нет покупки | Точные утверждённые бесплатные условия; без неподтверждённого числа | `View access` |
+| S12 | StoreKit не вернул продукт | `Purchase unavailable right now.` | `Try again`; закрытие видно |
+| S14 | Нет читаемого снимка | `We couldn’t read this game. Your saved data has not been deleted.` | `Try again` |
 
 | Screen | Trigger | Under 1s | 1–5s | Over 5s | Timeout/cancel |
 | --- | --- | --- | --- | --- | --- |
-| TBD | TBD | TBD | TBD | TBD | TBD |
-
-Prefer stale content with a refresh indicator to replacing useful content with an
-unbounded spinner.
+| S1/S3 | Чтение сохранённой игры | Стабильная оболочка без фиктивного счёта | `Loading game…` | То же с `Try again` при ошибке | По завершению операции либо явной ошибке; не сбрасывать данные по таймеру |
+| S2/S3/S5/S9 | Запись действия | Pressed state и защита от повторного submit | `Saving…`, исходный контекст виден | `Still saving…`, не выдавать успех | Архитектура сериализует операцию; Retry только после установленной ошибки, без второго параллельного действия |
+| S12 | Продукт/restore | Устойчивая кнопка со статусом | `Loading price…` / `Restoring…` | Сообщение о задержке, Close доступен | Локальный сетевой запрос ограничен по ARCHITECTURE; ошибка → Retry; отмена не отменяет уже поступившую транзакцию |
+| S12 | Системная покупка | Системное подтверждение | Системный процесс | Pending показан отдельно | Не придумывать собственный таймер транзакции; её итог может прийти позже |
 
 ### Errors and offline behavior
 
 | ID | Error/cause | User-facing message | Recovery | Logged safely? |
 | --- | --- | --- | --- | --- |
-| E1 | TBD | TBD | TBD | TBD |
-
-Error copy says what happened and what to do next. An error code is never the main
-message, and generic copy is not used when the app knows the cause.
+| E1 | Неверное число | `Enter a whole number greater than zero.` либо точная допустимая граница поля | Исправить выделенное поле | Категория, без содержимого игры |
+| E2 | Сумма больше лимита | `More rallies have been played than the total. Increase the total or correct the score.` | Ссылка к Total / Score | Категория конфликта |
+| E2 | AD при Golden point | `Advantage isn’t used with Golden point. Change the rule or correct the score.` | Rule / Score | Категория конфликта |
+| E2 | Номер в серии больше новой серии | `Choose a rally position within the new service block.` | Serving | Категория конфликта |
+| E2 | Неопределённая подача после правки | `Check who serves next before saving.` | Serving; показать текущий выбор | Категория конфликта |
+| E3 | Не удалось записать действие | `Couldn’t save. Your last saved score is unchanged.` | `Retry`; сохранить черновик/намерение; не принимать дальнейшие очки до решения | Ошибка хранилища без счёта и идентификаторов покупки |
+| E4 | Нет сети/сбой StoreKit | `Couldn’t connect to the App Store. Try again when you’re online.` | Retry / Close; игра не теряется | Категория и безопасный системный код |
+| E4 | Pending | `Purchase pending. Access will update when it’s approved.` | Close, позже обновить статус | Категория; не receipt |
+| E5 | Повреждённое хранилище | `We couldn’t read this game. Your saved data has not been deleted.` | Retry / Support; валидная резервная версия, если существует | Версия схемы и категория; без дампа |
+| E6 | URL не открылся | `This page couldn’t open. You can read the information here.` | Локальный текст и видимые URL/контакт | Тип назначения без персональных данных |
 
 | Offline question | Answer |
 | --- | --- |
-| Does the app work with no network? | TBD |
-| Available offline | TBD |
-| Unavailable and how it is shown | TBD |
-| Actions queued or refused | TBD |
-| How offline status appears | TBD |
-| What happens when connectivity returns | TBD |
-
-If the app has no network dependency, say so explicitly.
+| Does the app work with no network? | Предложенная основная модель полностью локальная; счёт не ждёт интернет. |
+| Available offline | Создание при имеющемся разрешении доступа, игра, все исправления, завершение, последний результат, восстановление, legal-текст. |
+| Unavailable and how it is shown | Покупка/restore и внешние страницы: честное сообщение без цены-заглушки. Проверенное сохранённое entitlement обрабатывается по ARCHITECTURE/PRODUCT H4. |
+| Actions queued or refused | Игровые действия записываются локально. Покупки не ставятся в собственную очередь приложения. |
+| How offline status appears | Нет постоянного offline-баннера на счёте. Контекстное сообщение появляется только там, где запрос требует сети. |
+| What happens when connectivity returns | Обновить доступ/цену при обращении к соответствующему экрану; не открывать предложение поверх игры. |
 
 ### Interruptions and destructive actions
 
 | Interruption | Expected behavior |
 | --- | --- |
-| Backgrounded | TBD |
-| System termination | TBD |
-| Incoming call | TBD |
-| Device locked | TBD |
-| Low Power Mode | TBD |
-| Storage full | TBD |
-| Permission revoked while running | TBD |
+| Backgrounded | Сохранённый счёт остаётся истиной; закрыть визуальное pressed state. На возврате не повторять очко. |
+| System termination | Восстановить последнее успешное действие. Несохранённый черновик утрачен; до Save UI не обещает его запись. Повреждённое состояние не выдавать за новую игру. |
+| Incoming call | Никаких новых очков или завершения от системных жестов; после возврата тот же матч. |
+| Device locked | Игровое состояние сохраняется; приложение не обходит блокировку. |
+| Low Power Mode | Нет обязательных анимаций и постоянной фоновой работы; достоверные цифры и обычное возобновление. |
+| Storage full | E3, исходный сохранённый счёт; не подтверждать очко и не продолжать незаметно в несохраняемой сессии. |
+| Permission revoked while running | MVP не запрашивает опасных разрешений. Изменение доступа к покупке не уничтожает текущую игру и результаты. |
 
 | Destructive action | Reversible? | Confirmation copy | Undo/recovery |
 | --- | --- | --- | --- |
-| TBD | TBD | TBD | TBD |
-
-A destructive action is reversible or confirmed, never neither. Confirmation names
-the affected object and consequence rather than asking only “Are you sure?”.
+| Discard editor draft | Да: можно остаться в редакторе; после подтверждения исходная игра цела | `Discard changes? Your saved game will stay the same.` | `Keep editing` / `Discard changes` |
+| Remove completed set | Да, изменение черновика и отмена его Save | В строке `Remove set`; показывается конкретный номер | До Save отменить/восстановить черновик; после Save — Undo полного действия |
+| Change mode | Да, целевой черновик плюс undo после Save | `Change game format? Enter the score for the new format. Nothing changes until you save.` | Cancel сохраняет исходный формат, Save требует полного целевого состояния |
+| Finish match / Finish round | Да | `Finish this game? Your current score will be saved.` | `Keep playing`; после сохранения `Resume game` |
+| Start another game after result | Последний результат остаётся для просмотра, его правка/продолжение закрываются | `Starting a new game will keep this result for viewing only.` перед фактическим стартом | Вход в Setup ничего не меняет; Back возвращает редактируемый результат |
+| Delete local data | Нет после подтверждённой очистки | `Delete local data? This removes your game, last result and saved settings from this Watch. Your purchase is not deleted.` | `Cancel` / `Delete data`; пробный счётчик определяется H4d, не обещать его сброс |
 
 ## Permissions and privacy UX
 
-Delete the table if the app requests no permission and state that decision.
-
-| Permission | User value | Pre-prompt | When asked | Denial recovery | Revoked later | Works without it? |
-| --- | --- | --- | --- | --- | --- | --- |
-| TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-
-- Ask when the person invokes the feature, not on first launch without context.
-- Explain the value before the system prompt; the system prompt is not onboarding.
-- Denial is a supported state with a real path forward.
-- Revocation while running is handled without a crash or silent corruption.
+В предлагаемом MVP нет запросов Location, HealthKit, Microphone, Contacts,
+Notifications или иных разрешений для счёта. Нет регистрации. Не запрашивать их
+ради удержания дисплея включённым. Настройки системной покупки не маскируются под
+разрешение приложения. Приватность и окончательная локальная модель требуют
+утверждения ARCHITECTURE; новый сбор данных не добавляется только ради метрик.
 
 ## Purchases and paywalls
 
-Delete this section when there are no purchases.
+Все пункты ниже — предложение для выбранной в PRODUCT H4 модели, не утверждённая
+цена или бесплатный лимит. Коммерческий этап не начинает реализацию до решения H4.
+Таблица описывает lifetime IAP. При бесплатной v1 или платном скачивании нет
+Unlock, trial, Restore purchases или debug premium override; About и legal
+остаются доступны, повторная покупка внутри приложения не предлагается.
 
 | Question | Answer |
 | --- | --- |
-| Where the paywall appears | TBD |
-| What remains visible for free | TBD |
-| How the paid value is demonstrated before the paywall asks for money | TBD |
-| Exactly what is sold | TBD |
-| Price and term presentation from StoreKit | TBD |
-| Which offer is recommended, and how that is marked | TBD |
-| Comparison price shown, and the StoreKit product it is derived from | TBD |
-| Saving claimed, and the two real prices it is the difference between | TBD |
-| Introductory or promotional offer: its duration, and the price after it | TBD |
-| What the paywall shows when a compared product does not load | TBD |
-| Restore Purchases placement | TBD |
-| Terms and Privacy links (see [Legal and support](#legal-and-support)) | TBD |
-| Success, failure, cancellation, and pending behavior | TBD |
-| Already purchased / family sharing | TBD |
-| Expiry, refund, and offline entitlement | TBD |
-| What happens to already-created content | TBD |
-| Dismissal | TBD |
+| Where the paywall appears | Между играми при `Start game` после принятого лимита либо добровольно из `About → Access`. |
+| What remains visible for free | Условия доступа, уже созданные данные, исправление результата, помощь, legal и restore; активную игру не перекрывать. Точное право начать новую игру задаёт PRODUCT. |
+| How the paid value is demonstrated before the paywall asks for money | Согласованный бесплатный опыт полноценных игр; без обязательного paywall на первом запуске. |
+| Exactly what is sold | Предложение: одна нерасходуемая lifetime-разблокировка будущих игр. Решение H4 определяет факт продажи и entitlement. |
+| Price and term presentation from StoreKit | Одна локализованная фактическая цена StoreKit, рядом `One-time purchase`. Без вписанного в UI числа. |
+| Which offer is recommended, and how that is marked | Одно предложение; нет искусственной плашки `Best value`. |
+| Comparison price shown, and the StoreKit product it is derived from | Не предлагается: нет второго реально продаваемого продукта. |
+| Saving claimed, and the two real prices it is the difference between | Экономия не заявляется. |
+| Introductory or promotional offer: its duration, and the price after it | Не предлагается. Бесплатный опыт объясняется отдельно от цены покупки. |
+| What the paywall shows when a compared product does not load | Сравниваемого продукта нет. При отсутствии основного продукта `Purchase unavailable right now.`, Retry/Close/Restore/legal доступны. |
+| Restore purchases placement | Видимая строка `Restore purchases` на Unlock и в About → Access, не спрятанная в жесте. |
+| Terms and Privacy links (see [Legal and support](#legal-and-support)) | Две подписанные строки `Terms` и `Privacy`, открывающие читаемый локальный контент. |
+| Success, failure, cancellation, and pending behavior | Успех после проверки → `Access unlocked`; ошибка → причина/Retry; отмена → прежний экран; pending → описание и свободный выход. |
+| Already purchased / family sharing | При проверенном праве показать `Unlocked`, не продавать повторно. Family Sharing не обещать без решения PRODUCT/StoreKit. |
+| Expiry, refund, and offline entitlement | Lifetime не изображать подпиской. Возврат/отзыв и offline-политика принадлежат PRODUCT/ARCHITECTURE; статус не стирает счёт. |
+| What happens to already-created content | Данные не удаляются из-за оплаты, ошибки магазина или restore. |
+| Dismissal | Системный Back/Close сразу доступен. Нет таймера, скрытой кнопки и ловушки. |
 
-No fake urgency, countdown pressure, disguised or delayed close control, preselected
-purchase, obstructed restore, hard-coded price, or subscription presented as a
-one-time purchase. Free content remains reachable. The amount the person will
-actually be charged is the most prominent number on the screen, and a crossed-out
-price appears only where the table above says which real product it comes from.
-
-Every price, period, and saving is the localized string StoreKit returns for the
-person's own storefront, never a number the app formatted itself — a hand-built
-currency string is wrong in some storefront on the day it ships. The purchase,
-restore, pending, and failure states are finished surfaces with the same care as the
-offer, because those are the moments a person is deciding whether to trust the app
-with money.
-
-The development-only premium override in `AI/ARCHITECTURE.md` has no user-facing
-surface. It belongs to no journey, appears in no screen inventory, and is never a way
-to grant a person entitlement — a build anyone can install does not contain it, so
-nothing here describes how it looks.
+Development-only premium override не имеет пользовательского экрана, жеста или
+пути навигации; принадлежит ARCHITECTURE и отсутствует в распространяемом Release.
 
 ## Review request
 
-watchOS has no required rating request or manual rate entry point. Record this
-section as inapplicable for Watch-only; the rules below govern iOS.
+**INAPPLICABLE: watchOS Watch-only.** Продукт не имеет iOS-приложения; rating prompt,
+ручной пункт оценки и milestone `Review Request` не генерируются. Строки REL-208
+и REL-209 фиксируются как INAPPLICABLE с этой причиной в релизном аудите. Никакое
+игровое действие не зависит от показа рейтинга.
 
-Every iOS product asks for a rating, and every iOS product asks the same way: once,
-at a moment the application has already earned, through the system rating prompt. This
-section is answered rather than deleted.
-
-| Question | Answer |
-| --- | --- |
-| Qualifying moment — the success the person has just completed | TBD |
-| What must be true before asking: completed successes, days since first launch | TBD |
-| Cooldown, and the cap of one request per app version | TBD |
-| Manual entry point, its wording, and where it lives | TBD |
-| What the person sees when the system prompt does not appear | TBD |
-| Where eligibility state lives, and what resets it | TBD |
-
-The request follows a success, never a task in progress, an error, a purchase or
-paywall flow, a destructive action, an interruption, or onboarding. The system
-decides whether the prompt is actually shown and may show nothing at all, so the
-application records that it asked rather than that the person saw anything, and
-no journey may depend on the prompt having appeared. The manual entry point is
-how somebody rates on their own initiative, and it is the only rating surface a
-tap is allowed to open directly.
+Platform policy: watchOS has no required rating request.
 
 ## Legal and support
 
-Every product provides access to its privacy policy, its terms of use, and support
-from inside the app. iOS uses links; watchOS provides readable on-watch content.
-This section is answered rather than deleted. Terms of use is
-Apple Standard EULA for every product this template generates, so what is designed
-here is where the links live and how they behave — never whether a person can reach
-them.
-
 | Question | Answer |
 | --- | --- |
-| The settings or about surface that carries all three, and how it is reached | TBD |
-| Their wording and order on that surface | TBD |
-| Where Terms and Privacy appear on the paywall | TBD |
-| Platform-supported access: browser/URL action or readable on-watch content | TBD |
-| What the person sees when the link cannot open | TBD |
+| The settings or about surface that carries all three, and how it is reached | `About` из New game, Result и игрового меню. Доступ без покупки и без собственного аккаунта. |
+| Their wording and order on that surface | `Privacy`, `Terms`, `Support`; сверху имя приложения после решения PRODUCT H1, версия и Access. |
+| Where Terms and Privacy appear on the paywall | Отдельные строки под действием покупки и restore; они доступны и при ошибке магазина. |
+| Platform-supported access: browser/URL action or readable on-watch content | Локально читаемые английские страницы на Watch, публичные URL и контакт поддержки. Terms указывает Apple Standard EULA; локальный текст должен позволять прочитать условия. Системное открытие URL — дополнение только при фактической поддержке ОС. |
+| What the person sees when the link cannot open | E6; локальная страница остаётся открытой, URL/контакт видны и не требуют iPhone. |
 
-On watchOS, provide readable Privacy, Terms and Support content on the Watch, with
-the corresponding public URLs and support contact. A working system URL action may
-supplement it; never assume Safari exists or require an iPhone app. Verify access
-and failure states on the supported Watch OS. Subscription terms remain available
-before purchase. The public pages and their validation remain required.
+M09 `Legal and Support` наполняет четыре страницы Web: главную, privacy, terms и
+support. Privacy URL ведёт на `<site>/privacy`, Support — на `<site>/support`, Terms
+на [Apple Standard EULA](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/);
+публичная `/terms` ссылается на тот же документ. `<site>` и контакт — не строки для
+релиза, а нерешённая публичная идентичность PRODUCT H1. Публикация требует отдельного
+действия владельца; локальная страница не доказывает доступность публичного URL.
 
-Three links, three destinations: `<site>/privacy`, Apple's Standard EULA at
-`apple.com/legal/internet-services/itunes/dev/stdeula/`, and `<site>/support`. The
-support page is also what the App Store listing's support URL points at, so it
-answers a real person rather than redirecting to a marketing page.
-
-All three are reachable without paying, without an account, and without granting a
-permission. A person deciding whether to trust the app reads the privacy policy
-before they buy anything, so a privacy link that only exists on the paywall is a
-privacy link most people never see.
-
-The published site covers every language the application ships, or this section
-records why it does not — a person who uses the app in their own language and is
-handed a privacy policy in another has not been told what the app does with their
-data. See [Localization](#localization).
+V1 app, сайт и on-watch тексты — английские. Support объясняет счёт, исправление,
+возврат в игру, покупку и восстановление в рамках утверждённых правил; не отправляет
+пользователя на чужой маркетинговый сайт.
 
 ## Visual direction
 
 | Question | Answer |
 | --- | --- |
-| Three or four adjectives | TBD |
-| Reference products and the specific lesson from each | TBD |
-| Density | TBD |
-| Personality | TBD |
-| Amount and purpose of color | TBD |
-| Imagery/illustration | TBD |
-| What this app must never look like | TBD |
+| Three or four adjectives | Спокойный, точный, минималистичный, премиальный. |
+| Reference products and the specific lesson from each | Сторонний продукт не выбран. [Главный экран](prototypes/padel-watch.html): крупные две колонки и стабильная подача. [Остальные экраны](prototypes/padel-watch-flow.html): одна задача на экран, черновик и ясное завершение. |
+| Density | На игре только текущие очки, геймы/сеты либо прогресс американо, конкретный подающий, Undo/Menu. Подробности доступны отдельным экраном. |
+| Personality | Спортивный инструмент: быстрый и спокойный, без соревнования с самим матчем. |
+| Amount and purpose of color | Чёрный canvas, светлый текст, мягкий лаймовый акцент нашей стороны и активного действия. Другие цвета только для предупреждения/ошибки; смысл всегда дублирован словами. |
+| Imagery/illustration | В core UI не нужны фотографии, рисунки корта и декоративная ракетка. SF Symbols для Undo/Menu/навигации. Иконка приложения — отдельный нативный asset в своём этапе. |
+| What this app must never look like | Таблица турнира, фитнес-dashboard, полноэкранный рекламный оффер, набор крохотных кнопок или буквальная копия HTML-размеров. |
 
-The template chooses no style. It requires semantic tokens and prohibits visual
-choices that break behavior or accessibility.
+Нативная версия обязана исправить ограничения макетов: их back controls и некоторые
+CTA меньше выбранного ниже target, текст задан фиксированно, контраст и доступность
+не проверены на часах. Это направление, не pixel-perfect технический образец.
+
+Основа выбора — короткое взаимодействие, неглубокая вертикальная навигация и
+независимая работа из [Apple HIG: Designing for watchOS](https://developer.apple.com/design/human-interface-guidelines/designing-for-watchos/).
+Crown используется как предсказуемая навигация/выбор с визуальной обратной связью
+по [Apple HIG: Digital Crown](https://developer.apple.com/design/human-interface-guidelines/digital-crown).
+Доступность и читаемость проверяются по [Apple HIG: Accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility).
+Источники проверены 2026-10-20; численные цели этого контракта — критерии продукта.
 
 ## Craftsmanship and signature experience
 
-What separates a finished commercial product from a working MVP. Here that is
-clarity, speed, hierarchy, excellent defaults, low friction, immediate feedback,
-consistency, and details that were decided rather than defaulted. It is not
-gradients, glass, cards, or animation: decoration added to a screen that was not
-otherwise resolved makes the screen look decorated, not made. This section is short
-on purpose — it is a product language, not a design-system specification.
-
 | Question | Answer |
 | --- | --- |
-| Interaction personality, in one sentence | TBD |
-| What a person should notice first on any screen | TBD |
-| What this app does faster, or in fewer steps, than the obvious alternative | TBD |
+| Interaction personality, in one sentence | Короткое касание даёт уверенный результат, короткая отмена возвращает весь контекст. |
+| What a person should notice first on any screen | Live: наш и чужой счёт; Setup/Editor: текущее значение; Finish: фактический результат; Unlock: условия и реальная цена. |
+| What this app does faster, or in fewer steps, than the obvious alternative | Одно касание крупной области начисляет очко; Undo рядом; последние правила сокращают повторную настройку без обязательного ввода имён. |
 
 ### Action hierarchy
 
 | Level | How it is expressed | How many per screen |
 | --- | --- | --- |
-| Primary | TBD | at most one |
-| Secondary | TBD | TBD |
-| Tertiary or navigational | TBD | TBD |
-| Destructive | TBD | TBD |
+| Primary | Заполненная нативная кнопка `Start game`, `Save changes`, `Finish`, `New game` | Не более одной; исключение Live — одна составная задача `Award point` с двумя равноправными исходами |
+| Secondary | Нейтральная кнопка/строка `Keep playing`, `Edit result`, `Resume game` | Только необходимые альтернативы, обычно 1–2 |
+| Tertiary or navigational | Нативные строки/Back, подписанный контекст, Undo/Menu с accessibility labels | По содержимому; не конкурируют с очками |
+| Destructive | Явное название и destructive tint; не делать завершение красным как удаление | Обычно одна в соответствующем редакторе |
 
-One action on a screen is obviously the one to take. Two controls competing for that
-role is the same defect as none: the person stops to decide something the design
-should already have decided.
+Две зоны очка одинаково удобны: акцент `US` обозначает принадлежность, а не
+рекомендацию начислять очки себе. Одна зона не делается крупнее другой.
 
 ### Interaction feedback
 
-Every action is acknowledged — the control responds to the touch, the result appears
-or its progress does, and a failure says what happened. Silence is allowed only where
-the result itself is the feedback. Feedback that arrives late reads as a bug, and a
-screen that replaces another with no transition reads as a glitch.
-
 | Question | Answer |
 | --- | --- |
-| Acknowledgement for an action that completes immediately | TBD |
-| Acknowledgement for one that takes longer than a moment | TBD |
-| How a change of screen or of major state is expressed | TBD |
-| Pressed and selected state for a primary control | TBD |
-| Which results earn a success transformation rather than a message | TBD |
-| Where inline feedback replaces a modal interruption | TBD |
-| Which destructive actions offer undo instead of a confirmation | TBD |
-| Which results earn a haptic (see [Motion and haptics](#motion-and-haptics)) | TBD |
-
-An important interaction may combine a visual response, motion, and a haptic where that
-combination is what makes the feedback land. An ordinary tap does not become an event.
+| Acknowledgement for an action that completes immediately | Нативный pressed state немедленно; подтверждённое новое число и подающий в одной транзакции UI. |
+| Acknowledgement for one that takes longer than a moment | Статус на прежней кнопке; цифры остаются читаемыми, повторное действие временно не принимается. |
+| How a change of screen or of major state is expressed | Короткий системный переход по иерархии; завершение показывает Result после записи. |
+| Pressed and selected state for a primary control | Видимый тон/яркость поверхности, выбранный пункт дополнен checkmark и selected trait; без обязательного изменения геометрии. |
+| Which results earn a success transformation rather than a message | Переход через гейм/сет — смена нужных чисел и подающего; финальный результат — новая иерархия Result. |
+| Where inline feedback replaces a modal interruption | Ошибки поля, сохранение, Undo, новый подающий, переход гейма. Не подтверждать каждый розыгрыш. |
+| Which destructive actions offer undo instead of a confirmation | Удаление сета внутри черновика и сохранённая коррекция; окончательное отбрасывание несохранённого черновика подтверждается. |
+| Which results earn a haptic (see [Motion and haptics](#motion-and-haptics)) | Подтверждённое очко, Undo, завершение и явная ошибка; не каждое открытие строки. |
 
 ### Signature experience
 
-One moment this product is remembered for: the interaction worth building properly
-even though a plainer version would function. It belongs to an approved journey and
-to a surface in the screen inventory, and it never costs clarity, speed, or
-accessibility to exist.
-
 | Question | Answer |
 | --- | --- |
-| The moment, and where it happens | TBD |
-| Why it makes the product feel unusually well made | TBD |
-| Its behavior under Reduce Motion, VoiceOver, and the largest text size | TBD |
-| How it is judged finished rather than merely present | TBD |
-
-`None`, with the reason, is a valid answer. A product that invents a signature moment
-it does not need has added bloat, which is the opposite of what this section exists
-for. The native-versus-custom rule in
-[Components and system controls](#components-and-system-controls) applies here like
-anywhere else: a custom interaction records why a system one is insufficient and
-matches it for accessibility and platform behavior.
+| The moment, and where it happens | S3/J1–J2: `point → next server → full undo`. Касание обновляет все связанные уровни счёта и подачу; Undo возвращает их вместе, даже через границу гейма или сета. |
+| Why it makes the product feel unusually well made | Игроку не нужно исправлять последствия ошибки вручную в нескольких полях или угадывать, кто подаёт. Стабильные позиции помогают проверить всё одним взглядом. |
+| Its behavior under Reduce Motion, VoiceOver, and the largest text size | Без перемещения цифр при Reduce Motion; VoiceOver объявляет новую пару очков и изменившегося подающего без кражи фокуса. В доступной крупной компоновке тот же порядок и те же функции. |
+| How it is judged finished rather than merely present | На работающих часах исправить ошибку до/после гейма и сета, проверить точное восстановление, читаемость и отсутствие повторного ввода. Нативный UI-тест подтверждает действие, реальное устройство — тактильность/удобство; это M05/M06/M10. |
 
 ### Delight opportunities
 
-Two to four moments — normally no more — where a bespoke visual treatment, an
-illustration, motion, a haptic, or a micro-interaction would materially improve
-comprehension, personality, feedback, or delight. The signature experience above is the
-first candidate. The others are drawn from the first-value moment, an important empty
-state, a completed result, the core repeated interaction, the paywall where there is
-one, meaningful progress or change, and a destructive or recovery action whose feedback
-carries the reassurance.
-
 | ID | The moment and its surface | What it should improve | Chosen treatment and medium | How it is judged worth keeping |
 | --- | --- | --- | --- | --- |
-| DO1 | TBD | TBD | TBD | TBD |
+| DO1 | Очко и смена подачи, S3 | Уверенность, что отмечен правильный розыгрыш | Нативный pressed state, плавная смена значения, один короткий haptic; только изменённый server получает краткий акцент | Не замедляет следующее действие и не отвлекает от чисел; проверка на запястье |
+| DO2 | Undo, S3 | Уверенность в полном восстановлении | Синхронно вернулись цифры/подача, тихий haptic, короткое `Action undone` с VoiceOver announcement | Игрок понимает восстановление без отдельного диалога |
+| DO3 | Сохранённый результат, S10 | Понятное завершение без ощущения потери | Нативный checkmark рядом с `Saved` на экране `Match finished` / `Round finished`, краткий success haptic; `Incomplete` виден сразу | Нет конфетти, выдуманной победы и задержки доступа к Resume |
 
-They are opportunities, not features. `None`, with the reason, is a valid answer for a
-row and for the whole table, and a moment answered by the simplest native UI is answered
-correctly. Nothing is added to a screen because this table exists: premium here means
-resolved rather than decorated, and a screen that needed nothing is finished once it is
-clear.
+Все три используют нативные возможности. При отсутствии пользы анимация удаляется,
+а текст и состояние сохраняются. Ни один эффект не требует image-generation или сети.
 
-Native first, and a bespoke asset only where native cannot express it. SF Symbols and
-symbol effects, transitions and matched geometry, SwiftUI animation, a custom `Shape` or
-`Canvas`, gradients and materials where [Visual direction](#visual-direction) asks for
-them, the system controls, and sensory feedback adapt to state, appearance, Dynamic
-Type, and accessibility on their own, which is why they are the first choice rather than
-the fallback. A bespoke asset records why native was insufficient, exactly as
-[Components and system controls](#components-and-system-controls) requires of a custom
-control.
+They are opportunities, not features. Native first, and a bespoke asset only where native cannot express it.
 
 ### Bespoke visual assets
 
-An illustration, empty-state artwork, a hero or completion visual, a branded shape, or a
-subtle texture is kept only where every line below holds:
-
-- it matches the personality [Visual direction](#visual-direction) states;
-- it communicates something useful, or creates delight the moment has earned;
-- it does not read as generic, stock, templated, or obviously generated;
-- its visual weight does not overpower the interface around it;
-- it works in the real layout, and scales and crops correctly at every supported size;
-- it works in every appearance this product supports;
-- it carries no text that should be real, localizable UI text;
-- no simpler native solution would do the job better.
-
-One strong asset is worth more than several decorative ones, so a weak one is
-regenerated or removed rather than kept because it already exists. An accepted asset
-lives in the application's normal asset structure under a deterministic name, in an
-iOS-friendly format, at no more resolution than it needs, with transparency preserved
-where that matters and no device-specific dimension hard-coded. Everything needed to
-render it is committed: displaying static product artwork never calls an
-image-generation service at runtime, and an intermediate generation is committed only
-where it is deliberately useful source material.
+Для этих сценариев bespoke иллюстрации не нужны. Пустое место оставлено намеренно.
+One strong asset is worth more than several decorative ones.
+Будущая иконка приложения должна быть оригинальной/лицензированной, без текстовых
+подписей внутри bitmap, с исходником и результатом в репозитории. Никакие картинки
+не загружаются во время матча. Наличие инструмента генерации не создаёт новую фичу.
 
 ## Semantic colors
 
-Name by role, never appearance. Define each token once in the asset catalog with
-light, dark, and contrast-checked variants; do not put raw RGB values in views.
+Предложенная палитра берёт визуальный тон макетов. Значения определяются один раз
+семантическими assets, не в отдельных views. Watch-интерфейс намеренно тёмный;
+вариант Light для system traits сохраняет эту же продуктовую палитру. Отдельной
+светлой страницы со счётом не предлагается. Значения ниже — исходные кандидаты,
+не утверждение о проверке реального рендера.
 
 | Token | Role | Light | Dark | Contrast checked |
 | --- | --- | --- | --- | --- |
-| `background.primary` | Main canvas | TBD | TBD | TBD |
-| `background.secondary` | Grouped surface | TBD | TBD | TBD |
-| `background.elevated` | Raised surface | TBD | TBD | TBD |
-| `text.primary` | Main content | TBD | TBD | TBD |
-| `text.secondary` | Supporting content | TBD | TBD | TBD |
-| `accent` | Primary action/selection | TBD | TBD | TBD |
-| `destructive` | Destructive action | TBD | TBD | TBD |
-| `success` | Successful state | TBD | TBD | TBD |
-| `warning` | Warning state | TBD | TBD | TBD |
-| `separator` | Structure | TBD | TBD | TBD |
+| `background.primary` | Canvas | `#000000` | `#000000` | Проверить все пары в runtime |
+| `background.secondary` | Группа/зона счёта | `#19191C` | `#19191C` | Не является единственным индикатором кнопки |
+| `background.elevated` | Выбранный/поднятый элемент | `#242427` | `#242427` | Текстовые пары по AX5 |
+| `text.primary` | Главные цифры и текст | `#F5F5F7` | `#F5F5F7` | Цель ≥4.5:1 на трёх backgrounds |
+| `text.secondary` | Пояснения и вторичный счёт | `#A6A6AE` | `#A6A6AE` | Цель ≥4.5:1; не снижать opacity |
+| `text.onAccent` | Подпись заполненной CTA | `#181E0E` | `#181E0E` | Цель ≥4.5:1 на accent |
+| `accent` | Наша сторона, выбранное действие | `#DCF79B` | `#DCF79B` | Цель ≥4.5:1 для текста |
+| `destructive` | Удаление / ошибка | `#FFAAA3` | `#FFAAA3` | Цель ≥4.5:1 + название действия |
+| `success` | Подтверждённое сохранение | `#DCF79B` | `#DCF79B` | Смысл дополняют checkmark и текст |
+| `warning` | Решающий мяч / конфликт | `#EFD48B` | `#EFD48B` | Цель ≥4.5:1 + текст |
+| `separator` | Существенная граница/контур | `#808089` | `#808089` | Цель ≥3:1; декоративный divider не несёт смысла |
 
-Color never carries meaning alone; pair it with text, iconography, shape, or
-position. Check contrast against the actual background in both appearances.
+Increase Contrast увеличивает различимость интерактивных границ; Reduce Transparency
+оставляет непрозрачные поверхности. Состояние сервера и команд понятно в grayscale.
 
 ## Typography and layout
 
 | Token | Dynamic Type style | Weight | Use |
 | --- | --- | --- | --- |
-| `title` | TBD | TBD | TBD |
-| `heading` | TBD | TBD | TBD |
-| `body` | TBD | TBD | TBD |
-| `caption` | TBD | TBD | TBD |
-| `numeric` | TBD | TBD | TBD |
+| `title` | Системный title, доступный выбранной watchOS | semibold | Заголовок экрана; не конкурирует с цифрами |
+| `heading` | headline | semibold | Названия параметров/главный результат |
+| `body` | body | regular | Значения настроек, ошибки, legal |
+| `caption` | caption с масштабированием | regular/medium | Контекст и вторичные подписи; важное не превращается в микротекст |
+| `numeric` | Системный масштабируемый title с monospaced digits | semibold | Основные очки; `AD` полностью видно |
 
-Use semantic Dynamic Type styles, never fixed point sizes. A custom font must cover
-every shipped language and scale correctly. Line limits are deliberate; the layout,
-not Dynamic Type, changes when text grows.
+Использовать системный шрифт и семантическое масштабирование. Не копировать
+фиксированные размеры HTML. На стандартном размере основной счёт заметно крупнее
+геймов/сетов. Многозначные очки американо остаются полным числом; сокращений `1k` нет.
+Предельные вводимые значения — PRODUCT/ARCHITECTURE, а не ограничение макета.
 
 | Spacing token | Value | Use |
 | --- | --- | --- |
-| `xs` | TBD | TBD |
-| `sm` | TBD | TBD |
-| `md` | TBD | TBD |
-| `lg` | TBD | TBD |
-| `xl` | TBD | TBD |
+| `xs` | 4 logical pt | Внутри связки подпись/значение |
+| `sm` | 8 logical pt | Между неперекрывающимися зонами очков и связанными строками |
+| `md` | 12 logical pt | Внутренний отступ обычной строки |
+| `lg` | 16 logical pt | Между смысловыми блоками |
+| `xl` | 24 logical pt | Редкие разделы длинного legal/результата |
 
-Record the base unit, screen-edge margin, related-element gap, section gap, content
-widths, safe-area behavior, keyboard avoidance, and layout at the smallest device.
-Text reflows without clipping at the largest accessibility size.
+Базовая сетка 4 logical pt; отступы подстраиваются под системную safe area и
+скругления конкретного Watch, не являются миллиметрами корпуса. Полезная ширина
+равна safe area; клавиатура/системный ввод не закрывает активное поле. В цифровых
+редакторах достаточно нативного picker, без обязательного ввода с клавиатуры.
+
+**Основной экран в обычных размерах текста:** верхний короткий контекст
+`Set 2`, `Golden point`, `Tie-break` или `Americano`; ниже две одинаковые крупные
+кнопки, `US` слева и `THEM` справа; под ними две компактные строки `Games`/`Sets`
+либо `Rallies left`/`Service block`; внизу Undo, `Serving` + конкретная роль, Menu.
+Все числа команды находятся под её колонкой. Предыдущие сеты не уплотняют главный
+экран. Подающий — `You`, `Partner`, `Opponent 1`, `Opponent 2`; имя не обязательно.
+В узкой нижней строке допустимы две строки роли, но не неоднозначное `Opp…`.
+
+**Настройка и редакторы:** вертикальный список, одна задача на строку. Сводка команд
+над числами всегда видима в редактируемом блоке. CTA не перекрывает контент; на
+небольшом экране или крупном тексте она становится последней строкой scroll content,
+а не отнимает место у обязательного текста. Crown и touch одинаково позволяют
+достичь каждого поля.
+
+**Крупный доступный текст:** читаемость важнее сохранения плотности макета.
+Двухколоночный блок остаётся пока помещается; далее `US` и `THEM` становятся двумя
+полноширинными подписанными секциями одного экрана. Счёт/подача/Undo не исчезают,
+экран допускает вертикальную прокрутку. Это предлагаемый accessibility-вариант,
+а не уменьшение пользовательского шрифта. Требование чтения всего Live score без
+прокрутки проверяется на стандартном и Large text size на минимальном устройстве,
+выбранном в ARCHITECTURE H3. Максимальный поддерживаемый системой размер отдельно
+проверяется на полноту, достижимость и отсутствие обрезанного важного текста.
 
 ## Components and system controls
 
 | Component | Variants | Required states | Notes |
 | --- | --- | --- | --- |
-| Primary button | TBD | default, pressed, disabled, loading | stable size while loading |
-| Secondary/destructive button | TBD | default, pressed, disabled | TBD |
-| Text field | TBD | empty, focused, filled, error, disabled | TBD |
-| List row | TBD | default, selected, swiped, disabled | TBD |
-| Empty/loading/error surface | TBD | every applicable interface state | TBD |
+| Primary button | Start / Save / Finish / New game | default, pressed, disabled, loading | Нативная семантика; размер не прыгает при loading |
+| Secondary/destructive button | Keep playing / Remove set / Discard | default, pressed, disabled | Название отражает последствие |
+| Text field | В MVP числовой picker вместо свободного ввода | empty, focused, filled, error, disabled | Клавиатура не является условием создания игры |
+| List row | Параметр/выбранное значение/переход | default, selected, disabled | Label + value; checkmark для выбора; swipe не единственный путь |
+| Empty/loading/error surface | Локальное восстановление/покупка/валидация | Все применимые interface states | Причина и действие рядом, данные не скрыты |
+| Score area | US / THEM | default, pressed, saving, disabled | Нативный Button с крупным составным label; уникальная компоновка нужна для счёта, отдельный жестовый движок не нужен |
+| Serving block | Standard / Americano | current, changed, needs confirmation | Текстовая роль и следующая позиция в серии; не кнопка размером в одну строку |
+| Number/choice editor | Score / totals / block / rule | focused, selected, boundary, invalid | Crown работает только у явного выбора; touch-альтернатива доступна |
 
-Prefer native navigation, lists, toggles, pickers, alerts, sheets, swipe actions,
-refresh, search, sharing, and purchase surfaces. A custom control records why a
-system control is insufficient and must match it for labels/traits, Dynamic Type,
-dark mode, right-to-left, keyboard, Switch Control, hit targets, and expected
-gestures.
+Навигация, списки, alerts, selection и StoreKit используют системные механизмы.
+Составной score label не отменяет button traits, VoiceOver actions, hit targets
+или поддержку текста. Свой control допустим только если нативный не выражает
+конкретное действие и все требования доступности сохранены.
 
 ## Motion and haptics
 
 | Motion question | Answer |
 | --- | --- |
-| Purpose | TBD |
-| Standard duration and curve | TBD |
-| What animates / never animates | TBD |
-| Reduce Motion equivalent | TBD |
-
-Motion explains hierarchy or state; it does not merely decorate. Reduce Motion
-uses an equivalent such as a cross-fade without losing information.
-
-Motion is interaction design, so what it communicates is a state change, hierarchy,
-continuity, cause and effect, progress, completion, a reveal, or navigation context.
-Short and responsive beats elaborate. Looping decoration, animation on every element, a
-spring chosen for its own sake, and motion that delays a result the person is waiting
-for all cost more than they return.
+| Purpose | Связать нажатие и результат, сохранить контекст смены экрана, показать восстановление Undo. |
+| Standard duration and curve | Системные transitions по умолчанию; для локального акцента предложено 120–180 ms ease-out. Запись и начисление не ждут окончания эффекта. |
+| What animates / never animates | Кратко изменённое число/подающий; не вся сетка и не фон. Никаких циклических декоративных эффектов, скачков колонок или анимированного таймера. |
+| Reduce Motion equivalent | Мгновенная смена значения или короткий cross-fade; pressed tone и текст сохраняются, масштаб/перемещение выключаются. |
 
 | Event | Haptic | Why |
 | --- | --- | --- |
-| TBD | TBD | TBD |
+| Успешно сохранённое очко | Один короткий нативный feedback | Подтвердить регистрацию, не спрашивать подтверждение |
+| Гейм/сет тем же розыгрышем | Не накладывать несколько импульсов; один различимый нативный результат | Избежать тактильного шума |
+| Undo | Один тихий нативный feedback | Подтвердить восстановление |
+| Finish / confirmed unlock | Нативный success | Закончено существенное действие |
+| Неверное сохранение | Нативный failure + видимый текст | Подсказать, что изменение не принято |
 
-Haptics confirm meaningful results, respect system settings, and are never the
-only signal.
+Точные нативные типы выбирает реализация для утверждённой watchOS и проверяет
+на устройстве. Не обещать haptic при выключенной пользователем тактильности;
+никакая информация не передаётся только вибрацией. Тап по навигационной строке
+не требует собственного haptic сверх системного поведения.
 
 ## Accessibility
 
-The universal baseline applies to every surface:
-
 | ID | Requirement |
 | --- | --- |
-| AX1 | Every interactive element has an accurate action label, value, hint when needed, and trait |
-| AX2 | Every state-bearing element announces that state; asynchronous errors and important changes are announced |
-| AX3 | VoiceOver reaches every control in logical visual order |
-| AX4 | Nothing is conveyed by color alone |
-| AX5 | Text meets WCAG AA: 4.5:1 body and 3:1 large; non-text indicators meet 3:1 |
-| AX6 | Every tap target is at least 44×44 points |
-| AX7 | Largest accessibility Dynamic Type works without clipped or truncated essential text |
-| AX8 | Reduce Motion has a non-moving equivalent and motion is never essential |
-| AX9 | No flashing or strobing content |
-| AX10 | Decorative images are hidden from assistive technologies |
-| AX11 | Modals move focus appropriately and return it on dismissal |
-| AX12 | Keyboard, Switch Control, focus, Reduce Transparency, Increase Contrast, Bold Text, and Button Shapes remain usable |
+| AX1 | Каждый интерактивный элемент имеет действие, значение и trait. Score label: `Our score, 40`, hint `Double-tap to add a point`; соперники аналогично. |
+| AX2 | Важное изменение объявляется один раз: новая пара очков и, если изменился, подающий. Ошибка сохранения объявляется явно; `AD` озвучивается `Advantage`. |
+| AX3 | Логический порядок: контекст → US → THEM → вторичный счёт → подающий → Undo → Menu; редактор возвращает фокус на изменённую строку. |
+| AX4 | Команда/подача/выбор понятны по словам и положению без цвета. Цвет не меняет идентичность. |
+| AX5 | Проверить фактические пары: обычный текст ≥4.5:1, крупный ≥3:1, существенные нетекстовые индикаторы ≥3:1; все варианты appearance/contrast. |
+| AX6 | Цель продукта для каждого самостоятельного touch control — минимум 44×44 logical pt с неперекрывающимися областями; фиксировать размеры на минимальном выбранном Watch. |
+| AX7 | Все размеры текста, которые предоставляет поддерживаемая watchOS, доступны без отключения масштабирования. Максимальный размер использует reflow, не обрезает счёт, команды, server и действия. |
+| AX8 | Reduce Motion не теряет информацию; анимация не обязательна для ввода. |
+| AX9 | Нет вспышек и стробирования. |
+| AX10 | Декоративные SF Symbols скрыты от accessibility; meaningful icon-only кнопки подписаны. |
+| AX11 | Alert/purchase переводит фокус в своё содержимое и возвращает после закрытия. Асинхронный server update не меняет текущий control. |
+| AX12 | Проверить Bold Text, Increase Contrast, Reduce Transparency и доступные на целевой watchOS средства альтернативного управления/фокуса. Неподдерживаемое устройство ввода отмечается INAPPLICABLE с фактической причиной. |
 
-Project-specific requirements beyond this baseline are recorded with their reason
-and approving decision. The accessibility audit walks every primary journey with
-VoiceOver and the largest text size.
+VoiceOver должен позволять провести J1–J4 без зрения; крупный текст — провести
+их без помощи другой платформы. Один видимый score button не может оказаться
+двумя accessibility-кнопками из-за отдельно объявленной подписи/цифры. В редакторе
+порядок команд совпадает с игрой. Физические кнопки/Crown не перехватываются для
+скрытых игровых действий.
 
 ## Localization
 
 | Question | Answer |
 | --- | --- |
-| Languages built by the milestones | English only |
-| Planned languages | TBD — added after release readiness, never inside a milestone |
-| Right-to-left support | TBD |
-| Dates, numbers, currency, units | system locale formatting |
-| Pluralization | string-catalog variations |
-| Longest expansion assumption | at least 40% over English |
-| Tone/formality | TBD |
+| Languages built by the milestones | English only — подтверждено пользователем. Русские макеты служат визуальным референсом. |
+| Planned languages | Будут добавлены позже; список/приоритеты владелец определит после проверки английской версии на устройстве и release readiness. Переводов в плане milestones нет. |
+| Right-to-left support | Ресурсы, leading/trailing, системные направленные иконки и псевдолокализация подготовлены. В v1 US слева/THEM справа; будущая RTL-компоновка может зеркалить геометрию только вместе с подписями и числами одной semantic team. Никогда не менять ownership по индексу visual column. |
+| Dates, numbers, currency, units | Системное форматирование по locale; цена — строка StoreKit. `0, 15, 30, 40, AD` — семантика матча, не арифметические единицы. |
+| Pluralization | String Catalog plural variations для rallies/sets/games; полные сообщения с именованными параметрами. |
+| Longest expansion assumption | Проверка минимум +40% длины и псевдо-RTL; text reflow без обрезки важных чисел/ролей. |
+| Tone/formality | Короткий спокойный английский. `You`, `Partner`, `Opponent 1`, `Opponent 2`; без шуток, мотивационных лозунгов и обвинения пользователя. |
 
-Every visible string comes from localization resources. Never concatenate sentence
-fragments or interpolate counts into English grammar. Layouts survive expansion;
-right-to-left uses leading/trailing, directional system images, and mirrored layout.
-Review translations in context, in the running app.
+Все строки, включая accessibility labels/errors/legal, имеют локализуемый источник.
+Не собирать предложение из фрагментов. Идентификаторы команд/игроков независимы от
+перевода. Дополнительные локализации выполняются отдельными worktrees по WORKFLOW,
+не становятся зависимостью M00–M10. Для каждого будущего языка нужны соответствующие
+публичные и on-watch legal/support тексты.
 
-The milestones build, audit, and verify one language, English. What they settle is the
-structure a translation needs — resources, expansion allowance, plural handling,
-right-to-left — not the translations themselves. Every further language is added
-after the English candidate reaches `READY_FOR_HUMAN`, one worktree per
-language, as `AI/WORKFLOW.md` describes. Which languages those are is a decision the
-developer makes then, not one the milestone plan carries.
+Ключевые строки v1: `New game`, `Match`, `Americano`, `At 40–40`, `Golden point`,
+`One advantage`, `Advantage`, `Total rallies`, `Rallies per server`, `First server`,
+`Serving`, `Service order`, `Next rally in block`, `Start game`, `Edit score`,
+`Game settings`, `Save changes`, `Undo`, `Finish match`, `Finish round`, `Finish`,
+`Keep playing`, `Saved`, `Match finished`, `Round finished`, `Incomplete`, `Edit result`, `Resume game`.
+Правило `One advantage` поясняется: `At the second deuce, the next point wins.`
+Никакая подпись не использует `Star Point` как один из согласованных режимов.
 
 ## Appearance and device coverage
 
 | Question | Answer |
 | --- | --- |
-| Light and dark appearance | TBD |
-| Elevation and imagery variants in dark mode | TBD |
-| Smallest supported screen | TBD |
-| Largest supported layout / iPad behavior | TBD |
-| Orientation and multitasking policy | TBD |
-| Screens that reflow vertically at large text | TBD |
-| Text that may truncate / must never truncate | TBD |
+| Light and dark appearance | Одна намеренно тёмная Watch-палитра сохраняет контраст при обоих системных traits; страницы не инвертируются автоматически. Системные экраны сохраняют нативное оформление. |
+| Elevation and imagery variants in dark mode | Непрозрачные тональные поверхности; изображения не нужны. Increase Contrast может добавить различимый контур. |
+| Smallest supported screen | Определяется решением ARCHITECTURE H3; область 162×197 в HTML — лишь проверочный макет, не обещание поддерживаемой модели. M00 фиксирует реальные модели/runtime, M05/M10 доказывают layout. |
+| Largest supported layout / iPad behavior | Самый большой выбранный Watch увеличивает свободное пространство, не добавляет новые панели. iPhone/iPad не поддерживаются продуктом. |
+| Orientation and multitasking policy | Нативная ориентация Watch; при изменении руки/ориентации Crown смысл US/THEM остаётся тем же. Нет телефонного split view. |
+| Screens that reflow vertically at large text | Все формы, result, legal и доступная компоновка Live score; нативная прокрутка Crown/touch. |
+| Text that may truncate / must never truncate | Нельзя обрезать счёт, команды, текущего server, смысл правила, цену/условия и действие ошибки. Необязательный длинный app title может уступить место системному Back. |
 
-Both appearances are first-class and are not simple inversions. Fixed-height text
-containers and fixed-width labels are avoided. Record behavior for Reduce Motion,
-Increase Contrast, Reduce Transparency, Bold Text, and Button Shapes.
+Always On, опущенное запястье и системный возврат к циферблату требуют runtime- и
+hardware-проверки на утверждённой ОС. Не обещать постоянно включённый экран или
+приём касания в неактивном состоянии. Сниженная яркость сохраняет понятные
+достоверные цифры; декоративное движение выключено. При активации экран сначала
+возвращает сохранённое состояние, и лишь отдельное игровое действие начисляет очко.
 
 ## Prohibited patterns
 
-- Decoration standing in for resolution — a gradient, blur, card, shadow, or
-  animation added to a screen whose hierarchy, spacing, or copy is the real problem.
-- Two controls competing to be the primary action, or a screen with no obvious one.
-- An action that produces no acknowledgement, or feedback slow enough to read as a
-  defect.
-- Animation that delays a result the person is waiting for, or a haptic fired for a
-  result that did not matter.
-- Raw hard-coded color values in views or meaning carried only by color.
-- Fixed point fonts, disabled Dynamic Type, or fixed-height containers around
-  scalable text.
-- Tap targets under 44×44 points, unlabeled icon-only actions, or illogical focus.
-- Motion that cannot be reduced, information conveyed only by motion/haptics, or
-  flashing/strobing content.
-- Placeholder/debug/lorem ipsum copy or user-facing text baked into images.
-- Artwork that reads as generic, stock, templated, or obviously generated, or an asset
-  whose only purpose is filling empty space.
-- Artwork whose visual weight overpowers the interface it sits in, or an illustration
-  and icon style that changes between screens.
-- Artwork the committed application cannot render on its own — static product imagery
-  fetched from an image-generation service at runtime.
-- A custom control replacing a system control without a documented reason and
-  equivalent accessibility/platform behavior.
-- Hidden, tiny, delayed, or disguised dismissal; irreversible dismissal traps.
-- Paywall countdowns, fake scarcity, ambiguous recurring terms, hard-coded prices,
-  obstructed restore, or a subscription presented as a one-time purchase.
-- An invented reference price — a crossed-out original, regular, or MSRP figure no
-  StoreKit product charges — or a saving that is not the real difference between two
-  real prices.
-- An introductory or promotional offer shown without its duration and the price that
-  applies when it ends, or a renewal price made less prominent than the offer price.
-- A sentiment gate before the rating prompt — asking how the person feels and
-  showing it only to the happy ones — a custom dialog imitating or preceding the
-  system prompt, or any reward offered for a rating.
-- A review request during onboarding, an error, or a purchase flow, one triggered
-  by a tap on an unrelated control, or a second one in the same app version.
-- Legal or support links reachable only from the paywall, or only after a purchase,
-  an account, or a granted permission.
-- A privacy, terms, or support link that opens a page describing a different app, a
-  generic company site, or nothing at all.
-- A premium override that ships — one reachable in a Release build, keyed to a launch
-  argument, an environment variable, or a build setting rather than `#if DEBUG`, or
-  reached through a debug menu, a hidden gesture, or a screen of its own.
+- Decoration standing in for resolution — украшение вместо ясной иерархии.
+- A premium override that ships — доступный в распространяемом приложении обход оплаты.
+- An invented reference price — сравнение с ценой, которую не продаёт реальный продукт StoreKit.
+- Legal or support reachable only from the paywall — legal и поддержка доступны отдельно.
+- A sentiment gate — запрос оценки только после предварительного выбора положительного отзыва; Watch-only вообще не добавляет rating flow.
+- Неподписанные команды, смена их принадлежности при смене сторон корта или цвета.
+- Скрытый ввод очков Crown, long press, жестом пробуждения или кнопкой системы.
+- Мелкие отдельные `+`, подтверждение каждого очка или меню вместо доступной отмены.
+- Принудительный best-of-N, обязательные четыре имени, турнирная таблица или iPhone.
+- Автоматическое стирание/пересчёт при правке правила, формата, подачи или результата.
+- `Saved` до завершения записи; новый пустой матч вместо сообщения о повреждении.
+- Декоративный градиент, blur, фон или анимация, скрывающие плохую иерархию.
+- Raw RGB в views; цвет как единственное объяснение ошибки/команды/подачи.
+- Фиксированный шрифт, подавленный Dynamic Type, обрезка essential text, перекрывающиеся hit areas.
+- Важное действие только через swipe, маленькая непомеченная иконка или недостижимый VoiceOver control.
+- Анимация, задерживающая следующее очко; несколько haptics за один розыгрыш; вспышки.
+- Иллюстрации со встроенным UI-текстом, generic artwork и загрузка изображений во время игры.
+- Тёмный paywall с невидимым Close, выдуманная скидка, hard-coded цена/лимит или неподтверждённый free trial.
+- Покупка поверх активной игры; стирание данных при refund/restore failure; ложное `Unlocked` при pending.
+- Legal/support только после оплаты, на другой платформе или в неоткрывающемся внешнем URL.
+- Фиктивная HealthKit-тренировка ради активного экрана или новый сбор данных без решения.
+- Rating prompt для этого Watch-only продукта и development premium override в Release/UI.
 
 ## Unresolved design decisions
 
+Отдельного нерешённого вопроса по стилю или управлению после подготовки предложения
+нет: направление и адаптивная компоновка ждут общего одобрения владельца. Решение
+можно отклонить или изменить до реализации; статус `proposed` не означает approval.
+Не дублируем вопросы с альтернативами, которыми владеют другие контракты:
+
 | ID | Question | Options | Blocks | Developer decision needed |
 | --- | --- | --- | --- | --- |
-| D-U1 | TBD | TBD | TBD | TBD |
+| PRODUCT H1 | Публичное имя, сайт и контакт | См. варианты в PRODUCT | Финальная копия About/legal/store | Да, в PRODUCT |
+| PRODUCT H2 | Правила сета/тай-брейка и подачи | См. варианты в PRODUCT | Конкретные дополнительные поля и тексты счёта | Да, в PRODUCT |
+| ARCHITECTURE H3 | Минимальная watchOS и устройства | См. варианты в ARCHITECTURE | Фактическая матрица размеров, системных возможностей и проверок | Да, в ARCHITECTURE |
+| PRODUCT H4 | Условия lifetime и бесплатного опыта | См. варианты в PRODUCT | Окончательная копия Unlock, моменты предложения и доступ после лимита | Да, в PRODUCT |
+
+До одобрения и выбора зависимых решений нативная реализация не начинается.

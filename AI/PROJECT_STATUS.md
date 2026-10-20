@@ -1,8 +1,8 @@
 # Project status
 
-**Phase:** template
+**Phase:** contracts
 **Current milestone:** none
 **Completed milestones:** none
 **Next milestone:** M00
-**Blockers:** this copy has no product yet — run `make initialize`, fill in AI/PRODUCT_BRIEF.md, then use AI/prompts/initialize-product.md to produce and approve PRODUCT.md, ARCHITECTURE.md, and DESIGN.md before M00 starts.
-**Important decisions:** none yet — the first entries are the product direction the developer approves at the end of initialization.
+**Blockers:** Direction approval pending; H1/H2/H3/H4 remain open in contracts; Watch-only Xcode project absent. See AI/DEVELOPMENT_PLAN.md. M00 has not started.
+**Important decisions:** Watch-only, no iPhone app; English v1, other languages later; regular match has unlimited sets and manual finish; Americano counts total rallies of both teams; all entered data editable.

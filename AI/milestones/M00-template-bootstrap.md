@@ -1,4 +1,4 @@
-# M00 — Template bootstrap
+# M00 — Watch-only Bootstrap
 
 **ID:** M00
 **Status:** PLANNED
@@ -8,95 +8,40 @@
 
 ## Objective
 
-Connect a real Xcode product to the template and prove the local build, test, and
-release harness before product features begin.
+Подключить настоящий Watch-only проект к локальной проверке и подтвердить сборку, тесты и запуск на собственном симуляторе.
 
 ## Scope
 
-- The developer creates the product project or workspace under `App/` in Xcode, with
-  a shared scheme and at least one real test target; Xcode work is theirs, and the
-  template does not generate or shape it. If `App/` holds no project when this
-  milestone starts, set `BLOCKED`, name that step on the `**Blockers:**` line of
-  `AI/PROJECT_STATUS.md`, and stop until it exists. A Git repository Xcode created
-  inside `App/` is not kept: this repository tracks those files itself, and
-  `make static` and every build gate refuse a nested one.
-- Connect that project to the harness: add a real unit test and include UI tests when
-  the product uses them.
-- Generate committed project configuration and record the actual toolchain.
-- Select `--platform iOS` or `--platform watchOS`. Watch-only uses the modern
-  SwiftUI Watch app plus Xcode’s packaging container, a shared scheme that builds
-  both, and a real Watch test target. APP_TARGET and BUNDLE_IDENTIFIER name the
-  Watch executable. No user-facing iPhone companion or paired simulator is added.
-- Prove clean-HEAD milestone verification, exact-SHA integration behavior, and that
-  release refuses a product before its final audit workflow is complete.
-- Keep Git hooks optional, and develop this milestone in the primary checkout.
+- Вход: владелец одобрил направление контрактов, выбраны идентичность приложения H1 и платформа H3. Изучить `AI/ARCHITECTURE.md` и текущий Xcode; не подставлять рекомендованную watchOS как уже утверждённую.
+- Проект в `App/` создаётся владельцем в Xcode из современного Watch-only App template: исполняемое Watch-приложение и packaging container, общий shared scheme, собирающий оба, и настоящий Watch unit-test target. Если проекта нет, записать этот конкретный шаг как BLOCKED; не генерировать проект и не начинать следующие этапы.
+- Сохранить существующую Git-историю. Не запускать `make initialize`: этот скрипт сбрасывает историю. Подготовить `.iosai-project` без сброса репозитория с primary_branch=main и честной записью происхождения шаблона; исходный upstream SHA пока неизвестен. Импортированный baseline доступен в первом коммите, но сам по себе не доказывает прохождение self-test.
+- До перехода в product mode получить проверяемую исходную запись self-test либо прогнать `make self-test` на отдельной временной копии импортированного шаблона с точным SHA. Записать SHA, команду и результат; не заявлять унаследованные гарантии без доказательства. Это проверка инструментария, а не приложения.
+- Выполнить `xcrun simctl list -j`. По утверждённой H3 выбрать доступную совместимую Watch-модель и runtime; передать `--platform watchOS`, `--simulator-device-type` и `--simulator-runtime` в `Scripts/configure-project.sh` вместе с реальными project/scheme/app-target/bundle-id. APP_TARGET и BUNDLE_IDENTIFIER принадлежат Watch executable.
+- Наблюдавшаяся 2026-10-20 пара для первого запуска: com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-40mm-2nd-generation и com.apple.CoreSimulator.SimRuntime.watchOS-26-5. Повторно проверить доступность; это не утверждённый deployment target и не доказательство работы на минимальной ОС.
+- Перейти на product mode реальной конфигурацией, подготовить managed simulator через `make simulator-setup`, получить UDID через `make simulator-context`. Все последующие действия адресованы этому устройству; никаких чужих или парных iPhone-симуляторов.
+- Добавить минимальный запускаемый экран, реальный unit test и английский String Catalog. Синхронизировать версии/build app и container, записать фактическую toolchain и deployment target в ARCHITECTURE.
+- Выполнить make template-check, make static, make fast; проверить запуск и одно действие на собственном Watch simulator. Проверить clean-HEAD milestone и повторение по полному SHA, а также отказ release до финального аудита.
 
 ## Non-goals
 
-- No product feature, third-party dependency, remote CI, or automatic hook install.
-- No worktree for this milestone: milestone implementation and verification stay in
-  the primary checkout. Optional review, experiment, and localization worktrees are
-  outside M00 scope.
-- No weakening of template checks to accommodate the product.
+- Счёт, покупки, HealthKit, complication и продуктовые экраны следующих этапов.
+- Установка runtime, изменение системных симуляторов, автоматическая установка Git hooks, публикация и отправка на ревью.
 
 ## Acceptance criteria
 
-Each of these is about *this product*. The template's own behaviour — that a gate
-rejects zero, failed, skipped, missing or inconsistent result counts, that a
-candidate must be a full SHA, that release success requires completed audit coverage
-and readiness state, that an unverified commit pushes without a gate, that no pre-push
-hook exists, and that a candidate snapshot is always cleaned up — is proved
-by `make self-test` in the template repository, whose regression cases assert those
-behaviours against deliberately broken fixtures and stub Xcode tooling
-(`./Scripts/self-test.sh --list` prints the current set; the run reports its own case
-and check totals). Re-proving it here would mean breaking this product's suite five
-ways on purpose, and `make self-test` is a template-maintenance command: its fixtures
-copy the working tree, so it is not meant to be run inside a product repository.
-Record the template commit instead and inherit the proof: initialization writes it to
-`.iosai-project` as `template_commit=`.
-
-- [ ] Product configuration uses managed simulator mode with installed device-type and
-      runtime identifiers; `make simulator-setup` prepares its own device and
-      `make simulator-context` names that checkout's UDID before any runtime check.
-- [ ] For watchOS, the runtime/device are Watch-compatible; the built app has
-      WKWatchOnly enabled, and its packaging container embeds it with matching
-      version/build. Inspect launch and a primary interaction on the owned Watch
-      simulator. The template self-tests do not establish this runtime evidence.
-- [ ] `xcodebuild -list` shows the configured shared scheme and required tests.
-- [ ] `make template-check`, `make static`, and `make fast` pass in product mode.
-- [ ] From clean `REVIEW` state, `make milestone ID=M00` verifies current HEAD on the
-      primary branch and records that branch, SHA, time, commands, and non-zero
-      result-bundle counts.
-- [ ] Explicit full-SHA reproduction — `make milestone ID=M00 CANDIDATE=<full-SHA>` —
-      verifies that same commit from a detached read-only worktree.
-- [ ] `make release CANDIDATE=<full-SHA>` reports `NOT_READY` because the final audit
-      workflow does not exist yet; the template self-test proves the later
-      `READY_FOR_HUMAN` path.
-- [ ] If the developer has configured a remote, a commit is pushed to it without any
-      gate running, confirming that push is synchronization here too. A remote is
-      optional and initialization removes the template's; with none configured, the
-      handoff says so and nothing is pushed.
-- [ ] `core.hooksPath` is unset unless the developer chose otherwise, and no worktree
-      was created to get here.
-- [ ] `.artifacts/` is ignored and holds the reports these runs produced.
-- [ ] `./Scripts/project-status.sh validate` passes.
-- [ ] `AI/ARCHITECTURE.md` records the real toolchain and deployment target.
-- [ ] The handoff names the template commit this project was created from — the
-      `template_commit=` line in `.iosai-project` — as the evidence for the inherited
-      harness behaviours listed above.
+- [ ] Xcode показывает shared scheme с Watch app, container и настоящим test target; вложенного .git в App нет.
+- [ ] Config/project.env использует APP_PLATFORM=watchOS, TEMPLATE_REPOSITORY=false, managed mode и выбранные реальные identifiers; маркер записывает main и честное происхождение инструментария.
+- [ ] Проверены WKWatchOnly, embedded Watch app и совпадение version/build в container; на managed Watch simulator приложение запускается и принимает действие.
+- [ ] Есть успешные make template-check, make static, make fast; make milestone ID=M00 и повтор той же проверки с CANDIDATE=<full-SHA> дают ненулевые обязательные тесты без failures/skips.
+- [ ] make release CANDIDATE=<тот же full-SHA> ожидаемо возвращает NOT_READY до Final Product Polish; это не успешная release-проверка.
+- [ ] Существует точное доказательство self-test инструментария, а handoff различает его и реальные результаты Xcode.
+- [ ] ARCHITECTURE содержит фактическую платформу и ограничения покрытия minimum OS; hooksPath не менялся без выбора владельца.
+- [ ] ./Scripts/project-status.sh validate проходит; handoff содержит полный SHA, команды, время, пути отчётов и counts.
 
 ## Validation
 
-```sh
-make milestone ID=M00
-```
-
-The Builder records exact evidence in the handoff, sets `DONE`, and stops.
-Integration is run only when independently developed streams are combined, which is
-outside this milestone.
+`make milestone ID=M00`. Обязательные проверки и evidence выполняются в одной Builder-сессии.
 
 ## Handoff
 
-Write `AI/handoffs/M00-handoff.md` from the compact handoff template. Include the
-verified SHA, command, exit code, timestamp, report path, counts, known issues, and
-next step.
+Записать `AI/handoffs/M00-handoff.md` по компактному шаблону: полный SHA, точные команды, exit codes, UTC time, report paths, counts, известные ограничения и следующий шаг. После доказанного DONE остановиться.

@@ -1,19 +1,18 @@
 # Architecture
 
-**A record of decisions, not a prescribed architecture.** This template does not
-choose a persistence layer, a navigation pattern, or a module boundary for you —
-the right answer depends on the product, and a template that guesses is a template
-that has to be fought.
+Технический контракт самостоятельного приложения для Apple Watch. Прямые решения
+владельца — Watch-only, оба формата счёта, исправление всех введённых данных и
+английская v1 — сохранены. Остальные решения ниже **предложены для утверждения**;
+они не означают, что приложение уже реализовано или проверено.
 
-What the template *does* insist on: every choice below is written down, with what
-was rejected and why. A decision nobody recorded gets re-litigated in every review.
+**Status:** proposed — ожидает утверждения владельцем
+**Approved by:** ещё не утверждено
+**Updated:** 2026-10-20
 
-Record the reasoning and rejected alternatives here so the repository remains the
-complete project memory without a separate decision-record system.
-
-**Status:** not initialized
-**Approved by:** TBD
-**Updated:** TBD
+Поведение и бизнес-решения принадлежат [PRODUCT.md](PRODUCT.md), интерфейс —
+[DESIGN.md](DESIGN.md), выполнение и доказательства — [WORKFLOW.md](WORKFLOW.md).
+Открытые H1/H2/H4 в PRODUCT и H3 ниже блокируют зависимую реализацию, а не заменяются
+примерными значениями из HTML-макетов.
 
 ---
 
@@ -21,310 +20,404 @@ complete project memory without a separate decision-record system.
 
 | Concern | Choice | Rationale | Notes |
 | --- | --- | --- | --- |
-| UI framework | TBD | TBD | SwiftUI only, or mixed with UIKit — say which, and where the boundary is |
-| Swift language mode | TBD | TBD | |
-| Concurrency | TBD | TBD | |
-| Persistence | TBD | TBD | |
-| Networking | TBD | TBD | Or "none" |
-| Dependency injection | TBD | TBD | |
-| Navigation | TBD | TBD | |
-| Testing frameworks | TBD | TBD | |
+| UI framework | SwiftUI, нативный жизненный цикл `App`, Observation | Единый интерфейс watchOS; небольшое состояние и собственные кнопки счёта не требуют другого UI-фреймворка | Не переносить HTML-макеты как WebView; WatchKit используется только для нужных системных адаптеров, например haptics |
+| Swift language mode | Swift 6 со строгой проверкой concurrency | Ошибки передачи изменяемого состояния обнаруживаются при сборке | Конкретный компилятор фиксируется вместе с Xcode в M00 |
+| Concurrency | `@MainActor` для presentation; actor для сериализованной записи; `async/await` для StoreKit | Только один владелец игровых изменений; сеть покупки не блокирует счёт | Движок — синхронные чистые функции |
+| Persistence | Foundation `Codable`, версионированный локальный файл с атомарной заменой и резервной предыдущей копией | Нужны небольшие согласованные снимки одной игры, а не запросы по большой базе | Не `UserDefaults` для игрового состояния; протокол хранилища отделяет формат от логики |
+| Networking | Собственного сетевого клиента нет | Счёт, создание, исправление и завершение локальны | StoreKit общается с Apple; публичные legal/support URL открываются только по действию человека |
+| Dependency injection | Явные initializer-параметры и небольшие протоколы | Зависимости видны, тесты подставляют хранилище и магазин | Без DI-контейнера и глобальных singleton-сервисов |
+| Navigation | Типизированный `NavigationStack`, маршрут принадлежит composition root | Список настроек и отдельные редакторы укладываются в нативную навигацию | Экран матча не является горизонтальной каруселью; навигация не хранит копию счёта |
+| Testing frameworks | Swift Testing для domain/service; XCTest/XCUITest для UI; StoreKit Testing | Правила проверяются без экрана, реальные маршруты — через Watch UI | Все обязательные тесты входят в shared scheme |
 
-**Nothing above has a default.** "SwiftUI + SwiftData" is a common answer, not an
-assumed one.
+Apple описывает SwiftUI как основу нативного watchOS UI. Observation доступен для
+приложений с минимумом watchOS 10, а NavigationStack — watchOS 9. Поэтому требование
+более новой ОС из этих API не следует; выбор охвата остаётся H3.
+[SwiftUI для watchOS](https://developer.apple.com/documentation/watchos-apps/building_a_watchos_app),
+[Observation](https://developer.apple.com/documentation/SwiftUI/Monitoring-model-data-changes-in-your-app),
+[NavigationStack](https://developer.apple.com/documentation/swiftui/migrating-to-new-navigation-types).
 
 ## Deployment target
 
 | Field | Value |
 | --- | --- |
-| App platform: iOS or watchOS Watch-only | TBD |
-| Minimum iOS or watchOS version | TBD |
-| Why that version | TBD |
-| Devices | TBD |
-| Orientations | TBD |
-| Additional surfaces supported by the chosen platform | TBD |
+| App platform: iOS or watchOS Watch-only | **Подтверждено: watchOS Watch-only**; нет iPhone companion, телефонного UI и Watch Connectivity как зависимости |
+| Minimum iOS or watchOS version | **Предложено: watchOS 10.0; H3 не решён** |
+| Why that version | Достаточен для Observation, NavigationStack и локальной модели; более высокий минимум сокращает охват без необходимой для счётчика функции |
+| Devices | Apple Watch, совместимые с утверждённой watchOS; компактный и крупный размер в матрице M00; точный список зависит от H3 |
+| Orientations | Системная ориентация часов, настройки запястья и Digital Crown; ручного portrait/landscape режима нет |
+| Additional surfaces supported by the chosen platform | Только основное Watch-приложение в MVP; complications, widgets, App Intents и Action button не включены |
 
-**Toolchain** — recorded here rather than pinned by the template, so it can be kept
-current:
+**Toolchain — наблюдение среды, не доказательство работы приложения:**
 
 | Field | Value |
 | --- | --- |
-| Xcode version | TBD |
-| Swift version | TBD |
-| SDK used to build | TBD |
-| Oldest runtime tested against | TBD |
+| Xcode version | Локально обнаружен Xcode 27.0, build 27A266a, 2026-10-20 |
+| Swift version | Swift 6 language mode предложен; точную версию `xcrun swift --version` записать в M00 перед конфигурацией |
+| SDK used to build | watchOS SDK выбранного Xcode; ни одной сборки приложения ещё нет, точную версию закрепить в M00 |
+| Oldest runtime tested against | Ни один runtime ещё не проверен приложением; совместимый runtime минимальной утверждённой ОС обязателен для проверки, его наличие не следует из нового SDK |
 
-Note the distinction between the SDK you build with and the oldest runtime you
-actually test on. Newer APIs need availability guards; the deployment target alone
-does not prove they are safe.
+Инвентаризация 2026-10-20 обнаружила доступный Watch runtime watchOS 26.5
+(build 23T570), `com.apple.CoreSimulator.SimRuntime.watchOS-26-5`. Совместимый
+компактный device type — Apple Watch SE (40mm), 2nd generation,
+`com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-40mm-2nd-generation`.
+Эта пара предложена для основной managed среды M00 после H3; она не доказывает
+работу на watchOS 10. Runtime минимальной ОС сейчас не подтверждён. Ни устройство,
+ни runtime в рамках инициализации контрактов не создавались и не устанавливались.
+
+M00 инспектирует `xcrun simctl list -j`, выбирает доступные совместимые Watch device
+type/runtime, передаёт их в `configure-project.sh --platform watchOS` и выполняет
+`make simulator-setup`. Managed simulator принадлежит этому checkout; чужое устройство
+или paired iPhone не нужны. Если для принятого минимума нет доступного runtime или
+другой требуемой среды, зависимая проверка остаётся заблокированной; наличие более
+нового симулятора не доказывает работу на минимальной ОС.
 
 ## Dependency boundaries
 
-**The layering, and which way dependencies point.** An arrow that goes the wrong
-way is a review finding.
+Стрелка означает «импортирует / зависит от»:
 
-```
-TBD
-
-Example:
-Domain      pure value types; no UI, no persistence, no framework imports
-   ↑
-Services    protocols + implementations; depends on Domain only
-   ↑
-Features    screens and view models; depends on Services through injection
-   ↑
-App         composition root; the only place that knows every concrete type
+```text
+App composition root → Features → Domain
+         ↓                ↓
+       Services ───────→ Domain
 ```
 
 | Layer | May import | May never import | Why |
 | --- | --- | --- | --- |
-| TBD | TBD | TBD | TBD |
+| Domain | Swift standard library; Foundation только для value types/кодирования | SwiftUI, WatchKit, StoreKit, файловую систему и concrete service | Счёт проверяется детерминированно без UI и устройства |
+| Services | Domain, Foundation; StoreKit или WatchKit только в соответствующем адаптере | Features и App | Хранилище, магазин и haptics не управляют экранами |
+| Features | SwiftUI, Observation, Domain и service protocols | Concrete file store, StoreKit transaction API, чужое mutable состояние | View отправляет intent единственному владельцу |
+| App | Все слои для сборки зависимостей | Новые правила счёта внутри composition root | Здесь создаются ровно по одному session store и entitlement store |
 
 ### External dependencies
 
-**The default is none.** Every dependency is a permanent maintenance obligation, a
-supply-chain surface, and a build-time cost. Adding one is a human decision (H5).
-
 | Dependency | Version | What it does | Why not Apple's framework | Approval/rationale |
 | --- | --- | --- | --- | --- |
-| — | — | — | — | — |
+| Сторонних библиотек нет | Не применимо | Системные SwiftUI, Foundation, StoreKit и WatchKit покрывают MVP | Причины заменять их пока нет | Предложение для утверждения; новая внешняя зависимость — отдельное человеческое решение |
 
-If Swift Package Manager is used, note it: `xcodebuild` resolves packages over the
-network, which is the one place local verification touches the internet. See
-"Failure and evidence rules" in [WORKFLOW.md](WORKFLOW.md).
+Локальные Swift packages на старте не предлагаются. Если появятся внешние SPM
+зависимости, зафиксировать версию, причину и разрешённый сетевой resolve в соответствии
+с WORKFLOW; не добавлять SDK аналитики или покупок транзитивно.
 
 ## State ownership
 
-**Exactly one owner per piece of state.** Duplicated ownership is the most common
-architectural defect in a SwiftUI codebase, and it shows up as stale views rather
-than as a crash.
-
 | State | Owner | Lifetime | Who may mutate it | Observed by |
 | --- | --- | --- | --- | --- |
-| TBD | TBD | TBD | TBD | TBD |
+| Активная игра, её ревизия и undo-цепочка | `SessionStore` на `@MainActor` | Между запусками через repository | Только обработчик domain commands после валидации и успешной записи | Игровой экран, редактор, результат |
+| Последняя завершённая игра и её undo-цепочка | Тот же `SessionStore` | До замены следующим завершённым результатом или удаления | Finish/resume/delete commands | Экран результата/старта |
+| Черновик создания/исправления | Feature draft с base revision | До Save/Cancel; не считается сохранённой игрой | Соответствующий редактор | Только его поля и preview |
+| Последние настройки создания | `SessionStore` | Между запусками | Успешный старт/сохранение настроек | Создание игры |
+| Право доступа, загрузка продукта, purchase/restore state | `EntitlementStore` | Жизнь процесса; источник права — проверенные StoreKit данные | Только этот store и инъецированный store adapter | Старт игры, paywall, настройки |
+| Учёт бесплатного использования | Локальный `UsageLedger`, обновляется транзакционно вместе с игрой | Между запусками; политика H4 в PRODUCT | Только session command, согласованный с access policy | EntitlementStore получает read-only оценку |
+| Навигация и transient ошибки | Composition root/feature presentation | Процесс/экран | UI intents | Соответствующие views |
+| `forcePremium` | DEBUG-only `DebugPremiumOverride` | Между Debug-запусками | Developer control через EntitlementStore | Только EntitlementStore |
 
 | Question | Answer |
 | --- | --- |
-| Where does app-wide state live? | TBD |
-| How does a view get it? | TBD |
-| What survives a launch? | TBD |
-| What survives backgrounding but not termination? | TBD |
-| Single source of truth for each piece of derived data | TBD |
+| Where does app-wide state live? | `SessionStore` и `EntitlementStore`, созданные один раз в composition root; бизнес-снимок не дублируется в каждом экране |
+| How does a view get it? | Через явно переданный observable presentation model; вложенным view передаются значения и действия |
+| What survives a launch? | Активная/последняя завершённая игра, правила, сервисный anchor, undo, последние настройки и usage ledger; entitlement заново сверяется со StoreKit |
+| What survives backgrounding but not termination? | Несохранённый draft и позиция прокрутки могут жить пока жив процесс; восстановление draft после termination не обещано, сохранённая игра остаётся |
+| Single source of truth for each piece of derived data | Выигранные сеты вычисляются из `completedSets`; американо `played = ourPoints + theirPoints`, `remaining = totalRallies - played`; локализованные подписи и доступные действия — из snapshot, rule phase и entitlement |
+
+Последний результат можно исправить/продолжить только до начала следующей игры,
+как предложено в PRODUCT. При наличии новой активной игры старый результат доступен
+только для просмотра и заменяется при следующем завершении; два независимых
+редактируемых матча одновременно не создаются.
+
+### Снимок игры и команды
+
+`GameSnapshot` содержит stable game ID, mode, lifecycle status, rules, команды/роли,
+полный счёт, завершённые сеты, текущий незавершённый сет, фазу deuce/tie-break,
+`ServiceAnchor`, finish metadata и revision. У обычного матча нет `bestOf`,
+`maxSets` или автоматического завершения всей игры после выигранного сета.
+Правила завершения сета и tie-break будут зафиксированы после H2 в PRODUCT.
+
+`ServiceAnchor` хранит порядок четырёх игроков, конкретного следующего подающего,
+позицию следующего розыгрыша в серии американо и нужный контекст подачи tie-break.
+Эта информация задаётся явно при создании/исправлении. После ручной правки счёта
+нельзя вычислять подающего из суммы очков: неизвестные розыгрыши не становятся
+вымышленной историей. Обычное начисление очка двигает anchor по утверждённым правилам.
+
+Команды: create, award point, undo, replace current snapshot from draft, finish,
+resume, delete local game data. Запись history содержит предыдущее полное игровое
+состояние без вложенной history, тип команды и revision. Undo восстанавливает всё:
+счёт, сеты, режим, правила, конкретного подающего, deuce phase и lifecycle status.
+Глубина не обрезается произвольным числом; сохраняется история редактируемой игры,
+в том числе при продолжении последнего результата. Это не каталог прошлых матчей.
+Undo заменяет только игровой snapshot: актуальный `UsageLedger` и отметки уже
+учтённых game ID не откатываются. Поэтому Finish → Undo → Finish той же игры не
+списывает ещё одну единицу и не возвращает уже использованную бесплатную единицу.
+
+Смена формата — явный replacement draft с preview нового состояния и проверкой
+всех обязательных полей. Старый формат, очки и правила сохраняются одним undo
+снимком; прошлые розыгрыши автоматически не переигрываются по новым правилам.
+Изменения правил действуют вперёд, конфликт с текущим счётом блокирует Save
+с конкретной причиной. Редактор не «исправляет» результат начислением гейма.
 
 ## Business-logic placement
 
 | Question | Answer |
 | --- | --- |
-| Where does business logic live? | TBD |
-| What may a view contain? | TBD |
-| What may a view model contain? | TBD |
-| How is logic made testable without a UI? | TBD |
+| Where does business logic live? | `ScoreEngine.apply(command, snapshot)` и validators в Domain; access policy и idempotent usage rules — отдельные value rules |
+| What may a view contain? | Layout, typography, accessibility, локализованные подписи, отправку intents; никаких условий победы, сдвига подачи или записи в файл |
+| What may a view model contain? | Draft, ошибки полей, focus/navigation и вызов команды; не второй движок счёта |
+| How is logic made testable without a UI? | Value input → validated result или typed error; clock/ID/StoreKit/file I/O инъецируются на границе; test fixtures не требуют запуска view |
 
-The practical test: **could this rule be tested without launching a view?** If not,
-it is in the wrong place.
+В частности, стадия второго 40:40 при одном преимуществе — самостоятельное поле,
+а не функция видимых `40–40`. Автоматическая остановка американо, допустимость ничьей
+и короткой последней серии следуют утверждённому PRODUCT; не наследуются из JS.
 
 ## Persistence
 
 | Question | Answer |
 | --- | --- |
-| Mechanism | TBD |
-| What is stored | TBD |
-| What is deliberately not stored | TBD |
-| Where large binary data lives | TBD |
-| Schema versioning approach | TBD |
-| Migration strategy | TBD (see below) |
-| Encryption at rest | TBD |
-| What deleting user data removes | TBD |
+| Mechanism | Версионированный `Codable` store envelope в app Application Support; serial repository actor; временный файл и атомарная замена в том же каталоге |
+| What is stored | Active + latest completed snapshot и их undo, last-used settings, schema version/revision, idempotent usage ledger; только необходимые доменные поля |
+| What is deliberately not stored | Каталог всех результатов, телеметрия, здоровье, координаты, аудио, пароль Apple Account, сырые платёжные реквизиты; редакторский draft после termination |
+| Where large binary data lives | Таких данных нет; ресурсы интерфейса и on-watch legal copy находятся в bundle |
+| Schema versioning approach | Явное целочисленное `schemaVersion`; декодирование каждой поддерживаемой версии и преобразование в актуальную модель |
+| Migration strategy | Копия исходного файла, миграция во временную модель, domain validation, атомарная публикация; подробности ниже |
+| Encryption at rest | Системная защита sandbox/device; дополнительное самодельное шифрование не предлагается. Protection policy и доступ на запястье проверить в M03 на выбранной ОС |
+| What deleting user data removes | Матчи, undo и последние игровые настройки; entitlement покупки остаётся у Apple. Сброс usage ledger и переустановка регулируются H4, до решения не обещать неограниченный повторный trial |
+
+Одна логическая мутация включает счёт, подачу, history, usage change и revision
+в одном envelope. UI подтверждает очко и haptic после успешной записи. Пока запись
+выполняется, команда сериализована; одинаковая command ID не применяется дважды.
+При ошибке записи сохраняется прежнее подтверждённое состояние и показывается
+возможность повторить действие. Нельзя показать устойчиво новый счёт, а на диске
+оставить старый без явной ошибки.
+
+Последняя корректная резервная копия служит recovery, не cloud backup. Повреждённый
+файл сохраняется отдельно; fallback к более старой копии сопровождается сообщением
+о восстановлении, а не выдаётся за точный последний счёт. Если обе копии непригодны,
+не создавать пустую игру поверх данных: показать ошибку и явное действие сброса.
+Известные актуальные отметки usage сохраняются при восстановлении игрового snapshot.
+Если повреждение уничтожило и последние данные ledger, точный счётчик не обещается:
+его состояние обозначается неопределённым, без молчаливого нового trial. Дальнейший
+reset соответствует выбранной H4d, восстановленную начатую игру не блокирует
+повторная загрузка цены или entitlement.
+
+Размер файла и скорость записи проверяются длинной игрой и большим числом undo.
+Если устройство исчерпало место, операция завершается ошибкой с сохранением
+последнего подтверждённого состояния; ограничения памяти не превращаются в
+скрытый лимит числа сетов. Разрешённые оптимизации не меняют semantics undo.
 
 ## Concurrency
 
 | Question | Answer |
 | --- | --- |
-| Model | TBD |
-| Default actor isolation | TBD |
-| Which types are `Sendable` | TBD |
-| What must run on the main actor | TBD |
-| How long-running work is cancelled | TBD |
-| Known reentrancy hazards | TBD |
+| Model | Single-writer SessionStore + serial repository actor; независимый EntitlementStore обрабатывает StoreKit async sequences |
+| Default actor isolation | Явный `@MainActor` только для presentation и application stores; чистый Domain не зависит от main actor; project default не должен молча изолировать всю модель |
+| Which types are `Sendable` | Domain value snapshots, commands, validation errors и immutable DTO; concrete mutable owners не передаются между actors |
+| What must run on the main actor | SwiftUI observed state, navigation, публикация подтверждённого snapshot и системная haptic команда |
+| How long-running work is cancelled | Screen-owned загрузка продукта отменяется при ненужности; единственный transaction listener живёт с EntitlementStore; принятая запись завершается независимо от исчезновения view |
+| Known reentrancy hazards | Второй tap во время await; stale editor revision; purchase success одновременно с transaction update; finish и повторный launch. Защита: command IDs, revision check, сериализованная очередь и idempotent обработка transaction IDs |
+
+### Жизненный цикл
+
+`scenePhase` инициирует контроль сохранения и обновление presentation при возврате.
+Последнее сохранённое игровое состояние загружается до показа активных кнопок счёта.
+Не полагаться на `onDisappear` как единственное сохранение: система может завершить
+процесс. На inactive/Always On сокращать анимацию, сохранять читаемую статичную
+информацию и не запускать периодическую работу без нужды. Поведение возврата и
+случайного касания проверяется на настоящих часах.
+
+Постоянно светящийся/активный экран на весь матч не обещан. Не запускать фиктивную
+HealthKit workout или extended runtime session ради обхода системного жизненного
+цикла. [Apple: состояния приложения](https://developer.apple.com/documentation/watchkit/handling-common-state-transitions),
+[Apple: Always On](https://developer.apple.com/documentation/watchos-apps/designing-your-app-for-the-always-on-state/).
 
 ## Networking
 
-Delete this section if the app makes no network requests, and say so.
-
 | Question | Answer |
 | --- | --- |
-| Does the app make network requests? | TBD |
-| Client | TBD |
-| Base URLs per configuration | TBD |
-| Authentication | TBD |
-| Retry policy | TBD |
-| Timeouts | TBD |
-| Offline behavior | TBD (see [DESIGN.md](DESIGN.md)) |
-| Certificate pinning | TBD |
-| How responses are validated | TBD |
+| Does the app make network requests? | Собственного HTTP API нет. StoreKit использует сеть Apple; открытие публичной страницы по действию человека создаёт отдельный сетевой поток |
+| Client | StoreKit/system URL handling; `URLSession` для игрового сценария не нужен |
+| Base URLs per configuration | Только публичный `SUPPORT_SITE_URL` после H1; backend URL отсутствует |
+| Authentication | Собственного аккаунта нет; Apple управляет авторизацией покупки, приложение не получает пароль |
+| Retry policy | Для загрузки продукта/restore — явный retry без бесконечного цикла; запись очка сети не ждёт |
+| Timeouts | Системное поведение StoreKit плюс видимое cancellable/loading state; не держать экран счёта заблокированным из-за сети |
+| Offline behavior | Все игровые операции локальны; начатая игра доступна независимо от новой загрузки цены; правила допуска новой игры и ранее проверенной покупки описывает PRODUCT/H4 |
+| Certificate pinning | Не нужен: собственного endpoint нет; не вмешиваться в транспорт StoreKit |
+| How responses are validated | Только `.verified` StoreKit transactions, правильный product ID/type, актуальный entitlement; неподтверждённый результат не открывает paid access |
 
 ## External integrations
 
 | Integration | Present? | Purpose | Fallback when unavailable | Approval/rationale |
 | --- | --- | --- | --- | --- |
-| Backend service | TBD | TBD | TBD | TBD |
-| Authentication provider | TBD | TBD | TBD | TBD |
-| StoreKit | TBD | TBD | TBD | TBD |
-| Review request (StoreKit) | TBD | TBD | TBD | TBD |
-| HealthKit | TBD | TBD | TBD | TBD |
-| Push notifications | TBD | TBD | TBD | TBD |
-| Analytics | TBD | TBD | TBD | TBD |
-| Crash reporting | TBD | TBD | TBD | TBD |
-| AI / LLM | TBD | TBD | TBD | TBD |
-| CloudKit / iCloud | TBD | TBD | TBD | TBD |
-| Published site (Cloudflare Pages) | yes | privacy, terms, and support pages | TBD | required by the App Store |
+| Backend service | Предложено: нет | Сценарий локальный | Не требуется | Подтверждается общим архитектурным направлением |
+| Authentication provider | Нет | Собственный аккаунт не нужен | Не требуется | Apple Account обслуживает только Apple |
+| StoreKit | Предложено: StoreKit 2, зависит от H4 | Lifetime non-consumable entitlement | Retry/restore; не прерывать активную игру | Реализация после утверждения коммерческого контракта |
+| Review request (StoreKit) | INAPPLICABLE | Watch-only не имеет обязательного rating flow в этом workflow | Нет запроса оценки и ручного rate-entry | REL-208/REL-209: платформенное исключение watchOS, не пропуск проверки |
+| HealthKit | Нет | Учёт тренировки не входит в MVP | Счёт работает без разрешений | Не использовать для удержания экрана |
+| Push notifications | Нет | Основному loop не нужны | Не требуется | Не включать entitlement |
+| Analytics | Предложено: нет | Проверка гипотез ранними наблюдениями и доступными агрегатами магазина | Полевой тест без встроенной отправки событий | Любая телеметрия требует новой privacy-оценки и решения владельца |
+| Crash reporting | Стороннего SDK нет | Системные диагностические средства во время разработки | Ошибки хранения видны локально | Не обещать отсутствие системной диагностики Apple |
+| AI / LLM | Нет | Правила детерминированы | Не требуется | Нет сетевого AI сценария |
+| CloudKit / iCloud | Предложено: нет | Синхронизация/облачная история не включены | Локальное восстановление своей игры | Между устройствами перенос не обещан |
+| Published site (Cloudflare Pages) | Да, отдельный `Web/` | Публичные privacy/terms/support + landing | Читаемая bundle-копия legal/support на часах | H1 задаёт `SUPPORT_SITE_URL`, `SUPPORT_EMAIL`, `DEVELOPER_NAME`; публикация — действие владельца |
 
-The published site is present in every product, so its row records how rather than
-whether. It is a separate deployable in `Web/`, not part of the application bundle:
-static files with no server code, no forms, and no analytics, published by
-`./Scripts/deploy-site.sh` and never by a verification gate. The app links to it and
-reads nothing from it, so the site being down degrades a link, never a feature. Its
-origin, support address, and developer name are `SUPPORT_SITE_URL`,
-`SUPPORT_EMAIL`, and `DEVELOPER_NAME` in `Config/project.env`.
+### StoreKit и единый владелец доступа
 
-The review request is present in every iOS product, so its row records how rather than
-whether. The system prompt is asked for through an injected dependency instead of
-being called from a view, and the eligibility state it reads is persisted: no test
-can observe the system dialog, so the rule that decides to ask is proved by unit
-tests against that dependency, and the product and release audits verify the real
-interaction through REL-208. For watchOS, record this integration as inapplicable:
-no required rating request or manual rate entry point exists on that platform.
+Этот подраздел применяется к варианту lifetime-разблокировки H4a. При бесплатной
+v1 или платном скачивании игровой access owner остаётся, но IAP, trial, restore
+и debug premium override не добавляются. Покупка платного скачивания происходит
+в App Store; повторной покупки внутри приложения нет.
 
-A product that sells anything carries a development-only premium override, and its
-shape is decided here rather than per product, because a developer who cannot reach
-the paid build on a real device improvises the way in. `DebugPremiumOverride` is
-wrapped in `#if DEBUG` and resolves through the single entitlement owner, so no view
-ever tests it and turning it off leaves StoreKit behavior exactly as it was. It
-persists one flag in `UserDefaults` under `forcePremium`, so a build installed from
-Xcode keeps its entitlement across a relaunch. It never creates, alters, or finishes
-a transaction — it changes only what the entitlement owner reports, so a sandbox
-purchase stays the only evidence that the purchase path itself works. Being an
-override it is compiled out of Release, which is what keeps REL-1101 true of every
-shipped build and is also the limit of what its tests can show: the suite runs in
-Debug in every gate, so it proves the rule and never the absence of the override
-from a shipped binary. The source gate, clean Release build, and release audit cover
-that absence through REL-1101.
+`EntitlementStore` слушает `Transaction.updates` с запуска, читает
+`Transaction.currentEntitlements`, проверяет product ID и verification result,
+обрабатывает success/pending/cancel/error и revoked entitlement. Одна транзакция,
+полученная через purchase result и updates, не выдаёт доступ дважды. `finish()`
+вызывается после успешной обработки проверенной покупки. Restore — явное действие
+пользователя, которое вызывает `AppStore.sync()`, затем обновляет entitlement.
+[Current entitlements](https://developer.apple.com/documentation/storekit/transaction/currententitlements),
+[Transaction updates](https://developer.apple.com/documentation/storekit/transaction/updates),
+[Restore через sync](https://developer.apple.com/documentation/storekit/appstore/sync()).
 
-Its unit tests cover four things: the entitlement owner reports paid with the
-override on, reports exactly what the store says with it off, calls no purchase or
-transaction API in either case, and reads the flag from an injected defaults suite
-rather than `.standard`, so a test run cannot leave a developer's simulator
-entitled. A test wrapped in `#if !DEBUG` asserting the override is absent is
-compiled out of the only configuration any gate ever runs, so it can never fail —
-do not write one.
+Цена выводится только из загруженного `Product.displayPrice`. В исходниках,
+каталогах строк и milestones нет суммы или символа валюты. У единственного lifetime
+продукта нет выдуманной сравнительной цены, процента скидки, срока подписки или
+renewal. При незагруженном продукте кнопка покупки не показывает выдуманную цену.
+Любое будущее допустимое сравнение — **computed, never authored**: вычисляется
+из настоящих продуктов StoreKit, а не вводится как рекламная опорная цена.
 
-A product that sells anything decides its price presentation here as well, because
-the alternative is a number typed into a view. Every price a person sees is the
-loaded `Product`'s own localized formatting: no currency symbol, price string, or
-locale assumption is written into a source or a string catalog, so a storefront this
-developer never opens is right for a reason rather than by luck.
+Точный бесплатный лимит, единица его подсчёта, момент списания и offline/reinstall
+правила остаются H4. Технический инвариант: стабильный game ID и idempotent ledger
+не списывают дополнительную игру при reopen, finish/resume, undo или повторе
+записи. Коммерческий учёт не выводится из текущего списка сохранённых результатов.
 
-A comparison price is computed, never authored — the twelve-month equivalent of a
-monthly product is twelve times the price StoreKit returned for it, a stated saving
-is that figure measured against the real annual price, and the rounding goes the way
-that can only understate the claim. An introductory or promotional offer is shown
-only where StoreKit reports this person eligible, and it carries its duration and
-the renewal price that follows it. When a compared product does not load, the
-paywall shows the price it has rather than a comparison it cannot justify: one price
-that is true beats two that might not be.
+`DebugPremiumOverride` входит в тот же milestone, что и EntitlementStore. Он полностью
+обёрнут в `#if DEBUG`, хранит `forcePremium` в инъецированном `UserDefaults` suite,
+влияет только на итог single entitlement owner и не создаёт, не меняет и не завершает
+StoreKit transaction. Ни одна view не проверяет этот флаг. Выключение возвращает
+ровно настоящий store result. Unit-тесты доказывают on/off, отсутствие вызовов
+transaction API и изолированное defaults-хранилище. Отсутствие override в поставке
+проверяют source gate, чистая Release-сборка и REL-1101; условно исключённый из Debug
+тест не является доказательством.
+Обязательная граница override: **compiled out of Release**.
 
-Its unit tests cover the arithmetic, the rounding direction, that an ineligible or
-missing product yields no comparison at all, and that no price string is assembled
-from a symbol and a number. The content, product, and release audits cover the
-finished paywall through REL-408, because correct arithmetic alone does not establish
-that the charged amount is the number that stands out.
+### Legal и support на часах
+
+`Web/` содержит четыре статические страницы без форм, серверного кода и аналитики.
+`/terms` ссылается на Apple Standard EULA, собственная лицензия не пишется.
+Приложение хранит читаемые английские privacy/terms/support сведения в bundle,
+показывает публичные URL и контакт на часах; доступ к сути не требует iPhone или
+доступности сайта. Синхронность on-watch copy и Web проверяет Legal and Support.
+Deployment сайта не выполняется verification gate.
 
 ## Security and privacy
 
 | Question | Answer |
 | --- | --- |
-| What personal data is processed | TBD |
-| What leaves the device, and to where | TBD |
-| Where secrets live | TBD (**never in the repository**) |
-| Keychain usage | TBD |
-| Required-reason API usage | TBD |
-| Privacy manifest needed? | TBD |
-| Data retention | TBD |
-| How a user deletes their data | TBD |
+| What personal data is processed | Локальный счёт, режим, правила и роли игроков; имя не обязательно. Usage ledger для принятой коммерческой модели; сведения права покупки от StoreKit |
+| What leaves the device, and to where | Игровая история собственному серверу не отправляется. StoreKit взаимодействует с Apple; открытые URL — с host сайта; добровольное письмо поддержки — с владельцем mailbox |
+| Where secrets live | ASC key ID/issuer/key path — окружение разработчика; закрытый `.p8`, signing и Cloudflare token вне Git. Содержимое ключей не печатается и не копируется |
+| Keychain usage | Для MVP не предлагается: собственных login tokens нет; платное право не хранится как самодельный Keychain-флаг |
+| Required-reason API usage | Проверять реально используемые API. Для app-only UserDefaults — применимый reason `CA92.1`; остальные категории не объявлять без использования |
+| Privacy manifest needed? | Да: `PrivacyInfo.xcprivacy` отражает фактические required-reason APIs и data practices; релизный аудит проверяет consistency с App Store privacy и сайтом |
+| Data retention | Игровой store — пока нужна активная/последняя игра или пока пользователь не удалит её; полный архив и сроки внешнего support mailbox не подставляются молча |
+| How a user deletes their data | Явное on-watch удаление игровых данных с подтверждением и понятным перечнем; не отзывает покупку Apple. Полный reset/trial semantics — H4 |
 
-`Config/project.env` is committed and must never hold a credential. Record permission
-timing and user recovery behavior in [DESIGN.md](DESIGN.md).
+`Config/project.env` содержит публичную конфигурацию, никогда не credential.
+`UserDefaults` reason относится к фактическому доступу, а не разрешает fingerprinting.
+[Apple: required-reason APIs](https://developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacyaccessedapitypes/nsprivacyaccessedapitype).
 
-The support mailbox is a real data flow, not a footnote: people send it screenshots,
-device details, and sometimes more than they meant to. Say who receives it, how long
-mail is kept, and that it is used only to answer the request — and say the same thing
-on the published privacy policy, because the two have to agree. The Cloudflare
-credential that publishes the site belongs in the developer's shell or in
-`wrangler login`, never in this repository.
+Получатель support-писем, действующий адрес и срок хранения определяются владельцем
+в H1 PRODUCT. Предложение: использовать письмо только для ответа и хранить не дольше
+объявленного срока; не прикладывать игровые данные автоматически. Эти сведения
+одинаковы в on-watch Privacy, Web и документах. Публиковать фиктивный контакт нельзя.
 
 ## Modularization
 
 | Question | Answer |
 | --- | --- |
-| Single target, or several? | TBD |
-| Local Swift packages? | TBD |
-| Where new files go | TBD |
-| Are folders synchronized groups? | TBD |
+| Single target, or several? | Современный Xcode Watch-only: один executable Watch target, его packaging container, unit/UI test targets; без отдельного WatchKit extension или iPhone executable |
+| Local Swift packages? | Нет на старте; логические слои каталогами и API, без преждевременного дробления маленького продукта |
+| Where new files go | `App/<Project>/Domain`, `Services`, `Features`, `Resources`, `App`; тесты рядом в test targets, test fixtures в их ресурсах |
+| Are folders synchronized groups? | Предложено: Xcode synchronized groups внутри известных source/test roots; проверять membership ресурсов и privacy manifest; конкретная структура фиксируется M00 |
 
-**A trade-off to decide, not a default to inherit.** One target is usually the
-cheaper mistake — splitting later is straightforward, while unsplitting a premature
-module boundary is not — but a project with a widget, an app clip, a share
-extension, or a shared framework may need several from the start. Decide it here,
-with the reason, like every other axis in this document. This template prescribes
-no module layout.
+Packaging container нужен Xcode для упаковки Watch-only продукта; это не companion
+приложение и не устанавливаемый iPhone UI. Shared scheme собирает container и Watch
+executable, выполняет Watch unit/UI tests. `APP_TARGET` и `BUNDLE_IDENTIFIER`
+указывают на Watch executable; версия/build container синхронизированы с Watch app.
+[Apple: Watch-only targets](https://developer.apple.com/documentation/watchos-apps/creating-independent-watchos-apps).
 
 ## Testing strategy
 
+Watch unit/UI targets поддерживаются инструментами Apple; при M00 их нужно
+подключить к общему scheme и проверить фактический запуск.
+[Apple: setting up tests for a watchOS app](https://developer.apple.com/documentation/watchos-apps/setting-up-tests-for-your-watchos-app).
+
 | Level | Framework | What it covers | What it does not | Where it lives |
 | --- | --- | --- | --- | --- |
-| Unit | TBD | TBD | TBD | TBD |
-| Integration | TBD | TBD | TBD | TBD |
-| UI | TBD | TBD | TBD | TBD |
+| Unit | Swift Testing | Переходы обычного счёта/трёх deuce modes, утверждённого tie-break, американо, service anchor, validation, exact undo, usage idempotency, entitlement mapping | Читаемость и надёжность реального касания | Watch unit test target, Domain/Service tests |
+| Integration | Swift Testing/XCTest + временные файлы + StoreKit Testing | Атомарный store, launch recovery, миграции, повреждение/запрет записи, duplicate StoreKit updates, purchase/cancel/pending/restore | Настоящую покупку и системные UI/сеть App Store | Watch test target, fixtures и `.storekit` конфигурация |
+| UI | XCUITest | English создание двух режимов, score taps, исправление, undo через границу, завершение/resume, paywall и legal navigation, accessibility labels | Поведение на мокром запястье, солнце, тактильные ощущения, все VoiceOver и lifecycle особенности | Watch UI test target shared scheme |
+| Device/audit | Ручная проверка на настоящих Apple Watch + evidence | Digital Crown, VoiceOver, размер текста, солнце, inactive/Always On, возвращение и работа без телефона, sandbox purchase | Не заменяет domain и persistence tests | Handoff owning milestone и финальный audit |
 
 | Question | Answer |
 | --- | --- |
-| What must always have a test | TBD |
-| What is deliberately not unit-tested, and why | TBD |
-| How dependencies are substituted | TBD |
-| How persistence is tested | TBD |
-| Fixtures and their location | TBD |
-| Are UI tests in the shared scheme? | TBD (strict integration and release gates run the complete scheme) |
+| What must always have a test | Каждая ветвь счёта и смены подачи; все deuce phases; валидные/конфликтные ручные правки; undo через game/set/mode/finish; persisted consistency; failed-write rollback; trial и transaction idempotency |
+| What is deliberately not unit-tested, and why | Системный purchase dialog, реальные haptics/VoiceOver и визуальная читаемость; это UI/device evidence, а не mock-утверждение |
+| How dependencies are substituted | Протоколы repository/store/haptics/clock/ID factory; отдельный defaults suite и temp directory для каждого теста |
+| How persistence is tested | Записать → создать новый repository → прочитать; fault injection до/после атомарного commit, truncated file, backup recovery, migrated fixtures; проверять весь snapshot и revision |
+| Fixtures and their location | Committed fixtures внутри test target; граничные счёты и схемы хранения без персональных данных; StoreKit config содержит тестовый продукт после H4 |
+| Are UI tests in the shared scheme? | Да; строгие milestone/integration/release gates запускают обязательный полный scheme, пропуск не считается успехом |
 
-**A test that cannot fail is worse than no test** — it reports success forever. For
-each significant test, be able to say what it would catch.
+Нужно доказать конкретные случаи: оба победителя golden point; потеря единственного
+advantage и возврат к deciding point; длинный deuce; начало следующего сета без
+закрытия матча; нечётный total американо; укороченная последняя серия по PRODUCT;
+ручная коррекция в той же видимой фазе с другим подающим; перезапуск сразу после
+сохранённого очка; resume результата не расходует новую бесплатную игру.
+
+Проверка watchOS 10 как минимумом не заявляется до решения H3 и выполнения на
+соответствующей среде. Нет тестов приложения, result bundles или доказанного build
+на этапе написания этих контрактов.
 
 ## Migration strategy
 
 | Question | Answer |
 | --- | --- |
-| How schema changes ship | TBD |
-| How a migration is tested before release | TBD |
-| Upgrade path from the last shipped build | TBD |
-| What happens if a migration fails on a user's device | TBD |
-| Is a rollback possible? | TBD |
+| How schema changes ship | Новая schema version и явная односторонняя transform chain; старые shipped fixtures остаются в тестах |
+| How a migration is tested before release | Реальные формы предыдущих схем, boundary states, undo, service context и usage ledger; повторный запуск миграции идемпотентен |
+| Upgrade path from the last shipped build | До первого релиза shipped schema отсутствует; после релиза поддерживается переход от каждой реально опубликованной версии без потери счёта |
+| What happens if a migration fails on a user's device | Исходный файл/backup сохраняются, игра не перезаписывается пустой; показывается recovery/error с явным reset, блокируется небезопасная запись |
+| Is a rollback possible? | Код может прочитать только известные версии; downgrade не записывает поверх более новой схемы. Предыдущая резервная копия даёт recovery при явном выборе, не обещание автоматического отката приложения |
 
-Data loss on upgrade is a P0. If a build has already shipped, the functional audit
-must complete the upgrade smoke test with realistic prior data.
+При новой shipped версии upgrade smoke с реальными prior fixtures обязателен в
+функциональном аудите. Нельзя «лечить» миграцию сбросом trial или удалением undo.
 
 ## Rejected alternatives
 
-**What was considered and turned down.** This section prevents the same debate in
-every review, and it is the first thing to re-read when a decision starts to hurt.
+Это отклонённые варианты **в предлагаемом направлении**, не отдельно утверждённые
+владельцем изменения продукта.
 
 | # | Alternative | Rejected because | Reconsider when |
 | --- | --- | --- | --- |
-| R1 | TBD | TBD | TBD |
+| R1 | Companion iPhone + Watch Connectivity как основной store | Противоречит прямому Watch-only требованию | Только при новом продуктовом решении пользователя |
+| R2 | WebView с кодом интерактивного макета | JS модели и ограничения — демонстрация UX; нет нативного жизненного цикла и доказанных правил | Не предполагается для MVP |
+| R3 | SwiftData/Core Data для текущей игры | Нет запросов по архиву; explicit small snapshot проще контролировать в миграциях и атомарном undo | Если одобрен большой searchable history или sync |
+| R4 | UserDefaults как база матча | Счёт, подача, undo и usage должны сохраняться согласованно одной транзакцией | Не пересматривать для игрового состояния |
+| R5 | Event sourcing с повторным проигрыванием после изменения правил | Ручной счёт не раскрывает прошлые розыгрыши; replay может изменить уже сыгранный результат | Только для отдельной доказанной функции анализа, не коррекции |
+| R6 | Backend, account, RevenueCat/аналитический SDK | Добавляет сеть, персональные данные и поддержку без необходимого MVP-сценария | При подтверждённой потребности, отдельном решении и privacy review |
+| R7 | HealthKit workout для удержания экрана | Учёт здоровья не запрошен; системный lifecycle нельзя обходить фиктивной тренировкой | Если владелец добавит полноценный workout-сценарий |
+| R8 | Ограничить число сетов или урезать undo молча для памяти | Меняет подтверждённый продукт/доверие к исправлению | Только явное новое продуктовое решение; сначала оптимизировать хранение |
+| R9 | Подписка, сравнительная цена, promotional offers | Предложен простой lifetime; дополнительных продуктов и доказанного сравнения нет | Если H4 выберет иную коммерческую модель |
 
 ## Unresolved decisions
 
-Not decided. **No milestone may depend on a particular outcome**, and no agent may
-resolve one silently.
+Ни один milestone не подставляет конкретный исход вместо решения. После утверждения
+владелец и Builder обновляют owning contract и конкретную проверяемую конфигурацию.
 
 | # | Question | Options | Blocks | Who decides |
 | --- | --- | --- | --- | --- |
-| U1 | TBD | TBD | TBD | Human |
+| H3 | Минимальная watchOS и охват устройств | **watchOS 10 (Recommended)** — достаточно выбранных API и широкий охват; watchOS 11 — сократить legacy-матрицу ценой части устройств; watchOS 26 — ориентироваться на новую платформу ценой более узкого охвата. Для выбранного варианта нужна доступная проверяемая среда, а не только новый SDK | M00 deployment/device/runtime, layout matrix, availability проверки и release evidence | Владелец после подтверждения доступной тестовой среды |
+| H1 → PRODUCT | Название, bundle identity, публичные контакты/URLs, support retention | Варианты и требуемые данные в [PRODUCT.md](PRODUCT.md#unresolved-decisions); не выдумывать идентификаторы для release | Конфигурация M00 и Legal and Support | Владелец |
+| H2 → PRODUCT | Правила завершения сета/tie-break и подачи | Варианты в PRODUCT; domain engine принимает только однозначно утверждённое правило | Движок обычного матча и его тесты | Владелец |
+| H4 → PRODUCT | Lifetime/trial contract, доступ, deletion/reinstall semantics | Варианты в PRODUCT; StoreKit и local usage не выбирают коммерческую модель сами | Entitlement/paywall и audit покупок | Владелец |
+
+Технические вопросы, которые Builder вправе закрыть в рамках утверждённого решения:
+точные native protection options, политика резервной копии файлов, file-size
+оптимизация без изменения поведения, конкретные test fixtures и доступные simulator
+identifiers. Они фиксируются в owning milestone с доказательствами; это не повод
+менять продукт или объявлять заранее выполненные проверки.
