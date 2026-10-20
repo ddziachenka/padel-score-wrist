@@ -1,7 +1,7 @@
 # M05 — Live Score
 
 **ID:** M05
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M04
 **Validation:** make milestone ID=M05
 **Handoff:** AI/handoffs/M05-handoff.md
