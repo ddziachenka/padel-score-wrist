@@ -1,12 +1,12 @@
 /// The rules a regular match is played under. They are chosen before the match and
 /// stay explicit in its state, so nothing is inferred from a remembered default.
-struct MatchRules: Hashable, Sendable {
+struct MatchRules: Hashable, Sendable, Codable {
     var deuceRule: DeuceRule
     var setPolicy: SetPolicy
 }
 
 /// What happens at 40–40 in a regular game. A tie-break never uses it.
-enum DeuceRule: Hashable, Sendable, CaseIterable {
+enum DeuceRule: String, Hashable, Sendable, CaseIterable, Codable {
     /// The first 40–40 is a deciding point.
     case goldenPoint
     /// The first 40–40 gives one advantage; once it is lost, 40–40 is a deciding point.
@@ -18,7 +18,7 @@ enum DeuceRule: Hashable, Sendable, CaseIterable {
 
 /// How a set ends. H2 approved exactly one policy, and the engine reads every number
 /// from it rather than from constants of its own.
-enum SetPolicy: Hashable, Sendable {
+enum SetPolicy: String, Hashable, Sendable, Codable {
     /// First to six games with a two-game lead. At 6–6 a tie-break to seven points with a
     /// two-point lead decides the set, which is recorded 7–6.
     case tieBreakAtSixAll

@@ -1,6 +1,6 @@
 /// The two numbers an americano round is played to. The players choose both; neither has
 /// a preset value.
-struct AmericanoRules: Hashable, Sendable {
+struct AmericanoRules: Hashable, Sendable, Codable {
     /// N: the rallies both teams play together. The round ends when their points add up to
     /// it, so neither team has to reach it alone.
     var totalRallies: Int
@@ -11,7 +11,7 @@ struct AmericanoRules: Hashable, Sendable {
 
 /// The complete scoring state of an americano round: two point totals counted towards one
 /// shared target, and who serves the next rally.
-struct AmericanoState: Hashable, Sendable {
+struct AmericanoState: Hashable, Sendable, Codable {
     var rules: AmericanoRules
     var score: AmericanoScore
     var service: AmericanoServiceAnchor
@@ -42,7 +42,7 @@ struct AmericanoState: Hashable, Sendable {
 }
 
 /// The points each team has won in the round.
-struct AmericanoScore: Hashable, Sendable {
+struct AmericanoScore: Hashable, Sendable, Codable {
     var us: Int
     var them: Int
 
@@ -69,7 +69,7 @@ struct AmericanoScore: Hashable, Sendable {
 /// Who serves the next rally and where that rally falls in their block. Rallies move it by
 /// the rules; a correction sets it explicitly, because the rallies behind a corrected score
 /// are unknown and it is never worked out from the points.
-struct AmericanoServiceAnchor: Hashable, Sendable {
+struct AmericanoServiceAnchor: Hashable, Sendable, Codable {
     var order: ServiceOrder
     var server: Player
     /// The next rally's place in the server's block, from 1 to the rallies per server.

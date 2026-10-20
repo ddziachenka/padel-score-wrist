@@ -1,6 +1,6 @@
 /// The complete scoring state of a regular match. It has no number of sets and no match
 /// winner: a new set follows every finished one until the match is finished by hand.
-struct MatchState: Hashable, Sendable {
+struct MatchState: Hashable, Sendable, Codable {
     var rules: MatchRules
     /// Finished sets in playing order. The sets each team won are derived from these.
     var completedSets: [SetGames]
@@ -28,13 +28,13 @@ struct MatchState: Hashable, Sendable {
 }
 
 /// Whether the current set is in a regular game or in its tie-break.
-enum SetPhase: Hashable, Sendable {
+enum SetPhase: Hashable, Sendable, Codable {
     case game(GameScore)
     case tieBreak(TieBreakScore)
 }
 
 /// The score of a regular game.
-enum GameScore: Hashable, Sendable {
+enum GameScore: Hashable, Sendable, Codable {
     /// Before 40–40. Both teams on 40 is never written this way: it is one of the 40–40
     /// stages below, because the rules treat them differently.
     case points(us: GamePoint, them: GamePoint)
@@ -48,7 +48,7 @@ enum GameScore: Hashable, Sendable {
 }
 
 /// A team's points in a regular game before 40–40, shown 0, 15, 30 and 40.
-enum GamePoint: Hashable, Sendable, CaseIterable {
+enum GamePoint: String, Hashable, Sendable, CaseIterable, Codable {
     case love
     case fifteen
     case thirty
@@ -66,7 +66,7 @@ enum GamePoint: Hashable, Sendable, CaseIterable {
 }
 
 /// Points in a tie-break, counted 0, 1, 2 and on.
-struct TieBreakScore: Hashable, Sendable {
+struct TieBreakScore: Hashable, Sendable, Codable {
     var us: Int
     var them: Int
 
@@ -84,7 +84,7 @@ struct TieBreakScore: Hashable, Sendable {
 }
 
 /// The games each team won in one set.
-struct SetGames: Hashable, Sendable {
+struct SetGames: Hashable, Sendable, Codable {
     var us: Int
     var them: Int
 
@@ -110,7 +110,7 @@ struct SetGames: Hashable, Sendable {
 
 /// Who serves the next point, with the context the serving rules need. Points move it
 /// by the rules; it is never reconstructed from the score.
-struct ServiceAnchor: Hashable, Sendable {
+struct ServiceAnchor: Hashable, Sendable, Codable {
     var order: ServiceOrder
     var server: Player
     /// Present exactly while a tie-break is played.
@@ -121,7 +121,7 @@ struct ServiceAnchor: Hashable, Sendable {
 }
 
 /// The tie-break context that serving depends on.
-struct TieBreakServing: Hashable, Sendable {
+struct TieBreakServing: Hashable, Sendable, Codable {
     /// Served the tie-break's first point. The other pair serves first in the next set.
     var opener: Player
     var turn: TieBreakTurn
@@ -129,7 +129,7 @@ struct TieBreakServing: Hashable, Sendable {
 
 /// Where the current server is within their tie-break turn. The opener serves a single
 /// point; every turn after it is two points.
-enum TieBreakTurn: Hashable, Sendable {
+enum TieBreakTurn: String, Hashable, Sendable, Codable {
     case opening
     case firstOfTwo
     case secondOfTwo

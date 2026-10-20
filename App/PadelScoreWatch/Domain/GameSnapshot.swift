@@ -6,17 +6,26 @@ struct GameID: Hashable, Sendable {
     let rawValue: UUID
 }
 
-/// One game: the identity it keeps from creation to its result, and its score in the format
-/// being played. Lifecycle, revision and undo history join it with persistence.
-struct GameSnapshot: Hashable, Sendable {
+/// One game: the identity it keeps from creation to its result, its score in the format
+/// being played, and whether it is still being played.
+struct GameSnapshot: Hashable, Sendable, Codable {
     let id: GameID
     var format: GameFormat
+    var status: GameStatus = .active
 }
 
 /// The format a game is scored in, with its complete state.
-enum GameFormat: Hashable, Sendable {
+enum GameFormat: Hashable, Sendable, Codable {
     case match(MatchState)
     case americano(AmericanoState)
+}
+
+/// Whether a game is still being played. A finished game keeps its whole state, so it can
+/// be corrected and resumed exactly where it stopped. How it ended is read from that state:
+/// a round finished before its total ended early, and a set not at 0–0 is incomplete.
+enum GameStatus: String, Hashable, Sendable, Codable {
+    case active
+    case finished
 }
 
 extension GameSnapshot {
@@ -32,5 +41,17 @@ extension GameSnapshot {
         var corrected = self
         corrected.format = .americano(round)
         return corrected
+    }
+}
+
+/// Saved as the identifier alone.
+extension GameID: Codable {
+    init(from decoder: any Decoder) throws {
+        rawValue = try decoder.singleValueContainer().decode(UUID.self)
+    }
+
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(rawValue)
     }
 }

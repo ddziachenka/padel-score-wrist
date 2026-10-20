@@ -1,6 +1,6 @@
 /// A side of the match. `US` is the wearer and their partner; `US` is always shown
 /// on the left and `THEM` on the right, whoever serves.
-enum Team: Hashable, Sendable, CaseIterable {
+enum Team: String, Hashable, Sendable, CaseIterable, Codable {
     case us
     case them
 
@@ -13,7 +13,7 @@ enum Team: Hashable, Sendable, CaseIterable {
 }
 
 /// One of the four fixed roles. Version 1 has no names or profiles.
-enum Player: Hashable, Sendable, CaseIterable {
+enum Player: String, Hashable, Sendable, CaseIterable, Codable {
     case you
     case partner
     case opponent1

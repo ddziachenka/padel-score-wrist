@@ -1,7 +1,7 @@
 /// The repeating order in which the four players serve. Teams alternate, so the whole
 /// rotation is fixed by which opponent serves straight after You. Who serves next is
 /// kept separately by `ServiceAnchor`.
-enum ServiceOrder: Hashable, Sendable, CaseIterable {
+enum ServiceOrder: String, Hashable, Sendable, CaseIterable, Codable {
     /// You → Opponent 1 → Partner → Opponent 2.
     case youThenOpponent1
     /// You → Opponent 2 → Partner → Opponent 1.
