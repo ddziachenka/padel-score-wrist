@@ -81,9 +81,14 @@ final class NewGameUITests: XCTestCase {
         let server = app.descendants(matching: .any)["game.server"]
         XCTAssertTrue(server.waitForExistence(timeout: 10))
         assertLabel(server, contains: "You")
-        assertLabel(app.descendants(matching: .any)["game.rules"], contains: "One advantage")
         XCTAssertEqual(app.descendants(matching: .any)["game.us"].label, "Our score, 0")
         attachScreenshot("Match started")
+        app.buttons["game.menu"].tap()
+        let rules = app.descendants(matching: .any)["game.rules"]
+        XCTAssertTrue(rules.waitForExistence(timeout: 5))
+        assertLabel(rules, contains: "One advantage")
+        app.goBack()
+        XCTAssertTrue(server.waitForExistence(timeout: 5))
 
         XCUIDevice.shared.rotateDigitalCrown(delta: 1)
         XCUIDevice.shared.rotateDigitalCrown(delta: -1)
@@ -138,9 +143,12 @@ final class NewGameUITests: XCTestCase {
         let server = app.descendants(matching: .any)["game.server"]
         XCTAssertTrue(server.waitForExistence(timeout: 10))
         assertLabel(server, contains: "Partner")
-        assertLabel(server, contains: "Serve 1 of 4")
-        assertLabel(app.descendants(matching: .any)["game.rules"], contains: "16 rallies in total, 4 per server.")
+        assertLabel(app.descendants(matching: .any)["game.serve"], contains: "Serve 1 of 4")
         attachScreenshot("Americano started")
+        app.buttons["game.menu"].tap()
+        let rules = app.descendants(matching: .any)["game.rules"]
+        XCTAssertTrue(rules.waitForExistence(timeout: 5))
+        assertLabel(rules, contains: "16 rallies in total, 4 per server.")
     }
 
     func testBackThrowsTheDraftAway() {

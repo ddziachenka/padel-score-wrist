@@ -5,9 +5,10 @@ import Foundation
 /// app with. It exists only in Debug builds; a Release build always uses the real store.
 ///
 /// - `PADEL_UITEST_STORE`: the store's name; launches with the same name share its saved data.
-/// - `PADEL_UITEST_SEED`: replaces the saved data before loading: `empty`, `lastSettings`,
-///   `damaged` or `restorable`. Without it the data saved by the previous launch stays.
+/// - `PADEL_UITEST_SEED`: replaces the saved data before loading with one of `Seed`. Without it
+///   the data saved by the previous launch stays.
 /// - `PADEL_UITEST_FAIL_SAVES=1`: every save fails, as when the Watch is full.
+/// - `PADEL_UITEST_ALWAYS_ON=1`: the app is drawn as in Always On, with the wrist lowered.
 struct UITestStore {
     enum Seed: String {
         /// Nothing saved, as on first launch.
@@ -19,11 +20,21 @@ struct UITestStore {
         case damaged
         /// The saved file cannot be read, and its backup holds the last-settings session.
         case restorable
+        /// A match under One advantage at 0–0, You serving first, then Opponent 1.
+        case matchStart
+        /// The same match at 5–4 in games and 40–0, with US one point from the first set.
+        case matchSetPoint
+        /// The same match in the first set's tie-break, US ahead 6–5 with Partner serving.
+        case matchTieBreak
+        /// An americano round of 6 rallies, 2 per server, at 0–0 with You serving first.
+        case americanoStart
     }
 
     let directory: URL
     let seed: Seed?
     let failsSaves: Bool
+    /// Draw the app as in Always On.
+    let showsAlwaysOn: Bool
 
     init?(environment: [String: String]) {
         guard let name = environment["PADEL_UITEST_STORE"], !name.isEmpty,
@@ -34,6 +45,7 @@ struct UITestStore {
             .appending(path: name, directoryHint: .isDirectory)
         seed = environment["PADEL_UITEST_SEED"].flatMap(Seed.init(rawValue:))
         failsSaves = environment["PADEL_UITEST_FAIL_SAVES"] == "1"
+        showsAlwaysOn = environment["PADEL_UITEST_ALWAYS_ON"] == "1"
     }
 
     @MainActor
@@ -55,6 +67,8 @@ struct UITestStore {
         case .restorable:
             write(lastSettings, to: location.backup)
             write(damaged, to: location.main)
+        case .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart:
+            write(Self.session(for: seed).flatMap { try? SessionFile(session: $0).encoded() }, to: location.main)
         }
     }
 
@@ -75,10 +89,33 @@ struct UITestStore {
             rules: .match(MatchRules(deuceRule: .oneAdvantage, setPolicy: .tieBreakAtSixAll)),
             serving: ServingSetup(order: .youThenOpponent2, firstServer: .opponent1)
         )
-        let commands: [SessionCommand] = [
+        return session(after: [
             .start(americano, id: GameID(rawValue: UUID())), .finish,
             .start(match, id: GameID(rawValue: UUID())), .finish,
-        ]
+        ])
+    }
+
+    /// A game being played, reached point by point, so every rally of it can be undone.
+    static func session(for seed: Seed) -> Session? {
+        let match = GameSetup(
+            rules: .match(MatchRules(deuceRule: .oneAdvantage, setPolicy: .tieBreakAtSixAll)),
+            serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
+        )
+        let americano = GameSetup(
+            rules: .americano(AmericanoRules(totalRallies: 6, ralliesPerServer: 2)),
+            serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
+        )
+        let rallies: String
+        switch seed {
+        case .matchSetPoint: rallies = String(repeating: "UUUUTTTT", count: 4) + "UUUU" + "UUU"
+        case .matchTieBreak: rallies = String(repeating: "UUUUTTTT", count: 6) + "UTUTUTUTUTU"
+        default: rallies = ""
+        }
+        let points = rallies.map { SessionCommand.awardPoint(to: $0 == "U" ? .us : .them) }
+        return session(after: [.start(seed == .americanoStart ? americano : match, id: GameID(rawValue: UUID()))] + points)
+    }
+
+    private static func session(after commands: [SessionCommand]) -> Session? {
         var session = Session.empty
         for command in commands {
             guard let next = try? session.applying(

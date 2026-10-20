@@ -4,12 +4,14 @@ extension XCTestCase {
     /// Launches the app in English with a store of its own. The seed replaces the saved data
     /// first: `empty`, `lastSettings`, `damaged` or `restorable`; with `nil` the data of the
     /// last launch with the same store stays. `textSize` is a content size category name.
+    /// `alwaysOn` draws the app as with the wrist lowered.
     @MainActor
     func launchApp(
         store: String,
         seed: String? = "empty",
         failingSaves: Bool = false,
-        textSize: String? = nil
+        textSize: String? = nil,
+        alwaysOn: Bool = false
     ) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
@@ -17,8 +19,28 @@ extension XCTestCase {
         app.launchEnvironment["PADEL_UITEST_STORE"] = store
         if let seed { app.launchEnvironment["PADEL_UITEST_SEED"] = seed }
         if failingSaves { app.launchEnvironment["PADEL_UITEST_FAIL_SAVES"] = "1" }
+        if alwaysOn { app.launchEnvironment["PADEL_UITEST_ALWAYS_ON"] = "1" }
         app.launch()
         return app
+    }
+
+    /// Waits until the element's label is `label`, and fails with the label it has otherwise.
+    @MainActor
+    func waitForLabel(_ element: XCUIElement, _ label: String, timeout: TimeInterval = 5, file: StaticString = #filePath, line: UInt = #line) {
+        let deadline = Date().addingTimeInterval(timeout)
+        while element.label != label, Date() < deadline {
+            RunLoop.current.run(until: Date().addingTimeInterval(0.1))
+        }
+        XCTAssertEqual(element.label, label, file: file, line: line)
+    }
+
+    /// Taps a team as a person does after a rally and waits for the score it shows then. The pause
+    /// after it is longer than the live score's settle time, so the next tap is a new rally.
+    @MainActor
+    func award(_ team: XCUIElement, showing label: String, file: StaticString = #filePath, line: UInt = #line) {
+        team.tap()
+        waitForLabel(team, label, file: file, line: line)
+        Thread.sleep(forTimeInterval: 0.6)
     }
 
     /// Fails with the element's actual label when it does not contain `text`.

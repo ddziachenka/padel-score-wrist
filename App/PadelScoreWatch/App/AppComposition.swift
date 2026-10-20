@@ -14,4 +14,9 @@ enum AppComposition {
             ?? URL.applicationSupportDirectory.appending(path: "Session", directoryHint: .isDirectory)
         return SessionStore(repository: SessionRepository(directory: directory), access: OpenAccess())
     }
+
+    #if DEBUG
+    /// A UI test can draw the app as in Always On, with the wrist lowered.
+    static let drawsAlwaysOnForUITest = UITestStore(environment: ProcessInfo.processInfo.environment)?.showsAlwaysOn ?? false
+    #endif
 }

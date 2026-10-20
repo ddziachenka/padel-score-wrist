@@ -26,7 +26,7 @@
       }
     },
     "%lld rallies in total, %lld per server." : {
-      "comment" : "Americano game screen: the round's rules. Arguments: the total rallies for both teams, the rallies one player serves in a row.",
+      "comment" : "Game menu: the americano round's rules. Arguments: the total rallies for both teams, the rallies one player serves in a row.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -107,8 +107,32 @@
         }
       }
     },
+    "Action undone" : {
+      "comment" : "Game screen: shown above the score for a moment after Undo restored the game as it was before its last change.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Action undone"
+          }
+        }
+      }
+    },
+    "Action undone." : {
+      "comment" : "VoiceOver, after Undo restored the game as it was before its last change.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Action undone."
+          }
+        }
+      }
+    },
     "Advantage" : {
-      "comment" : "Rule at 40–40: win by two points, without limit.",
+      "comment" : "Rule at 40–40: win by two points, without limit. Also how VoiceOver says AD, a team's advantage.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -156,7 +180,7 @@
       }
     },
     "At 40–40: %@" : {
-      "comment" : "Game screen: the 40–40 rule of this match. Argument: the rule's name, such as Golden point. The score 40–40 is kept on one line with word joiners around the dash.",
+      "comment" : "Game menu: the 40–40 rule of this match. Argument: the rule's name, such as Golden point. The score 40–40 is kept on one line with word joiners around the dash.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -263,6 +287,54 @@
         }
       }
     },
+    "Confirm serving" : {
+      "comment" : "Game screen and the new set's serving screen: confirms who serves in a new set. No point of the set is recorded before it.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm serving"
+          }
+        }
+      }
+    },
+    "Confirm serving for set %lld" : {
+      "comment" : "VoiceOver label of the game screen's way to confirm a new set's serving order. Argument: the set's number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm serving for set %lld"
+          }
+        }
+      }
+    },
+    "Confirm serving for set %lld." : {
+      "comment" : "VoiceOver: a new set began, and its serving order must be confirmed before its first point. Argument: the set's number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm serving for set %lld."
+          }
+        }
+      }
+    },
+    "Couldn’t save." : {
+      "comment" : "Alert title: a change to the score could not be saved.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t save."
+          }
+        }
+      }
+    },
     "Couldn’t save. Nothing has changed." : {
       "comment" : "Recovery: starting over could not be saved; the unreadable data is still there.",
       "extractionState" : "manual",
@@ -307,6 +379,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Done"
+          }
+        }
+      }
+    },
+    "Double-tap to add a point" : {
+      "comment" : "VoiceOver hint of a team's score on the game screen: activating it records a rally won by that team.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double-tap to add a point"
+          }
+        }
+      }
+    },
+    "Draw" : {
+      "comment" : "The americano round ended with equal points.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draw"
           }
         }
       }
@@ -383,6 +479,54 @@
         }
       }
     },
+    "Game" : {
+      "comment" : "Title of the game menu.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game"
+          }
+        }
+      }
+    },
+    "Game menu" : {
+      "comment" : "VoiceOver label of the game screen's menu button.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game menu"
+          }
+        }
+      }
+    },
+    "Game to them. Games: us %lld, them %lld." : {
+      "comment" : "VoiceOver: the opponents won the game. Arguments: games in this set, ours then theirs.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game to them. Games: us %1$lld, them %2$lld."
+          }
+        }
+      }
+    },
+    "Game to us. Games: us %lld, them %lld." : {
+      "comment" : "VoiceOver: our team won the game. Arguments: games in this set, ours then theirs.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game to us. Games: us %1$lld, them %2$lld."
+          }
+        }
+      }
+    },
     "Games" : {
       "comment" : "Game screen: games won in the current set, between the two teams' counts.",
       "extractionState" : "manual",
@@ -408,13 +552,25 @@
       }
     },
     "Golden point" : {
-      "comment" : "Rule at 40–40: the next point wins the game.",
+      "comment" : "Rule at 40–40: the next point wins the game. Also shown above the score while that point is played.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Golden point"
+          }
+        }
+      }
+    },
+    "Golden point." : {
+      "comment" : "VoiceOver: the score reached 40–40, and the next point wins the game.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Golden point."
           }
         }
       }
@@ -467,14 +623,38 @@
         }
       }
     },
+    "Match finished" : {
+      "comment" : "The match was finished by hand.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match finished"
+          }
+        }
+      }
+    },
     "New game" : {
-      "comment" : "Title of the screen where a new game is created.",
+      "comment" : "Title of the screen where a new game is created, and the game menu's way there once a round has finished.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "New game"
+          }
+        }
+      }
+    },
+    "Nothing to undo." : {
+      "comment" : "VoiceOver hint of Undo while the game has no change to take back.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing to undo."
           }
         }
       }
@@ -528,13 +708,25 @@
       }
     },
     "Our score, %@" : {
-      "comment" : "VoiceOver label of our team's score. Argument: the points, such as 15.",
+      "comment" : "VoiceOver label of our team's score on the game screen. Argument: the points as said, such as 15 or Advantage.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Our score, %@"
+          }
+        }
+      }
+    },
+    "Our team won" : {
+      "comment" : "VoiceOver: the americano round ended with more points for our team.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Our team won"
           }
         }
       }
@@ -587,6 +779,18 @@
         }
       }
     },
+    "Restores the score before the last change." : {
+      "comment" : "VoiceOver hint of the game screen's Undo button.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restores the score before the last change."
+          }
+        }
+      }
+    },
     "Retry" : {
       "comment" : "Tries to save the same action again after saving failed.",
       "extractionState" : "manual",
@@ -599,8 +803,56 @@
         }
       }
     },
+    "Round finished" : {
+      "comment" : "The americano round reached its total rallies.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Round finished"
+          }
+        }
+      }
+    },
+    "Round finished. Us %@, them %@. Draw." : {
+      "comment" : "VoiceOver: the americano round reached its total with equal points. Arguments: our points, their points.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Round finished. Us %1$@, them %2$@. Draw."
+          }
+        }
+      }
+    },
+    "Round finished. Us %@, them %@. Our team won." : {
+      "comment" : "VoiceOver: the americano round reached its total, with more points for our team. Arguments: our points, their points.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Round finished. Us %1$@, them %2$@. Our team won."
+          }
+        }
+      }
+    },
+    "Round finished. Us %@, them %@. Their team won." : {
+      "comment" : "VoiceOver: the americano round reached its total, with more points for the opponents. Arguments: our points, their points.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Round finished. Us %1$@, them %2$@. Their team won."
+          }
+        }
+      }
+    },
     "Saving…" : {
-      "comment" : "Shown on a button when saving takes more than a second.",
+      "comment" : "Shown on a button, or above the score, when saving takes more than a second.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -671,14 +923,62 @@
         }
       }
     },
+    "Serving confirmed." : {
+      "comment" : "VoiceOver, after the serving order of a new set was confirmed.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serving confirmed."
+          }
+        }
+      }
+    },
+    "Serving: %@." : {
+      "comment" : "VoiceOver: who serves the next point or rally, after it changed. Argument: a role, such as You or Opponent 1.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serving: %@."
+          }
+        }
+      }
+    },
     "Set %lld" : {
-      "comment" : "Game screen title: the set being played. Argument: the set's number.",
+      "comment" : "The set being played: above the score, and the title of its serving order. Argument: the set's number.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Set %lld"
+          }
+        }
+      }
+    },
+    "Set to them. Sets: us %lld, them %lld." : {
+      "comment" : "VoiceOver: the opponents won the set. Arguments: sets won, ours then theirs.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set to them. Sets: us %1$lld, them %2$lld."
+          }
+        }
+      }
+    },
+    "Set to us. Sets: us %lld, them %lld." : {
+      "comment" : "VoiceOver: our team won the set. Arguments: sets won, ours then theirs.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set to us. Sets: us %1$lld, them %2$lld."
           }
         }
       }
@@ -703,6 +1003,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sets aren’t limited. Finish the match whenever you like."
+          }
+        }
+      }
+    },
+    "Shows who serves first in the new set." : {
+      "comment" : "VoiceOver hint of the game screen's way to confirm a new set's serving order.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows who serves first in the new set."
           }
         }
       }
@@ -744,7 +1056,7 @@
       }
     },
     "Still saving…" : {
-      "comment" : "Shown on a button when saving takes more than five seconds.",
+      "comment" : "Shown on a button, or above the score, when saving takes more than five seconds.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -763,6 +1075,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "THEM"
+          }
+        }
+      }
+    },
+    "THEM %lld" : {
+      "comment" : "Game screen at accessibility text sizes: the opponents' games or sets, under the count's name. Argument: the count.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "THEM %lld"
+          }
+        }
+      }
+    },
+    "THEM won" : {
+      "comment" : "The americano round ended with more points for the opponents.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "THEM won"
           }
         }
       }
@@ -791,6 +1127,18 @@
         }
       }
     },
+    "The opponents serve first in this set." : {
+      "comment" : "The new set's serving screen: the rules give the set's first serve to the opponents.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The opponents serve first in this set."
+          }
+        }
+      }
+    },
     "The round ends when both teams’ points add up to the total." : {
       "comment" : "Americano setup: the total is shared by both teams, not each team's target.",
       "extractionState" : "manual",
@@ -804,13 +1152,49 @@
       }
     },
     "Their score, %@" : {
-      "comment" : "VoiceOver label of the opponents' score. Argument: the points, such as 15.",
+      "comment" : "VoiceOver label of the opponents' score on the game screen. Argument: the points as said, such as 15 or Advantage.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Their score, %@"
+          }
+        }
+      }
+    },
+    "Their team won" : {
+      "comment" : "VoiceOver: the americano round ended with more points for the opponents.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Their team won"
+          }
+        }
+      }
+    },
+    "Tie-break" : {
+      "comment" : "Game screen: the set is decided by a tie-break, counted 0, 1, 2 and on.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tie-break"
+          }
+        }
+      }
+    },
+    "Tie-break." : {
+      "comment" : "VoiceOver: the set reached six games each, and a tie-break decides it.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tie-break."
           }
         }
       }
@@ -847,6 +1231,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "US"
+          }
+        }
+      }
+    },
+    "US %lld" : {
+      "comment" : "Game screen at accessibility text sizes: our team's games or sets, under the count's name. Argument: the count.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US %lld"
+          }
+        }
+      }
+    },
+    "US won" : {
+      "comment" : "The americano round ended with more points for our team.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US won"
+          }
+        }
+      }
+    },
+    "Undo" : {
+      "comment" : "VoiceOver label of the game screen's Undo button: restores the game as it was before its last change.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undo"
+          }
+        }
+      }
+    },
+    "Us %@, them %@." : {
+      "comment" : "VoiceOver: the points after a change. Arguments: our points, their points, such as 15 and 40, or Advantage.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Us %1$@, them %2$@."
           }
         }
       }
@@ -899,6 +1331,18 @@
         }
       }
     },
+    "Your last saved score is unchanged." : {
+      "comment" : "Alert message after a change could not be saved: the score shown is the one last saved.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your last saved score is unchanged."
+          }
+        }
+      }
+    },
     "Your latest change couldn’t be read, so the game saved before it was restored." : {
       "comment" : "Alert message at launch after restoring the previous save.",
       "extractionState" : "manual",
@@ -919,6 +1363,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your saved data has not been deleted."
+          }
+        }
+      }
+    },
+    "Your team serves first in this set." : {
+      "comment" : "The new set's serving screen: the rules give the set's first serve to our team.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your team serves first in this set."
           }
         }
       }

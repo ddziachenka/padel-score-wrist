@@ -65,6 +65,44 @@ final class UITestStoreTests {
         #expect(restored.session.activeGame == nil)
     }
 
+    @Test("The live score seeds hold a game being played at the moment each names, every rally of it undoable")
+    func liveScoreSeeds() async throws {
+        let start = try await openStore(["PADEL_UITEST_SEED": "matchStart"])
+        let match = try #require(start.session.matchState)
+        #expect(match.rules.deuceRule == .oneAdvantage)
+        #expect(match.gameScore == .start)
+        #expect(match.service.server == .you)
+        #expect(match.service.order == .youThenOpponent1)
+
+        let setPoint = try await openStore(["PADEL_UITEST_SEED": "matchSetPoint"]).session
+        #expect(setPoint.matchState?.games == SetGames(us: 5, them: 4))
+        #expect(setPoint.matchState?.gameScore == .points(us: .forty, them: .love))
+        #expect(setPoint.matchState?.service.server == .opponent1)
+        #expect(setPoint.current?.history.count == 39)
+
+        let tieBreak = try #require(try await openStore(["PADEL_UITEST_SEED": "matchTieBreak"]).session.matchState)
+        #expect(tieBreak.games == SetGames(us: 6, them: 6))
+        #expect(tieBreak.tieBreakScore == TieBreakScore(us: 6, them: 5))
+        #expect(tieBreak.service.server == .partner)
+
+        let round = try #require(try await openStore(["PADEL_UITEST_SEED": "americanoStart"]).session.round)
+        #expect(round == .start(rules: AmericanoRules(totalRallies: 6, ralliesPerServer: 2), order: .youThenOpponent1, firstServer: .you))
+
+        for seed in [UITestStore.Seed.matchStart, .matchSetPoint, .matchTieBreak, .americanoStart] {
+            let session = try #require(UITestStore.session(for: seed))
+            #expect(session.issues.isEmpty, "\(seed)")
+            #expect(session.activeGame != nil, "\(seed)")
+        }
+    }
+
+    @Test("Only the Always On switch draws the app as with the wrist lowered")
+    func alwaysOnSwitch() throws {
+        let plain = try #require(UITestStore(environment: ["PADEL_UITEST_STORE": name]))
+        #expect(!plain.showsAlwaysOn)
+        let lowered = try #require(UITestStore(environment: ["PADEL_UITEST_STORE": name, "PADEL_UITEST_ALWAYS_ON": "1"]))
+        #expect(lowered.showsAlwaysOn)
+    }
+
     @Test("With failing saves nothing is saved and the request waits for a retry")
     func failingSaves() async throws {
         let store = try await openStore(["PADEL_UITEST_SEED": "empty", "PADEL_UITEST_FAIL_SAVES": "1"])

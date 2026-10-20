@@ -4,9 +4,17 @@ import SwiftUI
 /// has been read. A save restored from its backup is announced before anything else.
 struct RootView: View {
     let store: SessionStore
+    /// The live score, kept for as long as the app runs, so a round its last rally finished stays
+    /// on screen until the person moves on.
+    @State private var live: LiveScore
     /// The restored-save notice was answered in this launch. If recording that fails, the
     /// notice stays saved and is shown again at the next launch.
     @State private var noticeAnswered = false
+
+    init(store: SessionStore, haptics: any HapticPlayer) {
+        self.store = store
+        _live = State(initialValue: LiveScore(store: store, haptics: haptics))
+    }
 
     var body: some View {
         content
@@ -22,15 +30,13 @@ struct RootView: View {
 
     @ViewBuilder
     private var content: some View {
-        switch LaunchScreen(status: store.status, session: store.session) {
+        switch LaunchScreen(status: store.status, session: store.session, finishedOnScreen: live.finishedRound) {
         case .loading:
             LoadingView()
         case .unreadable(let problem):
             RecoveryView(problem: problem, store: store)
         case .game:
-            if let game = store.session.activeGame {
-                GameView(game: game)
-            }
+            LiveScoreView(live: live)
         case .newGame:
             NewGameView(store: store)
         }

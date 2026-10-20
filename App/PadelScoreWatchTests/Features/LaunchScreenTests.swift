@@ -53,6 +53,19 @@ final class LaunchScreenTests {
         #expect(LaunchScreen(status: reopened.status, session: reopened.session) == .newGame)
     }
 
+    @Test("A round its last rally finished on screen stays there; any other finished game leaves New game")
+    func finishedRoundOnScreen() async throws {
+        let store = await openStore()
+        try await store.perform(.start(.americano(total: 1, perServer: 1), id: .number(1)), id: .fresh(), revision: 0)
+        try await store.perform(.awardPoint(to: .us), id: .fresh(), revision: 1)
+
+        #expect(store.session.activeGame == nil)
+        #expect(LaunchScreen(status: store.status, session: store.session, finishedOnScreen: .number(1)) == .game)
+        #expect(LaunchScreen(status: store.status, session: store.session, finishedOnScreen: .number(2)) == .newGame)
+        #expect(LaunchScreen(status: store.status, session: store.session) == .newGame)
+        #expect(LaunchScreen(status: .loading, session: store.session, finishedOnScreen: .number(1)) == .loading)
+    }
+
     @Test("Saved data that cannot be read is reported, never shown as a new game")
     func unreadableData() async throws {
         try folder.write(Data("damaged".utf8), to: folder.location.main)

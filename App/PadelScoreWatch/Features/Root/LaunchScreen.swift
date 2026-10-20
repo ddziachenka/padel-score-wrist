@@ -8,11 +8,20 @@ enum LaunchScreen: Hashable, Sendable {
     case game
     case newGame
 
-    init(status: SessionStore.Status, session: Session) {
+    /// `finishedOnScreen` is a round that its last rally finished while the live score showed it;
+    /// the live score keeps it until the person moves on.
+    init(status: SessionStore.Status, session: Session, finishedOnScreen: GameID? = nil) {
         switch status {
         case .notLoaded, .loading: self = .loading
         case .unreadable(let problem): self = .unreadable(problem)
-        case .ready: self = session.activeGame == nil ? .newGame : .game
+        case .ready:
+            if session.activeGame != nil {
+                self = .game
+            } else if let shown = finishedOnScreen, session.current?.game.id == shown {
+                self = .game
+            } else {
+                self = .newGame
+            }
         }
     }
 }

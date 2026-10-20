@@ -6,8 +6,13 @@ struct PadelScoreApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView(store: store)
+            RootView(store: store, haptics: WatchHaptics())
                 .tint(Palette.accent)
+                #if DEBUG
+                .transformEnvironment(\.isLuminanceReduced) { isReduced in
+                    if AppComposition.drawsAlwaysOnForUITest { isReduced = true }
+                }
+                #endif
         }
     }
 }
