@@ -88,8 +88,15 @@ struct TeamValuesEditor: View {
             .lineLimit(1)
             .minimumScaleFactor(0.6)
             .frame(maxWidth: .infinity, minHeight: Metrics.minimumTap)
+            // The value the Crown turns is outlined, so it is plain which of the two it is.
+            .overlay {
+                RoundedRectangle(cornerRadius: Metrics.cornerRadius)
+                    .strokeBorder(Palette.accent, lineWidth: 2)
+                    .opacity(focused == team ? 1 : 0)
+            }
             .contentShape(.rect)
             .focusable()
+            .focusEffectDisabled()
             .focused($focused, equals: team)
             .digitalCrownRotation(
                 detent: value,

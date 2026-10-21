@@ -479,11 +479,40 @@ appearance; views берут их через `Palette`. Hosted-тест по ф�
 `THEM won`) вместо подающего, касания счёта не принимает, Undo доступен; `New game` — в меню, пока
 экран результата не добавит M07. Неудачная запись — не alert, а состояние поверх игры: `Couldn’t
 save.` / `Your last saved score is unchanged.`, `Retry` (на время записи `Saving…`) и `Cancel`. Меню
-игры (S4) пока содержит правила (`At 40–40: …` или `16 rallies in total, 4 per server.`) и About.
+игры (S4) показывает правила (`At 40–40: …` или `16 rallies in total, 4 per server.`) и About; M06
+поставил над ними исправления.
 Always On: те же места и цифры, контуры вместо заливок, круги кнопок без заливки, касаний нет.
 Новые цифры меняются коротким numeric-переходом (с Reduce Motion — сразу). Новый подающий
 появляется коротким cross-fade роли (DO1): без цвета, чтобы акцент оставался знаком US. После Undo
 строка контекста на 1,5 с говорит `Action undone` (DO2).
+
+С M06 так устроены исправления (S5–S8). Меню игры начинается с `Edit score` и `Game settings`; оба
+открывают один черновик (`Changes are saved when you tap Save.`) и ведут друг к другу строкой, а `Save
+changes` на любом из них сохраняет его целиком. Edit score: `Points` (при 6:6 — `Tie-break`), `Games`,
+`Sets`, `Serving`; Game settings (заголовок экрана `Settings`: длинный рядом с Back на 40 mm
+обрезается): `Format`, `At 40–40` либо `Total rallies` и `Rallies per server`, `Serving`. Строки подписывают значения обеих команд (`US 40 THEM 0`), конфликт стоит под строкой текстом
+E2 цвета destructive. Числа обеих команд правит один экран: `US` слева и `THEM` справа колонками
++ / число / −; Crown меняет обведённое accent число (US при открытии, другое — касанием), VoiceOver —
+свайпом. При One advantage на 40:40 тот же экран спрашивает `First deuce` / `Second deuce`; AD без 40
+у соперника, AD у обеих и AD при Golden point называются там же. Сеты — отдельным списком (`No completed
+sets`, `Add set`); сет правится своим экраном с `Remove set 2`, а вместо подтверждения удаления список
+показывает `Set 2 removed.` и `Restore set 2`. Изменение геймов, очков тай-брейка, очков или серии
+американо требует проверить подачу (`Check who serves next before saving.`): экран Serving начинает с
+порядка от следующего подающего (в американо и `Serve 2 of 4`), затем `Next server` и `After them`;
+открыть его значит проверить, Cancel возвращает непроверенное. После первого очка тай-брейка он
+спрашивает `Next point` (`Serve 1 of 2` / `Serve 2 of 2`) и `Opened the tie-break` (`Your team` / `The
+opponents`). `Format` спрашивает `Change game format?` / `Enter the score for the new format. Nothing
+changes until you save.`; новый счёт начинается с 0:0 и правил последней игры этого формата (иначе
+`Choose`), над строками стоит `Replace game puts this round in place of the match’s score. Undo brings the
+match back.`, кнопка — `Replace game`. Экран, открытый из меню, вместо Back имеет круглую ✕ (`Cancel`);
+с изменениями она спрашивает `Discard changes?` / `Your saved game will stay the same.` / `Keep editing`,
+так же отвечает escape VoiceOver, а жест от края экрана его не закрывает. Save с конфликтом ничего не
+сохраняет: прокручивает к первой строке с ним, объявляет его и играет `failure`. Сохранённая правка
+возвращает на экран счёта: строка контекста на 1,5 с говорит `Changes saved`, VoiceOver — `Changes saved.`,
+очки и подающего, если он сменился. Своего haptic у правки нет, кроме правки, доводящей раунд до N:
+черновик показывает `All rallies are played. Saving finishes the round.` и итог, а сохранение завершает
+раунд с `success`. Неудачная запись — то же состояние E3 поверх экрана; Cancel возвращает к черновику.
+Черновик переживает уход приложения в фон, пока жив процесс.
 
 ## Components and system controls
 
@@ -586,7 +615,12 @@ whenever you like.`, `The round ends when both teams’ points add up to the tot
 `Confirm serving`, `Your team serves first in this set.`, `Couldn’t save.`, `Your last saved score is
 unchanged.`, VoiceOver-подписи `Undo`, `Game menu` и подсказку `Double-tap to add a point`, а также
 объявления вроде `Us 15, them 0.`, `Game to us. Games: us 1, them 0. Serving: Opponent 1.` и
-`Action undone.` — каждое из целых предложений.
+`Action undone.` — каждое из целых предложений. M06 добавил тексты исправлений: `Edit score`, `Game
+settings`, `Points`, `Format`, `Save changes`, `Replace game`, `Add set`, `Remove set 2`, `Restore set 2`,
+`First deuce`, `Second deuce`, `Next server`, `After them`, `Next point`, `Opened the tie-break`, `Next rally
+in block`, `Changes saved`, тексты E2 из таблицы ошибок и подтверждения `Discard changes?`, `Change game
+format?`; счёт в них (`40–40`, `7–5`) держится на одной строке word joiner, `5 of 10 rallies played.`
+имеет plural.
 
 ## Appearance and device coverage
 

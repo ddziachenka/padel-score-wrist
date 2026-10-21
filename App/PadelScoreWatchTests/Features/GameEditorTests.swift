@@ -139,6 +139,22 @@ final class GameEditorTests {
         #expect(haptics.played == [.failure])
     }
 
+    @Test("Leaving a correction without saving keeps the saved game, its history and its file as they were")
+    func leavingWithoutSaving() async throws {
+        let (live, editor, store) = try await editing(after: points("UT"))
+        let saved = store.session
+        editor.changeFormat(to: .americano)
+        editor.editRound { $0.score = AmericanoScore(us: 9, them: 9) }
+
+        live.endEditing()
+
+        #expect(live.editor == nil)
+        #expect(store.session == saved)
+        #expect(await openStore().session == saved)
+        #expect(haptics.played.isEmpty)
+        #expect(live.lastChange == nil)
+    }
+
     @Test("A correction that changes nothing closes without a save")
     func unchangedCorrection() async throws {
         let (live, editor, store) = try await editing(after: points("U"))
@@ -173,9 +189,11 @@ final class GameEditorTests {
         #expect(live.failed == nil)
         #expect(live.editor === editor)
         #expect(editor.draft == draft)
+        editor.editMatch { $0.deuceRule = .advantage }
+        #expect(editor.draft.match?.deuceRule == .advantage, "after Cancel the correction can be changed again")
         files.repair()
         #expect(await live.saveCorrection() == .saved)
-        #expect(store.session.matchState?.rules.deuceRule == .goldenPoint)
+        #expect(store.session.matchState?.rules.deuceRule == .advantage)
     }
 
     @Test("Retry saves a failed correction once and closes the editor")

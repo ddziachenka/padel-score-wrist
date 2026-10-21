@@ -13,6 +13,14 @@ private let matchInPlay = MatchState.fixture(
 /// A round at 12–10 of 32 in blocks of four, Partner serving the third rally of their block.
 private let roundInPlay = AmericanoState.fixture(total: 32, perServer: 4, us: 12, them: 10, server: .partner, rallyInBlock: 3)
 
+/// A tie-break at 3–2 that Partner opened, Opponent 1 serving the second of two.
+private let tieBreakInPlay = MatchState.fixture(
+    games: SetGames(us: 6, them: 6),
+    phase: .tieBreak(TieBreakScore(us: 3, them: 2)),
+    server: .opponent1,
+    tieBreak: TieBreakServing(opener: .partner, turn: .secondOfTwo)
+)
+
 private func correcting(_ state: MatchState, status: GameStatus = .active) -> CorrectionDraft {
     CorrectionDraft(GameSnapshot(id: .number(1), format: .match(state), status: status))
 }
@@ -285,19 +293,41 @@ struct CorrectionDraftTests {
         #expect(state.service.tieBreak?.opener.team == .them)
     }
 
-    @Test("The opener kept for a pair is the one the order gives the first point, so the engine plays on as before")
-    func openerFollowsTheOrder() throws {
-        // You → Opponent 1 → Partner → Opponent 2. Opponent 2 opened; after 1–0 and 1–1, You serves the
-        // second of two.
+    @Test("The opener kept for a pair is the one the order gives the first point, so the engine plays on as before",
+          arguments: ["U", "UT", "UTU", "UTUT", "UTUTU", "UTUTUT"])
+    func openerFollowsTheOrder(rallies played: String) throws {
+        // You → Opponent 1 → Partner → Opponent 2. Opponent 2 opened the tie-break; each turn after
+        // the first point is two points.
         let played = try MatchState.fixture(games: SetGames(us: 6, them: 6), phase: .tieBreak(.start), server: .opponent2,
                                             tieBreak: TieBreakServing(opener: .opponent2, turn: .opening))
-            .playing(rallies("UT")).state
+            .playing(rallies(played)).state
         var draft = correcting(played)
         draft.editMatch { $0.serving.tieBreakOpener = nil }
         draft.editMatch { $0.setTieBreakOpeners(.them) }
 
         #expect(draft.match?.serving.tieBreakOpener == .opponent2)
         #expect(draft.format == .match(played))
+    }
+
+    @Test("A tie-break's corrected points make its serving uncertain until checked")
+    func tieBreakPointsNeedAServingCheck() {
+        var draft = correcting(tieBreakInPlay)
+        draft.editMatch { $0.tieBreakPoints = TieBreakScore(us: 4, them: 2) }
+        #expect(draft.needsServingCheck)
+        #expect(draft.problems == [.servingUnchecked])
+
+        draft.checkServing()
+        #expect(draft.problems == [])
+    }
+
+    @Test("At 0–0 the tie-break is opened by whoever serves next, whoever opened it before")
+    func tieBreakAtItsStartIsOpenedByTheServer() throws {
+        var draft = correcting(tieBreakInPlay)
+        draft.editMatch { $0.tieBreakPoints = .start }
+        draft.checkServing()
+        let state = try #require(draft.format.flatMap(\.matchState))
+
+        #expect(state.service.tieBreak == TieBreakServing(opener: .opponent1, turn: .opening))
     }
 
     @Test("Choosing the pair that already opened keeps its player")
@@ -350,11 +380,15 @@ struct CorrectionDraftTests {
         #expect(draft.format.flatMap(\.americanoRound)?.result == .won(by: .us))
     }
 
-    @Test("A finished round whose total is raised is not finished by the correction")
+    @Test("A finished round is not finished again by a correction, at its total or above it")
     func finishedRoundIsNotFinishedAgain() {
         var draft = correcting(.fixture(total: 10, perServer: 4, us: 10, them: 0, server: .opponent1, rallyInBlock: 3), status: .finished)
-        draft.editRound { $0.totalRallies = 12 }
+        draft.editRound { $0.score = AmericanoScore(us: 6, them: 4) }
+        draft.checkServing()
+        #expect(!draft.finishesRound)
+        #expect(draft.problems == [])
 
+        draft.editRound { $0.totalRallies = 12 }
         #expect(!draft.finishesRound)
         #expect(draft.problems == [])
     }
@@ -437,6 +471,44 @@ struct CorrectionDraftTests {
         #expect(!draft.isReplacement)
         #expect(draft.match?.deuceRule == .goldenPoint)
         #expect(draft.problems == [])
+    }
+
+    @Test("Every problem is told at once, not one after another")
+    func everyProblemAtOnce() {
+        var match = correcting(matchInPlay)
+        match.editMatch {
+            $0.points = EditedPoints(us: .forty, them: .forty)
+            $0.games = SetGames(us: 6, them: 3)
+            $0.completedSets.append(SetGames(us: 6, them: 6))
+        }
+        #expect(match.problems == [.deuceStageMissing, .gamesFinishSet, .completedSetInvalid(index: 1), .servingUnchecked])
+
+        var round = correcting(roundInPlay)
+        round.editRound {
+            $0.score = AmericanoScore(us: 20, them: 20)
+            $0.ralliesPerServer = 2
+        }
+        #expect(round.problems == [.pointsExceedTotal, .rallyInBlockOutsideBlock, .servingUnchecked])
+    }
+
+    @Test("Conflicts are told in the design's words, each a whole sentence naming what to change")
+    func problemMessages() {
+        let told: [(CorrectionProblem, String)] = [
+            (.pointsExceedTotal, "More rallies have been played than the total. Increase the total or correct the score."),
+            (.advantageUnderGoldenPoint, "Advantage isn’t used with Golden point. Change the rule or correct the score."),
+            (.rallyInBlockOutsideBlock, "Choose a rally position within the new service block."),
+            (.servingUnchecked, "Check who serves next before saving."),
+            (.advantageForBoth, "Only one team can have the advantage."),
+            (.advantageWithoutForty, "AD is only possible against 40."),
+            (.completedSetInvalid(index: 1), "Set 2 isn’t a finished set."),
+            (.gamesFinishSet, "These games already win the set. Correct them, or add the set under Sets."),
+            (.tieBreakDecided, "These points already win the tie-break. Correct them, or add the set under Sets."),
+            (.totalRalliesMissing, "Choose the total rallies."),
+            (.ralliesPerServerMissing, "Choose the rallies per server."),
+        ]
+        for (problem, message) in told {
+            #expect(String(localized: problem.message) == message)
+        }
     }
 
     @Test("A correction keeps the game's identity and status")

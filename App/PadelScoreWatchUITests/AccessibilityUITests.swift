@@ -86,6 +86,54 @@ final class AccessibilityUITests: XCTestCase {
         try audit(app, "Live score, largest text")
     }
 
+    func testCorrectingAGamePassesTheAccessibilityAudit() throws {
+        let app = launchApp(store: "audit-correction", seed: "matchSetPoint")
+        XCTAssertTrue(app.buttons["game.menu"].waitForExistence(timeout: 10))
+        app.buttons["game.menu"].tap()
+        app.buttons["menu.editScore"].tap()
+        XCTAssertTrue(app.buttons["editor.save"].waitForExistence(timeout: 5))
+        try audit(app, "Edit score")
+
+        app.buttons["editor.points"].tap()
+        XCTAssertTrue(app.descendants(matching: .any)["pair.us.value"].waitForExistence(timeout: 5))
+        app.buttons["pair.them.increase"].tap()
+        app.buttons["pair.them.increase"].tap()
+        app.buttons["pair.them.increase"].tap()
+        XCTAssertTrue(app.buttons["stage.deuce"].waitForExistence(timeout: 5))
+        try audit(app, "Points at 40–40")
+        app.buttons["stage.deuce"].scrollToAndTap(in: app)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+
+        app.buttons["editor.games"].scrollToAndTap(in: app)
+        app.buttons["pair.them.increase"].tap()
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["editor.serving"].waitForExistence(timeout: 5))
+        try audit(app, "Edit score, serving to check")
+
+        app.buttons["editor.sets"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["sets.add"].waitForExistence(timeout: 5))
+        try audit(app, "Sets, none yet")
+        app.buttons["sets.add"].tap()
+        XCTAssertTrue(app.descendants(matching: .any)["pair.problem"].waitForExistence(timeout: 5))
+        try audit(app, "New set")
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["sets.set.1"].waitForExistence(timeout: 5))
+        try audit(app, "Sets with one to put right")
+        app.goBack()
+
+        app.buttons["editor.serving"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["serving.next.you"].waitForExistence(timeout: 5))
+        try audit(app, "Serving")
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+
+        app.buttons["editor.settings"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["editor.format"].waitForExistence(timeout: 5))
+        try audit(app, "Game settings")
+        app.buttons["editor.format"].tap()
+        XCTAssertTrue(app.buttons["format.americano"].waitForExistence(timeout: 5))
+        try audit(app, "Format")
+    }
+
     func testRecoveryPassesTheAccessibilityAudit() throws {
         let app = launchApp(store: "audit-damaged", seed: "damaged")
         XCTAssertTrue(app.buttons["recovery.tryAgain"].waitForExistence(timeout: 10))

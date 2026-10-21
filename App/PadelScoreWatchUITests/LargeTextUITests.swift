@@ -94,6 +94,40 @@ final class LargeTextUITests: XCTestCase {
         XCTAssertTrue(app.descendants(matching: .any)["game.rules"].waitForExistence(timeout: 5))
     }
 
+    func testACorrectionReflowsAtTheLargestTextSize() {
+        let app = launchApp(store: "large-correction", seed: "matchSetPoint", textSize: largest)
+        app.buttons["game.menu"].scrollToAndTap(in: app)
+        app.buttons["menu.editScore"].scrollToAndTap(in: app)
+        let points = app.buttons["editor.points"]
+        XCTAssertTrue(points.waitForExistence(timeout: 5))
+        assertLabel(points, contains: "Us 40, them 0")
+        attachScreenshot("Edit score, largest text")
+
+        points.scrollToAndTap(in: app)
+        let us = app.descendants(matching: .any)["pair.us.value"]
+        let them = app.descendants(matching: .any)["pair.them.value"]
+        XCTAssertTrue(us.waitForExistence(timeout: 5))
+        let screen = app.windows.firstMatch.frame
+        XCTAssertTrue(screen.contains(us.frame), "US at \(us.frame) is outside the screen \(screen)")
+        XCTAssertTrue(screen.contains(them.frame), "THEM at \(them.frame) is outside the screen \(screen)")
+        XCTAssertEqual(us.value as? String, "40")
+        XCTAssertEqual(them.value as? String, "0")
+        attachScreenshot("Points, largest text")
+        app.buttons["pair.them.increase"].scrollToAndTap(in: app)
+        XCTAssertEqual(them.value as? String, "15")
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        assertLabel(app.buttons["editor.points"], contains: "Us 40, them 15")
+
+        app.buttons["editor.serving"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.descendants(matching: .any)["serving.order.4"].waitForExistence(timeout: 5))
+        attachScreenshot("Serving, largest text")
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+
+        app.buttons["editor.save"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["game.them"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.buttons["game.them"].label, "Their score, 15")
+    }
+
     func testMatchRuleChoicesReadInFullAtTheLargestTextSize() {
         let app = launchApp(store: "large-text-match", textSize: largest)
         app.buttons["newGame.match"].scrollToAndTap(in: app)

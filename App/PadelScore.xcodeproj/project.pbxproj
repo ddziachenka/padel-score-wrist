@@ -109,6 +109,7 @@
 		D5EF114D0D299786AC90B8A0 /* CorrectionServingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8F0DF549E1D579F94DF42 /* CorrectionServingView.swift */; };
 		2F6792BDBBF20648E7A49F84 /* FormatEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C5C6F2224BEF325B22F169 /* FormatEditor.swift */; };
 		40E0E81204FBC0609286E91F /* GameEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EB29A5B22756D3FC0CF86D /* GameEditorScreen.swift */; };
+		F3E6C80BE1A35EB4B912C644 /* CorrectionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED53B06740CEEDE7D8B10A6 /* CorrectionUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -253,6 +254,7 @@
 		4DA8F0DF549E1D579F94DF42 /* CorrectionServingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CorrectionServingView.swift; sourceTree = "<group>"; };
 		58C5C6F2224BEF325B22F169 /* FormatEditor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FormatEditor.swift; sourceTree = "<group>"; };
 		28EB29A5B22756D3FC0CF86D /* GameEditorScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GameEditorScreen.swift; sourceTree = "<group>"; };
+		7ED53B06740CEEDE7D8B10A6 /* CorrectionUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CorrectionUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,6 +424,7 @@
 				71186ECC27FE38B2616A5239 /* UITestSupport.swift */,
 				B623CC6F3C7B08B42AFE89DA /* LargeTextUITests.swift */,
 				4D14E406D10F525B57C642E4 /* AccessibilityUITests.swift */,
+				7ED53B06740CEEDE7D8B10A6 /* CorrectionUITests.swift */,
 			);
 			name = PadelScoreWatchUITests;
 			path = PadelScoreWatchUITests;
@@ -786,6 +789,7 @@
 				52C82235AC6E456908C1D094 /* UITestSupport.swift in Sources */,
 				4D11BA601F78B0A706C09A32 /* LargeTextUITests.swift in Sources */,
 				922D163F894C96D4BE10B928 /* AccessibilityUITests.swift in Sources */,
+				F3E6C80BE1A35EB4B912C644 /* CorrectionUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

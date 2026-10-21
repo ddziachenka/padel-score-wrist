@@ -321,7 +321,7 @@ final class LiveScoreUITests: XCTestCase {
         assertLabel(rules, contains: "One advantage")
         XCTAssertFalse(app.buttons["menu.newGame"].exists, "a game being played is not replaced")
         attachScreenshot("Game menu")
-        app.buttons["menu.about"].tap()
+        app.buttons["menu.about"].scrollToAndTap(in: app)
         XCTAssertTrue(app.staticTexts["about.version"].waitForExistence(timeout: 5))
         app.goBack()
         app.goBack()

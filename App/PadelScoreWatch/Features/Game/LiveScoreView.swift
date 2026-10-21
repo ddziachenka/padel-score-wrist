@@ -42,6 +42,9 @@ enum GameRoute: Hashable, Sendable {
 struct LiveScoreView: View {
     let live: LiveScore
     @State private var path: [GameRoute] = []
+    /// The correction its screens show. It outlives the correction for as long as its screens take
+    /// to leave, so they do not go blank on their way out.
+    @State private var shownEditor: GameEditor?
     @Environment(\.scenePhase) private var scenePhase
     #if DEBUG
     @Environment(\.drawsAlwaysOnForUITest) private var drawsAlwaysOnForUITest
@@ -99,7 +102,9 @@ struct LiveScoreView: View {
     /// Begins a correction from the menu.
     private func edit(_ route: GameRoute) {
         live.beginEditing()
-        if live.editor != nil { path.append(route) }
+        guard let editor = live.editor else { return }
+        shownEditor = editor
+        path.append(route)
     }
 
     private var stack: some View {
@@ -131,8 +136,7 @@ struct LiveScoreView: View {
         case let .serving(proposed, set):
             SetServingView(live: live, setNumber: set, proposed: proposed)
         default:
-            // A screen of a correction keeps the correction it was opened with, also while it leaves.
-            if let editor = live.editor {
+            if let editor = live.editor ?? shownEditor {
                 editorDestination(for: route, editor: editor)
             }
         }

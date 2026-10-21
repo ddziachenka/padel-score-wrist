@@ -40,6 +40,7 @@ struct GameEditorScreen: View {
                     rows
                     SaveSection(editor: editor, live: live, close: close)
                         .padding(.top, Spacing.sm)
+                        .id(ScrollTarget.save)
                 }
                 .allowsHitTesting(!editor.isLocked)
             }
@@ -51,7 +52,8 @@ struct GameEditorScreen: View {
                 if let field = editor.returnedFrom { proxy.scrollTo(field, anchor: .center) }
             }
         }
-        .navigationTitle(kind == .score ? Text("Edit score") : Text("Game settings"))
+        // Game settings is the menu's name for the screen; beside Back on the smallest Watch the title is shorter.
+        .navigationTitle(kind == .score ? Text("Edit score") : Text("Settings", comment: "Title of the correction screen for the game's format, rules and serving, opened from Game settings in the game menu."))
         .navigationBarBackButtonHidden(isRoot)
         .toolbar {
             if isRoot {
@@ -70,6 +72,8 @@ struct GameEditorScreen: View {
                 }
             }
         }
+        // VoiceOver's escape leaves the way Cancel does, asking first.
+        .modifier(EscapeLeaves(isActive: isRoot, leave: leave))
         .alert(Text("Discard changes?"), isPresented: $confirmsDiscard) {
             Button("Discard changes", role: .destructive, action: discard)
             Button("Keep editing", role: .cancel) {}
@@ -100,17 +104,28 @@ struct GameEditorScreen: View {
         }
         switch kind {
         case .score:
-            link(to: .gameSettings, label: Text("Game settings"), fields: [.format, .deuceRule, .totalRallies, .ralliesPerServer]) {
+            link(to: .gameSettings, label: Text("Game settings"), fields: Self.settingsFields) {
                 rulesSummary
             }
             .accessibilityIdentifier("editor.settings")
         case .settings where !editor.draft.isReplacement:
-            link(to: .editScore, label: Text("Edit score"), fields: [.points, .games, .sets]) {
+            link(to: .editScore, label: Text("Edit score"), fields: Self.scoreFields) {
                 EmptyView()
             }
             .accessibilityIdentifier("editor.score")
         case .settings:
             EmptyView()
+        }
+    }
+
+    private static let settingsFields: Set<CorrectionField> = [.format, .deuceRule, .totalRallies, .ralliesPerServer]
+    private static let scoreFields: Set<CorrectionField> = [.points, .games, .sets]
+
+    /// The fields the other screen shows, reached by its row on this one.
+    private var linkedFields: Set<CorrectionField> {
+        switch kind {
+        case .score: Self.settingsFields
+        case .settings: editor.draft.isReplacement ? [] : Self.scoreFields
         }
     }
 
@@ -203,6 +218,7 @@ struct GameEditorScreen: View {
             EditorRowLabel(label: label, problem: problem, value: value)
         }
         .buttonStyle(RowButtonStyle())
+        .id(ScrollTarget.link)
     }
 
     private var replacementNote: Text {
@@ -223,15 +239,40 @@ struct GameEditorScreen: View {
         }
     }
 
-    /// Moves to the first value left to put right on this screen, or to Save, and says what it is.
+    /// Moves to the first value left to put right on this screen, else to the way to the other
+    /// screen where it is, else to Save, and says what it is.
     private func showFirstProblem(scrollingWith proxy: ScrollViewProxy) {
         let problems = editor.problems
         guard let problem = problems.first else { return }
         if let field = fields.first(where: { problems.first(at: $0) != nil }) {
             withAnimation { proxy.scrollTo(field, anchor: .top) }
             focusedRow = field
+        } else if problems.contains(where: { !$0.fields.isDisjoint(with: linkedFields) }) {
+            withAnimation { proxy.scrollTo(ScrollTarget.link, anchor: .top) }
+        } else {
+            withAnimation { proxy.scrollTo(ScrollTarget.save, anchor: .bottom) }
         }
         AccessibilityNotification.Announcement(String(localized: problem.message)).post()
+    }
+}
+
+/// Places of an editor screen that are not a value's row.
+private enum ScrollTarget: Hashable {
+    case link
+    case save
+}
+
+/// Gives VoiceOver's escape gesture the screen's own way out, where it has one.
+private struct EscapeLeaves: ViewModifier {
+    let isActive: Bool
+    let leave: () -> Void
+
+    func body(content: Content) -> some View {
+        if isActive {
+            content.accessibilityAction(.escape, leave)
+        } else {
+            content
+        }
     }
 }
 

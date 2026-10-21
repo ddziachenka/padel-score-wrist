@@ -25,6 +25,40 @@
         }
       }
     },
+    "%lld of %lld rallies played." : {
+      "comment" : "Correction of an americano round: the rallies both teams' points add up to, and the total. Arguments: rallies played, total rallies.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld of %#@total@"
+          },
+          "substitutions" : {
+            "total" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg rally played."
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg rallies played."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld rallies in total, %lld per server." : {
       "comment" : "Game menu: the americano round's rules. Arguments: the total rallies for both teams, the rallies one player serves in a row.",
       "extractionState" : "manual",
@@ -83,6 +117,18 @@
         }
       }
     },
+    "A set ends at six games with a lead of two, at 7–5 or at 7–6." : {
+      "comment" : "Correction of a completed set: its games are not a score that ends a set. The scores 7–5 and 7–6 are kept on one line with word joiners around the dash.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A set ends at six games with a lead of two, at 7\u2060–\u20605 or at 7\u2060–\u20606."
+          }
+        }
+      }
+    },
     "AD" : {
       "comment" : "A team's advantage at 40–40, shown in place of its points. VoiceOver reads it as Advantage.",
       "extractionState" : "manual",
@@ -91,6 +137,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "AD"
+          }
+        }
+      }
+    },
+    "AD is only possible against 40." : {
+      "comment" : "Correction: one team's points were set to AD while the other team's are not 40. AD is a team's advantage at 40–40.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AD is only possible against 40."
           }
         }
       }
@@ -131,6 +189,18 @@
         }
       }
     },
+    "Add set" : {
+      "comment" : "Correction of a match: adds a completed set after the others.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add set"
+          }
+        }
+      }
+    },
     "Advantage" : {
       "comment" : "Rule at 40–40: win by two points, without limit. Also how VoiceOver says AD, a team's advantage.",
       "extractionState" : "manual",
@@ -139,6 +209,42 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Advantage"
+          }
+        }
+      }
+    },
+    "Advantage isn’t used with Golden point. Change the rule or correct the score." : {
+      "comment" : "Correction: a team has AD while the 40–40 rule is Golden point, which plays no advantage.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advantage isn’t used with Golden point. Change the rule or correct the score."
+          }
+        }
+      }
+    },
+    "After them" : {
+      "comment" : "Correction, Serving: heading of the choice of who serves after the next server; it is one of their opponents.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After them"
+          }
+        }
+      }
+    },
+    "All rallies are played. Saving finishes the round." : {
+      "comment" : "Correction of an americano round: the points reach the total, so saving ends the round.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All rallies are played. Saving finishes the round."
           }
         }
       }
@@ -156,7 +262,7 @@
       }
     },
     "At 40–40" : {
-      "comment" : "Setup row and screen title: the rule that decides a game at 40–40. The score 40–40 is kept on one line with word joiners around the dash.",
+      "comment" : "Setup and correction row and screen title: the rule that decides a game at 40–40; also the heading of which 40–40 it is under One advantage. The score 40–40 is kept on one line with word joiners around the dash.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -215,8 +321,80 @@
         }
       }
     },
+    "Change format" : {
+      "comment" : "Alert button: begins replacing the game's score with one in the other format. Nothing is saved yet.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change format"
+          }
+        }
+      }
+    },
+    "Change game format?" : {
+      "comment" : "Alert title before a correction begins replacing the game's score with one in the other format.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change game format?"
+          }
+        }
+      }
+    },
+    "Changes are saved when you tap Save." : {
+      "comment" : "Correction: nothing is saved until Save changes is tapped.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changes are saved when you tap Save."
+          }
+        }
+      }
+    },
+    "Changes saved" : {
+      "comment" : "Game screen: shown above the score for a moment after a correction was saved.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changes saved"
+          }
+        }
+      }
+    },
+    "Changes saved." : {
+      "comment" : "VoiceOver, after a correction of the score, rules or serving was saved.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changes saved."
+          }
+        }
+      }
+    },
+    "Check who serves next before saving." : {
+      "comment" : "Correction: a change made who serves next uncertain, so it has to be checked on the Serving screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check who serves next before saving."
+          }
+        }
+      }
+    },
     "Choose" : {
-      "comment" : "Setup: a value not chosen yet. Tapping the row opens its choices.",
+      "comment" : "Setup and corrections: a value not chosen yet. Tapping the row opens its choices.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -227,8 +405,32 @@
         }
       }
     },
+    "Choose a rally position within the new service block." : {
+      "comment" : "Correction of an americano round: the next rally's place in the block is beyond the new rallies per server.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a rally position within the new service block."
+          }
+        }
+      }
+    },
+    "Choose the rallies per server first." : {
+      "comment" : "Correction, Serving of an americano round: the next rally's place in the block can be chosen once the rallies per server are.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the rallies per server first."
+          }
+        }
+      }
+    },
     "Choose the rallies per server." : {
-      "comment" : "Setup: shown at Rallies per server when Start game was tapped without it.",
+      "comment" : "Setup and corrections: shown at Rallies per server while none is chosen; in setup, once Start game was tapped without it.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -240,7 +442,7 @@
       }
     },
     "Choose the total rallies." : {
-      "comment" : "Setup: shown at Total rallies when Start game was tapped without it.",
+      "comment" : "Setup and corrections: shown at Total rallies while none is chosen; in setup, once Start game was tapped without it.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -252,13 +454,25 @@
       }
     },
     "Choose what happens at 40–40." : {
-      "comment" : "Setup: shown at the 40–40 rule when Start game was tapped without it. The score 40–40 is kept on one line with word joiners around the dash.",
+      "comment" : "Setup and corrections: shown at the 40–40 rule while none is chosen; in setup, once Start game was tapped without it. The score 40–40 is kept on one line with word joiners around the dash.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choose what happens at 40\u2060–\u206040."
+          }
+        }
+      }
+    },
+    "Choose which 40–40 it is." : {
+      "comment" : "Correction under One advantage: the score is 40–40, and whether it is the first or the second 40–40 is still to be chosen. The score 40–40 is kept on one line with word joiners around the dash.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose which 40\u2060–\u206040 it is."
           }
         }
       }
@@ -323,6 +537,18 @@
         }
       }
     },
+    "Couldn’t save these changes. Your saved game is unchanged." : {
+      "comment" : "Correction: the save was refused, and nothing was saved.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t save these changes. Your saved game is unchanged."
+          }
+        }
+      }
+    },
     "Couldn’t save." : {
       "comment" : "Game screen: a change to the score could not be saved. Retry and Cancel follow.",
       "extractionState" : "manual",
@@ -383,6 +609,30 @@
         }
       }
     },
+    "Discard changes" : {
+      "comment" : "Alert button: leaves the correction without saving it.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discard changes"
+          }
+        }
+      }
+    },
+    "Discard changes?" : {
+      "comment" : "Alert title when leaving a correction that has changes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discard changes?"
+          }
+        }
+      }
+    },
     "Done" : {
       "comment" : "Applies the choice on this screen and goes back.",
       "extractionState" : "manual",
@@ -431,6 +681,42 @@
         }
       }
     },
+    "Edit score" : {
+      "comment" : "Game menu row and screen title, and a row of Settings: correcting the points, games, sets and serving.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit score"
+          }
+        }
+      }
+    },
+    "Enter the score for the new format. Nothing changes until you save." : {
+      "comment" : "Alert message before a correction begins replacing the game's score with one in the other format.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the score for the new format. Nothing changes until you save."
+          }
+        }
+      }
+    },
+    "First deuce" : {
+      "comment" : "Correction under One advantage: the first 40–40, where the next point gives the advantage.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First deuce"
+          }
+        }
+      }
+    },
     "First server" : {
       "comment" : "Serving: heading of the choice of who serves first.",
       "extractionState" : "manual",
@@ -451,6 +737,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "For both teams together."
+          }
+        }
+      }
+    },
+    "Format" : {
+      "comment" : "Correction row and screen title: the game's format, Match or Americano.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format"
           }
         }
       }
@@ -515,6 +813,18 @@
         }
       }
     },
+    "Game settings" : {
+      "comment" : "Game menu row, and a row of Edit score: correcting the format, the rules and serving.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game settings"
+          }
+        }
+      }
+    },
     "Game to them. Games: us %lld, them %lld." : {
       "comment" : "VoiceOver: the opponents won the game. Arguments: games in this set, ours then theirs.",
       "extractionState" : "manual",
@@ -540,7 +850,7 @@
       }
     },
     "Games" : {
-      "comment" : "Game screen: games won in the current set, between the two teams' counts.",
+      "comment" : "Game screen: games won in the current set, between the two teams' counts. Also the correction row and editor title of those games.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -559,6 +869,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Games and sets"
+          }
+        }
+      }
+    },
+    "Games in the set being played. At six each, the set is in its tie-break." : {
+      "comment" : "Correction of a match: explains the games under their numbers.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Games in the set being played. At six each, the set is in its tie-break."
           }
         }
       }
@@ -611,6 +933,30 @@
         }
       }
     },
+    "Keep editing" : {
+      "comment" : "Alert button: stays in the correction with its changes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep editing"
+          }
+        }
+      }
+    },
+    "Leaves without saving." : {
+      "comment" : "VoiceOver hint of the correction's Cancel: nothing is saved.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leaves without saving."
+          }
+        }
+      }
+    },
     "Loading game…" : {
       "comment" : "Shown when reading the saved game takes more than a second.",
       "extractionState" : "manual",
@@ -647,6 +993,18 @@
         }
       }
     },
+    "More rallies have been played than the total. Increase the total or correct the score." : {
+      "comment" : "Correction of an americano round: the two teams' points add up to more than the total rallies.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More rallies have been played than the total. Increase the total or correct the score."
+          }
+        }
+      }
+    },
     "New game" : {
       "comment" : "Title of the screen where a new game is created, and the game menu's way there once a round has finished.",
       "extractionState" : "manual",
@@ -655,6 +1013,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "New game"
+          }
+        }
+      }
+    },
+    "Next point" : {
+      "comment" : "Correction, Serving in a tie-break: heading of the choice of whether the next point is the server's first or second of two.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next point"
+          }
+        }
+      }
+    },
+    "Next rally in block" : {
+      "comment" : "Correction of an americano round: the next rally's place in the server's block, as a row and as its editor's title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next rally in block"
+          }
+        }
+      }
+    },
+    "Next server" : {
+      "comment" : "Correction, Serving: heading of the choice of who serves the next point or rally.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next server"
+          }
+        }
+      }
+    },
+    "No completed sets" : {
+      "comment" : "Correction of a match: there are no completed sets yet.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No completed sets"
           }
         }
       }
@@ -695,6 +1101,30 @@
         }
       }
     },
+    "Only one team can have the advantage." : {
+      "comment" : "Correction: both teams' points were set to AD.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only one team can have the advantage."
+          }
+        }
+      }
+    },
+    "Opened the tie-break" : {
+      "comment" : "Correction, Serving in a tie-break: heading of the choice of the pair that served the tie-break's first point; the other pair serves first in the next set.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opened the tie-break"
+          }
+        }
+      }
+    },
     "Opponent 1" : {
       "comment" : "Role: one of the two opponents.",
       "extractionState" : "manual",
@@ -715,6 +1145,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opponent 2"
+          }
+        }
+      }
+    },
+    "Our games" : {
+      "comment" : "VoiceOver label of our team's games in a correction.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Our games"
+          }
+        }
+      }
+    },
+    "Our points" : {
+      "comment" : "VoiceOver label of our team's points in a correction.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Our points"
           }
         }
       }
@@ -767,6 +1221,18 @@
         }
       }
     },
+    "Points" : {
+      "comment" : "Correction row and screen title: the points of the game being played.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Points"
+          }
+        }
+      }
+    },
     "Rallies left" : {
       "comment" : "Americano game screen: rallies still to be played before the round reaches its total.",
       "extractionState" : "manual",
@@ -780,13 +1246,73 @@
       }
     },
     "Rallies per server" : {
-      "comment" : "Title of the americano service block editor.",
+      "comment" : "Title of the americano service block editor, and its setup and correction row.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rallies per server"
+          }
+        }
+      }
+    },
+    "Remove set %lld" : {
+      "comment" : "Correction: takes the completed set out of the match. Argument: the set's number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove set %lld"
+          }
+        }
+      }
+    },
+    "Replace game" : {
+      "comment" : "Correction: saves a game whose format changed, in place of its old score. Undo brings the old one back.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace game"
+          }
+        }
+      }
+    },
+    "Replace game puts this match in place of the round’s score. Undo brings the round back." : {
+      "comment" : "Correction: the americano round is being replaced by a match entered here.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace game puts this match in place of the round’s score. Undo brings the round back."
+          }
+        }
+      }
+    },
+    "Replace game puts this round in place of the match’s score. Undo brings the match back." : {
+      "comment" : "Correction: the match is being replaced by an americano round entered here.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace game puts this round in place of the match’s score. Undo brings the match back."
+          }
+        }
+      }
+    },
+    "Restore set %lld" : {
+      "comment" : "Correction: puts the completed set just removed back where it was. Argument: the set's number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore set %lld"
           }
         }
       }
@@ -863,6 +1389,18 @@
         }
       }
     },
+    "Save changes" : {
+      "comment" : "Correction: saves every change of the draft at once.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save changes"
+          }
+        }
+      }
+    },
     "Saving…" : {
       "comment" : "Shown on a button, or above the score, when saving takes more than a second.",
       "extractionState" : "manual",
@@ -871,6 +1409,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saving…"
+          }
+        }
+      }
+    },
+    "Second deuce" : {
+      "comment" : "Correction under One advantage: the second 40–40, after the advantage was lost, where the next point wins the game.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Second deuce"
           }
         }
       }
@@ -888,7 +1438,7 @@
       }
     },
     "Serve %lld of %lld" : {
-      "comment" : "Americano game screen: the next rally's place in the server's block. Arguments: the place, the rallies per server.",
+      "comment" : "The next rally's place in the server's block, on the americano game screen and in a correction; in a tie-break's correction, the server's place in their two points. Arguments: the place, the rallies in the block (2 in a tie-break).",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -911,6 +1461,18 @@
         }
       }
     },
+    "Serves the tie-break’s first point; then each player serves two." : {
+      "comment" : "Correction, Serving at the start of a tie-break: the next server serves its first point alone.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serves the tie-break’s first point; then each player serves two."
+          }
+        }
+      }
+    },
     "Service order" : {
       "comment" : "Serving: heading of the four players numbered in the order they serve.",
       "extractionState" : "manual",
@@ -924,7 +1486,7 @@
       }
     },
     "Serving" : {
-      "comment" : "Who serves the next point; the Setup row and screen title for choosing the serving order.",
+      "comment" : "Who serves the next point; the Setup and correction row and screen title for choosing the serving order.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -960,13 +1522,37 @@
       }
     },
     "Set %lld" : {
-      "comment" : "The set being played: above the score, and the title of its serving order. Argument: the set's number.",
+      "comment" : "The set being played: above the score, and the title of its serving order. In a correction, a completed set's row and title. Argument: the set's number.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Set %lld"
+          }
+        }
+      }
+    },
+    "Set %lld isn’t a finished set." : {
+      "comment" : "Correction: a completed set's games are not a score that ends a set. Argument: the set's number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set %lld isn’t a finished set."
+          }
+        }
+      }
+    },
+    "Set %lld removed." : {
+      "comment" : "Correction: a completed set was taken out of the match; it can still be put back. Argument: the set's number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set %lld removed."
           }
         }
       }
@@ -996,7 +1582,7 @@
       }
     },
     "Sets" : {
-      "comment" : "Game screen: sets won, between the two teams' counts.",
+      "comment" : "Game screen: sets won, between the two teams' counts. Also the correction's row and screen of completed sets.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1019,6 +1605,18 @@
         }
       }
     },
+    "Settings" : {
+      "comment" : "Title of the correction screen for the game's format, rules and serving, opened from Game settings in the game menu.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
     "Shows who serves first in the new set." : {
       "comment" : "VoiceOver hint of the game screen's way to confirm a new set's serving order.",
       "extractionState" : "manual",
@@ -1027,6 +1625,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shows who serves first in the new set."
+          }
+        }
+      }
+    },
+    "Six games each: the tie-break is counted 0, 1, 2 and on." : {
+      "comment" : "Correction of a tie-break: explains its points.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Six games each: the tie-break is counted 0, 1, 2 and on."
           }
         }
       }
@@ -1139,6 +1749,42 @@
         }
       }
     },
+    "The next point gives the advantage." : {
+      "comment" : "Correction under One advantage: explains the first 40–40.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The next point gives the advantage."
+          }
+        }
+      }
+    },
+    "The next point wins the game." : {
+      "comment" : "Correction under One advantage: explains the second 40–40.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The next point wins the game."
+          }
+        }
+      }
+    },
+    "The opponents" : {
+      "comment" : "Correction, Serving in a tie-break: the opponents' pair.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The opponents"
+          }
+        }
+      }
+    },
     "The opponents serve first in this set." : {
       "comment" : "The new set's serving screen: the rules give the set's first serve to the opponents.",
       "extractionState" : "manual",
@@ -1159,6 +1805,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The round ends when both teams’ points add up to the total."
+          }
+        }
+      }
+    },
+    "Their games" : {
+      "comment" : "VoiceOver label of the opponents' games in a correction.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Their games"
+          }
+        }
+      }
+    },
+    "Their points" : {
+      "comment" : "VoiceOver label of the opponents' points in a correction.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Their points"
           }
         }
       }
@@ -1187,8 +1857,44 @@
         }
       }
     },
+    "These games already win the set. Correct them, or add the set under Sets." : {
+      "comment" : "Correction: the current set's games chosen would already have decided the set.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "These games already win the set. Correct them, or add the set under Sets."
+          }
+        }
+      }
+    },
+    "These points already win the tie-break. Correct them, or add the set under Sets." : {
+      "comment" : "Correction: the tie-break points chosen would already have decided the tie-break and its set.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "These points already win the tie-break. Correct them, or add the set under Sets."
+          }
+        }
+      }
+    },
+    "These values can’t be played together. Check the score and serving." : {
+      "comment" : "Correction: the values cannot be saved for a reason not shown at a single value.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "These values can’t be played together. Check the score and serving."
+          }
+        }
+      }
+    },
     "Tie-break" : {
-      "comment" : "Game screen: the set is decided by a tie-break, counted 0, 1, 2 and on.",
+      "comment" : "Game screen: the set is decided by a tie-break, counted 0, 1, 2 and on. Also the correction row and editor title of its points.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1212,7 +1918,7 @@
       }
     },
     "Total rallies" : {
-      "comment" : "Americano setup row and editor title: the rallies both teams play together.",
+      "comment" : "Americano setup and correction row, and editor title: the rallies both teams play together.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1283,6 +1989,18 @@
         }
       }
     },
+    "Us %@, them %@" : {
+      "comment" : "VoiceOver value of a correction row: one value for each team. Arguments: ours, theirs, such as 15 and Advantage.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Us %1$@, them %2$@"
+          }
+        }
+      }
+    },
     "Us %@, them %@." : {
       "comment" : "VoiceOver: the points after a change. Arguments: our points, their points, such as 15 and 40, or Advantage.",
       "extractionState" : "manual",
@@ -1296,7 +2014,7 @@
       }
     },
     "Us %lld, them %lld" : {
-      "comment" : "VoiceOver value of a count on the game screen. Arguments: our count, their count.",
+      "comment" : "VoiceOver value of a count on the game screen, and of a completed set in a correction. Arguments: our count, their count.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1327,6 +2045,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "We couldn’t read this game."
+          }
+        }
+      }
+    },
+    "Which rally of their block the next server serves." : {
+      "comment" : "Explains the next rally's place in the block: counted from 1 within the server's block.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which rally of their block the next server serves."
           }
         }
       }
@@ -1375,6 +2105,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your saved data has not been deleted."
+          }
+        }
+      }
+    },
+    "Your saved game will stay the same." : {
+      "comment" : "Alert message when leaving a correction that has changes: nothing of it is saved.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your saved game will stay the same."
+          }
+        }
+      }
+    },
+    "Your team" : {
+      "comment" : "Correction, Serving in a tie-break: our pair.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your team"
           }
         }
       }

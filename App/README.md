@@ -70,6 +70,15 @@ through the `HapticPlayer` protocol in `Services/Haptics.swift`; the composition
 WatchKit adapter. Debug UI tests can also seed a match at 0–0, at set point or in a tie-break and
 two americano rounds, and `PADEL_UITEST_ALWAYS_ON=1` draws the live score as in Always On.
 
-Editing the score, finishing a game and commerce belong to subsequent milestones. A successful
+M06 adds corrections in `PadelScoreWatch/Features/Correction`. `CorrectionDraft` starts as the saved
+game and is changed value by value — the match's points with the 40–40 stage, games, completed sets, the
+tie-break's points and serving, or the round's points, totals and place in the block, or a new format —
+without converting or replaying anything; it names what still disagrees and asks for serving to be
+checked when a change made it uncertain. `GameEditor` holds the draft with the session revision it was
+made from; `LiveScore` owns it, records nothing behind it, and saves the whole draft as one `.correct`
+request. `GameEditorScreen` is Edit score and Game settings, `TeamValuesEditor` edits one value for each
+team with the Digital Crown, and the points, games, sets, serving and format screens complete the editor.
+
+Finishing a game and commerce belong to subsequent milestones. A successful
 test on a recent simulator does not prove watchOS 10 runtime compatibility, and the simulator
 does not prove how a haptic feels.
