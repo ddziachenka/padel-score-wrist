@@ -376,8 +376,9 @@ private struct ScoreScreen: View {
         }
         // Lowered wrist and Always On show the score read only; a tap waking the screen records nothing.
         .allowsHitTesting(scenePhase == .active && !isLuminanceReduced)
-        // watchOS 10 needs the bar visible before pushing the serving screen to show Back.
-        .toolbar(live.proposedServing == nil ? .hidden : .visible, for: .navigationBar)
+        // Keep the bar available before pushing: watchOS 10 otherwise loses system Back.
+        // The score draws its context in the clock row and has no navigation title.
+        .toolbar(.visible, for: .navigationBar)
         .accessibilityElement(children: .contain)
     }
 
