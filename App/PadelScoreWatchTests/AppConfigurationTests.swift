@@ -5,7 +5,7 @@ struct AppConfigurationTests {
     @Test("The installed app runs independently on Apple Watch")
     func watchOnlyIdentity() {
         let bundle = Bundle.main
-        #expect(bundle.bundleIdentifier == "com.dziachenka.padelscore.watchapp")
+        #expect(bundle.bundleIdentifier == "com.dziachenka.padelscore.watchkitapp")
         #expect(bundle.object(forInfoDictionaryKey: "WKWatchOnly") as? Bool == true)
         #expect(bundle.object(forInfoDictionaryKey: "WKCompanionAppBundleIdentifier") == nil)
         #expect(bundle.object(forInfoDictionaryKey: "MinimumOSVersion") as? String == "10.0")

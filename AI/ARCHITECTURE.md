@@ -91,11 +91,11 @@ Managed simulator принадлежит этому checkout; чужое уст�
 ## Dependency boundaries
 
 **Identity:** проект `App/PadelScore.xcodeproj`, shared scheme `PadelScore`.
-Watch executable `PadelScoreWatch` — `com.dziachenka.padelscore.watchapp`;
+Watch executable `PadelScoreWatch` — `com.dziachenka.padelscore.watchkitapp`;
 packaging container `PadelScore` — `com.dziachenka.padelscore`. Название
 `Padel Score — Wrist` задаётся обоим targets; version/build синхронизированы.
-Bundle IDs выбраны агентом по прямому поручению владельца; они пока не
-зарегистрированы в Apple Developer / App Store Connect.
+Bundle IDs выбраны агентом по прямому поручению владельца и зарегистрированы
+в Apple Developer; App Store Connect app 6825393194 использует packaging container.
 
 Стрелка означает «импортирует / зависит от»:
 
@@ -575,3 +575,12 @@ H2 закрыт 2026-10-20; утверждённое правило сета и 
 оптимизация без изменения поведения, конкретные test fixtures и доступные simulator
 identifiers. Они фиксируются в owning milestone с доказательствами; это не повод
 менять продукт или объявлять заранее выполненные проверки.
+
+### StoreKit app identity correction — 2026-10-22
+
+The Watch executable uses the standard Xcode `.watchkitapp` suffix. A real-device
+A/B check found an empty Sandbox catalog and server code 4040003 with `.watchapp`,
+but the same product loaded and purchase/restore passed with `.watchkitapp`.
+The packaging container and ASC app/IAP IDs are unchanged. The earlier bundle
+was development-only; its local game data is backed up and restored separately.
+This is an identity repair, not an iPhone companion or monetization change.

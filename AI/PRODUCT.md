@@ -26,7 +26,7 @@
 Имя принято App Store Connect. Есть похожее
 [PadelWrist: Padel Score](https://apps.apple.com/ca/app/padelwrist-padel-score/id6799725420).
 Техническое имя проекта — `PadelScore`. Владелец делегировал выбор bundle identifiers:
-Watch executable — `com.dziachenka.padelscore.watchapp`, packaging container —
+Watch executable — `com.dziachenka.padelscore.watchkitapp`, packaging container —
 `com.dziachenka.padelscore`. Создание Xcode-проекта агентом явно разрешено.
 
 | # | Decision | Observable consequence | Approved |

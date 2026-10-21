@@ -7,7 +7,7 @@ there is no iPhone companion interface.
 
 | Target | Purpose | Bundle identifier |
 | --- | --- | --- |
-| PadelScoreWatch | SwiftUI Watch app | com.dziachenka.padelscore.watchapp |
+| PadelScoreWatch | SwiftUI Watch app | com.dziachenka.padelscore.watchkitapp |
 | PadelScore | Packaging container | com.dziachenka.padelscore |
 | PadelScoreWatchTests | Hosted Swift Testing bundle | com.dziachenka.padelscore.padelscorewatchtests |
 | PadelScoreWatchUITests | XCTest UI tests | com.dziachenka.padelscore.padelscorewatchuitests |
