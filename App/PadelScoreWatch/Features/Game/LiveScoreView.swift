@@ -82,6 +82,11 @@ struct LiveScoreView: View {
             // Every screen of the correction was left: so is the correction.
             if live.editor != nil, !path.contains(where: \.isEditor) { live.endEditing() }
         }
+        .onAppear {
+            // A correction whose screens are not here, after the score was left and shown again,
+            // would hold every rally back.
+            if live.editor != nil, !path.contains(where: \.isEditor) { live.endEditing() }
+        }
         .onChange(of: scenePhase) { _, phase in
             // On return to the wrist the score comes first. A serving order being chosen stays, and
             // so does a correction, with its draft, while the app runs.
