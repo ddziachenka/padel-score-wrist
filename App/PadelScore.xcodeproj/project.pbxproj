@@ -293,6 +293,7 @@
 		5580CC770FC8E598F8F47A8B /* StoreKitPurchaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoreKitPurchaseTests.swift; path = "PadelScoreWatchTests/Services/StoreKitPurchaseTests.swift"; sourceTree = SOURCE_ROOT; };
 		A9B925E1513084C61A8C9194 /* Lifetime.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "StoreKit/Lifetime.storekit"; sourceTree = SOURCE_ROOT; };
 		2E2D55319145D23348FCA77E /* AccessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccessUITests.swift; path = "PadelScoreWatchUITests/AccessUITests.swift"; sourceTree = SOURCE_ROOT; };
+		DF1EB97BFDA8417D915C7492 /* PadelScore.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PadelScore.xctestplan; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +420,7 @@
 		9C0BA28DBE2BE3B9891472B3 = {
 			isa = PBXGroup;
 			children = (
+				DF1EB97BFDA8417D915C7492 /* PadelScore.xctestplan */,
 				EE9BEC4CB14D1D7ACF278FEF /* Products */,
 				691D7FB3D84E58B7BBF08649 /* Frameworks */,
 				9AB621FD8AFF69AFCE4C162A /* PadelScoreWatch */,

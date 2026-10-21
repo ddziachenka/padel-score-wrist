@@ -1,7 +1,7 @@
 # M08 — Access and Purchase
 
 **ID:** M08
-**Status:** BLOCKED
+**Status:** REVIEW
 **Depends on:** M07
 **Validation:** make milestone ID=M08
 **Handoff:** AI/handoffs/M08-handoff.md
@@ -58,3 +58,12 @@ H4 закрыт владельцем: пять завершённых игр а�
 входа, а API не создаёт приложения. Товар и цена пока заданы только локальной
 StoreKit-конфигурацией. Полные команды и evidence — в handoff. M08 не DONE;
 все обязательные проверки покупки остаются в этом этапе.
+
+## StoreKit environment repair — 2026-10-21
+
+На watchOS 26.1 (`23S36`) с явным test plan и восстановлением defaults после
+симулированной ошибки четыре исходных StoreKit-теста прошли: 4 passed, 0 failed,
+0 skipped, xcodebuild exit 0. Evidence:
+`.artifacts/M08-storekit-fix/reset-26-1.xcresult`, `reset-26-1.log`.
+Assertions и production purchase code не ослаблены; полный gate выполняется на
+следующем clean REVIEW-коммите. Реальные часы по-прежнему недоступны.

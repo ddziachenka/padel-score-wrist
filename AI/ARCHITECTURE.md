@@ -55,14 +55,14 @@ Apple описывает SwiftUI как основу нативного watchOS 
 совместимости приложения. Проверка на watchOS 10 остаётся обязательной, а подбор
 конкретных моделей и runtime — инженерная задача в этих границах.
 
-**Toolchain — фактическая среда M00; результаты проверок записываются отдельно:**
+**Toolchain — исходная среда M00 и обновление M08; результаты проверок записываются отдельно:**
 
 | Field | Value |
 | --- | --- |
 | Xcode version | Локально обнаружен Xcode 27.0, build 27A266a, 2026-10-20 |
 | Swift version | Swift 6 language mode, strict concurrency; локальный компилятор Apple Swift 6.4 (`swiftlang-6.4.0.34.1`) |
 | SDK used to build | watchOS SDK 27.0; Debug Watch executable и packaging container собраны Xcode 27.0 в M00 |
-| Oldest runtime tested against | watchOS 26.5 (`23T570`), Apple Watch SE 40 mm (2nd generation): запуск и 3 unit/UI tests. watchOS 10 ещё не проверена; её проверка обязательна до финальной готовности |
+| Oldest runtime tested against | watchOS 26.1 (`23S36`), Apple Watch SE 40 mm (2nd generation): четыре StoreKit integration tests M08 прошли 2026-10-21. Полные результаты — в M08 handoff. watchOS 10 ещё не проверена; её проверка обязательна до финальной готовности |
 
 Инвентаризация 2026-10-20 обнаружила доступный Watch runtime watchOS 26.5
 (build 23T570), `com.apple.CoreSimulator.SimRuntime.watchOS-26-5`. Совместимый
@@ -72,6 +72,14 @@ Apple описывает SwiftUI как основу нативного watchOS 
 проекта; она не доказывает работу на watchOS 10. Runtime минимальной ОС сейчас
 не установлен. Во время инициализации контрактов устройства не создавались;
 создание выполнено позже по поручению подготовить Xcode-проект.
+
+M08 закрепляет watchOS 26.1 (`23S36`) для автоматической проверки покупки.
+На 26.5 StoreKitTest отвергает настройку с Code=3; на 27.0 (`24R362`)
+покупка возвращает `.unknown` вместо настроенной сетевой ошибки. В test plan
+локальный StoreKit включён до запуска host app; после имитации сбоя тест
+восстанавливает настройки через `resetToDefaultState()`, не удаляя транзакции.
+Симуляторы 26.5 и 27.0 и их локальные bindings сохранены для воспроизведения.
+Это выбор среды проверки, а не изменение минимальной поддерживаемой ОС.
 
 M00 проверил inventory, передал выбранные Watch device type/runtime в
 `configure-project.sh --platform watchOS` и выполнил `make simulator-setup`.

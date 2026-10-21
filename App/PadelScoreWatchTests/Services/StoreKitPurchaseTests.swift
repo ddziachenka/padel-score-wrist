@@ -92,6 +92,10 @@ final class StoreKitPurchaseTests: XCTestCase {
         XCTAssertFalse(owner.isUnlocked)
         XCTAssertEqual(owner.message, .offline)
         try await session.setSimulatedError(nil, forAPI: .purchase)
+        // Reset the local server's failed-purchase response as well as its error code.
+        // Keep transactions intact so the retry still exercises the same purchase history.
+        session.resetToDefaultState()
+        session.disableDialogs = true
         await owner.purchase()
         XCTAssertTrue(owner.isUnlocked)
         try await session.setSimulatedError(.generic(.networkError(URLError(.notConnectedToInternet))), forAPI: .loadProducts)

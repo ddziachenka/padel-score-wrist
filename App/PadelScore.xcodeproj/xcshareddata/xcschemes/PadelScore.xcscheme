@@ -71,39 +71,12 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       language = "en"
       region = "US">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6BE7B1F86B27A0EA377ED4FD"
-            BuildableName = "PadelScoreWatch.app"
-            BlueprintName = "PadelScoreWatch"
-            ReferencedContainer = "container:PadelScore.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBA2160DA60A18E11E5BB2E1"
-               BuildableName = "PadelScoreWatchTests.xctest"
-               BlueprintName = "PadelScoreWatchTests"
-               ReferencedContainer = "container:PadelScore.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "333DF6997F7C79204340B517"
-               BuildableName = "PadelScoreWatchUITests.xctest"
-               BlueprintName = "PadelScoreWatchUITests"
-               ReferencedContainer = "container:PadelScore.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:PadelScore.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"

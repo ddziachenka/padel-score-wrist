@@ -25,8 +25,19 @@ make simulator-context
 make fast
 ```
 
+The shared scheme uses `PadelScore.xctestplan` for both test targets. Its StoreKit
+configuration is active before the hosted app launches; setting it only in the Run
+action lets the app initialize StoreKit against Sandbox before `SKTestSession` starts.
+StoreKit integration tests run serially and use the real StoreKit client, with the
+local configuration bundled only in the test target.
+
 The repository owns a separate Watch simulator, configured in `Config/project.env`.
 Its local binding is ignored by Git. Follow `AI/WORKFLOW.md` when driving it.
+M08 pins watchOS 26.1: 26.5 rejects `SKTestSession` configuration, while 27.0
+misreports simulated network purchase errors as `StoreKitError.unknown`. After a
+simulated outage, the test resets session defaults without clearing transactions
+before retrying the purchase; clearing only the error leaves a cancelled response
+on 26.1. The minimum supported deployment target remains watchOS 10.
 No signing team is stored in the project; select the owner's development team in
 Xcode when preparing a physical-device build.
 
