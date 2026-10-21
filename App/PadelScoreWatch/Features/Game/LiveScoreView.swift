@@ -230,7 +230,10 @@ struct LiveScoreView: View {
             }
         case .newGame(let route):
             if let newGame {
-                NewGameDestination(route: route, flow: newGame, store: store)
+                NewGameDestination(route: route, flow: newGame, store: store) {
+                    path.removeAll()
+                    self.newGame = nil
+                }
             }
         default:
             if let editor = live.editor ?? shownEditor {

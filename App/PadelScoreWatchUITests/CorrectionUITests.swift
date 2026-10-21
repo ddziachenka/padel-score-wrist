@@ -34,7 +34,7 @@ final class CorrectionUITests: XCTestCase {
             } else {
                 (Int(value) ?? 0) > (Int(current) ?? 0)
             }
-            app.buttons["pair.\(team).\(up ? "increase" : "decrease")"].tap()
+            app.buttons["pair.\(team).\(up ? "increase" : "decrease")"].scrollToAndTap(in: app)
         }
         XCTAssertEqual(shown.value as? String, value, file: file, line: line)
     }
@@ -417,7 +417,7 @@ final class CorrectionUITests: XCTestCase {
         let app = launchApp(store: "correct-failure", seed: "matchSetPoint", failingSaves: true)
         XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
         openEditor("gameSettings", in: app)
-        app.buttons["editor.deuceRule"].tap()
+        app.buttons["editor.deuceRule"].scrollToAndTap(in: app)
         app.buttons["rule.advantage"].scrollToAndTap(in: app)
         app.buttons["editor.done"].scrollToAndTap(in: app)
 
