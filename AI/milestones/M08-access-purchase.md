@@ -44,6 +44,12 @@
 
 ## Earlier verification — 2026-10-21
 
+Current follow-up: real Watch Ultra 3 / watchOS 27.0.1 is connected. Hardware
+access UI 3/3 and policy/ledger/owner 16/16 pass; StoreKit 1/4 passes. Local
+verified purchase is missing from current-entitlement APIs, and the injected
+network error is generic. M08 remains BLOCKED. Exact evidence and the preserved
+historical results are in [hardware handoff](../handoffs/M08-hardware-handoff.md).
+
 H4 закрыт владельцем: пять завершённых игр автоматически, сохранять счётчик при
 удалении данных, lifetime non-consumable с ценой из PRODUCT H4;
 в UI нет активации или слова trial. Реализация сохранена на `main`.

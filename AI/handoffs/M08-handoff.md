@@ -2,6 +2,14 @@
 
 **Policy status:** current
 
+## Real-Watch follow-up — 2026-10-21 UTC
+
+Hardware is now connected. UI 3/3 and policy/ledger/owner 16/16 passed; final
+StoreKit run 1/4 passed, with no skipped tests. M08 remains BLOCKED by the
+transaction/entitlement test discrepancy, not unavailable hardware. See
+[M08-hardware-handoff.md](M08-hardware-handoff.md) for exact commands, source
+identity, failures and diagnostics. Historical evidence below remains unchanged.
+
 ## Publication preparation follow-up — 2026-10-21
 
 The owner authorized preparation beyond the hardware blocker. H1 is approved,
