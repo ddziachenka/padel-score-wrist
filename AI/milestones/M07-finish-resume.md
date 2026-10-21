@@ -1,7 +1,7 @@
 # M07 — Finish and Resume
 
 **ID:** M07
-**Status:** PLANNED
+**Status:** IN_PROGRESS
 **Depends on:** M06
 **Validation:** make milestone ID=M07
 **Handoff:** AI/handoffs/M07-handoff.md
