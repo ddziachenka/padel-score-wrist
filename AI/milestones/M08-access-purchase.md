@@ -1,7 +1,7 @@
 # M08 — Access and Purchase
 
 **ID:** M08
-**Status:** REVIEW
+**Status:** BLOCKED
 **Depends on:** M07
 **Validation:** make milestone ID=M08
 **Handoff:** AI/handoffs/M08-handoff.md
@@ -41,3 +41,20 @@
 ## Handoff
 
 Записать `AI/handoffs/M08-handoff.md` по компактному шаблону: полный SHA, точные команды, exit codes, UTC time, report paths, counts, известные ограничения и следующий шаг. После доказанного DONE остановиться.
+
+## Current evidence — 2026-10-21
+
+H4 закрыт владельцем: пять завершённых игр автоматически, сохранять счётчик при
+удалении данных, lifetime non-consumable с ценой из PRODUCT H4;
+в UI нет активации или слова trial. Реализация сохранена на `main`.
+
+`make milestone ID=M08` на `5760247a971eecd7151c92209cdd14291c032bd3`:
+386 tests, 382 passed, 4 failed, 0 skipped. Все 328 Swift-тестов и 54 UI-теста
+прошли; четыре StoreKit-теста не смогли настроить локальную среду
+(`SKInternalErrorDomain Code=3`). Это не успешная проверка покупки.
+
+Реальные часы недоступны по ответу владельца. App Store Connect не содержит
+записи приложения для заданных bundle IDs; доступная браузерная сессия требует
+входа, а API не создаёт приложения. Товар и цена пока заданы только локальной
+StoreKit-конфигурацией. Полные команды и evidence — в handoff. M08 не DONE;
+все обязательные проверки покупки остаются в этом этапе.
