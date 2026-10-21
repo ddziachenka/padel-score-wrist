@@ -23,7 +23,7 @@ struct GameEditorScreen: View {
     let open: (GameRoute) -> Void
     /// Leaves the correction without saving it.
     let discard: () -> Void
-    /// The correction changed nothing and closed: back to the score.
+    /// The correction saved or changed nothing and closed: back to the score.
     let close: () -> Void
     @State private var confirmsDiscard = false
     @AccessibilityFocusState private var focusedRow: CorrectionField?

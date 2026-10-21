@@ -6,13 +6,15 @@ import SwiftUI
 struct SetServingView: View {
     let live: LiveScore
     let setNumber: Int
+    let confirmed: () -> Void
     /// The pair the rules give the first serve to.
     private let servingTeam: Team
     @State private var choice: ServingChoice
 
-    init(live: LiveScore, setNumber: Int, proposed: ServingSetup) {
+    init(live: LiveScore, setNumber: Int, proposed: ServingSetup, confirmed: @escaping () -> Void) {
         self.live = live
         self.setNumber = setNumber
+        self.confirmed = confirmed
         servingTeam = proposed.firstServer.team
         _choice = State(initialValue: ServingChoice(proposed))
     }
@@ -45,7 +47,10 @@ struct SetServingView: View {
                 }
                 Button {
                     guard let setup = choice.setup else { return }
-                    Task { await live.confirmService(setup) }
+                    Task {
+                        await live.confirmService(setup)
+                        if live.proposedServing == nil { confirmed() }
+                    }
                 } label: {
                     SavingLabel("Confirm serving", isSaving: live.saving == .confirmService)
                 }

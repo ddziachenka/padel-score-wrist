@@ -210,7 +210,9 @@ struct LiveScoreView: View {
         case .settings:
             LocalDataSettingsView(store: store)
         case let .serving(proposed, set):
-            SetServingView(live: live, setNumber: set, proposed: proposed)
+            SetServingView(live: live, setNumber: set, proposed: proposed) {
+                path.removeAll(where: \.isServing)
+            }
         case .finish:
             FinishView(live: live, keepPlaying: { path.removeAll() }, finished: { path.removeAll() })
         case .lastResult:
@@ -247,7 +249,10 @@ struct LiveScoreView: View {
                 live: live,
                 isRoot: path.first(where: \.isEditor) == route,
                 open: open,
-                discard: { live.endEditing() },
+                discard: {
+                    live.endEditing()
+                    path.removeAll(where: \.isEditor)
+                },
                 close: { path.removeAll() }
             )
         case .points:
