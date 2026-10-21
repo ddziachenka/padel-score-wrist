@@ -694,6 +694,7 @@ private struct CountRow: View {
                     Text(label)
                         .font(Typography.caption)
                         .foregroundStyle(Palette.textSecondary)
+                        .fixedSize(horizontal: true, vertical: false)
                         .layoutPriority(1)
                     Text(counts.them, format: .number)
                         .frame(maxWidth: .infinity)

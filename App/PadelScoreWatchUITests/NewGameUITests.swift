@@ -53,7 +53,7 @@ final class NewGameUITests: XCTestCase {
         let oneAdvantage = app.buttons["rule.oneAdvantage"]
         XCTAssertTrue(oneAdvantage.waitForExistence(timeout: 5))
         assertLabel(oneAdvantage, contains: "At the second deuce, the next point wins.")
-        oneAdvantage.tap()
+        oneAdvantage.scrollToAndTap(in: app)
         XCTAssertTrue(oneAdvantage.isSelected)
         XCTAssertFalse(app.buttons["rule.goldenPoint"].isSelected)
         attachScreenshot("At 40–40")
