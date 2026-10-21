@@ -270,6 +270,9 @@ struct MatchServingDraft: Hashable, Sendable {
 /// An americano round being corrected. Every value is the person's to set, the server and the next
 /// rally's place in the block too: the rallies behind a corrected score are unknown.
 struct AmericanoDraft: Hashable, Sendable {
+    /// Each team's points the editor offers: up to the largest total a round can have.
+    static let pointsRange = 0...SetupDraft.totalRalliesRange.upperBound
+
     /// `nil` only in a round replacing a match, until chosen.
     var totalRallies: Int?
     var ralliesPerServer: Int?

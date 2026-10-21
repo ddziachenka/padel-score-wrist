@@ -1,10 +1,12 @@
 import SwiftUI
 
-/// The game menu (S4): the rules the game is played under, and About. Editing the score and
-/// finishing the game join it in later milestones. A round that has just reached its total
-/// starts the next game from here.
+/// The game menu (S4): Edit score and Game settings while the game is played, the rules it is
+/// played under, and About. Finishing the game joins it in a later milestone. A round that has
+/// just reached its total starts the next game from here.
 struct GameMenuView: View {
     let live: LiveScore
+    /// Begins a correction on the screen given.
+    let edit: (GameRoute) -> Void
 
     var body: some View {
         ScrollView {
@@ -15,6 +17,11 @@ struct GameMenuView: View {
                     }
                     .buttonStyle(PrimaryButtonStyle())
                     .accessibilityIdentifier("menu.newGame")
+                } else {
+                    menuRow("Edit score", route: .editScore)
+                        .accessibilityIdentifier("menu.editScore")
+                    menuRow("Game settings", route: .gameSettings)
+                        .accessibilityIdentifier("menu.gameSettings")
                 }
                 if let game = live.game {
                     Caption(rules(of: game))
@@ -30,6 +37,18 @@ struct GameMenuView: View {
             }
         }
         .navigationTitle(Text("Game"))
+    }
+
+    private func menuRow(_ title: LocalizedStringKey, route: GameRoute) -> some View {
+        Button {
+            edit(route)
+        } label: {
+            Text(title)
+                .font(Typography.body)
+                .foregroundStyle(Palette.textPrimary)
+        }
+        .buttonStyle(RowButtonStyle())
+        .allowsHitTesting(live.isIdle)
     }
 
     private func rules(of game: GameSnapshot) -> Text {

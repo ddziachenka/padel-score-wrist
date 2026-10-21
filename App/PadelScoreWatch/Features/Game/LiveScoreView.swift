@@ -7,9 +7,31 @@ enum GameRoute: Hashable, Sendable {
     case about
     /// Confirming the serving order of a new set, starting from the order proposed for it.
     case serving(proposed: ServingSetup, set: Int)
+    /// The screens of a correction, which share one draft.
+    case editScore
+    case gameSettings
+    case points
+    case games
+    case completedSets
+    case completedSet(Int)
+    case newSet
+    case editServing
+    case rallyInBlock
+    case deuceRule
+    case totalRallies
+    case ralliesPerServer
+    case format
 
     var isServing: Bool {
         if case .serving = self { true } else { false }
+    }
+
+    /// A screen of a correction.
+    var isEditor: Bool {
+        switch self {
+        case .menu, .about, .serving: false
+        default: true
+        }
     }
 }
 
@@ -40,6 +62,8 @@ struct LiveScoreView: View {
             ).post()
         }
         .onChange(of: live.lastChange) { _, change in
+            // A saved correction goes back to the score it changed.
+            if change?.outcome == .corrected { path.removeAll() }
             guard let text = change?.announcement else { return }
             AccessibilityNotification.Announcement(text).post()
         }
@@ -47,10 +71,35 @@ struct LiveScoreView: View {
             // The new set's order was confirmed: back to the score.
             if proposed == nil { path.removeAll(where: \.isServing) }
         }
-        .onChange(of: scenePhase) { _, phase in
-            // On return to the wrist the score comes first; a serving order being chosen stays.
-            if phase != .active { path.removeAll { !$0.isServing } }
+        .onChange(of: live.editor == nil) { _, isClosed in
+            // The correction was discarded or saved: its screens go.
+            if isClosed { path.removeAll(where: \.isEditor) }
         }
+        .onChange(of: path) { _, path in
+            // Every screen of the correction was left: so is the correction.
+            if live.editor != nil, !path.contains(where: \.isEditor) { live.endEditing() }
+        }
+        .onChange(of: scenePhase) { _, phase in
+            // On return to the wrist the score comes first. A serving order being chosen stays, and
+            // so does a correction, with its draft, while the app runs.
+            if phase != .active, live.editor == nil { path.removeAll { !$0.isServing } }
+        }
+    }
+
+    /// Opens a screen of the correction. Edit score and Game settings lead to each other: one
+    /// already in the stack is gone back to rather than opened again.
+    private func open(_ route: GameRoute) {
+        if route == .editScore || route == .gameSettings, let index = path.firstIndex(of: route) {
+            path.removeSubrange(path.index(after: index)...)
+        } else {
+            path.append(route)
+        }
+    }
+
+    /// Begins a correction from the menu.
+    private func edit(_ route: GameRoute) {
+        live.beginEditing()
+        if live.editor != nil { path.append(route) }
     }
 
     private var stack: some View {
@@ -76,11 +125,80 @@ struct LiveScoreView: View {
     private func destination(for route: GameRoute) -> some View {
         switch route {
         case .menu:
-            GameMenuView(live: live)
+            GameMenuView(live: live, edit: edit)
         case .about:
             AboutView()
         case let .serving(proposed, set):
             SetServingView(live: live, setNumber: set, proposed: proposed)
+        default:
+            // A screen of a correction keeps the correction it was opened with, also while it leaves.
+            if let editor = live.editor {
+                editorDestination(for: route, editor: editor)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func editorDestination(for route: GameRoute, editor: GameEditor) -> some View {
+        switch route {
+        case .editScore, .gameSettings:
+            GameEditorScreen(
+                kind: route == .editScore ? .score : .settings,
+                editor: editor,
+                live: live,
+                isRoot: path.first(where: \.isEditor) == route,
+                open: open,
+                discard: { live.endEditing() },
+                close: { path.removeAll() }
+            )
+        case .points:
+            PointsEditor(editor: editor)
+        case .games:
+            GamesEditor(editor: editor)
+        case .completedSets:
+            CompletedSetsView(editor: editor)
+        case .completedSet(let index):
+            CompletedSetEditor(editor: editor, index: index)
+        case .newSet:
+            CompletedSetEditor(editor: editor, index: nil)
+        case .editServing:
+            CorrectionServingView(editor: editor)
+        case .rallyInBlock:
+            NumberEditor(
+                title: LocalizedStringResource("Next rally in block", comment: "Correction of an americano round: title of the next rally's place in the server's block."),
+                explanation: LocalizedStringResource(
+                    "Which rally of their block the next server serves.",
+                    comment: "Explains the next rally's place in the block: counted from 1 within the server's block."
+                ),
+                range: 1...max(editor.draft.round?.ralliesPerServer ?? 1, 1),
+                number: Binding { editor.draft.round?.rallyInBlock } set: { value in editor.editRound { $0.rallyInBlock = value } }
+            )
+        case .deuceRule:
+            DeuceRuleEditor(rule: Binding { editor.draft.match?.deuceRule } set: { rule in editor.editMatch { $0.deuceRule = rule } })
+        case .totalRallies:
+            NumberEditor(
+                title: LocalizedStringResource("Total rallies", comment: "Title of the americano total editor."),
+                explanation: LocalizedStringResource(
+                    "For both teams together.",
+                    comment: "Explains the americano total under its number: it is shared, not each team's target."
+                ),
+                range: SetupDraft.totalRalliesRange,
+                number: Binding { editor.draft.round?.totalRallies } set: { value in editor.editRound { $0.totalRallies = value } }
+            )
+        case .ralliesPerServer:
+            NumberEditor(
+                title: LocalizedStringResource("Rallies per server", comment: "Title of the americano service block editor."),
+                explanation: LocalizedStringResource(
+                    "Served in a row by one player, whoever wins.",
+                    comment: "Explains rallies per server under its number: the serve passes after this many rallies."
+                ),
+                range: SetupDraft.ralliesPerServerRange,
+                number: Binding { editor.draft.round?.ralliesPerServer } set: { value in editor.editRound { $0.ralliesPerServer = value } }
+            )
+        case .format:
+            FormatEditor(editor: editor)
+        case .menu, .about, .serving:
+            EmptyView()
         }
     }
 }
@@ -205,18 +323,18 @@ private struct ScoreScreen: View {
 }
 
 /// The short line above the score: the set, Golden point, Tie-break, Americano or the end of the
-/// round. For a moment after Undo it says the change was undone, and during a slow Undo or
-/// confirmation, that it is being saved.
+/// round. For a moment after Undo it says the change was undone, after a saved correction that it
+/// was saved, and during a slow Undo that it is being saved.
 private struct ContextLine: View {
     let board: ScoreBoard
     let live: LiveScore
-    @State private var showsUndone = false
+    @State private var notice: LocalizedStringResource?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ZStack(alignment: .leading) {
-            if showsUndone {
-                Text("Action undone")
+            if let notice {
+                Text(notice)
                     .foregroundStyle(Palette.textPrimary)
                     .transition(.opacity)
             } else {
@@ -233,10 +351,18 @@ private struct ContextLine: View {
         .accessibilityIdentifier("game.context")
         .accessibilitySortPriority(7)
         .task(id: live.lastChange?.number) {
-            guard case .undone = live.lastChange?.outcome else { return }
-            withAnimation(reduceMotion ? nil : .easeOut(duration: 0.15)) { showsUndone = true }
+            let shown: LocalizedStringResource
+            switch live.lastChange?.outcome {
+            case .undone:
+                shown = LocalizedStringResource("Action undone", comment: "Game screen: shown above the score for a moment after Undo restored the game as it was before its last change.")
+            case .corrected:
+                shown = LocalizedStringResource("Changes saved", comment: "Game screen: shown above the score for a moment after a correction was saved.")
+            default:
+                return
+            }
+            withAnimation(reduceMotion ? nil : .easeOut(duration: 0.15)) { notice = shown }
             try? await Task.sleep(for: .seconds(1.5))
-            withAnimation(reduceMotion ? nil : .easeOut(duration: 0.15)) { showsUndone = false }
+            withAnimation(reduceMotion ? nil : .easeOut(duration: 0.15)) { notice = nil }
         }
     }
 }
