@@ -162,6 +162,18 @@ struct CorrectionDraft: Hashable, Sendable {
         guard original.status == .active, let round, let total = round.totalRallies else { return false }
         return round.played == total
     }
+
+    /// A finished round's points reach its total: saving gives it the result of a round played in full.
+    var completesResult: Bool {
+        guard original.status == .finished, let round, let total = round.totalRallies else { return false }
+        return round.played == total
+    }
+
+    /// A finished round still has no room for another rally, so it cannot be resumed as it stands.
+    var leavesNoRoom: Bool {
+        guard original.status == .finished, let round, let total = round.totalRallies else { return false }
+        return round.played >= total
+    }
 }
 
 extension CorrectionDraft.Score {

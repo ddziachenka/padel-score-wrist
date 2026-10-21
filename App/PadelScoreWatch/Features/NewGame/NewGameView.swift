@@ -4,8 +4,10 @@ import SwiftUI
 /// reaches this screen, so a new game cannot replace it.
 struct NewGameView: View {
     @State private var flow: NewGameFlow
+    private let store: SessionStore
 
     init(store: SessionStore) {
+        self.store = store
         _flow = State(initialValue: NewGameFlow(store: store))
     }
 
@@ -13,15 +15,7 @@ struct NewGameView: View {
         NavigationStack(path: $flow.path) {
             ScrollView {
                 VStack(spacing: Spacing.sm) {
-                    ForEach(GameKind.allCases, id: \.self) { kind in
-                        Button {
-                            flow.choose(kind)
-                        } label: {
-                            FormatLabel(kind: kind)
-                        }
-                        .buttonStyle(RowButtonStyle())
-                        .accessibilityIdentifier("newGame.\(kind.rawValue)")
-                    }
+                    FormatChoices(flow: flow)
 
                     NavigationLink(value: NewGameFlow.Route.about) {
                         Text("About")
@@ -35,13 +29,36 @@ struct NewGameView: View {
             }
             .navigationTitle(Text("New game"))
             .navigationDestination(for: NewGameFlow.Route.self) { route in
-                destination(for: route)
+                NewGameDestination(route: route, flow: flow, store: store)
             }
         }
     }
+}
 
-    @ViewBuilder
-    private func destination(for route: NewGameFlow.Route) -> some View {
+/// Match and Americano, each with its one-line meaning: choosing one sets it up.
+struct FormatChoices: View {
+    let flow: NewGameFlow
+
+    var body: some View {
+        ForEach(GameKind.allCases, id: \.self) { kind in
+            Button {
+                flow.choose(kind)
+            } label: {
+                FormatLabel(kind: kind)
+            }
+            .buttonStyle(RowButtonStyle())
+            .accessibilityIdentifier("newGame.\(kind.rawValue)")
+        }
+    }
+}
+
+/// The screens of setting up a new game, wherever its stack began.
+struct NewGameDestination: View {
+    let route: NewGameFlow.Route
+    let flow: NewGameFlow
+    let store: SessionStore
+
+    var body: some View {
         switch route {
         case .setup:
             SetupView(flow: flow)
@@ -70,7 +87,9 @@ struct NewGameView: View {
         case .serving:
             ServingEditor(serving: draft(\.serving, otherwise: ServingChoice()))
         case .about:
-            AboutView()
+            AboutView { flow.path.append(.settings) }
+        case .settings:
+            LocalDataSettingsView(store: store)
         }
     }
 

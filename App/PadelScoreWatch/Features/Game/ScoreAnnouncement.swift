@@ -1,10 +1,11 @@
 import Foundation
 
 /// What VoiceOver says once a change is saved: the new pair of points, a game, set or round it
-/// decided, and who serves when that changed. It is said once and moves no focus. Each part is
-/// a whole sentence of its own, so none is pieced together from fragments.
+/// decided, a finished or resumed game, and who serves when that changed. It is said once and moves
+/// no focus. Each part is a whole sentence of its own, so none is pieced together from fragments.
 enum ScoreAnnouncement {
-    static func text(for outcome: SessionOutcome, before: ScoreBoard?, after: ScoreBoard) -> String? {
+    /// `result` is the summary of the game after the change, when that game is finished.
+    static func text(for outcome: SessionOutcome, before: ScoreBoard?, after: ScoreBoard, result: ResultSummary? = nil) -> String? {
         var sentences: [String] = []
         switch outcome {
         case .match(.point), .americano(.point):
@@ -21,17 +22,36 @@ enum ScoreAnnouncement {
             sentences.append(roundFinished(result, after))
         case .undone:
             sentences.append(String(localized: "Action undone.", comment: "VoiceOver, after Undo restored the game as it was before its last change."))
-            if case .ended = after.serving {} else { sentences.append(points(after)) }
+            if case .ended = after.serving {
+                // Undoing Resume finishes the game again.
+                if before?.isFinished == false, let result { sentences.append(finishedAgain(result.ending)) }
+            } else {
+                sentences.append(points(after))
+            }
             if after.context != before?.context, let context = contextSentence(after.context) { sentences.append(context) }
         case .corrected:
             sentences.append(String(localized: "Changes saved.", comment: "VoiceOver, after a correction of the score, rules or serving was saved."))
-            if case .ended(let result?) = after.serving, before?.isFinished == false {
+            if before?.isFinished == true, let result {
+                sentences.append(resultSentence(result, after))
+            } else if case .ended(let result?) = after.serving, before?.isFinished == false {
                 sentences.append(roundFinished(result, after))
             } else {
                 sentences.append(points(after))
                 if after.context != before?.context, let context = contextSentence(after.context) { sentences.append(context) }
             }
-        case .started, .finished, .resumed, .deleted, .alreadyApplied:
+        case .finished:
+            guard let result else { return nil }
+            switch result.ending {
+            case .matchFinished:
+                sentences.append(String(localized: "Match finished. Saved.", comment: "VoiceOver, after a match finished by hand was saved as the result."))
+            case .roundComplete, .roundEndedEarly:
+                sentences.append(String(localized: "Round finished. Saved.", comment: "VoiceOver, after an americano round finished by hand was saved as the result."))
+            }
+        case .resumed:
+            sentences.append(String(localized: "Game resumed.", comment: "VoiceOver, after a finished game was resumed exactly where it stopped."))
+            sentences.append(points(after))
+            if let context = contextSentence(after.context) { sentences.append(context) }
+        case .started, .deleted, .alreadyApplied:
             return nil
         }
         switch after.serving {
@@ -116,6 +136,44 @@ enum ScoreAnnouncement {
             String(
                 localized: "Round finished. Us \(us), them \(them). Their team won.",
                 comment: "VoiceOver: the americano round reached its total, with more points for the opponents. Arguments: our points, their points."
+            )
+        }
+    }
+
+    private static func finishedAgain(_ ending: ResultSummary.Ending) -> String {
+        switch ending {
+        case .matchFinished:
+            String(localized: "Match finished.", comment: "VoiceOver: Undo took back Resume, so the match is finished again.")
+        case .roundComplete, .roundEndedEarly:
+            String(localized: "Round finished.", comment: "VoiceOver: Undo took back Resume, so the americano round is finished again.")
+        }
+    }
+
+    /// A finished game's result after a correction: a match's sets, or a round's points and how it ended.
+    private static func resultSentence(_ result: ResultSummary, _ board: ScoreBoard) -> String {
+        let (us, them) = (board.us.spoken, board.them.spoken)
+        switch result.ending {
+        case .matchFinished:
+            return String(
+                localized: "Match finished. Sets: us \(result.headline.us), them \(result.headline.them).",
+                comment: "VoiceOver: a finished match's result after a correction. Arguments: sets won, ours then theirs."
+            )
+        case .roundComplete(let outcome):
+            return roundFinished(outcome, board)
+        case .roundEndedEarly(.some(.us)):
+            return String(
+                localized: "Ended early. Us \(us), them \(them). Our team was ahead.",
+                comment: "VoiceOver: an americano round finished by hand before its total, with more points for our team. Arguments: our points, their points."
+            )
+        case .roundEndedEarly(.some(.them)):
+            return String(
+                localized: "Ended early. Us \(us), them \(them). Their team was ahead.",
+                comment: "VoiceOver: an americano round finished by hand before its total, with more points for the opponents. Arguments: our points, their points."
+            )
+        case .roundEndedEarly(nil):
+            return String(
+                localized: "Ended early. Us \(us), them \(them). The points were level.",
+                comment: "VoiceOver: an americano round finished by hand before its total, with equal points. Arguments: our points, their points."
             )
         }
     }

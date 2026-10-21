@@ -1,8 +1,7 @@
 import SwiftUI
 
-/// The game menu (S4): Edit score and Game settings while the game is played, the rules it is
-/// played under, and About. Finishing the game joins it in a later milestone. A round that has
-/// just reached its total starts the next game from here.
+/// The game menu (S4): Edit score and Game settings, Finish match or Finish round, the last result
+/// while it can only be viewed, the rules the game is played under, and About.
 struct GameMenuView: View {
     let live: LiveScore
     /// Begins a correction on the screen given.
@@ -11,26 +10,31 @@ struct GameMenuView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: Spacing.sm) {
-                if live.game?.status == .finished {
-                    Button("New game") {
-                        live.leaveFinishedRound()
+                menuRow("Edit score", route: .editScore)
+                    .accessibilityIdentifier("menu.editScore")
+                menuRow("Game settings", route: .gameSettings)
+                    .accessibilityIdentifier("menu.gameSettings")
+                if let game = live.game, game.status == .active {
+                    NavigationLink(value: GameRoute.finish) {
+                        rowLabel(game.format.kind == .match ? Text("Finish match") : Text("Finish round"))
                     }
-                    .buttonStyle(PrimaryButtonStyle())
-                    .accessibilityIdentifier("menu.newGame")
-                } else {
-                    menuRow("Edit score", route: .editScore)
-                        .accessibilityIdentifier("menu.editScore")
-                    menuRow("Game settings", route: .gameSettings)
-                        .accessibilityIdentifier("menu.gameSettings")
+                    .buttonStyle(RowButtonStyle())
+                    .allowsHitTesting(live.isIdle)
+                    .accessibilityIdentifier("menu.finish")
+                }
+                if live.earlierResult != nil {
+                    NavigationLink(value: GameRoute.lastResult) {
+                        rowLabel(Text("Last result"))
+                    }
+                    .buttonStyle(RowButtonStyle())
+                    .accessibilityIdentifier("menu.lastResult")
                 }
                 if let game = live.game {
                     Caption(rules(of: game))
                         .accessibilityIdentifier("game.rules")
                 }
                 NavigationLink(value: GameRoute.about) {
-                    Text("About")
-                        .font(Typography.body)
-                        .foregroundStyle(Palette.textPrimary)
+                    rowLabel(Text("About"))
                 }
                 .buttonStyle(RowButtonStyle())
                 .accessibilityIdentifier("menu.about")
@@ -43,12 +47,16 @@ struct GameMenuView: View {
         Button {
             edit(route)
         } label: {
-            Text(title)
-                .font(Typography.body)
-                .foregroundStyle(Palette.textPrimary)
+            rowLabel(Text(title))
         }
         .buttonStyle(RowButtonStyle())
         .allowsHitTesting(live.isIdle)
+    }
+
+    private func rowLabel(_ title: Text) -> some View {
+        title
+            .font(Typography.body)
+            .foregroundStyle(Palette.textPrimary)
     }
 
     private func rules(of game: GameSnapshot) -> Text {

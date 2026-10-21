@@ -76,7 +76,7 @@ struct SetupView: View {
     }
 
     private func row(_ row: SetupRow, label: LocalizedStringKey, value: Text?, problem: LocalizedStringKey?) -> some View {
-        SettingRow(label: label, value: value, problem: problem, route: row.route)
+        SettingRow(label: label, value: value, problem: problem) { flow.path.append(row.route) }
             .id(row)
             .accessibilityFocused($focusedRow, equals: row)
             .accessibilityIdentifier("setup.\(row)")
@@ -123,7 +123,7 @@ private enum SetupRow: Hashable {
         case .totalRallies: self = .totalRallies
         case .ralliesPerServer: self = .ralliesPerServer
         case .serving: self = .serving
-        case .setup, .about: return nil
+        case .setup, .about, .settings: return nil
         }
     }
 
@@ -138,16 +138,17 @@ private enum SetupRow: Hashable {
     }
 }
 
-/// One value of setup and the way to change it.
+/// One value of setup and the way to change it. It opens its editor through the flow, so setup works
+/// in whichever stack it was opened.
 private struct SettingRow: View {
     let label: LocalizedStringKey
     /// `nil` while the value is still to be chosen.
     let value: Text?
     let problem: LocalizedStringKey?
-    let route: NewGameFlow.Route
+    let open: () -> Void
 
     var body: some View {
-        NavigationLink(value: route) {
+        Button(action: open) {
             HStack(spacing: Spacing.sm) {
                 VStack(alignment: .leading, spacing: Spacing.xs) {
                     Text(label)

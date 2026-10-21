@@ -26,7 +26,7 @@
       }
     },
     "%lld of %lld rallies played." : {
-      "comment" : "Correction of an americano round: the rallies both teams' points add up to, and the total. Arguments: rallies played, total rallies.",
+      "comment" : "An americano round's rallies played, both teams' points together, and its total: in a correction and on the result. Arguments: rallies played, total rallies.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -237,6 +237,18 @@
         }
       }
     },
+    "All rallies are played." : {
+      "comment" : "Correction of a finished americano round: the points reach the total, so the round's result is that of a round played in full.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All rallies are played."
+          }
+        }
+      }
+    },
     "All rallies are played. Saving finishes the round." : {
       "comment" : "Correction of an americano round: the points reach the total, so saving ends the round.",
       "extractionState" : "manual",
@@ -245,6 +257,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "All rallies are played. Saving finishes the round."
+          }
+        }
+      }
+    },
+    "All rallies are played. To resume, increase the total or correct the score." : {
+      "comment" : "Result and correction of an americano round at its total: no further rally can be played until the total grows or the score comes down.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All rallies are played. To resume, increase the total or correct the score."
           }
         }
       }
@@ -358,7 +382,7 @@
       }
     },
     "Changes saved" : {
-      "comment" : "Game screen: shown above the score for a moment after a correction was saved.",
+      "comment" : "Shown for a moment after a correction was saved: above the score on the game screen, and in place of Saved on the result.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -537,6 +561,18 @@
         }
       }
     },
+    "Couldn’t delete. Your game data is unchanged." : {
+      "comment" : "Settings: deleting local data could not be saved, so nothing was deleted. Also said by VoiceOver.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t delete. Your game data is unchanged."
+          }
+        }
+      }
+    },
     "Couldn’t save these changes. Your saved game is unchanged." : {
       "comment" : "Correction: the save was refused, and nothing was saved.",
       "extractionState" : "manual",
@@ -609,6 +645,42 @@
         }
       }
     },
+    "Delete data" : {
+      "comment" : "Settings: the destructive button of the confirmation before deleting the game data kept on this Watch.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete data"
+          }
+        }
+      }
+    },
+    "Delete local data" : {
+      "comment" : "Settings: the button that asks to delete the game data kept on this Watch.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete local data"
+          }
+        }
+      }
+    },
+    "Delete local data?" : {
+      "comment" : "Settings: title of the confirmation before deleting the game data kept on this Watch.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete local data?"
+          }
+        }
+      }
+    },
     "Discard changes" : {
       "comment" : "Alert button: leaves the correction without saving it.",
       "extractionState" : "manual",
@@ -634,7 +706,7 @@
       }
     },
     "Done" : {
-      "comment" : "Applies the choice on this screen and goes back.",
+      "comment" : "Applies the choice on this screen and goes back. Also the label of the round button that moves a game just finished on the game screen on to its result.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -681,6 +753,18 @@
         }
       }
     },
+    "Edit result" : {
+      "comment" : "Result: opens a correction of the finished game's result.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit result"
+          }
+        }
+      }
+    },
     "Edit score" : {
       "comment" : "Game menu row and screen title, and a row of Settings: correcting the points, games, sets and serving.",
       "extractionState" : "manual",
@@ -693,6 +777,114 @@
         }
       }
     },
+    "Ended early · Level" : {
+      "comment" : "Result of an americano round finished by hand before its total, with equal points. Not a draw: the round was not played in full.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ended early · Level"
+          }
+        }
+      }
+    },
+    "Ended early · THEM ahead" : {
+      "comment" : "Result of an americano round finished by hand before its total, with more points for the opponents. Not a win: the round was not played in full.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ended early · THEM ahead"
+          }
+        }
+      }
+    },
+    "Ended early · US ahead" : {
+      "comment" : "Result of an americano round finished by hand before its total, with more points for our team. Not a win: the round was not played in full.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ended early · US ahead"
+          }
+        }
+      }
+    },
+    "Ended early. Our team was ahead." : {
+      "comment" : "VoiceOver: an americano round finished by hand before its total, with more points for our team.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ended early. Our team was ahead."
+          }
+        }
+      }
+    },
+    "Ended early. The points were level." : {
+      "comment" : "VoiceOver: an americano round finished by hand before its total, with equal points.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ended early. The points were level."
+          }
+        }
+      }
+    },
+    "Ended early. Their team was ahead." : {
+      "comment" : "VoiceOver: an americano round finished by hand before its total, with more points for the opponents.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ended early. Their team was ahead."
+          }
+        }
+      }
+    },
+    "Ended early. Us %@, them %@. Our team was ahead." : {
+      "comment" : "VoiceOver: an americano round finished by hand before its total, with more points for our team. Arguments: our points, their points.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ended early. Us %1$@, them %2$@. Our team was ahead."
+          }
+        }
+      }
+    },
+    "Ended early. Us %@, them %@. The points were level." : {
+      "comment" : "VoiceOver: an americano round finished by hand before its total, with equal points. Arguments: our points, their points.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ended early. Us %1$@, them %2$@. The points were level."
+          }
+        }
+      }
+    },
+    "Ended early. Us %@, them %@. Their team was ahead." : {
+      "comment" : "VoiceOver: an americano round finished by hand before its total, with more points for the opponents. Arguments: our points, their points.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ended early. Us %1$@, them %2$@. Their team was ahead."
+          }
+        }
+      }
+    },
     "Enter the score for the new format. Nothing changes until you save." : {
       "comment" : "Alert message before a correction begins replacing the game's score with one in the other format.",
       "extractionState" : "manual",
@@ -701,6 +893,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enter the score for the new format. Nothing changes until you save."
+          }
+        }
+      }
+    },
+    "Finish" : {
+      "comment" : "Finish match or Finish round: saves the current score as the game's result.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish"
+          }
+        }
+      }
+    },
+    "Finish match" : {
+      "comment" : "Game menu row and the title of its screen: finishes a regular match at its current score.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish match"
+          }
+        }
+      }
+    },
+    "Finish round" : {
+      "comment" : "Game menu row and the title of its screen: finishes an americano round at its current score.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish round"
+          }
+        }
+      }
+    },
+    "Finish this game?" : {
+      "comment" : "Finish match or Finish round: the question above Finish and Keep playing.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish this game?"
           }
         }
       }
@@ -813,6 +1053,30 @@
         }
       }
     },
+    "Game resumed" : {
+      "comment" : "Game screen: shown above the score for a moment after a finished game was resumed.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game resumed"
+          }
+        }
+      }
+    },
+    "Game resumed." : {
+      "comment" : "VoiceOver, after a finished game was resumed exactly where it stopped.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game resumed."
+          }
+        }
+      }
+    },
     "Game settings" : {
       "comment" : "Game menu row, and a row of Edit score: correcting the format, the rules and serving.",
       "extractionState" : "manual",
@@ -909,6 +1173,18 @@
         }
       }
     },
+    "Incomplete" : {
+      "comment" : "Result: the set the match was in when it finished, not played to its end.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incomplete"
+          }
+        }
+      }
+    },
     "Increase" : {
       "comment" : "VoiceOver label of the + button of a number.",
       "extractionState" : "manual",
@@ -945,6 +1221,54 @@
         }
       }
     },
+    "Keep playing" : {
+      "comment" : "Finish match or Finish round: leaves the game as it is and goes back to the score.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep playing"
+          }
+        }
+      }
+    },
+    "Kept for viewing until the game you’re playing finishes." : {
+      "comment" : "Last result, opened from the game menu: the previous game's result can only be viewed, until the game being played finishes in its place.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kept for viewing until the game you’re playing finishes."
+          }
+        }
+      }
+    },
+    "Kept on this Watch:" : {
+      "comment" : "Settings: introduces the list of game data kept on this Watch.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kept on this Watch:"
+          }
+        }
+      }
+    },
+    "Last result" : {
+      "comment" : "Game menu row and the title of its screen: the previous game's result, which can only be viewed.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last result"
+          }
+        }
+      }
+    },
     "Leaves without saving." : {
       "comment" : "VoiceOver hint of the correction's Cancel: nothing is saved.",
       "extractionState" : "manual",
@@ -969,6 +1293,30 @@
         }
       }
     },
+    "Local data" : {
+      "comment" : "Settings: heading of the game data kept on this Watch.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local data"
+          }
+        }
+      }
+    },
+    "Local data deleted." : {
+      "comment" : "VoiceOver, after the game data on this Watch was deleted.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local data deleted."
+          }
+        }
+      }
+    },
     "Match" : {
       "comment" : "Game format: a regular match of games and sets.",
       "extractionState" : "manual",
@@ -982,13 +1330,49 @@
       }
     },
     "Match finished" : {
-      "comment" : "The match was finished by hand.",
+      "comment" : "The match was finished by hand: above its score, and the title of its result.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Match finished"
+          }
+        }
+      }
+    },
+    "Match finished." : {
+      "comment" : "VoiceOver: Undo took back Resume, so the match is finished again.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match finished."
+          }
+        }
+      }
+    },
+    "Match finished. Saved." : {
+      "comment" : "VoiceOver, after a match finished by hand was saved as the result.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match finished. Saved."
+          }
+        }
+      }
+    },
+    "Match finished. Sets: us %lld, them %lld." : {
+      "comment" : "VoiceOver: a finished match's result after a correction. Arguments: sets won, ours then theirs.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match finished. Sets: us %1$lld, them %2$lld."
           }
         }
       }
@@ -1006,7 +1390,7 @@
       }
     },
     "New game" : {
-      "comment" : "Title of the screen where a new game is created, and the game menu's way there once a round has finished.",
+      "comment" : "Title of the screen where a new game is created, and the result's way there.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1061,6 +1445,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No completed sets"
+          }
+        }
+      }
+    },
+    "No game data is kept on this Watch." : {
+      "comment" : "Settings: no game, result or settings are kept, so there is nothing to delete.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No game data is kept on this Watch."
+          }
+        }
+      }
+    },
+    "No points played." : {
+      "comment" : "Result of a match finished before its first point.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No points played."
           }
         }
       }
@@ -1222,7 +1630,7 @@
       }
     },
     "Points" : {
-      "comment" : "Correction row and screen title: the points of the game being played.",
+      "comment" : "Correction row and screen title: the points of the game being played. Also a result's row of them, and the name of an americano round's points.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1329,6 +1737,18 @@
         }
       }
     },
+    "Resume game" : {
+      "comment" : "Result: plays the finished game on exactly where it stopped.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resume game"
+          }
+        }
+      }
+    },
     "Retry" : {
       "comment" : "Tries to save the same action again after saving failed.",
       "extractionState" : "manual",
@@ -1342,13 +1762,37 @@
       }
     },
     "Round finished" : {
-      "comment" : "The americano round reached its total rallies.",
+      "comment" : "The americano round is finished: above its score, and the title of its result, whether it reached its total or ended early.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Round finished"
+          }
+        }
+      }
+    },
+    "Round finished." : {
+      "comment" : "VoiceOver: Undo took back Resume, so the americano round is finished again.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Round finished."
+          }
+        }
+      }
+    },
+    "Round finished. Saved." : {
+      "comment" : "VoiceOver, after an americano round finished by hand was saved as the result.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Round finished. Saved."
           }
         }
       }
@@ -1397,6 +1841,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Save changes"
+          }
+        }
+      }
+    },
+    "Saved" : {
+      "comment" : "Result: the finished game's score is saved on the Watch. Shown with a checkmark.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved"
           }
         }
       }
@@ -1522,7 +1978,7 @@
       }
     },
     "Set %lld" : {
-      "comment" : "The set being played: above the score, and the title of its serving order. In a correction, a completed set's row and title. Argument: the set's number.",
+      "comment" : "The set being played: above the score, and the title of its serving order. In a correction, a completed set's row and title; on a result, a finished set's row. Argument: the set's number.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1557,6 +2013,18 @@
         }
       }
     },
+    "Set %lld, incomplete" : {
+      "comment" : "VoiceOver label of the set the match was in when it finished. Argument: the set's number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set %lld, incomplete"
+          }
+        }
+      }
+    },
     "Set to them. Sets: us %lld, them %lld." : {
       "comment" : "VoiceOver: the opponents won the set. Arguments: sets won, ours then theirs.",
       "extractionState" : "manual",
@@ -1582,7 +2050,7 @@
       }
     },
     "Sets" : {
-      "comment" : "Game screen: sets won, between the two teams' counts. Also the correction's row and screen of completed sets.",
+      "comment" : "Game screen: sets won, between the two teams' counts. Also the correction's row and screen of completed sets, and a match result's sets won.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1606,13 +2074,37 @@
       }
     },
     "Settings" : {
-      "comment" : "Title of the correction screen for the game's format, rules and serving, opened from Game settings in the game menu.",
+      "comment" : "The title of the correction screen for the game's format, rules and serving, opened from Game settings in the game menu. Also the row in About, and the title of the screen it opens, that keep the data stored on this Watch.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Settings"
+          }
+        }
+      }
+    },
+    "Settings saved for the next game" : {
+      "comment" : "Settings: local data kept on the Watch, the rules and serving offered when the next game is set up.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings saved for the next game"
+          }
+        }
+      }
+    },
+    "Shows the result." : {
+      "comment" : "VoiceOver hint of Done on a game that just finished on the live score: it moves on to the result.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows the result."
           }
         }
       }
@@ -1677,6 +2169,18 @@
         }
       }
     },
+    "Starting a new game will keep this result for viewing only." : {
+      "comment" : "Result: under New game. Once the next game starts, this result can no longer be corrected or resumed; it can still be viewed until that game finishes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starting a new game will keep this result for viewing only."
+          }
+        }
+      }
+    },
     "Still saving…" : {
       "comment" : "Shown on a button, or above the score, when saving takes more than five seconds.",
       "extractionState" : "manual",
@@ -1697,6 +2201,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "THEM"
+          }
+        }
+      }
+    },
+    "THEM %@" : {
+      "comment" : "A team's value on its own line at the largest text sizes. Argument: their value, such as 4 or 40.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "THEM %@"
           }
         }
       }
@@ -1737,6 +2253,18 @@
         }
       }
     },
+    "The game being played" : {
+      "comment" : "Settings: local data kept on the Watch, the game that is being played and its undo history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The game being played"
+          }
+        }
+      }
+    },
     "The game couldn’t start. Nothing has changed." : {
       "comment" : "Starting a game was refused.",
       "extractionState" : "manual",
@@ -1745,6 +2273,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The game couldn’t start. Nothing has changed."
+          }
+        }
+      }
+    },
+    "The last result" : {
+      "comment" : "Settings: local data kept on the Watch, the result of the last finished game.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The last result"
           }
         }
       }
@@ -1893,8 +2433,20 @@
         }
       }
     },
+    "This removes your game, last result and saved settings from this Watch. Your purchase is not deleted." : {
+      "comment" : "Settings: the message of the confirmation before deleting the game data kept on this Watch.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This removes your game, last result and saved settings from this Watch. Your purchase is not deleted."
+          }
+        }
+      }
+    },
     "Tie-break" : {
-      "comment" : "Game screen: the set is decided by a tie-break, counted 0, 1, 2 and on. Also the correction row and editor title of its points.",
+      "comment" : "Game screen: the set is decided by a tie-break, counted 0, 1, 2 and on. Also the correction row and editor title of its points, and a result's row of them.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1953,6 +2505,18 @@
         }
       }
     },
+    "US %@" : {
+      "comment" : "A team's value on its own line at the largest text sizes. Argument: our value, such as 6 or AD.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US %@"
+          }
+        }
+      }
+    },
     "US %lld" : {
       "comment" : "Game screen at accessibility text sizes: our team's games or sets, under the count's name. Argument: the count.",
       "extractionState" : "manual",
@@ -1990,7 +2554,7 @@
       }
     },
     "Us %@, them %@" : {
-      "comment" : "VoiceOver value of a correction row: one value for each team. Arguments: ours, theirs, such as 15 and Advantage.",
+      "comment" : "VoiceOver value of a correction or result row: one value for each team. Arguments: ours, theirs, such as 15 and Advantage.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -2014,7 +2578,7 @@
       }
     },
     "Us %lld, them %lld" : {
-      "comment" : "VoiceOver value of a count on the game screen, and of a completed set in a correction. Arguments: our count, their count.",
+      "comment" : "VoiceOver value of a count on the game screen or a result, and of a completed set in a correction. Arguments: our count, their count.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -2069,6 +2633,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You"
+          }
+        }
+      }
+    },
+    "Your current score will be saved." : {
+      "comment" : "Finish match or Finish round: under the question, what Finish does.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your current score will be saved."
           }
         }
       }

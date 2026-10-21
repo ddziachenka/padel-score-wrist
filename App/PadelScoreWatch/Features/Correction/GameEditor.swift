@@ -1,8 +1,9 @@
 import Observation
 
-/// The correction of the game on screen, from the menu to Save: the draft, the revision it was
-/// made against, and how the person left each part of it. It lives in memory while the app runs;
-/// nothing of it is saved before Save, and the saved game stays exactly as it was until then.
+/// The correction of the game on screen or of its result, from the menu or the result to Save: the
+/// draft, the revision it was made against, and how the person left each part of it. It lives in
+/// memory while the app runs; nothing of it is saved before Save, and the saved game stays exactly
+/// as it was until then. A finished game stays finished: it is played on only through Resume.
 @MainActor
 @Observable
 final class GameEditor {
@@ -18,6 +19,9 @@ final class GameEditor {
     let revision: Int
     /// The rules last played in each format, offered when the game changes format.
     let recent: RecentSettings
+    /// Opened from Resume of a round at its total, which takes no more rallies until the total grows
+    /// or the score comes down.
+    let makesRoomToResume: Bool
     /// Counts the saves refused for something left to put right, for the feedback after each.
     private(set) var refusedSaves = 0
     /// The session store refused the save without saving anything.
@@ -29,10 +33,11 @@ final class GameEditor {
     /// not change.
     var isLocked = false
 
-    init(game: GameSnapshot, revision: Int, recent: RecentSettings) {
+    init(game: GameSnapshot, revision: Int, recent: RecentSettings, makesRoomToResume: Bool = false) {
         draft = CorrectionDraft(game)
         self.revision = revision
         self.recent = recent
+        self.makesRoomToResume = makesRoomToResume
     }
 
     var problems: [CorrectionProblem] { draft.problems }

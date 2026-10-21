@@ -396,7 +396,7 @@ final class LiveScoreTests {
         #expect(live.lastChange == nil)
     }
 
-    @Test("The rally that ends a round keeps it on screen with Undo; moving on lets it go")
+    @Test("The rally that ends a round keeps it on screen with Undo; moving on shows its result")
     func finishedRoundStays() async throws {
         let (live, store) = try await live(.americano(total: 3, perServer: 2), after: points("UT"))
 
@@ -419,7 +419,8 @@ final class LiveScoreTests {
         live.leaveFinishedRound()
         #expect(live.finishedRound == nil)
         #expect(live.lastChange == nil)
-        #expect(LaunchScreen(status: store.status, session: store.session, finishedOnScreen: live.finishedRound) == .newGame)
+        #expect(live.showsResult)
+        #expect(LaunchScreen(status: store.status, session: store.session, finishedOnScreen: live.finishedRound) == .result)
     }
 
     @Test("Each saved change carries its outcome and its announcement, numbered so alike ones differ")

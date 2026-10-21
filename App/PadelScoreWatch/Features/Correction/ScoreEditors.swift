@@ -124,8 +124,8 @@ struct PointsEditor: View {
         if editor.problems.contains(.pointsExceedTotal) {
             ProblemLabel(.pointsExceedTotal)
                 .accessibilityIdentifier("pair.problem")
-        } else if editor.draft.finishesRound {
-            RoundEndNotice(round: round)
+        } else if editor.draft.finishesRound || editor.draft.completesResult {
+            RoundEndNotice(round: round, finishes: editor.draft.finishesRound)
         }
     }
 }
@@ -247,9 +247,12 @@ struct CompletedSetEditor: View {
     }
 }
 
-/// The end of the round that saving would confirm, with its result.
+/// The end of the round that saving would confirm, with its result: a round being played finishes,
+/// and a finished one is saved as played in full.
 struct RoundEndNotice: View {
     let round: AmericanoDraft
+    /// The round is being played, and saving finishes it.
+    let finishes: Bool
 
     private var result: AmericanoResult {
         round.score.leader.map { .won(by: $0) } ?? .draw
@@ -257,7 +260,9 @@ struct RoundEndNotice: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Spacing.xs) {
-            NoticeLabel(text: Text("All rallies are played. Saving finishes the round.", comment: "Correction of an americano round: the points reach the total, so saving ends the round."))
+            NoticeLabel(text: finishes
+                ? Text("All rallies are played. Saving finishes the round.", comment: "Correction of an americano round: the points reach the total, so saving ends the round.")
+                : Text("All rallies are played.", comment: "Correction of a finished americano round: the points reach the total, so the round's result is that of a round played in full."))
             Text(result.title)
                 .font(Typography.heading)
                 .foregroundStyle(Palette.textPrimary)

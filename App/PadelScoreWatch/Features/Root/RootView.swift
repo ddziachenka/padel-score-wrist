@@ -1,11 +1,11 @@
 import SwiftUI
 
-/// The first screen: the saved game, or New game when there is none, once the saved session
-/// has been read. A save restored from its backup is announced before anything else.
+/// The first screen: the saved game, its result, or New game when there is neither, once the saved
+/// session has been read. A save restored from its backup is announced before anything else.
 struct RootView: View {
     let store: SessionStore
-    /// The live score, kept for as long as the app runs, so a round its last rally finished stays
-    /// on screen until the person moves on.
+    /// The game on screen, kept for as long as the app runs, so a round its last rally finished stays
+    /// on screen until the person moves on to its result.
     @State private var live: LiveScore
     /// The restored-save notice was answered in this launch. If recording that fails, the
     /// notice stays saved and is shown again at the next launch.
@@ -19,6 +19,8 @@ struct RootView: View {
     var body: some View {
         content
             .task { await store.load() }
+            // A new game, or deleted data: nothing of the last game's feedback carries over.
+            .onChange(of: store.session.current?.game.id) { live.leaveFinishedRound() }
             .alert(Text("Earlier save restored"), isPresented: showsNotice) {
                 Button("OK") {
                     Task { try? await store.dismissNotice() }
@@ -35,8 +37,10 @@ struct RootView: View {
             LoadingView()
         case .unreadable(let problem):
             RecoveryView(problem: problem, store: store)
-        case .game:
-            LiveScoreView(live: live)
+        case .game, .result:
+            // One stack for the game from its first rally to its result, so finishing goes back to the
+            // result and resuming forward to the score.
+            LiveScoreView(live: live, store: store)
         case .newGame:
             NewGameView(store: store)
         }

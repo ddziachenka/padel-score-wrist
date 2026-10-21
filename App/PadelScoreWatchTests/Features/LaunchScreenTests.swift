@@ -43,17 +43,30 @@ final class LaunchScreenTests {
         #expect(reopened.session.activeGame?.id == .number(1))
     }
 
-    @Test("A finished game leaves New game open")
+    @Test("A finished game opens its result while it can still be changed, and New game once it is deleted")
     func finishedGame() async throws {
         let store = await openStore()
         try await store.perform(.start(.match(), id: .number(1)), id: .fresh(), revision: 0)
         try await store.perform(.finish, id: .fresh(), revision: 1)
         let reopened = await openStore()
 
+        #expect(LaunchScreen(status: reopened.status, session: reopened.session) == .result)
+        try await reopened.perform(.deleteLocalData, id: .fresh(), revision: 2)
         #expect(LaunchScreen(status: reopened.status, session: reopened.session) == .newGame)
     }
 
-    @Test("A round its last rally finished on screen stays there; any other finished game leaves New game")
+    @Test("The next game opens over the result it keeps for viewing")
+    func nextGameOverTheResult() async throws {
+        let store = await openStore()
+        try await store.perform(.start(.match(), id: .number(1)), id: .fresh(), revision: 0)
+        try await store.perform(.finish, id: .fresh(), revision: 1)
+        try await store.perform(.start(.match(), id: .number(2)), id: .fresh(), revision: 2)
+
+        #expect(store.session.previousResult?.id == .number(1))
+        #expect(LaunchScreen(status: store.status, session: store.session) == .game)
+    }
+
+    @Test("A round its last rally finished on screen stays there; any other finished game opens its result")
     func finishedRoundOnScreen() async throws {
         let store = await openStore()
         try await store.perform(.start(.americano(total: 1, perServer: 1), id: .number(1)), id: .fresh(), revision: 0)
@@ -61,8 +74,8 @@ final class LaunchScreenTests {
 
         #expect(store.session.activeGame == nil)
         #expect(LaunchScreen(status: store.status, session: store.session, finishedOnScreen: .number(1)) == .game)
-        #expect(LaunchScreen(status: store.status, session: store.session, finishedOnScreen: .number(2)) == .newGame)
-        #expect(LaunchScreen(status: store.status, session: store.session) == .newGame)
+        #expect(LaunchScreen(status: store.status, session: store.session, finishedOnScreen: .number(2)) == .result)
+        #expect(LaunchScreen(status: store.status, session: store.session) == .result)
         #expect(LaunchScreen(status: .loading, session: store.session, finishedOnScreen: .number(1)) == .loading)
     }
 

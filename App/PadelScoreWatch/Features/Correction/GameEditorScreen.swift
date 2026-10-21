@@ -33,6 +33,10 @@ struct GameEditorScreen: View {
             ScrollView {
                 VStack(spacing: Spacing.sm) {
                     Caption("Changes are saved when you tap Save.")
+                    if editor.makesRoomToResume, editor.draft.leavesNoRoom {
+                        NoticeLabel(text: ResultView.needsRoom)
+                            .accessibilityIdentifier("editor.needsRoom")
+                    }
                     if editor.draft.isReplacement {
                         NoticeLabel(text: replacementNote)
                             .accessibilityIdentifier("editor.replacing")
@@ -148,6 +152,10 @@ struct GameEditorScreen: View {
         case .totalRallies:
             row(field, route: .totalRallies, label: Text("Total rallies"), problem: problem) {
                 NumberValue(number: editor.draft.round?.totalRallies)
+                // Where the total is changed, the end of the round it makes is told too.
+                if problem == nil, let round = editor.draft.round, editor.draft.finishesRound || editor.draft.completesResult {
+                    RoundEndNotice(round: round, finishes: editor.draft.finishesRound)
+                }
             }
         case .ralliesPerServer:
             row(field, route: .ralliesPerServer, label: Text("Rallies per server"), problem: problem) {
@@ -387,8 +395,8 @@ private struct PointsSummary: View {
                         .font(Typography.caption)
                         .foregroundStyle(Palette.textSecondary)
                 }
-                if draft.finishesRound {
-                    RoundEndNotice(round: round)
+                if draft.finishesRound || draft.completesResult {
+                    RoundEndNotice(round: round, finishes: draft.finishesRound)
                 }
             }
         }

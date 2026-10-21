@@ -1,12 +1,22 @@
 import Accessibility
 import SwiftUI
 
-/// Where the game screen leads.
+/// Where the game screen and its result lead.
 enum GameRoute: Hashable, Sendable {
     case menu
     case about
+    /// Settings, with the local data kept on this Watch.
+    case settings
     /// Confirming the serving order of a new set, starting from the order proposed for it.
     case serving(proposed: ServingSetup, set: Int)
+    /// Finish match or Finish round.
+    case finish
+    /// The previous game's result, which can only be viewed.
+    case lastResult
+    /// Choosing the next game's format, from the result.
+    case formats
+    /// A screen of setting up the next game, kept by its flow.
+    case newGame(NewGameFlow.Route)
     /// The screens of a correction, which share one draft.
     case editScore
     case gameSettings
@@ -29,9 +39,14 @@ enum GameRoute: Hashable, Sendable {
     /// A screen of a correction.
     var isEditor: Bool {
         switch self {
-        case .menu, .about, .serving: false
+        case .menu, .about, .settings, .serving, .finish, .lastResult, .formats, .newGame: false
         default: true
         }
+    }
+
+    /// The setup screen this route shows, if it is one.
+    var newGameRoute: NewGameFlow.Route? {
+        if case .newGame(let route) = self { route } else { nil }
     }
 }
 
@@ -39,9 +54,18 @@ enum GameRoute: Hashable, Sendable {
 /// the rally it won. Under them are the games and sets, or the rallies left and the place in the
 /// service block, and at the bottom Undo, who serves next and the menu. At accessibility text
 /// sizes the teams become full-width sections of one scrolling screen, in the same order.
+///
+/// Once the game is finished the same stack shows its result (S10) in place of the score: finishing
+/// goes back to it, and resuming forward to the score. A round its last rally finished stays on the
+/// score, with Undo, until the person moves on to the result. The next game is set up from the result
+/// in this stack too, so Back from setup returns to the result while it can still be changed.
 struct LiveScoreView: View {
     let live: LiveScore
+    let store: SessionStore
+    /// The game's own screens. Setting up the next game adds the flow's screens after them.
     @State private var path: [GameRoute] = []
+    /// The next game being set up from the result.
+    @State private var newGame: NewGameFlow?
     /// The correction its screens show. It outlives the correction for as long as its screens take
     /// to leave, so they do not go blank on their way out.
     @State private var shownEditor: GameEditor?
@@ -65,10 +89,19 @@ struct LiveScoreView: View {
             ).post()
         }
         .onChange(of: live.lastChange) { _, change in
-            // A saved correction goes back to the score it changed.
-            if change?.outcome == .corrected { path.removeAll() }
+            // A saved correction goes back to the score or the result it changed; a finished game to
+            // its result, and a resumed one to its score.
+            switch change?.outcome {
+            case .corrected, .finished, .resumed: path.removeAll()
+            default: break
+            }
             guard let text = change?.announcement else { return }
             AccessibilityNotification.Announcement(text).post()
+        }
+        .onChange(of: live.game?.id) {
+            // The next game started: its score replaces the result and the setup that led to it.
+            path.removeAll()
+            newGame = nil
         }
         .onChange(of: live.proposedServing) { _, proposed in
             // The new set's order was confirmed: back to the score.
@@ -89,8 +122,33 @@ struct LiveScoreView: View {
         }
         .onChange(of: scenePhase) { _, phase in
             // On return to the wrist the score comes first. A serving order being chosen stays, and
-            // so does a correction, with its draft, while the app runs.
-            if phase != .active, live.editor == nil { path.removeAll { !$0.isServing } }
+            // so does a correction, with its draft, while the app runs. The result keeps its
+            // screens, and with them the next game being set up.
+            if phase != .active, live.editor == nil, !live.showsResult { path.removeAll { !$0.isServing } }
+        }
+    }
+
+    /// The stack's screens: the game's own, then those of the next game's setup, which its flow keeps.
+    private var stackPath: Binding<[GameRoute]> {
+        Binding {
+            path + (newGame?.path.map(GameRoute.newGame) ?? [])
+        } set: { routes in
+            let setupStart = routes.firstIndex { $0.newGameRoute != nil } ?? routes.endIndex
+            path = Array(routes[..<setupStart])
+            newGame?.path = routes[setupStart...].compactMap(\.newGameRoute)
+        }
+    }
+
+    /// Starts setting up the next game from the result. Until it starts, Back returns to the result.
+    private func startNewGame() {
+        newGame = NewGameFlow(store: store)
+        path.append(.formats)
+    }
+
+    /// Plays the result on; a round at its total opens its settings first, to make room.
+    private func resume() {
+        Task {
+            if await live.resume() == .needsRoom { edit(.gameSettings, toResume: true) }
         }
     }
 
@@ -104,18 +162,28 @@ struct LiveScoreView: View {
         }
     }
 
-    /// Begins a correction from the menu.
-    private func edit(_ route: GameRoute) {
-        live.beginEditing()
+    /// Begins a correction from the menu or the result.
+    private func edit(_ route: GameRoute, toResume: Bool = false) {
+        live.beginEditing(toResume: toResume)
         guard let editor = live.editor else { return }
         shownEditor = editor
         path.append(route)
     }
 
     private var stack: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: stackPath) {
             Group {
-                if let board = live.board {
+                if live.showsResult, let game = live.game {
+                    ResultView(
+                        live: live,
+                        game: game,
+                        newGame: startNewGame,
+                        resume: resume,
+                        edit: { edit(.editScore) },
+                        about: { path.append(.about) }
+                    )
+                    .transition(.opacity)
+                } else if let board = live.board {
                     ScoreScreen(board: board, live: live) { path.append($0) }
                         #if DEBUG
                         // The system sets Always On again inside the stack, so a test sets it here.
@@ -123,6 +191,7 @@ struct LiveScoreView: View {
                             if drawsAlwaysOnForUITest { isReduced = true }
                         }
                         #endif
+                        .transition(.opacity)
                 }
             }
             .navigationDestination(for: GameRoute.self) { route in
@@ -135,11 +204,32 @@ struct LiveScoreView: View {
     private func destination(for route: GameRoute) -> some View {
         switch route {
         case .menu:
-            GameMenuView(live: live, edit: edit)
+            GameMenuView(live: live) { edit($0) }
         case .about:
-            AboutView()
+            AboutView { path.append(.settings) }
+        case .settings:
+            LocalDataSettingsView(store: store)
         case let .serving(proposed, set):
             SetServingView(live: live, setNumber: set, proposed: proposed)
+        case .finish:
+            FinishView(live: live) { path.removeAll() }
+        case .lastResult:
+            if let earlier = live.earlierResult {
+                EarlierResultView(game: earlier)
+            }
+        case .formats:
+            if let newGame {
+                ScrollView {
+                    VStack(spacing: Spacing.sm) {
+                        FormatChoices(flow: newGame)
+                    }
+                }
+                .navigationTitle(Text("New game"))
+            }
+        case .newGame(let route):
+            if let newGame {
+                NewGameDestination(route: route, flow: newGame, store: store)
+            }
         default:
             if let editor = live.editor ?? shownEditor {
                 editorDestination(for: route, editor: editor)
@@ -206,7 +296,7 @@ struct LiveScoreView: View {
             )
         case .format:
             FormatEditor(editor: editor)
-        case .menu, .about, .serving:
+        case .menu, .about, .settings, .serving, .finish, .lastResult, .formats, .newGame:
             EmptyView()
         }
     }
@@ -302,10 +392,23 @@ private struct ScoreScreen: View {
                 HStack(spacing: 0) {
                     UndoButton(live: live)
                     Spacer(minLength: 0)
-                    MenuButton { open(.menu) }
+                    trailingButton
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    /// The menu while the game is played. A game that just finished on screen has no menu: Done moves
+    /// on to its result, which leads everywhere the menu did.
+    @ViewBuilder
+    private var trailingButton: some View {
+        if board.isFinished {
+            DoneButton {
+                withAnimation { live.leaveFinishedRound() }
+            }
+        } else {
+            MenuButton { open(.menu) }
         }
     }
 
@@ -320,7 +423,7 @@ private struct ScoreScreen: View {
                 HStack {
                     UndoButton(live: live)
                     Spacer(minLength: Spacing.sm)
-                    MenuButton { open(.menu) }
+                    trailingButton
                 }
             }
             // Scrolled to the end, the round buttons clear the screen's rounded corners.
@@ -366,6 +469,8 @@ private struct ContextLine: View {
                 shown = LocalizedStringResource("Action undone", comment: "Game screen: shown above the score for a moment after Undo restored the game as it was before its last change.")
             case .corrected:
                 shown = LocalizedStringResource("Changes saved", comment: "Game screen: shown above the score for a moment after a correction was saved.")
+            case .resumed:
+                shown = LocalizedStringResource("Game resumed", comment: "Game screen: shown above the score for a moment after a finished game was resumed.")
             default:
                 return
             }
@@ -705,6 +810,17 @@ private struct MenuButton: View {
     var body: some View {
         IconButton(symbol: "ellipsis", label: "Game menu", action: action)
             .accessibilityIdentifier("game.menu")
+            .accessibilitySortPriority(1)
+    }
+}
+
+private struct DoneButton: View {
+    let action: () -> Void
+
+    var body: some View {
+        IconButton(symbol: "checkmark", label: "Done", action: action)
+            .accessibilityHint(Text("Shows the result.", comment: "VoiceOver hint of Done on a game that just finished on the live score: it moves on to the result."))
+            .accessibilityIdentifier("game.done")
             .accessibilitySortPriority(1)
     }
 }

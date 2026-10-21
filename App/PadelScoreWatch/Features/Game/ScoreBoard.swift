@@ -34,7 +34,8 @@ struct ScoreBoard: Hashable, Sendable {
         let them: Int
     }
 
-    /// The next rally's place in its server's block.
+    /// The next rally's place in its server's block, and how many rallies that block has: the rallies
+    /// per server, or fewer in a round's last block, which ends with the round.
     struct ServePlace: Hashable, Sendable {
         let rally: Int
         let block: Int
@@ -104,7 +105,9 @@ struct ScoreBoard: Hashable, Sendable {
                 serving = .ended(round.result)
             } else {
                 context = .americano
-                let place = ServePlace(rally: round.service.rallyInBlock, block: round.rules.ralliesPerServer)
+                let rally = round.service.rallyInBlock
+                // The block began rally - 1 rallies ago, and the round's last rally ends it early.
+                let place = ServePlace(rally: rally, block: min(round.rules.ralliesPerServer, rally - 1 + round.remaining))
                 details = .americano(ralliesLeft: round.remaining, serve: place)
                 serving = .next(round.service.server)
             }
@@ -112,7 +115,7 @@ struct ScoreBoard: Hashable, Sendable {
     }
 
     /// Both teams show 40 at every 40–40 stage; which stage it is shows in the context.
-    private static func points(_ score: GameScore) -> (us: Points, them: Points) {
+    static func points(_ score: GameScore) -> (us: Points, them: Points) {
         switch score {
         case let .points(us, them): (.game(us), .game(them))
         case .deuce, .decidingPoint: (.game(.forty), .game(.forty))

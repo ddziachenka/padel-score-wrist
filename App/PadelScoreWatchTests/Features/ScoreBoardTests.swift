@@ -111,6 +111,32 @@ struct ScoreBoardTests {
         #expect(shown.acceptsPoints)
     }
 
+    @Test("The round's last block shows how many rallies it really has: 10 rallies, 4 per server, are blocks of 4, 4 and 2")
+    func shortLastBlock() throws {
+        var session = try Session.empty.after(.start(.americano(total: 10, perServer: 4), id: .number(1)))
+        var places: [ScoreBoard.ServePlace?] = []
+        var servers: [Player?] = []
+        for winner in rallies("UTTUUTUTT") {
+            session = try session.after(.awardPoint(to: winner))
+            let shown = try #require(session.game.map(ScoreBoard.init))
+            if case .americano(_, let serve) = shown.details { places.append(serve) }
+            servers.append(shown.server)
+        }
+
+        #expect(places == [
+            ScoreBoard.ServePlace(rally: 2, block: 4), ScoreBoard.ServePlace(rally: 3, block: 4), ScoreBoard.ServePlace(rally: 4, block: 4),
+            ScoreBoard.ServePlace(rally: 1, block: 4), ScoreBoard.ServePlace(rally: 2, block: 4), ScoreBoard.ServePlace(rally: 3, block: 4),
+            ScoreBoard.ServePlace(rally: 4, block: 4), ScoreBoard.ServePlace(rally: 1, block: 2), ScoreBoard.ServePlace(rally: 2, block: 2),
+        ])
+        #expect(servers.suffix(2) == [.partner, .partner])
+
+        // One rally left after a full block is a block of one; a block that ends before the total stays whole.
+        #expect(board(.fixture(total: 9, perServer: 4, us: 5, them: 3, server: .you, rallyInBlock: 1)).details
+            == .americano(ralliesLeft: 1, serve: ScoreBoard.ServePlace(rally: 1, block: 1)))
+        #expect(board(.fixture(total: 7, perServer: 3, us: 4, them: 1, server: .opponent2, rallyInBlock: 3)).details
+            == .americano(ralliesLeft: 2, serve: ScoreBoard.ServePlace(rally: 3, block: 3)))
+    }
+
     @Test("Large americano points stay whole numbers, never shortened")
     func largeValues() {
         let shown = board(.fixture(total: 999, perServer: 99, us: 499, them: 498))

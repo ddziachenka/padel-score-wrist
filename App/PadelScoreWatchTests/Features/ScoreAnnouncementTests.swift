@@ -118,11 +118,53 @@ struct ScoreAnnouncementTests {
         #expect(try announcement(after: [.correct(.americano(round))], from: played) == "Changes saved. Round finished. Us 2, them 1. Our team won.")
     }
 
-    @Test("Changes the live score does not make are not announced here")
+    /// The announcement for the last of `commands`, with the result of the game after it.
+    private func told(after commands: [SessionCommand], from start: Session) throws -> String? {
+        let before = try start.after(commands.dropLast().map { $0 })
+        let transition = try before.transition(try #require(commands.last))
+        let game = try #require(transition.session.game)
+        return ScoreAnnouncement.text(
+            for: transition.outcome,
+            before: before.game.map(ScoreBoard.init),
+            after: ScoreBoard(game: game),
+            result: game.status == .finished ? ResultSummary(game: game) : nil
+        )
+    }
+
+    @Test("Finish says the game is saved; Resume says so, then the points and who serves")
+    func finishAndResume() throws {
+        #expect(try told(after: points("UT") + [.finish], from: match) == "Match finished. Saved.")
+        let round = try Session.empty.after(.start(.americano(total: 10, perServer: 2), id: .number(1)))
+        #expect(try told(after: points("UTU") + [.finish], from: round) == "Round finished. Saved.")
+        #expect(try told(after: points("UUUT") + [.finish, .resume], from: match) == "Game resumed. Us 40, them 15. Serving: You.")
+        #expect(try told(after: points("UTUT") + [.finish, .resume], from: round) == "Game resumed. Us 2, them 2. Serving: Partner.")
+        #expect(try told(after: points("UT") + [.finish, .resume, .undo], from: match) == "Action undone. Match finished.")
+    }
+
+    @Test("A corrected result says how the game finished: a match's sets, or a round's points and ending")
+    func correctedResult() throws {
+        let finishedMatch = try match.after(points("UU") + [.finish])
+        var state = try #require(finishedMatch.matchState)
+        state.completedSets = [SetGames(us: 3, them: 6)]
+        #expect(try told(after: [.correct(.match(state))], from: finishedMatch) == "Changes saved. Match finished. Sets: us 0, them 1.")
+
+        let finishedRound = try Session.empty.after([.start(.americano(total: 10, perServer: 2), id: .number(1))] + points("UTT") + [.finish])
+        var round = try #require(finishedRound.round)
+        #expect(try told(after: [.correct(.americano(round))], from: finishedRound) == "Changes saved. Ended early. Us 1, them 2. Their team was ahead.")
+        round.score = AmericanoScore(us: 3, them: 1)
+        #expect(try told(after: [.correct(.americano(round))], from: finishedRound) == "Changes saved. Ended early. Us 3, them 1. Our team was ahead.")
+        round.score = AmericanoScore(us: 2, them: 2)
+        #expect(try told(after: [.correct(.americano(round))], from: finishedRound) == "Changes saved. Ended early. Us 2, them 2. The points were level.")
+        round.rules.totalRallies = 4
+        #expect(try told(after: [.correct(.americano(round))], from: finishedRound) == "Changes saved. Round finished. Us 2, them 2. Draw.")
+    }
+
+    @Test("Changes the game screen does not make are not announced here")
     func otherChanges() throws {
         let board = try #require(try match.game.map(ScoreBoard.init))
-        for outcome: SessionOutcome in [.started, .finished, .resumed, .deleted, .alreadyApplied] {
+        for outcome: SessionOutcome in [.started, .deleted, .alreadyApplied] {
             #expect(ScoreAnnouncement.text(for: outcome, before: board, after: board) == nil)
         }
+        #expect(ScoreAnnouncement.text(for: .finished, before: board, after: board) == nil, "Finish is told with its result")
     }
 }

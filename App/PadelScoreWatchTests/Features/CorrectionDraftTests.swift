@@ -393,6 +393,43 @@ struct CorrectionDraftTests {
         #expect(draft.problems == [])
     }
 
+    @Test("A finished round brought to its total is told it was played in full; a total above it leaves room, below it is not saved")
+    func finishedRoundAgainstItsTotal() {
+        // Ended early at 10–8 of 32.
+        var draft = correcting(.fixture(total: 32, perServer: 4, us: 10, them: 8, server: .opponent1, rallyInBlock: 3), status: .finished)
+        #expect(!draft.completesResult)
+        #expect(!draft.leavesNoRoom)
+
+        draft.editRound { $0.totalRallies = 18 }
+        #expect(draft.problems == [])
+        #expect(draft.completesResult)
+        #expect(draft.leavesNoRoom)
+        #expect(!draft.finishesRound)
+        #expect(draft.format.flatMap(\.americanoRound)?.result == .won(by: .us))
+
+        draft.editRound { $0.totalRallies = 17 }
+        #expect(draft.problems == [.pointsExceedTotal])
+        #expect(draft.format == nil)
+        #expect(!draft.completesResult)
+
+        draft.editRound { $0.totalRallies = 40 }
+        #expect(draft.problems == [])
+        #expect(!draft.completesResult)
+        #expect(!draft.leavesNoRoom)
+    }
+
+    @Test("A round being played is never told it was played in full, and has room until its total")
+    func roundInPlayAgainstItsTotal() {
+        var draft = correcting(roundInPlay)
+        #expect(!draft.completesResult)
+        #expect(!draft.leavesNoRoom)
+
+        draft.editRound { $0.totalRallies = 22 }
+        #expect(draft.finishesRound)
+        #expect(!draft.completesResult)
+        #expect(!draft.leavesNoRoom)
+    }
+
     @Test("A block shorter than the next rally's place asks for a place inside it", arguments: [1, 2])
     func blockBelowThePlace(perServer: Int) {
         var draft = correcting(roundInPlay)

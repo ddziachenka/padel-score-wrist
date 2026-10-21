@@ -14,6 +14,7 @@ final class NewGameFlow {
         case ralliesPerServer
         case serving
         case about
+        case settings
     }
 
     enum StartState: Hashable, Sendable {
@@ -32,7 +33,8 @@ final class NewGameFlow {
         case refused
     }
 
-    /// Screens shown above New game. Going back past setup throws the draft away.
+    /// Screens shown above New game, or above the last result when the game starts from there. Going
+    /// back past setup throws the draft away.
     var path: [Route] = [] {
         didSet {
             if !path.contains(.setup) { discardDraft() }

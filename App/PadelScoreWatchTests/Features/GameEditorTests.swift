@@ -272,8 +272,8 @@ final class GameEditorTests {
         #expect(LaunchScreen(status: store.status, session: store.session, finishedOnScreen: live.finishedRound) == .game)
     }
 
-    @Test("Only a game being played is corrected from the live score, and one correction at a time")
-    func beginEditingOnlyWhilePlaying() async throws {
+    @Test("One correction at a time; a finished game is corrected as its result, which stays finished")
+    func oneCorrectionAtATime() async throws {
         let (live, editor, store) = try await editing(.americano(total: 2, perServer: 1), after: points("T"))
         live.beginEditing()
         #expect(live.editor === editor)
@@ -283,7 +283,15 @@ final class GameEditorTests {
         await live.award(.us)
         #expect(store.session.game?.status == .finished)
         live.beginEditing()
-        #expect(live.editor == nil)
+        let result = try #require(live.editor)
+        #expect(result !== editor)
+        #expect(result.draft.original == store.session.game)
+        #expect(!result.makesRoomToResume)
+        result.editRound { $0.score = AmericanoScore(us: 2, them: 0) }
+        result.checkServing()
+        #expect(await live.saveCorrection() == .saved)
+        #expect(store.session.game?.status == .finished)
+        #expect(haptics.played == [.finished], "a correction of a result plays no haptic of its own")
     }
 
     @Test("A removed set can be put back where it was, and a set just added can be taken out again")
