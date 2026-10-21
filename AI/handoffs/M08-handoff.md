@@ -63,7 +63,10 @@ data. Price comes from StoreKit. No activation step or trial wording was added.
 - Capture command: `bash .artifacts/M08-asc-setup/capture-44-storekit.sh`, exit **0**. Exact xcodebuild invocation is in that script and the head of `capture-44-storekit.log`; selects `StoreKitPurchaseTests/testPurchaseRestoreRefundAndLocalizedPrice` and `AccessUITests/testSixthGameShowsAccessAndClosingKeepsResultAndDraft`.
 - Capture result: `capture-44-storekit.xcresult`, `capture-44-storekit-summary.json`: **2 passed, 0 failed, 0 skipped**, 2026-10-21T15:09:10Z–15:10:13Z. Initial UI-only capture also passed 1/1 but displayed product unavailable because local StoreKit had not been initialized; that image was not uploaded. This focused capture is additional evidence, not a replacement milestone gate.
 - Capture simulator: managed Watch SE 2 44 mm / watchOS 26.1 (`23S36`), `DF6ED19D-1461-4A25-975B-1A4995E8AA20`. It is retained as `-asc-44mm` with `.iosai-local/simulator-asc-44mm.json`; original Config and 40 mm binding restored, no devices/data erased.
-- App/build source unchanged; full `make milestone ID=M08` was not repeated for AI Markdown continuity edits. Static/status/continuity validation is recorded below after the session commit.
+- App/build source unchanged; full `make milestone ID=M08` was not repeated for AI Markdown continuity edits.
+- Session commit `bee08350d6e0e663d1eb10e1009bb722ccbde53e`: `make static` **exit 0**, `./Scripts/project-status.sh validate` **exit 0**, `./Scripts/project-status.sh continuity 14fffe5b70fcf859841a89c1363992fee313eafc` **exit 0**. Logs: `static.log`, `status.log`, `continuity.log` in the evidence directory. Continuity proves identical build inputs; no new full-test counts are claimed. Final evidence-only commit repeats these checks in `post-{static,status,continuity}.log`.
+- Browser proof: `asc-price-proof-compact.jpg`; the saved UI shows the app, lifetime purchase, US $4.99 and 175 regional prices.
+- Validation notes: the first static attempt rejected the overlong compact status field; it was shortened and passed. A continuity call before committing rejected the dirty checkout; the clean-commit continuity check above passed. Neither check was weakened.
 
 ### Existing full milestone gate
 
