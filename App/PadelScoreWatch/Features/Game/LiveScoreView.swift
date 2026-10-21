@@ -196,6 +196,7 @@ struct LiveScoreView: View {
             }
             .navigationDestination(for: GameRoute.self) { route in
                 destination(for: route)
+                    .toolbar(.visible, for: .navigationBar)
             }
         }
     }
