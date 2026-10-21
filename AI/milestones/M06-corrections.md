@@ -1,7 +1,7 @@
 # M06 — Score and Settings Correction
 
 **ID:** M06
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M05
 **Validation:** make milestone ID=M06
 **Handoff:** AI/handoffs/M06-handoff.md
