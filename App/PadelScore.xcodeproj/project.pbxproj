@@ -97,6 +97,11 @@
 		4D11BA601F78B0A706C09A32 /* LargeTextUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623CC6F3C7B08B42AFE89DA /* LargeTextUITests.swift */; };
 		FA98EC835512D9582D90EF61 /* EditorActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969058B0A7BF1FC481BE84B7 /* EditorActions.swift */; };
 		922D163F894C96D4BE10B928 /* AccessibilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14E406D10F525B57C642E4 /* AccessibilityUITests.swift */; };
+		40338F12C6D620A5DB5F354A /* CorrectionDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8B5F99C8D3D1E1536FEB7 /* CorrectionDraft.swift */; };
+		B779CC06C7E052771DC6F696 /* GameEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419E30E65B0961EBEF1D226 /* GameEditor.swift */; };
+		9FB7837074EC7C37AE1B0ED8 /* ScoreDrafts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065579D85176694D84E1E56A /* ScoreDrafts.swift */; };
+		0AF8974BBA00EF4CEE6F42BE /* CorrectionDraftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18488BF0AE82A5E18A439DF /* CorrectionDraftTests.swift */; };
+		7DE95F96D318D5E010991B95 /* GameEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C904B1AF6D60BFB979C003 /* GameEditorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +234,11 @@
 		B623CC6F3C7B08B42AFE89DA /* LargeTextUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LargeTextUITests.swift; sourceTree = "<group>"; };
 		969058B0A7BF1FC481BE84B7 /* EditorActions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditorActions.swift; sourceTree = "<group>"; };
 		4D14E406D10F525B57C642E4 /* AccessibilityUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccessibilityUITests.swift; sourceTree = "<group>"; };
+		ECE8B5F99C8D3D1E1536FEB7 /* CorrectionDraft.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CorrectionDraft.swift; sourceTree = "<group>"; };
+		F419E30E65B0961EBEF1D226 /* GameEditor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GameEditor.swift; sourceTree = "<group>"; };
+		065579D85176694D84E1E56A /* ScoreDrafts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreDrafts.swift; sourceTree = "<group>"; };
+		B18488BF0AE82A5E18A439DF /* CorrectionDraftTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CorrectionDraftTests.swift; sourceTree = "<group>"; };
+		14C904B1AF6D60BFB979C003 /* GameEditorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GameEditorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +455,7 @@
 				DC84B3665A89B6BD1072308D /* NewGame */,
 				EFD5E81417F9A9E5B92B7688 /* Root */,
 				0A960EA4535994E5C526D3CB /* Shared */,
+				ED78CED21DA5F21D737A0B63 /* Correction */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -531,8 +542,20 @@
 				D8F8133572B840F4DBB5BDBF /* LaunchScreenTests.swift */,
 				07C05B79EE43D4A426DF16FA /* NewGameFlowTests.swift */,
 				01A695D223B6D5900CDBFA4A /* SetupDraftTests.swift */,
+				B18488BF0AE82A5E18A439DF /* CorrectionDraftTests.swift */,
+				14C904B1AF6D60BFB979C003 /* GameEditorTests.swift */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		ED78CED21DA5F21D737A0B63 /* Correction */ = {
+			isa = PBXGroup;
+			children = (
+				ECE8B5F99C8D3D1E1536FEB7 /* CorrectionDraft.swift */,
+				F419E30E65B0961EBEF1D226 /* GameEditor.swift */,
+				065579D85176694D84E1E56A /* ScoreDrafts.swift */,
+			);
+			path = Correction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -727,6 +750,8 @@
 				0A72FDBF736815045BBF1AB0 /* LaunchScreenTests.swift in Sources */,
 				03EEA9E0AED3EF92A943943A /* NewGameFlowTests.swift in Sources */,
 				7458B576C85384E6A20B991A /* SetupDraftTests.swift in Sources */,
+				0AF8974BBA00EF4CEE6F42BE /* CorrectionDraftTests.swift in Sources */,
+				7DE95F96D318D5E010991B95 /* GameEditorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +817,9 @@
 				B92B327BB09232BDB8846715 /* DisplayNames.swift in Sources */,
 				F0FDF53EC732E1F5268474D7 /* SavingLabel.swift in Sources */,
 				FA98EC835512D9582D90EF61 /* EditorActions.swift in Sources */,
+				40338F12C6D620A5DB5F354A /* CorrectionDraft.swift in Sources */,
+				B779CC06C7E052771DC6F696 /* GameEditor.swift in Sources */,
+				9FB7837074EC7C37AE1B0ED8 /* ScoreDrafts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,15 @@ enum ScoreAnnouncement {
             sentences.append(String(localized: "Action undone.", comment: "VoiceOver, after Undo restored the game as it was before its last change."))
             if case .ended = after.serving {} else { sentences.append(points(after)) }
             if after.context != before?.context, let context = contextSentence(after.context) { sentences.append(context) }
-        case .started, .corrected, .finished, .resumed, .deleted, .alreadyApplied:
+        case .corrected:
+            sentences.append(String(localized: "Changes saved.", comment: "VoiceOver, after a correction of the score, rules or serving was saved."))
+            if case .ended(let result?) = after.serving, before?.isFinished == false {
+                sentences.append(roundFinished(result, after))
+            } else {
+                sentences.append(points(after))
+                if after.context != before?.context, let context = contextSentence(after.context) { sentences.append(context) }
+            }
+        case .started, .finished, .resumed, .deleted, .alreadyApplied:
             return nil
         }
         switch after.serving {

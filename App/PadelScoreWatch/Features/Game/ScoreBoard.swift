@@ -70,6 +70,11 @@ struct ScoreBoard: Hashable, Sendable {
         if case .next = serving { true } else { false }
     }
 
+    /// Whether the game is finished, so nobody serves.
+    var isFinished: Bool {
+        if case .ended = serving { true } else { false }
+    }
+
     init(game: GameSnapshot) {
         let isFinished = game.status == .finished
         switch game.format {

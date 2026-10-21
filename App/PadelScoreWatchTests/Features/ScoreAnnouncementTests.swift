@@ -93,10 +93,35 @@ struct ScoreAnnouncementTests {
         #expect(try announcement(after: [confirm, .undo], from: confirmed) == "Action undone. Us 0, them 0. Confirm serving for set 2.")
     }
 
+    @Test("A saved correction says so, then the corrected points and the server when it changed")
+    func correction() throws {
+        let played = try match.after(points("UT"))
+        var state = try #require(played.matchState)
+        state.phase = .game(.points(us: .forty, them: .fifteen))
+        #expect(try announcement(after: [.correct(.match(state))], from: played) == "Changes saved. Us 40, them 15.")
+
+        state.games = SetGames(us: 1, them: 0)
+        state.service.server = .opponent1
+        #expect(try announcement(after: [.correct(.match(state))], from: played) == "Changes saved. Us 40, them 15. Serving: Opponent 1.")
+
+        state.rules.deuceRule = .goldenPoint
+        state.phase = .game(.decidingPoint)
+        #expect(try announcement(after: [.correct(.match(state))], from: played) == "Changes saved. Us 40, them 40. Golden point. Serving: Opponent 1.")
+    }
+
+    @Test("A correction that brings a round to its total says the result")
+    func correctionEndingARound() throws {
+        let played = try Session.empty.after(.start(.americano(total: 10, perServer: 2), id: .number(1))).after(points("UUT"))
+        var round = try #require(played.round)
+        round.rules.totalRallies = 3
+
+        #expect(try announcement(after: [.correct(.americano(round))], from: played) == "Changes saved. Round finished. Us 2, them 1. Our team won.")
+    }
+
     @Test("Changes the live score does not make are not announced here")
     func otherChanges() throws {
         let board = try #require(try match.game.map(ScoreBoard.init))
-        for outcome: SessionOutcome in [.started, .corrected, .finished, .resumed, .deleted, .alreadyApplied] {
+        for outcome: SessionOutcome in [.started, .finished, .resumed, .deleted, .alreadyApplied] {
             #expect(ScoreAnnouncement.text(for: outcome, before: board, after: board) == nil)
         }
     }
