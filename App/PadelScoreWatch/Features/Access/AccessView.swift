@@ -6,6 +6,8 @@ struct AccessView: View {
     @Environment(EntitlementStore.self) private var store
     @Environment(\.dismiss) private var dismiss
     let usage: UsageLedger
+    /// A sheet's presenter owns its dismissal; pushed Access pages use system Back.
+    var close: (() -> Void)? = nil
 
     var body: some View {
         ScrollView {
@@ -48,7 +50,9 @@ struct AccessView: View {
                 NavigationLink("Privacy") { LegalView(page: .privacy) }
                     .buttonStyle(RowButtonStyle())
                     .accessibilityIdentifier("access.privacy")
-                Button("Close") { dismiss() }
+                Button("Close") {
+                    if let close { close() } else { dismiss() }
+                }
                     .buttonStyle(SecondaryButtonStyle())
                     .accessibilityIdentifier("access.close")
             }

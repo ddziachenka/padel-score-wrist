@@ -90,11 +90,13 @@ extension XCUIElement {
         tap()
     }
 
-    /// Whether the element's middle is on screen below the title bar.
+    /// Keeps the tap below the navigation bar and clear of the curved bottom edge.
+    /// watchOS 10 reports partially clipped rows as hittable even when a tap near
+    /// the bottom edge does not activate them. Scroll farther before tapping.
     @MainActor
     private func isClear(in app: XCUIApplication) -> Bool {
         let screen = app.windows.firstMatch.frame
-        let clear = CGRect(x: screen.minX, y: screen.minY + 40, width: screen.width, height: screen.height - 48)
+        let clear = CGRect(x: screen.minX, y: screen.minY + 48, width: screen.width, height: screen.height - 80)
         return isHittable && clear.contains(CGPoint(x: frame.midX, y: frame.midY))
     }
 

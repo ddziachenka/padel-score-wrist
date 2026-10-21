@@ -38,8 +38,13 @@ struct SetupView: View {
             .sheet(isPresented: Binding(
                 get: { flow.startState == .failed(.notAllowed) },
                 set: { if !$0 { flow.cancelFailedStart() } }
-            )) {
-                NavigationStack { AccessView(usage: flow.usage) }
+            ), onDismiss: {
+                // Keep setup editable after system dismissal as well as Close.
+                flow.cancelFailedStart()
+            }) {
+                NavigationStack {
+                    AccessView(usage: flow.usage, close: { flow.cancelFailedStart() })
+                }
             }
             .navigationTitle(Text(draft.kind.name))
             .sensoryFeedback(.error, trigger: flow.refusedStarts)
