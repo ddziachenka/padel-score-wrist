@@ -118,6 +118,7 @@
 		AD265162525C36AD532C131F /* ResultSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909554C70CACE2727749EC6F /* ResultSummaryTests.swift */; };
 		FCC89CA5E0F193EF92E0CB7F /* FinishResumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C08BBCD66D5374B2C2E3F /* FinishResumeTests.swift */; };
 		0EEF48F85C154BAFE43D0374 /* LocalDataSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C610BB14BACAE0059F842072 /* LocalDataSettingsTests.swift */; };
+		BCF779A9153B3A231A4D463F /* FinishResumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74466D48BE4959B9993591F4 /* FinishResumeUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -271,6 +272,7 @@
 		909554C70CACE2727749EC6F /* ResultSummaryTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResultSummaryTests.swift; sourceTree = "<group>"; };
 		8B2C08BBCD66D5374B2C2E3F /* FinishResumeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FinishResumeTests.swift; sourceTree = "<group>"; };
 		C610BB14BACAE0059F842072 /* LocalDataSettingsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocalDataSettingsTests.swift; sourceTree = "<group>"; };
+		74466D48BE4959B9993591F4 /* FinishResumeUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FinishResumeUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,6 +443,7 @@
 				B623CC6F3C7B08B42AFE89DA /* LargeTextUITests.swift */,
 				4D14E406D10F525B57C642E4 /* AccessibilityUITests.swift */,
 				7ED53B06740CEEDE7D8B10A6 /* CorrectionUITests.swift */,
+				74466D48BE4959B9993591F4 /* FinishResumeUITests.swift */,
 			);
 			name = PadelScoreWatchUITests;
 			path = PadelScoreWatchUITests;
@@ -833,6 +836,7 @@
 				4D11BA601F78B0A706C09A32 /* LargeTextUITests.swift in Sources */,
 				922D163F894C96D4BE10B928 /* AccessibilityUITests.swift in Sources */,
 				F3E6C80BE1A35EB4B912C644 /* CorrectionUITests.swift in Sources */,
+				BCF779A9153B3A231A4D463F /* FinishResumeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

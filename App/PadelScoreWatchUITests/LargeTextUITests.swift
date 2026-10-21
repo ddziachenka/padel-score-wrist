@@ -128,6 +128,26 @@ final class LargeTextUITests: XCTestCase {
         XCTAssertEqual(app.buttons["game.them"].label, "Their score, 15")
     }
 
+    func testTheResultReflowsAtTheLargestTextSize() {
+        let app = launchApp(store: "large-result", seed: "matchFinished", textSize: largest)
+        let saved = app.descendants(matching: .any)["result.saved"]
+        XCTAssertTrue(saved.waitForExistence(timeout: 10))
+        attachScreenshot("Result, largest text")
+        let incomplete = app.descendants(matching: .any)["result.incompleteSet"]
+        XCTAssertEqual(incomplete.label, "Set 2, incomplete")
+        XCTAssertEqual(incomplete.value as? String, "Us 3, them 2")
+        XCTAssertEqual(app.descendants(matching: .any)["result.points"].value as? String, "Us 30, them 15")
+
+        app.buttons["result.edit"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["editor.save"].waitForExistence(timeout: 5))
+        app.buttons["editor.discard"].firstMatch.tap()
+        app.buttons["result.resume"].scrollToAndTap(in: app)
+        let us = app.buttons["game.us"]
+        XCTAssertTrue(us.waitForExistence(timeout: 5))
+        XCTAssertEqual(us.label, "Our score, 30")
+        attachScreenshot("Resumed, largest text")
+    }
+
     func testMatchRuleChoicesReadInFullAtTheLargestTextSize() {
         let app = launchApp(store: "large-text-match", textSize: largest)
         app.buttons["newGame.match"].scrollToAndTap(in: app)

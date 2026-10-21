@@ -163,10 +163,13 @@ struct CorrectionDraft: Hashable, Sendable {
         return round.played == total
     }
 
-    /// A finished round's points reach its total: saving gives it the result of a round played in full.
+    /// A change to a finished round's points or total leaves them at its total: saving gives it the
+    /// result of a round played in full. A round left as it was says nothing new.
     var completesResult: Bool {
-        guard original.status == .finished, let round, let total = round.totalRallies else { return false }
-        return round.played == total
+        guard original.status == .finished, case .americano(let saved) = original.format,
+              let round, let total = round.totalRallies, round.played == total
+        else { return false }
+        return round.score != saved.score || total != saved.rules.totalRallies
     }
 
     /// A finished round still has no room for another rally, so it cannot be resumed as it stands.

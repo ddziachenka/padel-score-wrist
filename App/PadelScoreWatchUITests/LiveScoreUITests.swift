@@ -211,10 +211,13 @@ final class LiveScoreUITests: XCTestCase {
         waitForLabel(context, "Round finished")
         assertLabel(server, contains: "Our team won")
 
-        app.buttons["game.menu"].tap()
-        let newGame = app.buttons["menu.newGame"]
+        // The finished round has no menu: Done moves on to its result, and the next game starts there.
+        XCTAssertFalse(app.buttons["game.menu"].exists)
+        app.buttons["game.done"].tap()
+        let newGame = app.buttons["result.newGame"]
         XCTAssertTrue(newGame.waitForExistence(timeout: 5))
-        newGame.tap()
+        XCTAssertEqual(app.descendants(matching: .any)["result.outcome"].label, "Our team won")
+        newGame.scrollToAndTap(in: app)
         XCTAssertTrue(app.buttons["newGame.match"].waitForExistence(timeout: 5))
     }
 

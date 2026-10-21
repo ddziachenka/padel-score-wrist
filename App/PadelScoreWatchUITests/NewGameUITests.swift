@@ -223,8 +223,17 @@ final class NewGameUITests: XCTestCase {
         assertLabel(total, lacks: "4")
     }
 
+    /// The app opens on the last result; its New game leads to the formats.
+    private func startNewGameFromResult(in app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
+        let newGame = app.buttons["result.newGame"]
+        XCTAssertTrue(newGame.waitForExistence(timeout: 10), file: file, line: line)
+        newGame.scrollToAndTap(in: app, file: file, line: line)
+        XCTAssertTrue(app.buttons["newGame.match"].waitForExistence(timeout: 5), file: file, line: line)
+    }
+
     func testLastSettingsAreOfferedForReview() {
         let app = launchApp(store: "repeat", seed: "lastSettings")
+        startNewGameFromResult(in: app)
         app.buttons["newGame.americano"].tap()
 
         XCTAssertTrue(app.staticTexts["From your last game. Check before you start."].waitForExistence(timeout: 5))
@@ -248,6 +257,7 @@ final class NewGameUITests: XCTestCase {
 
     func testFailedSaveStartsNothingAndKeepsTheChoices() {
         let app = launchApp(store: "failing", seed: "lastSettings", failingSaves: true)
+        startNewGameFromResult(in: app)
         app.buttons["newGame.match"].tap()
         app.buttons["setup.start"].scrollToAndTap(in: app)
 
@@ -265,7 +275,7 @@ final class NewGameUITests: XCTestCase {
 
         app.terminate()
         let reopened = launchApp(store: "failing", seed: nil)
-        XCTAssertTrue(reopened.buttons["newGame.match"].waitForExistence(timeout: 10))
+        XCTAssertTrue(reopened.buttons["result.newGame"].waitForExistence(timeout: 10), "the last result is still the latest game")
         XCTAssertFalse(reopened.descendants(matching: .any)["game.server"].exists)
     }
 
@@ -299,12 +309,13 @@ final class NewGameUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Your latest change couldn’t be read, so the game saved before it was restored."].exists)
         attachScreenshot("Earlier save restored")
         acknowledge.scrollToAndTap(in: app)
-        XCTAssertTrue(app.buttons["newGame.match"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["result.newGame"].waitForExistence(timeout: 5))
 
         app.terminate()
         let reopened = launchApp(store: "restored", seed: nil)
-        XCTAssertTrue(reopened.buttons["newGame.match"].waitForExistence(timeout: 10))
+        XCTAssertTrue(reopened.buttons["result.newGame"].waitForExistence(timeout: 10))
         XCTAssertFalse(reopened.staticTexts["Earlier save restored"].exists)
+        startNewGameFromResult(in: reopened)
         reopened.buttons["newGame.match"].tap()
         assertLabel(reopened.buttons["setup.deuceRule"], contains: "One advantage")
     }

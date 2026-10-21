@@ -128,13 +128,16 @@ struct ResultSummaryTests {
         #expect(ResultSummary.Ending.matchFinished.outcome == nil)
         #expect(ResultSummary.Ending.roundComplete(.won(by: .us)).outcome.map { String(localized: $0) } == "US won")
         #expect(ResultSummary.Ending.roundComplete(.draw).outcome.map { String(localized: $0) } == "Draw")
-        #expect(ResultSummary.Ending.roundEndedEarly(leader: .us).outcome.map { String(localized: $0) } == "Ended early · US ahead")
-        #expect(ResultSummary.Ending.roundEndedEarly(leader: .them).outcome.map { String(localized: $0) } == "Ended early · THEM ahead")
-        #expect(ResultSummary.Ending.roundEndedEarly(leader: nil).outcome.map { String(localized: $0) } == "Ended early · Level")
+        #expect(ResultSummary.Ending.roundComplete(.draw).leader == nil)
+        #expect(ResultSummary.Ending.roundEndedEarly(leader: .us).outcome.map { String(localized: $0) } == "Ended early")
+        #expect(ResultSummary.Ending.roundEndedEarly(leader: .us).leader.map { String(localized: $0) } == "US ahead")
+        #expect(ResultSummary.Ending.roundEndedEarly(leader: .them).leader.map { String(localized: $0) } == "THEM ahead")
+        #expect(ResultSummary.Ending.roundEndedEarly(leader: nil).leader.map { String(localized: $0) } == "Points level")
         #expect(ResultSummary.Ending.roundEndedEarly(leader: .us).spokenOutcome.map { String(localized: $0) } == "Ended early. Our team was ahead.")
         #expect(ResultSummary.Ending.roundEndedEarly(leader: nil).spokenOutcome.map { String(localized: $0) } == "Ended early. The points were level.")
         for leader: Team? in [.us, .them, nil] {
-            let words = ResultSummary.Ending.roundEndedEarly(leader: leader).outcome.map { String(localized: $0) } ?? ""
+            let ending = ResultSummary.Ending.roundEndedEarly(leader: leader)
+            let words = [ending.outcome, ending.leader, ending.spokenOutcome].compactMap { $0.map { String(localized: $0) } }.joined(separator: " ")
             #expect(!words.contains("won"))
             #expect(!words.contains("Draw"))
         }

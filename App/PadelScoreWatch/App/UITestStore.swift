@@ -30,6 +30,16 @@ struct UITestStore {
         case americanoStart
         /// An americano round of 300 rallies, 4 per server, at 149–149 with two rallies left.
         case americanoLong
+        /// A match under One advantage finished by hand in its second set: set 1 to US 6–4, then 3–2
+        /// in games and 30–15.
+        case matchFinished
+        /// An americano round of 32 rallies, 4 per server, played to its total at 18–14.
+        case roundFinished
+        /// The same round finished by hand at 10–8, with 18 of its 32 rallies played.
+        case roundEndedEarly
+        /// The finished match of `matchFinished`, then an americano round of 16 rallies, 4 per server,
+        /// being played at 0–0.
+        case afterResult
     }
 
     let directory: URL
@@ -69,7 +79,8 @@ struct UITestStore {
         case .restorable:
             write(lastSettings, to: location.backup)
             write(damaged, to: location.main)
-        case .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong:
+        case .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong,
+             .matchFinished, .roundFinished, .roundEndedEarly, .afterResult:
             write(Self.session(for: seed).flatMap { try? SessionFile(session: $0).encoded() }, to: location.main)
         }
     }
@@ -97,8 +108,32 @@ struct UITestStore {
         ])
     }
 
-    /// A game being played, reached point by point, so every rally of it can be undone.
+    /// A game being played or finished, reached point by point, so every change of it can be undone.
     static func session(for seed: Seed) -> Session? {
+        switch seed {
+        case .matchFinished, .afterResult:
+            let match = GameSetup(
+                rules: .match(MatchRules(deuceRule: .oneAdvantage, setPolicy: .tieBreakAtSixAll)),
+                serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
+            )
+            let next = GameSetup(
+                rules: .americano(AmericanoRules(totalRallies: 16, ralliesPerServer: 4)),
+                serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
+            )
+            let rallies = String(repeating: "UUUUTTTT", count: 4) + "UUUUUUUU" + String(repeating: "UUUUTTTT", count: 2) + "UUUU" + "UUT"
+            let afterward: [SessionCommand] = seed == .afterResult ? [.finish, .start(next, id: GameID(rawValue: UUID()))] : [.finish]
+            return session(playing: match, rallies: rallies, then: afterward)
+        case .roundFinished, .roundEndedEarly:
+            let round = GameSetup(
+                rules: .americano(AmericanoRules(totalRallies: 32, ralliesPerServer: 4)),
+                serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
+            )
+            return seed == .roundFinished
+                ? session(playing: round, rallies: String(repeating: "UT", count: 14) + "UUUU", then: [])
+                : session(playing: round, rallies: String(repeating: "UT", count: 8) + "UU", then: [.finish])
+        default:
+            break
+        }
         let match = GameSetup(
             rules: .match(MatchRules(deuceRule: .oneAdvantage, setPolicy: .tieBreakAtSixAll)),
             serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
@@ -119,8 +154,24 @@ struct UITestStore {
         return session(after: [.start(setup, id: GameID(rawValue: UUID()))] + points)
     }
 
-    private static func session(after commands: [SessionCommand]) -> Session? {
-        var session = Session.empty
+    /// A game started with `setup`, its rallies recorded one by one, each new set's proposed serving
+    /// order confirmed before its first point, and then `commands`.
+    private static func session(playing setup: GameSetup, rallies: String, then commands: [SessionCommand]) -> Session? {
+        guard var session = Self.session(after: [.start(setup, id: GameID(rawValue: UUID()))]) else { return nil }
+        for rally in rallies {
+            if case .match(let state) = session.current?.game.format, !state.service.isConfirmed {
+                guard let confirmed = Self.session(after: [.confirmService(order: state.service.order, firstServer: state.service.server)], from: session)
+                else { return nil }
+                session = confirmed
+            }
+            guard let next = Self.session(after: [.awardPoint(to: rally == "U" ? .us : .them)], from: session) else { return nil }
+            session = next
+        }
+        return Self.session(after: commands, from: session)
+    }
+
+    private static func session(after commands: [SessionCommand], from start: Session = .empty) -> Session? {
+        var session = start
         for command in commands {
             guard let next = try? session.applying(
                 command,

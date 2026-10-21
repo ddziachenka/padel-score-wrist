@@ -99,6 +99,37 @@ final class UITestStoreTests {
         }
     }
 
+    @Test("The result seeds hold a finished game at the moment each names, and the game after one")
+    func resultSeeds() async throws {
+        let match = try await openStore(["PADEL_UITEST_SEED": "matchFinished"]).session
+        #expect(match.current?.game.status == .finished)
+        #expect(match.matchState?.completedSets == [SetGames(us: 6, them: 4)])
+        #expect(match.matchState?.games == SetGames(us: 3, them: 2))
+        #expect(match.matchState?.gameScore == .points(us: .thirty, them: .fifteen))
+        #expect(match.current?.history.last?.change == .finish)
+
+        let complete = try await openStore(["PADEL_UITEST_SEED": "roundFinished"]).session
+        #expect(complete.current?.game.status == .finished)
+        #expect(complete.round?.score == AmericanoScore(us: 18, them: 14))
+        #expect(complete.round?.result == .won(by: .us))
+        #expect(complete.current?.history.last?.change == .point)
+
+        let early = try await openStore(["PADEL_UITEST_SEED": "roundEndedEarly"]).session
+        #expect(early.current?.game.status == .finished)
+        #expect(early.round?.score == AmericanoScore(us: 10, them: 8))
+        #expect(early.round?.result == nil)
+
+        let after = try await openStore(["PADEL_UITEST_SEED": "afterResult"]).session
+        #expect(after.round == .start(rules: AmericanoRules(totalRallies: 16, ralliesPerServer: 4), order: .youThenOpponent1, firstServer: .you))
+        #expect(after.activeGame != nil)
+        #expect(after.previousResult?.status == .finished)
+        #expect(after.previousResult?.format == match.current?.game.format)
+
+        for seed in [UITestStore.Seed.matchFinished, .roundFinished, .roundEndedEarly, .afterResult] {
+            #expect(try #require(UITestStore.session(for: seed)).issues.isEmpty, "\(seed)")
+        }
+    }
+
     @Test("Only the Always On switch draws the app as with the wrist lowered")
     func alwaysOnSwitch() throws {
         let plain = try #require(UITestStore(environment: ["PADEL_UITEST_STORE": name]))

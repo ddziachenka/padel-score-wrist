@@ -69,12 +69,12 @@ private struct SavedLabel: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        Label {
+        HStack(spacing: Spacing.xs) {
+            Image(systemName: "checkmark.circle.fill")
+                .accessibilityHidden(true)
             showsChanges
                 ? Text("Changes saved", comment: "Game screen: shown above the score for a moment after a correction was saved.")
                 : Text("Saved", comment: "Result: the finished game's score is saved on the Watch. Shown with a checkmark.")
-        } icon: {
-            Image(systemName: "checkmark.circle.fill")
         }
         .font(Typography.caption.weight(.semibold))
         .foregroundStyle(Palette.success)

@@ -103,12 +103,21 @@ extension ResultSummary.Ending {
         switch self {
         case .matchFinished: nil
         case .roundComplete(let result): result.title
+        case .roundEndedEarly:
+            LocalizedStringResource("Ended early", comment: "Result of an americano round finished by hand before its total. Not a win or a draw: the round was not played in full.")
+        }
+    }
+
+    /// Who led a round ended early: a leader, not a winner.
+    var leader: LocalizedStringResource? {
+        switch self {
+        case .matchFinished, .roundComplete: nil
         case .roundEndedEarly(.some(.us)):
-            LocalizedStringResource("Ended early · US ahead", comment: "Result of an americano round finished by hand before its total, with more points for our team. Not a win: the round was not played in full.")
+            LocalizedStringResource("US ahead", comment: "Result of an americano round ended early, under Ended early: our team had more points. Not a win.")
         case .roundEndedEarly(.some(.them)):
-            LocalizedStringResource("Ended early · THEM ahead", comment: "Result of an americano round finished by hand before its total, with more points for the opponents. Not a win: the round was not played in full.")
+            LocalizedStringResource("THEM ahead", comment: "Result of an americano round ended early, under Ended early: the opponents had more points. Not a win.")
         case .roundEndedEarly(nil):
-            LocalizedStringResource("Ended early · Level", comment: "Result of an americano round finished by hand before its total, with equal points. Not a draw: the round was not played in full.")
+            LocalizedStringResource("Points level", comment: "Result of an americano round ended early, under Ended early: both teams had the same points. Not a draw.")
         }
     }
 

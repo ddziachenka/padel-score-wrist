@@ -777,38 +777,14 @@
         }
       }
     },
-    "Ended early · Level" : {
-      "comment" : "Result of an americano round finished by hand before its total, with equal points. Not a draw: the round was not played in full.",
+    "Ended early" : {
+      "comment" : "Result of an americano round finished by hand before its total. Not a win or a draw: the round was not played in full.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ended early · Level"
-          }
-        }
-      }
-    },
-    "Ended early · THEM ahead" : {
-      "comment" : "Result of an americano round finished by hand before its total, with more points for the opponents. Not a win: the round was not played in full.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ended early · THEM ahead"
-          }
-        }
-      }
-    },
-    "Ended early · US ahead" : {
-      "comment" : "Result of an americano round finished by hand before its total, with more points for our team. Not a win: the round was not played in full.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ended early · US ahead"
+            "value" : "Ended early"
           }
         }
       }
@@ -1641,6 +1617,18 @@
         }
       }
     },
+    "Points level" : {
+      "comment" : "Result of an americano round ended early, under Ended early: both teams had the same points. Not a draw.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Points level"
+          }
+        }
+      }
+    },
     "Rallies left" : {
       "comment" : "Americano game screen: rallies still to be played before the round reaches its total.",
       "extractionState" : "manual",
@@ -2229,6 +2217,18 @@
         }
       }
     },
+    "THEM ahead" : {
+      "comment" : "Result of an americano round ended early, under Ended early: the opponents had more points. Not a win.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "THEM ahead"
+          }
+        }
+      }
+    },
     "THEM won" : {
       "comment" : "The americano round ended with more points for the opponents.",
       "extractionState" : "manual",
@@ -2525,6 +2525,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "US %lld"
+          }
+        }
+      }
+    },
+    "US ahead" : {
+      "comment" : "Result of an americano round ended early, under Ended early: our team had more points. Not a win.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US ahead"
           }
         }
       }

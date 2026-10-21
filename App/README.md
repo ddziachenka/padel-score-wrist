@@ -79,6 +79,17 @@ made from; `LiveScore` owns it, records nothing behind it, and saves the whole d
 request. `GameEditorScreen` is Edit score and Game settings, `TeamValuesEditor` edits one value for each
 team with the Digital Crown, and the points, games, sets, serving and format screens complete the editor.
 
-Finishing a game and commerce belong to subsequent milestones. A successful
+M07 adds finishing and the result. `LiveScoreView` is the stack of the current game from its first rally to
+its result: once the game is finished its root is `ResultView` (`Features/Result`) instead of the score.
+`ResultSummary` works out what the result says from the saved game alone — a match's sets with the set it
+stopped in marked Incomplete and no winner, a round's result at its total or Ended early with its leader —
+and `ResultSummaryView` lays it out in the score's columns for Finish (`FinishView`), the result and the
+read-only Last result (`EarlierResultView`). `LiveScore` finishes and resumes through the same one-at-a-time
+path as a rally; a round at its total resumes only after a correction makes room. New game started from the
+result sets up the next game in the same stack, so Back returns to the result. `Features/Settings` holds
+About → Settings, which deletes the local game data in one save (`LocalDataSettings`). UI tests can seed a
+finished match, a round at its total, a round ended early and a game after a result.
+
+Commerce belongs to a subsequent milestone. A successful
 test on a recent simulator does not prove watchOS 10 runtime compatibility, and the simulator
 does not prove how a haptic feels.

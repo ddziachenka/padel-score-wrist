@@ -134,6 +134,42 @@ final class AccessibilityUITests: XCTestCase {
         try audit(app, "Format")
     }
 
+    func testFinishingAndTheResultPassTheAccessibilityAudit() throws {
+        let app = launchApp(store: "audit-finish", seed: "afterResult")
+        XCTAssertTrue(app.buttons["game.menu"].waitForExistence(timeout: 10))
+        app.buttons["game.menu"].tap()
+        XCTAssertTrue(app.buttons["menu.finish"].waitForExistence(timeout: 5))
+        try audit(app, "Game menu with Finish and Last result")
+
+        app.buttons["menu.lastResult"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.descendants(matching: .any)["result.headline"].waitForExistence(timeout: 5))
+        try audit(app, "Last result")
+        app.goBack()
+
+        app.buttons["menu.finish"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["finish.confirm"].waitForExistence(timeout: 5))
+        try audit(app, "Finish round")
+        app.buttons["finish.confirm"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.descendants(matching: .any)["result.saved"].waitForExistence(timeout: 5))
+        try audit(app, "Round finished, ended early")
+
+        app.buttons["result.about"].scrollToAndTap(in: app)
+        app.buttons["about.settings"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["settings.delete"].waitForExistence(timeout: 5))
+        try audit(app, "Settings")
+    }
+
+    func testAMatchResultPassesTheAccessibilityAudit() throws {
+        let app = launchApp(store: "audit-result", seed: "matchFinished")
+        XCTAssertTrue(app.buttons["result.resume"].waitForExistence(timeout: 10))
+        try audit(app, "Match finished")
+        app.buttons["result.resume"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["game.undo"].waitForExistence(timeout: 5))
+        app.buttons["game.undo"].tap()
+        XCTAssertTrue(app.buttons["game.done"].waitForExistence(timeout: 5))
+        try audit(app, "Match finished again on the score")
+    }
+
     func testRecoveryPassesTheAccessibilityAudit() throws {
         let app = launchApp(store: "audit-damaged", seed: "damaged")
         XCTAssertTrue(app.buttons["recovery.tryAgain"].waitForExistence(timeout: 10))

@@ -418,6 +418,21 @@ struct CorrectionDraftTests {
         #expect(!draft.leavesNoRoom)
     }
 
+    @Test("A finished round left at its total says nothing new; a corrected score at the total tells the new result")
+    func completeRoundCorrected() {
+        var draft = correcting(.fixture(total: 32, perServer: 4, us: 18, them: 14, server: .opponent1, rallyInBlock: 1), status: .finished)
+        #expect(!draft.completesResult)
+        #expect(draft.leavesNoRoom)
+
+        draft.editRound { $0.score = AmericanoScore(us: 16, them: 16) }
+        draft.checkServing()
+        #expect(draft.completesResult)
+        #expect(draft.format.flatMap(\.americanoRound)?.result == .draw)
+
+        draft.editRound { $0.score = AmericanoScore(us: 18, them: 14) }
+        #expect(!draft.completesResult)
+    }
+
     @Test("A round being played is never told it was played in full, and has room until its total")
     func roundInPlayAgainstItsTotal() {
         var draft = correcting(roundInPlay)

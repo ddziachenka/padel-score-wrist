@@ -514,6 +514,33 @@ match back.`, кнопка — `Replace game`. Экран, открытый из
 раунд с `success`. Неудачная запись — то же состояние E3 поверх экрана; Cancel возвращает к черновику.
 Черновик переживает уход приложения в фон, пока жив процесс.
 
+С M07 так устроены завершение и результат (S9, S10, S15). Меню играемой игры под исправлениями
+показывает `Finish match` / `Finish round`, а во время следующей игры — `Last result`. S9 показывает итог,
+который будет сохранён, затем `Finish this game?` / `Your current score will be saved.`, `Finish` (primary) и
+`Keep playing`; запись — `Saving…` на кнопке, неудача — E3 поверх, Cancel возвращает к S9 с той же игрой.
+Итог (общий для S9, S10 и Last result) повторяет колонки счёта: две плитки `US` / `THEM` с выигранными сетами
+(`Sets`) или очками раунда (`Points`), под ними строки «наше — название — их»: каждый завершённый сет, затем
+начатый сет с пометкой `Incomplete` цвета warning и строкой `Points` или `Tie-break`; новый сет 0:0 не
+выводится, матч без единого очка говорит `No points played.` У матча победителя нет. Раунд при N называет
+`US won` / `THEM won` / `Draw`, раунд, остановленный раньше, — `Ended early` и лидера (`US ahead`, `THEM
+ahead`, `Points level`), и всегда `18 of 32 rallies played.` На крупнейшем тексте строки становятся названием
+и строками `US 6` / `THEM 4`. S10 озаглавлен `Match finished` / `Round finished`, первым идёт `✓ Saved`
+(success; на 1,5 с после правки результата — `Changes saved`), затем итог, `New game` (primary) с пояснением
+`Starting a new game will keep this result for viewing only.`, `Resume game`, `Edit result` и `About`. Раунд
+на N подписывает Resume текстом `All rallies are played. To resume, increase the total or correct the score.`;
+его Resume открывает Game settings черновика с тем же текстом, а после сохранения большего N результат
+остаётся (`Ended early`) до отдельного Resume. Правка, доводящая N до сыгранного, показывает у строки Total
+rallies `All rallies are played.` и итог. New game с результата открывает выбор формата и настройку в том же
+стеке, Back возвращает к редактируемому результату. Finish играет `success`; после записи стек возвращается к
+результату, VoiceOver говорит `Match finished. Saved.`; после Resume строка контекста на 1,5 с говорит `Game
+resumed`, VoiceOver — `Game resumed.`, очки и подающего. Раунд, завершённый последним розыгрышем, остаётся на
+счёте (DO3: `success` при розыгрыше) с Undo слева и круглой ✓ (`Done`) вместо меню, которая переводит к
+результату. About ведёт в `Settings`: `Local data`, список хранимого (`The game being played`, `The last
+result`, `Settings saved for the next game`) и `Delete local data` цвета destructive с подтверждением
+`Delete local data?` / `Cancel` / `Delete data`; без данных — `No game data is kept on this Watch.` и
+недоступная кнопка, после удаления — New game. В последней, укороченной серии раунда строка серии называет её
+настоящую длину: при 10/4 после восьми розыгрышей `Serve 1 of 2`.
+
 ## Components and system controls
 
 | Component | Variants | Required states | Notes |
@@ -615,7 +642,10 @@ whenever you like.`, `The round ends when both teams’ points add up to the tot
 `Confirm serving`, `Your team serves first in this set.`, `Couldn’t save.`, `Your last saved score is
 unchanged.`, VoiceOver-подписи `Undo`, `Game menu` и подсказку `Double-tap to add a point`, а также
 объявления вроде `Us 15, them 0.`, `Game to us. Games: us 1, them 0. Serving: Opponent 1.` и
-`Action undone.` — каждое из целых предложений. M06 добавил тексты исправлений: `Edit score`, `Game
+`Action undone.` — каждое из целых предложений. M07 добавил тексты завершения: `Finish this game?`,
+`Your current score will be saved.`, `Keep playing`, `Saved`, `Incomplete`, `No points played.`, `Ended early`,
+`US ahead`, `Points level`, `Edit result`, `Resume game`, `Last result`, `Game resumed`, `Delete local data?` и
+пояснения S10/S15. M06 добавил тексты исправлений: `Edit score`, `Game
 settings`, `Points`, `Format`, `Save changes`, `Replace game`, `Add set`, `Remove set 2`, `Restore set 2`,
 `First deuce`, `Second deuce`, `Next server`, `After them`, `Next point`, `Opened the tie-break`, `Next rally
 in block`, `Changes saved`, тексты E2 из таблицы ошибок и подтверждения `Discard changes?`, `Change game

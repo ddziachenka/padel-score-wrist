@@ -11,13 +11,21 @@ struct ResultSummaryView: View {
         VStack(spacing: Spacing.sm) {
             Headline(counts: summary.headline, label: summary.rallies == nil ? "Sets" : "Points")
             if let outcome = summary.ending.outcome {
-                Text(outcome)
-                    .font(Typography.heading)
-                    .foregroundStyle(Palette.textPrimary)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .accessibilityLabel(summary.ending.spokenOutcome.map { Text($0) } ?? Text(outcome))
-                    .accessibilityIdentifier("result.outcome")
+                VStack(spacing: 0) {
+                    Text(outcome)
+                        .font(Typography.heading)
+                        .foregroundStyle(Palette.textPrimary)
+                    if let leader = summary.ending.leader {
+                        Text(leader)
+                            .font(Typography.body)
+                            .foregroundStyle(Palette.textPrimary)
+                    }
+                }
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(summary.ending.spokenOutcome.map { Text($0) } ?? Text(outcome))
+                .accessibilityIdentifier("result.outcome")
             }
             if let rallies = summary.rallies {
                 Text("\(rallies.played) of \(rallies.total) rallies played.", comment: "Correction of an americano round: the rallies both teams' points add up to, and the total. Arguments: rallies played, total rallies.")
@@ -167,8 +175,9 @@ struct ResultRow: View {
         .accessibilityAddTraits(.isStaticText)
     }
 
+    /// Between the counts it is centred; over the lines of the largest text sizes it starts at the edge.
     private var name: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: textSize.isAccessibilitySize ? .leading : .center, spacing: 0) {
             label
                 .font(Typography.caption)
                 .foregroundStyle(Palette.textSecondary)
@@ -178,6 +187,6 @@ struct ResultRow: View {
                     .foregroundStyle(Palette.warning)
             }
         }
-        .multilineTextAlignment(.center)
+        .multilineTextAlignment(textSize.isAccessibilitySize ? .leading : .center)
     }
 }

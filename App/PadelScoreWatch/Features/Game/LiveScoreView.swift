@@ -407,6 +407,8 @@ private struct ScoreScreen: View {
             DoneButton {
                 withAnimation { live.leaveFinishedRound() }
             }
+            // Not while Undo is being saved: the game it shows may be played on.
+            .allowsHitTesting(live.isIdle)
         } else {
             MenuButton { open(.menu) }
         }

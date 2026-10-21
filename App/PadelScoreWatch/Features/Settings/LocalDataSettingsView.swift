@@ -22,7 +22,7 @@ struct LocalDataSettingsView: View {
                         .accessibilityIdentifier("settings.noData")
                 } else {
                     Caption("Kept on this Watch:")
-                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                    VStack(alignment: .leading, spacing: Spacing.sm) {
                         ForEach(items, id: \.self) { item in
                             Text(item.name)
                                 .font(Typography.body)
@@ -32,7 +32,8 @@ struct LocalDataSettingsView: View {
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, Spacing.xs)
+                    .padding(Spacing.md)
+                    .background(Palette.backgroundSecondary, in: .rect(cornerRadius: Metrics.cornerRadius))
                 }
                 switch settings.state {
                 case .idle, .deleting:
