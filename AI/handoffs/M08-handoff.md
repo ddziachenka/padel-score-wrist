@@ -2,6 +2,16 @@
 
 **Policy status:** current
 
+## StoreKit follow-up — 2026-10-21T20:46Z
+
+Authorized reinstall and data restoration reached a real Sandbox password prompt,
+but authentication success is unconfirmed and the direct product query returns
+an empty catalog. Original local StoreKit tests still pass only 1/4 after reinstall;
+no assertions were weakened. Apple's Watch IAP submission documentation also
+requires clarification before release. See
+[M08-hardware-fix-handoff.md](M08-hardware-fix-handoff.md). M08 remains BLOCKED;
+no app/IAP was submitted or uploaded.
+
 ## Real-Watch follow-up — 2026-10-21 UTC
 
 Hardware is now connected. UI 3/3 and policy/ledger/owner 16/16 passed; final

@@ -44,6 +44,12 @@
 
 ## Earlier verification — 2026-10-21
 
+Latest follow-up: reinstall with the owner's approval preserved the backed-up
+game state and reached the real Sandbox password prompt. Direct Sandbox product
+lookup returns no product; login success is unconfirmed. Original local tests
+still pass 1/4 after reinstall. The documented Watch IAP submission restriction
+also needs clarification. See [StoreKit follow-up](../handoffs/M08-hardware-fix-handoff.md).
+
 Current follow-up: real Watch Ultra 3 / watchOS 27.0.1 is connected. Hardware
 access UI 3/3 and policy/ledger/owner 16/16 pass; StoreKit 1/4 passes. Local
 verified purchase is missing from current-entitlement APIs, and the injected
