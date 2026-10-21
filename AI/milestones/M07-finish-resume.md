@@ -1,7 +1,7 @@
 # M07 — Finish and Resume
 
 **ID:** M07
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M06
 **Validation:** make milestone ID=M07
 **Handoff:** AI/handoffs/M07-handoff.md

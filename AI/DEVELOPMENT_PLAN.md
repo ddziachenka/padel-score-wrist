@@ -1,13 +1,13 @@
 # Development plan
 
-**Status:** направление и план одобрены владельцем; M00–M06 завершены
+**Status:** направление и план одобрены владельцем; M00–M07 завершены
 **Approved by:** владелец проекта, сообщение «одобряю»
 **Approved on:** 2026-10-20
 **Updated:** 2026-10-21
 
 План следует [промпту инициализации](prompts/initialize-product.md) и
-[brief](PRODUCT_BRIEF.md). M00–M06 имеют статус `DONE`; H2 закрыт владельцем
-2026-10-20. Активного этапа нет, следующий — M07; остальные имеют статус `PLANNED`.
+[brief](PRODUCT_BRIEF.md). M00–M07 имеют статус `DONE`; H2 закрыт владельцем
+2026-10-20. Активного этапа нет, следующий — M08 (ждёт решения H4); остальные имеют статус `PLANNED`.
 Одобрение направления не выбирает молча ответы на отдельные открытые вопросы.
 
 ## Contracts
@@ -35,7 +35,7 @@ Xcode-проекта и доступности настоящих часов.
 | [M04 — New Game](milestones/M04-new-game.md) — DONE | Создание обоих форматов на часах; [evidence](handoffs/M04-handoff.md) | M03 |
 | [M05 — Live Score](milestones/M05-live-score.md) — DONE | Главный экран, одно касание на очко, подающий и Undo; [evidence](handoffs/M05-handoff.md) | M04 |
 | [M06 — Score and Settings Correction](milestones/M06-corrections.md) — DONE | Черновики исправления всех введённых данных; [evidence](handoffs/M06-handoff.md) | M05 |
-| [M07 — Finish and Resume](milestones/M07-finish-resume.md) | Честный результат и восстановление последней игры | M06 |
+| [M07 — Finish and Resume](milestones/M07-finish-resume.md) — DONE | Честный результат, продолжение последней игры и удаление локальных данных; [evidence](handoffs/M07-handoff.md) | M06 |
 | [M08 — Access and Purchase](milestones/M08-access-purchase.md) | Выбранная модель доступа и покупка, если она утверждена | M07; решение H4 |
 | [M09 — Legal and Support](milestones/M09-legal-support.md) | Читаемая помощь на Watch, четыре страницы Web и публичные URL | M08; реквизиты H1 |
 | [M10 — Final Product Polish](milestones/M10-final-product-polish.md) | Полная проверка английского приложения, точный кандидат `READY_FOR_HUMAN` | Все M00–M09 |
