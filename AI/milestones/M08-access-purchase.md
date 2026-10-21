@@ -1,7 +1,7 @@
 # M08 — Access and Purchase
 
 **ID:** M08
-**Status:** BLOCKED
+**Status:** REVIEW
 **Depends on:** M07
 **Validation:** make milestone ID=M08
 **Handoff:** AI/handoffs/M08-handoff.md
@@ -41,6 +41,15 @@
 ## Handoff
 
 Записать `AI/handoffs/M08-handoff.md` по компактному шаблону: полный SHA, точные команды, exit codes, UTC time, report paths, counts, известные ограничения и следующий шаг. После доказанного DONE остановиться.
+
+## Local test-host repair — 2026-10-22
+
+Dedicated test-only host, same production source except an inert @main, corrects
+the local canonical-ID mismatch. Four unchanged StoreKit scenarios and three
+shipping access UI tests pass on the managed simulator. Setup now requires a
+verified Xcode app identity; a build guard prevents source/config drift and
+archive inclusion. Complete gate and physical verification remain in this
+session. See [repair handoff](../handoffs/M08-local-repair-handoff.md).
 
 ## Local environment follow-up — 2026-10-22
 

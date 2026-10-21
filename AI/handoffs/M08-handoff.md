@@ -2,6 +2,14 @@
 
 **Policy status:** current
 
+## Local test-host repair — 2026-10-22
+
+The local host now aligns StoreKit's canonical identity without changing the
+shipping bundle ID. Four StoreKit tests and all three shipping access UI tests
+pass on the managed simulator. A guarded, inert test entry point also passes 4/4.
+Full current-SHA and physical verification are in progress; see
+[M08-local-repair-handoff.md](M08-local-repair-handoff.md). No App Review submission.
+
 ## Local environment follow-up — 2026-10-22
 
 M08 remains BLOCKED. After a Watch restart, an isolated container-ID host passes

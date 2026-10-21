@@ -14,11 +14,19 @@
     },
     "targetForVariableExpansion": {
       "containerPath": "container:PadelScore.xcodeproj",
-      "identifier": "6BE7B1F86B27A0EA377ED4FD",
-      "name": "PadelScoreWatch"
+      "identifier": "29698D29C3A686C7611451CB",
+      "name": "PadelScoreStoreKitHost"
     }
   },
   "testTargets": [
+    {
+      "target": {
+        "containerPath": "container:PadelScore.xcodeproj",
+        "identifier": "CFBDD33FDFEF8F2B058FFC70",
+        "name": "PadelScoreStoreKitTests"
+      },
+      "parallelizable": false
+    },
     {
       "target": {
         "containerPath": "container:PadelScore.xcodeproj",

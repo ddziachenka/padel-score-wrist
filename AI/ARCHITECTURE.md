@@ -584,3 +584,26 @@ but the same product loaded and purchase/restore passed with `.watchkitapp`.
 The packaging container and ASC app/IAP IDs are unchanged. The earlier bundle
 was development-only; its local game data is backed up and restored separately.
 This is an identity repair, not an iPhone companion or monetization change.
+
+### Local StoreKit test identity — M08
+
+`PadelScoreStoreKitHost` is a test-only Watch app using the container's canonical
+StoreKit bundle ID. It compiles the shipping Watch target's sources, resources
+and settings, with only its display name/bundle identity and `@main` entry point
+changed. Its minimal entry point performs no StoreKit work before XCTest creates
+the session. It does not substitute the purchase client, entitlement owner,
+verification rules, product ID or persistence implementation.
+
+The four StoreKit scenarios run serially in `PadelScoreStoreKitTests`; the plan
+configures local StoreKit for that host. Setup requires a verified Xcode
+AppTransaction with the host's bundle ID before any purchase call. A stale
+Sandbox launch fails the tests instead of interacting with that account.
+Normal policy/domain tests and all UI tests still run the shipping `.watchkitapp`.
+The local host clears the canonical transaction namespace seen by that UI app.
+Real Sandbox verification of the shipping ID remains separate hardware evidence.
+
+A required host build phase runs `Scripts/verify-storekit-host.py`: source,
+resource and settings drift fail the build; only the explicit test `@main`
+substitution is allowed. The scheme enables the host/tests only for testing,
+`SKIP_INSTALL` is YES, and the shipping targets cannot depend on them. Thus no
+local test host or StoreKitTest framework is included by the shipping archive.

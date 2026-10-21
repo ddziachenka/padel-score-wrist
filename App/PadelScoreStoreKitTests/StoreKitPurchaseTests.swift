@@ -2,12 +2,12 @@ import Foundation
 import StoreKit
 import StoreKitTest
 import XCTest
-@testable import PadelScoreWatch
+@testable import PadelScoreStoreKitHost
 
 /// XCTest runs these serially: StoreKit Testing has one environment per process.
 @MainActor
 final class StoreKitPurchaseTests: XCTestCase {
-    private func environment() throws -> SKTestSession {
+    private func environment() async throws -> SKTestSession {
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "Lifetime", withExtension: "storekit"))
         let session = try SKTestSession(contentsOf: url)
         session.resetToDefaultState()
@@ -18,6 +18,16 @@ final class StoreKitPurchaseTests: XCTestCase {
         guard session.disableDialogs else {
             throw NSError(domain: "M08.StoreKitTestEnvironment", code: 1, userInfo: [
                 NSLocalizedDescriptionKey: "StoreKit Testing rejected disableDialogs; local configuration is not active."
+            ])
+        }
+        // A stale launch may still route Product.purchase() to Sandbox even when
+        // the local controller accepts its settings. Fail before touching purchases.
+        let identity = try await AppTransaction.shared
+        guard case .verified(let transaction) = identity,
+              transaction.environment == .xcode,
+              transaction.bundleID == Bundle.main.bundleIdentifier else {
+            throw NSError(domain: "M08.StoreKitTestEnvironment", code: 2, userInfo: [
+                NSLocalizedDescriptionKey: "The verified Xcode app identity must match the local StoreKit host before testing purchases."
             ])
         }
         return session
@@ -36,7 +46,7 @@ final class StoreKitPurchaseTests: XCTestCase {
     }
 
     func testPurchaseRestoreRefundAndLocalizedPrice() async throws {
-        let session = try environment()
+        let session = try await environment()
         defer { session.resetToDefaultState(); session.clearTransactions() }
         let owner = store()
         await owner.start()
@@ -58,7 +68,7 @@ final class StoreKitPurchaseTests: XCTestCase {
     }
 
     func testPendingThenApprovalArrivesThroughUpdates() async throws {
-        let session = try environment()
+        let session = try await environment()
         defer { session.resetToDefaultState(); session.clearTransactions() }
         session.askToBuyEnabled = true
         let owner = store()
@@ -72,7 +82,7 @@ final class StoreKitPurchaseTests: XCTestCase {
     }
 
     func testUnverifiedPurchaseCannotUnlock() async throws {
-        let session = try environment()
+        let session = try await environment()
         defer { session.resetToDefaultState(); session.clearTransactions() }
         let owner = store()
         await owner.start()
@@ -83,7 +93,7 @@ final class StoreKitPurchaseTests: XCTestCase {
     }
 
     func testNetworkFailureKeepsVerifiedOfflineAccessAndRestoreRemainsAvailable() async throws {
-        let session = try environment()
+        let session = try await environment()
         defer { session.resetToDefaultState(); session.clearTransactions() }
         let owner = store()
         await owner.start()
@@ -105,5 +115,11 @@ final class StoreKitPurchaseTests: XCTestCase {
         XCTAssertTrue(owner.isUnlocked)
         await owner.restore()
         XCTAssertTrue(owner.isUnlocked)
+    }
+}
+
+private extension GameID {
+    static func number(_ number: Int) -> GameID {
+        GameID(rawValue: UUID(uuidString: String(format: "00000000-0000-0000-0000-%012d", number))!)
     }
 }

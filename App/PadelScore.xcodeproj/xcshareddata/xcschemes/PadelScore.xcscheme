@@ -62,6 +62,34 @@
                ReferencedContainer = "container:PadelScore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "29698D29C3A686C7611451CB"
+               BuildableName = "PadelScoreStoreKitHost.app"
+               BlueprintName = "PadelScoreStoreKitHost"
+               ReferencedContainer = "container:PadelScore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CFBDD33FDFEF8F2B058FFC70"
+               BuildableName = "PadelScoreStoreKitTests.xctest"
+               BlueprintName = "PadelScoreStoreKitTests"
+               ReferencedContainer = "container:PadelScore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
