@@ -62,7 +62,7 @@ Apple описывает SwiftUI как основу нативного watchOS 
 | Xcode version | Локально обнаружен Xcode 27.0, build 27A266a, 2026-10-20 |
 | Swift version | Swift 6 language mode, strict concurrency; локальный компилятор Apple Swift 6.4 (`swiftlang-6.4.0.34.1`) |
 | SDK used to build | watchOS SDK 27.0; Debug Watch executable и packaging container собраны Xcode 27.0 в M00 |
-| Oldest runtime tested against | watchOS 26.1 (`23S36`), Apple Watch SE 40 mm (2nd generation): четыре StoreKit integration tests M08 прошли 2026-10-21. Полные результаты — в M08 handoff. watchOS 10 ещё не проверена; её проверка обязательна до финальной готовности |
+| Oldest runtime tested against | watchOS 26.1 (`23S36`), Apple Watch SE 40 mm (2nd generation): полный M08 gate прошёл 2026-10-21, 386/386 logical tests (включая четыре StoreKit). Полные результаты — в M08 handoff. watchOS 10 ещё не проверена; её проверка обязательна до финальной готовности |
 
 Инвентаризация 2026-10-20 обнаружила доступный Watch runtime watchOS 26.5
 (build 23T570), `com.apple.CoreSimulator.SimRuntime.watchOS-26-5`. Совместимый

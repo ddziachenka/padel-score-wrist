@@ -1,7 +1,7 @@
 # M08 — Access and Purchase
 
 **ID:** M08
-**Status:** REVIEW
+**Status:** BLOCKED
 **Depends on:** M07
 **Validation:** make milestone ID=M08
 **Handoff:** AI/handoffs/M08-handoff.md
@@ -42,7 +42,7 @@
 
 Записать `AI/handoffs/M08-handoff.md` по компактному шаблону: полный SHA, точные команды, exit codes, UTC time, report paths, counts, известные ограничения и следующий шаг. После доказанного DONE остановиться.
 
-## Current evidence — 2026-10-21
+## Earlier verification — 2026-10-21
 
 H4 закрыт владельцем: пять завершённых игр автоматически, сохранять счётчик при
 удалении данных, lifetime non-consumable с ценой из PRODUCT H4;
@@ -65,5 +65,10 @@ StoreKit-конфигурацией. Полные команды и evidence —
 симулированной ошибки четыре исходных StoreKit-теста прошли: 4 passed, 0 failed,
 0 skipped, xcodebuild exit 0. Evidence:
 `.artifacts/M08-storekit-fix/reset-26-1.xcresult`, `reset-26-1.log`.
-Assertions и production purchase code не ослаблены; полный gate выполняется на
-следующем clean REVIEW-коммите. Реальные часы по-прежнему недоступны.
+Assertions и production purchase code не ослаблены. Полный
+`make milestone ID=M08` прошёл на clean REVIEW-коммите
+`14fffe5b70fcf859841a89c1363992fee313eafc`: exit 0, **386/386** logical tests,
+0 failures/skips; expanded device summary 730/730. Report:
+`.artifacts/milestone/M08/20261021T140724Z-29203/report.md`.
+M08 остаётся BLOCKED: реальные часы по-прежнему недоступны и live App Store
+Connect app/IAP ещё не настроены. Подробности и история сравнений — в handoff.
