@@ -7,7 +7,7 @@
 
 План следует [промпту инициализации](prompts/initialize-product.md) и
 [brief](PRODUCT_BRIEF.md). M00–M07 имеют статус `DONE`; H2 закрыт владельцем
-2026-10-20. Текущий этап — M08 (`BLOCKED`: исторический gate 386/386 прошёл на 26.1; реальные часы: UI 3/3 и policy 16/16 прошли, StoreKit 1/4 после переустановки, каталог Sandbox пуст; нужно уточнение Apple о публикации Watch IAP — см. [StoreKit handoff](handoffs/M08-hardware-fix-handoff.md); App Store Connect и lifetime $4.99 настроены без отправки на ревью; H4 утверждён 2026-10-21); остальные имеют статус `PLANNED`.
+2026-10-20. Текущий этап — M08 (`BLOCKED`: Sandbox purchase/restore 1/1 прошёл на реальных часах после исправления bundle suffix; identity/policy 19/19 и UI 1/1 прошли. Локальное управление StoreKit и clean gate ещё не проходят — см. [identity handoff](handoffs/M08-sandbox-identity-handoff.md). App Store Connect и lifetime $4.99 настроены без отправки на ревью; H4 утверждён 2026-10-21); остальные имеют статус `PLANNED`.
 Одобрение направления не выбирает молча ответы на отдельные открытые вопросы.
 
 ## Contracts

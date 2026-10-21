@@ -44,6 +44,12 @@
 
 ## Earlier verification — 2026-10-21
 
+2026-10-22 update: the `.watchkitapp` identity repair made the real Sandbox
+catalog, purchase and restore pass (1/1); identity/policy tests 19/19 and UI 1/1
+also pass on hardware. Local Xcode StoreKit controls still open dialogs despite
+disableDialogs; the remaining required matrix and clean gate are incomplete.
+See [identity repair handoff](../handoffs/M08-sandbox-identity-handoff.md).
+
 Latest follow-up: reinstall with the owner's approval preserved the backed-up
 game state and reached the real Sandbox password prompt. Direct Sandbox product
 lookup returns no product; login success is unconfirmed. Original local tests

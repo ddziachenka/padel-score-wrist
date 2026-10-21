@@ -2,6 +2,14 @@
 
 **Policy status:** current
 
+## Sandbox identity repair — 2026-10-22
+
+Real-Watch Sandbox purchase and restore now pass after changing the executable
+bundle suffix from `.watchapp` to Xcode's standard `.watchkitapp`. Exact evidence
+and remaining local automation failures are in
+[M08-sandbox-identity-handoff.md](M08-sandbox-identity-handoff.md). M08 is still
+BLOCKED by that remaining coverage and the clean gate; no App Review submission.
+
 ## StoreKit follow-up — 2026-10-21T20:46Z
 
 Authorized reinstall and data restoration reached a real Sandbox password prompt,
