@@ -4,12 +4,34 @@
 
 ## Milestone
 
-M08 — Access and Purchase; status `BLOCKED` for real-Watch coverage and App Store
-Connect setup. Automated milestone verification now **passes**.
+M08 — Access and Purchase; status `BLOCKED` for required real-Watch coverage.
+Automated milestone verification **passes**; live App Store Connect setup is complete. Nothing was submitted for review.
 
 ## Summary
 
-Fixed the local StoreKit test environment without changing production purchase
+Configured the live App Store Connect app and lifetime purchase on 2026-10-21,
+after the owner explicitly authorized setup without review submission and confirmed
+free download plus availability in all 175 regions. API readbacks verify:
+
+| Setting | Saved value |
+| --- | --- |
+| App | `6825393194`, `Padel Score — Wrist`, `com.dziachenka.padelscore`, SKU `padel-score-wrist`, `en-US` |
+| Registered bundle IDs | Container `7T9U2U93B6`; Watch `YL54982QR2`; both include `IN_APP_PURCHASE` |
+| Lifetime product | `6825393394`, `com.dziachenka.padelscore.lifetime`, `NON_CONSUMABLE`, Family Sharing off |
+| Price | USA base **$4.99 USD**, one manual price without end date; **174** automatic regional prices |
+| Availability | App and purchase each **175** territories; new territories enabled; no pre-order |
+| Download price | **Free**, verified US customer price `0.0` |
+| Localization | `en-US`: `Lifetime unlock`; `Unlimited games. One-time lifetime purchase.` |
+| Draft version | `d96baf47-39f7-4632-856e-b2cd28ec458f`, `PREPARE_FOR_SUBMISSION` |
+| Review screenshot | `2834a750-4f15-445c-9e1e-ecc89d47c9ab`, genuine 368×448 Watch capture, asset state **COMPLETE** |
+| Final state | IAP **READY_TO_SUBMIT**; app version 1.0 **PREPARE_FOR_SUBMISSION**; review submissions **0** |
+
+Review notes describe the automatic five completed games, one-time purchase,
+About → Access restore path, continued access to an existing game, and retained
+usage after local-data deletion. No build was uploaded and no review action was taken.
+Public app listing/legal/contact details still belong to later milestones.
+
+The earlier StoreKit repair remains unchanged: fixed the local StoreKit test environment without changing production purchase
 logic or weakening test assertions. The shared scheme now uses an explicit test
 plan, so local StoreKit is active before the hosted app initializes its client.
 The managed runtime is pinned to watchOS 26.1 (`23S36`). After a simulated purchase
@@ -22,12 +44,28 @@ data. Price comes from StoreKit. No activation step or trial wording was added.
 
 ## Changed files
 
+- Current ASC session: only `AI/PRODUCT.md`, `PROJECT_STATUS.md`, `DEVELOPMENT_PLAN.md`, M08 and this handoff. All app/build inputs and the original 40 mm managed binding were restored unchanged.
+- Earlier StoreKit repair below remains the verified implementation.
 - `App/PadelScore.xctestplan`, shared scheme and `project.pbxproj` — both original test targets, serial execution, English/US settings and StoreKit configuration before launch; no test exclusions.
 - `App/PadelScoreWatchTests/Services/StoreKitPurchaseTests.swift` — reset test-server settings after the simulated outage; every original assertion retained, no transaction clearing before retry.
 - `Config/project.env` — watchOS 26.1 on the same SE 2 40 mm device type.
 - `App/README.md`, `AI/ARCHITECTURE.md`, plan/status/M08 records — reproduction, environment choice and remaining blockers.
 
 ## Validation
+
+### App Store Connect session evidence
+
+- Source HEAD: `2fbadddba04924dc373805e53a206a07d4b76b55`; passing milestone candidate remains `14fffe5b70fcf859841a89c1363992fee313eafc`.
+- Evidence directory: `.artifacts/M08-asc-setup/`. `asc.mjs` uses the configured environment credentials, signs JWT in memory, and saves HTTP status/timestamp/request path with each response; it never saves the private key or JWT.
+- Exact API command form: `node .artifacts/M08-asc-setup/asc.mjs METHOD PATH REQUEST_JSON_OR_DASH RESPONSE_JSON`. The response files retain every exact method/path; request JSON files retain bodies. Successful creates returned 201, updates/readbacks 200, replacement of this session's rejected screenshot 204. CLI exit 0 for final successful operations.
+- Readback reports: `app-created.json`, `bundles-verified.json`, `iap-final.json`, `price-verified.json`, `automatic-prices-verified.json`, `free-app-price-verified.json`, `availability-verified.json`, `app-availability-verified.json`, `screenshot-44-verified.json`, `app-version-final.json`, `review-submissions-verified.json`.
+- Initial 324×394 screenshot was rejected with `IMAGE_INCORRECT_DIMENSIONS`. It was replaced by a fresh native 368×448 capture; no resizing or synthesized UI. Final screenshot processed with `COMPLETE`, no errors/warnings.
+- Capture command: `bash .artifacts/M08-asc-setup/capture-44-storekit.sh`, exit **0**. Exact xcodebuild invocation is in that script and the head of `capture-44-storekit.log`; selects `StoreKitPurchaseTests/testPurchaseRestoreRefundAndLocalizedPrice` and `AccessUITests/testSixthGameShowsAccessAndClosingKeepsResultAndDraft`.
+- Capture result: `capture-44-storekit.xcresult`, `capture-44-storekit-summary.json`: **2 passed, 0 failed, 0 skipped**, 2026-10-21T15:09:10Z–15:10:13Z. Initial UI-only capture also passed 1/1 but displayed product unavailable because local StoreKit had not been initialized; that image was not uploaded. This focused capture is additional evidence, not a replacement milestone gate.
+- Capture simulator: managed Watch SE 2 44 mm / watchOS 26.1 (`23S36`), `DF6ED19D-1461-4A25-975B-1A4995E8AA20`. It is retained as `-asc-44mm` with `.iosai-local/simulator-asc-44mm.json`; original Config and 40 mm binding restored, no devices/data erased.
+- App/build source unchanged; full `make milestone ID=M08` was not repeated for AI Markdown continuity edits. Static/status/continuity validation is recorded below after the session commit.
+
+### Existing full milestone gate
 
 | Field | Evidence |
 | --- | --- |
@@ -65,6 +103,12 @@ is background; the Watch diagnosis rests on the recorded local comparisons.
 
 ## Tests
 
+ASC Builder self-review compared live product ID/type to the production client and
+local StoreKit file, checked $4.99/USD and $0 download readbacks, all-region counts,
+English metadata, screenshot processing and zero review submissions. It found and
+corrected the unsupported screenshot size and the restore-path wording. This is
+self-review, not an independent audit or release approval.
+
 The four StoreKit scenarios now pass against real local StoreKit transactions:
 purchase/localized price/restore/refund updates, pending approval through updates,
 invalid signatures refusing access, and network failure/retry/verified offline
@@ -82,24 +126,22 @@ repair. The full UI suite verifies the existing journeys on the pinned runtime.
 
 1. **Blocking:** required real-Watch purchase coverage did not run; the owner again
    confirmed hardware is unavailable. Local StoreKit success does not replace it.
-2. **Blocking purchase setup:** the previous ASC lookup found no app record and no
-   authenticated web session. The approved non-consumable and US price remain local
-   configuration only. No new ASC setup or App Review submission occurred here.
+2. Live purchase configuration is complete and verified above. App metadata, legal/support particulars, build upload and eventual submission remain separate work; this session does not claim release readiness.
 3. watchOS 26.5 and 27.0 StoreKitTest failures above are retained environment
    limitations. Their simulators/data were preserved with `-retained-26-5` and
    `-retained-27-0` names; original bindings are in ignored
    `.iosai-local/simulator-watchOS-{26-5,27-0}.json`. Reproduction on an older
    candidate requires an explicit managed-binding/name switch per WORKFLOW.
-4. H1 public particulars, minimum watchOS 10 coverage and public-name availability
-   remain existing project dependencies. Earlier Release containment evidence is
+4. H1 public particulars and minimum watchOS 10 coverage remain existing project
+   dependencies; the chosen public name is now accepted in App Store Connect. Earlier Release containment evidence is
    preserved below; this repair's gate proves Debug/test behavior, not Release UI
    or device purchases. No tests were skipped to cover an unavailable environment.
 
 ## Next step
 
-Resume **M08** when real hardware and authenticated App Store Connect setup are
-available. Create/configure the approved live product and complete required Watch
-purchase/restore/revocation/pending/offline coverage. Reverify any changed candidate.
+Resume **M08** when real hardware is available. Complete required Watch
+purchase/restore/revocation/pending/offline coverage using the configured product.
+Reverify any changed candidate. Do not submit the app or IAP without a new explicit instruction.
 Do not mark DONE or start M09 on the strength of simulator tests alone.
 
 ## Earlier implementation verification — historical

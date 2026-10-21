@@ -72,3 +72,20 @@ Assertions и production purchase code не ослаблены. Полный
 `.artifacts/milestone/M08/20261021T140724Z-29203/report.md`.
 M08 остаётся BLOCKED: реальные часы по-прежнему недоступны и live App Store
 Connect app/IAP ещё не настроены. Подробности и история сравнений — в handoff.
+
+## App Store Connect setup — 2026-10-21
+
+Созданы и проверены app `6825393194` (`Padel Score — Wrist`) и non-consumable
+`6825393394` (`com.dziachenka.padelscore.lifetime`). Базовая цена США $4.99 USD;
+174 остальных цены Apple рассчитывает автоматически. Владелец отдельно подтвердил
+бесплатное скачивание и все 175 регионов; app и IAP availability сохранены.
+Английская локализация, review notes и настоящий снимок 368×448 сохранены;
+снимок обработан с `COMPLETE`, товар — `READY_TO_SUBMIT`. Версия приложения —
+`PREPARE_FOR_SUBMISSION`; review submissions пусты. Ничего не отправлено на ревью.
+
+Дополнительный запуск исходных StoreKit purchase/restore/refund и sixth-game UI
+тестов на managed Watch SE 2 44 mm / watchOS 26.1: exit 0, 2 passed, 0 failed/skipped.
+Он нужен для снимка; не заменяет полный gate на `14fffe5b70fcf859841a89c1363992fee313eafc`.
+Исходные Config и managed binding 40 mm восстановлены. App/build inputs не менялись.
+M08 остаётся BLOCKED только по обязательным реальным часам; H1 и минимальная
+watchOS 10 остаются отдельными проектными зависимостями. Evidence — в handoff.
