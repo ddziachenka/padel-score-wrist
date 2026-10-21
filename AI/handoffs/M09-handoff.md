@@ -1,5 +1,7 @@
 # M09 — Legal and Support: publication preparation
 
+**Policy status:** current
+
 ## Milestone
 
 M09, BLOCKED by the unfinished M08 hardware requirement. The owner's explicit
@@ -84,3 +86,48 @@ required physical-device checks remain pending. No archive/build upload/App Revi
 Finish the unavailable M08 real-Watch checks, verify M08 on a clean REVIEW SHA,
 then run M09's full declared gate and M10's required audit/release evidence. Do not
 mark READY_FOR_HUMAN or submit based solely on this preparation.
+
+## Final preparation verification
+
+| Field | Evidence |
+| --- | --- |
+| Exact tested source SHA | `3f1d690c4e7e6b167937efa70cfb2aada3b9e4ac` on main |
+| UI + configuration tests | Command below; exit 0; **8 passed, 0 failed, 0 skipped** (5 UI, 3 configuration) |
+| Result bundle | `.artifacts/publication-prep/legal-tests-final.xcresult` |
+| Counts / log | `legal-tests-final-summary.json`, `legal-tests-final.log` |
+| UTC interval | 2026-10-21T15:43:58.969000+00:00 — 2026-10-21T15:48:01.842000+00:00 |
+| Release build / package inspection | Exact Release command above repeated on this SHA; exit 0; release-build-candidate.log and release-inspection-candidate.json |
+| Static validation | `make static`: initial final-static.log failed (missing handoff Policy status); corrected field, post-static.log exit 0 |
+| Status | `./Scripts/project-status.sh validate`: exit 0; final-status.log |
+| Declared milestone command | `make milestone ID=M09`: make exit 2, verifier 65; milestone-M09.log; correctly refuses BLOCKED, requires REVIEW. No gate result bundle or passing milestone claim. |
+| Final ASC readback | review-submissions-final.json: 0 submissions; version-final.json: PREPARE_FOR_SUBMISSION; review-readback.json: complete contact, sign-in not required |
+
+```sh
+Scripts/simulator.sh run -- bash -c 'exec xcodebuild test -project App/PadelScore.xcodeproj -scheme PadelScore -configuration Debug -destination "$IOSAI_SIMULATOR_DESTINATION" -derivedDataPath /private/tmp/padel-score-1acada2a5b10/DerivedData -resultBundlePath .artifacts/publication-prep/legal-tests-final.xcresult -only-testing:PadelScoreWatchUITests/BootstrapUITests -only-testing:PadelScoreWatchUITests/AccessUITests -only-testing:PadelScoreWatchTests/AppConfigurationTests'
+```
+
+Read the final 40mm screenshots in legal-final-screens: contact and wrapped public
+addresses are readable; EULA is reachable with its complete original accessibility
+label. The tests use the existing short-drag scrolling helper, with every visibility
+assertion retained. They exercise bundled content, not a real-Watch airplane-mode
+or VoiceOver speech test. Device binding is restored to the original managed 40mm
+watchOS 26.1 simulator; browser desktop lease released.
+
+The complete 386-test M08 gate recorded in its handoff remains historical evidence
+for its own SHA. These new preparation changes have targeted verification, not a
+replacement full milestone/release approval. Simulator download commands for 10.0
+and 10.5 are unavailable through the installed Xcode, not evidence of app incompatibility.
+Initial generic Release build reported container interface/launch warnings; this is
+an unsigned build check, not App Store archive validation.
+
+## Separately authorized Film Rescue correction
+
+Owner requested the same corrected email on film-rescue.pages.dev/support/.
+Published only the literal email substitution from production source
+`c966a03fc82cb2350ba14ebedfb463bf8c28f7ac`, preserving the live version rather than
+publishing the unrelated v1.1 preparation. All 64 live HTML files byte-match the
+intended deployment, including all 16 locales. New deployment:
+https://f9b05fd1.film-rescue.pages.dev. Local Web/config/PRODUCT also corrected;
+commit `bb7226d712854c16999f5e121145c186911de066`, followed by a handoff classification
+fix. Ongoing app work in that repository was preserved. Its handoff is
+`/Users/Shared/D/ios/negative-scanner/AI/handoffs/2026-10-21-support-email.md`.
