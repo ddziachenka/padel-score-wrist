@@ -1,7 +1,7 @@
 # M08 — Access and Purchase
 
 **ID:** M08
-**Status:** REVIEW
+**Status:** BLOCKED
 **Depends on:** M07
 **Validation:** make milestone ID=M08
 **Handoff:** AI/handoffs/M08-handoff.md
@@ -41,6 +41,23 @@
 ## Handoff
 
 Записать `AI/handoffs/M08-handoff.md` по компактному шаблону: полный SHA, точные команды, exit codes, UTC time, report paths, counts, известные ограничения и следующий шаг. После доказанного DONE остановиться.
+
+## Local environment follow-up — 2026-10-22
+
+The Watch restart repairs empty local currentEntitlements in the isolated
+container-ID diagnostic host: three of the four original tests now pass.
+The network test still fails because watchOS 27.0.1 converts the injected
+network error to StoreKitError.unknown. Five public error-injection variants
+reproduce that result directly through Product.purchase(). No assertion or
+production error classification was relaxed.
+
+The clean `make milestone ID=M08` at
+`52182dfb8bc8380afc9fd1445b6429cbef31a98c` fails four StoreKit tests and three
+access UI tests with the shipping `.watchkitapp` identity. It was stopped after
+those failures: xcresult reports 340 passed / 8 failed / 0 skipped, including one
+canceled UI test; this is incomplete coverage, not a gate pass. The ordinary Watch
+app is restored and launches; three backed-up game files match SHA-256. See
+[local environment handoff](../handoffs/M08-local-session-handoff.md).
 
 ## Earlier verification — 2026-10-21
 

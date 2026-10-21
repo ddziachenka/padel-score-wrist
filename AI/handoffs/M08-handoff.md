@@ -2,6 +2,16 @@
 
 **Policy status:** current
 
+## Local environment follow-up — 2026-10-22
+
+M08 remains BLOCKED. After a Watch restart, an isolated container-ID host passes
+3/4 original StoreKit scenarios; injected network errors still become unknown.
+The clean shipping-ID gate fails four StoreKit tests and three access UI tests;
+it was stopped after those failures and is not complete verification. Ordinary
+Watch installation and backed-up game data were restored. Exact SHA, commands,
+counts, cleanup evidence and remaining work are in
+[M08-local-session-handoff.md](M08-local-session-handoff.md).
+
 ## Sandbox identity repair — 2026-10-22
 
 Real-Watch Sandbox purchase and restore now pass after changing the executable
