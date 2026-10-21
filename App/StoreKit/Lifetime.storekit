@@ -1,0 +1,31 @@
+{
+  "identifier" : "C26B0796-CC3F-4F60-9A29-6F63695820BD",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "94732501",
+      "localizations" : [
+        {
+          "description" : "Unlimited Match and Americano games. One-time purchase.",
+          "displayName" : "Lifetime unlock",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.dziachenka.padelscore.lifetime",
+      "referenceName" : "Lifetime unlock",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "0",
+    "_developerTeamID" : "",
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : []
+  },
+  "subscriptionGroups" : [],
+  "version" : { "major" : 3, "minor" : 0 }
+}

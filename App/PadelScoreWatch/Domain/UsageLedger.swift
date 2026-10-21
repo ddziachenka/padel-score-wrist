@@ -47,9 +47,7 @@ enum UsageEvent: Hashable, Sendable {
 }
 
 /// The one place that decides whether a new game may start and what counts as free use.
-/// The commercial model is the open decision H4; M08 supplies the approved policy together
-/// with the StoreKit entitlement. Until then the app uses `OpenAccess`, and tests use
-/// sources of their own.
+/// The app uses LifetimeAccess with a snapshot from its entitlement owner.
 protocol AccessPolicy: Sendable {
     /// Whether the event counts its game as free use.
     func counts(_ event: UsageEvent) -> Bool
@@ -57,7 +55,7 @@ protocol AccessPolicy: Sendable {
     func allowsNewGame(after usage: UsageLedger) -> Bool
 }
 
-/// No commercial model is approved yet: nothing is counted and every game may start.
+/// Unrestricted, uncounted access for isolated game fixtures. Production uses LifetimeAccess.
 struct OpenAccess: AccessPolicy {
     func counts(_ event: UsageEvent) -> Bool { false }
     func allowsNewGame(after usage: UsageLedger) -> Bool { true }

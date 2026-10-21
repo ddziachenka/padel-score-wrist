@@ -216,7 +216,7 @@ Legal: readable on-watch pages with public URLs and support contact.
 | Change mode | Да, целевой черновик плюс undo после Save | `Change game format? Enter the score for the new format. Nothing changes until you save.` | Cancel сохраняет исходный формат, Save требует полного целевого состояния |
 | Finish match / Finish round | Да | `Finish this game? Your current score will be saved.` | `Keep playing`; после сохранения `Resume game` |
 | Start another game after result | Последний результат остаётся для просмотра, его правка/продолжение закрываются | `Starting a new game will keep this result for viewing only.` перед фактическим стартом | Вход в Setup ничего не меняет; Back возвращает редактируемый результат |
-| Delete local data | Нет после подтверждённой очистки | `Delete local data? This removes your game, last result and saved settings from this Watch. Your purchase is not deleted.` | `Cancel` / `Delete data`; пробный счётчик определяется H4d, не обещать его сброс |
+| Delete local data | Нет после подтверждённой очистки | `Delete local data? This removes your game, last result and saved settings from this Watch. Your free-game count and purchase are kept.` | `Cancel` / `Delete data`; счётчик сохраняется по H4 |
 
 ## Permissions and privacy UX
 
@@ -228,8 +228,8 @@ Notifications или иных разрешений для счёта. Нет р�
 
 ## Purchases and paywalls
 
-Все пункты ниже — предложение для выбранной в PRODUCT H4 модели, не утверждённая
-цена или бесплатный лимит. Коммерческий этап не начинает реализацию до решения H4.
+H4 утверждён 2026-10-21: пять завершённых игр, затем lifetime unlock; ledger
+сохраняется при удалении данных. Цена UI только из StoreKit.
 Таблица описывает lifetime IAP. При бесплатной v1 или платном скачивании нет
 Unlock, trial, Restore purchases или debug premium override; About и legal
 остаются доступны, повторная покупка внутри приложения не предлагается.
@@ -239,7 +239,7 @@ Unlock, trial, Restore purchases или debug premium override; About и legal
 | Where the paywall appears | Между играми при `Start game` после принятого лимита либо добровольно из `About → Access`. |
 | What remains visible for free | Условия доступа, уже созданные данные, исправление результата, помощь, legal и restore; активную игру не перекрывать. Точное право начать новую игру задаёт PRODUCT. |
 | How the paid value is demonstrated before the paywall asks for money | Согласованный бесплатный опыт полноценных игр; без обязательного paywall на первом запуске. |
-| Exactly what is sold | Предложение: одна нерасходуемая lifetime-разблокировка будущих игр. Решение H4 определяет факт продажи и entitlement. |
+| Exactly what is sold | Одна нерасходуемая lifetime-разблокировка после пяти завершённых игр. Бесплатные игры автоматические, без отдельного запуска и слова trial в UI. |
 | Price and term presentation from StoreKit | Одна локализованная фактическая цена StoreKit, рядом `One-time purchase`. Без вписанного в UI числа. |
 | Which offer is recommended, and how that is marked | Одно предложение; нет искусственной плашки `Best value`. |
 | Comparison price shown, and the StoreKit product it is derived from | Не предлагается: нет второго реально продаваемого продукта. |
@@ -715,7 +715,7 @@ PRODUCT H2 закрыт 2026-10-20: сет до шести геймов, тай-
 | ID | Question | Options | Blocks | Developer decision needed |
 | --- | --- | --- | --- | --- |
 | PRODUCT H1 | Публичный разработчик, сайт и контакт; имя Padel Score — Wrist выбрано | См. варианты в PRODUCT | Финальная копия About/legal/store | Да, в PRODUCT |
-| PRODUCT H4 | Условия lifetime и бесплатного опыта | См. варианты в PRODUCT | Окончательная копия Unlock, моменты предложения и доступ после лимита | Да, в PRODUCT |
+| PRODUCT H4 (closed) | Пять завершённых игр, затем lifetime unlock; ledger сохраняется | Утверждено 2026-10-21 | M08 реализует и проверяет | Решено владельцем |
 
 Общее одобрение получено; до выбора зависимых H-решений соответствующая нативная
 реализация не начинается.

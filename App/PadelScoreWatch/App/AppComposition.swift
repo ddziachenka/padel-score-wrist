@@ -1,18 +1,17 @@
 import Foundation
 
-/// Builds the app's one session store, saving to the Watch's own files. Until the access
-/// decision H4 is made, every game may start and nothing is counted.
+/// Builds the app's session using the single entitlement owner for every command.
 @MainActor
 enum AppComposition {
-    static func makeSessionStore(environment: [String: String] = ProcessInfo.processInfo.environment) -> SessionStore {
+    static func makeSessionStore(entitlements: EntitlementStore, environment: [String: String] = ProcessInfo.processInfo.environment) -> SessionStore {
         #if DEBUG
         if let testStore = UITestStore(environment: environment) {
-            return testStore.makeSessionStore()
+            return testStore.makeSessionStore(accessProvider: { entitlements.access })
         }
         #endif
         let directory = (try? SessionRepository.standardDirectory())
             ?? URL.applicationSupportDirectory.appending(path: "Session", directoryHint: .isDirectory)
-        return SessionStore(repository: SessionRepository(directory: directory), access: OpenAccess())
+        return SessionStore(repository: SessionRepository(directory: directory), accessProvider: { entitlements.access })
     }
 
     #if DEBUG

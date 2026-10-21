@@ -37,6 +37,7 @@ struct NewGameView: View {
 
 /// Match and Americano, each with its one-line meaning: choosing one sets it up.
 struct FormatChoices: View {
+    @Environment(EntitlementStore.self) private var entitlements
     let flow: NewGameFlow
 
     var body: some View {
@@ -49,6 +50,7 @@ struct FormatChoices: View {
             .buttonStyle(RowButtonStyle())
             .accessibilityIdentifier("newGame.\(kind.rawValue)")
         }
+        if !entitlements.isUnlocked { FreeGamesSummary(usage: flow.usage) }
     }
 }
 
@@ -87,7 +89,7 @@ struct NewGameDestination: View {
         case .serving:
             ServingEditor(serving: draft(\.serving, otherwise: ServingChoice()))
         case .about:
-            AboutView { flow.path.append(.settings) }
+            AboutView(usage: store.session.usage) { flow.path.append(.settings) }
         case .settings:
             LocalDataSettingsView(store: store)
         }

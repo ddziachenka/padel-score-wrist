@@ -57,6 +57,8 @@ final class NewGameFlow {
         self.store = store
     }
 
+    var usage: UsageLedger { store.session.usage }
+
     var isSaving: Bool { startState == .saving }
 
     var hasFailedStart: Bool {

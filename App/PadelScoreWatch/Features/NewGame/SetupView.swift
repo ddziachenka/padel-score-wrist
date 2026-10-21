@@ -35,6 +35,12 @@ struct SetupView: View {
             .onAppear {
                 focusedRow = flow.returnedFrom.flatMap(SetupRow.init)
             }
+            .sheet(isPresented: Binding(
+                get: { flow.startState == .failed(.notAllowed) },
+                set: { if !$0 { flow.cancelFailedStart() } }
+            )) {
+                NavigationStack { AccessView(usage: flow.usage) }
+            }
             .navigationTitle(Text(draft.kind.name))
             .sensoryFeedback(.error, trigger: flow.refusedStarts)
         }

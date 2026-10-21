@@ -2,6 +2,7 @@ import SwiftUI
 
 /// The app's name and installed version, and the way to the settings of the data kept on this Watch.
 struct AboutView: View {
+    let usage: UsageLedger
     /// Opens Settings.
     let settings: () -> Void
 
@@ -23,6 +24,13 @@ struct AboutView: View {
                     .font(Typography.caption)
                     .foregroundStyle(Palette.textSecondary)
                     .accessibilityIdentifier("about.version")
+                NavigationLink { AccessView(usage: usage) } label: {
+                    Text("Access")
+                        .font(Typography.body)
+                        .foregroundStyle(Palette.textPrimary)
+                }
+                .buttonStyle(RowButtonStyle())
+                .accessibilityIdentifier("about.access")
                 Button(action: settings) {
                     HStack(spacing: Spacing.sm) {
                         Text("Settings", comment: "About: the row that opens the settings of the data kept on this Watch.")

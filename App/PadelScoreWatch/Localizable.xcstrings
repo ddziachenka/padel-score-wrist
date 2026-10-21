@@ -165,6 +165,30 @@
         }
       }
     },
+    "Access" : {
+      "comment" : "Access and purchase: Access",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Access"
+          }
+        }
+      }
+    },
+    "Access unlocked." : {
+      "comment" : "Access and purchase: Access unlocked.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Access unlocked."
+          }
+        }
+      }
+    },
     "Action undone" : {
       "comment" : "Game screen: shown above the score for a moment after Undo restored the game as it was before its last change.",
       "extractionState" : "manual",
@@ -281,6 +305,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Americano"
+          }
+        }
+      }
+    },
+    "Apple handles purchases and restoration. Game data isn’t sent to our servers." : {
+      "comment" : "Access and purchase: Apple handles purchases and restoration. Game data isn’t sent to our servers.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple handles purchases and restoration. Game data isn’t sent to our servers."
           }
         }
       }
@@ -417,6 +453,18 @@
         }
       }
     },
+    "Checking purchase…" : {
+      "comment" : "Access and purchase: Checking purchase…",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking purchase…"
+          }
+        }
+      }
+    },
     "Choose" : {
       "comment" : "Setup and corrections: a value not chosen yet. Tapping the row opens its choices.",
       "extractionState" : "manual",
@@ -525,6 +573,18 @@
         }
       }
     },
+    "Close" : {
+      "comment" : "Access and purchase: Close",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
     "Confirm serving" : {
       "comment" : "Game screen and the new set's serving screen: confirms who serves in a new set. No point of the set is recorded before it.",
       "extractionState" : "manual",
@@ -569,6 +629,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn’t delete. Your game data is unchanged."
+          }
+        }
+      }
+    },
+    "Couldn’t reach the App Store. Check your connection and try again." : {
+      "comment" : "Access and purchase: Couldn’t reach the App Store. Check your connection and try again.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t reach the App Store. Check your connection and try again."
           }
         }
       }
@@ -945,6 +1017,30 @@
         }
       }
     },
+    "Five completed games are free. A one-time lifetime purchase unlocks unlimited new games. The App Store confirms the price before you buy." : {
+      "comment" : "Access and purchase: Five completed games are free. A one-time lifetime purchase unlocks unlimited new games. The App Store confirms the price before you buy.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Five completed games are free. A one-time lifetime purchase unlocks unlimited new games. The App Store confirms the price before you buy."
+          }
+        }
+      }
+    },
+    "Five free games completed." : {
+      "comment" : "Access and purchase: Five free games completed.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Five free games completed."
+          }
+        }
+      }
+    },
     "For both teams together." : {
       "comment" : "Explains the americano total under its number: it is shared, not each team's target.",
       "extractionState" : "manual",
@@ -965,6 +1061,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Format"
+          }
+        }
+      }
+    },
+    "Free games left: %lld of %lld" : {
+      "comment" : "Access and purchase: Free games left: %lld of %lld",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Free games left: %lld of %lld"
           }
         }
       }
@@ -1197,18 +1305,6 @@
         }
       }
     },
-    "Keep playing" : {
-      "comment" : "Finish match or Finish round: leaves the game as it is and goes back to the score.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keep playing"
-          }
-        }
-      }
-    },
     "Kept for viewing until the game you’re playing finishes." : {
       "comment" : "Last result, opened from the game menu: the previous game's result can only be viewed, until the game being played finishes in its place.",
       "extractionState" : "manual",
@@ -1269,6 +1365,18 @@
         }
       }
     },
+    "Loading price…" : {
+      "comment" : "Access and purchase: Loading price…",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading price…"
+          }
+        }
+      }
+    },
     "Local data" : {
       "comment" : "Settings: heading of the game data kept on this Watch.",
       "extractionState" : "manual",
@@ -1301,6 +1409,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Match"
+          }
+        }
+      }
+    },
+    "Match and Americano. One purchase, no recurring payments." : {
+      "comment" : "Access and purchase: Match and Americano. One purchase, no recurring payments.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match and Americano. One purchase, no recurring payments."
           }
         }
       }
@@ -1437,6 +1557,18 @@
         }
       }
     },
+    "No lifetime purchase was found for this Apple Account." : {
+      "comment" : "Access and purchase: No lifetime purchase was found for this Apple Account.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No lifetime purchase was found for this Apple Account."
+          }
+        }
+      }
+    },
     "No points played." : {
       "comment" : "Result of a match finished before its first point.",
       "extractionState" : "manual",
@@ -1481,6 +1613,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "One advantage"
+          }
+        }
+      }
+    },
+    "One-time purchase" : {
+      "comment" : "Access and purchase: One-time purchase",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One-time purchase"
           }
         }
       }
@@ -1629,6 +1773,66 @@
         }
       }
     },
+    "Privacy" : {
+      "comment" : "Access and purchase: Privacy",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy"
+          }
+        }
+      }
+    },
+    "Purchase cancelled. Nothing has changed." : {
+      "comment" : "Access and purchase: Purchase cancelled. Nothing has changed.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase cancelled. Nothing has changed."
+          }
+        }
+      }
+    },
+    "Purchase pending approval. You can close this screen." : {
+      "comment" : "Access and purchase: Purchase pending approval. You can close this screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase pending approval. You can close this screen."
+          }
+        }
+      }
+    },
+    "Purchase restored. Unlimited games are available." : {
+      "comment" : "Access and purchase: Purchase restored. Unlimited games are available.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase restored. Unlimited games are available."
+          }
+        }
+      }
+    },
+    "Purchase unavailable right now." : {
+      "comment" : "Access and purchase: Purchase unavailable right now.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase unavailable right now."
+          }
+        }
+      }
+    },
     "Rallies left" : {
       "comment" : "Americano game screen: rallies still to be played before the round reaches its total.",
       "extractionState" : "manual",
@@ -1701,6 +1905,30 @@
         }
       }
     },
+    "Restore purchases" : {
+      "comment" : "Access and purchase: Restore purchases",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore purchases"
+          }
+        }
+      }
+    },
+    "Restore purchases uses your Apple Account. Refunding a purchase removes unlimited access; your saved game and result remain available." : {
+      "comment" : "Access and purchase: Restore purchases uses your Apple Account. Refunding a purchase removes unlimited access; your saved game and result remain available.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore purchases uses your Apple Account. Refunding a purchase removes unlimited access; your saved game and result remain available."
+          }
+        }
+      }
+    },
     "Restore set %lld" : {
       "comment" : "Correction: puts the completed set just removed back where it was. Argument: the set's number.",
       "extractionState" : "manual",
@@ -1721,6 +1949,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restores the score before the last change."
+          }
+        }
+      }
+    },
+    "Restoring purchases…" : {
+      "comment" : "Access and purchase: Restoring purchases…",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restoring purchases…"
           }
         }
       }
@@ -2241,6 +2481,30 @@
         }
       }
     },
+    "Terms" : {
+      "comment" : "Access and purchase: Terms",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms"
+          }
+        }
+      }
+    },
+    "The App Store request couldn’t finish. Please try again." : {
+      "comment" : "Access and purchase: The App Store request couldn’t finish. Please try again.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The App Store request couldn’t finish. Please try again."
+          }
+        }
+      }
+    },
     "The data that couldn’t be read is kept aside, not deleted." : {
       "comment" : "Alert message confirming Start over.",
       "extractionState" : "manual",
@@ -2333,6 +2597,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The opponents serve first in this set."
+          }
+        }
+      }
+    },
+    "The purchase couldn’t be verified. Try restoring purchases." : {
+      "comment" : "Access and purchase: The purchase couldn’t be verified. Try restoring purchases.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The purchase couldn’t be verified. Try restoring purchases."
           }
         }
       }
@@ -2433,14 +2709,14 @@
         }
       }
     },
-    "This removes your game, last result and saved settings from this Watch. Your purchase is not deleted." : {
-      "comment" : "Settings: the message of the confirmation before deleting the game data kept on this Watch.",
+    "This removes your game, last result and saved settings from this Watch. Your free-game count and purchase are kept." : {
+      "comment" : "Access and purchase: This removes your game, last result and saved settings from this Watch. Your free-game count and purchase are kept.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This removes your game, last result and saved settings from this Watch. Your purchase is not deleted."
+            "value" : "This removes your game, last result and saved settings from this Watch. Your free-game count and purchase are kept."
           }
         }
       }
@@ -2565,6 +2841,66 @@
         }
       }
     },
+    "Unlimited Match and Americano games." : {
+      "comment" : "Access and purchase: Unlimited Match and Americano games.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited Match and Americano games."
+          }
+        }
+      }
+    },
+    "Unlimited access is no longer available. Your game and result are unchanged." : {
+      "comment" : "Access and purchase: Unlimited access is no longer available. Your game and result are unchanged.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited access is no longer available. Your game and result are unchanged."
+          }
+        }
+      }
+    },
+    "Unlimited games" : {
+      "comment" : "Access and purchase: Unlimited games",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited games"
+          }
+        }
+      }
+    },
+    "Unlock forever" : {
+      "comment" : "Access and purchase: Unlock forever",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock forever"
+          }
+        }
+      }
+    },
+    "Unlocked" : {
+      "comment" : "Access and purchase: Unlocked",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlocked"
+          }
+        }
+      }
+    },
     "Us %@, them %@" : {
       "comment" : "VoiceOver value of a correction or result row: one value for each team. Arguments: ours, theirs, such as 15 and Advantage.",
       "extractionState" : "manual",
@@ -2613,6 +2949,18 @@
         }
       }
     },
+    "Waiting for purchase…" : {
+      "comment" : "Access and purchase: Waiting for purchase…",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Waiting for purchase…"
+          }
+        }
+      }
+    },
     "We couldn’t read this game." : {
       "comment" : "Recovery title: the saved game could not be read.",
       "extractionState" : "manual",
@@ -2649,6 +2997,30 @@
         }
       }
     },
+    "You can leave this screen. A completed purchase will still unlock access." : {
+      "comment" : "Access and purchase: You can leave this screen. A completed purchase will still unlock access.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can leave this screen. A completed purchase will still unlock access."
+          }
+        }
+      }
+    },
+    "Your current game and last result stay available, even without a purchase." : {
+      "comment" : "Access and purchase: Your current game and last result stay available, even without a purchase.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your current game and last result stay available, even without a purchase."
+          }
+        }
+      }
+    },
     "Your current score will be saved." : {
       "comment" : "Finish match or Finish round: under the question, what Finish does.",
       "extractionState" : "manual",
@@ -2657,6 +3029,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your current score will be saved."
+          }
+        }
+      }
+    },
+    "Your free-game count couldn’t be recovered. Restore a purchase or unlock to start a new game. Your current game stays available." : {
+      "comment" : "Access and purchase: Your free-game count couldn’t be recovered. Restore a purchase or unlock to start a new game. Your current game stays available.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your free-game count couldn’t be recovered. Restore a purchase or unlock to start a new game. Your current game stays available."
+          }
+        }
+      }
+    },
+    "Your game and free-game count are stored on this Watch. Deleting game data keeps the count. Reinstalling the app or changing Watches may lose local data." : {
+      "comment" : "Access and purchase: Your game and free-game count are stored on this Watch. Deleting game data keeps the count. Reinstalling the app or changing Watches may lose local data.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your game and free-game count are stored on this Watch. Deleting game data keeps the count. Reinstalling the app or changing Watches may lose local data."
           }
         }
       }

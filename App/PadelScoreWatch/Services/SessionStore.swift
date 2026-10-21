@@ -31,11 +31,16 @@ final class SessionStore {
     private(set) var failedRequest: FailedRequest?
 
     private let repository: SessionRepository
-    private let access: any AccessPolicy
+    private let accessProvider: @MainActor () -> any AccessPolicy
 
     init(repository: SessionRepository, access: any AccessPolicy) {
         self.repository = repository
-        self.access = access
+        self.accessProvider = { access }
+    }
+
+    init(repository: SessionRepository, accessProvider: @escaping @MainActor () -> any AccessPolicy) {
+        self.repository = repository
+        self.accessProvider = accessProvider
     }
 
     /// Reads the saved session, or tries again after it could not be read.
@@ -66,7 +71,7 @@ final class SessionStore {
         if let failedRequest, failedRequest.id != id { throw .unresolvedSaveFailure }
         let transition: SessionTransition
         do {
-            transition = try session.applying(command, id: id, expectedRevision: revision, access: access)
+            transition = try session.applying(command, id: id, expectedRevision: revision, access: accessProvider())
         } catch {
             throw .rejected(error)
         }

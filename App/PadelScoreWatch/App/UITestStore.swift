@@ -13,6 +13,8 @@ struct UITestStore {
     enum Seed: String {
         /// Nothing saved, as on first launch.
         case empty
+        case freeGamesUsed
+        case fifthGame
         /// An americano round and then a match were played and finished, so both formats
         /// have last settings and no game is being played.
         case lastSettings
@@ -61,10 +63,10 @@ struct UITestStore {
     }
 
     @MainActor
-    func makeSessionStore() -> SessionStore {
+    func makeSessionStore(accessProvider: @escaping @MainActor () -> any AccessPolicy = { OpenAccess() }) -> SessionStore {
         if let seed { plant(seed) }
         let files: any StorageFileSystem = failsSaves ? FailingSaves() : LocalFileSystem()
-        return SessionStore(repository: SessionRepository(directory: directory, files: files), access: OpenAccess())
+        return SessionStore(repository: SessionRepository(directory: directory, files: files), accessProvider: accessProvider)
     }
 
     private func plant(_ seed: Seed) {
@@ -74,6 +76,15 @@ struct UITestStore {
         let damaged = Data("This is not a saved session.".utf8)
         switch seed {
         case .empty: break
+        case .freeGamesUsed, .fifthGame:
+            var session = Self.sessionWithLastSettings() ?? .empty
+            session.usage = UsageLedger(countedGames: Set((0..<4).map { _ in GameID(rawValue: UUID()) }))
+            if seed == .fifthGame {
+                session = Self.session(after: [.resume], from: session) ?? session
+            } else if let id = session.current?.game.id {
+                session.usage.count(id)
+            }
+            write(try? SessionFile(session: session).encoded(), to: location.main)
         case .lastSettings: write(lastSettings, to: location.main)
         case .damaged: write(damaged, to: location.main)
         case .restorable:

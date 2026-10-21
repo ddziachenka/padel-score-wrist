@@ -71,7 +71,7 @@ struct LocalDataSettingsView: View {
             }
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("This removes your game, last result and saved settings from this Watch. Your purchase is not deleted.")
+            Text("This removes your game, last result and saved settings from this Watch. Your free-game count and purchase are kept.")
         }
         .onChange(of: settings.failedDeletes) {
             AccessibilityNotification.Announcement(

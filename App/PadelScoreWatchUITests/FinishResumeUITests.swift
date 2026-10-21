@@ -256,7 +256,7 @@ final class FinishResumeUITests: XCTestCase {
         // A watchOS alert is a full-screen list, its actions below the message.
         let cancel = app.tables.buttons["Cancel"]
         XCTAssertTrue(cancel.waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["This removes your game, last result and saved settings from this Watch. Your purchase is not deleted."].exists)
+        XCTAssertTrue(app.staticTexts["This removes your game, last result and saved settings from this Watch. Your free-game count and purchase are kept."].exists)
         attachScreenshot("Delete local data?")
         // The alert's own list scrolls to an action it is asked to tap.
         cancel.tap()

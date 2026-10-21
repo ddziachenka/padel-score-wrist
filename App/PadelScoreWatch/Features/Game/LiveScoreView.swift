@@ -206,7 +206,7 @@ struct LiveScoreView: View {
         case .menu:
             GameMenuView(live: live) { edit($0) }
         case .about:
-            AboutView { path.append(.settings) }
+            AboutView(usage: store.session.usage) { path.append(.settings) }
         case .settings:
             LocalDataSettingsView(store: store)
         case let .serving(proposed, set):
