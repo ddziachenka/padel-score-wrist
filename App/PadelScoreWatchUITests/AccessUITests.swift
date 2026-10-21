@@ -14,7 +14,7 @@ final class AccessUITests: XCTestCase {
         XCTAssertFalse(app.buttons["game.us"].exists)
         attachScreenshot("Five games complete — lifetime access")
         app.buttons["access.terms"].scrollToAndTap(in: app)
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "Five completed games")).firstMatch.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "The first five completed games are free automatically.")).firstMatch.waitForExistence(timeout: 5))
         attachScreenshot("Access terms")
         app.goBack()
         app.buttons["access.close"].scrollToAndTap(in: app)
@@ -53,6 +53,6 @@ final class AccessUITests: XCTestCase {
         XCTAssertTrue(app.buttons["access.restore"].waitForExistence(timeout: 10))
         attachScreenshot("Access at largest text size")
         app.buttons["access.privacy"].scrollToAndTap(in: app)
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "free-game count are stored")).firstMatch.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "completed-free-game count stay in local app storage")).firstMatch.waitForExistence(timeout: 5))
     }
 }

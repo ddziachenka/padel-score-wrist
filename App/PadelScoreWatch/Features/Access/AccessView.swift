@@ -42,10 +42,10 @@ struct AccessView: View {
                     .disabled(store.activity != .idle)
                     .accessibilityIdentifier("access.restore")
                 Caption("Your current game and last result stay available, even without a purchase.")
-                NavigationLink("Terms") { AccessLegalView(kind: .terms) }
+                NavigationLink("Terms") { LegalView(page: .terms) }
                     .buttonStyle(RowButtonStyle())
                     .accessibilityIdentifier("access.terms")
-                NavigationLink("Privacy") { AccessLegalView(kind: .privacy) }
+                NavigationLink("Privacy") { LegalView(page: .privacy) }
                     .buttonStyle(RowButtonStyle())
                     .accessibilityIdentifier("access.privacy")
                 Button("Close") { dismiss() }
@@ -103,27 +103,6 @@ struct FreeGamesSummary: View {
                 .accessibilityIdentifier("access.freeGames")
 
         }
-    }
-}
-
-/// M09 owns the full bundled legal/support content and public links. These entry points
-/// explain the approved access/data contract without inventing a developer contact or URL.
-private struct AccessLegalView: View {
-    enum Kind { case terms, privacy }
-    let kind: Kind
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: Spacing.md) {
-                if kind == .terms {
-                    Caption("Five completed games are free. A one-time lifetime purchase unlocks unlimited new games. The App Store confirms the price before you buy.")
-                    Caption("Restore purchases uses your Apple Account. Refunding a purchase removes unlimited access; your saved game and result remain available.")
-                } else {
-                    Caption("Your game and free-game count are stored on this Watch. Deleting game data keeps the count. Reinstalling the app or changing Watches may lose local data.")
-                    Caption("Apple handles purchases and restoration. Game data isn’t sent to our servers.")
-                }
-            }
-        }
-        .navigationTitle(kind == .terms ? Text("Terms") : Text("Privacy"))
     }
 }
 

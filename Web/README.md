@@ -1,14 +1,21 @@
-# Web — the published legal and support site
+# Web — Padel Score — Wrist
+
+Live: https://padel-score-wrist.pages.dev/ (Cloudflare account
+`61273605cefdc42ca422521f82319c72`). Owner authorized publication on 2026-10-21.
+Support: `dzmitry.dziachenka@gmail.com`; developer: Dzmitry Dziachenka.
+All four pages ship in English. `Web/public` contains only public static files;
+there is no analytics script or server-side function.
+
 
 Four static pages, served by Cloudflare Pages, that satisfy what Apple requires of
 every App Store app: a working privacy policy URL, a working support URL, and Terms
 of Use the app can link to.
 
 ```text
-https://<yourapp>.pages.dev/          landing
-https://<yourapp>.pages.dev/privacy   Privacy Policy
-https://<yourapp>.pages.dev/terms     Terms of Use -> Apple's Standard EULA
-https://<yourapp>.pages.dev/support   support and contact
+https://padel-score-wrist.pages.dev/          landing
+https://padel-score-wrist.pages.dev/privacy   Privacy Policy
+https://padel-score-wrist.pages.dev/terms     Terms of Use -> Apple's Standard EULA
+https://padel-score-wrist.pages.dev/support   support and contact
 ```
 
 The app links to all three from its settings or about surface, and to Terms and
@@ -28,24 +35,13 @@ Three keys in [../Config/project.env](../Config/project.env):
 `Scripts/verify-site.sh` checks the pages against these, so editing a URL in one
 place and not the other is a failure rather than a surprise after deployment.
 
-## Filling it in
+## Keeping the content current
 
-Every product-specific sentence is marked `TBD`. Replace all of them, including
-`yourapp.pages.dev` in each page's `canonical` and `hreflang` links and the project
-name in `wrangler.jsonc`. No script scans these pages for placeholders — a product
-may host its policy elsewhere and never publish `Web/` — so the final audit is what
-stops an unfinished page: `REL-801` (no placeholder copy anywhere a user can reach)
-and, for an App Store product, `REL-503` and `REL-1008` must each be `VERIFIED` in the
-consolidated record before release verification can pass, and a privacy policy that
-says `TBD` is exactly what they exist to stop.
-
-Delete a section that genuinely does not apply — the subscription sections in
-`/terms` and `/support` when the app sells nothing — rather than leaving it empty.
-`Scripts/verify-site.sh` names the headings each page must keep.
-
-Do not invent data collection the app does not perform, and do not promise an
-absence it cannot honour. The privacy policy has to match
-[../AI/ARCHITECTURE.md](../AI/ARCHITECTURE.md) and the App Store nutrition labels.
+The pages match the approved product: five completed games free automatically,
+then a one-time lifetime unlock, with the count retained on in-app data deletion.
+Keep the offline Watch documents in AboutView.swift and the public pages aligned.
+Terms link to Apple's Standard EULA. Only update public identity and retention
+from an explicit owner decision recorded in AI/PRODUCT.md.
 
 ## Preview locally
 
@@ -61,7 +57,7 @@ appearances, tab through every link, and confirm the skip link appears on first 
 
 `_headers` is applied by Cloudflare, not by the local server, so the Content Security
 Policy is not exercised here. Confirm it after deploying with
-`curl -sSI https://<yourapp>.pages.dev/`.
+`curl -sSI https://padel-score-wrist.pages.dev/`.
 
 ## Check it
 

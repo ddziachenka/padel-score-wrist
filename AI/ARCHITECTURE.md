@@ -406,7 +406,7 @@ HealthKit workout или extended runtime session ради обхода сист
 | Crash reporting | Стороннего SDK нет | Системные диагностические средства во время разработки | Ошибки хранения видны локально | Не обещать отсутствие системной диагностики Apple |
 | AI / LLM | Нет | Правила детерминированы | Не требуется | Нет сетевого AI сценария |
 | CloudKit / iCloud | Предложено: нет | Синхронизация/облачная история не включены | Локальное восстановление своей игры | Между устройствами перенос не обещан |
-| Published site (Cloudflare Pages) | Да, отдельный `Web/` | Публичные privacy/terms/support + landing | Читаемая bundle-копия legal/support на часах | H1 задаёт `SUPPORT_SITE_URL`, `SUPPORT_EMAIL`, `DEVELOPER_NAME`; публикация — действие владельца |
+| Published site (Cloudflare Pages) | Да, отдельный `Web/` | Публичные privacy/terms/support + landing | Читаемая bundle-копия legal/support на часах | H1 утверждён 2026-10-21; владелец явно разрешил публикацию Pages, реквизиты в Config/project.env |
 
 ### StoreKit и единый владелец доступа
 
@@ -464,10 +464,10 @@ Deployment сайта не выполняется verification gate.
 | What leaves the device, and to where | Игровая история собственному серверу не отправляется. StoreKit взаимодействует с Apple; открытые URL — с host сайта; добровольное письмо поддержки — с владельцем mailbox |
 | Where secrets live | ASC key ID/issuer/key path — окружение разработчика; закрытый `.p8`, signing и Cloudflare token вне Git. Содержимое ключей не печатается и не копируется |
 | Keychain usage | Для MVP не предлагается: собственных login tokens нет; платное право не хранится как самодельный Keychain-флаг |
-| Required-reason API usage | Проверять реально используемые API. Для app-only UserDefaults — применимый reason `CA92.1`; остальные категории не объявлять без использования |
+| Required-reason API usage | Shipping Release не использует required-reason API: app-only UserDefaults существует только под #if DEBUG. PrivacyInfo.xcprivacy содержит пустые accessed/collected arrays и tracking=false; перепроверять при новых API |
 | Privacy manifest needed? | Да: `PrivacyInfo.xcprivacy` отражает фактические required-reason APIs и data practices; релизный аудит проверяет consistency с App Store privacy и сайтом |
 | Data retention | Игровой store — пока нужна активная/последняя игра или пока пользователь не удалит её; полный архив и сроки внешнего support mailbox не подставляются молча |
-| How a user deletes their data | Явное on-watch удаление игровых данных с подтверждением и понятным перечнем; не отзывает покупку Apple. Полный reset/trial semantics — H4 |
+| How a user deletes their data | Явное on-watch удаление игровых данных с подтверждением и понятным перечнем; не отзывает покупку Apple. Сохранение free-game count — H4 |
 
 `Config/project.env` содержит публичную конфигурацию, никогда не credential.
 `UserDefaults` reason относится к фактическому доступу, а не разрешает fingerprinting.
@@ -567,7 +567,7 @@ H2 закрыт 2026-10-20; утверждённое правило сета и 
 
 | # | Question | Options | Blocks | Who decides |
 | --- | --- | --- | --- | --- |
-| H1 → PRODUCT | Публичные контакты/URLs и support retention; локальная identity уже задана | Варианты и требуемые данные в [PRODUCT.md](PRODUCT.md#unresolved-decisions); имя в App Store Connect ещё не зарезервировано | Legal and Support и финальные материалы | Владелец |
+| H1 → PRODUCT | H1 закрыт: публичные контакты/URLs и support retention утверждены | H1 approved 2026-10-21, PRODUCT legal/support; ASC app 6825393194 зарегистрировано | Legal and Support и финальные материалы | Владелец |
 | H4 → PRODUCT | Lifetime/trial contract, доступ, deletion/reinstall semantics | Варианты в PRODUCT; StoreKit и local usage не выбирают коммерческую модель сами | Entitlement/paywall и audit покупок | Владелец |
 
 Технические вопросы, которые Builder вправе закрыть в рамках утверждённого решения:

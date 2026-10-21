@@ -2,6 +2,14 @@
 
 **Policy status:** current
 
+## Publication preparation follow-up — 2026-10-21
+
+The owner authorized preparation beyond the hardware blocker. H1 is approved,
+the site is live, bundled legal/support content and ASC listing/privacy/screenshots
+are prepared: see [M09-handoff.md](M09-handoff.md). The previous full M08 pass
+below belongs to its recorded SHA; it is not a full-gate pass for the new legal
+source changes. M08 remains BLOCKED until real-Watch evidence is available.
+
 ## Milestone
 
 M08 — Access and Purchase; status `BLOCKED` for required real-Watch coverage.

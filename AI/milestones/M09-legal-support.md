@@ -1,7 +1,7 @@
 # M09 — Legal and Support
 
 **ID:** M09
-**Status:** PLANNED
+**Status:** BLOCKED
 **Depends on:** M08
 **Validation:** make milestone ID=M09
 **Handoff:** AI/handoffs/M09-handoff.md
@@ -40,3 +40,11 @@
 ## Handoff
 
 Записать `AI/handoffs/M09-handoff.md` по компактному шаблону: полный SHA, точные команды, exit codes, UTC time, report paths, counts, известные ограничения и следующий шаг. После доказанного DONE остановиться.
+
+## Preparation authorization — 2026-10-21
+
+The owner explicitly requested all feasible publication preparation without real
+Watches, approved H1 and Cloudflare publication, and prohibited App Review. The
+site and bundled legal/support content are prepared under that instruction. This
+is not a dependency waiver: M08 remains BLOCKED, so M09 cannot enter its final
+REVIEW/DONE gate until M08 is complete. See its handoff for targeted evidence.

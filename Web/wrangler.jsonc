@@ -8,7 +8,7 @@
   // site to a project no one names.
   //
   // Cloudflare accepts alphanumerics and dashes in a project name.
-  "name": "yourapp",
+  "name": "padel-score-wrist",
 
   // Relative to this file. Only what is under it is uploaded, which is why this
   // config and Web/README.md live outside it.
@@ -16,5 +16,5 @@
 
   // Pins the Pages runtime's behaviour. Bump it deliberately, never as a
   // side effect of an unrelated change.
-  "compatibility_date": "2026-08-16"
+  "compatibility_date": "2026-10-21"
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A92BF2237127460B91B80001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A92BF2237127460B91B80002 /* PrivacyInfo.xcprivacy */; };
 		B25C7F148DD76475B3BE595F /* LiveScoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F1A6C6AC9C65950FE1503D /* LiveScoreUITests.swift */; };
 		8602690F4461EBB6D452AC8A /* LiveScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3C2936D5F52C6B8D064CA /* LiveScoreTests.swift */; };
 		8CFF17D864B72E97F149F0EA /* ScoreAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBC5A62C5087429728F0DF6 /* ScoreAnnouncementTests.swift */; };
@@ -170,6 +171,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A92BF2237127460B91B80002 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PadelScoreWatch/PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		F8F1A6C6AC9C65950FE1503D /* LiveScoreUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LiveScoreUITests.swift; sourceTree = "<group>"; };
 		3EC3C2936D5F52C6B8D064CA /* LiveScoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LiveScoreTests.swift; sourceTree = "<group>"; };
 		BBBC5A62C5087429728F0DF6 /* ScoreAnnouncementTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreAnnouncementTests.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				FD98D20C899505796B8B99F1 /* Services */,
 				1F8F698582982EF4E47FBA49 /* Assets.xcassets */,
 				36FA2EF51DB4D5898B609966 /* Localizable.xcstrings */,
+				A92BF2237127460B91B80002 /* PrivacyInfo.xcprivacy */,
 				30F1C2F5808A2870530DF425 /* App */,
 				9CB58CC1E7C7ACBC638DF9C3 /* Features */,
 			);
@@ -793,6 +796,7 @@
 			files = (
 				E9C75670EF6364C555DB4294 /* Assets.xcassets in Resources */,
 				7B60E549D8B0DAD8B6815CF5 /* Localizable.xcstrings in Resources */,
+				A92BF2237127460B91B80001 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
