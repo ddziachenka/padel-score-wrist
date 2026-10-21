@@ -6,6 +6,7 @@ import SwiftUI
 /// saves nothing.
 struct SetupView: View {
     let flow: NewGameFlow
+    var started: (() -> Void)? = nil
     @AccessibilityFocusState private var focusedRow: SetupRow?
 
     var body: some View {
@@ -24,7 +25,7 @@ struct SetupView: View {
                         Caption(draft.kind == .match
                             ? "Sets aren’t limited. Finish the match whenever you like."
                             : "The round ends when both teams’ points add up to the total.")
-                        StartSection(flow: flow)
+                        StartSection(flow: flow, started: started)
                             .padding(.top, Spacing.sm)
                     }
                 }
@@ -195,12 +196,13 @@ private struct SettingRow: View {
 /// Start game, its saving status, and what to do when the game did not start.
 private struct StartSection: View {
     let flow: NewGameFlow
+    let started: (() -> Void)?
 
     var body: some View {
         switch flow.startState {
         case .editing, .saving:
             Button {
-                Task { await flow.start() }
+                Task { if await flow.start() { started?() } }
             } label: {
                 SavingLabel("Start game", isSaving: flow.isSaving)
             }
@@ -221,7 +223,7 @@ private struct StartSection: View {
                 .accessibilityIdentifier("setup.startError")
                 if failure == .couldNotSave {
                     Button("Retry") {
-                        Task { await flow.retryStart() }
+                        Task { if await flow.retryStart() { started?() } }
                     }
                     .buttonStyle(PrimaryButtonStyle())
                     .accessibilityIdentifier("setup.retry")

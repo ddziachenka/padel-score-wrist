@@ -88,16 +88,17 @@ final class NewGameFlow {
     }
 
     /// Starts the game set up in the draft. Values still missing are shown at their fields
-    /// instead, and nothing is saved.
-    func start() async {
-        guard startState == .editing, let draft else { return }
+    /// instead, and nothing is saved. Returns true only after the game is saved.
+    @discardableResult
+    func start() async -> Bool {
+        guard startState == .editing, let draft else { return false }
         guard let setup = draft.gameSetup else {
             showsMissingFields = true
             refusedStarts += 1
-            return
+            return false
         }
         startState = .saving
-        await finishStart { () async throws(SessionStoreError) in
+        return await finishStart { () async throws(SessionStoreError) in
             try await store.perform(
                 .start(setup, id: GameID(rawValue: UUID())),
                 id: CommandID(rawValue: UUID()),
@@ -107,10 +108,12 @@ final class NewGameFlow {
     }
 
     /// Sends the start that could not be saved again, with the same game and request identity.
-    func retryStart() async {
-        guard startState == .failed(.couldNotSave) else { return }
+    /// Returns true only after that game is saved.
+    @discardableResult
+    func retryStart() async -> Bool {
+        guard startState == .failed(.couldNotSave) else { return false }
         startState = .saving
-        await finishStart { () async throws(SessionStoreError) in
+        return await finishStart { () async throws(SessionStoreError) in
             try await store.retryFailedRequest()
         }
     }
@@ -122,15 +125,17 @@ final class NewGameFlow {
         startState = .editing
     }
 
-    private func finishStart(_ request: () async throws(SessionStoreError) -> SessionOutcome) async {
+    private func finishStart(_ request: () async throws(SessionStoreError) -> SessionOutcome) async -> Bool {
         do {
             _ = try await request()
             startState = .editing
+            return true
         } catch {
             startState = .failed(Self.failure(for: error))
             refusedStarts += 1
             // The person left setup while the game was being saved: nothing waits for a retry.
             if draft == nil { cancelFailedStart() }
+            return false
         }
     }
 

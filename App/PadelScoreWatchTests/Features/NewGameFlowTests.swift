@@ -81,7 +81,7 @@ final class NewGameFlowTests {
         flow.edit { $0.totalRallies = 16 }
         #expect(flow.missingFields.isEmpty)
 
-        await flow.start()
+        #expect(await flow.start() == false)
 
         #expect(flow.missingFields == [.ralliesPerServer, .firstServer, .secondServer])
         #expect(flow.refusedStarts == 1)
@@ -102,7 +102,7 @@ final class NewGameFlowTests {
         let flow = NewGameFlow(store: store)
         completeMatch(in: flow)
 
-        await flow.start()
+        #expect(await flow.start())
 
         let game = try #require(store.session.activeGame)
         let rules = MatchRules(deuceRule: .goldenPoint, setPolicy: .tieBreakAtSixAll)
@@ -126,7 +126,7 @@ final class NewGameFlowTests {
             $0.serving.choose(second: .you)
         }
 
-        await flow.start()
+        #expect(await flow.start())
 
         let game = try #require(store.session.activeGame)
         let rules = AmericanoRules(totalRallies: 21, ralliesPerServer: 3)
@@ -143,7 +143,7 @@ final class NewGameFlowTests {
         let draft = flow.draft
 
         files.inject(.writeFails)
-        await flow.start()
+        #expect(await flow.start() == false)
 
         #expect(flow.startState == .failed(.couldNotSave))
         #expect(flow.refusedStarts == 1)
@@ -152,12 +152,12 @@ final class NewGameFlowTests {
         #expect(flow.draft == draft)
         let attempt = try #require(store.failedRequest)
 
-        await flow.retryStart()
+        #expect(await flow.retryStart() == false)
         #expect(flow.startState == .failed(.couldNotSave))
         #expect(store.session == .empty)
 
         files.repair()
-        await flow.retryStart()
+        #expect(await flow.retryStart())
         #expect(flow.startState == .editing)
         guard case let .start(_, gameID) = attempt.command else { Issue.record("not a start"); return }
         #expect(store.session.activeGame?.id == gameID)
@@ -210,7 +210,7 @@ final class NewGameFlowTests {
         let flow = NewGameFlow(store: store)
         completeMatch(in: flow)
 
-        await flow.start()
+        #expect(await flow.start() == false)
 
         #expect(flow.startState == .failed(.notAllowed))
         #expect(flow.draft?.deuceRule == .goldenPoint)
@@ -227,7 +227,7 @@ final class NewGameFlowTests {
         let flow = NewGameFlow(store: store)
         completeMatch(in: flow)
 
-        await flow.start()
+        #expect(await flow.start() == false)
 
         #expect(flow.startState == .failed(.refused))
         #expect(store.session == playing)
@@ -254,7 +254,7 @@ final class NewGameFlowTests {
         #expect(flow.draft?.kind == .match)
         #expect(flow.draft?.deuceRule == .goldenPoint)
         files.open()
-        await starting.value
+        #expect(await starting.value)
 
         #expect(store.session.revision == 1)
         let game = try #require(store.session.activeGame)

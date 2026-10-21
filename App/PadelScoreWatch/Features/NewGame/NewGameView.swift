@@ -64,10 +64,7 @@ struct NewGameDestination: View {
     var body: some View {
         switch route {
         case .setup:
-            SetupView(flow: flow)
-                .onChange(of: store.session.activeGame?.id) { _, gameID in
-                    if gameID != nil { started?() }
-                }
+            SetupView(flow: flow, started: started)
         case .deuceRule:
             DeuceRuleEditor(rule: draft(\.deuceRule, otherwise: nil))
         case .totalRallies:
