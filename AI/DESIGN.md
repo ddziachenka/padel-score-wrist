@@ -642,15 +642,14 @@ whenever you like.`, `The round ends when both teams’ points add up to the tot
 `Confirm serving`, `Your team serves first in this set.`, `Couldn’t save.`, `Your last saved score is
 unchanged.`, VoiceOver-подписи `Undo`, `Game menu` и подсказку `Double-tap to add a point`, а также
 объявления вроде `Us 15, them 0.`, `Game to us. Games: us 1, them 0. Serving: Opponent 1.` и
-`Action undone.` — каждое из целых предложений. M07 добавил тексты завершения: `Finish this game?`,
-`Your current score will be saved.`, `Keep playing`, `Saved`, `Incomplete`, `No points played.`, `Ended early`,
-`US ahead`, `Points level`, `Edit result`, `Resume game`, `Last result`, `Game resumed`, `Delete local data?` и
-пояснения S10/S15. M06 добавил тексты исправлений: `Edit score`, `Game
+`Action undone.` — каждое из целых предложений. M06 добавил тексты исправлений: `Edit score`, `Game
 settings`, `Points`, `Format`, `Save changes`, `Replace game`, `Add set`, `Remove set 2`, `Restore set 2`,
 `First deuce`, `Second deuce`, `Next server`, `After them`, `Next point`, `Opened the tie-break`, `Next rally
 in block`, `Changes saved`, тексты E2 из таблицы ошибок и подтверждения `Discard changes?`, `Change game
 format?`; счёт в них (`40–40`, `7–5`) держится на одной строке word joiner, `5 of 10 rallies played.`
-имеет plural.
+имеет plural. M07 добавил тексты завершения: `Finish this game?`, `Your current score will be saved.`,
+`Keep playing`, `Saved`, `Incomplete`, `No points played.`, `Ended early`, `US ahead`, `Points level`, `Edit
+result`, `Resume game`, `Last result`, `Game resumed`, `Delete local data?` и пояснения S10/S15.
 
 ## Appearance and device coverage
 

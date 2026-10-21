@@ -78,6 +78,18 @@ final class FinishResumeUITests: XCTestCase {
         XCTAssertEqual(reopened.buttons["game.them"].label, "Their score, 15")
         waitForLabel(element("game.context", in: reopened), "Set 1")
         assertLabel(element("game.server", in: reopened), contains: "You")
+        // Back from another screen, the resume is not told again.
+        reopened.buttons["game.menu"].tap()
+        XCTAssertTrue(reopened.buttons["menu.finish"].waitForExistence(timeout: 5))
+        reopened.goBack()
+        // For as long as a notice lasts, the context line never tells the resume again.
+        let context = element("game.context", in: reopened)
+        let deadline = Date().addingTimeInterval(2)
+        while Date() < deadline {
+            XCTAssertNotEqual(context.label, "Game resumed", "back from another screen, the resume is told again")
+            Thread.sleep(forTimeInterval: 0.1)
+        }
+        XCTAssertEqual(context.label, "Set 1")
 
         // Undo takes Resume back: the match is finished again, on the score, with Undo still there.
         reopened.buttons["game.undo"].tap()
@@ -246,13 +258,14 @@ final class FinishResumeUITests: XCTestCase {
         XCTAssertTrue(cancel.waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["This removes your game, last result and saved settings from this Watch. Your purchase is not deleted."].exists)
         attachScreenshot("Delete local data?")
-        cancel.scrollToAndTap(in: app)
+        // The alert's own list scrolls to an action it is asked to tap.
+        cancel.tap()
         XCTAssertTrue(element("settings.item.gameInProgress", in: app).waitForExistence(timeout: 5), "Cancel deletes nothing")
 
         app.buttons["settings.delete"].scrollToAndTap(in: app)
         let delete = app.tables.buttons["Delete data"]
         XCTAssertTrue(delete.waitForExistence(timeout: 5))
-        delete.scrollToAndTap(in: app)
+        delete.tap()
         let match = app.buttons["newGame.match"]
         XCTAssertTrue(match.waitForExistence(timeout: 10), "an empty start once the data is deleted")
         match.tap()

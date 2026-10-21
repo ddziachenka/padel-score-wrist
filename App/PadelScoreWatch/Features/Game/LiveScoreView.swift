@@ -443,6 +443,8 @@ private struct ContextLine: View {
     let board: ScoreBoard
     let live: LiveScore
     @State private var notice: LocalizedStringResource?
+    /// The change already told, so coming back to the score from another screen does not tell it again.
+    @State private var toldChange: Int?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -465,8 +467,9 @@ private struct ContextLine: View {
         .accessibilityIdentifier("game.context")
         .accessibilitySortPriority(7)
         .task(id: live.lastChange?.number) {
+            guard let change = live.lastChange, change.number != toldChange else { return }
             let shown: LocalizedStringResource
-            switch live.lastChange?.outcome {
+            switch change.outcome {
             case .undone:
                 shown = LocalizedStringResource("Action undone", comment: "Game screen: shown above the score for a moment after Undo restored the game as it was before its last change.")
             case .corrected:
@@ -476,6 +479,7 @@ private struct ContextLine: View {
             default:
                 return
             }
+            toldChange = change.number
             withAnimation(reduceMotion ? nil : .easeOut(duration: 0.15)) { notice = shown }
             try? await Task.sleep(for: .seconds(1.5))
             withAnimation(reduceMotion ? nil : .easeOut(duration: 0.15)) { notice = nil }
