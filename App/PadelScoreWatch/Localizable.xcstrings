@@ -1305,6 +1305,18 @@
         }
       }
     },
+    "Keep playing" : {
+      "comment" : "Finish match or Finish round: leaves the game as it is and goes back to the score.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep playing"
+          }
+        }
+      }
+    },
     "Kept for viewing until the game you’re playing finishes." : {
       "comment" : "Last result, opened from the game menu: the previous game's result can only be viewed, until the game being played finishes in its place.",
       "extractionState" : "manual",
