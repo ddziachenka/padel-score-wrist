@@ -121,6 +121,7 @@ struct EarlierResultView: View {
 struct FinishView: View {
     let live: LiveScore
     let keepPlaying: () -> Void
+    let finished: () -> Void
 
     var body: some View {
         if let game = live.game {
@@ -141,7 +142,10 @@ struct FinishView: View {
                     .padding(.top, Spacing.sm)
                     Group {
                         Button {
-                            Task { await live.finish() }
+                            Task {
+                                await live.finish()
+                                if live.showsResult { finished() }
+                            }
                         } label: {
                             SavingLabel("Finish", isSaving: live.saving == .finish)
                         }

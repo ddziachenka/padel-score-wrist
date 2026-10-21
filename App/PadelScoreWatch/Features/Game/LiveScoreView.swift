@@ -196,7 +196,6 @@ struct LiveScoreView: View {
             }
             .navigationDestination(for: GameRoute.self) { route in
                 destination(for: route)
-                    .toolbar(.visible, for: .navigationBar)
             }
         }
     }
@@ -213,7 +212,7 @@ struct LiveScoreView: View {
         case let .serving(proposed, set):
             SetServingView(live: live, setNumber: set, proposed: proposed)
         case .finish:
-            FinishView(live: live) { path.removeAll() }
+            FinishView(live: live, keepPlaying: { path.removeAll() }, finished: { path.removeAll() })
         case .lastResult:
             if let earlier = live.earlierResult {
                 EarlierResultView(game: earlier)
@@ -369,7 +368,8 @@ private struct ScoreScreen: View {
         }
         // Lowered wrist and Always On show the score read only; a tap waking the screen records nothing.
         .allowsHitTesting(scenePhase == .active && !isLuminanceReduced)
-        .toolbar(.hidden, for: .navigationBar)
+        // watchOS 10 needs the bar visible before pushing the serving screen to show Back.
+        .toolbar(live.proposedServing == nil ? .hidden : .visible, for: .navigationBar)
         .accessibilityElement(children: .contain)
     }
 

@@ -471,7 +471,8 @@ private struct SaveSection: View {
             }
             Button {
                 Task {
-                    if await live.saveCorrection() == .unchanged { close() }
+                    let result = await live.saveCorrection()
+                    if result == .unchanged || result == .saved { close() }
                 }
             } label: {
                 SavingLabel(editor.draft.isReplacement ? "Replace game" : "Save changes", isSaving: live.saving == .correct)
