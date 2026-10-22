@@ -1,7 +1,7 @@
 # M11 — Purchase, Result and Play Again
 
 **ID:** M11
-**Status:** PLANNED
+**Status:** IN_PROGRESS
 **Depends on:** M09
 **Validation:** make milestone ID=M11
 **Handoff:** AI/handoffs/M11-handoff.md
