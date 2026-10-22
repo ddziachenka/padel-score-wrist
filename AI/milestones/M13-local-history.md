@@ -1,7 +1,7 @@
 # M13 — Local History and Storage Migration
 
 **ID:** M13
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M12
 **Validation:** make milestone ID=M13
 **Handoff:** AI/handoffs/M13-handoff.md
@@ -61,7 +61,7 @@
       Undo не копирует весь архив.
 - [x] Компактный экран, крупнейший текст, VoiceOver и accessibility audit проверены на
       работающем приложении.
-- [ ] Тесты падают при регрессии этого поведения; `make milestone ID=M13` проходит на
+- [x] Тесты падают при регрессии этого поведения; `make milestone ID=M13` проходит на
       clean `REVIEW` HEAD с обязательными тестами без failures/skips.
 
 ## Validation

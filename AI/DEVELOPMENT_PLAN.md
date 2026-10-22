@@ -44,7 +44,7 @@ Xcode-проекта и доступности настоящих часов.
 | [M10 — Final Product Polish](milestones/M10-final-product-polish.md) — BLOCKED | Полная проверка английского приложения, точный кандидат `READY_FOR_HUMAN` | Все M00–M09; по исключению владельца возобновляется только после DONE M11–M15 |
 | [M11 — Purchase, Result and Play Again](milestones/M11-purchase-result-play-again.md) — DONE | Ясное предложение покупки, итог с главным счётом сетов и `Play again`; [evidence](handoffs/M11-handoff.md) | M09 |
 | [M12 — Scoreboard Demo](milestones/M12-scoreboard-demo.md) — DONE | Необязательный фиксированный пример счётчика без записи данных; [evidence](handoffs/M12-handoff.md) | M11 |
-| [M13 — Local History and Storage Migration](milestones/M13-local-history.md) | История всех завершённых игр для всех и формат хранения 2 | M12 |
+| [M13 — Local History and Storage Migration](milestones/M13-local-history.md) — DONE | История всех завершённых игр для всех и формат хранения 2; [evidence](handoffs/M13-handoff.md) | M12 |
 | [M14 — Watch Face and Smart Stack Launch](milestones/M14-watch-face-launch.md) | Статическая кнопка запуска на циферблате и в Smart Stack | M13 |
 | [M15 — App Store and Site Materials](milestones/M15-store-site-materials.md) | Описание App Store, шесть настоящих скриншотов и сайт | M14 |
 
