@@ -10,7 +10,7 @@ H1 и H4 закрыты владельцем 2026-10-21. Одобрение не
 **Status:** approved direction — H1–H4 resolved in PRODUCT
 **Approved by:** владелец проекта, сообщение «одобряю»
 **Approved on:** 2026-10-20
-**Updated:** 2026-10-20
+**Updated:** 2026-10-22
 
 Поведение и бизнес-решения принадлежат [PRODUCT.md](PRODUCT.md), интерфейс —
 [DESIGN.md](DESIGN.md), выполнение и доказательства — [WORKFLOW.md](WORKFLOW.md).
@@ -50,7 +50,7 @@ Apple описывает SwiftUI как основу нативного watchOS 
 | Why that version | Достаточен для Observation, NavigationStack и локальной модели; более высокий минимум сокращает охват без необходимой для счётчика функции |
 | Devices | Apple Watch, совместимые с watchOS 10 и новее; конкретные компактный и крупный размеры и доступные среды проверки фиксируются в M00 |
 | Orientations | Системная ориентация часов, настройки запястья и Digital Crown; ручного portrait/landscape режима нет |
-| Additional surfaces supported by the chosen platform | Только основное Watch-приложение в MVP; complications, widgets, App Intents и Action button не включены |
+| Additional surfaces supported by the chosen platform | Основное Watch-приложение; с M14 (план 2026-10-22) WidgetKit extension со статической кнопкой запуска `accessoryCircular` / `accessoryRectangular`, включая Smart Stack. Счёт на циферблате, App Intents и Action button не включены |
 
 **Решение H3:** владелец явно выбрал «watchOS 10: достаточно нужных API,
 шире охват устройств». Минимум утверждён; выбор не является доказательством
@@ -136,6 +136,9 @@ App composition root → Features → Domain
 | Учёт бесплатного использования | Локальный `UsageLedger`, обновляется транзакционно вместе с игрой | Между запусками; политика H4 в PRODUCT | Только session command, согласованный с access policy | EntitlementStore получает read-only оценку |
 | Навигация и transient ошибки | Composition root/feature presentation | Процесс/экран | UI intents | Соответствующие views |
 | `forcePremium` | DEBUG-only `DebugPremiumOverride` | Между Debug-запусками | Developer control через EntitlementStore | Только EntitlementStore |
+| Черновик Play again (M11) | `NewGameFlow`, как любой черновик создания | До `Start game` или Back | Setup и его редакторы | Setup |
+| Демонстрационная игра (M12) | Отдельная модель демо в памяти процесса | Пока открыт экран демо | Только касания демо, Undo и Reset | Только экран демо; не SessionStore, файлы, ledger, recentSettings или StoreKit |
+| Архив завершённых игр (M13) | `SessionStore` в составе сессии | Между запусками | Только finish/correct/resume/undo/start/delete commands | History и подробный результат |
 
 | Question | Answer |
 | --- | --- |
@@ -296,18 +299,44 @@ Observation) держит черновик, ревизию, с которой о
 active → finished, ledger — множество game ID, поэтому Finish → Resume → Finish, правка результата, Undo и
 повтор записи не учитывают игру дважды, а удаление данных ledger не трогает (H4d).
 
+Предложение покупки, итог и повтор игры (M11): `AccessOffer` (Features, без SwiftUI) выводит из
+`EntitlementStore` и ledger всё, что показывает Access: проверку права, предложение с ценой
+`Product.displayPrice`, загрузку цены, недоступный продукт, ход покупки или восстановления, сообщение
+и доступность Purchase/Restore; `AccessView` только раскладывает это значение в утверждённом порядке.
+Владелец права и StoreKit-транзакций не меняется. `ResultSummary` отделяет главный счёт от вторичного:
+у матча `setsWon` есть только после завершённого сета, у раунда — `points`; `ResultSummaryView` —
+одна структура для S9, S10 и Last result (и истории M13). Play again — чистое правило Domain
+`GameRecord.setupToPlayAgain`: правила и порядок подачи итогового снимка текущей завершённой игры
+(вместе с сохранёнными исправлениями) и игрок, подававший её первое записанное очко; без записанных
+очков — подающий итогового снимка. `NewGameFlow.playAgain()` строит из него черновик `SetupDraft` с
+происхождением `.playAgain`, не читая и не меняя `recentSettings`, и ставит Setup в стек результата.
+Игру создаёт только прежняя команда `.start` с новыми `GameID`/`CommandID` против текущей ревизии и
+тем же `AccessPolicy`; отказ `.newGameNotAllowed` открывает прежний Access sheet, закрытие которого
+оставляет черновик, а покупка ничего не стартует.
+
+Демонстрация (M12, утверждено 2026-10-22): отдельная `@MainActor` модель в памяти держит фиксированный
+`MatchState` (Golden point, 2–2, 40–30, You → Opponent 1 → Partner → Opponent 2) и собственную цепочку
+Undo, применяя настоящий `MatchEngine`. Она не получает `SessionStore`, repository, файловую систему,
+`UsageLedger`, `EntitlementStore` или StoreKit и не может их изменить; общие компоненты живого счёта
+получают её значения. Выход, перезапуск и повторный вход создают модель заново.
+
+Быстрый запуск (M14, утверждено 2026-10-22): WidgetKit extension в составе Watch-приложения показывает
+статическую кнопку без данных приложения: без App Group, общей базы, timeline-обновлений счёта и
+фоновой работы. Касание открывает приложение системным механизмом WidgetKit; обычный запуск выводит
+экран из `SessionStore`, а уже открытый процесс сохраняет свой стек и черновик.
+
 ## Persistence
 
 | Question | Answer |
 | --- | --- |
 | Mechanism | Версионированный `Codable` store envelope в app Application Support; serial repository actor; временный файл и атомарная замена в том же каталоге |
-| What is stored | Active + latest completed snapshot и их undo, last-used settings, schema version/revision, idempotent usage ledger; только необходимые доменные поля |
-| What is deliberately not stored | Каталог всех результатов, телеметрия, здоровье, координаты, аудио, пароль Apple Account, сырые платёжные реквизиты; редакторский draft после termination |
+| What is stored | Active + latest completed snapshot и их undo, last-used settings, schema version/revision, idempotent usage ledger; с M13 — архив итоговых снимков завершённых игр со временем завершения, без их undo; только необходимые доменные поля |
+| What is deliberately not stored | До M13 — каталог результатов; всегда — undo архивных игр, демонстрационная игра, телеметрия, здоровье, координаты, аудио, пароль Apple Account, сырые платёжные реквизиты; редакторский draft после termination |
 | Where large binary data lives | Таких данных нет; ресурсы интерфейса и on-watch legal copy находятся в bundle |
 | Schema versioning approach | Явное целочисленное `schemaVersion`; декодирование каждой поддерживаемой версии и преобразование в актуальную модель |
 | Migration strategy | Копия исходного файла, миграция во временную модель, domain validation, атомарная публикация; подробности ниже |
 | Encryption at rest | Системная защита sandbox/device; дополнительное самодельное шифрование не предлагается. M03 выбрал `completeUntilFirstUserAuthentication` для папки и каждого файла: игра читается и пишется, когда часы блокируются во время игры (например, сняты с руки), а счёт не настолько чувствителен, чтобы терять запись ради `.complete`. Симулятор watchOS класс защиты не хранит; поведение при блокировке на настоящих часах проверяет REL-207 финального аудита |
-| What deleting user data removes | Матчи, undo и последние игровые настройки; entitlement покупки остаётся у Apple. Usage ledger сохраняется при удалении игровых данных; после переустановки/смены часов сохранность не гарантируется |
+| What deleting user data removes | Матчи, undo, последние игровые настройки, с M13 — архив и его служебные копии; entitlement покупки остаётся у Apple. Usage ledger сохраняется при удалении игровых данных; после переустановки/смены часов сохранность не гарантируется |
 
 Одна логическая мутация включает счёт, подачу, history, usage change и revision
 в одном envelope. UI подтверждает очко и haptic после успешной записи. Пока запись
@@ -349,6 +378,18 @@ Application Support/Session и с `LifetimeAccess` по H4, а первый эк
 откладываются: первый может прочитаться при следующей попытке, второй — после обновления
 приложения. Играемая игра открывается сразу, иначе New game; `restoredFromBackup`
 показывается alert, пока человек его не подтвердит.
+
+История и формат версии 2 (M13, утверждено 2026-10-22): `SessionFile` переходит на `schemaVersion` 2.
+Архив — по одной записи на `GameID`: итоговый `GameSnapshot` без history и время завершения, `nil` для
+результатов, перенесённых из версии 1 (UI: `Date unavailable`). Время приходит из внедряемого источника
+на уровне `SessionStore`/команды, поэтому Domain остаётся детерминированным, а повтор записи использует
+время исходного запроса. Finish добавляет или обновляет запись, правка завершённой текущей игры её
+обновляет, Resume и Undo в активное состояние её убирают; `previousResult` больше не хранится
+независимой копией, а выводится из архива. Миграция 1 → 2 переносит текущую игру с undo, предыдущий
+результат, recentSettings и ledger без потерь и без дубликатов; backup, повреждённые файлы и отказ
+записывать поверх неизвестной будущей версии работают как прежде, восстановление ledger читает обе
+версии. History entry undo-цепочки не копирует архив: архив меняется только командами, а не хранится в
+каждом снимке. Проверка производительности — 500 компактных результатов.
 
 Размер файла и скорость записи проверяются длинной игрой и большим числом undo.
 Если устройство исчерпало место, операция завершается ошибкой с сохранением
@@ -408,6 +449,7 @@ HealthKit workout или extended runtime session ради обхода сист
 | Crash reporting | Стороннего SDK нет | Системные диагностические средства во время разработки | Ошибки хранения видны локально | Не обещать отсутствие системной диагностики Apple |
 | AI / LLM | Нет | Правила детерминированы | Не требуется | Нет сетевого AI сценария |
 | CloudKit / iCloud | Предложено: нет | Синхронизация/облачная история не включены | Локальное восстановление своей игры | Между устройствами перенос не обещан |
+| WidgetKit | С M14 | Статическая кнопка запуска на циферблате и в Smart Stack | Обычный запуск из списка приложений | План 2026-10-22: без App Group, данных счёта и фоновых обновлений |
 | Published site (Cloudflare Pages) | Да, отдельный `Web/` | Публичные privacy/terms/support + landing | Читаемая bundle-копия legal/support на часах | H1 утверждён 2026-10-21; владелец явно разрешил публикацию Pages, реквизиты в Config/project.env |
 
 ### StoreKit и единый владелец доступа
@@ -484,7 +526,7 @@ Deployment сайта не выполняется verification gate.
 
 | Question | Answer |
 | --- | --- |
-| Single target, or several? | Современный Xcode Watch-only: один executable Watch target, его packaging container, unit/UI test targets; без отдельного WatchKit extension или iPhone executable |
+| Single target, or several? | Современный Xcode Watch-only: один executable Watch target, его packaging container, unit/UI test targets; без WatchKit extension или iPhone executable. С M14 — WidgetKit extension, встроенный в Watch app, с теми же marketing version и build |
 | Local Swift packages? | Нет на старте; логические слои каталогами и API, без преждевременного дробления маленького продукта |
 | Where new files go | `App/<Project>/Domain`, `Services`, `Features`, `Resources`, `App`; тесты рядом в test targets, test fixtures в их ресурсах |
 | Are folders synchronized groups? | В M00 выбраны явные PBXGroups и membership source/resource/test файлов; проект редактируется напрямую в Xcode, отдельный генератор для сборки не требуется |
@@ -516,6 +558,11 @@ executable, выполняет Watch unit/UI tests. `APP_TARGET` и `BUNDLE_IDEN
 | How persistence is tested | Записать → создать новый repository → прочитать; fault injection до/после атомарного commit, truncated file, backup recovery, migrated fixtures; проверять весь snapshot и revision |
 | Fixtures and their location | Committed fixtures внутри test target; граничные счёты и схемы хранения без персональных данных; StoreKit config содержит тестовый продукт после H4 |
 | Are UI tests in the shared scheme? | Да; строгие milestone/integration/release gates запускают обязательный полный scheme, пропуск не считается успехом |
+
+План 2026-10-22 добавляет обязательные случаи: все состояния Access и порядок предложения, итог
+матча без победителя и Play again обоих форматов с исправленными правилами (M11); точный Undo демо и
+отсутствие записи на диск (M12); жизненный цикл истории без дубликатов, миграцию fixtures v1/v2 и
+500 результатов (M13); сборку extension в Debug/Release и сохранение открытого редактора (M14).
 
 Нужно доказать конкретные случаи: оба победителя golden point; потеря единственного
 advantage и возврат к deciding point; длинный deuce; начало следующего сета без
@@ -553,7 +600,7 @@ Clean-HEAD и explicit-candidate milestone gates прошли для одног�
 | --- | --- | --- | --- |
 | R1 | Companion iPhone + Watch Connectivity как основной store | Противоречит прямому Watch-only требованию | Только при новом продуктовом решении пользователя |
 | R2 | WebView с кодом интерактивного макета | JS модели и ограничения — демонстрация UX; нет нативного жизненного цикла и доказанных правил | Не предполагается для MVP |
-| R3 | SwiftData/Core Data для текущей игры | Нет запросов по архиву; explicit small snapshot проще контролировать в миграциях и атомарном undo | Если одобрен большой searchable history или sync |
+| R3 | SwiftData/Core Data для текущей игры | Нет запросов по архиву; explicit small snapshot проще контролировать в миграциях и атомарном undo. Утверждённая история M13 — локальный список компактных снимков без поиска, поэтому остаётся в том же версионированном файле | Если одобрен большой searchable history или sync |
 | R4 | UserDefaults как база матча | Счёт, подача, undo и usage должны сохраняться согласованно одной транзакцией | Не пересматривать для игрового состояния |
 | R5 | Event sourcing с повторным проигрыванием после изменения правил | Ручной счёт не раскрывает прошлые розыгрыши; replay может изменить уже сыгранный результат | Только для отдельной доказанной функции анализа, не коррекции |
 | R6 | Backend, account, RevenueCat/аналитический SDK | Добавляет сеть, персональные данные и поддержку без необходимого MVP-сценария | При подтверждённой потребности, отдельном решении и privacy review |

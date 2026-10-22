@@ -1,13 +1,16 @@
 # Development plan
 
-**Status:** направление и план одобрены владельцем; M00–M07 завершены
-**Approved by:** владелец проекта, сообщение «одобряю»
+**Status:** направление и план одобрены владельцем; M00–M09 завершены, M10 заблокирован; план покупки M11–M15 утверждён 2026-10-22
+**Approved by:** владелец проекта, сообщение «одобряю»; план M11–M15 — владелец, 2026-10-22
 **Approved on:** 2026-10-20
-**Updated:** 2026-10-21
+**Updated:** 2026-10-22
 
 План следует [промпту инициализации](prompts/initialize-product.md) и
-[brief](PRODUCT_BRIEF.md). M00–M07 имеют статус `DONE`; H2 закрыт владельцем
-2026-10-20. Текущий этап — M08 (`BLOCKED`: Sandbox purchase/restore 1/1 прошёл на реальных часах после исправления bundle suffix; identity/policy 19/19 и UI 1/1 прошли. Локальное управление StoreKit и clean gate ещё не проходят — см. [identity handoff](handoffs/M08-sandbox-identity-handoff.md). App Store Connect и lifetime $4.99 настроены без отправки на ревью; H4 утверждён 2026-10-21); остальные имеют статус `PLANNED`.
+[brief](PRODUCT_BRIEF.md). M00–M09 имеют статус `DONE`; H2 закрыт владельцем
+2026-10-20, H1 и H4 — 2026-10-21. M10 `BLOCKED` на аппаратных проверках (см.
+[handoff M10](handoffs/M10-handoff.md)). По исключению владельца 2026-10-22 сначала
+выполняются M11–M15, затем возобновляется M10; текущий этап указывает
+[PROJECT_STATUS](PROJECT_STATUS.md).
 Одобрение направления не выбирает молча ответы на отдельные открытые вопросы.
 
 ## Contracts
@@ -36,9 +39,32 @@ Xcode-проекта и доступности настоящих часов.
 | [M05 — Live Score](milestones/M05-live-score.md) — DONE | Главный экран, одно касание на очко, подающий и Undo; [evidence](handoffs/M05-handoff.md) | M04 |
 | [M06 — Score and Settings Correction](milestones/M06-corrections.md) — DONE | Черновики исправления всех введённых данных; [evidence](handoffs/M06-handoff.md) | M05 |
 | [M07 — Finish and Resume](milestones/M07-finish-resume.md) — DONE | Честный результат, продолжение последней игры и удаление локальных данных; [evidence](handoffs/M07-handoff.md) | M06 |
-| [M08 — Access and Purchase](milestones/M08-access-purchase.md) | Выбранная модель доступа и покупка, если она утверждена | M07; H4 закрыт |
-| [M09 — Legal and Support](milestones/M09-legal-support.md) | Читаемая помощь на Watch, четыре страницы Web и публичные URL | M08 DONE; H1 закрыт; M09 DONE, clean gate 387/387 — см. handoff |
-| [M10 — Final Product Polish](milestones/M10-final-product-polish.md) | Полная проверка английского приложения, точный кандидат `READY_FOR_HUMAN` | Все M00–M09 |
+| [M08 — Access and Purchase](milestones/M08-access-purchase.md) — DONE | Выбранная модель доступа и покупка, если она утверждена | M07; H4 закрыт |
+| [M09 — Legal and Support](milestones/M09-legal-support.md) — DONE | Читаемая помощь на Watch, четыре страницы Web и публичные URL | M08 DONE; H1 закрыт; M09 DONE, clean gate 387/387 — см. handoff |
+| [M10 — Final Product Polish](milestones/M10-final-product-polish.md) — BLOCKED | Полная проверка английского приложения, точный кандидат `READY_FOR_HUMAN` | Все M00–M09; по исключению владельца возобновляется только после DONE M11–M15 |
+| [M11 — Purchase, Result and Play Again](milestones/M11-purchase-result-play-again.md) | Ясное предложение покупки, итог с главным счётом сетов и `Play again` | M09 |
+| [M12 — Scoreboard Demo](milestones/M12-scoreboard-demo.md) | Необязательный фиксированный пример счётчика без записи данных | M11 |
+| [M13 — Local History and Storage Migration](milestones/M13-local-history.md) | История всех завершённых игр для всех и формат хранения 2 | M12 |
+| [M14 — Watch Face and Smart Stack Launch](milestones/M14-watch-face-launch.md) | Статическая кнопка запуска на циферблате и в Smart Stack | M13 |
+| [M15 — App Store and Site Materials](milestones/M15-store-site-materials.md) | Описание App Store, шесть настоящих скриншотов и сайт | M14 |
+
+### Исключение владельца 2026-10-22: M11–M15 до завершения M10
+
+Владелец утвердил [план привлекательности покупки](purchase-appeal-plan.md): история
+результатов доступна всем, покупка снимает только лимит новых игр; демонстрация — один
+фиксированный пример Match; новые этапы выполняются до завершения заблокированного M10,
+и итоговая проверка проходит на обновлённом приложении. Порядок: M11 → M12 → M13 → M14 →
+M15 → возобновление M10, одна Builder-сессия на этап, в основном checkout на `main`.
+
+M10 сохраняет зависимости M00–M09: валидатор требует, чтобы Final Product Polish зависел
+ровно от всех этапов с меньшим номером, и он не ослабляется ради нового порядка.
+Обязательное завершение M11–M15 записано в контракте M10 отдельным критерием. M10 не
+помечается DONE, не перенумеровывается и не теряет прежние свидетельства; они остаются
+историей своих SHA и не выдаются за проверку новой версии. После M15 M10 перепроверяет
+изменённые домены, закрывает прежние аппаратные проверки и запуск с циферблата на
+реальных часах, затем выполняет `make milestone ID=M10` и
+`make release CANDIDATE=<verified-full-SHA>` на одном SHA. Это продуктовые улучшения,
+а не подтверждённый рост конверсии; App Review этим планом не разрешён.
 
 После M10 план заканчивается. Дополнительные локализации выполняются позже,
 после проверки владельцем на настоящих часах, по [WORKFLOW](WORKFLOW.md).
@@ -55,6 +81,7 @@ M08 при наличии продажи доступа.
 | H2 — завершение сета и тай-брейк | PRODUCT → Обычный матч, Подача | Закрыт 2026-10-20: вариант 1 — сет до 6 с отрывом 2, тай-брейк при 6:6 до 7 с отрывом 2, подтверждение порядка подачи перед каждым сетом |
 | H3 — минимальная watchOS | ARCHITECTURE → Deployment target | Закрыт 2026-10-20: watchOS 10; M00 фиксирует конкретные устройства и среды, проверка выбранного минимума обязательна |
 | H4 — коммерческая модель, цена, лимит и единица бесплатного использования | PRODUCT → Unresolved decisions | Закрыто 2026-10-21: пять завершённых игр, сохранение ledger, lifetime $4.99 USD |
+| План привлекательности покупки | [purchase-appeal-plan.md](purchase-appeal-plan.md), PRODUCT → Change log | Утверждён 2026-10-22: история всем, покупка снимает только лимит новых игр; демо — один фиксированный Match; M11–M15 до завершения M10; H4 и цена не меняются |
 
 Каждый зависимый этап требует **записанного выбора**, но не требует конкретного
 рекомендованного варианта. При бесплатном выпуске или платном скачивании M08

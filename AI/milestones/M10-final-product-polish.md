@@ -22,12 +22,14 @@
 
 ## Non-goals
 
-- Переводы, новая продуктовая функциональность, новые audit циклы или этапы после M10 в этом плане.
+- Переводы, новая продуктовая функциональность внутри M10 и новые audit циклы. Функции плана покупки реализуют M11–M15 (исключение владельца ниже), не M10.
 - Автоматический Archive/upload/submit/publish и трактовка READY_FOR_HUMAN как разрешения на отправку.
 
 ## Acceptance criteria
 
 - [x] Все M00–M09 DONE с собственным evidence; все применимые H-решения закрыты, неизвестные коммерческие значения не замещены примерами.
+- [ ] M11, M12, M13, M14 и M15 DONE с собственным evidence до возобновления итоговой проверки; финальный проход выполняется на приложении с их изменениями.
+- [ ] Быстрый запуск с циферблата и Smart Stack (M14) проверен на реальных часах вместе с прежними аппаратными проверками.
 - [ ] Шесть доменов пройдены в требуемом порядке одной Builder-сессией; исправлены все valid P0/P1, после изменений выполнен один targeted re-audit.
 - [ ] Один consolidated record имеет COMPLETE typed coverage, Open P0/P1 0, findings/fixes/deferred P2, INAPPLICABLE с причинами, FUTURE_PRODUCT_IDEA и точные SHA/команды/counts/пути.
 - [ ] Нет пропущенной обязательной среды/устройства; реальные часы и минимальная поддерживаемая конфигурация проверены. Недоступность необходимого evidence блокирует этап.
@@ -42,3 +44,28 @@
 ## Handoff
 
 Записать `AI/handoffs/M10-handoff.md` по компактному шаблону: полный SHA, точные команды, exit codes, UTC time, report paths, counts, известные ограничения и следующий шаг. После доказанного DONE остановиться.
+
+## Owner exception — purchase-appeal milestones, 2026-10-22
+
+The owner approved [the purchase-appeal plan](../purchase-appeal-plan.md): milestones
+M11–M15 are implemented while M10 is still `BLOCKED`, and the final polish then resumes
+on the updated application. This is a recorded exception to the plan order, not a
+dependency waiver and not a change to any validator.
+
+- M10 keeps `**Depends on:** M00 … M09` unchanged. `project-status.sh validate` requires
+  the Final Product Polish milestone to depend on exactly every earlier-numbered
+  milestone, so M11–M15 cannot be listed there. Their completion is instead an explicit
+  precondition above: M10 does not return to `IN_PROGRESS` until M11, M12, M13, M14 and
+  M15 are all `DONE`.
+- M10 is not marked `DONE`, renumbered or reused. The 2026-10-22 simulator evidence in
+  `AI/handoffs/M10-handoff.md` and `AI/audits/M10-final-polish.md` stays as the
+  historical record of `2f9d1e1d94c0ef1394bc43f7ac82de8ae57ca11d` and earlier SHAs; it
+  is never presented as evidence about the application after M11–M15.
+- When M10 resumes, every domain whose behavior M11–M15 changed is audited again on the
+  new SHA, the remaining hardware checks (on-court use, spoken VoiceOver, Always On / Low
+  Power, oldest-device launch performance, StoreKit under an adverse network) and the
+  new watch-face launcher are checked on real Watches, and new evidence binds to the new
+  SHA. Then `make milestone ID=M10` runs on a clean `REVIEW` commit and
+  `make release CANDIDATE=<verified-full-SHA>` on that same SHA.
+- A required environment that is still unavailable keeps M10 `BLOCKED` with the concrete
+  blocker; release readiness is not declared.

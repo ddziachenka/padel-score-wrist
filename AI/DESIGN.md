@@ -4,10 +4,10 @@
 Поведение счёта и бизнес-решения принадлежат [PRODUCT.md](PRODUCT.md), хранение,
 платформа и приватность — [ARCHITECTURE.md](ARCHITECTURE.md).
 
-**Status:** approved direction — зависимые H1/H4 остаются открытыми
+**Status:** approved direction — H1/H4 закрыты 2026-10-21; план покупки M11–M15 утверждён 2026-10-22
 **Approved by:** владелец проекта, сообщение «одобряю»
 **Approved on:** 2026-10-20
-**Updated:** 2026-10-20
+**Updated:** 2026-10-22
 
 Подтверждены Watch-only, два формата своей игры, исправление всех введённых данных,
 ручное завершение обычного матча, английский язык v1 и премиальный минимализм.
@@ -17,7 +17,7 @@
 ## Information architecture
 
 ```text
-Launch
+Launch (app icon, or the watch-face / Smart Stack button from M14)
 ├─ Active game → Live score
 │  ├─ Undo
 │  └─ Game menu
@@ -25,27 +25,32 @@ Launch
 │     ├─ Game settings → mode / rules / Serving
 │     ├─ Finish match / Finish round → Result
 │     ├─ Last result → read-only previous result
+│     ├─ History (M13) → finished games → read-only result
 │     └─ About → Access / Privacy / Terms / Support
 ├─ No active game, latest result exists → Result
-│  ├─ New game
+│  ├─ Play again (M11) → Setup of the same format from this result → Start game
+│  ├─ New game → formats
 │  ├─ Edit result → editor draft
 │  ├─ Resume game → Live score or correction draft
+│  ├─ History (M13)
 │  └─ About
 └─ No game → New game
    ├─ Match → Setup → rule / Serving → Start game
    ├─ Americano → Setup → total rallies / service block / Serving → Start game
-   └─ About
+   ├─ Try the scoreboard (M12) → in-memory Demo
+   ├─ History (M13)
+   └─ About → Try the scoreboard (M12) / Watch face help (M14)
 
 Shared field editors: choice picker / number picker / serving order / set editor.
-About → Settings → Delete local data (confirmed destructive action).
-Access: proposed one-time unlock / Restore purchases, subject to PRODUCT H4.
+About → Settings → Delete local data (confirmed destructive action; with M13 also history).
+Access: Keep your focus on the game / Unlock forever / Restore purchases (H4, M11).
 Legal: readable on-watch pages with public URLs and support contact.
 ```
 
 | Question | Answer |
 | --- | --- |
 | Where does the app open? | Сохранённая активная игра имеет приоритет, затем последний результат, затем `New game`. После восстановления не открывать paywall поверх матча. |
-| What appears before any data exists? | Два выбора `Match` и `Americano`, короткое пояснение каждого, доступ к `About`. Без регистрации, демонстрационного счёта и обязательного onboarding. |
+| What appears before any data exists? | Два выбора `Match` и `Americano`, короткое пояснение каждого, доступ к `About`; с M12 под ними необязательная строка `Try the scoreboard`, с M13 — `History` с пустым состоянием. Демонстрация не открывается сама; без регистрации и обязательного onboarding. |
 | Maximum navigation depth | До пяти уровней для редкой правки предыдущего сета: игра → меню → редактор → сеты → конкретный сет. Числа сета редактируются там же через нативный picker; дополнительную цепочку экранов не добавлять. Основной ввод очка не меняет экран. |
 | Which navigation state survives relaunch? | Только сохранённая игра/результат. Черновик живёт в памяти процесса и сохраняется при переходах внутри редактора и background, пока процесс жив; после холодного запуска открывается последний сохранённый счёт. Меню, черновик, покупка и подтверждение завершения автоматически не восстанавливаются. |
 
@@ -88,8 +93,8 @@ Legal: readable on-watch pages with public URLs and support contact.
 | --- | --- |
 | Goal | Закончить свою игру при фактическом счёте и исправить случайное завершение. |
 | Entry point and starting condition | Меню → `Finish match / Finish round`; американо также достигает принятого общего числа розыгрышей. |
-| Steps | Увидеть сводку → `Finish` → результат; затем `New game`, `Edit result` или `Resume game`. |
-| Success looks like | `Match finished` или `Round finished`, отдельно подтверждение `Saved`; счёт с устойчивыми подписями команд, незавершённый сет явно `Incomplete`. |
+| Steps | Увидеть сводку → `Finish` → результат; затем `Play again` (M11), `New game`, `Edit result` или `Resume game`. |
+| Success looks like | `Match finished` или `Round finished`; главный элемент — фактический счёт с устойчивыми колонками команд, незавершённый сет отдельным блоком `Set N · Incomplete`; `Saved` — вторичное подтверждение (M11). |
 | Recovery path | До сохранения `Keep playing`; после — `Resume game`. Для исчерпанного американо сначала увеличить лимит или исправить очки. |
 | Abandonment: what is kept | Закрытие подтверждения не завершает игру. Закрытие результата сохраняет результат. |
 | Must never break | Обычный матч не завершается после фиксированного числа сетов и не получает вымышленного общего победителя. Сохранение результата не объявляется до успешной записи. После старта следующей игры предыдущий результат доступен только для просмотра до следующего завершения; Edit/Resume больше не доступны. |
@@ -101,12 +106,21 @@ Legal: readable on-watch pages with public URLs and support contact.
 | --- | --- |
 | Goal | Понять условия, приобрести согласованный доступ или прочитать правила и поддержку на часах. |
 | Entry point and starting condition | `About` в состоянии до игры/результата/меню; предложение покупки только в согласованной точке между играми. |
-| Steps | Прочитать предложение и цену StoreKit → системная покупка или `Restore purchases`; `Privacy`, `Terms`, `Support` открываются без оплаты. |
+| Steps | Прочитать `Keep your focus on the game`, что разблокируется, свой лимит, `Unlock forever` с ценой StoreKit и `One payment. No subscription.` → системная покупка или `Restore purchases`; `Privacy`, `Terms`, `Support` открываются без оплаты. |
 | Success looks like | Проверенное право доступа видно; разрешённая новая игра доступна. Юридический текст и контакт читаются на Watch. |
 | Recovery path | Закрыть предложение, повторить покупку/restore после ошибки, прочитать локальные legal-страницы без сети. |
 | Abandonment: what is kept | Результат и активная игра не теряются; черновик остаётся в живом процессе. Отмена покупки не считается покупкой. |
 | Must never break | Ни доступ к поддержке, ни текущая игра не зависят от наличия приложения для iPhone. |
 | Acceptance evidence | M08/M09: согласованные условия H4, все StoreKit-состояния, legal offline, корректные публичные страницы и контакт. |
+
+### Purchase-appeal journeys (approved 2026-10-22)
+
+| Journey | Entry | Steps | Success looks like | Must never break | Milestone |
+| --- | --- | --- | --- | --- | --- |
+| J5 — Play again | Текущий завершённый результат | `Play again` → Setup того же формата с правилами и порядком результата → проверить подачу → `Start game` | Новая игра 0–0 тех же правил; результат остался для просмотра | Back ничего не создаёт; лимит проверяется при Start; закрытие Access оставляет черновик и результат; покупка не стартует игру | M11 |
+| J6 — Попробовать счётчик | `Try the scoreboard` на New game или в About | Нажимать команды, Undo, `Reset demo`, `Close` | Видно смену очков, гейма и подающего и точный Undo | Метка `Demo` всегда; ничего не пишется; лимит, игра, история, настройки и покупка не меняются | M12 |
+| J7 — Найти прошлую игру | `History` на New game, результате или в меню | Список новые сверху → подробный результат | Дата, формат и счёт читаются; во время матча игра не меняется | Без покупки доступно всегда; нет автоудаления; `Date unavailable` вместо выдуманной даты | M13 |
+| J8 — Открыть с циферблата | Кнопка на циферблате или в Smart Stack | Одно касание | Обычный запуск: игра, результат или New game | Открытый редактор и экран не сбрасываются; кнопка не показывает счёт | M14 |
 
 ## Screen inventory and navigation
 
@@ -121,12 +135,16 @@ Legal: readable on-watch pages with public URLs and support contact.
 | S7 | Field / Set editors | Выбрать значение или изменить прошлый сет | S2/S5/S6/S8 | `Done` к родителю | Только новый обязательный параметр | Не нужен | E1/E2 | Работает | Значение в черновике |
 | S8 | Serving | Кто подаёт, порядок, позиция в серии | S2/S5/S6 | `Done` к родителю | Выбор первого подающего | Не нужен | E2 | Работает | Подача в черновике |
 | S9 | Finish match / Finish round | Проверить фактический результат | S4 | S10 либо S3 | 0–0 показывается честно | Сохранение | E3 | Работает | До подтверждения игра активна |
-| S10 | Result / Last result | Счёт последней игры и восстановление | S9, полный американо, relaunch, S4 → Last result | S1/S5/S11 или Resume; во время следующей игры только просмотр и Back | Игры нет → S1 | Чтение/правка/продолжение | E3/E5 | Работает | Последний результат |
+| S10 | Result / Last result | Счёт последней игры, повтор и восстановление | S9, полный американо, relaunch, S4 → Last result | S2 через `Play again` (M11), S1/S5/S11 или Resume; во время следующей игры только просмотр и Back | Игры нет → S1 | Чтение/правка/продолжение | E3/E5 | Работает | Последний результат |
 | S11 | About / Access | Информация, доступ и legal | S1/S4/S10 | S12/S13 либо назад | Разблокировка ещё не куплена | Проверка entitlement по ARCHITECTURE | E4 | Сохранённый статус + legal | Проверенное право доступа |
-| S12 | Unlock | Согласованные условия одной покупки | Доступ или новая игра после лимита | StoreKit, S2 или назад | Продукт недоступен → цена не выдумывается | Загрузка продукта/покупка/restore | E4 | Покупка/restore недоступны, чтение доступно | StoreKit entitlement |
+| S12 | Unlock | `Keep your focus on the game`: условия одной покупки | Доступ или Start game (в том числе после Play again) после лимита | StoreKit, S2 или назад | Продукт недоступен → цена не выдумывается | Загрузка продукта/покупка/restore | E4 | Покупка/restore недоступны, чтение доступно | StoreKit entitlement |
 | S13 | Privacy / Terms / Support | Читаемая информация на Watch | S11/S12 | Назад | Не допускается в релизе | Локальный текст сразу; URL отдельно | E6 | Локальный текст доступен | Версия legal-контента |
 | S14 | Recovery | Не скрыть сбой хранения | Launch или E3/E5 | Retry или доступные сохранённые данные | Нет достоверного снимка → объяснение | Повторное чтение | Причина без технического дампа | Работает | Сохраняет существующие данные |
-| S15 | Settings / Delete local data | Управление локальными данными | S11 | Подтверждение удаления или Back | Нет данных → описание и недоступное удаление | Атомарная очистка | E3 | Работает | Игра, результат, настройки удаляются только после подтверждения |
+| S15 | Settings / Delete local data | Управление локальными данными | S11 | Подтверждение удаления или Back | Нет данных → описание и недоступное удаление | Атомарная очистка | E3 | Работает | Игра, результат, настройки (с M13 — и история) удаляются только после подтверждения |
+| S16 | Demo (M12) | Попробовать счётчик на фиксированном примере | S1, S11 | Close к источнику | Не бывает: пример фиксирован | Не нужен | Не бывает: нет записи | Работает | Только память процесса |
+| S17 | History (M13) | Все завершённые игры, новые сверху | S1, S4, S10 | S18 или назад | `Your finished games will appear here.` | Чтение сохранённого архива | E5 | Работает | Архив завершённых игр |
+| S18 | History result (M13) | Подробный итог архивной игры | S17 | Назад | Не бывает | Не нужен | E5 | Работает | Только просмотр |
+| S19 | Watch face / Smart Stack button (M14) | Открыть приложение одним касанием | Циферблат, Smart Stack | Обычный запуск | Не бывает | Системный | Системный | Работает | Нет: статическая кнопка |
 
 В колонке Persistent state черновик означает состояние в памяти до явного Save,
 а не долговременное восстановление после termination. Долговременно сохраняется
@@ -145,8 +163,8 @@ Legal: readable on-watch pages with public URLs and support contact.
 
 | State | Required contract |
 | --- | --- |
-| Empty | `New game` вместо пустой истории. В редакторе `No completed sets` и `Add set`. |
-| First run | Без регистрации, запросов разрешений и вымышленного примера. В выборе режима одна строка смысла: `Games and sets` / `A fixed total of rallies`. |
+| Empty | `New game` вместо пустой истории. В редакторе `No completed sets` и `Add set`. С M13 пустая история: `Your finished games will appear here.` |
+| First run | Без регистрации, запросов разрешений и вымышленных данных в реальной игре. В выборе режима одна строка смысла: `Games and sets` / `A fixed total of rallies`. С M12 фиксированный пример открывается только по `Try the scoreboard` и всегда помечен `Demo`. |
 | Loading | Сохранять контекст и цифры; disable только повторное конфликтующее действие; по длительности показывать понятный статус. |
 | Partial | Достоверный снимок остаётся виден; неподтверждённое право покупки помечается `Checking access…`. Повреждённые числа не дорисовывать. |
 | Recoverable error | Сохранить поля, назвать конфликт/сбой, дать действие рядом. Не показывать технический код вместо причины. |
@@ -165,6 +183,7 @@ Legal: readable on-watch pages with public URLs and support contact.
 | S11 | Нет покупки | Точные утверждённые бесплатные условия; без неподтверждённого числа | `View access` |
 | S12 | StoreKit не вернул продукт | `Purchase unavailable right now.` | `Try again`; закрытие видно |
 | S14 | Нет читаемого снимка | `We couldn’t read this game. Your saved data has not been deleted.` | `Try again` |
+| S17 | Завершённых игр нет (M13) | `Your finished games will appear here.` | Назад или `New game` |
 
 | Screen | Trigger | Under 1s | 1–5s | Over 5s | Timeout/cancel |
 | --- | --- | --- | --- | --- | --- |
@@ -216,7 +235,7 @@ Legal: readable on-watch pages with public URLs and support contact.
 | Change mode | Да, целевой черновик плюс undo после Save | `Change game format? Enter the score for the new format. Nothing changes until you save.` | Cancel сохраняет исходный формат, Save требует полного целевого состояния |
 | Finish match / Finish round | Да | `Finish this game? Your current score will be saved.` | `Keep playing`; после сохранения `Resume game` |
 | Start another game after result | Последний результат остаётся для просмотра, его правка/продолжение закрываются | `Starting a new game will keep this result for viewing only.` перед фактическим стартом | Вход в Setup ничего не меняет; Back возвращает редактируемый результат |
-| Delete local data | Нет после подтверждённой очистки | `Delete local data? This removes your game, last result and saved settings from this Watch. Your free-game count and purchase are kept.` | `Cancel` / `Delete data`; счётчик сохраняется по H4 |
+| Delete local data | Нет после подтверждённой очистки | `Delete local data? This removes your game, last result and saved settings from this Watch. Your free-game count and purchase are kept.` С M13 текст перечисляет и историю завершённых игр | `Cancel` / `Delete data`; счётчик сохраняется по H4 |
 
 ## Permissions and privacy UX
 
@@ -236,11 +255,12 @@ Unlock, trial, Restore purchases или debug premium override; About и legal
 
 | Question | Answer |
 | --- | --- |
-| Where the paywall appears | Между играми при `Start game` после принятого лимита либо добровольно из `About → Access`. |
+| Where the paywall appears | Между играми при `Start game` после принятого лимита (в том числе после `Play again`) либо добровольно из `About → Access`. Никогда автоматически после результата. |
 | What remains visible for free | Условия доступа, уже созданные данные, исправление результата, помощь, legal и restore; активную игру не перекрывать. Точное право начать новую игру задаёт PRODUCT. |
-| How the paid value is demonstrated before the paywall asks for money | Согласованный бесплатный опыт полноценных игр; без обязательного paywall на первом запуске. |
+| How the paid value is demonstrated before the paywall asks for money | Согласованный бесплатный опыт полноценных игр; с M12 необязательный пример `Try the scoreboard`; без обязательного paywall на первом запуске. |
 | Exactly what is sold | Одна нерасходуемая lifetime-разблокировка после пяти завершённых игр. Бесплатные игры автоматические, без отдельного запуска и слова trial в UI. |
-| Price and term presentation from StoreKit | Одна локализованная фактическая цена StoreKit, рядом `One-time purchase`. Без вписанного в UI числа. |
+| Price and term presentation from StoreKit | Одна локализованная фактическая цена StoreKit второй строкой кнопки `Unlock forever`, непосредственно под ней `One payment. No subscription.` (до M11 — `One-time purchase`). Без вписанного в UI числа. |
+| Content order (M11) | `Keep your focus on the game` → `Unlimited Match & Americano scoring.` → состояние лимита → `Unlock forever` с ценой → `One payment. No subscription.` → статус и ход покупки → `Restore purchases` → сохранность игры и результата → `Terms`, `Privacy` → `Close`. Повторяющиеся объяснения убраны; на компактных часах допустима короткая прокрутка, но не уменьшение текста. |
 | Which offer is recommended, and how that is marked | Одно предложение; нет искусственной плашки `Best value`. |
 | Comparison price shown, and the StoreKit product it is derived from | Не предлагается: нет второго реально продаваемого продукта. |
 | Saving claimed, and the two real prices it is the difference between | Экономия не заявляется. |
@@ -358,7 +378,7 @@ Crown используется как предсказуемая навигац�
 | --- | --- | --- | --- | --- |
 | DO1 | Очко и смена подачи, S3 | Уверенность, что отмечен правильный розыгрыш | Нативный pressed state, плавная смена значения, один короткий haptic; только изменённый server получает краткий акцент | Не замедляет следующее действие и не отвлекает от чисел; проверка на запястье |
 | DO2 | Undo, S3 | Уверенность в полном восстановлении | Синхронно вернулись цифры/подача, тихий haptic, короткое `Action undone` с VoiceOver announcement | Игрок понимает восстановление без отдельного диалога |
-| DO3 | Сохранённый результат, S10 | Понятное завершение без ощущения потери | Нативный checkmark рядом с `Saved` на экране `Match finished` / `Round finished`, краткий success haptic; `Incomplete` виден сразу | Нет конфетти, выдуманной победы и задержки доступа к Resume |
+| DO3 | Сохранённый результат, S10 | Понятное завершение без ощущения потери | С M11 главный — фактический счёт; `✓ Saved` — вторичная строка после него; краткий success haptic; `Incomplete` виден сразу; `Play again` первым действием | Нет конфетти, выдуманной победы и задержки доступа к Resume |
 
 Все три используют нативные возможности. При отсутствии пользы анимация удаляется,
 а текст и состояние сохраняются. Ни один эффект не требует image-generation или сети.
@@ -541,6 +561,28 @@ result`, `Settings saved for the next game`) и `Delete local data` цвета d
 недоступная кнопка, после удаления — New game. В последней, укороченной серии раунда строка серии называет её
 настоящую длину: при 10/4 после восьми розыгрышей `Serve 1 of 2`.
 
+С M11 так устроены предложение покупки, итог и повтор игры (S9, S10, S12). Access начинается
+заголовком `Keep your focus on the game` и строкой `Unlimited Match & Americano scoring.`, затем
+состояние лимита (`Free games left: 3 of 5`, `Five free games completed.` либо неточный счётчик без
+повторной фразы о текущей игре), кнопка `Unlock forever` с ценой `Product.displayPrice` второй строкой
+и сразу под ней `One payment. No subscription.`; пока право проверяется, цена грузится или продукт
+недоступен, на месте кнопки `Checking purchase…`, `Loading price…` либо `Purchase unavailable right
+now.` с `Retry`, а строка условий остаётся. Ниже — сообщение состояния и ход покупки или
+восстановления, `Restore purchases`, `Your current game and last result stay available, even without a
+purchase.`, `Terms`, `Privacy` и `Close`; sheet после отказа в старте также имеет круглую ✕. С
+проверенным правом вместо предложения — `✓ Unlocked` и та же строка о безлимитном счёте, без продажи.
+Итог матча больше не начинается плитками выигранных сетов: над счётом подписи колонок `US` и `THEM`,
+каждый завершённый сет — строка «наше — `Set 1` — их» крупными цифрами в постоянных колонках,
+незавершённый сет — отдельная карточка `Set 2 · Incomplete` со строками `Games` и `Points` (или
+`Tie-break`) в тех же колонках, и, только если завершён хотя бы один сет, вторичная строка `Sets won`.
+Без завершённого сета карточка — главный элемент с крупными цифрами; матч без очков говорит `No points
+played.` Раунд сохраняет крупные плитки `Points`, исход и `18 of 32 rallies played.` `✓ Saved`
+(на 1,5 с после правки — `Changes saved`) стоит после счёта мелкой строкой. Действия S10: `Play again`
+(primary), `New game`, пояснение `Starting a new game will keep this result for viewing only.`, `Resume
+game`, `Edit result`, `About`. Play again открывает Setup того же формата в том же стеке с правилами и
+порядком подачи этого результата и подающим, начавшим игру; над строками `Same rules and serving as your
+last game. Check who serves first.` Back возвращает к редактируемому результату, ничего не создав.
+
 ## Components and system controls
 
 | Component | Variants | Required states | Notes |
@@ -649,7 +691,10 @@ in block`, `Changes saved`, тексты E2 из таблицы ошибок и 
 format?`; счёт в них (`40–40`, `7–5`) держится на одной строке word joiner, `5 of 10 rallies played.`
 имеет plural. M07 добавил тексты завершения: `Finish this game?`, `Your current score will be saved.`,
 `Keep playing`, `Saved`, `Incomplete`, `No points played.`, `Ended early`, `US ahead`, `Points level`, `Edit
-result`, `Resume game`, `Last result`, `Game resumed`, `Delete local data?` и пояснения S10/S15.
+result`, `Resume game`, `Last result`, `Game resumed`, `Delete local data?` и пояснения S10/S15. M11 добавил
+`Keep your focus on the game`, `Unlimited Match & Americano scoring.`, `One payment. No subscription.`,
+`Play again`, `Sets won`, `Set 2 · Incomplete` (номер — параметр) и `Same rules and serving as your last
+game. Check who serves first.`
 
 ## Appearance and device coverage
 
@@ -693,6 +738,10 @@ hardware-проверки на утверждённой ОС. Не обещат�
 - Legal/support только после оплаты, на другой платформе или в неоткрывающемся внешнем URL.
 - Фиктивная HealthKit-тренировка ради активного экрана или новый сбор данных без решения.
 - Rating prompt для этого Watch-only продукта и development premium override в Release/UI.
+- Автоматическое предложение покупки после результата, вторичный тариф или подписка (M11).
+- Крупный бессодержательный итог `0–0 Sets` или объявление победителя обычного матча (M11).
+- Демонстрация, которая пишет в реальные данные, расходует лимит или выглядит как реальная игра без метки `Demo` (M12).
+- Счёт на циферблате без общей базы и гарантии актуальности (M14).
 
 ## Unresolved design decisions
 
@@ -716,6 +765,7 @@ PRODUCT H2 закрыт 2026-10-20: сет до шести геймов, тай-
 | --- | --- | --- | --- | --- |
 | PRODUCT H1 (closed) | Публичные реквизиты и retention утверждены 2026-10-21 | Dzmitry Dziachenka; dzmitry.dziachenka@gmail.com; padel-score-wrist.pages.dev; см. PRODUCT | M09 проверяет About/legal/support | Решено владельцем |
 | PRODUCT H4 (closed) | Пять завершённых игр, затем lifetime unlock; ledger сохраняется | Утверждено 2026-10-21 | M08 реализует и проверяет | Решено владельцем |
+| План покупки (closed) | История для всех, фиксированный Match-демо, M11–M15 до M10 | Утверждено 2026-10-22, [план](purchase-appeal-plan.md) | M11–M15 реализуют и проверяют | Решено владельцем |
 
 Общее одобрение получено; до выбора зависимых H-решений соответствующая нативная
 реализация не начинается.
