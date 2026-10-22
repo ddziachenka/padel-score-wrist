@@ -32,7 +32,9 @@ def verify(built_app=None):
         return {objects[c]["name"]: objects[c]["buildSettings"]
                 for c in objects[target["buildConfigurationList"]]["buildConfigurations"]}
     app_settings = configurations(app)
-    for name, settings in configurations(widget).items():
+    widget_settings = configurations(widget)
+    require(widget_settings.keys() == app_settings.keys(), "extension must build in every app configuration")
+    for name, settings in widget_settings.items():
         for key in ("MARKETING_VERSION", "CURRENT_PROJECT_VERSION", "WATCHOS_DEPLOYMENT_TARGET"):
             require(settings[key] == app_settings[name][key], f"{name} {key} differs from Watch app")
         require(settings["WATCHOS_DEPLOYMENT_TARGET"] == "10.0", "minimum watchOS must stay 10")

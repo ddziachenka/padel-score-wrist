@@ -56,6 +56,9 @@ final class LauncherUITests: XCTestCase {
         XCTAssertEqual(value.value as? String, "4")
         attachScreenshot("Activation preserves the nested draft")
         app.goBack()
+        // Changing games requires the person to confirm the serving context before saving.
+        app.buttons["editor.serving"].scrollToAndTap(in: app)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
         app.buttons["editor.save"].scrollToAndTap(in: app)
         let games = app.descendants(matching: .any)["game.games"]
         XCTAssertTrue(games.waitForExistence(timeout: 5))
