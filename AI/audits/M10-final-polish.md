@@ -1,7 +1,7 @@
 # Final Product Polish audit — M10
 
 **Policy status:** current
-**Candidate:** pending; baseline e009fdb9b9565f241bac3db724d7bd54d9e9c50b
+**Candidate:** pending; baseline e009fdb9b9565f241bac3db724d7bd54d9e9c50b; first checkpoint f1f96d99aa62151b4ac0336685ce998f24167908
 **Milestone:** M10
 **Distribution channel:** app-store
 **Coverage result:** INCOMPLETE
@@ -31,7 +31,8 @@ This is Builder self-review, not independent release approval.
 ## Functional Correctness / Bug Hunt
 
 - IN_PROGRESS — first domain. Read audit-functional.md, product/architecture/design, predecessor contracts and handoffs. Source checks of session commands, storage publication/recovery, correction drafts and entitlement ownership found no reproduced blocking issue so far. This is not a completed domain verdict.
-- Evidence: `make fast` runs the complete unchanged shared scheme (FAST_TEST_ARGUMENTS empty). Console `.artifacts/M10-final-polish/fast.log`; report `.artifacts/fast/20261022T084728Z-80046/report.md`. Generic Debug build-for-testing into `/private/tmp/padel-m10-minimum-derived` succeeded, exit 0 (`minimum-build.log`, `minimum-build.exit`). That build alone does not prove watchOS 10 compatibility.
+- Baseline `make fast` finished with make exit 2 / XCTest 65: 387 total, 386 passed, 1 failed, 0 skipped/expected failures. Failure: CorrectionUITests/testAmericanoTotalsBlockAndServingAreCorrected, expected transient Changes saved but second label query observed Americano. Activity timestamps show first query at 1792659518.967, second at .983, assertion at .992: the five-second loop exited immediately, then the assertion queried again across message expiry. This establishes a test observation race, not failed persistence. Fixed shared waitForLabel to assert its cached actual observation; no assertion/timeout/selector removed or relaxed. Full corrected run pending.
+- Evidence: original `make fast` ran the complete unchanged shared scheme (FAST_TEST_ARGUMENTS empty). Console `.artifacts/M10-final-polish/fast.log`; report `.artifacts/fast/20261022T084728Z-80046/report.md`. Generic Debug build-for-testing into `/private/tmp/padel-m10-minimum-derived` succeeded, exit 0 (`minimum-build.log`, `minimum-build.exit`). That build alone does not prove watchOS 10 compatibility.
 - Owner physical check requested in Russian: scoring and haptics, exact Undo, Crown does not score, wrist-down/wake and lock/unlock preserve score/server, focused Crown edit and discard. Owner answered “все сработало” for all five requested checks. This is manual owner-observed evidence, not an automated screenshot or test count. On-court context was not stated; explicitly requested again. Owner subsequently answered “все работает” for finish cancellation, finish/Saved/haptic, resume and Americano 4/2 draw/extra-point rejection/Undo. Owner asked to continue on simulator and will test hardware separately later. Court context remains unstated; spoken VoiceOver journeys are not performed. Structured observation: `.artifacts/M10-final-polish/physical-observations.json`.
 
 ## Coverage: functional
@@ -89,7 +90,11 @@ Pending: enter typed rows only after the assigned checks have evidence.
 
 | ID | Domain | Severity | Reproduction and impact | Correction or disposition | Status |
 | --- | --- | --- | --- | --- | --- |
-| — | — | — | — | — | none |
+| M10-T1 | Functional verification | P1 | Shared waitForLabel observes a transient expected label, then re-queries it for XCTAssertEqual after expiry. Baseline full run fails at Americano correction. | Cache and assert the label observation that terminated the wait; same expected label/deadline and failure behavior. Current rerun pending. | correction under validation |
+| M10-P2-1 | Accessibility | P2 | Circle +/- controls do not add an Increase Contrast outline; icons retain text contrast and 44-point hit areas. Unchanged M06 source evidence. | Deferred: no loss of action identification; a border would improve consistency rather than remove a demonstrated barrier. | deferred |
+| M10-P2-2 | Accessibility | P2 | Compact Sets summary speaks each score without its set number; detailed Sets rows identify numbers. Retained M06 observation, unchanged source. | Deferred: explicit numbered detail is available; confirm actual speech/focus in the pending VoiceOver journey before changing grouping. | deferred |
+| M10-P2-3 | UI / UX | P2 | Remove a set, change format and cancel format replacement: the draft’s Restore set shortcut disappears. Whole-draft discard and post-save Undo remain. Retained M06 observation. | Deferred: recovery stays available; preserving an additional transient shortcut is not necessary to protect the saved game. | deferred |
+| M10-P2-4 | UI / UX | P2 | Largest-text collapsed result navigation title may truncate; full result meaning stays in content. Retained M07 observation. | Deferred: standard system navigation title behavior; primary result is readable. | deferred |
 
 Use `P0`, `P1`, or `P2`. Record an absent capability as `INAPPLICABLE` with a
 reason, and an out-of-scope opportunity as `FUTURE_PRODUCT_IDEA`; neither is a
@@ -123,5 +128,5 @@ change in this milestone.
 
 - Known P0/P1: assessment incomplete; no release verdict claimed.
 - Deferred P2:
-- Manual work still pending:
+- Manual work still pending: on-court readability/tapping context, spoken VoiceOver J1–J4 (including correction escape and alert/purchase focus), and unobserved physical accessibility/Always On/Low Power cases from DESIGN. Owner explicitly requested these later; the passed checks are not repeated or erased.
 - Handoff: `AI/handoffs/M10-handoff.md`

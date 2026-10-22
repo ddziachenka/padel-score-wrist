@@ -28,10 +28,14 @@ extension XCTestCase {
     @MainActor
     func waitForLabel(_ element: XCUIElement, _ label: String, timeout: TimeInterval = 5, file: StaticString = #filePath, line: UInt = #line) {
         let deadline = Date().addingTimeInterval(timeout)
-        while element.label != label, Date() < deadline {
+        var observed = element.label
+        while observed != label, Date() < deadline {
             RunLoop.current.run(until: Date().addingTimeInterval(0.1))
+            observed = element.label
         }
-        XCTAssertEqual(element.label, label, file: file, line: line)
+        // Assert the observation that ended the wait. A second accessibility query can land
+        // after a correctly observed transient message has already disappeared.
+        XCTAssertEqual(observed, label, file: file, line: line)
     }
 
     /// Taps a team as a person does after a rally and waits for the score it shows then. The pause
