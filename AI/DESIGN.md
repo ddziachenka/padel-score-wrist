@@ -714,7 +714,7 @@ PRODUCT H2 закрыт 2026-10-20: сет до шести геймов, тай-
 
 | ID | Question | Options | Blocks | Developer decision needed |
 | --- | --- | --- | --- | --- |
-| PRODUCT H1 | Публичный разработчик, сайт и контакт; имя Padel Score — Wrist выбрано | См. варианты в PRODUCT | Финальная копия About/legal/store | Да, в PRODUCT |
+| PRODUCT H1 (closed) | Публичные реквизиты и retention утверждены 2026-10-21 | Dzmitry Dziachenka; dzmitry.dziachenka@gmail.com; padel-score-wrist.pages.dev; см. PRODUCT | M09 проверяет About/legal/support | Решено владельцем |
 | PRODUCT H4 (closed) | Пять завершённых игр, затем lifetime unlock; ledger сохраняется | Утверждено 2026-10-21 | M08 реализует и проверяет | Решено владельцем |
 
 Общее одобрение получено; до выбора зависимых H-решений соответствующая нативная

@@ -1,7 +1,7 @@
 # M09 — Legal and Support
 
 **ID:** M09
-**Status:** BLOCKED
+**Status:** IN_PROGRESS
 **Depends on:** M08
 **Validation:** make milestone ID=M09
 **Handoff:** AI/handoffs/M09-handoff.md
@@ -48,3 +48,11 @@ Watches, approved H1 and Cloudflare publication, and prohibited App Review. The
 site and bundled legal/support content are prepared under that instruction. This
 is not a dependency waiver: M08 remains BLOCKED, so M09 cannot enter its final
 REVIEW/DONE gate until M08 is complete. See its handoff for targeted evidence.
+
+## Completion session — 2026-10-22
+
+M08 is now DONE with clean gate 387/387 and the owner-approved physical Watch
+matrix recorded in `AI/handoffs/M08-local-repair-handoff.md`. That resolves M09's
+recorded dependency blocker. This session preserves the prepared implementation
+and tests, checks the live public pages and running legal routes, reviews the
+complete prepared scope, and runs M09's own clean gate before recording DONE.
