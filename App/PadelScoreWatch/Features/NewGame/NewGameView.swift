@@ -29,6 +29,14 @@ struct NewGameView: View {
                     .accessibilityHint(Text("Opens a short example. Nothing is saved."))
                     .accessibilityIdentifier("home.demo")
 
+                    NavigationLink(value: NewGameFlow.Route.history) {
+                        Text("History")
+                            .font(Typography.body)
+                            .foregroundStyle(Palette.textPrimary)
+                    }
+                    .buttonStyle(RowButtonStyle())
+                    .accessibilityIdentifier("home.history")
+
                     NavigationLink(value: NewGameFlow.Route.about) {
                         Text("About")
                             .font(Typography.body)
@@ -107,6 +115,8 @@ struct NewGameDestination: View {
             AboutView(usage: store.session.usage, tryScoreboard: { flow.path.append(.demo) }, settings: { flow.path.append(.settings) })
         case .demo:
             ScoreboardDemoView(haptics: haptics)
+        case .history:
+            HistoryView(store: store)
         case .settings:
             LocalDataSettingsView(store: store)
         }

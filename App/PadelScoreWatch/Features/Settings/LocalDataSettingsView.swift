@@ -71,7 +71,7 @@ struct LocalDataSettingsView: View {
             }
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("This removes your game, last result and saved settings from this Watch. Your free-game count and purchase are kept.")
+            Text("This removes your game, last result, finished-game history and saved settings from this Watch. Your free-game count and purchase are kept.")
         }
         .onChange(of: settings.failedDeletes) {
             AccessibilityNotification.Announcement(
@@ -101,6 +101,8 @@ extension LocalDataSettings.Item {
             LocalizedStringResource("The game being played", comment: "Settings: local data kept on the Watch, the game that is being played and its undo history.")
         case .lastResult:
             LocalizedStringResource("The last result", comment: "Settings: local data kept on the Watch, the result of the last finished game.")
+        case .finishedGames:
+            LocalizedStringResource("Finished-game history", comment: "Settings: all compact completed results stored on this Watch.")
         case .savedSettings:
             LocalizedStringResource("Settings saved for the next game", comment: "Settings: local data kept on the Watch, the rules and serving offered when the next game is set up.")
         }

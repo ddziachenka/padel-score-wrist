@@ -15,6 +15,7 @@ enum GameRoute: Hashable, Sendable {
     case finish
     /// The previous game's result, which can only be viewed.
     case lastResult
+    case history
     /// Choosing the next game's format, from the result.
     case formats
     /// A screen of setting up the next game, kept by its flow.
@@ -41,7 +42,7 @@ enum GameRoute: Hashable, Sendable {
     /// A screen of a correction.
     var isEditor: Bool {
         switch self {
-        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .formats, .newGame: false
+        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .formats, .newGame: false
         default: true
         }
     }
@@ -193,7 +194,8 @@ struct LiveScoreView: View {
                         newGame: startNewGame,
                         resume: resume,
                         edit: { edit(.editScore) },
-                        about: { path.append(.about) }
+                        about: { path.append(.about) },
+                        history: { path.append(.history) }
                     )
                     .transition(.opacity)
                 } else if let board = live.board {
@@ -230,6 +232,8 @@ struct LiveScoreView: View {
             }
         case .finish:
             FinishView(live: live, keepPlaying: { path.removeAll() }, finished: { path.removeAll() })
+        case .history:
+            HistoryView(store: store)
         case .lastResult:
             if let earlier = live.earlierResult {
                 EarlierResultView(game: earlier)
@@ -319,7 +323,7 @@ struct LiveScoreView: View {
             )
         case .format:
             FormatEditor(editor: editor)
-        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .formats, .newGame:
+        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .formats, .newGame:
             EmptyView()
         }
     }

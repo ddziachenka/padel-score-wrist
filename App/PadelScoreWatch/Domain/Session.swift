@@ -6,15 +6,12 @@ struct CommandID: Hashable, Sendable {
     let rawValue: UUID
 }
 
-/// Everything kept between launches: the game being played or its result, the result
-/// before it, the settings offered for the next game, and the free use counted so far.
-/// There is no catalogue of earlier games.
+/// The current game with Undo, compact finished results, recent settings and counted free use.
 struct Session: Hashable, Sendable, Codable {
     /// The game being played, or its result while that can still be corrected and resumed.
     var current: GameRecord?
-    /// The result of the game that finished before `current` started. It can only be
-    /// viewed, and it stops being the last result once `current` finishes.
-    var previousResult: GameSnapshot?
+    /// Oldest completion first. Entries carry no Undo chain.
+    var archive: [ArchivedResult]
     var recentSettings: RecentSettings
     var usage: UsageLedger
     /// Counts the accepted requests. It only grows, also when undo restores an earlier
@@ -25,7 +22,7 @@ struct Session: Hashable, Sendable, Codable {
 
     static let empty = Session(
         current: nil,
-        previousResult: nil,
+        archive: [],
         recentSettings: .none,
         usage: .empty,
         revision: 0,
@@ -48,6 +45,8 @@ struct HistoryEntry: Hashable, Sendable, Codable {
     let revision: Int
     /// The complete game before the change, without history of its own.
     let before: GameSnapshot
+    /// Only the timestamp of this game, so Undo never copies the archive.
+    var beforeFinishedAt: Date? = nil
 }
 
 /// The changes to a game that undo takes back.
@@ -59,7 +58,28 @@ enum GameChange: String, Hashable, Sendable, Codable {
     case resume
 }
 
+/// A real finished game, identified independently of the current editable game.
+struct ArchivedResult: Hashable, Sendable, Codable, Identifiable {
+    var game: GameSnapshot
+    var finishedAt: Date?
+    var id: GameID { game.id }
+}
+
 extension Session {
+    /// Compatibility view of the latest other result; never encoded as another copy.
+    var previousResult: GameSnapshot? {
+        archive.last { $0.id != current?.game.id }?.game
+    }
+
+    /// Dated completions newest first; migrated undated results follow in completion order.
+    var finishedGames: [ArchivedResult] {
+        archive.enumerated().sorted {
+            let left = $0.element.finishedAt ?? .distantPast
+            let right = $1.element.finishedAt ?? .distantPast
+            return left == right ? $0.offset > $1.offset : left > right
+        }.map(\.element)
+    }
+
     /// The game being played, if there is one.
     var activeGame: GameSnapshot? {
         guard let game = current?.game, game.status == .active else { return nil }

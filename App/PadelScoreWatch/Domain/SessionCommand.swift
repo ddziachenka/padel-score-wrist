@@ -1,3 +1,5 @@
+import Foundation
+
 /// A change a person asks for. It applies to the whole session at once, or not at all.
 enum SessionCommand: Hashable, Sendable {
     /// Starts a new game with this identity. A game being played is never replaced; a
@@ -66,14 +68,30 @@ extension Session {
         _ command: SessionCommand,
         id: CommandID,
         expectedRevision: Int,
-        access: any AccessPolicy
+        access: any AccessPolicy,
+        timestamp: Date? = nil
     ) throws(SessionError) -> SessionTransition {
         if id == lastCommand { return SessionTransition(session: self, outcome: .alreadyApplied) }
         guard expectedRevision == revision else { throw .staleRevision }
         var next = self
         next.revision += 1
         next.lastCommand = id
+        let undoneDate = command == .undo ? current?.history.last?.beforeFinishedAt : nil
         let outcome = try next.apply(command, id: id, access: access)
+        if command != .deleteLocalData, let game = next.current?.game {
+            let existing = archive.first { $0.id == game.id }
+            let date = command == .undo ? undoneDate : (existing != nil ? existing?.finishedAt : timestamp)
+            if game.status == .finished {
+                let entry = ArchivedResult(game: game, finishedAt: date)
+                if let index = next.archive.firstIndex(where: { $0.id == game.id }) {
+                    next.archive[index] = entry
+                } else {
+                    next.archive.append(entry)
+                }
+            } else if existing != nil {
+                next.archive.removeAll { $0.id == game.id }
+            }
+        }
         return SessionTransition(session: next, outcome: outcome)
     }
 
@@ -99,7 +117,7 @@ extension Session {
             return try undo()
         case .deleteLocalData:
             current = nil
-            previousResult = nil
+            archive = []
             recentSettings = .none
             return .deleted
         }
@@ -109,7 +127,6 @@ extension Session {
         guard activeGame == nil else { throw .gameInProgress }
         guard access.allowsNewGame(after: usage) else { throw .newGameNotAllowed }
         let format = try setup.startingFormat()
-        if let finished = current?.game { previousResult = finished }
         current = GameRecord(game: GameSnapshot(id: id, format: format), history: [])
         recentSettings.remember(setup)
         count(.gameStarted(id), under: access)
@@ -210,7 +227,7 @@ extension Session {
         access: any AccessPolicy
     ) {
         var updated = record
-        updated.history.append(HistoryEntry(change: change, command: id, revision: revision, before: record.game))
+        updated.history.append(HistoryEntry(change: change, command: id, revision: revision, before: record.game, beforeFinishedAt: archive.first { $0.id == record.game.id }?.finishedAt))
         updated.game = game
         current = updated
         if record.game.status == .active, game.status == .finished {

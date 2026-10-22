@@ -146,6 +146,7 @@ struct EntitlementStoreTests {
         let relaunched = SessionStore(repository: folder.repository(), accessProvider: { entitlement.access })
         await relaunched.load()
         #expect(relaunched.session.usage.countedGames.count == 5)
+        #expect(relaunched.session.finishedGames.count == 5, "all results remain free after the limit")
         try await relaunched.perform(.deleteLocalData, id: .fresh(), revision: relaunched.session.revision)
         await #expect(throws: SessionStoreError.rejected(.newGameNotAllowed)) {
             try await relaunched.perform(.start(.match(), id: .number(6)), id: .fresh(), revision: relaunched.session.revision)
@@ -158,5 +159,6 @@ struct EntitlementStoreTests {
         try await relaunched.perform(.awardPoint(to: .us), id: .fresh(), revision: relaunched.session.revision)
         try await relaunched.perform(.finish, id: .fresh(), revision: relaunched.session.revision)
         #expect(relaunched.session.usage.countedGames.count == 6)
+        #expect(relaunched.session.finishedGames.count == 1, "revocation leaves the new result available")
     }
 }

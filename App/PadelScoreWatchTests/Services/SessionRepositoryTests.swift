@@ -182,13 +182,13 @@ final class SessionRepositoryTests {
     @Test("A backup that cannot be used is never restored")
     func unusableBackupNotRestored() async throws {
         var newer = SessionFile(session: SessionFixtures.match)
-        newer.schemaVersion = 2
+        newer.schemaVersion = 3
         try folder.write(Data("{".utf8), to: folder.location.backup)
         #expect(await folder.repository().load() == .unreadable(.damaged))
 
         try folder.write(Data("{".utf8), to: folder.location.main)
         try folder.write(try newer.encoded(), to: folder.location.backup)
-        #expect(await folder.repository().load() == .unreadable(.newerVersion(2)))
+        #expect(await folder.repository().load() == .unreadable(.newerVersion(3)))
         #expect(folder.fileNames == ["session.json", "session-backup.json"])
     }
 
@@ -203,12 +203,12 @@ final class SessionRepositoryTests {
     @Test("A file from a newer version of the app is left exactly as it is")
     func newerVersionUntouched() async throws {
         var newer = SessionFile(session: SessionFixtures.match)
-        newer.schemaVersion = 2
+        newer.schemaVersion = 3
         let data = try newer.encoded()
         try folder.write(data, to: folder.location.main)
         let repository = folder.repository()
 
-        #expect(await repository.load() == .unreadable(.newerVersion(2)))
+        #expect(await repository.load() == .unreadable(.newerVersion(3)))
         await #expect(throws: SessionRepositoryError.notLoaded) { try await repository.save(.empty, notice: nil) }
         #expect(folder.contents(of: folder.location.main) == data)
         #expect(folder.fileNames == ["session.json"])
@@ -291,5 +291,74 @@ final class SessionRepositoryTests {
 
         #expect(steps > 500)
         #expect(await folder.repository().load() == .loaded(session, notice: nil))
+    }
+}
+
+
+extension SessionRepositoryTests {
+    @Test("Version 1 migrates atomically and keeps the original bytes as backup", arguments: FaultyFileSystem.saveFaults)
+    func migrationFailure(fault: FaultyFileSystem.Fault) async throws {
+        let original = Data(SessionFixtureFiles.matchVersion1.utf8)
+        try folder.write(original, to: folder.location.main)
+        let files = FaultyFileSystem(location: folder.location)
+        files.inject(fault)
+        #expect(await folder.repository(files: files).load() == .unreadable(.unavailable))
+        #expect(folder.contents(of: folder.location.main) == original || folder.contents(of: folder.location.backup) == original)
+        files.repair()
+        #expect(await folder.repository().load() == .loaded(SessionFixtures.match, notice: nil))
+        #expect(folder.contents(of: folder.location.backup) == original)
+        #expect(folder.contents(of: folder.location.main).map(SessionFile.needsMigration) == false)
+    }
+
+    @Test("A damaged main restores a version 1 backup, migrating it with a visible notice")
+    func version1BackupRecovery() async throws {
+        try folder.write(Data(SessionFixtureFiles.matchVersion1.utf8), to: folder.location.backup)
+        try folder.write(Data("damaged".utf8), to: folder.location.main)
+        var restored = SessionFixtures.match
+        restored.usage = restored.usage.uncertain()
+        #expect(await folder.repository().load() == .loaded(restored, notice: .restoredFromBackup))
+        #expect(folder.reading(folder.location.main) == .valid(SessionFile(session: restored, notice: .restoredFromBackup)))
+        #expect(folder.contents(of: folder.location.damaged) == Data("damaged".utf8))
+    }
+
+    @Test("Deletion failures recover every original file, including backup and damaged copies", arguments: [
+        FaultyFileSystem.Fault.writeFails, .writeTorn, .removeFails, .publishFails, .deleteCommitFails, .damagedRemoveFails,
+    ])
+    func deletionIsTransactional(fault: FaultyFileSystem.Fault) async throws {
+        let files = FaultyFileSystem(location: folder.location)
+        let repository = try await savedTwice(files: files)
+        try folder.write(Data("damaged original".utf8), to: folder.location.damaged)
+        let originals = [folder.location.main, folder.location.backup, folder.location.damaged].map { folder.contents(of: $0) }
+        files.inject(fault)
+        await #expect(throws: (any Error).self) { try await repository.saveErasingCopies(later.after(.deleteLocalData)) }
+        #expect(await folder.repository().load() == .loaded(later, notice: nil))
+        #expect([folder.location.main, folder.location.backup, folder.location.damaged].map { folder.contents(of: $0) } == originals)
+        files.repair()
+        try await repository.saveErasingCopies(later.after(.deleteLocalData))
+        #expect(folder.fileNames == ["session.json"])
+    }
+
+    @Test("500 compact results save and open promptly without duplicating archives into Undo")
+    func fiveHundredResults() async throws {
+        var session = try Session.empty.after(.start(.match(), id: .number(501)), .awardPoint(to: .us))
+        session.archive = (1...500).map { number in
+            ArchivedResult(game: GameSnapshot(id: .number(number), format: .match(.fixture(games: SetGames(us: 3, them: 2))), status: .finished),
+                           finishedAt: Date(timeIntervalSinceReferenceDate: Double(number)))
+        }
+        let repository = folder.repository()
+        _ = await repository.load()
+        let clock = ContinuousClock()
+        let saveTime = try await clock.measure { try await repository.save(session, notice: nil) }
+        var loaded = LoadResult.empty
+        let loadTime = await clock.measure { loaded = await folder.repository().load() }
+        #expect(loaded == .loaded(session, notice: nil))
+        let size = try #require(folder.contents(of: folder.location.main)).count
+        print("History 500: \(size) bytes; save \(saveTime); load \(loadTime)")
+        #expect(saveTime < .seconds(1))
+        #expect(loadTime < .seconds(1))
+        #expect(size < 500_000)
+        let undoData = try JSONEncoder().encode(session.current!.history)
+        #expect(undoData.count < 2_000, "one Undo entry contains only its game and timestamp")
+        #expect(try session.after(.undo).archive == session.archive)
     }
 }

@@ -13,6 +13,7 @@ final class LocalDataSettings {
     enum Item: Hashable, Sendable, CaseIterable {
         case gameInProgress
         case lastResult
+        case finishedGames
         case savedSettings
     }
 
@@ -39,6 +40,7 @@ final class LocalDataSettings {
         var items: [Item] = []
         if session.activeGame != nil { items.append(.gameInProgress) }
         if session.lastResult != nil { items.append(.lastResult) }
+        if !session.archive.isEmpty { items.append(.finishedGames) }
         if session.recentSettings != .none { items.append(.savedSettings) }
         return items
     }

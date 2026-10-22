@@ -9,8 +9,8 @@ enum SessionIssue: Hashable, Sendable {
     /// The earlier state at this position of the history cannot be played, belongs to
     /// another game, or is out of order.
     case historyEntryInvalid(index: Int)
-    /// The previous result is not a valid finished game, or no game follows it.
-    case previousResultInvalid
+    /// A duplicate, invalid result, or an archive inconsistent with the current game.
+    case archiveInvalid
     /// The remembered americano rules cannot start a round.
     case recentSettingsInvalid
 }
@@ -34,9 +34,12 @@ extension Session {
                 earlierRevision = entry.revision
             }
         }
-        if let previous = previousResult,
-           previous.status != .finished || !previous.format.isValid || current == nil {
-            issues.append(.previousResultInvalid)
+        let ids = archive.map(\.id)
+        if Set(ids).count != ids.count || archive.contains(where: {
+            $0.game.status != .finished || !$0.game.format.isValid
+                || ($0.id == current?.game.id && $0.game != current?.game)
+        }) || (current?.game.status == .finished && !archive.contains(where: { $0.game == current?.game })) {
+            issues.append(.archiveInvalid)
         }
         if let rules = recentSettings.americano, rules.totalRallies < 1 || rules.ralliesPerServer < 1 {
             issues.append(.recentSettingsInvalid)

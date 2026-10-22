@@ -2,8 +2,7 @@ import SwiftUI
 
 /// The last result (S10): how the game finished, the score as it stood, and that it is saved. From
 /// here the same game is played again, a new game starts, the game resumes exactly where it stopped,
-/// or the result is corrected. Once the next game starts this result can only be viewed, until that
-/// game finishes in its place.
+/// or the result is corrected. Once the next game starts this result remains read-only in History.
 struct ResultView: View {
     let live: LiveScore
     let game: GameSnapshot
@@ -12,6 +11,7 @@ struct ResultView: View {
     let resume: () -> Void
     let edit: () -> Void
     let about: () -> Void
+    let history: () -> Void
 
     var body: some View {
         let summary = ResultSummary(game: game)
@@ -43,6 +43,9 @@ struct ResultView: View {
                     Button("Edit result", action: edit)
                         .buttonStyle(SecondaryButtonStyle())
                         .accessibilityIdentifier("result.edit")
+                    Button("History", action: history)
+                        .buttonStyle(SecondaryButtonStyle())
+                        .accessibilityIdentifier("result.history")
                     Button(action: about) {
                         Text("About")
                             .font(Typography.body)
@@ -115,7 +118,7 @@ struct EarlierResultView: View {
                     .padding(.horizontal, Spacing.xs)
                     .accessibilityAddTraits(.isHeader)
                 ResultSummaryView(summary: summary)
-                Caption("Kept for viewing until the game you’re playing finishes.")
+                Caption("All finished games are kept in History.")
                     .padding(.top, Spacing.xs)
             }
         }

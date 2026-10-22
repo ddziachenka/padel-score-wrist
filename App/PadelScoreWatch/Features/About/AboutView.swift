@@ -86,16 +86,16 @@ enum LegalPage: String, CaseIterable, Identifiable {
         switch self {
         case .privacy:
             [
-                ("On this Watch", "Your current game, latest result, Undo history, settings, and completed-free-game count stay in local app storage. There is no account, advertising, analytics SDK, tracking, or developer backend. Game data is not sent to the developer."),
+                ("On this Watch", "Your current game, finished-game history, Undo history, settings, and completed-free-game count stay in local app storage. There is no account, advertising, analytics SDK, tracking, or developer backend. Game data is not sent to the developer."),
                 ("Apple services", "Apple handles prices, payment, restoration, and refunds. StoreKit provides verified purchase information. Apple may process system diagnostics according to your settings. The app does not request health, location, camera, microphone, or contacts access."),
-                ("Deletion", "Settings → Delete local data removes games, results, Undo history, and game settings after confirmation. It keeps the free-game count and does not cancel or refund a purchase. Reinstalling or changing Watches may lose local data. There is no developer backup service; device backups follow your Apple settings."),
+                ("Deletion", "Settings → Delete local data removes games, finished-game history, Undo history, and game settings after confirmation. It keeps the free-game count and does not cancel or refund a purchase. Reinstalling or changing Watches may lose local data. There is no developer backup service; device backups follow your Apple settings."),
                 ("Website and email", "The static support site is hosted by Cloudflare, which processes request data to deliver and protect it. There are no site forms or analytics scripts. Email and attachments you send are used by Dzmitry Dziachenka to answer your request and deleted within 90 days after closure, unless a legal obligation or active dispute requires longer retention."),
                 ("Policy updates", "Updated 21 October 2026. Changes to these practices will be reflected in the public policy. Contact the developer below with privacy questions or to request deletion of support correspondence.")
             ]
         case .terms:
             [
                 ("License", "Apple’s Standard End User License Agreement applies. Its public address is shown below; these product details do not replace that license."),
-                ("Five free games", "The first five completed games are free automatically. Starting another game after that requires a lifetime unlock. Your current game and last result remain available without purchasing."),
+                ("Five free games", "The first five completed games are free automatically. Starting another game after that requires a lifetime unlock. Your current game and all finished-game history remain available without purchasing."),
                 ("Lifetime unlock", "One purchase unlocks unlimited Match and Americano games in this app, with no recurring payments. Access shows the App Store’s current local price before confirmation. Apple handles payment. Pending or unverified purchases do not unlock access."),
                 ("Restore and refunds", "Use About → Access → Restore purchases with the Apple Account used to buy. A connection is needed. Apple handles refunds at reportaproblem.apple.com. A refunded or revoked purchase may remove unlimited access. Deleting local game data does not reset the free-game count or refund a purchase."),
                 ("Using the app", "Check the score and serving order during play. Undo and correction controls can fix entries. This is a scoring aid, not an official officiating or tournament service. Saved games are local and may be lost if the app is removed or Watches are changed."),
@@ -105,7 +105,8 @@ enum LegalPage: String, CaseIterable, Identifiable {
             [
                 ("Scoring", "Use Undo for a mistaken tap, or the game menu for corrections. Confirm the serving order before a new set. Reopen the app to return to a saved game. If saving fails, free space if needed and retry."),
                 ("Purchases", "If a price cannot load, check the Watch’s connection and tap Retry in Access. Already paid? Use About → Access → Restore purchases with the same Apple Account. Pending purchases must be approved. Apple handles refund requests at reportaproblem.apple.com."),
-                ("Delete local data", "Settings → Delete local data removes games, results, Undo history, and saved settings after confirmation. It preserves the completed-free-game count and does not cancel the purchase. There is no developer recovery service."),
+                ("History", "Open History from New game, your result, or the game menu. All finished games stay on this Watch, newest first, and are free to view. Only the current result can be edited or resumed. There is no sync or export."),
+                ("Delete local data", "Settings → Delete local data removes games, finished-game history, Undo history, and saved settings after confirmation. It preserves the completed-free-game count and does not cancel the purchase. There is no developer recovery service."),
                 ("Contact the developer", "Email Dzmitry Dziachenka at the address below. Include your Watch model, watchOS version, app version from About, steps to reproduce, and the exact error message. Never send passwords, verification codes, or payment details. Replies are best effort, without a guaranteed response time."),
                 ("Support privacy", "Email and attachments are used only to answer your request and deleted within 90 days after closure, unless a legal obligation or active dispute requires longer retention. Send only what is needed to explain the issue.")
             ]

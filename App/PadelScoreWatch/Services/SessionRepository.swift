@@ -13,6 +13,10 @@ struct SessionFileLocation: Hashable, Sendable {
     /// Where a new file is written before it is moved into place.
     var temporary: URL { file("session.json.tmp") }
 
+    /// A durable rollback record, removed last to commit a deletion.
+    var deletionJournal: URL { file("deletion-rollback.json") }
+    var deletionTemporary: URL { file("deletion-rollback.json.tmp") }
+
     private func file(_ name: String) -> URL {
         directory.appending(path: name, directoryHint: .notDirectory)
     }
@@ -61,6 +65,10 @@ actor SessionRepository {
     }
 
     func load() -> LoadResult {
+        do { try recoverDeletion() } catch {
+            canSave = false
+            return .unreadable(.unavailable)
+        }
         let result = read()
         switch result {
         case .empty, .loaded: canSave = true
@@ -71,16 +79,53 @@ actor SessionRepository {
 
     func save(_ session: Session, notice: StorageNotice?) throws {
         guard canSave else { throw SessionRepositoryError.notLoaded }
+        try recoverDeletion()
         try write(SessionFile(session: session, notice: notice), keepingBackup: mainIsLatest)
     }
 
-    /// Saves the session left after deleting local data. The backup and any damaged copy go
-    /// first, so no copy of the deleted games remains.
+    /// A deletion commits only when its durable rollback record is removed. Until then,
+    /// a failure or termination restores every original file, including recovery copies.
     func saveErasingCopies(_ session: Session) throws {
         guard canSave else { throw SessionRepositoryError.notLoaded }
+        try recoverDeletion()
+        let originals = try [location.main, location.backup, location.damaged, location.temporary].map {
+            DeletionCopy(name: $0.lastPathComponent, data: try files.contents(of: $0))
+        }
+        try files.createDirectory(location.directory)
+        try files.writeDurably(try JSONEncoder().encode(originals), to: location.deletionTemporary)
+        try files.move(location.deletionTemporary, to: location.deletionJournal)
+        try files.writeDurably(try SessionFile(session: session).encoded(), to: location.temporary)
         try files.removeIfPresent(location.backup)
         try files.removeIfPresent(location.damaged)
-        try write(SessionFile(session: session), keepingBackup: false)
+        try files.move(location.temporary, to: location.main)
+        try files.removeIfPresent(location.deletionJournal)
+        mainIsLatest = true
+    }
+
+    private struct DeletionCopy: Codable {
+        let name: String
+        let data: Data?
+    }
+
+    private func recoverDeletion() throws {
+        guard let journal = try files.contents(of: location.deletionJournal) else {
+            // An interrupted journal write preceded every destructive step.
+            try files.removeIfPresent(location.deletionTemporary)
+            return
+        }
+        let copies = try JSONDecoder().decode([DeletionCopy].self, from: journal)
+        let targets = [location.main, location.backup, location.damaged, location.temporary]
+        guard copies.map(\.name) == targets.map(\.lastPathComponent) else { throw SessionRepositoryError.notLoaded }
+        for (copy, target) in zip(copies, targets) {
+            if let data = copy.data {
+                try files.writeDurably(data, to: location.deletionTemporary)
+                try files.move(location.deletionTemporary, to: target)
+            } else {
+                try files.removeIfPresent(target)
+            }
+        }
+        try files.removeIfPresent(location.deletionJournal)
+        mainIsLatest = copies.first?.data != nil
     }
 
     /// Starts again without a game after no session could be read. The newest unreadable
@@ -124,13 +169,22 @@ actor SessionRepository {
             switch SessionFile.read(data) {
             case .valid(let file):
                 mainIsLatest = true
-                return .loaded(file.session, notice: file.notice)
+                return loaded(file, from: data, keepingBackup: true)
             case .newerVersion(let version):
                 return .unreadable(.newerVersion(version))
             case .damaged:
                 return recover(fromDamaged: data)
             }
         }
+    }
+
+    /// Publish migration using the ordinary atomic save, retaining the original v1 as backup.
+    private func loaded(_ file: SessionFile, from data: Data, keepingBackup: Bool) -> LoadResult {
+        if SessionFile.needsMigration(data) {
+            do { try write(file, keepingBackup: keepingBackup) }
+            catch { return .unreadable(.unavailable) }
+        }
+        return .loaded(file.session, notice: file.notice)
     }
 
     /// There is no main file: nothing was saved yet, or a save stopped after the main file
@@ -145,7 +199,7 @@ actor SessionRepository {
             return .unreadable(.unavailable)
         case .present(let data):
             switch SessionFile.read(data) {
-            case .valid(let file): return .loaded(file.session, notice: file.notice)
+            case .valid(let file): return loaded(file, from: data, keepingBackup: false)
             case .newerVersion(let version): return .unreadable(.newerVersion(version))
             case .damaged: return .unreadable(.damaged)
             }

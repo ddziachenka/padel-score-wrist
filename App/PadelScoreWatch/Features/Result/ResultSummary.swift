@@ -142,3 +142,21 @@ extension ResultSummary.Ending {
         }
     }
 }
+
+
+extension ResultSummary {
+    /// Compact US/THEM scores in set order, with points of an incomplete set in parentheses.
+    var compactScore: String {
+        if let roundPoints { return "\(roundPoints.us)–\(roundPoints.them)" }
+        var scores = finishedSets.map { "\($0.games.us)–\($0.games.them)" }
+        if let set = incompleteSet {
+            let points: String
+            switch set.points {
+            case let .game(us, them): points = "\(us.shown)–\(them.shown)"
+            case .tieBreak(let score): points = "\(score.us)–\(score.them)"
+            }
+            scores.append("\(set.games.us)–\(set.games.them) (\(points))")
+        }
+        return scores.isEmpty ? "0–0" : scores.joined(separator: " · ")
+    }
+}

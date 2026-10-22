@@ -13,6 +13,8 @@ struct UITestStore {
     enum Seed: String {
         /// Nothing saved, as on first launch.
         case empty
+        case history
+        case history500
         case freeGamesUsed
         case fifthGame
         /// An americano round and then a match were played and finished, so both formats
@@ -81,6 +83,18 @@ struct UITestStore {
         let damaged = Data("This is not a saved session.".utf8)
         switch seed {
         case .empty: break
+        case .history, .history500:
+            var session = seed == .history500 ? Self.session(for: .matchStart) ?? .empty : .empty
+            if let match = Self.session(for: .matchFinishedSets)?.current?.game,
+               let round = Self.session(for: .roundFinished)?.current?.game {
+                session.archive = (1...(seed == .history500 ? 500 : 2)).map { number in
+                    let id = GameID(rawValue: UUID(uuidString: String(format: "00000000-0000-0000-0000-%012d", number))!)
+                    return ArchivedResult(game: GameSnapshot(id: id, format: number % 2 == 1 ? match.format : round.format, status: .finished),
+                                          finishedAt: number == 1 ? nil : Date(timeIntervalSince1970: 1_792_461_600 + Double(number)))
+                }
+            }
+            session.usage = UsageLedger(countedGames: Set(session.archive.prefix(5).map(\.id)))
+            write(try? SessionFile(session: session).encoded(), to: location.main)
         case .freeGamesUsed, .fifthGame:
             var session = Self.sessionWithLastSettings() ?? .empty
             session.usage = UsageLedger(countedGames: Set((0..<4).map { _ in GameID(rawValue: UUID()) }))

@@ -16,11 +16,12 @@ enum SessionFixtures {
             )),
             id: .number(11)
         )
-        session.previousResult = GameSnapshot(
+        let previous = GameSnapshot(
             id: .number(10),
             format: .americano(.fixture(total: 16, perServer: 2, us: 9, them: 7)),
             status: .finished
         )
+        session.archive = [ArchivedResult(game: previous, finishedAt: nil)]
         session.recentSettings = RecentSettings(
             match: MatchRules(deuceRule: .advantage, setPolicy: .tieBreakAtSixAll),
             americano: AmericanoRules(totalRallies: 16, ralliesPerServer: 2),

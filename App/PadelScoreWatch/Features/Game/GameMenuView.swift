@@ -29,6 +29,11 @@ struct GameMenuView: View {
                     .buttonStyle(RowButtonStyle())
                     .accessibilityIdentifier("menu.lastResult")
                 }
+                NavigationLink(value: GameRoute.history) {
+                    rowLabel(Text("History"))
+                }
+                .buttonStyle(RowButtonStyle())
+                .accessibilityIdentifier("menu.history")
                 if let game = live.game {
                     Caption(rules(of: game))
                         .accessibilityIdentifier("game.rules")

@@ -14,6 +14,7 @@ final class NewGameFlow {
         case ralliesPerServer
         case serving
         case about
+        case history
         /// The scoreboard demo, from New game or About.
         case demo
         case settings

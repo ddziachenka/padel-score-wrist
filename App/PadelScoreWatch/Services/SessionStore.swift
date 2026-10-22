@@ -1,3 +1,4 @@
+import Foundation
 import Observation
 
 /// The single owner of the session, on the main actor. Views read the last saved session
@@ -18,6 +19,7 @@ final class SessionStore {
         let command: SessionCommand
         let id: CommandID
         let revision: Int
+        let timestamp: Date
     }
 
     private(set) var status = Status.notLoaded
@@ -30,15 +32,18 @@ final class SessionStore {
     /// accepted, so nothing is played on top of a change that was not saved.
     private(set) var failedRequest: FailedRequest?
 
+    private let now: @MainActor () -> Date
     private let repository: SessionRepository
     private let accessProvider: @MainActor () -> any AccessPolicy
 
-    init(repository: SessionRepository, access: any AccessPolicy) {
+    init(repository: SessionRepository, access: any AccessPolicy, now: @escaping @MainActor () -> Date = { Date() }) {
+        self.now = now
         self.repository = repository
         self.accessProvider = { access }
     }
 
-    init(repository: SessionRepository, accessProvider: @escaping @MainActor () -> any AccessPolicy) {
+    init(repository: SessionRepository, accessProvider: @escaping @MainActor () -> any AccessPolicy, now: @escaping @MainActor () -> Date = { Date() }) {
+        self.now = now
         self.repository = repository
         self.accessProvider = accessProvider
     }
@@ -69,9 +74,10 @@ final class SessionStore {
         guard status == .ready else { throw .notReady }
         guard !isSaving else { throw .busy }
         if let failedRequest, failedRequest.id != id { throw .unresolvedSaveFailure }
+        let timestamp = failedRequest?.timestamp ?? now()
         let transition: SessionTransition
         do {
-            transition = try session.applying(command, id: id, expectedRevision: revision, access: accessProvider())
+            transition = try session.applying(command, id: id, expectedRevision: revision, access: accessProvider(), timestamp: timestamp)
         } catch {
             throw .rejected(error)
         }
@@ -87,7 +93,7 @@ final class SessionStore {
                 try await repository.save(transition.session, notice: notice)
             }
         } catch {
-            failedRequest = FailedRequest(command: command, id: id, revision: revision)
+            failedRequest = FailedRequest(command: command, id: id, revision: revision, timestamp: timestamp)
             throw .saveFailed
         }
         failedRequest = nil

@@ -23,7 +23,7 @@ final class SessionStoreTests {
     }
 
     private func openStore(files: any StorageFileSystem = LocalFileSystem(), access: any AccessPolicy = OpenAccess()) async -> SessionStore {
-        let store = SessionStore(repository: folder.repository(files: files), access: access)
+        let store = SessionStore(repository: folder.repository(files: files), access: access, now: { Date(timeIntervalSinceReferenceDate: 123) })
         await store.load()
         return store
     }
@@ -75,7 +75,7 @@ final class SessionStoreTests {
             try await store.perform(.awardPoint(to: .us), id: .number(1), revision: saved.revision)
         }
         #expect(store.session == saved)
-        #expect(store.failedRequest == SessionStore.FailedRequest(command: .awardPoint(to: .us), id: .number(1), revision: saved.revision))
+        #expect(store.failedRequest == SessionStore.FailedRequest(command: .awardPoint(to: .us), id: .number(1), revision: saved.revision, timestamp: Date(timeIntervalSinceReferenceDate: 123)))
         #expect(!store.isSaving)
         #expect(await openStore().session == saved)
 
@@ -244,5 +244,53 @@ final class SessionStoreTests {
         #expect(store.session.usage.countedGames == [.number(1)])
         #expect(folder.fileNames == ["session.json"])
         #expect(await openStore(access: access).session == store.session)
+    }
+}
+
+
+extension SessionStoreTests {
+    @Test("A retried completion keeps its original request time, also after a partial publication failure")
+    func completionRetryTime() async throws {
+        let files = FaultyFileSystem(location: folder.location)
+        var now = Date(timeIntervalSinceReferenceDate: 100)
+        let store = SessionStore(repository: folder.repository(files: files), access: LifetimeAccess(isUnlocked: false), now: { now })
+        await store.load()
+        try await play([.start(.match(), id: .number(1)), .awardPoint(to: .us)], in: store)
+        files.inject(.publishFails)
+        await #expect(throws: SessionStoreError.saveFailed) {
+            try await store.perform(.finish, id: .number(999), revision: store.session.revision)
+        }
+        #expect(store.session.archive.isEmpty)
+        #expect(store.failedRequest?.timestamp == now)
+        now = Date(timeIntervalSinceReferenceDate: 200)
+        files.repair()
+        try await store.retryFailedRequest()
+        #expect(store.session.archive.count == 1)
+        #expect(store.session.archive[0].finishedAt == Date(timeIntervalSinceReferenceDate: 100))
+        #expect(store.session.usage.countedGames == [.number(1)])
+        #expect(await openStore().session == store.session)
+    }
+}
+
+
+extension SessionStoreTests {
+    @Test("Cancel after a deletion commit failure restores all history before another score can save")
+    func canceledDeleteRestoresArchive() async throws {
+        let files = FaultyFileSystem(location: folder.location)
+        let store = await openStore(files: files)
+        try await play([.start(.match(), id: .number(1)), .finish, .start(.match(), id: .number(2))], in: store)
+        let before = store.session
+        files.inject(.deleteCommitFails)
+        await #expect(throws: SessionStoreError.saveFailed) {
+            try await store.perform(.deleteLocalData, id: .fresh(), revision: store.session.revision)
+        }
+        #expect(store.session == before)
+        store.discardFailedRequest()
+        files.repair()
+        try await play([.awardPoint(to: .us)], in: store)
+        #expect(store.session.archive == before.archive)
+        #expect(store.session.matchState?.gameScore == .points(us: .fifteen, them: .love))
+        #expect(await openStore().session == store.session)
+        #expect(!folder.fileNames.contains("deletion-rollback.json"))
     }
 }

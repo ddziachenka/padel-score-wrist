@@ -170,3 +170,23 @@ struct ResultSummaryTests {
         }
     }
 }
+
+
+extension ResultSummaryTests {
+    @Test("History compact scores retain completed sets, incomplete games and their live points")
+    func historyMatchScore() {
+        #expect(summary(MatchState.fixture()).compactScore == "0–0")
+        #expect(summary(MatchState.fixture(completedSets: [SetGames(us: 6, them: 4)],
+                                           games: SetGames(us: 3, them: 2),
+                                           phase: .game(.points(us: .thirty, them: .fifteen)))).compactScore == "6–4 · 3–2 (30–15)")
+        #expect(summary(MatchState.fixture(completedSets: [SetGames(us: 6, them: 4), SetGames(us: 3, them: 6)],
+                                           games: SetGames(us: 6, them: 6),
+                                           phase: .tieBreak(TieBreakScore(us: 3, them: 2)))).compactScore == "6–4 · 3–6 · 6–6 (3–2)")
+    }
+
+    @Test("History compact round scores are the actual points, also for an early finish")
+    func historyRoundScore() {
+        #expect(summary(AmericanoState.fixture(total: 32, us: 18, them: 14)).compactScore == "18–14")
+        #expect(summary(AmericanoState.fixture(total: 32, us: 10, them: 8)).compactScore == "10–8")
+    }
+}

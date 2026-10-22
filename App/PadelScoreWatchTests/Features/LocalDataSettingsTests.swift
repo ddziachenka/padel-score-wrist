@@ -36,9 +36,9 @@ final class LocalDataSettingsTests {
         try await perform([.start(.match(), id: .number(1))], on: store)
         #expect(settings.items == [.gameInProgress, .savedSettings])
         try await perform([.finish], on: store)
-        #expect(settings.items == [.lastResult, .savedSettings])
+        #expect(settings.items == [.lastResult, .finishedGames, .savedSettings])
         try await perform([.start(.americano(), id: .number(2))], on: store)
-        #expect(settings.items == [.gameInProgress, .lastResult, .savedSettings])
+        #expect(settings.items == [.gameInProgress, .lastResult, .finishedGames, .savedSettings])
     }
 
     @Test("Deleting removes the game, its history, the results and the settings in one save, and keeps counted use")

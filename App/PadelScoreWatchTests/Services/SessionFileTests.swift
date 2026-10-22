@@ -5,6 +5,8 @@ import Testing
 private let fixtures: [(String, SessionFile)] = [
     (SessionFixtureFiles.matchVersion1, SessionFile(session: SessionFixtures.match)),
     (SessionFixtureFiles.americanoVersion1, SessionFixtures.americano),
+    (SessionFixtureFiles.matchVersion2, SessionFile(session: SessionFixtures.match)),
+    (SessionFixtureFiles.americanoVersion2, SessionFixtures.americano),
 ]
 
 /// A session holding every kind of saved value: a tie-break and its serving, a confirmed new
@@ -26,11 +28,12 @@ private let everyShape: SessionFile = {
         .finish,
         .resume
     )
-    session.previousResult = GameSnapshot(
+    let previous = GameSnapshot(
         id: .number(1),
         format: .match(.fixture(deuceRule: .goldenPoint, games: SetGames(us: 2, them: 0), phase: .game(.decidingPoint))),
         status: .finished
     )
+    session.archive = [ArchivedResult(game: previous, finishedAt: nil)]
     session.recentSettings = RecentSettings(
         match: MatchRules(deuceRule: .goldenPoint, setPolicy: .tieBreakAtSixAll),
         americano: AmericanoRules(totalRallies: 9, ralliesPerServer: 3),
@@ -43,18 +46,20 @@ private let everyShape: SessionFile = {
 private func json(_ text: String) -> Data { Data(text.utf8) }
 
 struct SessionFileTests {
-    @Test("Version 1 files read back exactly as the sessions they were saved from", arguments: fixtures)
+    @Test("Version 1 migration and committed version 2 fixtures preserve every session field", arguments: fixtures)
     func fixturesReadBack(text: String, expected: SessionFile) {
         #expect(SessionFile.read(json(text)) == .valid(expected))
     }
 
-    @Test("Saving writes exactly the version 1 form", arguments: fixtures)
-    func savingWritesVersion1(text: String, file: SessionFile) throws {
-        let saved = try JSONSerialization.jsonObject(with: file.encoded()) as? NSDictionary
-        let committed = try JSONSerialization.jsonObject(with: json(text)) as? NSDictionary
-
-        #expect(saved != nil)
-        #expect(saved == committed)
+    @Test("Migrated files save as version 2 without a duplicate previous result", arguments: fixtures)
+    func savingWritesVersion2(text: String, file: SessionFile) throws {
+        let saved = try #require(JSONSerialization.jsonObject(with: file.encoded()) as? [String: Any])
+        let session = try #require(saved["session"] as? [String: Any])
+        #expect(saved["schemaVersion"] as? Int == 2)
+        #expect(session["previousResult"] == nil)
+        #expect(session["archive"] != nil)
+        #expect(SessionFile.read(try file.encoded()) == .valid(file))
+        #expect(SessionFile.read(json(text)) == .valid(file))
     }
 
     @Test("Every kind of saved value survives saving and reading unchanged")
@@ -72,7 +77,7 @@ struct SessionFileTests {
         #expect(try reordered.encoded() == everyShape.encoded())
     }
 
-    @Test("A file from a newer version of the app is recognised and not read", arguments: [2, 7])
+    @Test("A file from a newer version of the app is recognised and not read", arguments: [3, 7])
     func newerVersionNotRead(version: Int) throws {
         var file = SessionFile(session: SessionFixtures.match)
         file.schemaVersion = version
@@ -138,12 +143,12 @@ private let invalidSessions: [(Session, [SessionIssue])] = {
     cases.append((session, [.historyEntryInvalid(index: 1)]))
 
     session = SessionFixtures.match
-    session.previousResult?.status = .active
-    cases.append((session, [.previousResultInvalid]))
+    session.archive[0].game.status = .active
+    cases.append((session, [.archiveInvalid]))
 
     session = SessionFixtures.match
-    session.current = nil
-    cases.append((session, [.previousResultInvalid]))
+    session.archive.append(session.archive[0])
+    cases.append((session, [.archiveInvalid]))
 
     session = SessionFixtures.match
     session.recentSettings.americano = AmericanoRules(totalRallies: 0, ralliesPerServer: 2)
@@ -154,3 +159,40 @@ private let invalidSessions: [(Session, [SessionIssue])] = {
     cases.append((session, [.revisionNegative]))
     return cases
 }()
+
+
+extension SessionFileTests {
+    @Test("Version 2 encoding matches committed fixtures", arguments: [
+        (SessionFixtureFiles.matchVersion2, SessionFile(session: SessionFixtures.match)),
+        (SessionFixtureFiles.americanoVersion2, SessionFixtures.americano),
+    ])
+    func version2FixtureEncoding(text: String, file: SessionFile) throws {
+        #expect(try JSONSerialization.jsonObject(with: file.encoded()) as? NSDictionary
+                == JSONSerialization.jsonObject(with: json(text)) as? NSDictionary)
+    }
+
+    @Test("Ledger recovery understands both versions even with damaged games", arguments: fixtures)
+    func ledgerVersions(text: String, expected: SessionFile) throws {
+        var object = try #require(JSONSerialization.jsonObject(with: json(text)) as? [String: Any])
+        var session = try #require(object["session"] as? [String: Any])
+        session["current"] = "damaged"
+        object["session"] = session
+        let data = try JSONSerialization.data(withJSONObject: object)
+        #expect(SessionFile.read(data) == .damaged)
+        #expect(SessionFile.usage(in: data) == expected.session.usage)
+    }
+
+    @Test("Migration deduplicates a previous result with the current finished GameID")
+    func migrationDeduplicates() throws {
+        var object = try #require(JSONSerialization.jsonObject(with: json(SessionFixtureFiles.americanoVersion1)) as? [String: Any])
+        var session = try #require(object["session"] as? [String: Any])
+        let record = try #require(session["current"] as? [String: Any])
+        session["previousResult"] = record["game"]
+        object["session"] = session
+        guard case .valid(let file) = SessionFile.read(try JSONSerialization.data(withJSONObject: object)) else {
+            Issue.record("migration failed"); return
+        }
+        #expect(file.session.archive.count == 1)
+        #expect(file.session.archive[0].game == file.session.current?.game)
+    }
+}

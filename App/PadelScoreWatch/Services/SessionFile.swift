@@ -5,8 +5,8 @@ import Foundation
 /// and a migration from the old one, tested against the saved form of every version that
 /// shipped.
 struct SessionFile: Hashable, Sendable, Codable {
-    /// The first version. None shipped before it, so there is nothing to migrate yet.
-    static let currentSchemaVersion = 1
+    /// Version 2 replaces the independently stored previous result with a compact archive.
+    static let currentSchemaVersion = 2
 
     var schemaVersion: Int
     var session: Session
@@ -45,22 +45,34 @@ extension SessionFile {
         case newerVersion(Int)
     }
 
+    static func needsMigration(_ data: Data) -> Bool {
+        (try? JSONDecoder().decode(Header.self, from: data).schemaVersion) == 1
+    }
+
     static func read(_ data: Data) -> Reading {
         let decoder = JSONDecoder()
         guard let header = try? decoder.decode(Header.self, from: data) else { return .damaged }
         guard header.schemaVersion <= currentSchemaVersion else { return .newerVersion(header.schemaVersion) }
-        guard header.schemaVersion == currentSchemaVersion,
-              let file = try? decoder.decode(SessionFile.self, from: data),
-              file.session.issues.isEmpty
-        else { return .damaged }
+        let file: SessionFile
+        switch header.schemaVersion {
+        case 1:
+            guard let legacy = try? decoder.decode(Version1.self, from: data),
+                  let migrated = legacy.migrated else { return .damaged }
+            file = migrated
+        case currentSchemaVersion:
+            guard let decoded = try? decoder.decode(SessionFile.self, from: data) else { return .damaged }
+            file = decoded
+        default: return .damaged
+        }
+        guard file.session.issues.isEmpty else { return .damaged }
         return .valid(file)
     }
 
-    /// The free use recorded in a file of the current version, even when the rest of it
+    /// The free use recorded in either supported version, even when the rest of it
     /// cannot be used.
     static func usage(in data: Data) -> UsageLedger? {
         guard let probe = try? JSONDecoder().decode(UsageProbe.self, from: data),
-              probe.schemaVersion == currentSchemaVersion
+              (1...currentSchemaVersion).contains(probe.schemaVersion)
         else { return nil }
         return probe.session.usage
     }
@@ -70,6 +82,36 @@ extension SessionFile {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .sortedKeys
         return try encoder.encode(self)
+    }
+
+    /// The shipped version 1 shape is explicit; version 2 never encodes previousResult.
+    private struct Version1: Decodable {
+        struct LegacySession: Decodable {
+            let current: GameRecord?
+            let previousResult: GameSnapshot?
+            let recentSettings: RecentSettings
+            let usage: UsageLedger
+            let revision: Int
+            let lastCommand: CommandID?
+        }
+        let session: LegacySession
+        let notice: StorageNotice?
+
+        var migrated: SessionFile? {
+            var archive: [ArchivedResult] = []
+            if let previous = session.previousResult {
+                guard session.current != nil, previous.status == .finished, previous.format.isValid else { return nil }
+                archive.append(ArchivedResult(game: previous, finishedAt: nil))
+            }
+            if let game = session.current?.game, game.status == .finished {
+                archive.removeAll { $0.id == game.id }
+                archive.append(ArchivedResult(game: game, finishedAt: nil))
+            }
+            return SessionFile(session: Session(
+                current: session.current, archive: archive, recentSettings: session.recentSettings,
+                usage: session.usage, revision: session.revision, lastCommand: session.lastCommand
+            ), notice: notice)
+        }
     }
 
     private struct Header: Decodable {

@@ -50,6 +50,8 @@ final class FaultyFileSystem: StorageFileSystem, @unchecked Sendable {
         case publishFails
         /// Removing a file fails.
         case removeFails
+        case deleteCommitFails
+        case damagedRemoveFails
     }
 
     /// Every fault a save can meet; removing files belongs to deletion only.
@@ -108,7 +110,10 @@ final class FaultyFileSystem: StorageFileSystem, @unchecked Sendable {
     }
 
     func removeIfPresent(_ file: URL) throws {
-        if locked({ faults.contains(.removeFails) }) { throw POSIXError(.EIO) }
+        let active = locked { faults }
+        if active.contains(.removeFails)
+            || (active.contains(.deleteCommitFails) && file == location.deletionJournal)
+            || (active.contains(.damagedRemoveFails) && file == location.damaged) { throw POSIXError(.EIO) }
         try real.removeIfPresent(file)
     }
 

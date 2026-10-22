@@ -1,6 +1,162 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Settings → Delete local data removes games, finished-game history, Undo history, and saved settings after confirmation. It preserves the completed-free-game count and does not cancel the purchase. There is no developer recovery service." : {
+      "comment" : "On-Watch information about local history and deletion.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings → Delete local data removes games, finished-game history, Undo history, and saved settings after confirmation. It preserves the completed-free-game count and does not cancel the purchase. There is no developer recovery service."
+          }
+        }
+      }
+    },
+    "Open History from New game, your result, or the game menu. All finished games stay on this Watch, newest first, and are free to view. Only the current result can be edited or resumed. There is no sync or export." : {
+      "comment" : "On-Watch information about local history and deletion.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open History from New game, your result, or the game menu. All finished games stay on this Watch, newest first, and are free to view. Only the current result can be edited or resumed. There is no sync or export."
+          }
+        }
+      }
+    },
+    "The first five completed games are free automatically. Starting another game after that requires a lifetime unlock. Your current game and all finished-game history remain available without purchasing." : {
+      "comment" : "On-Watch information about local history and deletion.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The first five completed games are free automatically. Starting another game after that requires a lifetime unlock. Your current game and all finished-game history remain available without purchasing."
+          }
+        }
+      }
+    },
+    "Settings → Delete local data removes games, finished-game history, Undo history, and game settings after confirmation. It keeps the free-game count and does not cancel or refund a purchase. Reinstalling or changing Watches may lose local data. There is no developer backup service; device backups follow your Apple settings." : {
+      "comment" : "On-Watch information about local history and deletion.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings → Delete local data removes games, finished-game history, Undo history, and game settings after confirmation. It keeps the free-game count and does not cancel or refund a purchase. Reinstalling or changing Watches may lose local data. There is no developer backup service; device backups follow your Apple settings."
+          }
+        }
+      }
+    },
+    "Your current game, finished-game history, Undo history, settings, and completed-free-game count stay in local app storage. There is no account, advertising, analytics SDK, tracking, or developer backend. Game data is not sent to the developer." : {
+      "comment" : "On-Watch information about local history and deletion.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your current game, finished-game history, Undo history, settings, and completed-free-game count stay in local app storage. There is no account, advertising, analytics SDK, tracking, or developer backend. Game data is not sent to the developer."
+          }
+        }
+      }
+    },
+    "This removes your game, last result, finished-game history and saved settings from this Watch. Your free-game count and purchase are kept." : {
+      "comment" : "Deletion confirmation includes the local results archive.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This removes your game, last result, finished-game history and saved settings from this Watch. Your free-game count and purchase are kept."
+          }
+        }
+      }
+    },
+    "Finished-game history" : {
+      "comment" : "Settings: all compact completed results stored on this Watch.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finished-game history"
+          }
+        }
+      }
+    },
+    "All finished games are kept in History." : {
+      "comment" : "The last result remains in local history when the next game finishes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All finished games are kept in History."
+          }
+        }
+      }
+    },
+    "Result" : {
+      "comment" : "Read-only archived result title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Result"
+          }
+        }
+      }
+    },
+    "US / THEM" : {
+      "comment" : "History scores are ordered with our team first and their team second.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US / THEM"
+          }
+        }
+      }
+    },
+    "Date unavailable" : {
+      "comment" : "Completion date of a result migrated from schema version 1; no date is invented.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date unavailable"
+          }
+        }
+      }
+    },
+    "Your finished games will appear here." : {
+      "comment" : "History before any real game has finished.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your finished games will appear here."
+          }
+        }
+      }
+    },
+    "History" : {
+      "comment" : "List of every finished real game, available to everyone.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History"
+          }
+        }
+      }
+    },
     "%@ first" : {
       "comment" : "Setup, Serving row: who serves first while the second server is still to be chosen. Argument: a role, such as You.",
       "extractionState" : "manual",
