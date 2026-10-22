@@ -1,7 +1,7 @@
 # M08 — Access and Purchase
 
 **ID:** M08
-**Status:** IN_PROGRESS
+**Status:** DONE
 **Depends on:** M07
 **Validation:** make milestone ID=M08
 **Handoff:** AI/handoffs/M08-handoff.md
@@ -26,13 +26,13 @@
 
 ## Acceptance criteria
 
-- [ ] Тестовая матрица соответствует реально утверждённой модели; ни один пункт не выбирает цену, trial limit или единицу за владельца.
-- [ ] Для lifetime IAP: покупка/restore/revoked/unverified/pending проверены с StoreKit configuration и реальным устройством; исходный тест имитируемой сетевой ошибки остаётся обязательным на симуляторе, а на часах проверяется реальная потеря связи и сохранение купленного доступа после повторного запуска. Только verified entitlement открывает paid access.
-- [ ] Повторное завершение того же sessionID, score correction и Resume не увеличивают usage; paywall не вмешивается в активную игру.
-- [ ] Для lifetime IAP debug override отсутствует в Release артефакте и Release UI, не подменяет StoreKit-тесты и не создаёт второй источник entitlement.
-- [ ] Для lifetime IAP цена локализована StoreKit; product unavailable не показывает fake price и не мешает восстановлению/обратному выходу; при free решении paywall и override отсутствуют.
-- [ ] При платном скачивании нет повторной in-app покупки, пробного ledger и Restore purchases для несуществующего IAP; цена App Store не дублируется статической суммой в UI.
-- [ ] Тесты проверяют наблюдаемое поведение и регрессии этого этапа; `make milestone ID=M08` проходит на clean `REVIEW` HEAD с обязательными тестами без failures/skips.
+- [x] Тестовая матрица соответствует реально утверждённой модели; ни один пункт не выбирает цену, trial limit или единицу за владельца.
+- [x] Для lifetime IAP: покупка/restore/revoked/unverified/pending проверены с StoreKit configuration и реальным устройством; исходный тест имитируемой сетевой ошибки остаётся обязательным на симуляторе, а на часах проверяется реальная потеря связи и сохранение купленного доступа после повторного запуска. Только verified entitlement открывает paid access.
+- [x] Повторное завершение того же sessionID, score correction и Resume не увеличивают usage; paywall не вмешивается в активную игру.
+- [x] Для lifetime IAP debug override отсутствует в Release артефакте и Release UI, не подменяет StoreKit-тесты и не создаёт второй источник entitlement.
+- [x] Для lifetime IAP цена локализована StoreKit; product unavailable не показывает fake price и не мешает восстановлению/обратному выходу; при free решении paywall и override отсутствуют.
+- [x] При платном скачивании нет повторной in-app покупки, пробного ledger и Restore purchases для несуществующего IAP; цена App Store не дублируется статической суммой в UI.
+- [x] Тесты проверяют наблюдаемое поведение и регрессии этого этапа; `make milestone ID=M08` проходит на clean `REVIEW` HEAD с обязательными тестами без failures/skips.
 
 ## Validation
 
@@ -63,8 +63,11 @@ selection changes. Purchase/restore/refund, pending and unverified hardware
 coverage remain required. The real Watch check must establish a verified purchase
 online, disable every network route (including the paired iPhone), relaunch the
 ordinary app offline, and confirm unlocked access and game creation. Reconnection
-must preserve access. Until this check passes M08 is not DONE. The earlier 3/4
-result remains recorded as a failed run; it is never relabeled 4/4.
+must preserve access. The owner completed this exact check on the ordinary
+Release app and confirmed Unlocked offline after reboot, game/score entry, and
+Unlocked after reconnection. M08 is DONE under this approved coverage plan.
+The earlier 3/4 result remains recorded as a failed run; it is never relabeled 4/4.
+The paid-download-only criterion is inapplicable because H4 selects lifetime IAP.
 
 ## Local environment follow-up — 2026-10-22
 

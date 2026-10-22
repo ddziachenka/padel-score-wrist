@@ -9,9 +9,13 @@ bundle ID. Full clean gate passes **387/387**, zero failures/skips, at
 `1f9b96c78a1f09470d6b7e574d19a55f1c71f816`. Physical Xcode 27.1 / watchOS 27.0.1
 runs all four original tests: three pass; synthetic network-error injection still
 loses its type. The owner approved keeping this test on the simulator and replacing
-hardware injection with actual offline access/relaunch. That check is in progress;
-M08 is not DONE. See [repair handoff](M08-local-repair-handoff.md).
+hardware injection with actual offline access/relaunch. The owner completed this
+check on the ordinary Release app: Unlocked after offline reboot, game and score
+entry work, Unlocked remains after reconnection. **M08 is DONE** under the approved
+coverage plan. See [repair handoff](M08-local-repair-handoff.md).
 No App Review submission.
+
+## Historical evidence (superseded by completion above)
 
 ## Local environment follow-up — 2026-10-22
 

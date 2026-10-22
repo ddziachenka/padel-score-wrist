@@ -4,8 +4,9 @@
 
 ## Milestone
 
-M08 — Access and Purchase; IN_PROGRESS for the owner-approved real offline
-Watch check. Complete simulator gate passes. Nothing is submitted for App Review.
+M08 — Access and Purchase; **DONE**. The clean simulator gate passes and the
+required hardware matrix is complete under the owner's explicitly approved
+real-offline coverage plan. Nothing is submitted for App Review.
 
 ## Summary
 
@@ -90,15 +91,16 @@ scenario on the simulator, replace hardware error injection with real offline
 access/relaunch. All test source/assertions and the full gate remain unchanged.
 The previous physical 3/4 run remains a failed run. Other physical purchase,
 restore, refund, pending and unverified coverage is retained. No mapping of
-unknown errors to offline is added. Real offline acceptance remains pending.
+unknown errors to offline is added. The owner confirmed all steps: online Unlocked,
+radios off, Watch reboot, offline Unlocked, game creation and one score entry,
+then Unlocked again after reconnecting.
 
-The ordinary Release app (same production source, no debug unlock) is being
-installed outside the Xcode StoreKit session. Online Access must show Unlocked;
-all Watch network routes must then be disabled, including paired-phone routing.
-After a cold relaunch, Access must still show Unlocked and permit a game; after
-reconnection access must remain. This requires the owner's physical actions
-because disabling every route also disconnects automation.
-
+The ordinary Release app (same production source, no debug unlock) was installed
+outside the Xcode StoreKit session. The owner performed the radio-off actions and
+on-device observations because disabling every route also disconnects automation.
+The unchanged shipping StoreKit client and entitlement owner are identical to the
+ones used by the earlier passing real Sandbox purchase/restore probe; see
+[M08-sandbox-identity-handoff.md](M08-sandbox-identity-handoff.md).
 ## Tests
 
 Self-review checks that shipping sources are unchanged, original scenario bodies
@@ -128,19 +130,33 @@ Session repository was present before the test. No entitlement was fabricated.
 Before disabling connections, the owner opened the ordinary Release app's
 About → Access and reported **Unlocked** (2026-10-22 around 07:31 UTC).
 This is an online preparation observation, not yet the offline result.
-During the requested radio-off/reboot check, `offline-device-snapshot.json` records
-this physical Watch as unavailable to CoreDevice. This corroborates loss of the
-Mac connection; only the owner's on-device observations can establish offline
-Unlocked, game creation/scoring and later reconnection. Those remain pending.
+During the radio-off/reboot check, `offline-device-snapshot.json` records this
+physical Watch as unavailable to CoreDevice. The owner then explicitly confirmed:
+“После перезагрузки без связи — Unlocked, игра и очко работают; связь вернул”.
+This verifies the actual offline cold start, verified paid access, game creation
+and score entry on the shipping Release app. It is **manual owner-observed coverage**,
+not another automated test or a reclassification of the failed injection run.
+Structured observation is in `physical-offline-observation.json`. The owner also
+confirmed after Wi-Fi/Bluetooth were restored: “Да, после возвращения связи
+по-прежнему Unlocked”. The full manual check completed on 2026-10-22 around
+07:38:44 UTC (recording timestamp in the JSON). This does not assert a new
+Sandbox purchase, a refund while offline, or automated verification of radio state.
 
 ## Known issues
 
-The local hardware service loses the injected network error type with Xcode 27.0
-and 27.1. Required real offline coverage is pending under the explicitly approved
-plan. No beta OS update or App Store submission was performed.
+The local hardware service still loses the injected network error type with
+Xcode 27.0 and 27.1. This is retained as a tooling limitation, with its failed run
+intact. Under the owner's approved plan, the unchanged simulator injection test
+and the completed real offline hardware check cover the required behavior.
+Optional post-reconnection screenshots could not be captured: CoreDevice's
+Bluetooth tunnel failed (RemotePairingError 1007). The final Unlocked observation
+is explicitly the owner's report, not an inspected screenshot. This does not
+replace any required automated test or count as a failed product behavior.
+No known blocking product defect remains for M08. No beta OS update or App Store
+submission was performed. This completion is not an independent release audit.
 
 ## Next step
 
-Complete and record the real Watch offline/relaunch/reconnection check. Preserve
-all saved game files and remove the diagnostic host. Only then may M08 be DONE;
-run documentation validation and continuity against the passing candidate.
+M09 — Legal and Support: its preparation exists, but it needs its own clean
+milestone gate in a new session. Stop after M08. M10 release coverage and the
+human submission decision remain separate; do not submit anything for review.
