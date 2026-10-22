@@ -90,6 +90,8 @@ private struct DemoScreen: View {
                 // Nothing scrolls into the clock's row above.
                 .clipped()
             }
+            // One container for the screen, as the live score's: Demo is read first, then the board.
+            .accessibilityElement(children: .contain)
             // The whole screen: the clock's row at the top, the corners' margin at the bottom.
             .frame(width: proxy.size.width, height: proxy.size.height + insets.top + insets.bottom)
             .offset(y: -insets.top)

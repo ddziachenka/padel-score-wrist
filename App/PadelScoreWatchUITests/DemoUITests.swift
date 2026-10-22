@@ -23,7 +23,7 @@ final class DemoUITests: XCTestCase {
 
     /// Fails if anything on screen says the demo was saved.
     private func assertNothingSaved(_ app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
-        let saved = app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS[c] 'saved' AND NOT (label CONTAINS[c] 'Nothing is saved')"))
+        let saved = app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS[c] 'saved'"))
         XCTAssertEqual(saved.count, 0, "the demo never says Saved: \(saved.allElementsBoundByIndex.map(\.label))", file: file, line: line)
         XCTAssertFalse(element("result.saved", in: app).exists, file: file, line: line)
     }
