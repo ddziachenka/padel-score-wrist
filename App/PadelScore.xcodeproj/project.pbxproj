@@ -141,6 +141,13 @@
 		6E94A01B3EF469E5701997EA /* ScoreboardDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C8409F2A9F172C1917A45A /* ScoreboardDemoTests.swift */; };
 		C66046E46980F568E69616A7 /* DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6584389A75E410CE838651 /* DemoUITests.swift */; };
 		99444A23668341B9A19B6D51 /* HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65936932899E4F05A81D98BE /* HistoryUITests.swift */; };
+		A529A688C62B9EB68FCE2A00 /* Launcher source 0 */ = {isa = PBXBuildFile; fileRef = 6BE686D36958B4F4AC6A2149; };
+		2580678DF439537BA7A227C7 /* Launcher source 1 */ = {isa = PBXBuildFile; fileRef = 95907024B94858F82F77BC2D; };
+		4DF130CF021541882E65A7E1 /* Launcher catalog */ = {isa = PBXBuildFile; fileRef = 726C23610D9D97D4A35FC53F; };
+		5033060BDE0B0D9064524356 /* Embed launcher */ = {isa = PBXBuildFile; fileRef = 286A5F990FB691E20911DAD7; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DF42437F3C261F6D39DEB0D0 /* PadelScoreWatchTests/Features/LauncherTests.swift0 */ = {isa = PBXBuildFile; fileRef = 09CB70667544E48EED180A0C; };
+		5CC561EA22A27F9BCCE7F0CD /* PadelScoreWatchTests/Features/LauncherTests.swift1 */ = {isa = PBXBuildFile; fileRef = 6BE686D36958B4F4AC6A2149; };
+		E3F7D6A35BE856AF2B3B63A8 /* PadelScoreWatchUITests/LauncherUITests.swift0 */ = {isa = PBXBuildFile; fileRef = D1D50D18D3527FE450910D47; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +179,7 @@
 			remoteGlobalIDString = 29698D29C3A686C7611451CB;
 			remoteInfo = PadelScoreStoreKitHost;
 		};
+		19392678D9812E93423B4435 /* Launcher proxy */ = {isa = PBXContainerItemProxy; containerPortal = 1E3335C5DD050FDEE5322E30; proxyType = 1; remoteGlobalIDString = 49E8B0A64FA38AC82571A5B8; remoteInfo = PadelScoreLauncher; };
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -185,6 +193,17 @@
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C57E6F020482B537F4B16719 /* Embed App Extensions */ = {
+			buildActionMask = 2147483647;
+			dstSubfolderSpec = 13;
+			isa = PBXCopyFilesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			dstPath = "";
+			files = (
+				5033060BDE0B0D9064524356,
+			);
+			name = "Embed App Extensions";
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -339,6 +358,13 @@
 		38C8409F2A9F172C1917A45A /* ScoreboardDemoTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreboardDemoTests.swift; sourceTree = "<group>"; };
 		0F6584389A75E410CE838651 /* DemoUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DemoUITests.swift; sourceTree = "<group>"; };
 		65936932899E4F05A81D98BE /* HistoryUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistoryUITests.swift; sourceTree = "<group>"; };
+		6BE686D36958B4F4AC6A2149 /* LauncherWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreLauncher/LauncherWidget.swift"; sourceTree = SOURCE_ROOT; };
+		95907024B94858F82F77BC2D /* LauncherBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreLauncher/LauncherBundle.swift"; sourceTree = SOURCE_ROOT; };
+		726C23610D9D97D4A35FC53F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "PadelScoreLauncher/Localizable.xcstrings"; sourceTree = SOURCE_ROOT; };
+		D93239EA1CD1C1AC38B690AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PadelScoreLauncher/Info.plist"; sourceTree = SOURCE_ROOT; };
+		286A5F990FB691E20911DAD7 /* PadelScoreLauncher.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; path = PadelScoreLauncher.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		09CB70667544E48EED180A0C /* LauncherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchTests/Features/LauncherTests.swift"; sourceTree = SOURCE_ROOT; };
+		D1D50D18D3527FE450910D47 /* LauncherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchUITests/LauncherUITests.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -390,6 +416,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F6E0A1AECF51BC4DD286C734 /* Launcher frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -481,6 +508,9 @@
 		9C0BA28DBE2BE3B9891472B3 = {
 			isa = PBXGroup;
 			children = (
+				D1D50D18D3527FE450910D47,
+				09CB70667544E48EED180A0C,
+				5089C6D6DD35CBA50092A7DC,
 				A039DCC85BE50368425A1D003 /* StoreKitTestApp.swift */,
 				4CDA5EBDA6D35B9DCC9F39EB /* PadelScoreStoreKitTests */,
 				DF1EB97BFDA8417D915C7492 /* PadelScore.xctestplan */,
@@ -552,6 +582,7 @@
 				35934F2194CA18F4253E0674 /* PadelScore.app */,
 				90B81947F6FD97B6DF256422 /* PadelScoreWatchTests.xctest */,
 				A88E7CD2B9E6D9BBC58247DE /* PadelScoreWatchUITests.xctest */,
+				286A5F990FB691E20911DAD7,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -748,6 +779,17 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
+		5089C6D6DD35CBA50092A7DC /* PadelScoreLauncher */ = {
+			isa = PBXGroup;
+			name = PadelScoreLauncher;
+			children = (
+				6BE686D36958B4F4AC6A2149,
+				95907024B94858F82F77BC2D,
+				726C23610D9D97D4A35FC53F,
+				D93239EA1CD1C1AC38B690AB,
+			);
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -794,10 +836,12 @@
 				7B18315A7034CA12E7C7449B /* Sources */,
 				76520B4419197660CD266782 /* Frameworks */,
 				98936046BFFC7AB40CBF090E /* Resources */,
+				C57E6F020482B537F4B16719,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E7C4A8C89EF6FC485A0D8E4C,
 			);
 			name = PadelScoreWatch;
 			productName = PadelScoreWatch;
@@ -858,6 +902,23 @@
 			buildRules = (
 			);
 		};
+		49E8B0A64FA38AC82571A5B8 /* PadelScoreLauncher */ = {
+			buildConfigurationList = 5719903AB591F0A3801F5EC4;
+			productReference = 286A5F990FB691E20911DAD7;
+			productType = "com.apple.product-type.app-extension";
+			productName = PadelScoreLauncher;
+			isa = PBXNativeTarget;
+			buildPhases = (
+				3F888861CA22F41F6A30E5F3,
+				F6E0A1AECF51BC4DD286C734,
+				D3D44DC3BC78A8C3AF9C360B,
+			);
+			dependencies = (
+			);
+			name = PadelScoreLauncher;
+			buildRules = (
+			);
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -909,6 +970,7 @@
 				22F01B39811FC98D7354B35C /* PadelScore */,
 				DBA2160DA60A18E11E5BB2E1 /* PadelScoreWatchTests */,
 				333DF6997F7C79204340B517 /* PadelScoreWatchUITests */,
+				49E8B0A64FA38AC82571A5B8,
 			);
 		};
 /* End PBXProject section */
@@ -963,6 +1025,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D3D44DC3BC78A8C3AF9C360B /* Launcher resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (4DF130CF021541882E65A7E1); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1032,6 +1095,8 @@
 				FCC89CA5E0F193EF92E0CB7F /* FinishResumeTests.swift in Sources */,
 				0EEF48F85C154BAFE43D0374 /* LocalDataSettingsTests.swift in Sources */,
 				6E94A01B3EF469E5701997EA /* ScoreboardDemoTests.swift in Sources */,
+				DF42437F3C261F6D39DEB0D0,
+				5CC561EA22A27F9BCCE7F0CD,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1051,6 +1116,7 @@
 				BCF779A9153B3A231A4D463F /* FinishResumeUITests.swift in Sources */,
 				C66046E46980F568E69616A7 /* DemoUITests.swift in Sources */,
 				99444A23668341B9A19B6D51 /* HistoryUITests.swift in Sources */,
+				E3F7D6A35BE856AF2B3B63A8,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1214,6 +1280,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F888861CA22F41F6A30E5F3 /* Launcher sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A529A688C62B9EB68FCE2A00,2580678DF439537BA7A227C7); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1240,6 +1307,7 @@
 			target = 29698D29C3A686C7611451CB;
 			targetProxy = 85A85B6B9A1606E1CB8308CB;
 		};
+		E7C4A8C89EF6FC485A0D8E4C /* Launcher dependency */ = {isa = PBXTargetDependency; target = 49E8B0A64FA38AC82571A5B8; targetProxy = 19392678D9812E93423B4435; };
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1652,6 +1720,54 @@
 			};
 			name = Debug;
 		};
+		81A6577840F89AE17D83170F /* Launcher Debug */ = {
+			isa = XCBuildConfiguration;
+			name = Debug;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				MARKETING_VERSION = 1.0;
+				INFOPLIST_FILE = PadelScoreLauncher/Info.plist;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Padel Score";
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				CODE_SIGN_STYLE = Automatic;
+				SDKROOT = watchos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.watchkitapp.launcher;
+				CURRENT_PROJECT_VERSION = 1;
+				SWIFT_VERSION = 6.0;
+			};
+		};
+		B7E83116B21A4BA0285EF711 /* Launcher Release */ = {
+			isa = XCBuildConfiguration;
+			name = Release;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				MARKETING_VERSION = 1.0;
+				INFOPLIST_FILE = PadelScoreLauncher/Info.plist;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Padel Score";
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				CODE_SIGN_STYLE = Automatic;
+				SDKROOT = watchos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.watchkitapp.launcher;
+				CURRENT_PROJECT_VERSION = 1;
+				SWIFT_VERSION = 6.0;
+			};
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1716,6 +1832,15 @@
 			buildConfigurations = (
 				91147F2C5DBC2F511C863AE5,
 				70312BEFA7F1DE568CB2A9DB,
+			);
+		};
+		5719903AB591F0A3801F5EC4 /* Launcher configurations */ = {
+			isa = XCConfigurationList;
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			buildConfigurations = (
+				81A6577840F89AE17D83170F,
+				B7E83116B21A4BA0285EF711,
 			);
 		};
 /* End XCConfigurationList section */

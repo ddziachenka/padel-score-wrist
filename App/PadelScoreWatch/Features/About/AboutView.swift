@@ -42,6 +42,13 @@ struct AboutView: View {
                 .buttonStyle(RowButtonStyle())
                 .accessibilityHint(Text("Opens a short example. Nothing is saved."))
                 .accessibilityIdentifier("about.demo")
+                NavigationLink { WatchFaceHelpView() } label: {
+                    Text("Watch face & Smart Stack")
+                        .font(Typography.body)
+                        .foregroundStyle(Palette.textPrimary)
+                }
+                .buttonStyle(RowButtonStyle())
+                .accessibilityIdentifier("about.watchFace")
                 Button(action: settings) {
                     HStack(spacing: Spacing.sm) {
                         Text("Settings", comment: "About: the row that opens the settings of the data kept on this Watch.")
@@ -155,5 +162,32 @@ struct LegalView: View {
             .fixedSize(horizontal: false, vertical: true)
             .accessibilityLabel(value)
             .accessibilityIdentifier(identifier)
+    }
+}
+
+/// Instructions stay available offline and without a purchase.
+private struct WatchFaceHelpView: View {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Spacing.md) {
+                Text("Watch face")
+                    .font(Typography.heading)
+                    .accessibilityAddTraits(.isHeader)
+                Text("Touch and hold your watch face, tap Edit, then swipe to Complications. Tap a circular or rectangular slot and choose Padel Score. Press the Digital Crown to finish.")
+                    .accessibilityIdentifier("watchFace.instructions")
+                Text("Smart Stack")
+                    .font(Typography.heading)
+                    .accessibilityAddTraits(.isHeader)
+                Text("From your watch face, turn the Digital Crown up to open the Smart Stack. Touch and hold, tap +, then choose Padel Score. Tap Done.")
+                    .accessibilityIdentifier("smartStack.instructions")
+                Text("Tap the racket to open Padel Score. It returns to your game or the screen you left open. The button doesn’t show the score.")
+                    .accessibilityIdentifier("watchFace.behavior")
+            }
+            .font(Typography.body)
+            .foregroundStyle(Palette.textPrimary)
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .navigationTitle(Text("Quick launch"))
     }
 }

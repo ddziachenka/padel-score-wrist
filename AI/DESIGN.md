@@ -719,6 +719,13 @@ game. Check who serves first.` M12 добавил `Try the scoreboard`, `Demo`, 
 reverses it.`, `Reset demo`, `Demo reset`, `Game to US`, `Game to THEM`, `The demo ends after one game. Undo
 the point or reset the demo.` и VoiceOver-тексты `Demo reset.`, `Game to us. Reset demo`.
 
+M14: S19 использует нативную ракетку `tennis.racket`, системный removable widget background
+и одну VoiceOver-подпись `Open Padel Score`. Circular: ракетка и системный widgetLabel
+`Padel Score` там, где циферблат поддерживает подпись. Rectangular / Smart Stack: ракетка,
+`Padel Score`, `Open app`, без чисел. About → `Watch face & Smart Stack` → `Quick launch`
+содержит две короткие пошаговые инструкции и объяснение, что кнопка не показывает счёт.
+Статическая поверхность не требует собственной анимации, haptic или изображения.
+
 ## Appearance and device coverage
 
 | Question | Answer |

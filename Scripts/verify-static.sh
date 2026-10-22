@@ -1025,6 +1025,16 @@ if ! "${_script_dir}/verify-site.sh"; then
     fail "site verification failed (see above)"
 fi
 
+# Product-specific extension graph (no simulator required).
+if [ -f "${_script_dir}/verify-launcher.py" ]; then
+    if ! python3 "${_script_dir}/verify-launcher.py"; then
+        fail "Watch launcher configuration failed"
+    fi
+    if ! python3 -m unittest discover -s "${_script_dir}/tests" -p test_launcher.py; then
+        fail "Watch launcher gate regression tests failed"
+    fi
+fi
+
 # ---------------------------------------------------------------------------
 # 10. Milestone bookkeeping.
 # ---------------------------------------------------------------------------

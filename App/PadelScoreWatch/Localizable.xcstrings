@@ -1,6 +1,83 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "From your watch face, turn the Digital Crown up to open the Smart Stack. Touch and hold, tap +, then choose Padel Score. Tap Done." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From your watch face, turn the Digital Crown up to open the Smart Stack. Touch and hold, tap +, then choose Padel Score. Tap Done."
+          }
+        }
+      }
+    },
+    "Quick launch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick launch"
+          }
+        }
+      }
+    },
+    "Smart Stack" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smart Stack"
+          }
+        }
+      }
+    },
+    "Tap the racket to open Padel Score. It returns to your game or the screen you left open. The button doesn’t show the score." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the racket to open Padel Score. It returns to your game or the screen you left open. The button doesn’t show the score."
+          }
+        }
+      }
+    },
+    "Touch and hold your watch face, tap Edit, then swipe to Complications. Tap a circular or rectangular slot and choose Padel Score. Press the Digital Crown to finish." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touch and hold your watch face, tap Edit, then swipe to Complications. Tap a circular or rectangular slot and choose Padel Score. Press the Digital Crown to finish."
+          }
+        }
+      }
+    },
+    "Watch face" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Watch face"
+          }
+        }
+      }
+    },
+    "Watch face & Smart Stack" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Watch face & Smart Stack"
+          }
+        }
+      }
+    },
     "Settings → Delete local data removes games, finished-game history, Undo history, and saved settings after confirmation. It preserves the completed-free-game count and does not cancel the purchase. There is no developer recovery service." : {
       "comment" : "On-Watch information about local history and deletion.",
       "extractionState" : "manual",

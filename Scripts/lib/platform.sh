@@ -150,6 +150,14 @@ validate_watch_build() (
     embedded="$(platform_built_plist "$(dirname "$container_path")/Watch/${product_name}/Info.plist")" || exit $?
     [ "$(printf '%s' "$embedded" | jq -S .)" = "$(printf '%s' "$app_plist" | jq -S .)" ] \
         || die "$EX_VERIFY" 'packaging container does not embed the verified Watch app plist'
+    # This product's static launcher must also survive embedding into the container.
+    if [ -f "${IOSAI_ROOT}/Scripts/verify-launcher.py" ]; then
+        python3 "${IOSAI_ROOT}/Scripts/verify-launcher.py" --built-app "$(dirname "$app_path")" \
+            || die "$EX_VERIFY" 'Watch launcher packaging failed'
+        python3 "${IOSAI_ROOT}/Scripts/verify-launcher.py" --built-app "$(dirname "$container_path")/Watch/${product_name}" \
+            || die "$EX_VERIFY" 'embedded Watch launcher packaging failed'
+        report_line "$report" "**${configuration} launcher:** WidgetKit extension embedded; version/build/platform match; test hosts absent"
+    fi
     report_line "$report" "**${configuration} Watch app:** $(printf '%s' "$app_plist" | jq -r '"\(.CFBundleIdentifier) \(.CFBundleShortVersionString) (\(.CFBundleVersion))"')"
     report_line "$report" "**${configuration} packaging container:** $(printf '%s' "$container_plist" | jq -r '"\(.CFBundleIdentifier) \(.CFBundleShortVersionString) (\(.CFBundleVersion))"')"
 )

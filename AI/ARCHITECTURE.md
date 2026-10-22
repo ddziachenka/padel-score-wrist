@@ -337,6 +337,17 @@ New game и `GameRoute.demo` в стеке игры (About из результа
 статическую кнопку без данных приложения: без App Group, общей базы, timeline-обновлений счёта и
 фоновой работы. Касание открывает приложение системным механизмом WidgetKit; обычный запуск выводит
 экран из `SessionStore`, а уже открытый процесс сохраняет свой стек и черновик.
+Реализация: `PadelScoreLauncher` (watchOS 10) встроен в `PadelScoreWatch.app/PlugIns`;
+`StaticConfiguration`, одна запись `Timeline` с policy `.never`. WidgetKit по умолчанию
+активирует содержащее приложение: нет custom URL, App Intent и обработчика, меняющего
+навигацию. Circular показывает ракетку и доступное системное widgetLabel с названием;
+rectangular — ракетку, `Padel Score` и `Open app`. Оба объединены в один accessibility
+элемент `Open Padel Score`; фон задаётся через `containerBackground(for: .widget)`.
+Собственный English String Catalog; ни один domain/service source не входит в extension.
+`Scripts/verify-launcher.py` проверяет граф target/embedding и версии на static gate,
+а Debug/Release packaging — и сам Watch app, и его копию внутри container. Regression
+mutation checks проверяют, что неверные версия, зависимость, embedding и shared sources
+не проходят gate. Shipping scheme не приобретает зависимости от StoreKit test host.
 
 ## Persistence
 
