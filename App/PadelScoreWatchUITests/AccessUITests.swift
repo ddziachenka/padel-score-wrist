@@ -67,7 +67,7 @@ final class AccessUITests: XCTestCase {
         app.buttons["access.close"].scrollToAndTap(in: app)
         app.buttons["about.settings"].scrollToAndTap(in: app)
         app.buttons["settings.delete"].scrollToAndTap(in: app)
-        XCTAssertTrue(app.staticTexts["This removes your game, last result, finished-game history and saved settings from this Watch. Your free-game count and purchase are kept."].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label == %@", "This removes your game, last result, finished-game history and saved settings from this Watch. Your free-game count and purchase are kept.")).firstMatch.waitForExistence(timeout: 5))
         app.buttons["Delete data"].tap()
         XCTAssertTrue(app.buttons["newGame.match"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.staticTexts["Five free games completed."].exists)
