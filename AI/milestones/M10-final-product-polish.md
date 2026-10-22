@@ -1,7 +1,7 @@
 # M10 — Final Product Polish
 
 **ID:** M10
-**Status:** PLANNED
+**Status:** IN_PROGRESS
 **Depends on:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09
 **Validation:** make milestone ID=M10
 **Handoff:** AI/handoffs/M10-handoff.md

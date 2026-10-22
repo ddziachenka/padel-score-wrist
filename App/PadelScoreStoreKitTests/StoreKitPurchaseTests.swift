@@ -81,6 +81,30 @@ final class StoreKitPurchaseTests: XCTestCase {
         try await waitUntil { owner.isUnlocked }
     }
 
+    func testPriceFollowsUSAndGermanStorefronts() async throws {
+        let session = try await environment()
+        defer { session.resetToDefaultState(); session.clearTransactions() }
+        var prices: [String] = []
+        for (country, locale, currency) in [("USA", "en_US", "USD"), ("DEU", "de_DE", "EUR")] {
+            session.storefront = country
+            session.locale = Locale(identifier: locale)
+            let owner = store()
+            await owner.start()
+            let actual = try XCTUnwrap(owner.product)
+            let products = try await Product.products(for: [StoreKitPurchaseClient.productID])
+            let apple = try XCTUnwrap(products.first)
+            XCTAssertEqual(apple.priceFormatStyle.currencyCode, currency)
+            XCTAssertEqual(actual.displayPrice, apple.displayPrice)
+            let storefront = await Storefront.current
+            XCTAssertEqual(storefront?.countryCode, country)
+            prices.append(actual.displayPrice)
+            let attachment = XCTAttachment(string: "\(country) / \(locale) / \(currency): \(actual.displayPrice)")
+            attachment.lifetime = .keepAlways
+            add(attachment)
+        }
+        XCTAssertNotEqual(prices[0], prices[1], "The active StoreKit currency must change the price text")
+    }
+
     func testUnverifiedPurchaseCannotUnlock() async throws {
         let session = try await environment()
         defer { session.resetToDefaultState(); session.clearTransactions() }
