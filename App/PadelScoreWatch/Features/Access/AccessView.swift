@@ -64,6 +64,8 @@ struct AccessView: View {
                     Button(action: close) {
                         Image(systemName: "xmark")
                             .foregroundStyle(Palette.textPrimary)
+                            .frame(width: Metrics.minimumTap, height: Metrics.minimumTap)
+                            .contentShape(Rectangle())
                     }
                     // The sheet's automatic dismissal control uses a white glyph on the
                     // app's pale accent. Match the legible neutral editor close control.
