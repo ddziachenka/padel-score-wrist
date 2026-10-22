@@ -154,9 +154,23 @@ enum ScoreAnnouncement {
         let (us, them) = (board.us.spoken, board.them.spoken)
         switch result.ending {
         case .matchFinished:
+            // The same lead as the result on screen: the sets once one is finished, otherwise the
+            // set the match stopped in. Sets won before any set finished would only say 0–0.
+            if let sets = result.setsWon {
+                return String(
+                    localized: "Match finished. Sets: us \(sets.us), them \(sets.them).",
+                    comment: "VoiceOver: a finished match's result after a correction. Arguments: sets won, ours then theirs."
+                )
+            }
+            if let set = result.incompleteSet {
+                return String(
+                    localized: "Match finished. Set \(set.number), incomplete. Games: us \(set.games.us), them \(set.games.them).",
+                    comment: "VoiceOver: a finished match's result after a correction, before any set finished. Arguments: the set's number, games won, ours then theirs."
+                )
+            }
             return String(
-                localized: "Match finished. Sets: us \(result.headline.us), them \(result.headline.them).",
-                comment: "VoiceOver: a finished match's result after a correction. Arguments: sets won, ours then theirs."
+                localized: "Match finished. No points played.",
+                comment: "VoiceOver: a finished match's result after a correction, with no point played."
             )
         case .roundComplete(let outcome):
             return roundFinished(outcome, board)

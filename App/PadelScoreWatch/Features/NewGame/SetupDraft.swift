@@ -16,8 +16,19 @@ enum SetupField: Hashable, Sendable, CaseIterable {
 /// Everything chosen so far for a new game. It lives only in memory: nothing is saved until
 /// the game starts, and leaving setup throws it away. A new draft repeats the rules and
 /// serving of the last game started, for the person to check; with no earlier game every
-/// field waits to be chosen, because nothing is invented for them.
+/// field waits to be chosen, because nothing is invented for them. Playing a result again
+/// repeats that result instead.
 struct SetupDraft: Hashable, Sendable {
+    /// Where the draft's first values came from, which setup asks the person to check.
+    enum Origin: Hashable, Sendable {
+        /// Nothing earlier: every value waits to be chosen.
+        case blank
+        /// The rules and serving of the last game started.
+        case lastSettings
+        /// The rules and serving order of the result being played again, and its first server.
+        case playAgain
+    }
+
     /// The totals the number editors offer. The product sets no upper limit; these are far
     /// beyond any round played on court.
     static let totalRalliesRange = 1...999
@@ -32,8 +43,7 @@ struct SetupDraft: Hashable, Sendable {
         didSet { ralliesPerServer = Self.offered(ralliesPerServer, in: Self.ralliesPerServerRange) }
     }
     var serving: ServingChoice
-    /// Whether the draft began with the settings of the last game rather than empty.
-    let repeatsLastSettings: Bool
+    let origin: Origin
 
     init(kind: GameKind, recent: RecentSettings) {
         self.kind = kind
@@ -45,8 +55,28 @@ struct SetupDraft: Hashable, Sendable {
             totalRallies = Self.offered(recent.americano?.totalRallies, in: Self.totalRalliesRange)
             ralliesPerServer = Self.offered(recent.americano?.ralliesPerServer, in: Self.ralliesPerServerRange)
         }
-        repeatsLastSettings = recent.serving != nil || (kind == .match ? recent.match != nil : recent.americano != nil)
+        let repeats = recent.serving != nil || (kind == .match ? recent.match != nil : recent.americano != nil)
+        origin = repeats ? .lastSettings : .blank
     }
+
+    /// The draft for playing a game again: its format, rules and serving, for the person to check.
+    /// Its score never carries over; a number the editors do not offer waits to be chosen.
+    init(playingAgain setup: GameSetup) {
+        switch setup.rules {
+        case .match(let rules):
+            kind = .match
+            deuceRule = rules.deuceRule
+        case .americano(let rules):
+            kind = .americano
+            totalRallies = Self.offered(rules.totalRallies, in: Self.totalRalliesRange)
+            ralliesPerServer = Self.offered(rules.ralliesPerServer, in: Self.ralliesPerServerRange)
+        }
+        serving = ServingChoice(setup.serving)
+        origin = .playAgain
+    }
+
+    /// Whether the draft began with the settings of the last game rather than empty.
+    var repeatsLastSettings: Bool { origin == .lastSettings }
 
     /// A number the editors offer is kept; any other counts as not chosen.
     private static func offered(_ number: Int?, in range: ClosedRange<Int>) -> Int? {

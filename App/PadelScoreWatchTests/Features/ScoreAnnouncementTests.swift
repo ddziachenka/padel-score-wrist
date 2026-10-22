@@ -147,6 +147,13 @@ struct ScoreAnnouncementTests {
         var state = try #require(finishedMatch.matchState)
         state.completedSets = [SetGames(us: 3, them: 6)]
         #expect(try told(after: [.correct(.match(state))], from: finishedMatch) == "Changes saved. Match finished. Sets: us 0, them 1.")
+        // Before any set finished the result leads with the set in progress, and so does VoiceOver.
+        state.completedSets = []
+        state.games = SetGames(us: 3, them: 2)
+        #expect(try told(after: [.correct(.match(state))], from: finishedMatch) == "Changes saved. Match finished. Set 1, incomplete. Games: us 3, them 2.")
+        state.games = .start
+        state.phase = .game(.start)
+        #expect(try told(after: [.correct(.match(state))], from: finishedMatch) == "Changes saved. Match finished. No points played.")
 
         let finishedRound = try Session.empty.after([.start(.americano(total: 10, perServer: 2), id: .number(1))] + points("UTT") + [.finish])
         var round = try #require(finishedRound.round)

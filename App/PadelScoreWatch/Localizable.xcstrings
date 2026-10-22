@@ -1317,6 +1317,18 @@
         }
       }
     },
+    "Keep your focus on the game" : {
+      "comment" : "Access: the title of the lifetime unlock offer.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep your focus on the game"
+          }
+        }
+      }
+    },
     "Kept for viewing until the game you’re playing finishes." : {
       "comment" : "Last result, opened from the game menu: the previous game's result can only be viewed, until the game being played finishes in its place.",
       "extractionState" : "manual",
@@ -1425,18 +1437,6 @@
         }
       }
     },
-    "Match and Americano. One purchase, no recurring payments." : {
-      "comment" : "Access and purchase: Match and Americano. One purchase, no recurring payments.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Match and Americano. One purchase, no recurring payments."
-          }
-        }
-      }
-    },
     "Match finished" : {
       "comment" : "The match was finished by hand: above its score, and the title of its result.",
       "extractionState" : "manual",
@@ -1461,6 +1461,18 @@
         }
       }
     },
+    "Match finished. No points played." : {
+      "comment" : "VoiceOver: a finished match's result after a correction, with no point played.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match finished. No points played."
+          }
+        }
+      }
+    },
     "Match finished. Saved." : {
       "comment" : "VoiceOver, after a match finished by hand was saved as the result.",
       "extractionState" : "manual",
@@ -1469,6 +1481,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Match finished. Saved."
+          }
+        }
+      }
+    },
+    "Match finished. Set %lld, incomplete. Games: us %lld, them %lld." : {
+      "comment" : "VoiceOver: a finished match's result after a correction, before any set finished. Arguments: the set's number, games won, ours then theirs.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match finished. Set %1$lld, incomplete. Games: us %2$lld, them %3$lld."
           }
         }
       }
@@ -1629,14 +1653,14 @@
         }
       }
     },
-    "One-time purchase" : {
-      "comment" : "Access and purchase: One-time purchase",
+    "One payment. No subscription." : {
+      "comment" : "Access: the terms of the lifetime unlock, right under Unlock forever and its App Store price.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "One-time purchase"
+            "value" : "One payment. No subscription."
           }
         }
       }
@@ -1757,6 +1781,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Partner"
+          }
+        }
+      }
+    },
+    "Play again" : {
+      "comment" : "Result: the primary action. Sets up the same format again with this game's rules and serving order, for the person to check before starting.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play again"
           }
         }
       }
@@ -2073,6 +2109,18 @@
         }
       }
     },
+    "Same rules and serving as your last game. Check who serves first." : {
+      "comment" : "Setup opened by Play again: the rules and serving order come from the game just finished, and the first server is only proposed.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Same rules and serving as your last game. Check who serves first."
+          }
+        }
+      }
+    },
     "Save changes" : {
       "comment" : "Correction: saves every change of the draft at once.",
       "extractionState" : "manual",
@@ -2253,6 +2301,18 @@
         }
       }
     },
+    "Set %lld · %@" : {
+      "comment" : "Result: the block of the set the match was in when it finished. Arguments: the set's number, then the word Incomplete.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set %1$lld · %2$@"
+          }
+        }
+      }
+    },
     "Set %lld, incomplete" : {
       "comment" : "VoiceOver label of the set the match was in when it finished. Argument: the set's number.",
       "extractionState" : "manual",
@@ -2309,6 +2369,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sets aren’t limited. Finish the match whenever you like."
+          }
+        }
+      }
+    },
+    "Sets up the same format with these rules and serving order." : {
+      "comment" : "VoiceOver hint of Play again on a result: it opens setup of the same format, filled in from this game.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sets up the same format with these rules and serving order."
+          }
+        }
+      }
+    },
+    "Sets won" : {
+      "comment" : "Result of a match: the sets each team won, a secondary line under the finished sets. Never a winner: sets aren't limited.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sets won"
           }
         }
       }
@@ -2853,14 +2937,14 @@
         }
       }
     },
-    "Unlimited Match and Americano games." : {
-      "comment" : "Access and purchase: Unlimited Match and Americano games.",
+    "Unlimited Match & Americano scoring." : {
+      "comment" : "Access: what the lifetime unlock gives, under the offer's title; also shown once access is unlocked.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unlimited Match and Americano games."
+            "value" : "Unlimited Match & Americano scoring."
           }
         }
       }
@@ -2873,18 +2957,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unlimited access is no longer available. Your game and result are unchanged."
-          }
-        }
-      }
-    },
-    "Unlimited games" : {
-      "comment" : "Access and purchase: Unlimited games",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unlimited games"
           }
         }
       }
@@ -3041,6 +3113,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your current score will be saved."
+          }
+        }
+      }
+    },
+    "Your free-game count couldn’t be recovered. Restore a purchase or unlock to start a new game." : {
+      "comment" : "Access: the free-game count was lost with damaged data, so a new game needs a purchase. Access says separately that the game and result stay available.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your free-game count couldn’t be recovered. Restore a purchase or unlock to start a new game."
           }
         }
       }

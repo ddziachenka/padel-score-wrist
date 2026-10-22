@@ -14,8 +14,15 @@ struct SetupView: View {
             ScrollViewReader { proxy in
                 ScrollView {
                     VStack(spacing: Spacing.sm) {
-                        if draft.repeatsLastSettings {
+                        switch draft.origin {
+                        case .blank:
+                            EmptyView()
+                        case .lastSettings:
                             Caption("From your last game. Check before you start.")
+                        case .playAgain:
+                            // The first server is proposed, not known: the person says who starts.
+                            Caption("Same rules and serving as your last game. Check who serves first.")
+                                .accessibilityIdentifier("setup.playAgain")
                         }
                         // A save of under a second does not dim the rows; a failed one does,
                         // until it is retried or cancelled.

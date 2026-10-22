@@ -79,6 +79,19 @@ final class NewGameFlow {
         path = [.setup]
     }
 
+    /// Begins setting up the finished game again, from its result while that can still be changed:
+    /// the same format, rules and serving order, for the person to check before Start. The last
+    /// settings are neither read nor changed. Returns false when there is no such result.
+    @discardableResult
+    func playAgain() -> Bool {
+        guard !isSaving, let record = store.session.current, record.game.status == .finished else { return false }
+        draft = SetupDraft(playingAgain: record.setupToPlayAgain)
+        startState = .editing
+        showsMissingFields = false
+        path = [.setup]
+        return true
+    }
+
     /// Changes the draft while it can be edited; nothing changes while it is being saved or
     /// after a failed save, until that is retried or cancelled.
     func edit(_ change: (inout SetupDraft) -> Void) {

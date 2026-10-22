@@ -42,6 +42,11 @@ struct UITestStore {
         /// The finished match of `matchFinished`, then an americano round of 16 rallies, 4 per server,
         /// being played at 0–0.
         case afterResult
+        /// A match under One advantage finished by hand in its first set, at 3–2 in games and 30–15.
+        case matchFinishedFirstSet
+        /// A match under One advantage finished by hand in its third set's tie-break: set 1 to US 6–4,
+        /// set 2 to THEM 3–6, then 6–6 and 3–2 in the tie-break.
+        case matchFinishedSets
     }
 
     let directory: URL
@@ -91,7 +96,7 @@ struct UITestStore {
             write(lastSettings, to: location.backup)
             write(damaged, to: location.main)
         case .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong,
-             .matchFinished, .roundFinished, .roundEndedEarly, .afterResult:
+             .matchFinished, .roundFinished, .roundEndedEarly, .afterResult, .matchFinishedFirstSet, .matchFinishedSets:
             write(Self.session(for: seed).flatMap { try? SessionFile(session: $0).encoded() }, to: location.main)
         }
     }
@@ -134,6 +139,17 @@ struct UITestStore {
             let rallies = String(repeating: "UUUUTTTT", count: 4) + "UUUUUUUU" + String(repeating: "UUUUTTTT", count: 2) + "UUUU" + "UUT"
             let afterward: [SessionCommand] = seed == .afterResult ? [.finish, .start(next, id: GameID(rawValue: UUID()))] : [.finish]
             return session(playing: match, rallies: rallies, then: afterward)
+        case .matchFinishedFirstSet, .matchFinishedSets:
+            let match = GameSetup(
+                rules: .match(MatchRules(deuceRule: .oneAdvantage, setPolicy: .tieBreakAtSixAll)),
+                serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
+            )
+            let rallies = seed == .matchFinishedFirstSet
+                ? String(repeating: "UUUUTTTT", count: 2) + "UUUU" + "UUT"
+                : String(repeating: "UUUUTTTT", count: 4) + "UUUUUUUU"
+                    + String(repeating: "UUUUTTTT", count: 3) + "TTTTTTTTTTTT"
+                    + String(repeating: "UUUUTTTT", count: 6) + "UTUTU"
+            return session(playing: match, rallies: rallies, then: [.finish])
         case .roundFinished, .roundEndedEarly:
             let round = GameSetup(
                 rules: .americano(AmericanoRules(totalRallies: 32, ralliesPerServer: 4)),

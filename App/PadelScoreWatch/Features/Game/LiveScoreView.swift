@@ -145,6 +145,14 @@ struct LiveScoreView: View {
         path.append(.formats)
     }
 
+    /// Sets the finished game up again from its result: the same format's setup, filled in from it.
+    /// Until the next game starts, Back returns to the result.
+    private func playAgain() {
+        let flow = NewGameFlow(store: store)
+        guard flow.playAgain() else { return }
+        newGame = flow
+    }
+
     /// Plays the result on; a round at its total opens its settings first, to make room.
     private func resume() {
         Task {
@@ -177,6 +185,7 @@ struct LiveScoreView: View {
                     ResultView(
                         live: live,
                         game: game,
+                        playAgain: playAgain,
                         newGame: startNewGame,
                         resume: resume,
                         edit: { edit(.editScore) },

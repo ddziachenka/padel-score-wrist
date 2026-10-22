@@ -59,3 +59,33 @@ struct RecentSettings: Hashable, Sendable, Codable {
         }
     }
 }
+
+extension GameRecord {
+    /// What playing this game again starts with: its rules and serving order as the game stands,
+    /// saved corrections included, and the player who served its first recorded point; with no
+    /// point recorded, the player it stands to serve next. Nothing of its score carries over.
+    var setupToPlayAgain: GameSetup {
+        let opener = history.first { $0.change == .point }?.before.format ?? game.format
+        return GameSetup(
+            rules: game.format.rules,
+            serving: ServingSetup(order: game.format.serving.order, firstServer: opener.serving.firstServer)
+        )
+    }
+}
+
+private extension GameFormat {
+    var rules: GameRules {
+        switch self {
+        case .match(let state): .match(state.rules)
+        case .americano(let round): .americano(round.rules)
+        }
+    }
+
+    /// The serving order, and the player who serves the next point or rally.
+    var serving: ServingSetup {
+        switch self {
+        case .match(let state): ServingSetup(order: state.service.order, firstServer: state.service.server)
+        case .americano(let round): ServingSetup(order: round.service.order, firstServer: round.service.server)
+        }
+    }
+}

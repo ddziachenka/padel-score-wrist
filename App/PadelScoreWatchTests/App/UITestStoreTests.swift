@@ -125,8 +125,21 @@ final class UITestStoreTests {
         #expect(after.previousResult?.status == .finished)
         #expect(after.previousResult?.format == match.current?.game.format)
 
-        for seed in [UITestStore.Seed.matchFinished, .roundFinished, .roundEndedEarly, .afterResult] {
-            #expect(try #require(UITestStore.session(for: seed)).issues.isEmpty, "\(seed)")
+        let firstSet = try #require(try await openStore(["PADEL_UITEST_SEED": "matchFinishedFirstSet"]).session.matchState)
+        #expect(firstSet.completedSets.isEmpty)
+        #expect(firstSet.games == SetGames(us: 3, them: 2))
+        #expect(firstSet.gameScore == .points(us: .thirty, them: .fifteen))
+
+        let sets = try await openStore(["PADEL_UITEST_SEED": "matchFinishedSets"]).session
+        #expect(sets.current?.game.status == .finished)
+        #expect(sets.matchState?.completedSets == [SetGames(us: 6, them: 4), SetGames(us: 3, them: 6)])
+        #expect(sets.matchState?.games == SetGames(us: 6, them: 6))
+        #expect(sets.matchState?.tieBreakScore == TieBreakScore(us: 3, them: 2))
+
+        for seed in [UITestStore.Seed.matchFinished, .roundFinished, .roundEndedEarly, .afterResult, .matchFinishedFirstSet, .matchFinishedSets] {
+            let session = try #require(UITestStore.session(for: seed))
+            #expect(session.issues.isEmpty, "\(seed)")
+            #expect(session.current?.game.status == (seed == .afterResult ? .active : .finished), "\(seed)")
         }
     }
 

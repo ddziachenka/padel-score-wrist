@@ -85,7 +85,7 @@ final class FinishResumeTests {
         let finished = try #require(store.session.game)
         let summary = ResultSummary(game: finished)
         #expect(summary.ending == .roundEndedEarly(leader: .us))
-        #expect(summary.headline == ScoreBoard.Counts(us: 12, them: 6))
+        #expect(summary.roundPoints == ScoreBoard.Counts(us: 12, them: 6))
         #expect(summary.rallies == ResultSummary.Rallies(played: 18, total: 32))
         #expect(live.lastChange?.announcement == "Round finished. Saved.")
         #expect(haptics.played == [.finished])

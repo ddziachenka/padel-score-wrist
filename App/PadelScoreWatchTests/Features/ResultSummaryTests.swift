@@ -2,8 +2,9 @@ import Foundation
 @testable import PadelScoreWatch
 import Testing
 
-/// What a result says for every way a game can finish: a match at any score with no winner and its
-/// set in progress apart from the finished ones, and a round played to its total or ended early.
+/// What a result says for every way a game can finish: a match at any score with no winner, led by its
+/// sets with the set in progress apart from the finished ones and the sets won only once a set is
+/// finished, and a round led by its points, played to its total or ended early.
 struct ResultSummaryTests {
     private func summary(_ state: MatchState) -> ResultSummary {
         ResultSummary(game: GameSnapshot(id: .number(1), format: .match(state), status: .finished))
@@ -18,7 +19,8 @@ struct ResultSummaryTests {
         let shown = summary(MatchState.fixture())
 
         #expect(shown.ending == .matchFinished)
-        #expect(shown.headline == ScoreBoard.Counts(us: 0, them: 0))
+        #expect(shown.setsWon == nil, "no sets-won count says 0–0 before any set finished")
+        #expect(shown.roundPoints == nil)
         #expect(shown.finishedSets.isEmpty)
         #expect(shown.incompleteSet == nil)
         #expect(shown.nothingPlayed)
@@ -34,7 +36,8 @@ struct ResultSummaryTests {
         ))
 
         #expect(shown.ending == .matchFinished)
-        #expect(shown.headline == ScoreBoard.Counts(us: 1, them: 0))
+        #expect(shown.setsWon == ScoreBoard.Counts(us: 1, them: 0))
+        #expect(shown.roundPoints == nil)
         #expect(shown.finishedSets == [ResultSummary.FinishedSet(number: 1, games: SetGames(us: 6, them: 4))])
         #expect(shown.incompleteSet == ResultSummary.IncompleteSet(
             number: 2,
@@ -51,6 +54,27 @@ struct ResultSummaryTests {
         #expect(shown.incompleteSet?.number == 1)
         #expect(shown.incompleteSet?.games == .start)
         #expect(shown.incompleteSet?.points == .game(us: .game(.love), them: .game(.fifteen)))
+        #expect(shown.setsWon == nil, "with no finished set, the set in progress leads")
+        #expect(!shown.nothingPlayed)
+    }
+
+    @Test("Several finished sets are numbered in playing order, the sets won follow, and the next set stands apart")
+    func matchOfSeveralSets() {
+        let shown = summary(.fixture(
+            completedSets: [SetGames(us: 6, them: 4), SetGames(us: 3, them: 6), SetGames(us: 7, them: 6)],
+            games: SetGames(us: 2, them: 1),
+            phase: .game(.points(us: .forty, them: .thirty))
+        ))
+
+        #expect(shown.finishedSets.map(\.number) == [1, 2, 3])
+        #expect(shown.finishedSets.map(\.games) == [SetGames(us: 6, them: 4), SetGames(us: 3, them: 6), SetGames(us: 7, them: 6)])
+        #expect(shown.setsWon == ScoreBoard.Counts(us: 2, them: 1))
+        #expect(shown.incompleteSet == ResultSummary.IncompleteSet(
+            number: 4,
+            games: SetGames(us: 2, them: 1),
+            points: .game(us: .game(.forty), them: .game(.thirty))
+        ))
+        #expect(shown.ending.outcome == nil, "two sets to one is no win: sets aren't limited")
     }
 
     @Test("Finished right after a set, the next set at 0–0 is no result of its own")
@@ -60,7 +84,7 @@ struct ResultSummaryTests {
         let shown = summary(state)
 
         #expect(!state.service.isConfirmed)
-        #expect(shown.headline == ScoreBoard.Counts(us: 1, them: 0))
+        #expect(shown.setsWon == ScoreBoard.Counts(us: 1, them: 0))
         #expect(shown.finishedSets == [ResultSummary.FinishedSet(number: 1, games: SetGames(us: 6, them: 0))])
         #expect(shown.incompleteSet == nil)
         #expect(!shown.nothingPlayed)
@@ -76,7 +100,7 @@ struct ResultSummaryTests {
         ))
         #expect(level.ending == .matchFinished)
         #expect(level.ending.outcome == nil)
-        #expect(level.headline == ScoreBoard.Counts(us: 1, them: 1))
+        #expect(level.setsWon == ScoreBoard.Counts(us: 1, them: 1))
         #expect(level.incompleteSet?.points == .game(us: .game(.forty), them: .advantage))
 
         let tieBreak = summary(.fixture(
@@ -91,13 +115,16 @@ struct ResultSummaryTests {
             games: SetGames(us: 6, them: 6),
             points: .tieBreak(TieBreakScore(us: 3, them: 2))
         ))
+        #expect(tieBreak.setsWon == ScoreBoard.Counts(us: 1, them: 0))
+        #expect(tieBreak.ending.outcome == nil)
     }
 
     @Test("A round at its total has its result: 18–14 of 32 is won, 16–16 is a draw")
     func completeRound() {
         let won = summary(.fixture(total: 32, perServer: 4, us: 18, them: 14))
         #expect(won.ending == .roundComplete(.won(by: .us)))
-        #expect(won.headline == ScoreBoard.Counts(us: 18, them: 14))
+        #expect(won.roundPoints == ScoreBoard.Counts(us: 18, them: 14))
+        #expect(won.setsWon == nil)
         #expect(won.rallies == ResultSummary.Rallies(played: 32, total: 32))
         #expect(won.finishedSets.isEmpty)
         #expect(won.incompleteSet == nil)

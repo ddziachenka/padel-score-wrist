@@ -1,11 +1,13 @@
 import SwiftUI
 
-/// The last result (S10): how the game finished, that it is saved, and the score as it stood. From
-/// here a new game starts, the game resumes exactly where it stopped, or the result is corrected.
-/// Once the next game starts this result can only be viewed, until that game finishes in its place.
+/// The last result (S10): how the game finished, the score as it stood, and that it is saved. From
+/// here the same game is played again, a new game starts, the game resumes exactly where it stopped,
+/// or the result is corrected. Once the next game starts this result can only be viewed, until that
+/// game finishes in its place.
 struct ResultView: View {
     let live: LiveScore
     let game: GameSnapshot
+    let playAgain: () -> Void
     let newGame: () -> Void
     let resume: () -> Void
     let edit: () -> Void
@@ -15,12 +17,17 @@ struct ResultView: View {
         let summary = ResultSummary(game: game)
         ScrollView {
             VStack(spacing: Spacing.sm) {
-                SavedLabel(live: live)
+                // The score leads; that it is saved is a quieter confirmation under it.
                 ResultSummaryView(summary: summary)
+                SavedLabel(live: live)
                     .padding(.bottom, Spacing.xs)
                 Group {
-                    Button("New game", action: newGame)
+                    Button("Play again", action: playAgain)
                         .buttonStyle(PrimaryButtonStyle())
+                        .accessibilityHint(Text("Sets up the same format with these rules and serving order.", comment: "VoiceOver hint of Play again on a result: it opens setup of the same format, filled in from this game."))
+                        .accessibilityIdentifier("result.playAgain")
+                    Button("New game", action: newGame)
+                        .buttonStyle(SecondaryButtonStyle())
                         .accessibilityIdentifier("result.newGame")
                     Caption("Starting a new game will keep this result for viewing only.")
                         .padding(.bottom, Spacing.xs)

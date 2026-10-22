@@ -16,6 +16,7 @@ struct SetupDraftTests {
         #expect(draft.missingFields == draft.fields)
         #expect(draft.gameSetup == nil)
         #expect(!draft.repeatsLastSettings)
+        #expect(draft.origin == .blank)
         #expect(draft.deuceRule == nil && draft.totalRallies == nil && draft.ralliesPerServer == nil)
         #expect(draft.serving == ServingChoice())
     }
@@ -56,11 +57,39 @@ struct SetupDraftTests {
         let americano = SetupDraft(kind: .americano, recent: lastSettings)
 
         #expect(match.repeatsLastSettings && americano.repeatsLastSettings)
+        #expect(match.origin == .lastSettings && americano.origin == .lastSettings)
         #expect(match.missingFields.isEmpty && americano.missingFields.isEmpty)
         #expect(try #require(match.gameSetup) == .match(.oneAdvantage, order: .youThenOpponent2, firstServer: .opponent1))
         #expect(try #require(americano.gameSetup)
             == .americano(total: 24, perServer: 2, order: .youThenOpponent2, firstServer: .opponent1))
         #expect(match.serving.first == .opponent1 && match.serving.second == .you)
+    }
+
+    @Test("Playing a game again repeats its format, rules and serving, and starts exactly that setup",
+          arguments: [
+              GameSetup.match(.oneAdvantage, order: .youThenOpponent2, firstServer: .opponent1),
+              GameSetup.match(.goldenPoint, order: .youThenOpponent1, firstServer: .partner),
+              GameSetup.americano(total: 32, perServer: 4, order: .youThenOpponent1, firstServer: .you),
+              GameSetup.americano(total: 7, perServer: 3, order: .youThenOpponent2, firstServer: .opponent2),
+          ])
+    func playsAgain(setup: GameSetup) throws {
+        let draft = SetupDraft(playingAgain: setup)
+
+        #expect(draft.origin == .playAgain)
+        #expect(!draft.repeatsLastSettings)
+        #expect(draft.missingFields.isEmpty)
+        #expect(draft.serving.first == setup.serving.firstServer)
+        #expect(draft.serving.second == setup.serving.order.player(after: setup.serving.firstServer))
+        #expect(try #require(draft.gameSetup) == setup)
+    }
+
+    @Test("Playing again, a total the editors do not offer waits to be chosen instead of being invented")
+    func playsAgainWithUnofferedTotals() {
+        let draft = SetupDraft(playingAgain: .americano(total: 1_200, perServer: 120))
+
+        #expect(draft.kind == .americano)
+        #expect(draft.totalRallies == nil && draft.ralliesPerServer == nil)
+        #expect(draft.missingFields == [.totalRallies, .ralliesPerServer])
     }
 
     @Test("A format not played yet repeats only the serving")

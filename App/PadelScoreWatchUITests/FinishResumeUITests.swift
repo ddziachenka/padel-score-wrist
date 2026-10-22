@@ -43,7 +43,8 @@ final class FinishResumeUITests: XCTestCase {
 
         openFinish(in: app)
         XCTAssertTrue(app.staticTexts["Finish match"].exists)
-        XCTAssertEqual(element("result.headline", in: app).value as? String, "Us 0, them 0")
+        XCTAssertFalse(element("result.headline", in: app).exists, "no 0–0 sets lead before a set finishes")
+        XCTAssertFalse(element("result.setsWon", in: app).exists)
         XCTAssertEqual(element("result.incompleteSet", in: app).label, "Set 1, incomplete")
         XCTAssertEqual(element("result.points", in: app).value as? String, "Us 30, them 15")
         XCTAssertFalse(element("result.outcome", in: app).exists, "a match gets no winner")
@@ -198,9 +199,10 @@ final class FinishResumeUITests: XCTestCase {
 
         app.buttons["game.menu"].tap()
         app.buttons["menu.lastResult"].scrollToAndTap(in: app)
-        let headline = element("result.headline", in: app)
-        XCTAssertTrue(headline.waitForExistence(timeout: 5))
-        XCTAssertEqual(headline.value as? String, "Us 1, them 0")
+        let setsWon = element("result.setsWon", in: app)
+        XCTAssertTrue(setsWon.waitForExistence(timeout: 5))
+        XCTAssertEqual(setsWon.value as? String, "Us 1, them 0")
+        XCTAssertEqual(element("result.set.1", in: app).value as? String, "Us 6, them 4")
         XCTAssertTrue(app.staticTexts["Last result"].exists)
         XCTAssertFalse(app.buttons["result.resume"].exists)
         XCTAssertFalse(app.buttons["result.edit"].exists)
@@ -211,8 +213,47 @@ final class FinishResumeUITests: XCTestCase {
         app.buttons["menu.finish"].scrollToAndTap(in: app)
         app.buttons["finish.confirm"].scrollToAndTap(in: app)
         XCTAssertTrue(app.buttons["result.resume"].waitForExistence(timeout: 5))
-        XCTAssertEqual(element("result.headline", in: app).value as? String, "Us 0, them 0", "the new game's result replaced the old one")
-        XCTAssertTrue(element("result.nothingPlayed", in: app).exists)
+        XCTAssertTrue(element("result.nothingPlayed", in: app).exists, "the new game's result replaced the old one")
+        XCTAssertFalse(element("result.set.1", in: app).exists)
+        XCTAssertFalse(element("result.setsWon", in: app).exists)
+    }
+
+    func testAMatchResultLeadsWithItsSetsAndNamesNoWinner() {
+        let app = launchApp(store: "finish-sets", seed: "matchFinishedSets")
+        let first = element("result.set.1", in: app)
+        XCTAssertTrue(first.waitForExistence(timeout: 10))
+        let second = element("result.set.2", in: app)
+        let setsWon = element("result.setsWon", in: app)
+        let incomplete = element("result.incompleteSet", in: app)
+        let points = element("result.points", in: app)
+        XCTAssertEqual(first.value as? String, "Us 6, them 4")
+        XCTAssertEqual(second.value as? String, "Us 3, them 6")
+        XCTAssertEqual(setsWon.label, "Sets won")
+        XCTAssertEqual(setsWon.value as? String, "Us 1, them 1")
+        XCTAssertEqual(incomplete.label, "Set 3, incomplete")
+        XCTAssertEqual(incomplete.value as? String, "Us 6, them 6")
+        XCTAssertEqual(points.label, "Tie-break")
+        XCTAssertEqual(points.value as? String, "Us 3, them 2")
+        XCTAssertFalse(element("result.headline", in: app).exists, "a match has no big sets headline")
+        XCTAssertFalse(element("result.outcome", in: app).exists, "a match gets no winner")
+        // The sets lead, the set in progress follows apart, and Saved comes after the score.
+        let order = [first, second, setsWon, incomplete, points, element("result.saved", in: app), app.buttons["result.playAgain"]]
+        for (upper, lower) in zip(order, order.dropFirst()) {
+            XCTAssertLessThan(upper.frame.minY, lower.frame.minY, "\(upper) is not above \(lower)")
+        }
+        attachScreenshot("Match result: two sets and a tie-break in progress")
+
+        app.terminate()
+        let firstSet = launchApp(store: "finish-first-set", seed: "matchFinishedFirstSet")
+        let block = element("result.incompleteSet", in: firstSet)
+        XCTAssertTrue(block.waitForExistence(timeout: 10))
+        XCTAssertEqual(block.label, "Set 1, incomplete")
+        XCTAssertEqual(block.value as? String, "Us 3, them 2")
+        XCTAssertEqual(element("result.points", in: firstSet).value as? String, "Us 30, them 15")
+        XCTAssertFalse(element("result.setsWon", in: firstSet).exists, "no sets-won line before a set finishes")
+        XCTAssertFalse(element("result.headline", in: firstSet).exists)
+        XCTAssertFalse(element("result.set.1", in: firstSet).exists)
+        attachScreenshot("Match result: the first set in progress leads")
     }
 
     func testAFinishThatCannotBeSavedKeepsTheGame() {

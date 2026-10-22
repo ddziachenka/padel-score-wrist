@@ -142,7 +142,7 @@ final class AccessibilityUITests: XCTestCase {
         try audit(app, "Game menu with Finish and Last result")
 
         app.buttons["menu.lastResult"].scrollToAndTap(in: app)
-        XCTAssertTrue(app.descendants(matching: .any)["result.headline"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.descendants(matching: .any)["result.set.1"].waitForExistence(timeout: 5))
         try audit(app, "Last result")
         app.goBack()
 
@@ -168,6 +168,20 @@ final class AccessibilityUITests: XCTestCase {
         app.buttons["game.undo"].tap()
         XCTAssertTrue(app.buttons["game.done"].waitForExistence(timeout: 5))
         try audit(app, "Match finished again on the score")
+    }
+
+    func testSetsTieBreakAndPlayAgainPassTheAccessibilityAudit() throws {
+        let app = launchApp(store: "audit-sets", seed: "matchFinishedSets")
+        XCTAssertTrue(app.descendants(matching: .any)["result.set.2"].waitForExistence(timeout: 10))
+        try audit(app, "Match finished in a tie-break")
+        app.buttons["result.playAgain"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.descendants(matching: .any)["setup.playAgain"].waitForExistence(timeout: 5))
+        try audit(app, "Play again setup")
+
+        app.terminate()
+        let firstSet = launchApp(store: "audit-first-set", seed: "matchFinishedFirstSet")
+        XCTAssertTrue(firstSet.descendants(matching: .any)["result.incompleteSet"].waitForExistence(timeout: 10))
+        try audit(firstSet, "Match finished in its first set")
     }
 
     func testRecoveryPassesTheAccessibilityAudit() throws {

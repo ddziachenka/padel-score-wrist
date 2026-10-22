@@ -1,10 +1,10 @@
 import Foundation
 
-/// What a game's result says, worked out from the saved game alone: how it ended, the numbers that
-/// matter most, and the rest of the score as it stood. A regular match never gets a winner; a set
-/// still being played is told apart from the finished ones; a round names a result only once its
-/// rallies reach the total. The same summary shows the score about to be saved when a game is
-/// finished by hand.
+/// What a game's result says, worked out from the saved game alone: how it ended and the score as it
+/// stood. A match leads with its sets: the finished ones, then the set it stopped in, told apart; the
+/// sets each team won come second, and only once a set is finished, because a match never gets a
+/// winner. A round leads with its points and names a result only once its rallies reach the total.
+/// The same summary shows the score about to be saved when a game is finished by hand.
 struct ResultSummary: Hashable, Sendable {
     enum Ending: Hashable, Sendable {
         /// A regular match, finished by hand. It has no winner: sets aren't limited.
@@ -38,9 +38,12 @@ struct ResultSummary: Hashable, Sendable {
     }
 
     let ending: Ending
-    /// The numbers that matter most, ours first: the sets each team won in a match, or the points
-    /// of a round.
-    let headline: ScoreBoard.Counts
+    /// A round's points, ours first: the numbers that matter most. `nil` for a match, which leads with
+    /// its sets.
+    let roundPoints: ScoreBoard.Counts?
+    /// The sets each team won, a secondary count once at least one set is finished: `nil` before then,
+    /// where it could only say 0–0, and for a round.
+    let setsWon: ScoreBoard.Counts?
     /// The finished sets in playing order; always empty for a round.
     let finishedSets: [FinishedSet]
     let incompleteSet: IncompleteSet?
@@ -56,13 +59,17 @@ struct ResultSummary: Hashable, Sendable {
         switch game.format {
         case .match(let state):
             ending = .matchFinished
-            headline = ScoreBoard.Counts(us: state.setsWon(by: .us), them: state.setsWon(by: .them))
+            roundPoints = nil
+            setsWon = state.completedSets.isEmpty
+                ? nil
+                : ScoreBoard.Counts(us: state.setsWon(by: .us), them: state.setsWon(by: .them))
             finishedSets = state.completedSets.enumerated().map { FinishedSet(number: $0.offset + 1, games: $0.element) }
             incompleteSet = Self.incompleteSet(of: state)
             rallies = nil
         case .americano(let round):
             ending = round.result.map(Ending.roundComplete) ?? .roundEndedEarly(leader: round.score.leader)
-            headline = ScoreBoard.Counts(us: round.score.us, them: round.score.them)
+            roundPoints = ScoreBoard.Counts(us: round.score.us, them: round.score.them)
+            setsWon = nil
             finishedSets = []
             incompleteSet = nil
             rallies = Rallies(played: round.played, total: round.rules.totalRallies)

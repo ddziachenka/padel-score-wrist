@@ -74,6 +74,56 @@ final class AccessUITests: XCTestCase {
         attachScreenshot("Count kept after deleting game data")
     }
 
+    func testAccessLeadsWithThePromiseAndKeepsTheTermsByThePurchase() {
+        let app = launchApp(store: "access-order")
+        XCTAssertTrue(app.buttons["home.about"].waitForExistence(timeout: 10))
+        app.buttons["home.about"].scrollToAndTap(in: app)
+        app.buttons["about.access"].scrollToAndTap(in: app)
+        let title = app.descendants(matching: .any)["access.title"]
+        XCTAssertTrue(title.waitForExistence(timeout: 10))
+        // Whatever the store answers, a price, its loading or its absence takes the purchase's place.
+        let purchase = app.buttons["access.purchase"]
+        let unavailable = app.descendants(matching: .any)["access.unavailable"]
+        let deadline = Date().addingTimeInterval(10)
+        while !purchase.exists, !unavailable.exists, Date() < deadline {
+            RunLoop.current.run(until: Date().addingTimeInterval(0.2))
+        }
+        let offer = purchase.exists ? purchase : unavailable
+        XCTAssertTrue(offer.exists, "neither a price nor its absence was shown")
+        attachScreenshot("Access, from About")
+
+        XCTAssertEqual(title.label, "Keep your focus on the game")
+        XCTAssertEqual(app.descendants(matching: .any)["access.explanation"].label, "Unlimited Match & Americano scoring.")
+        XCTAssertEqual(app.descendants(matching: .any)["access.freeGames"].label, "Free games left: 5 of 5")
+        XCTAssertEqual(app.descendants(matching: .any)["access.paymentTerms"].label, "One payment. No subscription.")
+        XCTAssertEqual(app.descendants(matching: .any)["access.keepsGames"].label, "Your current game and last result stay available, even without a purchase.")
+        if purchase.exists { assertLabel(purchase, contains: "Unlock forever") }
+        for retired in ["Unlimited games", "One-time purchase", "Match and Americano. One purchase, no recurring payments."] {
+            XCTAssertFalse(app.staticTexts[retired].exists, retired)
+        }
+
+        let order = [
+            title,
+            app.descendants(matching: .any)["access.explanation"],
+            app.descendants(matching: .any)["access.freeGames"],
+            offer,
+            app.descendants(matching: .any)["access.paymentTerms"],
+            app.buttons["access.restore"],
+            app.descendants(matching: .any)["access.keepsGames"],
+            app.buttons["access.terms"],
+            app.buttons["access.privacy"],
+            app.buttons["access.close"],
+        ]
+        for (upper, lower) in zip(order, order.dropFirst()) {
+            XCTAssertLessThan(upper.frame.minY, lower.frame.minY, "\(upper) is not above \(lower)")
+        }
+        // The terms stand right under the purchase, nothing between them.
+        XCTAssertLessThan(order[4].frame.minY - order[3].frame.maxY, 20)
+
+        app.buttons["access.close"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["about.access"].waitForExistence(timeout: 5))
+    }
+
     func testFreeGamesNeedNoActivationAndAccessSupportsLargeText() {
         let app = launchApp(store: "access-free", textSize: "UICTContentSizeCategoryAccessibilityXXXL")
         XCTAssertTrue(app.buttons["newGame.match"].waitForExistence(timeout: 10))
