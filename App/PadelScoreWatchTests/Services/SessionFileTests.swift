@@ -196,3 +196,23 @@ extension SessionFileTests {
         #expect(file.session.archive[0].game == file.session.current?.game)
     }
 }
+
+
+extension SessionFileTests {
+    @Test("Version 1 still rejects an orphaned or unfinished previous result during migration")
+    func invalidLegacyPreviousResult() throws {
+        for orphaned in [true, false] {
+            var object = try #require(JSONSerialization.jsonObject(with: json(SessionFixtureFiles.matchVersion1)) as? [String: Any])
+            var session = try #require(object["session"] as? [String: Any])
+            if orphaned {
+                session.removeValue(forKey: "current")
+            } else {
+                var previous = try #require(session["previousResult"] as? [String: Any])
+                previous["status"] = "active"
+                session["previousResult"] = previous
+            }
+            object["session"] = session
+            #expect(SessionFile.read(try JSONSerialization.data(withJSONObject: object)) == .damaged)
+        }
+    }
+}
