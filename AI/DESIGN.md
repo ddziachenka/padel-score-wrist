@@ -721,7 +721,9 @@ the point or reset the demo.` и VoiceOver-тексты `Demo reset.`, `Game to 
 
 M14: S19 использует нативную ракетку `tennis.racket`, системный removable widget background
 и одну VoiceOver-подпись `Open Padel Score`. Circular: ракетка и системный widgetLabel
-`Padel Score` там, где циферблат поддерживает подпись. Rectangular / Smart Stack: ракетка,
+`Padel Score` там, где циферблат поддерживает подпись. Circular заполняет весь
+предоставленный WidgetKit canvas, чтобы accessibility-элемент занимал весь слот, а не
+только рамку символа; геометрию слота задаёт ОС. Rectangular / Smart Stack: ракетка,
 `Padel Score`, `Open app`, без чисел. About → `Watch face & Smart Stack` → `Quick launch`
 содержит две короткие пошаговые инструкции и объяснение, что кнопка не показывает счёт.
 Статическая поверхность не требует собственной анимации, haptic или изображения.

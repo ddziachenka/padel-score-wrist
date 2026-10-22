@@ -31,6 +31,7 @@ struct LauncherView: View {
                 Image(systemName: "tennis.racket")
                     .font(.title2)
                     .widgetAccentable()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .widgetLabel { Text("Padel Score") }
             } else {
                 HStack(spacing: 8) {
