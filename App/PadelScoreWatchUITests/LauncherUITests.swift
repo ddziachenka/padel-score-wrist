@@ -39,7 +39,7 @@ final class LauncherUITests: XCTestCase {
     }
 
     // WidgetKit activates the app without routing. Background/activation tests cover the
-    // same lifecycle; actual complication taps are also inspected in Simulator and on Watch.
+    // same lifecycle. Simulator taps are checked separately; real-Watch coverage belongs to M10.
     func testActivationPreservesNestedUnsavedEditorAndSavingStillWorks() {
         let app = launchApp(store: "launcher-draft", seed: "matchSetPoint")
         XCTAssertTrue(app.buttons["game.menu"].waitForExistence(timeout: 10))

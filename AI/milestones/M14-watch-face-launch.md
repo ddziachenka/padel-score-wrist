@@ -1,7 +1,7 @@
 # M14 — Watch Face and Smart Stack Launch
 
 **ID:** M14
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M13
 **Validation:** make milestone ID=M14
 **Handoff:** AI/handoffs/M14-handoff.md
