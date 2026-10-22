@@ -1,7 +1,7 @@
 # M09 — Legal and Support
 
 **ID:** M09
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M08
 **Validation:** make milestone ID=M09
 **Handoff:** AI/handoffs/M09-handoff.md
@@ -31,7 +31,7 @@
 - [x] При paywall обе legal ссылки доступны до покупки; при free access коммерческие тексты отсутствуют.
 - [x] Публичные URL действительно доступны к завершению этапа. Если домен/публикация не готовы, записан конкретный BLOCKED, проверка не объявлена пройденной.
 - [x] watchOS Review Request не создаётся: REL-208/REL-209 INAPPLICABLE с конкретным Watch-only обоснованием в финальном evidence.
-- [ ] Тесты проверяют наблюдаемое поведение и регрессии этого этапа; `make milestone ID=M09` проходит на clean `REVIEW` HEAD с обязательными тестами без failures/skips.
+- [x] Тесты проверяют наблюдаемое поведение и регрессии этого этапа; `make milestone ID=M09` проходит на clean `REVIEW` HEAD с обязательными тестами без failures/skips.
 
 ## Validation
 
@@ -65,3 +65,10 @@ return HTTP 200 and byte-match `Web/public`; external legal/refund destinations
 respond. Evidence: `.artifacts/M09-completion/`. Existing regression assertions
 and production code are preserved. This is Builder self-review, not an independent
 audit or release approval.
+
+Clean `make milestone ID=M09` passed on
+`1105a96720bc85114bd7f8f5c5785415f7efa235`: exit 0, 387/387 tests, zero
+failures/skips/expected failures. UTC 2026-10-22T07:58:38Z–08:39:44Z. Report:
+`.artifacts/milestone/M09/20261022T075837Z-45453/report.md`. Completion handoff
+records exact evidence and the preserved ignored IDE files that initially blocked
+the input guard. M09 is DONE; M10 belongs to a new session.

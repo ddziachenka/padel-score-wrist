@@ -37,7 +37,7 @@ Xcode-проекта и доступности настоящих часов.
 | [M06 — Score and Settings Correction](milestones/M06-corrections.md) — DONE | Черновики исправления всех введённых данных; [evidence](handoffs/M06-handoff.md) | M05 |
 | [M07 — Finish and Resume](milestones/M07-finish-resume.md) — DONE | Честный результат, продолжение последней игры и удаление локальных данных; [evidence](handoffs/M07-handoff.md) | M06 |
 | [M08 — Access and Purchase](milestones/M08-access-purchase.md) | Выбранная модель доступа и покупка, если она утверждена | M07; H4 закрыт |
-| [M09 — Legal and Support](milestones/M09-legal-support.md) | Читаемая помощь на Watch, четыре страницы Web и публичные URL | M08 (hardware BLOCKED); H1 закрыт, подготовка M09 выполнена по прямому поручению |
+| [M09 — Legal and Support](milestones/M09-legal-support.md) | Читаемая помощь на Watch, четыре страницы Web и публичные URL | M08 DONE; H1 закрыт; M09 DONE, clean gate 387/387 — см. handoff |
 | [M10 — Final Product Polish](milestones/M10-final-product-polish.md) | Полная проверка английского приложения, точный кандидат `READY_FOR_HUMAN` | Все M00–M09 |
 
 После M10 план заканчивается. Дополнительные локализации выполняются позже,
