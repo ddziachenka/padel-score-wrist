@@ -21,6 +21,13 @@ final class DemoUITests: XCTestCase {
         XCTAssertTrue(app.buttons["demo.us"].waitForExistence(timeout: 5), file: file, line: line)
     }
 
+    /// Fails if anything on screen says the demo was saved.
+    private func assertNothingSaved(_ app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
+        let saved = app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS[c] 'saved' AND NOT (label CONTAINS[c] 'Nothing is saved')"))
+        XCTAssertEqual(saved.count, 0, "the demo never says Saved: \(saved.allElementsBoundByIndex.map(\.label))", file: file, line: line)
+        XCTAssertFalse(element("result.saved", in: app).exists, file: file, line: line)
+    }
+
     /// Fails unless the demo shows its example: set 1, 40–30, 2–2 in games, You serving, nothing to undo.
     private func assertExample(_ app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertTrue(app.buttons["demo.us"].waitForExistence(timeout: 5), file: file, line: line)
@@ -57,7 +64,7 @@ final class DemoUITests: XCTestCase {
         XCTAssertEqual(element("demo.hint", in: app).label, "Tap a team to add a point. Undo reverses it.")
         XCTAssertTrue(app.buttons["demo.close"].exists)
         XCTAssertTrue(app.buttons["demo.reset"].exists)
-        XCTAssertFalse(element("result.saved", in: app).exists, "the demo never says Saved")
+        assertNothingSaved(app)
         XCTAssertLessThan(us.frame.maxX, them.frame.minX, "US is on the left of THEM")
         attachScreenshot("Demo at 40–30")
 
@@ -78,6 +85,7 @@ final class DemoUITests: XCTestCase {
         assertLabel(server, contains: "Opponent 1")
         XCTAssertEqual(element("demo.hint", in: app).label, "The demo ends after one game. Undo the point or reset the demo.")
         XCTAssertEqual(element("demo.title", in: app).label, "Demo")
+        assertNothingSaved(app)
         XCTAssertTrue(undo.isEnabled)
         attachScreenshot("Demo game to THEM")
 
