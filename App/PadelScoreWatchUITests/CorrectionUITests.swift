@@ -43,6 +43,24 @@ final class CorrectionUITests: XCTestCase {
         app.buttons["editor.save"].scrollToAndTap(in: app)
     }
 
+    func testCancelControlHasMinimumHitAreaAndKeepsScore() throws {
+        let app = launchApp(store: "correction-cancel-target", seed: "matchSetPoint")
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        let score = app.buttons["game.us"].label
+        openEditor("editScore", in: app)
+        let cancel = try XCTUnwrap(app.buttons.matching(identifier: "editor.discard").allElementsBoundByIndex.last)
+        XCTAssertEqual(cancel.label, "Cancel")
+        XCTAssertTrue(cancel.isHittable)
+        XCTAssertGreaterThanOrEqual(cancel.frame.width, 44)
+        XCTAssertGreaterThanOrEqual(cancel.frame.height, 44)
+        attachScreenshot("Cancel control minimum hit area")
+        cancel.tap()
+        XCTAssertTrue(app.buttons["menu.editScore"].waitForExistence(timeout: 5))
+        app.goBack()
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.buttons["game.us"].label, score)
+    }
+
     func testCorrectingTheScoreAsksForServingAndIsUndoneWhole() {
         let app = launchApp(store: "correct-score", seed: "matchSetPoint")
         let games = element("game.games", in: app)

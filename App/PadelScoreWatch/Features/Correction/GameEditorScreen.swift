@@ -67,6 +67,8 @@ struct GameEditorScreen: View {
                     } label: {
                         Image(systemName: "xmark")
                             .foregroundStyle(Palette.textPrimary)
+                            .frame(width: Metrics.minimumTap, height: Metrics.minimumTap)
+                            .contentShape(Rectangle())
                     }
                     // Neutral like the system Back it stands in for, not the accent of an action.
                     .tint(Palette.backgroundElevated)
