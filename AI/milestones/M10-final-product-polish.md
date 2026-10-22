@@ -1,7 +1,7 @@
 # M10 — Final Product Polish
 
 **ID:** M10
-**Status:** IN_PROGRESS
+**Status:** BLOCKED
 **Depends on:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09
 **Validation:** make milestone ID=M10
 **Handoff:** AI/handoffs/M10-handoff.md
@@ -27,11 +27,11 @@
 
 ## Acceptance criteria
 
-- [ ] Все M00–M09 DONE с собственным evidence; все применимые H-решения закрыты, неизвестные коммерческие значения не замещены примерами.
+- [x] Все M00–M09 DONE с собственным evidence; все применимые H-решения закрыты, неизвестные коммерческие значения не замещены примерами.
 - [ ] Шесть доменов пройдены в требуемом порядке одной Builder-сессией; исправлены все valid P0/P1, после изменений выполнен один targeted re-audit.
 - [ ] Один consolidated record имеет COMPLETE typed coverage, Open P0/P1 0, findings/fixes/deferred P2, INAPPLICABLE с причинами, FUTURE_PRODUCT_IDEA и точные SHA/команды/counts/пути.
 - [ ] Нет пропущенной обязательной среды/устройства; реальные часы и минимальная поддерживаемая конфигурация проверены. Недоступность необходимого evidence блокирует этап.
-- [ ] Watch-only REL-208 и REL-209 явно INAPPLICABLE с причиной; неиспользуемые HealthKit/account/cloud/notifications так же оцениваются по применимости, а не молча пропускаются.
+- [x] Watch-only REL-208 и REL-209 явно INAPPLICABLE с причиной; неиспользуемые HealthKit/account/cloud/notifications так же оцениваются по применимости, а не молча пропускаются.
 - [ ] make milestone ID=M10 проходит и make release CANDIDATE=<verified-full-SHA> возвращает READY_FOR_HUMAN для того же commit.
 - [ ] После записи DONE и handoff выполнены make static, project-status validate и continuity от verified SHA; никакая отправка или публикация не выполнена.
 

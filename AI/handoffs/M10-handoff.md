@@ -1,0 +1,78 @@
+# M10 handoff — Final Product Polish
+
+**Policy status:** current
+
+## Milestone
+
+`M10` — Final Product Polish; status `BLOCKED`: required evidence incomplete. No milestone completion or release readiness is claimed.
+
+## Summary
+
+Owner-confirmed hardware checks cover scoring/haptics, Undo, Crown, wrist/lock recovery, finish/cancel/resume and Americano completion. The owner asked to continue on simulator and perform the remaining physical tests separately later.
+
+Fixed the Access sheet’s low-contrast close control; the measured glyph/background ratio improves from 1.174:1 to 14.216:1. Added explicit minimum tap frames after regressions exposed 30×30 Close and editor Cancel controls on watchOS 10. A regression audits the paywall, its accessible Close label and hittability, minimum 44×44 target, dismissal and preserved setup/result. Corrected a UI-test observation race that re-read a transient message after the matching observation. Added permanent USA/USD and DEU/EUR StoreKit display-price coverage.
+
+## Changed files
+
+- `App/PadelScoreWatch/Features/Access/AccessView.swift` — neutral accessible Close toolbar action and shared minimum tap frame.
+- `App/PadelScoreWatch/Features/Correction/GameEditorScreen.swift` — same minimum tap frame for editor Cancel.
+- `App/PadelScoreWatchUITests/CorrectionUITests.swift` — Cancel size/name/hittability and unchanged score regression.
+- `App/PadelScoreWatchUITests/AccessUITests.swift` — system audit and close-target/dismissal regression.
+- `App/PadelScoreWatchUITests/UITestSupport.swift` — assert the same observation that satisfies the expected-label wait.
+- `App/PadelScoreStoreKitTests/StoreKitPurchaseTests.swift` — real local StoreKit storefront/currency/price formatting regression.
+- `AI/audits/M10-final-polish.md` — one consolidated six-domain record with typed available evidence and explicitly unverified rows.
+- `AI/PROJECT_STATUS.md`, `AI/milestones/M10-final-product-polish.md`, this handoff — current work and remaining dependencies.
+
+## Validation
+
+| Field | Evidence |
+| --- | --- |
+| Baseline SHA | `e009fdb9b9565f241bac3db724d7bd54d9e9c50b` |
+| Implementation SHA | `13b343e0e3e90a20e5d01b94aa9a37a6a5d45dca` |
+| Full-regression checkpoint | `683ada21788050eec219a459ccabdf22699fb9cb`; later production delta is only minimum label frame/contentShape for Access Close and editor Cancel |
+| Milestone-verified SHA | None; required audit coverage is incomplete |
+| Required command | `make milestone ID=M10` — not run: clean REVIEW/complete coverage prerequisites are not met |
+| Release command | `make release CANDIDATE=<full-SHA>` — not run: no verified complete candidate |
+| Release verdict | Not established; **not READY_FOR_HUMAN** |
+| Manual release checklist | Not created; the three post-readiness human distribution rows have not been reached |
+| Audit | `AI/audits/M10-final-polish.md`, Coverage INCOMPLETE; 10 unique pending inventory rows at this checkpoint |
+
+Validation completed on 2026-10-22 UTC. All artifacts below live in `.artifacts/M10-final-polish/` unless otherwise specified. Full command lines are preserved in each log or the exact scripts noted; simulator UDIDs are explicit and all sessions use managed leases.
+
+| Check / source | Command and result | Evidence |
+| --- | --- | --- |
+| Baseline full Debug / e009fdb… | `make fast`: make 2, XCTest 65; 387 logical, 386 passed, 1 failed, 0 skipped/expected. Transient-label observation race reproduced. | `fast.log`, `fast-summary.json`, `.artifacts/fast/20261022T084728Z-80046/report.md`, `fast.xcresult` in that directory |
+| Baseline minimum OS / e009fdb… | `bash .artifacts/M10-final-polish/run-watchos10.sh`: exit 0; 387 logical / 731 expanded passed, 0 failed/skipped/expected | `watchos10.xcresult`, `watchos10-summary.json`; watchOS 10.0 / SE2 40mm |
+| Currency + original correction / f1f96d99aa62151b4ac0336685ce998f24167908 | targeted test-without-building: exit 0, 6/6 passed; local `$4.99`, `4,99 €` | `currency-and-correction.xcresult`, summary and currency attachments |
+| Corrected close / 683ada2… | focused test-without-building: exit 0, 1/1 passed; measured 14.216:1 | `paywall-inner26.xcresult`, summary, `paywall-close-contrast-final.json` |
+| Minimum hit-area correction + Americano / working correction subsequently committed as 1c87475… | targeted test-without-building: exit 0, 2/2 passed; literal 44 later replaced by existing `Metrics.minimumTap == 44` | `paywall-hitarea10.xcresult`, summary and screenshots |
+| Exact Release device build / 1c87475… | `xcodebuild clean build -project App/PadelScore.xcodeproj -scheme PadelScore -configuration Release -destination 'generic/platform=watchOS' -derivedDataPath /private/tmp/padel-m10-release CODE_SIGNING_ALLOWED=NO`: exit 0 | `release-hitarea-build.log`, `.exit`, `release-final-inspection.json` |
+| Exact Release simulator build / 1c87475… | same clean build with destination `generic/platform=watchOS Simulator` and derived path `/private/tmp/padel-m10-release-simulator`: exit 0 | `release-hitarea-simulator-build.log`, `.exit` |
+| Ordinary Release journeys / 1c87475… | isolated xctestrun points UI runner at ordinary Release; first-launch and create-Match/relaunch tests: exit 0, 2/2 passed. No Debug seed/premium path in the app binary. | `ordinary-release10.xcresult`, `.log`, `.exit` |
+| Exact Access on minimum OS / 1c87475102844305abbfddf9ff5ab71993689368 | All four Access tests: exit 0, 4/4 passed, 0 skipped; finished 2026-10-22T10:14:06.586Z | `paywall-exact10.xcresult`, summary/log/exit |
+| Editor Cancel / sources committed as 13b343e0e3e90a20e5d01b94aa9a37a6a5d45dca | Minimum target and existing dirty-draft cancel/confirmation tests: exit 0, 2/2 passed; finished 2026-10-22T10:28:31.136Z | `editor-fixed10.xcresult`, summary/log/exit; prior failing `editor-target10.xcresult` retained |
+| Final device Release / 13b343e0e3e90a20e5d01b94aa9a37a6a5d45dca | Same clean generic-watchOS Release command above: exit 0; binary checks pass | `release-editor-final-build.log`, `.exit`, `release-editor-final-inspection.json` |
+| Full regression / 683ada21788050eec219a459ccabdf22699fb9cb | `make fast`: exit 0, 389 logical / 733 expanded passed, 0 failures/skips/expected; completed 2026-10-22T10:39:30.235Z | `.artifacts/fast/20261022T095733Z-40683/report.md` and `fast.xcresult`; `fast-final-summary.json`, log/exit |
+| Final 26.1 toolbar checks / 13b343e0e3e90a20e5d01b94aa9a37a6a5d45dca | Access 4/4 (exit 0, 2026-10-22T10:42:57.639Z); Cancel plus dirty-draft confirmation 2/2 (exit 0, 2026-10-22T10:44:00.039Z). No failures/skips. | `paywall-exact26.xcresult`, `editor-fixed26.xcresult`, summaries/logs/exit files and inspected screenshots |
+| Closing repository checks | `make static`, `./Scripts/project-status.sh validate`, `git diff --check`: exit 0. No continuity check: no milestone-verified anchor exists. | `static-close.log`, `status-close.log` and exit files |
+
+The intermediate full run at 09234bc84f5b33768e69329e2b946561747f800a was intentionally cancelled after discovering the contrast defect (make 2 / XCTest 73), not passed. Earlier focused failures remain preserved. In particular `paywall-final10` failed at the genuine 30-point target and at a system logging callback crash; `watchos10-runtime-log-callback.ips` shows `_platform_strcmp → runtime_issue_os_log_fault_callback` during high-log-volume quarantine. The subsequent two-test repeat passed; no diagnostic was disabled.
+
+## Tests and self-review
+
+Reviewed the baseline-to-tip diff for scope, preserved dismissal ownership and entitlement/persistence boundaries, and retained every existing assertion/test. The added currency test resets its StoreKit session. The paywall system audit itself passed even before the visible contrast fix; screenshot/color review supplied the missing evidence. On watchOS 26 the accessibility tree nests same-ID native wrappers; the innermost Button is the actual tappable target. The test selects it and still asserts label, hittability, size and navigation outcome. On watchOS 10 the same test exposed a real 30-point target and drove the production size correction. A related check reproduced a 30-point editor Cancel target (`editor-target10`, exit 65); the same minimum frame fixes it. Existing dirty-draft discard coverage is rerun alongside the new target regression.
+
+This is Builder self-review, not independent audit or release approval. No streams were combined, so integration verification is not applicable. Optional SwiftLint, SwiftFormat, ShellCheck and an additional scanner are not configured and are not claimed as passed.
+
+## Known issues
+
+- Required evidence remains incomplete: on-court readability/tapping; spoken VoiceOver J1–J4 and focus return; actual Reduce Motion/AX12 settings; Always On/Low Power observations; oldest-supported-device launch performance; deliberately slow/lossy StoreKit requests, timeout and connectivity loss while a request is in flight. Immediate injected failures and offline restart do not establish those conditions.
+- Device Hub displayed the reserved watchOS 10 Release screen, but CUA mouse events failed to activate it and a later call returned `noWindowsAvailable`. XCTest successfully drove the ordinary Release journeys instead. Do not count the manual settings walkthrough as passed.
+- Four non-blocking P2 observations are retained with disposition in the audit (Increase Contrast outline, compact Sets spoken numbering, transient Restore set shortcut, collapsed title at largest text).
+- Apple’s documented Watch-only first-IAP submission path remains an external advisory; Sandbox success does not establish submission acceptance. No App Review submission, archive, upload or publication was performed.
+
+## Next step
+
+Resume **M10**, not another milestone. Retain all passed hardware observations. Complete only the outstanding audit rows, record their actual environment/results, then set clean REVIEW and run the declared milestone gate and release gate on the same exact SHA. Only their pass plus COMPLETE coverage allows DONE.
+
+Для оставшейся проверки на часах: чтение и запись очков между розыгрышами на корте; голосовое прохождение создания, счёта/Undo, редактирования/Cancel, завершения/Resume и Access/legal; настройки Reduce Motion, Bold Text, Increase Contrast, Reduce Transparency; Always On и Low Power. Для сетевых случаев нужна контролируемая проверка загрузки цены/Restore при медленной связи и её потере с последующим восстановлением. Эти действия пока не заявлены как выполненные.
