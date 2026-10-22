@@ -58,6 +58,21 @@ struct AccessView: View {
             }
         }
         .navigationTitle(Text("Access"))
+        .toolbar {
+            if let close {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(action: close) {
+                        Image(systemName: "xmark")
+                            .foregroundStyle(Palette.textPrimary)
+                    }
+                    // The sheet's automatic dismissal control uses a white glyph on the
+                    // app's pale accent. Match the legible neutral editor close control.
+                    .tint(Palette.backgroundElevated)
+                    .accessibilityLabel(Text("Close"))
+                    .accessibilityIdentifier("access.dismiss")
+                }
+            }
+        }
         .task { await store.refresh(); await store.loadProduct() }
     }
 

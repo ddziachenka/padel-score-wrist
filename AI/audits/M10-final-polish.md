@@ -41,7 +41,8 @@ Pending: enter typed rows only after the assigned checks have evidence.
 
 ## UI / UX
 
-- Source assessment: semantic dark palette, 44-point minimum controls, adaptive column/stack score, explicit save/error feedback and native navigation follow DESIGN. No design change justified from source. Runtime visual assessment waits for the current managed-device suite to release its lease.
+- Reviewed all 94 named screenshots from the baseline SE2 40mm run (screenshots26/index.json and eight contact sheets). Setup, scoring, full correction, conflicts, result, recovery, large text and legal pages remain legible with native scrolling. Transient blurred numeric/server frames are mid-animation, not steady-state corruption.
+- Found a real paywall close-control contrast defect: automatic sheet dismissal inherits pale accent with a white X. Measured screenshot colors (219,247,152) / (253,255,250), ratio 1.174:1 versus required 3:1. System accessibility audit passes before the fix, so it is insufficient evidence for this native chrome. Added explicit cancellation toolbar action using the existing neutral editor-close style; focused validation on 10.0/26.1 pending.
 - Evidence: shared styles and LiveScoreView inspected; current UI tests execute the real app, including compact/large-text states. Screenshots will be reviewed after completion.
 
 ## Coverage: ui-ux
@@ -90,6 +91,7 @@ Pending: enter typed rows only after the assigned checks have evidence.
 
 | ID | Domain | Severity | Reproduction and impact | Correction or disposition | Status |
 | --- | --- | --- | --- | --- | --- |
+| M10-A1 | UI / UX; Accessibility | P1 | Sixth game opens Access sheet; white automatic X on pale accent measures 1.174:1. Baseline screenshot A28088FD…png and paywall-close-contrast.json. | Explicit labelled cancellation toolbar control with light glyph/dark background; tests cover visible dismissal, retained setup/result and full system audit. | correction under validation |
 | M10-T1 | Functional verification | P1 | Shared waitForLabel observes a transient expected label, then re-queries it for XCTAssertEqual after expiry. Baseline full run fails at Americano correction. | Cache and assert the label observation that terminated the wait; same expected label/deadline and failure behavior. Current rerun pending. | correction under validation |
 | M10-P2-1 | Accessibility | P2 | Circle +/- controls do not add an Increase Contrast outline; icons retain text contrast and 44-point hit areas. Unchanged M06 source evidence. | Deferred: no loss of action identification; a border would improve consistency rather than remove a demonstrated barrier. | deferred |
 | M10-P2-2 | Accessibility | P2 | Compact Sets summary speaks each score without its set number; detailed Sets rows identify numbers. Retained M06 observation, unchanged source. | Deferred: explicit numbered detail is available; confirm actual speech/focus in the pending VoiceOver journey before changing grouping. | deferred |
@@ -106,6 +108,10 @@ change in this milestone.
 - Changed area: one permanent StoreKit USD/EUR regression added from the previous isolated currency experiment; production code is unchanged. Checks active storefront, actual currency code, exact Product.displayPrice passthrough and distinct localized strings. The local EUR amount is not claimed to equal ASC regional pricing.
 - Build-for-testing passed; runtime targeted run pending device lease. Test sessions reset StoreKit state in defer; original four scenarios/assertions untouched.
 - No production fix requiring a second behavioral pass so far; no independent audit claimed.
+- Targeted paywall baseline audit: 1/1 passed before the fix despite the measured visual contrast failure; retained as an automation limitation. Production fix changes only Access sheet dismissal chrome.
+- Minimum watchOS 10 baseline full suite: 387/387 passed, 0 failures/skips, exit 0; watchos10-summary.json and watchos10.xcresult.
+- New currency plus unmodified correction repeat at f1f96d99aa62151b4ac0336685ce998f24167908: 6/6 passed, exit 0; currency-and-correction.xcresult. Prices $4.99 and 4,99 € are local StoreKit formatting observations.
+- Intermediate full run at 09234bc84f5b33768e69329e2b946561747f800a was intentionally interrupted via SIGINT to its own xcodebuild PID 17608 after the paywall finding; not a pass. Its exit/error bundle is retained (fast-corrected.log, make exit 2, XCTest exit 73 after cancellation).
 - Full domain completion still awaits runtime/manual requirements.
 
 ## Additional scanner
@@ -130,3 +136,7 @@ change in this milestone.
 - Deferred P2:
 - Manual work still pending: on-court readability/tapping context, spoken VoiceOver J1–J4 (including correction escape and alert/purchase focus), and unobserved physical accessibility/Always On/Low Power cases from DESIGN. Owner explicitly requested these later; the passed checks are not repeated or erased.
 - Handoff: `AI/handoffs/M10-handoff.md`
+
+### Access correction checkpoint
+
+- Neutral cancellation toolbar replaces the low-contrast automatic sheet X. Focused current-source check: `paywall-inner26.xcresult`, exit 0, 1/1 passed, no skipped tests. It audits accessibility, checks the innermost native control's Close label, hittability and at least 44×44 frame, taps it and verifies setup/last-result access. watchOS exposes multiple same-ID wrappers; the outer visual wrapper is 30×30, the innermost tappable button is 50×50. Earlier exploratory failures in paywall-{after26,after10,v2,native,tree,final26} remain preserved and are not counted as passing evidence. Full regression and minimum-OS correction validation follow this checkpoint.

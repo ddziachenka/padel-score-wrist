@@ -4,6 +4,37 @@ import XCTest
 final class AccessUITests: XCTestCase {
     override func setUp() { continueAfterFailure = false }
 
+    func testPaywallPassesTheAccessibilityAudit() throws {
+        let app = launchApp(store: "access-audit", seed: "freeGamesUsed")
+        XCTAssertTrue(app.buttons["result.newGame"].waitForExistence(timeout: 10))
+        app.buttons["result.newGame"].scrollToAndTap(in: app)
+        app.buttons["newGame.match"].scrollToAndTap(in: app)
+        app.buttons["setup.start"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["access.restore"].waitForExistence(timeout: 10))
+        attachScreenshot("Access accessibility audit")
+        var issues: [String] = []
+        try app.performAccessibilityAudit { issue in
+            issues.append("\(issue.auditType): \(issue.compactDescription) — \(issue.element?.debugDescription ?? "no element")")
+            return true
+        }
+        XCTAssertTrue(issues.isEmpty, issues.joined(separator: "\n"))
+        attachScreenshot("Access after accessibility audit")
+        // watchOS exposes native toolbar wrappers and the actual control with the same ID.
+        let close = try XCTUnwrap(
+            app.buttons.matching(identifier: "access.dismiss").allElementsBoundByIndex.last,
+            app.debugDescription
+        )
+        XCTAssertEqual(close.label, "Close")
+        XCTAssertTrue(close.isHittable)
+        XCTAssertGreaterThanOrEqual(close.frame.width, 44)
+        XCTAssertGreaterThanOrEqual(close.frame.height, 44)
+        close.tap()
+        XCTAssertTrue(app.buttons["setup.start"].waitForExistence(timeout: 5))
+        app.goBack()
+        app.goBack()
+        XCTAssertTrue(app.buttons["result.resume"].waitForExistence(timeout: 5))
+    }
+
     func testSixthGameShowsAccessAndClosingKeepsResultAndDraft() {
         let app = launchApp(store: "access-used", seed: "freeGamesUsed")
         XCTAssertTrue(app.buttons["result.resume"].waitForExistence(timeout: 10))
