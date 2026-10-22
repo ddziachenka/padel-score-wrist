@@ -1066,13 +1066,13 @@
       }
     },
     "Free games left: %lld of %lld" : {
-      "comment" : "Access and purchase: Free games left: %lld of %lld",
+      "comment" : "Access and New game: how many of the five free games are left. Arguments: games left, five. No-break spaces keep the count together when the line wraps.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Free games left: %lld of %lld"
+            "value" : "Free games left: %1$lld of %2$lld"
           }
         }
       }

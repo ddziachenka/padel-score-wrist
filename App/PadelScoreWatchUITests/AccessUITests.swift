@@ -94,7 +94,8 @@ final class AccessUITests: XCTestCase {
 
         XCTAssertEqual(title.label, "Keep your focus on the game")
         XCTAssertEqual(app.descendants(matching: .any)["access.explanation"].label, "Unlimited Match & Americano scoring.")
-        XCTAssertEqual(app.descendants(matching: .any)["access.freeGames"].label, "Free games left: 5 of 5")
+        // No-break spaces keep the count together when the line wraps.
+        XCTAssertEqual(app.descendants(matching: .any)["access.freeGames"].label, "Free games left: 5\u{00A0}of\u{00A0}5")
         XCTAssertEqual(app.descendants(matching: .any)["access.paymentTerms"].label, "One payment. No subscription.")
         XCTAssertEqual(app.descendants(matching: .any)["access.keepsGames"].label, "Your current game and last result stay available, even without a purchase.")
         if purchase.exists { assertLabel(purchase, contains: "Unlock forever") }

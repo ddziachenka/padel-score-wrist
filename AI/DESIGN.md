@@ -544,7 +544,7 @@ match back.`, кнопка — `Replace game`. Экран, открытый из
 выводится, матч без единого очка говорит `No points played.` У матча победителя нет. Раунд при N называет
 `US won` / `THEM won` / `Draw`, раунд, остановленный раньше, — `Ended early` и лидера (`US ahead`, `THEM
 ahead`, `Points level`), и всегда `18 of 32 rallies played.` На крупнейшем тексте строки становятся названием
-и строками `US 6` / `THEM 4`. S10 озаглавлен `Match finished` / `Round finished`, первым идёт `✓ Saved`
+и строками `US 6` / `THEM 4`. S10 озаглавлен `Match finished` / `Round finished`, первым идёт `✓ Saved` (с M11 — после счёта, см. ниже)
 (success; на 1,5 с после правки результата — `Changes saved`), затем итог, `New game` (primary) с пояснением
 `Starting a new game will keep this result for viewing only.`, `Resume game`, `Edit result` и `About`. Раунд
 на N подписывает Resume текстом `All rallies are played. To resume, increase the total or correct the score.`;
