@@ -1,7 +1,7 @@
 # M09 — Legal and Support
 
 **ID:** M09
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M08
 **Validation:** make milestone ID=M09
 **Handoff:** AI/handoffs/M09-handoff.md
@@ -56,3 +56,12 @@ matrix recorded in `AI/handoffs/M08-local-repair-handoff.md`. That resolves M09'
 recorded dependency blocker. This session preserves the prepared implementation
 and tests, checks the live public pages and running legal routes, reviews the
 complete prepared scope, and runs M09's own clean gate before recording DONE.
+
+Self-review found no blocking product defect. The focused runtime run passes
+8/8 (five UI, three configuration), zero failures/skips, on the managed 40mm
+watchOS 26.1 simulator. Captured Privacy/Terms/Support addresses, email and EULA
+are readable; largest-text Access remains scrollable. All four public pages
+return HTTP 200 and byte-match `Web/public`; external legal/refund destinations
+respond. Evidence: `.artifacts/M09-completion/`. Existing regression assertions
+and production code are preserved. This is Builder self-review, not an independent
+audit or release approval.
