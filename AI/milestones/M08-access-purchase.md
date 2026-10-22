@@ -1,7 +1,7 @@
 # M08 — Access and Purchase
 
 **ID:** M08
-**Status:** REVIEW
+**Status:** IN_PROGRESS
 **Depends on:** M07
 **Validation:** make milestone ID=M08
 **Handoff:** AI/handoffs/M08-handoff.md
@@ -27,7 +27,7 @@
 ## Acceptance criteria
 
 - [ ] Тестовая матрица соответствует реально утверждённой модели; ни один пункт не выбирает цену, trial limit или единицу за владельца.
-- [ ] Для lifetime IAP: покупка/restore/revoked/unverified/pending/offline проверены с StoreKit configuration и доступным реальным устройством; только verified entitlement открывает paid access.
+- [ ] Для lifetime IAP: покупка/restore/revoked/unverified/pending проверены с StoreKit configuration и реальным устройством; исходный тест имитируемой сетевой ошибки остаётся обязательным на симуляторе, а на часах проверяется реальная потеря связи и сохранение купленного доступа после повторного запуска. Только verified entitlement открывает paid access.
 - [ ] Повторное завершение того же sessionID, score correction и Resume не увеличивают usage; paywall не вмешивается в активную игру.
 - [ ] Для lifetime IAP debug override отсутствует в Release артефакте и Release UI, не подменяет StoreKit-тесты и не создаёт второй источник entitlement.
 - [ ] Для lifetime IAP цена локализована StoreKit; product unavailable не показывает fake price и не мешает восстановлению/обратному выходу; при free решении paywall и override отсутствуют.
@@ -48,8 +48,23 @@ Dedicated test-only host, same production source except an inert @main, corrects
 the local canonical-ID mismatch. Four unchanged StoreKit scenarios and three
 shipping access UI tests pass on the managed simulator. Setup now requires a
 verified Xcode app identity; a build guard prevents source/config drift and
-archive inclusion. Complete gate and physical verification remain in this
-session. See [repair handoff](../handoffs/M08-local-repair-handoff.md).
+archive inclusion. Complete clean gate on
+`1f9b96c78a1f09470d6b7e574d19a55f1c71f816` passes 387/387, zero failures/skips.
+Physical Xcode 27.1 / watchOS 27.0.1 runs all four original tests: three pass;
+the synthetic network-error assertion still receives unknown instead of offline.
+See [repair handoff](../handoffs/M08-local-repair-handoff.md).
+
+### Owner-approved hardware validation change — 2026-10-22
+
+The owner explicitly chose to keep the original network test on the simulator
+and replace synthetic network-error injection on hardware with real offline
+access verification. No test code, assertion, production error mapping or gate
+selection changes. Purchase/restore/refund, pending and unverified hardware
+coverage remain required. The real Watch check must establish a verified purchase
+online, disable every network route (including the paired iPhone), relaunch the
+ordinary app offline, and confirm unlocked access and game creation. Reconnection
+must preserve access. Until this check passes M08 is not DONE. The earlier 3/4
+result remains recorded as a failed run; it is never relabeled 4/4.
 
 ## Local environment follow-up — 2026-10-22
 
