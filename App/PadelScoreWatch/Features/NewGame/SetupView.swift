@@ -142,7 +142,7 @@ private enum SetupRow: Hashable {
         case .totalRallies: self = .totalRallies
         case .ralliesPerServer: self = .ralliesPerServer
         case .serving: self = .serving
-        case .setup, .about, .settings: return nil
+        case .setup, .about, .demo, .settings: return nil
         }
     }
 

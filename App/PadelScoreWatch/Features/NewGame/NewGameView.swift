@@ -1,13 +1,16 @@
 import SwiftUI
 
 /// New game: choosing Match or Americano, then setting it up. A game being played never
-/// reaches this screen, so a new game cannot replace it.
+/// reaches this screen, so a new game cannot replace it. Under the formats, the scoreboard demo
+/// can be tried; it never opens by itself.
 struct NewGameView: View {
     @State private var flow: NewGameFlow
     private let store: SessionStore
+    private let haptics: any HapticPlayer
 
-    init(store: SessionStore) {
+    init(store: SessionStore, haptics: any HapticPlayer) {
         self.store = store
+        self.haptics = haptics
         _flow = State(initialValue: NewGameFlow(store: store))
     }
 
@@ -16,6 +19,15 @@ struct NewGameView: View {
             ScrollView {
                 VStack(spacing: Spacing.sm) {
                     FormatChoices(flow: flow)
+
+                    NavigationLink(value: NewGameFlow.Route.demo) {
+                        Text("Try the scoreboard")
+                            .font(Typography.body)
+                            .foregroundStyle(Palette.textPrimary)
+                    }
+                    .buttonStyle(RowButtonStyle())
+                    .accessibilityHint(Text("Opens a short example. Nothing is saved."))
+                    .accessibilityIdentifier("home.demo")
 
                     NavigationLink(value: NewGameFlow.Route.about) {
                         Text("About")
@@ -29,7 +41,7 @@ struct NewGameView: View {
             }
             .navigationTitle(Text("New game"))
             .navigationDestination(for: NewGameFlow.Route.self) { route in
-                NewGameDestination(route: route, flow: flow, store: store)
+                NewGameDestination(route: route, flow: flow, store: store, haptics: haptics)
             }
         }
     }
@@ -59,6 +71,8 @@ struct NewGameDestination: View {
     let route: NewGameFlow.Route
     let flow: NewGameFlow
     let store: SessionStore
+    /// Played by the scoreboard demo.
+    let haptics: any HapticPlayer
     var started: (() -> Void)? = nil
 
     var body: some View {
@@ -90,7 +104,9 @@ struct NewGameDestination: View {
         case .serving:
             ServingEditor(serving: draft(\.serving, otherwise: ServingChoice()))
         case .about:
-            AboutView(usage: store.session.usage) { flow.path.append(.settings) }
+            AboutView(usage: store.session.usage, tryScoreboard: { flow.path.append(.demo) }, settings: { flow.path.append(.settings) })
+        case .demo:
+            ScoreboardDemoView(haptics: haptics)
         case .settings:
             LocalDataSettingsView(store: store)
         }

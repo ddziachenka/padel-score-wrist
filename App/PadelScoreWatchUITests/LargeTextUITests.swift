@@ -148,6 +148,53 @@ final class LargeTextUITests: XCTestCase {
         attachScreenshot("Resumed, largest text")
     }
 
+    func testTheDemoBoardFitsWithoutScrollingAtLargeText() {
+        let app = launchApp(store: "large-demo", textSize: "UICTContentSizeCategoryL")
+        XCTAssertTrue(app.buttons["newGame.match"].waitForExistence(timeout: 10))
+        app.buttons["home.demo"].scrollToAndTap(in: app)
+        let us = app.buttons["demo.us"]
+        let them = app.buttons["demo.them"]
+        XCTAssertTrue(us.waitForExistence(timeout: 5))
+        let screen = app.windows.firstMatch.frame
+        for identifier in ["demo.title", "demo.context", "demo.us", "demo.them", "demo.games", "demo.sets", "demo.server", "demo.undo", "demo.close"] {
+            let element = app.descendants(matching: .any)[identifier]
+            XCTAssertTrue(element.exists, identifier)
+            XCTAssertTrue(screen.contains(element.frame), "\(identifier) at \(element.frame) is outside the screen \(screen)")
+        }
+        XCTAssertEqual(us.frame.minY, them.frame.minY, accuracy: 1, "the teams stay side by side")
+        XCTAssertGreaterThanOrEqual(us.frame.height, 44)
+        XCTAssertTrue(us.isHittable)
+        XCTAssertTrue(app.buttons["demo.close"].isHittable)
+        attachScreenshot("Demo, Large text")
+    }
+
+    func testTheDemoStacksAndScrollsAtTheLargestTextSize() {
+        let app = launchApp(store: "large-demo-max", textSize: largest)
+        XCTAssertTrue(app.buttons["newGame.match"].waitForExistence(timeout: 10))
+        app.buttons["home.demo"].scrollToAndTap(in: app)
+        let us = app.buttons["demo.us"]
+        let them = app.buttons["demo.them"]
+        XCTAssertTrue(us.waitForExistence(timeout: 5))
+        XCTAssertLessThanOrEqual(us.frame.maxY, them.frame.minY, "THEM is under US")
+        XCTAssertEqual(us.label, "Our score, 40")
+        XCTAssertEqual(app.descendants(matching: .any)["demo.title"].label, "Demo")
+        attachScreenshot("Demo, largest text")
+
+        award(them, showing: "Their score, 40")
+        app.buttons["demo.undo"].scrollToAndTap(in: app)
+        waitForLabel(them, "Their score, 30")
+        let hint = app.descendants(matching: .any)["demo.hint"]
+        XCTAssertEqual(hint.label, "Tap a team to add a point. Undo reverses it.")
+        app.buttons["demo.reset"].scrollToAndTap(in: app)
+        let title = app.descendants(matching: .any)["demo.title"]
+        let screen = app.windows.firstMatch.frame
+        XCTAssertTrue(screen.contains(title.frame), "Demo at \(title.frame) scrolled away from \(screen)")
+        XCTAssertLessThan(title.frame.minY, screen.minY + 40, "Demo stays in the clock's row")
+        attachScreenshot("Demo, largest text, scrolled")
+        app.buttons["demo.close"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["newGame.match"].waitForExistence(timeout: 5))
+    }
+
     func testMatchRuleChoicesReadInFullAtTheLargestTextSize() {
         let app = launchApp(store: "large-text-match", textSize: largest)
         app.buttons["newGame.match"].scrollToAndTap(in: app)

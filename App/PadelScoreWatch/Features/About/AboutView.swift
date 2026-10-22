@@ -1,8 +1,11 @@
 import SwiftUI
 
-/// The app's name and installed version, and the way to the settings of the data kept on this Watch.
+/// The app's name and installed version, the scoreboard demo, and the way to the settings of the data
+/// kept on this Watch.
 struct AboutView: View {
     let usage: UsageLedger
+    /// Opens the scoreboard demo.
+    let tryScoreboard: () -> Void
     /// Opens Settings.
     let settings: () -> Void
 
@@ -31,6 +34,14 @@ struct AboutView: View {
                 }
                 .buttonStyle(RowButtonStyle())
                 .accessibilityIdentifier("about.access")
+                Button(action: tryScoreboard) {
+                    Text("Try the scoreboard")
+                        .font(Typography.body)
+                        .foregroundStyle(Palette.textPrimary)
+                }
+                .buttonStyle(RowButtonStyle())
+                .accessibilityHint(Text("Opens a short example. Nothing is saved."))
+                .accessibilityIdentifier("about.demo")
                 Button(action: settings) {
                     HStack(spacing: Spacing.sm) {
                         Text("Settings", comment: "About: the row that opens the settings of the data kept on this Watch.")

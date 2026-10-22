@@ -184,6 +184,35 @@ final class AccessibilityUITests: XCTestCase {
         try audit(firstSet, "Match finished in its first set")
     }
 
+    func testAboutAndTheDemoPassTheAccessibilityAudit() throws {
+        let app = launchApp(store: "audit-demo")
+        XCTAssertTrue(app.buttons["home.about"].waitForExistence(timeout: 10))
+        app.buttons["home.about"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["about.demo"].waitForExistence(timeout: 5))
+        try audit(app, "About")
+
+        app.buttons["about.demo"].scrollToAndTap(in: app)
+        let them = app.buttons["demo.them"]
+        XCTAssertTrue(them.waitForExistence(timeout: 5))
+        try audit(app, "Demo")
+        award(them, showing: "Their score, 40")
+        try audit(app, "Demo at Golden point")
+        them.tap()
+        XCTAssertTrue(app.buttons["demo.over"].waitForExistence(timeout: 5))
+        try audit(app, "Demo game over")
+        app.buttons["demo.reset"].scrollToAndTap(in: app)
+        XCTAssertTrue(them.waitForExistence(timeout: 5))
+        try audit(app, "Demo scrolled to Reset demo")
+    }
+
+    func testTheDemoAtTheLargestTextPassesTheAccessibilityAudit() throws {
+        let app = launchApp(store: "audit-demo-large", textSize: "UICTContentSizeCategoryAccessibilityXXXL")
+        XCTAssertTrue(app.buttons["newGame.match"].waitForExistence(timeout: 10))
+        app.buttons["home.demo"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["demo.us"].waitForExistence(timeout: 5))
+        try audit(app, "Demo, largest text")
+    }
+
     func testRecoveryPassesTheAccessibilityAudit() throws {
         let app = launchApp(store: "audit-damaged", seed: "damaged")
         XCTAssertTrue(app.buttons["recovery.tryAgain"].waitForExistence(timeout: 10))

@@ -587,6 +587,23 @@ game`, `Edit result`, `About`. Play again открывает Setup того же
 порядком подачи этого результата и подающим, начавшим игру; над строками `Same rules and serving as your
 last game. Check who serves first.` Back возвращает к редактируемому результату, ничего не создав.
 
+С M12 так устроена демонстрация (S1, S11, S16). На New game под форматами и строкой бесплатных игр стоит
+строка `Try the scoreboard`, в About такая же строка идёт после Access; демо открывается только ими. S16
+собран из компонентов живого счёта и повторяет его компоновку: в строке системных часов вместо контекста
+постоянная надпись `Demo` цвета accent, которая не прокручивается; под ней строка контекста (`Set 1`,
+`Golden point` цвета warning, на 1,5 с `Action undone` или `Demo reset`), две команды, `Games` и `Sets`,
+внизу Undo, `Serving` с ролью и круглая ✕ `Close` на месте меню. На 40 mm при Large всё табло видно без
+прокрутки; ниже по прокрутке подсказка `Tap a team to add a point. Undo reverses it.` и `Reset demo`.
+Касание добавляет очко тем же движком с тем же порогом 0,5 с, haptic и объявлениями VoiceOver живого
+счёта. Выигранный гейм заканчивает демо: место очков занимает карточка `Game to US` / `Game to THEM` с
+действием `Reset demo` (как карточка подтверждения подачи, когда очко записать нельзя), `Games` и подающий
+показывают новое состояние, подсказка становится `The demo ends after one game. Undo the point or reset the
+demo.`, VoiceOver говорит то же после гейма, Undo остаётся. `Reset demo` возвращает пример без истории Undo
+(VoiceOver: `Demo reset.`, очки и подающий), своего haptic у него нет. Close и escape VoiceOver возвращают к
+месту открытия; уход в фон во время игры закрывает демо вместе с About; каждое открытие и перезапуск
+начинают пример заново. На крупнейшем тексте команды становятся секциями, всё достижимо прокруткой;
+Always On рисует контуры и не принимает касаний. `Saved` в демо не появляется.
+
 ## Components and system controls
 
 | Component | Variants | Required states | Notes |
@@ -698,7 +715,9 @@ format?`; счёт в них (`40–40`, `7–5`) держится на одно
 result`, `Resume game`, `Last result`, `Game resumed`, `Delete local data?` и пояснения S10/S15. M11 добавил
 `Keep your focus on the game`, `Unlimited Match & Americano scoring.`, `One payment. No subscription.`,
 `Play again`, `Sets won`, `Set 2 · Incomplete` (номер — параметр) и `Same rules and serving as your last
-game. Check who serves first.`
+game. Check who serves first.` M12 добавил `Try the scoreboard`, `Demo`, `Tap a team to add a point. Undo
+reverses it.`, `Reset demo`, `Demo reset`, `Game to US`, `Game to THEM`, `The demo ends after one game. Undo
+the point or reset the demo.` и VoiceOver-тексты `Demo reset.`, `Game to us. Reset demo`.
 
 ## Appearance and device coverage
 

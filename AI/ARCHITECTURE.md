@@ -320,6 +320,19 @@ Undo, применяя настоящий `MatchEngine`. Она не получ�
 `UsageLedger`, `EntitlementStore` или StoreKit и не может их изменить; общие компоненты живого счёта
 получают её значения. Выход, перезапуск и повторный вход создают модель заново.
 
+С M12 это `ScoreboardDemo` (Features/Demo, Observation): `ScoreboardDemo.example`, история — массив прежних
+`MatchState`, очко — `MatchEngine.apply` с порогом `LiveScore.settleTime`; конец демо выводится из гейма
+(`gameWinner`), а не хранится отдельно. Инициализатор принимает только `HapticPlayer` и часы, поэтому модели
+нечем дотянуться до хранилища, учёта или покупки. Haptic и объявления берутся из `Haptic(confirming:)` и
+`ScoreAnnouncement`, табло — из `ScoreBoard(format:isFinished:)` без сохранённой игры. `ScoreboardDemoView`
+держит модель в `@State`, поэтому каждое открытие создаёт новую; маршрут — `NewGameFlow.Route.demo` в стеке
+New game и `GameRoute.demo` в стеке игры (About из результата или меню), не редактор. Компоненты живого
+счёта (`ContextLine`, `TeamButtons`, `DetailRows`, `ServingBlock`, `UndoButton`, `IconButton`) получают
+значения и действия вместо `LiveScore`, идентификаторы для UI-тестов — префиксом (`game.*` / `demo.*`).
+`ScoreboardDemoIsolationTests` рядом с настоящей сохранённой сессией проводит демо через все действия и
+проверяет: файловая система хранилища не получила ни одной операции, байты и даты файлов, сессия (игра,
+история, результат, настройки, ledger) и состояние `EntitlementStore` не изменились.
+
 Быстрый запуск (M14, утверждено 2026-10-22): WidgetKit extension в составе Watch-приложения показывает
 статическую кнопку без данных приложения: без App Group, общей базы, timeline-обновлений счёта и
 фоновой работы. Касание открывает приложение системным механизмом WidgetKit; обычный запуск выводит

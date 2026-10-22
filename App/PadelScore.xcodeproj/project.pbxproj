@@ -135,6 +135,10 @@
 		6ED9EBD0EBA5295C147093DC /* Lifetime.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A9B925E1513084C61A8C9194 /* Lifetime.storekit */; };
 		F31A6E4D6B52A4B68CB3AA25 /* AccessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2D55319145D23348FCA77E /* AccessUITests.swift */; };
 		A039DCC85BE50368425A1D002 /* StoreKitTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A039DCC85BE50368425A1D003 /* StoreKitTestApp.swift */; };
+		B4C39A0F4DA0DFF052B08E96 /* ScoreboardDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159767DA3B5A16A7BF6D1A39 /* ScoreboardDemo.swift */; };
+		C48D32C95AC7B9DB612D5212 /* ScoreboardDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BDD63670478D4B00DA6B1 /* ScoreboardDemoView.swift */; };
+		6E94A01B3EF469E5701997EA /* ScoreboardDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C8409F2A9F172C1917A45A /* ScoreboardDemoTests.swift */; };
+		C66046E46980F568E69616A7 /* DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6584389A75E410CE838651 /* DemoUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -327,6 +331,10 @@
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A039DCC85BE50368425A1D003 /* StoreKitTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoreKitTestApp.swift; path = "PadelScoreStoreKitHost/StoreKitTestApp.swift"; sourceTree = SOURCE_ROOT; };
+		159767DA3B5A16A7BF6D1A39 /* ScoreboardDemo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreboardDemo.swift; sourceTree = "<group>"; };
+		185BDD63670478D4B00DA6B1 /* ScoreboardDemoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreboardDemoView.swift; sourceTree = "<group>"; };
+		38C8409F2A9F172C1917A45A /* ScoreboardDemoTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreboardDemoTests.swift; sourceTree = "<group>"; };
+		0F6584389A75E410CE838651 /* DemoUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DemoUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +532,7 @@
 				4D14E406D10F525B57C642E4 /* AccessibilityUITests.swift */,
 				7ED53B06740CEEDE7D8B10A6 /* CorrectionUITests.swift */,
 				74466D48BE4959B9993591F4 /* FinishResumeUITests.swift */,
+				0F6584389A75E410CE838651 /* DemoUITests.swift */,
 			);
 			name = PadelScoreWatchUITests;
 			path = PadelScoreWatchUITests;
@@ -581,6 +590,7 @@
 				ED78CED21DA5F21D737A0B63 /* Correction */,
 				29B971933DF0A9EDA639324F /* Result */,
 				69DD3267528CC1160B871350 /* Settings */,
+				5354E3F9AA7B32C69A8078B5 /* Demo */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -674,6 +684,7 @@
 				400616655D7391AD5C3291F8 /* PlayAgainTests.swift */,
 				8B2C08BBCD66D5374B2C2E3F /* FinishResumeTests.swift */,
 				C610BB14BACAE0059F842072 /* LocalDataSettingsTests.swift */,
+				38C8409F2A9F172C1917A45A /* ScoreboardDemoTests.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -721,6 +732,15 @@
 			children = (
 				5580CC770FC8E598F8F47A8B,
 			);
+		};
+		5354E3F9AA7B32C69A8078B5 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				159767DA3B5A16A7BF6D1A39 /* ScoreboardDemo.swift */,
+				185BDD63670478D4B00DA6B1 /* ScoreboardDemoView.swift */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -1005,6 +1025,7 @@
 				AD265162525C36AD532C131F /* ResultSummaryTests.swift in Sources */,
 				FCC89CA5E0F193EF92E0CB7F /* FinishResumeTests.swift in Sources */,
 				0EEF48F85C154BAFE43D0374 /* LocalDataSettingsTests.swift in Sources */,
+				6E94A01B3EF469E5701997EA /* ScoreboardDemoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,6 +1043,7 @@
 				922D163F894C96D4BE10B928 /* AccessibilityUITests.swift in Sources */,
 				F3E6C80BE1A35EB4B912C644 /* CorrectionUITests.swift in Sources */,
 				BCF779A9153B3A231A4D463F /* FinishResumeUITests.swift in Sources */,
+				C66046E46980F568E69616A7 /* DemoUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1095,6 +1117,8 @@
 				960B6B4F674A53A9D2A02531 /* ResultView.swift in Sources */,
 				705E995E6D850E93195DB112 /* LocalDataSettings.swift in Sources */,
 				19A6FDE1C3049BF8C5C888FB /* LocalDataSettingsView.swift in Sources */,
+				B4C39A0F4DA0DFF052B08E96 /* ScoreboardDemo.swift in Sources */,
+				C48D32C95AC7B9DB612D5212 /* ScoreboardDemoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,6 +1192,8 @@
 				960B6B4F674A53A9D2A02531,
 				705E995E6D850E93195DB112,
 				19A6FDE1C3049BF8C5C888FB,
+				B4C39A0F4DA0DFF052B08E96 /* ScoreboardDemo.swift in Sources */,
+				C48D32C95AC7B9DB612D5212 /* ScoreboardDemoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

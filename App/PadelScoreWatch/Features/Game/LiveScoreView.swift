@@ -5,6 +5,8 @@ import SwiftUI
 enum GameRoute: Hashable, Sendable {
     case menu
     case about
+    /// The scoreboard demo, from About.
+    case demo
     /// Settings, with the local data kept on this Watch.
     case settings
     /// Confirming the serving order of a new set, starting from the order proposed for it.
@@ -39,7 +41,7 @@ enum GameRoute: Hashable, Sendable {
     /// A screen of a correction.
     var isEditor: Bool {
         switch self {
-        case .menu, .about, .settings, .serving, .finish, .lastResult, .formats, .newGame: false
+        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .formats, .newGame: false
         default: true
         }
     }
@@ -62,6 +64,8 @@ enum GameRoute: Hashable, Sendable {
 struct LiveScoreView: View {
     let live: LiveScore
     let store: SessionStore
+    /// Played by the scoreboard demo, which About opens.
+    let haptics: any HapticPlayer
     /// The game's own screens. Setting up the next game adds the flow's screens after them.
     @State private var path: [GameRoute] = []
     /// The next game being set up from the result.
@@ -215,7 +219,9 @@ struct LiveScoreView: View {
         case .menu:
             GameMenuView(live: live) { edit($0) }
         case .about:
-            AboutView(usage: store.session.usage) { path.append(.settings) }
+            AboutView(usage: store.session.usage, tryScoreboard: { path.append(.demo) }, settings: { path.append(.settings) })
+        case .demo:
+            ScoreboardDemoView(haptics: haptics)
         case .settings:
             LocalDataSettingsView(store: store)
         case let .serving(proposed, set):
@@ -239,7 +245,7 @@ struct LiveScoreView: View {
             }
         case .newGame(let route):
             if let newGame {
-                NewGameDestination(route: route, flow: newGame, store: store) {
+                NewGameDestination(route: route, flow: newGame, store: store, haptics: haptics) {
                     path.removeAll()
                     self.newGame = nil
                 }
@@ -313,7 +319,7 @@ struct LiveScoreView: View {
             )
         case .format:
             FormatEditor(editor: editor)
-        case .menu, .about, .settings, .serving, .finish, .lastResult, .formats, .newGame:
+        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .formats, .newGame:
             EmptyView()
         }
     }
@@ -396,25 +402,35 @@ private struct ScoreScreen: View {
     private func columns(clockRow: CGFloat, width: CGFloat) -> some View {
         VStack(spacing: Spacing.xs) {
             // The system clock takes the right of this row: about a third of it on the smallest Watch.
-            ContextLine(board: board, live: live)
+            contextLine
                 .frame(height: clockRow)
                 .padding(.trailing, max(52, width * 0.3))
             ScoreArea(board: board, live: live, layout: .columns, open: open)
                 .frame(minHeight: 0, idealHeight: comfortableScoreHeight, maxHeight: .infinity)
-            DetailRows(details: board.details)
+            DetailRows(details: board.details, idPrefix: "game")
                 .fixedSize(horizontal: false, vertical: true)
             // The serving text may reach under the empty margins of the round buttons' tap areas,
             // so a role such as Opponent 1 keeps its words whole.
             ZStack {
-                ServingBlock(board: board, live: live, layout: .columns)
+                ServingBlock(board: board, layout: .columns, idPrefix: "game")
                     .padding(.horizontal, IconButton.circleInset)
                 HStack(spacing: 0) {
-                    UndoButton(live: live)
+                    undoButton
                     Spacer(minLength: 0)
                     trailingButton
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    private var contextLine: some View {
+        ContextLine(board: board, lastChange: live.contextNotice, isSavingUndo: live.saving == .undo, idPrefix: "game")
+    }
+
+    private var undoButton: some View {
+        UndoButton(canUndo: live.canUndo, idPrefix: "game") {
+            Task { await live.undo() }
         }
     }
 
@@ -437,12 +453,12 @@ private struct ScoreScreen: View {
     private var stacked: some View {
         ScrollView {
             VStack(spacing: Spacing.sm) {
-                ContextLine(board: board, live: live)
+                contextLine
                 ScoreArea(board: board, live: live, layout: .stacked, open: open)
-                DetailRows(details: board.details)
-                ServingBlock(board: board, live: live, layout: .stacked)
+                DetailRows(details: board.details, idPrefix: "game")
+                ServingBlock(board: board, layout: .stacked, idPrefix: "game")
                 HStack {
-                    UndoButton(live: live)
+                    undoButton
                     Spacer(minLength: Spacing.sm)
                     trailingButton
                 }
@@ -455,12 +471,23 @@ private struct ScoreScreen: View {
     }
 }
 
+/// The last change on a score, numbered, and what the line above the score says about it for a
+/// moment, if anything.
+struct ContextNotice {
+    /// Counts the changes, so each is told once and a new one ends the last one's notice.
+    let number: Int
+    let text: LocalizedStringResource?
+}
+
 /// The short line above the score: the set, Golden point, Tie-break, Americano or the end of the
-/// round. For a moment after Undo it says the change was undone, after a saved correction that it
-/// was saved, and during a slow Undo that it is being saved.
-private struct ContextLine: View {
+/// round. For a moment after a change it may say what changed, such as `Action undone` after Undo,
+/// and during a slow Undo that it is being saved. The live score and the demo share it.
+struct ContextLine: View {
     let board: ScoreBoard
-    let live: LiveScore
+    let lastChange: ContextNotice?
+    var isSavingUndo = false
+    /// Begins the identifier UI tests find the line by.
+    let idPrefix: String
     @State private var notice: LocalizedStringResource?
     /// The change already told, so coming back to the score from another screen does not tell it again.
     @State private var toldChange: Int?
@@ -473,7 +500,7 @@ private struct ContextLine: View {
                     .foregroundStyle(Palette.textPrimary)
                     .transition(.opacity)
             } else {
-                SavingLabel(Text(board.context.title), isSaving: live.saving == .undo)
+                SavingLabel(Text(board.context.title), isSaving: isSavingUndo)
                     .foregroundStyle(board.context.isDecisive ? Palette.warning : Palette.textSecondary)
                     .accessibilityAddTraits(.isHeader)
             }
@@ -483,22 +510,11 @@ private struct ContextLine: View {
         .minimumScaleFactor(0.8)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.leading, Spacing.sm)
-        .accessibilityIdentifier("game.context")
+        .accessibilityIdentifier("\(idPrefix).context")
         .accessibilitySortPriority(7)
-        .task(id: live.lastChange?.number) {
-            guard let change = live.lastChange, change.number != toldChange else { return }
-            let shown: LocalizedStringResource
-            switch change.outcome {
-            case .undone:
-                shown = LocalizedStringResource("Action undone", comment: "Game screen: shown above the score for a moment after Undo restored the game as it was before its last change.")
-            case .corrected:
-                shown = LocalizedStringResource("Changes saved", comment: "Game screen: shown above the score for a moment after a correction was saved.")
-            case .resumed:
-                shown = LocalizedStringResource("Game resumed", comment: "Game screen: shown above the score for a moment after a finished game was resumed.")
-            default:
-                return
-            }
-            toldChange = change.number
+        .task(id: lastChange?.number) {
+            guard let lastChange, lastChange.number != toldChange, let shown = lastChange.text else { return }
+            toldChange = lastChange.number
             withAnimation(reduceMotion ? nil : .easeOut(duration: 0.15)) { notice = shown }
             try? await Task.sleep(for: .seconds(1.5))
             withAnimation(reduceMotion ? nil : .easeOut(duration: 0.15)) { notice = nil }
@@ -506,7 +522,31 @@ private struct ContextLine: View {
     }
 }
 
-private enum ScoreLayout {
+private extension LiveScore {
+    /// The last saved change, and what the line above the score says about it: Undo, a saved
+    /// correction or Resume.
+    var contextNotice: ContextNotice? {
+        guard let lastChange else { return nil }
+        let text: LocalizedStringResource? = switch lastChange.outcome {
+        case .undone:
+            LocalizedStringResource("Action undone", comment: "Game screen: shown above the score for a moment after Undo restored the game as it was before its last change.")
+        case .corrected:
+            LocalizedStringResource("Changes saved", comment: "Game screen: shown above the score for a moment after a correction was saved.")
+        case .resumed:
+            LocalizedStringResource("Game resumed", comment: "Game screen: shown above the score for a moment after a finished game was resumed.")
+        default:
+            nil
+        }
+        return ContextNotice(number: lastChange.number, text: text)
+    }
+
+    /// The team whose rally is being saved, if one is.
+    var savingTeam: Team? {
+        if case .point(let team) = saving { team } else { nil }
+    }
+}
+
+enum ScoreLayout {
     /// Two equal columns side by side.
     case columns
     /// One full-width section under the other, for accessibility text sizes.
@@ -527,15 +567,36 @@ private struct ScoreArea: View {
                 open(.serving(proposed: proposed, set: number))
             }
         } else {
-            let stack = layout == .columns
-                ? AnyLayout(HStackLayout(spacing: Spacing.sm))
-                : AnyLayout(VStackLayout(spacing: Spacing.sm))
-            stack {
-                ScoreButton(team: .us, points: board.us, layout: layout, live: live, acceptsPoints: board.acceptsPoints)
-                    .accessibilitySortPriority(6)
-                ScoreButton(team: .them, points: board.them, layout: layout, live: live, acceptsPoints: board.acceptsPoints)
-                    .accessibilitySortPriority(5)
+            TeamButtons(board: board, layout: layout, acceptsPoints: board.acceptsPoints, savingTeam: live.savingTeam, idPrefix: "game") { team in
+                Task { await live.award(team) }
             }
+        }
+    }
+}
+
+/// The two teams' points, US first, each a button for the rally the team won. The live score and the
+/// demo share them.
+struct TeamButtons: View {
+    let board: ScoreBoard
+    let layout: ScoreLayout
+    let acceptsPoints: Bool
+    /// The team whose rally is being saved, if one is.
+    var savingTeam: Team?
+    /// Begins the identifiers UI tests find the buttons by.
+    let idPrefix: String
+    let award: (Team) -> Void
+
+    var body: some View {
+        let stack = layout == .columns
+            ? AnyLayout(HStackLayout(spacing: Spacing.sm))
+            : AnyLayout(VStackLayout(spacing: Spacing.sm))
+        stack {
+            ScoreButton(team: .us, points: board.us, layout: layout, acceptsPoints: acceptsPoints, isSaving: savingTeam == .us, award: award)
+                .accessibilityIdentifier("\(idPrefix).us")
+                .accessibilitySortPriority(6)
+            ScoreButton(team: .them, points: board.them, layout: layout, acceptsPoints: acceptsPoints, isSaving: savingTeam == .them, award: award)
+                .accessibilityIdentifier("\(idPrefix).them")
+                .accessibilitySortPriority(5)
         }
     }
 }
@@ -545,14 +606,15 @@ private struct ScoreButton: View {
     let team: Team
     let points: ScoreBoard.Points
     let layout: ScoreLayout
-    let live: LiveScore
     let acceptsPoints: Bool
+    let isSaving: Bool
+    let award: (Team) -> Void
     @ScaledMetric(relativeTo: .title) private var pointSize: CGFloat = 40
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Button {
-            Task { await live.award(team) }
+            award(team)
         } label: {
             let content = layout == .columns
                 ? AnyLayout(VStackLayout(spacing: 0))
@@ -573,7 +635,7 @@ private struct ScoreButton: View {
             .frame(maxWidth: .infinity, maxHeight: layout == .columns ? .infinity : nil)
             .frame(minHeight: Metrics.minimumTap)
             .overlay(alignment: .bottom) {
-                SaveStatus(isSaving: live.saving == .point(team))
+                SaveStatus(isSaving: isSaving)
                     .font(Typography.caption)
                     .foregroundStyle(Palette.textSecondary)
                     .lineLimit(1)
@@ -584,7 +646,6 @@ private struct ScoreButton: View {
         .disabled(!acceptsPoints)
         .accessibilityLabel(team == .us ? Text("Our score, \(points.spoken)") : Text("Their score, \(points.spoken)"))
         .accessibilityHint(acceptsPoints ? Text("Double-tap to add a point") : Text(verbatim: ""))
-        .accessibilityIdentifier("game.\(team.rawValue)")
     }
 }
 
@@ -646,20 +707,22 @@ private struct ConfirmServingCard: View {
 }
 
 /// The counts under the teams, each team's under its own column.
-private struct DetailRows: View {
+struct DetailRows: View {
     let details: ScoreBoard.Details
+    /// Begins the identifiers UI tests find the rows by.
+    let idPrefix: String
 
     var body: some View {
         VStack(spacing: Spacing.xs) {
             switch details {
             case let .match(games, sets):
                 CountRow(label: "Games", counts: games, isEmphasized: true)
-                    .accessibilityIdentifier("game.games")
+                    .accessibilityIdentifier("\(idPrefix).games")
                 CountRow(label: "Sets", counts: sets, isEmphasized: false)
-                    .accessibilityIdentifier("game.sets")
+                    .accessibilityIdentifier("\(idPrefix).sets")
             case let .americano(ralliesLeft, serve):
                 ValueRow(label: "Rallies left", value: ralliesLeft)
-                    .accessibilityIdentifier("game.ralliesLeft")
+                    .accessibilityIdentifier("\(idPrefix).ralliesLeft")
                 Group {
                     if let serve {
                         Text("Serve \(serve.rally) of \(serve.block)")
@@ -670,7 +733,7 @@ private struct DetailRows: View {
                 }
                 .font(Typography.caption)
                 .foregroundStyle(Palette.textSecondary)
-                .accessibilityIdentifier("game.serve")
+                .accessibilityIdentifier("\(idPrefix).serve")
             }
         }
         .accessibilitySortPriority(4)
@@ -743,10 +806,11 @@ private struct ValueRow: View {
 /// Who serves next, by role, or how a finished round ended. When the server changes, the new
 /// role fades in where the old one was: a short cross-fade, also with Reduce Motion, that takes
 /// no VoiceOver focus.
-private struct ServingBlock: View {
+struct ServingBlock: View {
     let board: ScoreBoard
-    let live: LiveScore
     let layout: ScoreLayout
+    /// Begins the identifier UI tests find the block by.
+    let idPrefix: String
 
     var body: some View {
         VStack(spacing: 0) {
@@ -776,13 +840,13 @@ private struct ServingBlock: View {
         .multilineTextAlignment(.center)
         .animation(.easeOut(duration: 0.3), value: board.server)
         .accessibilityElement(children: .combine)
-        .accessibilityIdentifier("game.server")
+        .accessibilityIdentifier("\(idPrefix).server")
         .accessibilitySortPriority(3)
     }
 }
 
 /// A round icon button with the full 44-point tap area.
-private struct IconButton: View {
+struct IconButton: View {
     /// The drawn circle; the tap area around it is larger.
     static let visibleSize: CGFloat = 32
     /// How far the drawn circle reaches in from the screen edge, with a small gap.
@@ -816,17 +880,18 @@ private struct IconButton: View {
     }
 }
 
-private struct UndoButton: View {
-    let live: LiveScore
+struct UndoButton: View {
+    let canUndo: Bool
+    /// Begins the identifier UI tests find the button by.
+    let idPrefix: String
+    let undo: () -> Void
 
     var body: some View {
-        IconButton(symbol: "arrow.uturn.backward", label: "Undo") {
-            Task { await live.undo() }
-        }
-        .disabled(!live.canUndo)
-        .accessibilityHint(live.canUndo ? Text("Restores the score before the last change.") : Text("Nothing to undo."))
-        .accessibilityIdentifier("game.undo")
-        .accessibilitySortPriority(2)
+        IconButton(symbol: "arrow.uturn.backward", label: "Undo", action: undo)
+            .disabled(!canUndo)
+            .accessibilityHint(canUndo ? Text("Restores the score before the last change.") : Text("Nothing to undo."))
+            .accessibilityIdentifier("\(idPrefix).undo")
+            .accessibilitySortPriority(2)
     }
 }
 

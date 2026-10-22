@@ -4,6 +4,7 @@ import SwiftUI
 /// session has been read. A save restored from its backup is announced before anything else.
 struct RootView: View {
     let store: SessionStore
+    let haptics: any HapticPlayer
     /// The game on screen, kept for as long as the app runs, so a round its last rally finished stays
     /// on screen until the person moves on to its result.
     @State private var live: LiveScore
@@ -13,6 +14,7 @@ struct RootView: View {
 
     init(store: SessionStore, haptics: any HapticPlayer) {
         self.store = store
+        self.haptics = haptics
         _live = State(initialValue: LiveScore(store: store, haptics: haptics))
     }
 
@@ -40,9 +42,9 @@ struct RootView: View {
         case .game, .result:
             // One stack for the game from its first rally to its result, so finishing goes back to the
             // result and resuming forward to the score.
-            LiveScoreView(live: live, store: store)
+            LiveScoreView(live: live, store: store, haptics: haptics)
         case .newGame:
-            NewGameView(store: store)
+            NewGameView(store: store, haptics: haptics)
         }
     }
 

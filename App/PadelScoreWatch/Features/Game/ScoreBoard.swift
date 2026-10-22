@@ -77,8 +77,13 @@ struct ScoreBoard: Hashable, Sendable {
     }
 
     init(game: GameSnapshot) {
-        let isFinished = game.status == .finished
-        switch game.format {
+        self.init(format: game.format, isFinished: game.status == .finished)
+    }
+
+    /// The board of a game in `format`, finished or still played. The demo shows its example this
+    /// way, without a saved game.
+    init(format: GameFormat, isFinished: Bool) {
+        switch format {
         case .match(let state):
             switch state.phase {
             case .game(let score):

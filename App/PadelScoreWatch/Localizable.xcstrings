@@ -753,6 +753,42 @@
         }
       }
     },
+    "Demo" : {
+      "comment" : "Title of the scoreboard demo, shown the whole time it is open.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demo"
+          }
+        }
+      }
+    },
+    "Demo reset" : {
+      "comment" : "Scoreboard demo: shown above the score for a moment after Reset demo brought back its example.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demo reset"
+          }
+        }
+      }
+    },
+    "Demo reset." : {
+      "comment" : "VoiceOver, after Reset demo brought the scoreboard demo back to its example.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demo reset."
+          }
+        }
+      }
+    },
     "Discard changes" : {
       "comment" : "Alert button: leaves the correction without saving it.",
       "extractionState" : "manual",
@@ -929,6 +965,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ended early. Us %1$@, them %2$@. Their team was ahead."
+          }
+        }
+      }
+    },
+    "Ends the demo. Nothing is saved." : {
+      "comment" : "VoiceOver hint of Close on the scoreboard demo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ends the demo. Nothing is saved."
           }
         }
       }
@@ -1173,6 +1221,30 @@
         }
       }
     },
+    "Game to THEM" : {
+      "comment" : "Scoreboard demo: shown in place of the points once the opponents won the demo's game, above Reset demo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game to THEM"
+          }
+        }
+      }
+    },
+    "Game to US" : {
+      "comment" : "Scoreboard demo: shown in place of the points once our team won the demo's game, above Reset demo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game to US"
+          }
+        }
+      }
+    },
     "Game to them. Games: us %lld, them %lld." : {
       "comment" : "VoiceOver: the opponents won the game. Arguments: games in this set, ours then theirs.",
       "extractionState" : "manual",
@@ -1185,6 +1257,18 @@
         }
       }
     },
+    "Game to them. Reset demo" : {
+      "comment" : "VoiceOver label of the card in place of the points once the opponents won the demo's game; it resets the demo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game to them. Reset demo"
+          }
+        }
+      }
+    },
     "Game to us. Games: us %lld, them %lld." : {
       "comment" : "VoiceOver: our team won the game. Arguments: games in this set, ours then theirs.",
       "extractionState" : "manual",
@@ -1193,6 +1277,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Game to us. Games: us %1$lld, them %2$lld."
+          }
+        }
+      }
+    },
+    "Game to us. Reset demo" : {
+      "comment" : "VoiceOver label of the card in place of the points once our team won the demo's game; it resets the demo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game to us. Reset demo"
           }
         }
       }
@@ -1689,6 +1785,18 @@
         }
       }
     },
+    "Opens a short example. Nothing is saved." : {
+      "comment" : "VoiceOver hint of Try the scoreboard: the demo is a short example and saves nothing.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opens a short example. Nothing is saved."
+          }
+        }
+      }
+    },
     "Opponent 1" : {
       "comment" : "Role: one of the two opponents.",
       "extractionState" : "manual",
@@ -1949,6 +2057,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Replace game puts this round in place of the match’s score. Undo brings the match back."
+          }
+        }
+      }
+    },
+    "Reset demo" : {
+      "comment" : "Scoreboard demo: brings back its example, with nothing to undo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset demo"
           }
         }
       }
@@ -2505,6 +2625,18 @@
         }
       }
     },
+    "Starts the example again." : {
+      "comment" : "VoiceOver hint of Reset demo on the scoreboard demo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starts the example again."
+          }
+        }
+      }
+    },
     "Still saving…" : {
       "comment" : "Shown on a button, or above the score, when saving takes more than five seconds.",
       "extractionState" : "manual",
@@ -2577,6 +2709,18 @@
         }
       }
     },
+    "Tap a team to add a point. Undo reverses it." : {
+      "comment" : "Scoreboard demo: the hint under the score.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap a team to add a point. Undo reverses it."
+          }
+        }
+      }
+    },
     "Terms" : {
       "comment" : "Access and purchase: Terms",
       "extractionState" : "manual",
@@ -2609,6 +2753,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The data that couldn’t be read is kept aside, not deleted."
+          }
+        }
+      }
+    },
+    "The demo ends after one game. Undo the point or reset the demo." : {
+      "comment" : "Scoreboard demo: shown under the score, and said by VoiceOver, once a team won the demo's game, which takes no more points.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The demo ends after one game. Undo the point or reset the demo."
           }
         }
       }
@@ -2861,6 +3017,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Try again"
+          }
+        }
+      }
+    },
+    "Try the scoreboard" : {
+      "comment" : "New game, under the formats, and About: opens the scoreboard demo, a short fixed example that saves nothing.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try the scoreboard"
           }
         }
       }

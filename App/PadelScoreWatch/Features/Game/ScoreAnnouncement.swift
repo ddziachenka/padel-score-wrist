@@ -71,6 +71,17 @@ enum ScoreAnnouncement {
         return sentences.joined(separator: " ")
     }
 
+    /// What VoiceOver says once the demo is back at its example: that it was reset, the points and
+    /// who serves.
+    static func demoReset(_ board: ScoreBoard) -> String {
+        var sentences = [
+            String(localized: "Demo reset.", comment: "VoiceOver, after Reset demo brought the scoreboard demo back to its example."),
+            points(board),
+        ]
+        if let server = board.server { sentences.append(serving(server)) }
+        return sentences.joined(separator: " ")
+    }
+
     private static func points(_ board: ScoreBoard) -> String {
         String(
             localized: "Us \(board.us.spoken), them \(board.them.spoken).",
