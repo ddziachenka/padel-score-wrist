@@ -1,7 +1,7 @@
 # M11 — Purchase, Result and Play Again
 
 **ID:** M11
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M09
 **Validation:** make milestone ID=M11
 **Handoff:** AI/handoffs/M11-handoff.md
@@ -51,27 +51,27 @@
 
 ## Acceptance criteria
 
-- [ ] Access показывает утверждённый порядок от заголовка до выхода в sheet и в About →
+- [x] Access показывает утверждённый порядок от заголовка до выхода в sheet и в About →
       Access; `One payment. No subscription.` стоит сразу под областью покупки; Close,
       Terms, Privacy и Restore доступны до покупки; цена только из StoreKit.
-- [ ] Каждое состояние покупки (проверка, загрузка цены, нет продукта, offline, сбой,
+- [x] Каждое состояние покупки (проверка, загрузка цены, нет продукта, offline, сбой,
       отмена, pending, restore, nothing to restore, unlocked, revoked, unverified) имеет
       проверенное представление; повторов объяснений нет, сведения о сохранности игры и
       результата остались.
-- [ ] Итог матча: сеты в постоянных колонках, отдельный блок незавершённого сета, нет
+- [x] Итог матча: сеты в постоянных колонках, отдельный блок незавершённого сета, нет
       `0–0 Sets` без завершённого сета, `No points played.` для пустого матча,
       вторичные выигранные сеты, тай-брейк, никакого победителя. Итог раунда: Win/Draw,
       `Ended early` с лидером, сыгранные розыгрыши. Одна структура на Finish, Result и
       Last result; `Saved` вторичен.
-- [ ] Play again для Match и Americano: правила и порядок именно результата (в том числе
+- [x] Play again для Match и Americano: правила и порядок именно результата (в том числе
       исправленные), предложенный первый подающий виден до старта, счёт сброшен, Back
       ничего не создаёт, `Start game` создаёт одну новую игру; New game, Resume, Edit
       result работают как раньше.
-- [ ] После пяти завершённых игр Play again открывает Access; Close сохраняет черновик и
+- [x] После пяти завершённых игр Play again открывает Access; Close сохраняет черновик и
       результат; покупка не стартует игру; после разблокировки старт доступен.
-- [ ] Компактный экран, крупнейший текст, VoiceOver-подписи и accessibility audit для
+- [x] Компактный экран, крупнейший текст, VoiceOver-подписи и accessibility audit для
       изменённых экранов проверены на работающем приложении.
-- [ ] Тесты падают при регрессии этого поведения; `make milestone ID=M11` проходит на
+- [x] Тесты падают при регрессии этого поведения; `make milestone ID=M11` проходит на
       clean `REVIEW` HEAD с обязательными тестами без failures/skips.
 
 ## Validation
@@ -84,3 +84,12 @@ Builder-сессии.
 Записать `AI/handoffs/M11-handoff.md` по компактному шаблону: полный SHA, точные
 команды, exit codes, UTC time, report paths, counts, известные ограничения и следующий
 шаг. После доказанного DONE остановиться.
+
+## Completion — 2026-10-22
+
+Clean `make milestone ID=M11` passed on `060aa2a25a677d73618ac6300a8caf024903f388`:
+exit 0, 423/423 tests (354 unit/policy, 5 StoreKit, 64 UI), zero failures, skips or
+expected failures. UTC 2026-10-22T12:44:36Z–13:30:17Z. Report:
+`.artifacts/milestone/M11/20261022T124436Z-2597/report.md`. Evidence and the worktree
+landing note are in `AI/handoffs/M11-handoff.md`. Builder self-review, not an
+independent review.
