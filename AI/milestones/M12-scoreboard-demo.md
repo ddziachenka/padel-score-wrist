@@ -1,7 +1,7 @@
 # M12 — Scoreboard Demo
 
 **ID:** M12
-**Status:** REVIEW
+**Status:** IN_PROGRESS
 **Depends on:** M11
 **Validation:** make milestone ID=M12
 **Handoff:** AI/handoffs/M12-handoff.md

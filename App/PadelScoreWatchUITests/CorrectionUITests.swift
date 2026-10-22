@@ -43,6 +43,19 @@ final class CorrectionUITests: XCTestCase {
         app.buttons["editor.save"].scrollToAndTap(in: app)
     }
 
+    /// Expects the score's context line to say `Changes saved` once a correction is saved. The notice
+    /// shows for 1.5 s from the save and `waitForExistence` takes about a second before its first
+    /// look, so the line is watched from the moment Save returns, and the score checked after it.
+    private func expectChangesSaved(in app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
+        let context = element("game.context", in: app)
+        let deadline = Date().addingTimeInterval(5)
+        while !context.exists, Date() < deadline {
+            RunLoop.current.run(until: Date().addingTimeInterval(0.05))
+        }
+        waitForLabel(context, "Changes saved", file: file, line: line)
+        XCTAssertTrue(app.buttons["game.us"].exists, file: file, line: line)
+    }
+
     func testCancelControlHasMinimumHitAreaAndKeepsScore() throws {
         let app = launchApp(store: "correction-cancel-target", seed: "matchSetPoint")
         XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
@@ -104,8 +117,7 @@ final class CorrectionUITests: XCTestCase {
         assertLabel(serving, lacks: "Check who serves next")
 
         save(in: app)
-        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 5))
-        waitForLabel(element("game.context", in: app), "Changes saved")
+        expectChangesSaved(in: app)
         XCTAssertEqual(games.value as? String, "Us 5, them 5")
         assertLabel(server, contains: "Partner")
         XCTAssertEqual(app.buttons["game.us"].label, "Our score, 40")
@@ -190,8 +202,7 @@ final class CorrectionUITests: XCTestCase {
         assertLabel(serving, lacks: "Check who serves next")
 
         save(in: app)
-        XCTAssertTrue(us.waitForExistence(timeout: 5))
-        waitForLabel(element("game.context", in: app), "Changes saved")
+        expectChangesSaved(in: app)
         XCTAssertEqual(them.label, "Their score, 6")
         assertLabel(server, contains: "Partner")
         award(us, showing: "Our score, 7")
@@ -332,8 +343,7 @@ final class CorrectionUITests: XCTestCase {
         assertLabel(serving, lacks: "Choose a rally position")
 
         save(in: app)
-        XCTAssertTrue(us.waitForExistence(timeout: 5))
-        waitForLabel(element("game.context", in: app), "Changes saved")
+        expectChangesSaved(in: app)
         assertLabel(element("game.ralliesLeft", in: app), contains: "2")
         XCTAssertEqual(element("game.serve", in: app).label, "Serve 1 of 1")
         attachScreenshot("Round corrected")
