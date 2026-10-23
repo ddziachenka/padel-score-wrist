@@ -91,3 +91,7 @@ Examples of corrections after the language agent’s own review:
 - The next point wins the game. → Le prochain point décide du jeu.
 - US won → NOUS avons gagné
 - THEM won → EUX ont gagné
+
+## Coordinator blind reading — final pass
+
+Read all 330 Watch messages (including every plural form), all four launcher messages, all four complete web pages and every store field without English source text. Then checked changes against the source meaning and repeated the affected passages. Blind reading uses Partie for the whole-game menu, appui for a tap rather than touche (keyboard key), and preserves the precise no-marketing promise rather than widening it to no commercial use. This is coordinator editorial review, not an invited native-speaker review.

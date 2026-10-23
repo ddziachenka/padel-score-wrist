@@ -75,3 +75,7 @@ Read all 330 Watch entries (including plural variants), four launcher entries, f
 Examples of corrections after the language agent’s own review:
 
 - Opened the tie-break → Tie-breakin ensimmäinen syöttäjä
+
+## Coordinator blind reading — final pass
+
+Read all 330 Watch messages (including every plural form), all four launcher messages, all four complete web pages and every store field without English source text. Then checked changes against the source meaning and repeated the affected passages. Blind reading removes plural-person ambiguity from the service-order heading and attaches permanence to access rather than the purchase transaction. This is coordinator editorial review, not an invited native-speaker review.

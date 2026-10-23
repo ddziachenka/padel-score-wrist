@@ -28,7 +28,7 @@ Catalogs were combined structurally, preserving every language and English sourc
 
 The coordinator read every catalog value and plural variant, all four pages, all store fields and launcher labels for every locale. Reviewed readability before comparison with source meaning. Individual glossaries and correction examples are in each locale’s `review.md`. Numeric proof for both pluralized messages is in `plural-review.txt`, generated from compiled catalogs using `Scripts/probe-localized-plurals.swift`.
 
-This is the coordinator’s own editorial audit, not independent review or certification by an invited native speaker. UI labels, VoiceOver sentences, scoring rules, the five-completed-game limit, lifetime access, data deletion and privacy claims were checked separately. Runtime evidence must still pass before translation completion is recorded.
+This is the coordinator’s own editorial audit, not independent review or certification by an invited native speaker. UI labels, VoiceOver sentences, scoring rules, the five-completed-game limit, lifetime access, data deletion and privacy claims were checked separately. Final shared runtime evidence must still pass before translation completion is recorded.
 
 ## Baseline validation
 
@@ -38,8 +38,8 @@ The first attempt failed packaging because this checkout’s reused DerivedData 
 
 ## Capture and targeted evidence
 
-Capture source: `62e2cee5e8e2c12361ff43d53013f3752d57e604`.
-`/private/tmp/padel-capture-command.py` invoked UDID-targeted `xcodebuild test` through the managed lease wrapper, with all 12 `testLocalized<locale>Screens` selectors plus `testCaptureSixStoreScreens`. Exit 0; 13 passed, 0 failed, 0 skipped. Summary: `AI/localization/evidence/captures-summary.json`. The only capture-checkout configuration delta is the recorded 40→44-mm device type; manifests preserve source SHA, device, fixture/action, raw exported attachment, timestamp and SHA-256.
+Capture source: `615a98d7e5d549bd4574f07537b3eefb50c14d69`.
+`AI/localization/evidence/capture-command.txt` records UDID-targeted `xcodebuild test` through the managed lease wrapper, with all 12 `testLocalized<locale>Screens` selectors plus `testCaptureSixStoreScreens`. Exit 0; 13 passed, 0 failed, 0 skipped. Summary: `AI/localization/evidence/captures-summary.json`. The only capture-checkout configuration delta is the recorded 40→44-mm device type; manifests preserve source SHA, device, fixture/action, raw exported attachment, timestamp and SHA-256.
 
 72 new localized PNGs and six refreshed English PNGs are stored under `AI/store-assets`; site copies are byte-identical. No image text was composited or edited. English was refreshed because the common result header changed. `Scripts/verify-store-materials.py` validates all 78 images and linked alt text. See `runtime-findings.md` for failed attempts and corrections; none was omitted from the findings.
 

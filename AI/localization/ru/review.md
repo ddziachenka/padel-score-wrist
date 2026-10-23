@@ -60,3 +60,7 @@ Examples of corrections after the language agent’s own review:
 - Set %lld isn’t a finished set. → Сет %lld не может закончиться с таким счётом.
 
 Browser correction: the literal long headline broke inside a word at desktop width. Reworded the landing headline to «Всё внимание — игре.»; same focus-on-play meaning, natural line breaks. Rechecked the rendered page.
+
+## Coordinator blind reading — final pass
+
+Read all 330 Watch messages (including every plural form), all four launcher messages, all four complete web pages and every store field without English source text. Then checked changes against the source meaning and repeated the affected passages. Blind reading replaces internal terms (непотребляемая покупка, действия для отмены) with natural explanations, fixes punctuation and keeps бессрочный доступ consistent. This is coordinator editorial review, not an invited native-speaker review.

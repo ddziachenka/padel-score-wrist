@@ -1,62 +1,68 @@
 {
-  "source_sha": "2f3bec3befa685973f80e6ed4da2dc1bc76c4d7d",
-  "device_udid": "DF6ED19D-1461-4A25-975B-1A4995E8AA20",
+  "source_sha": "615a98d7e5d549bd4574f07537b3eefb50c14d69",
+  "device_udid": "5AFDC6D8-A30E-4819-8ABD-88E7448907F1",
   "device": "Apple Watch SE (2nd generation), 44 mm",
   "runtime": "watchOS 26.1 (23S36)",
   "dimensions": [
     368,
     448
   ],
-  "result_bundle": ".artifacts/M15-development/screenshots.xcresult",
-  "test": "StoreMaterialsUITests/testCaptureSixStoreScreens",
+  "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/stable-screenshots.xcresult",
+  "test": "StoreMaterialsUITests/testCaptureSixStoreScreens()",
   "screenshots": [
     {
       "file": "en-US/watch-44mm/01-match.png",
-      "sha256": "f236915cdfd153105537a57646c2adbb3c9e2ccdb4753b9dcd8eb72b67200e9c",
+      "sha256": "d86fdd385b6ea8deb08c735cb16f54d73c1c3699e57aff738316cd8dceafea24",
       "fixture": "storeMatch",
       "actions": "launch live score; capture before award/Undo runtime check",
-      "attachment": "D94E1167-5B7D-48F5-AC1B-CE973DB61342.png",
-      "timestamp": 1792737686.145
+      "attachment": "BBAAEC34-B201-4FB2-A438-AD5A99E80E5B.png",
+      "timestamp": 1792751218.56
     },
     {
       "file": "en-US/watch-44mm/02-golden-point.png",
-      "sha256": "14bbc6f854ba4f0d0cdc124738d4b07525d207baca0eb60f38453b39445f6275",
+      "sha256": "f886b0428e030203bcb63952e56ceed1e3f1f4bea2b76a5e0989bed192fc084e",
       "fixture": "storeGoldenPoint",
-      "actions": "launch at 40\u201340; capture",
-      "attachment": "F6EAA7C9-7048-4C6B-BD9D-3C675D14032D.png",
-      "timestamp": 1792737691.359
+      "actions": "launch at 40–40; capture",
+      "attachment": "C36EAD9D-2E41-4372-8C9E-646170065FE4.png",
+      "timestamp": 1792751225.108
     },
     {
       "file": "en-US/watch-44mm/03-americano.png",
-      "sha256": "2efc8c6eebd1909e2aee6d4091775d32637ebd281f5bd31d33712788691c6347",
+      "sha256": "3ee45b06384e47169f2696da819eb4a24278cfca553ea2d1116c508eff956aac",
       "fixture": "storeAmericano",
-      "actions": "launch 13\u201310 of 32 rallies; capture",
-      "attachment": "EFC0459E-0735-4482-85AE-F4015BC07E49.png",
-      "timestamp": 1792737695.248
+      "actions": "launch 13–10 of 32 rallies; capture",
+      "attachment": "69C7E2A3-DC97-4115-AADE-6415C1BBD4D3.png",
+      "timestamp": 1792751230.286
     },
     {
       "file": "en-US/watch-44mm/04-edit-score.png",
-      "sha256": "b3a61fdf1615bdb7627027e6c4c19a8b67936b28fb22c34f9f5a50c51803f71d",
+      "sha256": "6b8c576f52990bf03296a29b90588f3d7e5d6c740ed08d0239da521de1079818",
       "fixture": "storeMatch",
-      "actions": "Game menu \u2192 Edit score; capture",
-      "attachment": "C813A285-165D-4CD6-9D56-4137A8A88D8B.png",
-      "timestamp": 1792737701.408
+      "actions": "Game menu → Edit score; capture",
+      "attachment": "BA8769B0-81AF-4E9B-9AFC-78BDE4FB288B.png",
+      "timestamp": 1792751237.739
     },
     {
       "file": "en-US/watch-44mm/05-result.png",
-      "sha256": "ad166e99583dd863437d87e38c40951261c3a2cf24360574112a1c7597ffec9b",
+      "sha256": "43408651b92646082b3a4ecdfb1e4ff6e393482b326d4a466d36ff6fcf0cf041",
       "fixture": "storeResult",
       "actions": "launch saved three-set Match result; capture",
-      "attachment": "D6D35E6F-A782-45D1-BFED-38D5CDB2D126.png",
-      "timestamp": 1792737705.286
+      "attachment": "CEDBCF09-1B7A-49CE-A71F-56E8A69B3837.png",
+      "timestamp": 1792751242.903
     },
     {
       "file": "en-US/watch-44mm/06-history.png",
-      "sha256": "835789e1d81fdc369fb98500cff9c7b5c81d6b2a718465c5e2abe54e20fdf14b",
+      "sha256": "74e92aa816f82f4ad45658181775dd9bfe314d02a236a1f21a5a09eaa9c390a3",
       "fixture": "storeHistory",
-      "actions": "New game \u2192 History; capture",
-      "attachment": "2962EE38-91CB-418E-A4D7-AA0A96AA03BE.png",
-      "timestamp": 1792737715.873
+      "actions": "New game → History; capture",
+      "attachment": "6A951126-CC11-4C48-A91C-B4F5C2B42B29.png",
+      "timestamp": 1792751254.526
     }
-  ]
+  ],
+  "configuration_delta": {
+    "SIMULATOR_DEVICE_TYPE": {
+      "from": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-40mm-2nd-generation",
+      "to": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-44mm-2nd-generation"
+    }
+  }
 }

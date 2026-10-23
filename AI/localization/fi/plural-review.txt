@@ -1,4 +1,4 @@
-Catalog SHA-256: c9c7a5a658b51d9b92de8c03a5b615c4681139968b8596ebbdf2ea58d3644ca4
+Catalog SHA-256: 2b7c80be76fd3de7b73893cc4fd13f68519fff0535bb1f77cd220a76791cb8aa
 Compiler: xcrun xcstringstool compile
 Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
 Both messages reviewed for all eleven requested values. App runtime evidence is recorded separately.

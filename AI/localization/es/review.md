@@ -92,3 +92,7 @@ Read all 330 Watch entries (including plural variants), four launcher entries, f
 Second reading retained the language agent’s phrasing; context and layout checks remain separate.
 
 Runtime context refinement: the external legal-page heading is «Página web», the natural word for a web page, rather than a literal “public page”. The URL and privacy meaning are unchanged.
+
+## Coordinator blind reading — final pass
+
+Read all 330 Watch messages (including every plural form), all four launcher messages, all four complete web pages and every store field without English source text. Then checked changes against the source meaning and repeated the affected passages. Blind reading clarified the tie-break opener, removed the government-policy calque política pública, and attached lifetime to access rather than payment. Padel paddle is pala. This is coordinator editorial review, not an invited native-speaker review.

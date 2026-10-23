@@ -91,3 +91,7 @@ Examples of corrections after the language agent’s own review:
 - Game → Kamp
 
 Runtime context refinement: the external legal-page heading is «Webside», the natural word for a web page, rather than a literal “public page”. The URL and privacy meaning are unchanged.
+
+## Coordinator blind reading — final pass
+
+Read all 330 Watch messages (including every plural form), all four launcher messages, all four complete web pages and every store field without English source text. Then checked changes against the source meaning and repeated the affected passages. Blind reading clarifies the web privacy policy/address, purchased access and permanent access in the store promotion. Official Apple Danish Anonymitet terminology retained. This is coordinator editorial review, not an invited native-speaker review.

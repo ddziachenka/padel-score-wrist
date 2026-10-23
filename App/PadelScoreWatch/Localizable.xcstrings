@@ -262,7 +262,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toca la raqueta para abrir Padel Score. Volverás a tu partida o a la pantalla que dejaste abierta. El botón no muestra el marcador."
+            "value": "Toca la pala para abrir Padel Score. Volverás a tu partida o a la pantalla que dejaste abierta. El botón no muestra el marcador."
           }
         },
         "it": {
@@ -280,7 +280,7 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toque na raquete para abrir Padel Score. Regressa à partida ou ao ecrã que deixou aberto. O botão não mostra o resultado."
+            "value": "Toque na raquete para abrir Padel Score. Regressa à partida ou ao ecrã que deixou aberto. O botão não mostra a pontuação."
           }
         },
         "pt-BR": {
@@ -661,7 +661,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В разделе «Настройки → Удалить данные» можно удалить игры, историю результатов, действия для отмены и сохранённые настройки после подтверждения. Счётчик завершённых бесплатных игр и покупка сохранятся. Разработчик не предоставляет услугу восстановления данных."
+            "value": "В разделе «Настройки → Удалить данные» можно удалить игры, историю результатов, историю действий и сохранённые настройки после подтверждения. Счётчик завершённых бесплатных игр и покупка сохранятся. Разработчик не предоставляет услугу восстановления данных."
           }
         }
       }
@@ -913,7 +913,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В разделе «Настройки → Удалить данные» можно удалить игры, историю результатов, действия для отмены и настройки игры после подтверждения. Счётчик бесплатных игр сохранится; покупка не отменится, возврат средств не оформится. При переустановке приложения или смене часов локальные данные могут быть потеряны. У разработчика нет сервиса резервного копирования; резервные копии устройства зависят от настроек Apple."
+            "value": "В разделе «Настройки → Удалить данные» можно удалить игры, историю результатов, историю действий и настройки игры после подтверждения. Счётчик бесплатных игр сохранится; покупка не отменится, возврат средств не оформится. При переустановке приложения или смене часов локальные данные могут быть потеряны. У разработчика нет сервиса резервного копирования; резервные копии устройства зависят от настроек Apple."
           }
         }
       }
@@ -997,7 +997,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Текущая игра, история результатов, действия для отмены, настройки и счётчик завершённых бесплатных игр хранятся в приложении на часах. Нет аккаунта, рекламы, аналитических SDK, отслеживания или серверной части разработчика. Игровые данные разработчику не передаются."
+            "value": "Текущая игра, история результатов, история действий, настройки и счётчик завершённых бесплатных игр хранятся в приложении на часах. Нет аккаунта, рекламы, аналитических SDK, отслеживания или серверной части разработчика. Игровые данные разработчику не передаются."
           }
         }
       }
@@ -3783,7 +3783,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Después de ellos"
+            "value": "Después"
           }
         },
         "it": {
@@ -3795,19 +3795,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Après eux"
+            "value": "Ensuite"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Depois dos adversários"
+            "value": "A seguir"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Depois dos adversários"
+            "value": "Depois"
           }
         },
         "nl": {
@@ -3825,7 +3825,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Efter dem"
+            "value": "Därefter"
           }
         },
         "da": {
@@ -3837,7 +3837,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heidän jälkeensä"
+            "value": "Sen jälkeen"
           }
         },
         "nb": {
@@ -5397,13 +5397,13 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Escolha a posição do ponto dentro do novo bloco de serviço."
+            "value": "Escolha a posição do ponto dentro do novo turno de serviço."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Escolha a posição do ponto no novo bloco de saque."
+            "value": "Escolha a posição do ponto na nova sequência de saques."
           }
         },
         "nl": {
@@ -6909,13 +6909,13 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Não foi possível guardar. O último resultado guardado não foi alterado."
+            "value": "Não foi possível guardar. A última pontuação guardada não foi alterada."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Não foi possível salvar. O último resultado salvo não foi alterado."
+            "value": "Não foi possível salvar. O último placar salvo não foi alterado."
           }
         },
         "nl": {
@@ -9513,13 +9513,13 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cinco partidas terminadas são gratuitas. Uma única compra vitalícia desbloqueia partidas ilimitadas. A App Store confirma o preço antes da compra."
+            "value": "Cinco partidas terminadas são gratuitas. Uma única compra de acesso vitalício desbloqueia partidas ilimitadas. A App Store confirma o preço antes da compra."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cinco partidas terminadas são gratuitas. Uma única compra vitalícia desbloqueia partidas ilimitadas. A App Store confirma o preço antes da compra."
+            "value": "Cinco partidas terminadas são gratuitas. Uma única compra de acesso vitalício desbloqueia partidas ilimitadas. A App Store confirma o preço antes da compra."
           }
         },
         "nl": {
@@ -10179,7 +10179,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jeu"
+            "value": "Partie"
           }
         },
         "pt-PT": {
@@ -10203,7 +10203,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spiel"
+            "value": "Partie"
           }
         },
         "sv": {
@@ -13545,13 +13545,13 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Próximo ponto do bloco"
+            "value": "Próximo ponto do turno"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Próximo ponto do bloco"
+            "value": "Próximo ponto da sequência"
           }
         },
         "nl": {
@@ -13863,13 +13863,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "No se ha encontrado ninguna compra de por vida para esta cuenta de Apple."
+            "value": "No se ha encontrado ninguna compra de acceso de por vida para esta cuenta de Apple."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nessun acquisto con accesso illimitato trovato per questo Apple Account."
+            "value": "Non risultano acquisti per l’accesso illimitato su questo Apple Account."
           }
         },
         "fr": {
@@ -13881,13 +13881,13 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Não foi encontrada uma compra vitalícia nesta Conta Apple."
+            "value": "Não foi encontrada uma compra de acesso vitalício nesta Conta Apple."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Não foi encontrada uma compra vitalícia nesta Conta Apple."
+            "value": "Não foi encontrada uma compra de acesso vitalício nesta Conta Apple."
           }
         },
         "nl": {
@@ -14451,7 +14451,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inició el tie-break"
+            "value": "Primer sacador del tie-break"
           }
         },
         "it": {
@@ -16701,7 +16701,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Для восстановления используется ваш Аккаунт Apple. Возврат средств снимает доступ без ограничений; сохранённая игра и результат остаются доступны."
+            "value": "Для восстановления используется ваш Аккаунт Apple. Возврат средств отключает бессрочный доступ; сохранённая игра и результат остаются доступны."
           }
         }
       }
@@ -18249,13 +18249,13 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Servidos consecutivamente pelo mesmo jogador, independentemente de quem ganha."
+            "value": "O mesmo jogador serve durante todo o turno, independentemente de quem ganha os pontos."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sacados consecutivamente pelo mesmo jogador, independentemente de quem ganha."
+            "value": "O mesmo jogador saca durante toda a sequência, não importa quem ganhe os pontos."
           }
         },
         "nl": {
@@ -24633,13 +24633,13 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Qual dos pontos do bloco será servido pelo próximo jogador."
+            "value": "A posição do próximo ponto no turno de serviço deste jogador."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Qual dos pontos do bloco será sacado pelo próximo jogador."
+            "value": "A posição do próximo ponto na sequência de saques deste jogador."
           }
         },
         "nl": {
@@ -24657,7 +24657,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vilken boll i serveserien nästa servare står inför."
+            "value": "Nästa bolls plats i spelarens serveserie."
           }
         },
         "da": {
@@ -25305,13 +25305,13 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O último resultado guardado não foi alterado."
+            "value": "A última pontuação guardada não foi alterada."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O último resultado salvo não foi alterado."
+            "value": "O último placar salvo não foi alterado."
           }
         },
         "nl": {
@@ -26223,19 +26223,19 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O site estático de suporte está alojado na Cloudflare, que processa dados dos pedidos para o disponibilizar e proteger. Não há formulários nem scripts de análise no site. Dzmitry Dziachenka usa os emails e anexos enviados para responder ao seu pedido e apaga-os no prazo de 90 dias após o encerramento, salvo se uma obrigação legal ou um litígio em curso exigir uma conservação mais longa."
+            "value": "O site estático de suporte está alojado na Cloudflare, que processa dados dos pedidos para manter o site disponível e seguro. Não há formulários nem scripts de análise no site. Dzmitry Dziachenka usa os emails e anexos enviados para responder ao seu pedido e apaga-os no prazo de 90 dias após o encerramento, salvo se uma obrigação legal ou um litígio em curso exigir uma conservação mais longa."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O site estático de suporte está hospedado na Cloudflare, que processa dados das solicitações para disponibilizá-lo e proteger. Não há formulários nem scripts de análise no site. Dzmitry Dziachenka usa os emails e anexos enviados para responder à sua solicitação e os apaga no prazo de 90 dias após o encerramento, salvo se uma obrigação legal ou uma disputa em andamento exigir uma retenção mais longa."
+            "value": "O site estático de suporte está hospedado na Cloudflare, que processa dados das solicitações para manter o site disponível e seguro. Não há formulários nem scripts de análise no site. Dzmitry Dziachenka usa os emails e anexos enviados para responder à sua solicitação e os apaga no prazo de 90 dias após o encerramento, salvo se uma obrigação legal ou uma disputa em andamento exigir uma retenção mais longa."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "De statische hulpwebsite wordt gehost door Cloudflare. Cloudflare verwerkt verzoekgegevens om de website te leveren en te beveiligen. Er zijn geen formulieren of analysescripts. Dzmitry Dziachenka gebruikt je e-mails en bijlagen om je vraag te beantwoorden. Ze worden binnen 90 dagen na afhandeling verwijderd, tenzij een wettelijke verplichting of lopend geschil een langere bewaartermijn vereist."
+            "value": "De statische hulpwebsite wordt gehost door Cloudflare. Cloudflare verwerkt gegevens van webverzoeken om de website beschikbaar te maken en te beveiligen. Er zijn geen formulieren of analysescripts. Dzmitry Dziachenka gebruikt je e-mails en bijlagen om je vraag te beantwoorden. Ze worden binnen 90 dagen na afhandeling verwijderd, tenzij een wettelijke verplichting of lopend geschil een langere bewaartermijn vereist."
           }
         },
         "de": {
@@ -26247,13 +26247,13 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Den statiska supportwebbplatsen ligger hos Cloudflare, som behandlar uppgifter om förfrågningar för att leverera och skydda webbplatsen. Det finns inga formulär eller analysskript. Dzmitry Dziachenka använder e-post och bilagor du skickar för att besvara ditt ärende. De raderas inom 90 dagar efter att ärendet avslutats, om inte en rättslig skyldighet eller pågående tvist kräver längre lagring."
+            "value": "Den statiska supportwebbplatsen ligger hos Cloudflare, som behandlar uppgifter om förfrågningar för att hålla webbplatsen tillgänglig och säker. Det finns inga formulär eller analysskript. Dzmitry Dziachenka använder e-post och bilagor du skickar för att besvara ditt ärende. De raderas inom 90 dagar efter att ärendet avslutats, om inte en rättslig skyldighet eller pågående tvist kräver längre lagring."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Det statiske supportwebsted hostes af Cloudflare, som behandler anmodningsdata for at levere og beskytte det. Der er ingen formularer eller analysescripts på webstedet. E-mails og vedhæftede filer, du sender, bruges af Dzmitry Dziachenka til at besvare din henvendelse og slettes senest 90 dage efter, at sagen er afsluttet, medmindre en retlig forpligtelse eller en igangværende tvist kræver længere opbevaring."
+            "value": "Det statiske supportwebsted hostes af Cloudflare, som behandler anmodningsdata for at holde webstedet tilgængeligt og sikkert. Der er ingen formularer eller analysescripts på webstedet. E-mails og vedhæftede filer, du sender, bruges af Dzmitry Dziachenka til at besvare din henvendelse og slettes senest 90 dage efter, at sagen er afsluttet, medmindre en retlig forpligtelse eller en igangværende tvist kræver længere opbevaring."
           }
         },
         "fi": {
@@ -26265,13 +26265,13 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Det statiske støttenettstedet driftes av Cloudflare, som behandler forespørselsdata for å levere og beskytte nettstedet. Nettstedet har ingen skjemaer eller analyseskript. Dzmitry Dziachenka bruker e-post og vedlegg du sender, til å svare på henvendelsen. De slettes innen 90 dager etter at saken er avsluttet, med mindre lovpålagte krav eller en pågående tvist krever lengre oppbevaring."
+            "value": "Det statiske støttenettstedet driftes av Cloudflare, som behandler forespørselsdata for å holde nettstedet tilgjengelig og sikkert. Nettstedet har ingen skjemaer eller analyseskript. Dzmitry Dziachenka bruker e-post og vedlegg du sender, til å svare på henvendelsen. De slettes innen 90 dager etter at saken er avsluttet, med mindre lovpålagte krav eller en pågående tvist krever lengre oppbevaring."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сайт поддержки размещён на Cloudflare: сервис обрабатывает данные запросов чтобы сайт работал и был защищён. На сайте нет форм и скриптов аналитики. Dzmitry Dziachenka использует ваши письма и вложения для ответа на обращение и удаляет их в течение 90 дней после его закрытия, если закон или текущий спор не требуют более длительного хранения."
+            "value": "Сайт поддержки размещён на Cloudflare: сервис обрабатывает данные запросов, чтобы сайт работал и был защищён. На сайте нет форм и скриптов аналитики. Dzmitry Dziachenka использует ваши письма и вложения для ответа на обращение и удаляет их в течение 90 дней после его закрытия, если закон или текущий спор не требуют более длительного хранения."
           }
         }
       }
@@ -26371,13 +26371,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Actualizado el 21 de octubre de 2026. Los cambios en estas prácticas se reflejarán en la política pública. Contacta con el desarrollador en la dirección de abajo si tienes dudas de privacidad o quieres solicitar la eliminación de los correos de soporte."
+            "value": "Actualizado el 21 de octubre de 2026. Los cambios en estas prácticas se reflejarán en la política de privacidad de la web. Contacta con el desarrollador en la dirección de abajo si tienes dudas de privacidad o quieres solicitar la eliminación de los correos de soporte."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aggiornata il 21 ottobre 2026. Le modifiche a queste pratiche verranno riportate nell’informativa pubblica. Contatta lo sviluppatore all’indirizzo qui sotto per domande sulla privacy o per richiedere l’eliminazione della corrispondenza di assistenza."
+            "value": "Aggiornata il 21 ottobre 2026. Le modifiche a queste pratiche verranno riportate nell’informativa sulla privacy sul sito. Contatta lo sviluppatore all’indirizzo qui sotto per domande sulla privacy o per richiedere l’eliminazione della corrispondenza di assistenza."
           }
         },
         "fr": {
@@ -26389,13 +26389,13 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Atualizado a 21 de outubro de 2026. As alterações a estas práticas serão refletidas na política pública. Contacte o programador abaixo para questões de privacidade ou para pedir a eliminação de correspondência de suporte."
+            "value": "Atualizado a 21 de outubro de 2026. As alterações a estas práticas serão refletidas na política de privacidade no site. Contacte o programador no endereço abaixo para questões de privacidade ou para pedir a eliminação de correspondência de suporte."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Atualizado em 21 de outubro de 2026. As alterações a estas práticas serão refletidas na política pública. Entre em contato com o desenvolvedor abaixo para dúvidas sobre privacidade ou para pedir a exclusão de correspondência de suporte."
+            "value": "Atualizado em 21 de outubro de 2026. As alterações a estas práticas serão refletidas na política de privacidade no site. Entre em contato com o desenvolvedor pelo endereço abaixo para dúvidas sobre privacidade ou para pedir a exclusão de correspondência de suporte."
           }
         },
         "nl": {
@@ -26407,31 +26407,31 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stand: 21. Oktober 2026. Änderungen an diesen Verfahren werden in der öffentlichen Datenschutzerklärung festgehalten. Wende dich bei Datenschutzfragen oder zum Löschen deiner Support-Korrespondenz an den unten genannten Entwickler."
+            "value": "Stand: 21. Oktober 2026. Änderungen an diesen Verfahren werden in der Datenschutzerklärung auf der Website festgehalten. Wende dich bei Datenschutzfragen oder zum Löschen deiner Support-Korrespondenz an den unten genannten Entwickler."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uppdaterad 21 oktober 2026. Ändringar av dessa rutiner kommer att återspeglas i den offentliga policyn. Kontakta utvecklaren nedan med integritetsfrågor eller för att begära att supportkorrespondens raderas."
+            "value": "Uppdaterad 21 oktober 2026. Ändringar av dessa rutiner kommer att återspeglas i integritetspolicyn på webbplatsen. Kontakta utvecklaren nedan med integritetsfrågor eller för att begära att supportkorrespondens raderas."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Opdateret 21. oktober 2026. Ændringer i denne praksis vil fremgå af den offentlige politik. Kontakt udvikleren nedenfor, hvis du har spørgsmål om anonymitet eller ønsker supportkorrespondance slettet."
+            "value": "Opdateret 21. oktober 2026. Ændringer i denne praksis vil fremgå af anonymitetspolitikken på webstedet. Kontakt udvikleren nedenfor, hvis du har spørgsmål om anonymitet eller ønsker supportkorrespondance slettet."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Päivitetty 21. lokakuuta 2026. Näiden käytäntöjen muutokset päivitetään julkiseen tietosuojakäytäntöön. Ota yhteyttä kehittäjään alla olevilla tiedoilla, jos sinulla on kysyttävää tietosuojasta tai haluat pyytää tukiviestien poistamista."
+            "value": "Päivitetty 21. lokakuuta 2026. Näiden käytäntöjen muutokset päivitetään verkkosivuston tietosuojakäytäntöön. Ota yhteyttä kehittäjään alla olevilla tiedoilla, jos sinulla on kysyttävää tietosuojasta tai haluat pyytää tukiviestien poistamista."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oppdatert 21. oktober 2026. Endringer i denne praksisen gjenspeiles i den offentlige personvernerklæringen. Kontakt utvikleren nedenfor hvis du har spørsmål om personvern eller vil be om sletting av korrespondanse med brukerstøtten."
+            "value": "Oppdatert 21. oktober 2026. Endringer i denne praksisen gjenspeiles i personvernerklæringen på nettstedet. Kontakt utvikleren nedenfor hvis du har spørsmål om personvern eller vil be om sletting av korrespondanse med brukerstøtten."
           }
         },
         "ru": {
@@ -26537,31 +26537,31 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Se aplica el contrato de licencia estándar de Apple para el usuario final. Su dirección pública aparece más abajo; estos detalles del producto no sustituyen esa licencia."
+            "value": "Se aplica el contrato de licencia estándar de Apple para el usuario final. Su dirección web aparece más abajo; estos detalles del producto no sustituyen esa licencia."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Si applica il contratto di licenza standard di Apple per l’utente finale. Il relativo indirizzo pubblico è indicato qui sotto; questi dettagli sul prodotto non sostituiscono la licenza."
+            "value": "Si applica il contratto di licenza standard di Apple per l’utente finale. Il relativo indirizzo web è indicato qui sotto; questi dettagli sul prodotto non sostituiscono la licenza."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le contrat de licence standard d’Apple s’applique. Son adresse publique figure ci-dessous ; les présentes informations sur le produit ne remplacent pas cette licence."
+            "value": "Le contrat de licence standard d’Apple s’applique. Son adresse web figure ci-dessous ; les présentes informations sur le produit ne remplacent pas cette licence."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aplica-se o Contrato de Licença de Utilizador Final padrão da Apple. O endereço público encontra-se abaixo; estas informações sobre o produto não substituem essa licença."
+            "value": "Aplica-se o Contrato de Licença de Utilizador Final padrão da Apple. O endereço web encontra-se abaixo; estas informações sobre o produto não substituem essa licença."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aplica-se o Contrato de Licença de Usuário Final padrão da Apple. O endereço público encontra-se abaixo; estas informações sobre o produto não substituem essa licença."
+            "value": "Aplica-se o Contrato de Licença de Usuário Final padrão da Apple. O endereço na web está abaixo; estas informações sobre o produto não substituem essa licença."
           }
         },
         "nl": {
@@ -26573,7 +26573,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Es gilt die Standard-Endnutzer-Lizenzvereinbarung von Apple. Die öffentliche Adresse findest du unten. Diese Produktinformationen ersetzen die Lizenzvereinbarung nicht."
+            "value": "Es gilt die Standard-Endnutzer-Lizenzvereinbarung von Apple. Die Webadresse findest du unten. Diese Produktinformationen ersetzen die Lizenzvereinbarung nicht."
           }
         },
         "sv": {
@@ -26585,7 +26585,7 @@
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apples standardlicensaftale for slutbrugere gælder. Den offentlige adresse vises nedenfor. Disse produktoplysninger erstatter ikke licensaftalen."
+            "value": "Apples standardlicensaftale for slutbrugere gælder. Webadressen vises nedenfor. Disse produktoplysninger erstatter ikke licensaftalen."
           }
         },
         "fi": {
@@ -26792,13 +26792,13 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un solo acquisto sblocca partite illimitate di Incontro e Americano in questa app, senza pagamenti ricorrenti. Accesso mostra il prezzo locale attuale dell’App Store prima della conferma. Apple gestisce il pagamento. Gli acquisti in sospeso o non verificati non sbloccano l’accesso."
+            "value": "Un solo acquisto ti dà accesso per sempre a incontri e turni di Americano senza limiti in questa app, senza pagamenti ricorrenti. Accesso mostra il prezzo locale attuale dell’App Store prima della conferma. Apple gestisce il pagamento. Gli acquisti in sospeso o non verificati non sbloccano l’accesso."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un seul achat débloque un nombre illimité de parties Match et Americano dans cette app, sans paiement récurrent. Accès affiche le prix local en vigueur sur l’App Store avant confirmation. Apple gère le paiement. Un achat en attente ou non vérifié ne débloque pas l’accès."
+            "value": "Un seul achat donne accès à vie à un nombre illimité de matchs et de manches Americano dans cette app, sans paiement récurrent. Accès affiche le prix local en vigueur sur l’App Store avant confirmation. Apple gère le paiement. Un achat en attente ou non vérifié ne débloque pas l’accès."
           }
         },
         "pt-PT": {
@@ -27018,7 +27018,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Откройте «О приложении → Доступ → Восстановить покупки» с тем Аккаунтом Apple, который использовался для покупки. Нужно подключение к сети. Возврат средств обрабатывает Apple на reportaproblem.apple.com. Возврат или аннулирование покупки может снять доступ без ограничений. Удаление данных игры не сбрасывает счётчик бесплатных игр и не возвращает средства за покупку."
+            "value": "Откройте «О приложении → Доступ → Восстановить покупки» с тем Аккаунтом Apple, который использовался для покупки. Нужно подключение к сети. Возврат средств обрабатывает Apple на reportaproblem.apple.com. Возврат или аннулирование покупки может отключить бессрочный доступ. Удаление данных игры не сбрасывает счётчик бесплатных игр и не возвращает средства за покупку."
           }
         }
       }
@@ -27284,13 +27284,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Privacidad y Ayuda están disponibles en Acerca de sin comprar. Desarrollado por Dzmitry Dziachenka. Actualizado el 21 de octubre de 2026; los cambios en estos detalles del producto se reflejan en la página pública."
+            "value": "Privacidad y Ayuda están disponibles en Acerca de sin comprar. Desarrollado por Dzmitry Dziachenka. Actualizado el 21 de octubre de 2026; los cambios en estos detalles del producto se reflejan en la página web."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Privacy e Assistenza sono disponibili in Info anche senza acquistare. Sviluppata da Dzmitry Dziachenka. Aggiornata il 21 ottobre 2026; le modifiche a questi dettagli sul prodotto vengono riportate sulla pagina pubblica."
+            "value": "Privacy e Assistenza sono disponibili in Info anche senza acquistare. Sviluppata da Dzmitry Dziachenka. Aggiornata il 21 ottobre 2026; le modifiche a questi dettagli sul prodotto vengono riportate sulla pagina web."
           }
         },
         "fr": {
@@ -27302,55 +27302,55 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Privacidade e Suporte estão disponíveis em Sobre sem comprar. Desenvolvido por Dzmitry Dziachenka. Atualizado a 21 de outubro de 2026; a página pública reflete as alterações a estas informações sobre o produto."
+            "value": "Privacidade e Suporte estão disponíveis em Sobre sem comprar. Desenvolvido por Dzmitry Dziachenka. Atualizado a 21 de outubro de 2026; a página no site reflete as alterações a estas informações sobre o produto."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Privacidade e Suporte estão disponíveis em Sobre sem comprar. Desenvolvido por Dzmitry Dziachenka. Atualizado em 21 de outubro de 2026; a página pública reflete as alterações a estas informações sobre o produto."
+            "value": "Privacidade e Suporte estão disponíveis em Sobre sem comprar. Desenvolvido por Dzmitry Dziachenka. Atualizado em 21 de outubro de 2026; a página no site reflete as alterações a estas informações sobre o produto."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Privacy en Hulp vind je in Info, ook zonder aankoop. Ontwikkeld door Dzmitry Dziachenka. Bijgewerkt op 21 oktober 2026. Wijzigingen in deze productinformatie verschijnen op de openbare pagina."
+            "value": "Privacy en Hulp vind je in Info, ook zonder aankoop. Ontwikkeld door Dzmitry Dziachenka. Bijgewerkt op 21 oktober 2026. Wijzigingen in deze productinformatie verschijnen op de website."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datenschutz und Hilfe findest du auch ohne Kauf unter „Über die App“. Entwickelt von Dzmitry Dziachenka. Stand: 21. Oktober 2026. Änderungen an diesen Produktinformationen erscheinen auf der öffentlichen Seite."
+            "value": "Datenschutz und Hilfe findest du auch ohne Kauf unter „Über die App“. Entwickelt von Dzmitry Dziachenka. Stand: 21. Oktober 2026. Änderungen an diesen Produktinformationen erscheinen auf der Website."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Integritet och Support finns under Om även utan köp. Utvecklad av Dzmitry Dziachenka. Uppdaterad 21 oktober 2026. Ändringar av dessa produktuppgifter återspeglas på den offentliga sidan."
+            "value": "Integritet och Support finns under Om även utan köp. Utvecklad av Dzmitry Dziachenka. Uppdaterad 21 oktober 2026. Ändringar av dessa produktuppgifter återspeglas på webbplatsen."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anonymitet og Hjælp findes under Om uden køb. Udviklet af Dzmitry Dziachenka. Opdateret 21. oktober 2026. Den offentlige side opdateres, hvis disse produktoplysninger ændres."
+            "value": "Anonymitet og Hjælp findes under Om uden køb. Udviklet af Dzmitry Dziachenka. Opdateret 21. oktober 2026. Siden på webstedet opdateres, hvis disse produktoplysninger ændres."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tietosuoja ja Tuki ovat käytettävissä Tietoja-näkymässä ilman ostoa. Kehittäjä: Dzmitry Dziachenka. Päivitetty 21. lokakuuta 2026. Näiden tuotetietojen muutokset päivitetään julkiselle sivulle."
+            "value": "Tietosuoja ja Tuki ovat käytettävissä Tietoja-näkymässä ilman ostoa. Kehittäjä: Dzmitry Dziachenka. Päivitetty 21. lokakuuta 2026. Näiden tuotetietojen muutokset päivitetään verkkosivustolle."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Personvern og Brukerstøtte er tilgjengelig under Om uten kjøp. Utviklet av Dzmitry Dziachenka. Oppdatert 21. oktober 2026. Den offentlige siden gjenspeiler endringer i disse produktopplysningene."
+            "value": "Personvern og Brukerstøtte er tilgjengelig under Om uten kjøp. Utviklet av Dzmitry Dziachenka. Oppdatert 21. oktober 2026. Nettsiden gjenspeiler endringer i disse produktopplysningene."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Разделы «Конфиденциальность» и «Поддержка» доступны в «О приложении» без покупки. Разработчик — Dzmitry Dziachenka. Обновлено 21 октября 2026 года; изменения этих сведений о продукте отражаются на странице на сайте."
+            "value": "Разделы «Конфиденциальность» и «Поддержка» доступны в «О приложении» без покупки. Разработчик — Dzmitry Dziachenka. Обновлено 21 октября 2026 года; обновлённые сведения о продукте публикуются на сайте."
           }
         }
       }
@@ -27462,7 +27462,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utilisez Annuler après une erreur de touche, ou le menu de la partie pour corriger le score. Confirmez l’ordre de service avant chaque nouveau set. Rouvrez l’app pour retrouver la partie enregistrée. Si l’enregistrement échoue, libérez de l’espace si nécessaire, puis réessayez."
+            "value": "Après un appui accidentel, utilisez Annuler. Pour les autres corrections, ouvrez le menu de la partie. Confirmez l’ordre de service avant chaque nouveau set. Rouvrez l’app pour retrouver la partie enregistrée. Si l’enregistrement échoue, libérez de l’espace si nécessaire, puis réessayez."
           }
         },
         "pt-PT": {
@@ -27516,7 +27516,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Случайное нажатие можно отменить, другие ошибки — исправить через меню игры. Перед новым сетом подтвердите порядок подачи. Снова откройте приложение, чтобы вернуться к сохранённой игре. При ошибке сохранения при необходимости освободите место и повторите попытку."
+            "value": "Случайное нажатие можно отменить, другие ошибки — исправить через меню игры. Перед новым сетом подтвердите порядок подачи. Снова откройте приложение, чтобы вернуться к сохранённой игре. Если сохранить не удалось, при необходимости освободите место и повторите попытку."
           }
         }
       }
@@ -27682,7 +27682,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Если цена не загружается, проверьте подключение часов и нажмите «Повторить» на экране «Доступ». Уже оплатили? Откройте «О приложении → Доступ → Восстановить покупки» с тем же Аккаунтом Apple. Покупки в ожидании требуют одобрения. Заявки на возврат средств обрабатывает Apple на reportaproblem.apple.com."
+            "value": "Если цена не загружается, проверьте подключение часов и нажмите «Повторить» на экране «Доступ». Уже купили доступ? Откройте «О приложении → Доступ → Восстановить покупки» с тем же Аккаунтом Apple. Покупки в ожидании требуют одобрения. Заявки на возврат средств обрабатывает Apple на reportaproblem.apple.com."
           }
         }
       }
@@ -27788,7 +27788,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Scrivi a Dzmitry Dziachenka all’indirizzo qui sotto. Indica modello di Watch, versione di watchOS, versione dell’app in Info, passaggi per riprodurre il problema e messaggio di errore esatto. Non inviare mai password, codici di verifica o dati di pagamento. Lo sviluppatore risponde compatibilmente con il tempo disponibile, senza tempi di risposta garantiti."
+            "value": "Scrivi a Dzmitry Dziachenka all’indirizzo qui sotto. Indica modello di Watch, versione di watchOS, versione dell’app in Info, passaggi per riprodurre il problema e messaggio di errore esatto. Non inviare mai password, codici di verifica o dati di pagamento. Lo sviluppatore cerca di rispondere appena possibile, senza tempi garantiti."
           }
         },
         "fr": {

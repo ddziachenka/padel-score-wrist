@@ -71,3 +71,7 @@ Examples of corrections after the language agent’s own review:
 - Game → Spel
 
 Runtime context refinement: the external legal-page heading is «Webbsida», the natural word for a web page, rather than a literal “public page”. The URL and privacy meaning are unchanged.
+
+## Coordinator blind reading — final pass
+
+Read all 330 Watch messages (including every plural form), all four launcher messages, all four complete web pages and every store field without English source text. Then checked changes against the source meaning and repeated the affected passages. Blind reading removes plural-person ambiguity from the service-order heading, uses permanent access consistently and clarifies technical privacy wording. This is coordinator editorial review, not an invited native-speaker review.
