@@ -248,3 +248,8 @@ figcaption { margin-block-start: 1rem; color: var(--text-muted); text-align: cen
   .screens, .screens-pair { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
   .screens img { max-width: 240px; }
 }
+
+/* Keep the language choice usable on narrow screens and with enlarged text. */
+.language-nav { display: flex; flex-wrap: wrap; gap: .65rem 1rem; margin-top: 1.5rem; }
+.language-nav a { padding: .3rem 0; }
+.language-nav [aria-current="page"] { font-weight: 700; text-decoration-thickness: .15em; }

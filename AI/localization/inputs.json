@@ -1,0 +1,206 @@
+[
+  {
+    "locale": "es",
+    "commit": "a3b6161e7b05a2391aaa86b7584a64dd316a5537",
+    "worktree": "/private/tmp/padel-l10n-es",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/es/app-store.json",
+      "AI/localization/es/review.md",
+      "AI/localization/es/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/es/index.html",
+      "Web/public/es/privacy/index.html",
+      "Web/public/es/support/index.html",
+      "Web/public/es/terms/index.html"
+    ]
+  },
+  {
+    "locale": "it",
+    "commit": "d87c2c08d8046c2941af4dc7f355748ffbfb278a",
+    "worktree": "/private/tmp/padel-l10n-it",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/it/app-store.json",
+      "AI/localization/it/review.md",
+      "AI/localization/it/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/it/index.html",
+      "Web/public/it/privacy/index.html",
+      "Web/public/it/support/index.html",
+      "Web/public/it/terms/index.html"
+    ]
+  },
+  {
+    "locale": "fr",
+    "commit": "1dcf9fe8eacf21af80ecece67ca3823f0a529345",
+    "worktree": "/private/tmp/padel-l10n-fr",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/fr/app-store.json",
+      "AI/localization/fr/review.md",
+      "AI/localization/fr/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/fr/index.html",
+      "Web/public/fr/privacy/index.html",
+      "Web/public/fr/support/index.html",
+      "Web/public/fr/terms/index.html"
+    ]
+  },
+  {
+    "locale": "pt-PT",
+    "commit": "f32092741356f46c29337a4fdc39b232bdccadc3",
+    "worktree": "/private/tmp/padel-l10n-pt-pt",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/pt-PT/app-store.json",
+      "AI/localization/pt-PT/review.md",
+      "AI/localization/pt-PT/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/pt-pt/index.html",
+      "Web/public/pt-pt/privacy/index.html",
+      "Web/public/pt-pt/support/index.html",
+      "Web/public/pt-pt/terms/index.html"
+    ]
+  },
+  {
+    "locale": "pt-BR",
+    "commit": "75a839a04c30e716480db419d397e21bed42c2b5",
+    "worktree": "/private/tmp/padel-l10n-pt-br",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/pt-BR/app-store.json",
+      "AI/localization/pt-BR/review.md",
+      "AI/localization/pt-BR/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/pt-br/index.html",
+      "Web/public/pt-br/privacy/index.html",
+      "Web/public/pt-br/support/index.html",
+      "Web/public/pt-br/terms/index.html"
+    ]
+  },
+  {
+    "locale": "nl",
+    "commit": "fa49af8c0cc903273258c4710ccc7c7b05213bb5",
+    "worktree": "/private/tmp/padel-l10n-nl",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/nl/app-store.json",
+      "AI/localization/nl/review.md",
+      "AI/localization/nl/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/nl/index.html",
+      "Web/public/nl/privacy/index.html",
+      "Web/public/nl/support/index.html",
+      "Web/public/nl/terms/index.html"
+    ]
+  },
+  {
+    "locale": "de",
+    "commit": "b0c2e312231fd57507998ea6e64c7ad445984a15",
+    "worktree": "/private/tmp/padel-l10n-de",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/de/app-store.json",
+      "AI/localization/de/review.md",
+      "AI/localization/de/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/de/index.html",
+      "Web/public/de/privacy/index.html",
+      "Web/public/de/support/index.html",
+      "Web/public/de/terms/index.html"
+    ]
+  },
+  {
+    "locale": "sv",
+    "commit": "ae20e0790b93401fd58bc654d9cfbbc82ec35930",
+    "worktree": "/private/tmp/padel-l10n-sv",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/sv/app-store.json",
+      "AI/localization/sv/review.md",
+      "AI/localization/sv/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/sv/index.html",
+      "Web/public/sv/privacy/index.html",
+      "Web/public/sv/support/index.html",
+      "Web/public/sv/terms/index.html"
+    ]
+  },
+  {
+    "locale": "da",
+    "commit": "7e3da467c1b2fa7cee4fe287f50b8032504a3d39",
+    "worktree": "/private/tmp/padel-l10n-da",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/da/app-store.json",
+      "AI/localization/da/review.md",
+      "AI/localization/da/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/da/index.html",
+      "Web/public/da/privacy/index.html",
+      "Web/public/da/support/index.html",
+      "Web/public/da/terms/index.html"
+    ]
+  },
+  {
+    "locale": "fi",
+    "commit": "c3cb82c24b4911c513d697ae0a15b482ae72ef64",
+    "worktree": "/private/tmp/padel-l10n-fi",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/fi/app-store.json",
+      "AI/localization/fi/review.md",
+      "AI/localization/fi/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/fi/index.html",
+      "Web/public/fi/privacy/index.html",
+      "Web/public/fi/support/index.html",
+      "Web/public/fi/terms/index.html"
+    ]
+  },
+  {
+    "locale": "nb",
+    "commit": "3121bc4973a7766b69a82e36332571502c466fbc",
+    "worktree": "/private/tmp/padel-l10n-nb",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/nb/app-store.json",
+      "AI/localization/nb/review.md",
+      "AI/localization/nb/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/nb/index.html",
+      "Web/public/nb/privacy/index.html",
+      "Web/public/nb/support/index.html",
+      "Web/public/nb/terms/index.html"
+    ]
+  },
+  {
+    "locale": "ru",
+    "commit": "d7e7eacaa42595ee79f88f42fdb51f662c386b73",
+    "worktree": "/private/tmp/padel-l10n-ru",
+    "base": "809aa64036c4027d7aba141e889e90d97669e9e6",
+    "files": [
+      "AI/localization/ru/app-store.json",
+      "AI/localization/ru/review.md",
+      "AI/localization/ru/unchanged.json",
+      "App/PadelScoreLauncher/Localizable.xcstrings",
+      "App/PadelScoreWatch/Localizable.xcstrings",
+      "Web/public/ru/index.html",
+      "Web/public/ru/privacy/index.html",
+      "Web/public/ru/support/index.html",
+      "Web/public/ru/terms/index.html"
+    ]
+  }
+]

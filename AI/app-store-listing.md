@@ -51,7 +51,7 @@ Buying and restoring require an internet connection to the App Store. Use About 
 
 Games and history stay locally on this Watch. There is no transfer between Watches, cloud sync, or cloud backup service in the app. Removing the app or changing Watches may lose local data. Americano scoring covers your own round, without tournament scheduling or standings.
 
-Requires Apple Watch with watchOS 10 or later. English interface. No ads.
+Requires Apple Watch with watchOS 10 or later. Available in English, Spanish, Italian, French, Portuguese (Portugal and Brazil), Dutch, German, Swedish, Danish, Finnish, Norwegian Bokmål, and Russian. No ads.
 
 Privacy: https://padel-score-wrist.pages.dev/privacy/
 Terms: https://padel-score-wrist.pages.dev/terms/

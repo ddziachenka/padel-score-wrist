@@ -27,4 +27,15 @@ struct AppConfigurationTests {
         #expect(bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String == "1.0")
         #expect(bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String == "1")
     }
+    @Test("Every shipped language is present in the installed Watch bundle", arguments: ["es", "it", "fr", "pt-PT", "pt-BR", "nl", "de", "sv", "da", "fi", "nb", "ru"])
+    func installedLocalization(_ language: String) throws {
+        let path = try #require(Bundle.main.path(forResource: language, ofType: "lproj"))
+        let localized = try #require(Bundle(path: path))
+        for key in ["New game", "Support", "Couldn’t save.", "Restore purchases"] {
+            let text = localized.localizedString(forKey: key, value: nil, table: "Localizable")
+            #expect(text != key, "\(language) falls back to English for \(key)")
+            #expect(!text.isEmpty)
+        }
+        #expect(localized.url(forResource: "Localizable", withExtension: "stringsdict") != nil)
+    }
 }

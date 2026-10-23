@@ -675,7 +675,7 @@ VoiceOver должен позволять провести J1–J4 без зре
 
 | Question | Answer |
 | --- | --- |
-| Languages built by the milestones | English only — подтверждено пользователем. Русские макеты служат визуальным референсом. |
+| Languages built by the milestones | English baseline; owner exception dated 2026-10-23 adds 12 locales before M10. The final audit covers all shipped languages. |
 | Planned languages | Будут добавлены позже; список/приоритеты владелец определит после проверки английской версии на устройстве и release readiness. Переводов в плане milestones нет. |
 | Right-to-left support | Ресурсы, leading/trailing, системные направленные иконки и псевдолокализация подготовлены. В v1 US слева/THEM справа; будущая RTL-компоновка может зеркалить геометрию только вместе с подписями и числами одной semantic team. Никогда не менять ownership по индексу visual column. |
 | Dates, numbers, currency, units | Системное форматирование по locale; цена — строка StoreKit. `0, 15, 30, 40, AD` — семантика матча, не арифметические единицы. |

@@ -13,7 +13,14 @@ CATALOGS = [ROOT / 'App/PadelScoreWatch/Localizable.xcstrings', ROOT / 'App/Pade
 TOKEN = re.compile(r'%(?:(\d+)\$)?(lld|ld|d|@|f)')
 
 def tokens(value):
-    return Counter(kind for _, kind in TOKEN.findall(value))
+    result = Counter()
+    implicit = 1
+    for position, kind in TOKEN.findall(value):
+        index = int(position) if position else implicit
+        if not position:
+            implicit += 1
+        result[(index, kind)] += 1
+    return result
 
 def load(path):
     def unique(pairs):
@@ -32,6 +39,37 @@ def units(node):
         for key, value in node.items():
             if key != 'stringUnit':
                 yield from units(value)
+
+
+class Page(HTMLParser):
+    def __init__(self, html):
+        super().__init__()
+        self.links = []
+        self.feed(html)
+
+    def handle_starttag(self, tag, attributes):
+        self.links.append((tag, dict(attributes)))
+
+
+def validate_routes(locale, route, page, html):
+    parsed = Page(html)
+    origin = 'https://padel-score-wrist.pages.dev'
+    rows = [{'id': 'en', 'route': ''}] + REGISTRY['locales']
+    expected = {r['id']: f'{origin}/{r["route"] + "/" if r["route"] else ""}{page}' for r in rows}
+    expected['x-default'] = f'{origin}/{page}'
+    alternates = {a.get('hreflang'): a.get('href') for tag, a in parsed.links if tag == 'link' and a.get('rel') == 'alternate'}
+    assert alternates == expected, f'{locale}: incomplete alternate routes {page}'
+    canonical = [a['href'] for tag, a in parsed.links if tag == 'link' and a.get('rel') == 'canonical']
+    assert canonical == [expected[locale]], f'{locale}: canonical {page}'
+    navigation = {a.get('hreflang'): a.get('href') for tag, a in parsed.links if tag == 'a' and a.get('hreflang')}
+    assert navigation == {k: v.removeprefix(origin) for k, v in expected.items() if k != 'x-default'}, f'{locale}: language navigation {page}'
+    for tag, attributes in parsed.links:
+        href = attributes.get('href', '')
+        if href.startswith('/'):
+            target = ROOT / 'Web/public' / href.lstrip('/').split('#')[0]
+            if href.endswith('/'):
+                target = target / 'index.html'
+            assert target.is_file(), f'{locale}: missing linked route {href}'
 
 def validate_locale(locale):
     row = next(r for r in REGISTRY['locales'] if r['id'] == locale)
@@ -71,6 +109,8 @@ def validate_locale(locale):
         assert f'lang="{locale}"' in html, f'{locale}: page lang {page}'
         assert f'https://padel-score-wrist.pages.dev/{row["route"]}/{page}' in html, f'{locale}: canonical {page}'
         assert '/styles.css' in html
+        if all((ROOT / 'Web/public' / r['route'] / 'index.html').is_file() for r in REGISTRY['locales']):
+            validate_routes(locale, row['route'], page, html)
         if page == 'terms/':
             assert 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/' in html
     store = load(folder / 'app-store.json')
@@ -88,8 +128,12 @@ def main():
     parser.add_argument('--locale', action='append')
     parser.add_argument('--all', action='store_true')
     args=parser.parse_args()
-    available = set(load(CATALOGS[0])['strings'][next(iter(load(CATALOGS[0])['strings']))]['localizations'])-{'en'}
+    available = {locale for path in CATALOGS for entry in load(path)['strings'].values() for locale in entry.get('localizations', {})} - {'en'}
     locales = args.locale or ([r['id'] for r in REGISTRY['locales']] if args.all else sorted(available))
+    if all((ROOT / 'Web/public' / r['route'] / 'index.html').is_file() for r in REGISTRY['locales']):
+        for page in ['', 'privacy/', 'terms/', 'support/']:
+            html = (ROOT / 'Web/public' / page / 'index.html').read_text()
+            validate_routes('en', '', page, html)
     for locale in locales:
         count=validate_locale(locale)
         print(f'{locale}: {count} catalog keys, four pages, store drafts, glossary checked')
