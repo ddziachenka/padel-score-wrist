@@ -1,6 +1,6 @@
 # Localization handoff
 
-**Status:** all twelve language gates and previous combined integration passed; final Danish editorial correction awaits a fresh exact integration. No release verdict.
+**Status:** implementation, complete coordinator editorial/visual review and final exact integration passed for all twelve added locales. No release verdict.
 
 ## Scope
 
@@ -27,16 +27,17 @@ Prepared 72 new raw 44-mm screenshots and refreshed six English screenshots afte
 | Field | Evidence |
 | --- | --- |
 | Common base | `809aa64036c4027d7aba141e889e90d97669e9e6` |
-| Previous verified candidate | `b6cbb53163027283e8466b97b0f35e67b8ae62f4` |
-| Exact integration command | `make integration CANDIDATE=b6cbb53163027283e8466b97b0f35e67b8ae62f4` |
-| Integration result/counts/time/report | Exit 0; 510/510 definitions, 884 passed invocations, 0 failed/skipped/expected; 8,267.178 s. Report `.artifacts/integration/20261023T134109Z-94630/report.md`; preserved `evidence/integration.md` |
+| Final verified candidate | `8dd50d72b04689da93bfaed2599eb28bd26e3591` |
+| Previous verified candidate | `b6cbb53163027283e8466b97b0f35e67b8ae62f4`; retained automated evidence, superseded for Danish editorial acceptance |
+| Exact integration command | `make integration CANDIDATE=8dd50d72b04689da93bfaed2599eb28bd26e3591` |
+| Integration result/counts/time/report | Exit 0; 510/510 definitions, 884 passed invocations, 0 failed/skipped/expected; 8,272.038 s. Report `.artifacts/integration/20261023T161643Z-52611/report.md`; preserved `evidence/integration-final.md` |
 | Per-language commands | `make static` and `make fast` in each recorded worktree; `inputs.json` records full source SHAs |
 | Baseline `make fast` | Exit 0; 472 passed, 0 failed/skipped/expected; `evidence/fast-baseline.md` |
 | Language `make fast` reports | all twelve streams passed, each 472/472 with zero failed/skipped/expected; `evidence/language-gates.md` |
-| Final static | `make static`, exit 0 before candidate freeze; final continuity static PENDING |
+| Final static | `make static`, exit 0 before candidate freeze; post-record continuity checks follow the evidence commit |
 | 44-mm captures | Source `cbe452b0efda5c1c06aac97cc6b5132817876cd8`; full run exit 0, 13/13; replacement runs exit 0, 3/3 and 1/1; zero failed/skipped/expected |
 | Capture command | `evidence/capture-command.txt`; every manifest records its exact result bundle and source |
-| Visual count | All 78 shipping PNGs plus all 156 final bounded 40-mm QA PNGs and 156 combined context PNGs individually inspected; all 52 website routes opened in browser |
+| Visual count | All 78 shipping PNGs plus all 156 final bounded 40-mm QA PNGs and 156 combined context PNGs individually inspected, plus three fresh Danish correction frames; all 52 website routes opened in browser |
 | Numeric proof | `xcrun xcstringstool compile` plus `Scripts/probe-localized-plurals.swift`; both messages at 0,1,2,4,5,11,21,22,25,101,999 in every locale; catalog SHA-256 in each `plural-review.txt` |
 
 ## Tests and review
@@ -45,7 +46,7 @@ Original regression scheme remains intact. New runtime coverage uses all twelve 
 
 Coordinator read every catalog value/plural, all four complete pages and every store field in every locale, first without English and then against its meaning. Re-read all corrected passages and inspected the runtime screenshots. Terminology and concrete correction examples are recorded in each locale review. This is coordinator editorial review, not an invited native-speaker certification or independent release audit.
 
-Rejected failed/black/incomplete capture attempts instead of accepting structural success alone. Corrected long score/result labels, native Russian denominator grammar, Brazilian zero plural, service-order ambiguity and contextual legal/purchase wording. Full failure/recheck history: `runtime-findings.md`. The interrupted earlier integration is not a pass.
+Rejected failed/black/incomplete capture attempts instead of accepting structural success alone. Corrected long score/result labels, native Russian denominator grammar, Brazilian zero plural, service-order ambiguity contextual legal/purchase wording and four Danish result/banner subjects. Full failure/recheck history: `runtime-findings.md`. The interrupted earlier integration is not a pass.
 
 ## Known issues and boundary
 
@@ -55,4 +56,8 @@ No App Store Connect upload, site publication, App Review submission or archive 
 
 ## Next step
 
-Finish the pending automated verification and record its exact evidence. Then follow `REAL-WATCH.md` to obtain required real-Watch evidence before M10's six-domain final audit, `make milestone ID=M10` and `make release CANDIDATE=<full-SHA>`. Publication and submission remain separate owner actions.
+Localization preparation and required automated/editorial verification are complete. Follow `REAL-WATCH.md` to obtain required real-Watch evidence before M10's six-domain final audit, `make milestone ID=M10` and `make release CANDIDATE=<full-SHA>`. Publication and submission remain separate owner actions.
+
+## Evidence-record checks
+
+`make static` after final editorial/report updates: exit 0, log `/private/tmp/padel-localization-complete-static.log`; HEAD `8dd50d72b04689da93bfaed2599eb28bd26e3591` with only AI Markdown records changed. `Scripts/project-status.sh validate`: exit 0. Initial `Scripts/project-status.sh continuity 8dd50d72b04689da93bfaed2599eb28bd26e3591` returned 65 because those records were not yet committed; its clean-checkout guard is preserved. Commit records, then repeat static/validate/continuity before handoff.

@@ -1,4 +1,4 @@
-# Multilingual integration — Danish editorial correction under final verification
+# Multilingual integration — complete, final exact candidate verified
 
 Base: `809aa64036c4027d7aba141e889e90d97669e9e6`.
 First combined source: `ec49b053b17a5bfe15863c18a8f8b9c897d08b84`.
@@ -28,7 +28,7 @@ Catalogs were combined structurally, preserving every language and English sourc
 
 The coordinator read every catalog value and plural variant, all four pages, all store fields and launcher labels for every locale. Reviewed readability before comparison with source meaning. Individual glossaries and correction examples are in each locale’s `review.md`. Numeric proof for both pluralized messages is in `plural-review.txt`, generated from compiled catalogs using `Scripts/probe-localized-plurals.swift`. Catalog SHA-256: `d0ad1247309f02aa8e20aa967eddf38759324fd18398456e2bc3af061917cbd3`. Values 0,1,2,4,5,11,21,22,25,101,999 were checked in every locale.
 
-This is the coordinator’s own editorial audit, not independent review or certification by an invited native speaker. UI labels, VoiceOver sentences, scoring rules, the five-completed-game limit, lifetime access, data deletion and privacy claims were checked separately. Final shared runtime evidence must still pass before translation completion is recorded.
+This is the coordinator’s own editorial audit, not independent review or certification by an invited native speaker. UI labels, VoiceOver sentences, scoring rules, the five-completed-game limit, lifetime access, data deletion and privacy claims were checked separately. Final shared runtime evidence passed on the corrected candidate below.
 
 ## Baseline validation
 
@@ -50,7 +50,7 @@ Russian creation and installed resources on the capture source passed the target
 - All twelve original language commits: `make static` exit 0; coordinator `make fast` exit 0, 472/472 each with zero failed/skipped/expected. Exact sources/worktrees/commands/bundles: `evidence/language-gates.md`.
 - 72 new raw 44-mm XCTest screenshots plus six refreshed English originals complete; all 78 individually reviewed and compared byte-for-byte with source attachments. French/Russian full replacement and two Portuguese Portugal replacements have exact bundle provenance in manifests. No text or pixels edited.
 - Final 40-mm shared test scheme: all languages, largest text, creation, scoring/Undo, correction, finish, replay/history, legal links, restore, save error and deletion.
-- Final exact command: `make integration CANDIDATE=b6cbb53163027283e8466b97b0f35e67b8ae62f4`; exit 0; 510/510 definitions, 884 passed invocations, 0 failed/skipped/expected. Report `.artifacts/integration/20261023T134109Z-94630/report.md`; preserved report and raw summary `evidence/integration.md`. All 156 context images reviewed; Danish result banner correction requires a new final candidate gate.
+- Previous exact command: `make integration CANDIDATE=b6cbb53163027283e8466b97b0f35e67b8ae62f4`; exit 0; 510/510 definitions, 884 passed invocations, 0 failed/skipped/expected. Report `.artifacts/integration/20261023T134109Z-94630/report.md`; preserved report and raw summary `evidence/integration.md`. All 156 context images reviewed; the subsequent Danish correction is verified below.
 - Final bounded 40-mm QA complete at source `43a2d7460d21d785fed6dc193f8aab2d094a2398`, identical product files: exit 0, 24/24, zero failed/skipped/expected; all 156 frames individually inspected. Exact command, source comparison, bundle and 156 attachment hashes: `evidence/final-40mm.md`.
 - Browser: all 52 final routes opened with full heading and thirteen-language navigation; no error pages.
 - Earlier interrupted integrations do not count as passes; all failures/cancellations and corrections are recorded in `runtime-findings.md`.
@@ -58,3 +58,7 @@ Russian creation and installed resources on the capture source passed the target
 ## Release boundary
 
 M10 remains BLOCKED. Real-Watch spoken VoiceOver, on-court use, Always On/Low Power, oldest-device performance, adverse-network StoreKit and the launcher still need hardware evidence. No release readiness, M10 completion, App Store upload, site publication or App Review submission is claimed. `make milestone ID=M10` and `make release` require the hardware audit on one final candidate; they have not been run for this localization integration.
+
+## Final Danish correction candidate
+
+`8dd50d72b04689da93bfaed2599eb28bd26e3591` changes exactly four Danish catalog values from b6cbb53163027283e8466b97b0f35e67b8ae62f4; other product source files are identical. All 156 combined context frames are reviewed. Compiled Foundation resource proof: `evidence/danish-banner-correction.md`. Full `make integration CANDIDATE=8dd50d72b04689da93bfaed2599eb28bd26e3591` passed, exit 0: 510/510 definitions and 884 invocations, 0 failed/skipped/expected; elapsed 8,272.038 s. Exact report and raw summary: `evidence/integration-final.md`. All three fresh Danish creation frames individually inspected; result shows readable `Vi vandt`. Original attachment hashes and compiled four-phrase proof: `evidence/danish-banner-correction.md`. Translation preparation and coordinator editorial review are complete; release boundary unchanged.

@@ -198,3 +198,7 @@ Confirmed finding: Danish result banner used object pronouns OS/DEM as sentence 
 - `l10n-sv-created-round-finished_0_B4A08999-6CEB-4D3E-B353-0036E8837D4F.png` — `afb9a35c351f930bfe268410a5e84a22ef05a5b691126ed69fac045121a5635c`
 - `l10n-sv-data-deleted_0_E90FDF51-1E56-4D95-9382-C0F68E3B84BA.png` — `ceb501de72036a56ce91fac1c077d99553371e6562d54ed1edb896e45a23b78b`
 
+
+## Correction acceptance
+
+All three fresh Danish creation frames at `8dd50d72b04689da93bfaed2599eb28bd26e3591` reviewed after the full gate passed. Corrected result reads `Vi vandt`; no remaining finding. Exact hashes/provenance: `danish-banner-correction.md`. Other locale values and product source files are unchanged from the 156 individually inspected source frames above.

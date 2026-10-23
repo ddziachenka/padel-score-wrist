@@ -2,7 +2,7 @@
 
 Shipping 44-mm screenshots: all 72 added locale images and all six refreshed English images individually inspected. Source `cbe452b0efda5c1c06aac97cc6b5132817876cd8`; original exports and hashes are in the shipping manifests. French/Russian replacements and the two Portuguese Portugal replacements use passing result bundles at the same source, recorded per image where needed. Every final shipping image was individually inspected and 78/78 matched the exact original attachment bytes.
 
-Final product source under integration: `b6cbb53163027283e8466b97b0f35e67b8ae62f4`. Additional bounded QA source `43a2d7460d21d785fed6dc193f8aab2d094a2398` has identical product files; the only difference under App is added test-only probes in StoreMaterialsUITests.swift. Both devices use managed Apple Watch SE 40-mm simulators on watchOS 26.1.
+Previous product source under integration: `b6cbb53163027283e8466b97b0f35e67b8ae62f4`. Additional bounded QA source `43a2d7460d21d785fed6dc193f8aab2d094a2398` has identical product files; the only difference under App is added test-only probes in StoreMaterialsUITests.swift. Both devices use managed Apple Watch SE 40-mm simulators on watchOS 26.1.
 
 The full final scheme supplies largest-text rules, demo, privacy, terms, support, launcher help, access/restore, live score and save-error captures, plus actual Match/Americano completion and data-deletion states. Additional QA supplies six normal-size 40-mm captures and seven expanded Americano/result/history captures per locale. Captures are read as complete rendered screens; an accessibility tree alone does not establish that glyphs fit.
 
@@ -16,7 +16,7 @@ The full final scheme supplies largest-text rules, demo, privacy, terms, support
 | nl | reviewed | reviewed, corrected source cbe452 | reviewed, no new finding |
 | de | reviewed | reviewed, corrected source cbe452 | reviewed, no new finding |
 | sv | reviewed | reviewed, corrected source cbe452 | reviewed, no new finding |
-| da | reviewed | reviewed, corrected source cbe452 | reviewed; four banner phrases corrected, fresh proof pending |
+| da | reviewed | reviewed, corrected source cbe452 | reviewed; four banner phrases corrected and rechecked on final SHA |
 | fi | reviewed | reviewed, corrected source cbe452 | reviewed, no new finding |
 | nb | reviewed | reviewed, corrected source cbe452 | reviewed, no new finding |
 | ru | reviewed | reviewed, corrected source cbe452 | reviewed, no new finding |
@@ -30,3 +30,5 @@ Final bounded QA: `/private/tmp/padel-final-expanded-command.sh`, source `43a2d7
 Some tool presentations suppress unchanged image regions. Pixel inspection confirmed apparently absent normal Americano role text/controls were byte-identical to the complete preceding Match regions (Danish, French, both Portuguese variants). This was a presentation artifact, not missing pixels in the original PNG or a product defect; no speculative layout adjustment was retained.
 
 All 156 combined-scheme frames read; hashes and Danish correction disposition: `evidence/final-context.md`. Corrected Danish copy requires a fresh exact candidate gate.
+
+Final candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591`: full integration exit 0, 510/510 definitions, 884 invocations, no failed/skipped/expected. Three fresh original Danish creation frames individually reviewed; corrected `Vi vandt` is readable and grammatical. All other product source files and all other locale values are identical to the fully inspected b6 source. See `evidence/danish-banner-correction.md` and `evidence/integration-final.md`. Editorial acceptance complete.
