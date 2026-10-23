@@ -4,7 +4,7 @@
 
 ## Milestone
 
-M10 — Final Product Polish; REVIEW, awaiting required exact milestone and release gates. No DONE or readiness verdict yet. Historical blocked checkpoint preserved in `AI/history/M10-handoff-20261022.md` and `AI/history/M10-final-polish-20261022.md`.
+M10 — Final Product Polish; DONE. Exact candidate passed both required gates; READY_FOR_HUMAN. Historical blocked checkpoint preserved in `AI/history/M10-handoff-20261022.md` and `AI/history/M10-final-polish-20261022.md`.
 
 ## Summary
 
@@ -20,25 +20,25 @@ Only workflow/evidence/site README documents; no app source, rules, models, conf
 | --- | --- |
 | Pre-resumption HEAD | `c343c4ebb40d5f4e7f60c869ddc9410fa54d5a3f` |
 | Product input checkpoint | `8dd50d72b04689da93bfaed2599eb28bd26e3591`; exact integration exit 0, 510 definitions / 884 invocations, no failed/skipped/expected; `AI/localization/evidence/integration-final.md` |
-| Milestone-verified SHA | Pending clean REVIEW gate |
-| Milestone command / exit | `make milestone ID=M10` — pending |
-| Milestone report / counts | Pending |
-| Release command / exit | `make release CANDIDATE=<milestone-verified-full-SHA>` — pending |
-| Release report / verdict | Pending |
-| Manual checklist | Created by release gate; Archive/Organizer/distribution unperformed |
+| Verified SHA | `93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f` |
+| Milestone command / exit | `make milestone ID=M10` — exit 0 |
+| Milestone report / counts | `.artifacts/milestone/M10/20261023T185925Z-5080/report.md`; 510/510 definitions, 884 invocations; failed/skipped/expected/runtime warnings 0; started 2026-10-23T18:59:26Z, completed 2026-10-23T21:18:27Z; preserved `AI/evidence/M10/milestone-verification.md` |
+| Release command / exit | `make release CANDIDATE=93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f` — exit 0 |
+| Release report / verdict | `.artifacts/release/20261023T211900Z-47259/report.md`; READY_FOR_HUMAN; 510/510 definitions, 884 invocations; failed/skipped/expected/runtime warnings 0; generated 2026-10-23T21:19:01Z, test finish 2026-10-23T23:37:34.828Z; clean Debug and unsigned generic-device Release passed; preserved `AI/evidence/M10/release-verification.md` |
+| Manual checklist | `.artifacts/release-checklists/93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f/checklist.md`; 3 PENDING: post-readiness subjective candidate review, Archive/Organizer, distribution decision; exact copy in release evidence |
 | Publication | `make site-deploy PRODUCTION=1`, cached Wrangler 4.128.0; exit 0; deployment cff74b31, 131/131 exact public readback |
 
 ## Tests and self-review
 
-All twelve locales’ current full journeys, compact/max text and native plurals were fully audited in the localization stream; its exact passing integration checkpoint is preserved, not substituted for M10 verification. Owner-observed physical acceptance is clearly distinguished from automated results and coordinator-operated tests. All earlier reproduced fixes and failed/cancelled attempts remain in the historical audit and localization runtime-findings records. The same required full scheme runs again in the milestone and release gates. No independent review claimed; optional scanners not configured.
+All twelve locales’ current full journeys, compact/max text and native plurals were fully audited in the localization stream; its exact passing integration checkpoint is preserved, not substituted for M10 verification. Owner-observed physical acceptance is clearly distinguished from automated results and coordinator-operated tests. All earlier reproduced fixes and failed/cancelled attempts remain in the historical audit and localization runtime-findings records. The same required full scheme passed again in both milestone and release gates (510 definitions / 884 invocations each). No independent review claimed; optional scanners not configured.
 
 ## Known issues
 
-No known open P0/P1 after authorized site correction; candidate verification is not yet complete. Four P2s remain documented. No device identifiers, performance timings or recordings were invented for the owner's confirmation. Prepared ASC metadata is still a separate upload; no archive, Organizer validation, distribution or App Review performed.
+No known open P0/P1 after authorized site correction; exact-candidate verification complete. Four P2s remain documented. No device identifiers, performance timings or recordings were invented for the owner's confirmation. Prepared ASC metadata is still a separate upload; no archive, Organizer validation, distribution or App Review performed.
 
 ## Next step
 
-Run declared clean REVIEW milestone gate, then strict release gate on its exact SHA. Record actual exits/counts/reports/checklist, mark DONE only after both pass, and run closing static/status/continuity checks.
+Stop milestone work. Developer performs the candidate-bound post-readiness review, Product > Archive and Organizer validation, then decides distribution. Three checklist rows remain PENDING; this handoff does not approve or perform distribution. Closing static/status/continuity checks are recorded below after they run.
 
 Pre-freeze checks: `make static` exit 0 (`.artifacts/M10-completion/pre-review-static.log`), `validate_final_polish_coverage` through unchanged `Scripts/lib/common.sh` exit 0, `Scripts/project-status.sh next` resolves M10 REVIEW, `git diff --check` exit 0. No gate or test arguments changed.
 
@@ -46,4 +46,8 @@ Pre-freeze checks: `make static` exit 0 (`.artifacts/M10-completion/pre-review-s
 
 First REVIEW commit `0d90bf942c8e11b110041615bc051fad56a14678`: `make milestone ID=M10` intentionally stopped after release preflight inspection showed that `AI/PROJECT_STATUS.md` must contain exactly `Blockers: none`, not explanatory text after none. Kept the explanation as ordinary prose and reran unchanged `validate_release_workflow_readiness app-store` through `Scripts/lib/common.sh`: exit 0. No test, coverage requirement or gate changed.
 
-Cancelled command Make exit 2 / milestone gate 69 / owned xcodebuild 143. Report `.artifacts/milestone/M10/20261023T185608Z-82933/report.md`; log `.artifacts/M10-completion/milestone.log`. First SIGINT stalled inside Xcode test setup; SIGTERM was sent only to its exact owned PID/result-bundle command. Incomplete bundle lacks Info.plist; xcresulttool exit 64, counts unavailable and never claimed passing. Full clean candidate verification is restarted after committing the record-format correction.
+Cancelled command Make exit 2 / milestone gate 69 / owned xcodebuild 143. Report `.artifacts/milestone/M10/20261023T185608Z-82933/report.md`; log `.artifacts/M10-completion/milestone.log`. First SIGINT stalled inside Xcode test setup; SIGTERM was sent only to its exact owned PID/result-bundle command. Incomplete bundle lacks Info.plist; xcresulttool exit 64, counts unavailable and never claimed passing. Full clean candidate verification was restarted after committing the record-format correction and both required gates passed on the candidate recorded above.
+
+## Post-DONE continuity
+
+Pending: commit only AI Markdown completion evidence, then run `make static`, `Scripts/project-status.sh validate` and `Scripts/project-status.sh continuity 93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f`; record actual exits. No build inputs changed after the verified candidate.

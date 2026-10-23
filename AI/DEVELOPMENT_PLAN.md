@@ -1,13 +1,13 @@
 # Development plan
 
-**Status:** направление и план одобрены владельцем; M00–M09 завершены, M10 на итоговой проверке; план покупки M11–M15 утверждён 2026-10-22
+**Status:** направление и план одобрены владельцем; M00–M15 завершены, M10 DONE / READY_FOR_HUMAN; план покупки M11–M15 утверждён 2026-10-22
 **Approved by:** владелец проекта, сообщение «одобряю»; план M11–M15 — владелец, 2026-10-22
 **Approved on:** 2026-10-20
-**Updated:** 2026-10-22
+**Updated:** 2026-10-23
 
 План следует [промпту инициализации](prompts/initialize-product.md) и
 [brief](PRODUCT_BRIEF.md). M00–M09 имеют статус `DONE`; H2 закрыт владельцем
-2026-10-20, H1 и H4 — 2026-10-21. Аппаратные проверки M10 подтверждены владельцем; M10 `REVIEW` на финальных gates (см.
+2026-10-20, H1 и H4 — 2026-10-21. Аппаратные проверки M10 подтверждены владельцем; M10 `DONE`: milestone и release gates прошли на одном точном SHA, вердикт `READY_FOR_HUMAN` (см.
 [handoff M10](handoffs/M10-handoff.md)). По исключению владельца 2026-10-22 сначала
 выполняются M11–M15, затем возобновляется M10; текущий этап указывает
 [PROJECT_STATUS](PROJECT_STATUS.md).
@@ -41,7 +41,7 @@ Xcode-проекта и доступности настоящих часов.
 | [M07 — Finish and Resume](milestones/M07-finish-resume.md) — DONE | Честный результат, продолжение последней игры и удаление локальных данных; [evidence](handoffs/M07-handoff.md) | M06 |
 | [M08 — Access and Purchase](milestones/M08-access-purchase.md) — DONE | Выбранная модель доступа и покупка, если она утверждена | M07; H4 закрыт |
 | [M09 — Legal and Support](milestones/M09-legal-support.md) — DONE | Читаемая помощь на Watch, четыре страницы Web и публичные URL | M08 DONE; H1 закрыт; M09 DONE, clean gate 387/387 — см. handoff |
-| [M10 — Final Product Polish](milestones/M10-final-product-polish.md) — REVIEW | Полная проверка многоязычного приложения, точный кандидат `READY_FOR_HUMAN` | Все M00–M09; по исключению владельца возобновляется только после DONE M11–M15 |
+| [M10 — Final Product Polish](milestones/M10-final-product-polish.md) — DONE | Полная проверка многоязычного приложения, точный кандидат `READY_FOR_HUMAN` | Все M00–M09; по исключению владельца возобновляется только после DONE M11–M15 |
 | [M11 — Purchase, Result and Play Again](milestones/M11-purchase-result-play-again.md) — DONE | Ясное предложение покупки, итог с главным счётом сетов и `Play again`; [evidence](handoffs/M11-handoff.md) | M09 |
 | [M12 — Scoreboard Demo](milestones/M12-scoreboard-demo.md) — DONE | Необязательный фиксированный пример счётчика без записи данных; [evidence](handoffs/M12-handoff.md) | M11 |
 | [M13 — Local History and Storage Migration](milestones/M13-local-history.md) — DONE | История всех завершённых игр для всех и формат хранения 2; [evidence](handoffs/M13-handoff.md) | M12 |
@@ -66,8 +66,7 @@ M10 сохраняет зависимости M00–M09: валидатор тр
 `make release CANDIDATE=<verified-full-SHA>` на одном SHA. Это продуктовые улучшения,
 а не подтверждённый рост конверсии; App Review этим планом не разрешён.
 
-После M10 план заканчивается. Дополнительные локализации выполняются позже,
-после проверки владельцем на настоящих часах, по [WORKFLOW](WORKFLOW.md).
+После M10 план заканчивается. По явному исключению владельца 11 языков (12 новых локалей) подготовлены до M10 и вошли в его итоговую проверку. Последующие локализации выполняются по [WORKFLOW](WORKFLOW.md).
 Отдельных этапов переводов, Review Request, premium override или оформления цены
 нет: watchOS не требует Review Request в этом шаблоне, override и цена принадлежат
 M08 при наличии продажи доступа.

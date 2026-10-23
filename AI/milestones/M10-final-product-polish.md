@@ -1,7 +1,7 @@
 # M10 — Final Product Polish
 
 **ID:** M10
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09
 **Validation:** make milestone ID=M10
 **Handoff:** AI/handoffs/M10-handoff.md
@@ -35,8 +35,8 @@
 - [x] Один consolidated record имеет COMPLETE typed coverage, Open P0/P1 0, findings/fixes/deferred P2, INAPPLICABLE с причинами, FUTURE_PRODUCT_IDEA и точные SHA/команды/counts/пути.
 - [x] Нет пропущенной обязательной среды/устройства; реальные часы и минимальная поддерживаемая конфигурация проверены. Недоступность необходимого evidence блокирует этап.
 - [x] Watch-only REL-208 и REL-209 явно INAPPLICABLE с причиной; неиспользуемые HealthKit/account/cloud/notifications так же оцениваются по применимости, а не молча пропускаются.
-- [ ] make milestone ID=M10 проходит и make release CANDIDATE=<verified-full-SHA> возвращает READY_FOR_HUMAN для того же commit.
-- [ ] После записи DONE и handoff выполнены make static, project-status validate и continuity от verified SHA; никакая отправка или публикация не выполнена.
+- [x] make milestone ID=M10 проходит и make release CANDIDATE=<verified-full-SHA> возвращает READY_FOR_HUMAN для того же commit.
+- [ ] После записи DONE и handoff выполнены make static, project-status validate и continuity от verified SHA; отправка в App Store не выполнена; подготовленный сайт опубликован по отдельному явному разрешению владельца.
 
 ## Validation
 
@@ -92,4 +92,4 @@ Review submission, App Store Connect upload or site publication is authorized.
 
 ## Completion resumption — 2026-10-23
 
-Owner explicitly confirmed «на физическом устройстве все проверено»; scope and evidence limits recorded in `AI/evidence/M10/device-confirmation.md`. All earlier physical blockers are resolved by that owner-observed report, without invented measurements. M11–M15 and localization preparation are complete. Six-domain consolidated record refreshed in order with exact current source evidence. New live privacy/history mismatch was corrected by owner-approved production site deployment; 131/131 public source hashes matched. M10 is REVIEW for its unchanged full milestone and release gates; DONE only after their actual pass.
+Owner explicitly confirmed «на физическом устройстве все проверено»; scope and evidence limits recorded in `AI/evidence/M10/device-confirmation.md`. All earlier physical blockers are resolved by that owner-observed report, without invented measurements. M11–M15 and localization preparation are complete. Six-domain consolidated record refreshed in order with exact current source evidence. New live privacy/history mismatch was corrected by owner-approved production site deployment; 131/131 public source hashes matched. M10 DONE: `make milestone ID=M10` and `make release CANDIDATE=93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f` both exit 0 on that exact candidate; release verdict READY_FOR_HUMAN, 510/510 definitions and 884 passed invocations per gate. Evidence: `AI/evidence/M10/milestone-verification.md` and `AI/evidence/M10/release-verification.md`. Three post-readiness human checklist rows remain PENDING; no archive or App Store submission.

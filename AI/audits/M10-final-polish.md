@@ -1,7 +1,7 @@
 # Final Product Polish audit — M10
 
 **Policy status:** current
-**Candidate:** review source `c343c4ebb40d5f4e7f60c869ddc9410fa54d5a3f`; exact gate candidate filled from verification below
+**Candidate:** `93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f`
 **Milestone:** M10
 **Distribution channel:** app-store
 **Coverage result:** COMPLETE
@@ -16,7 +16,7 @@ This is Builder self-review, not independent release approval. This is the same 
 - Managed SE2 40 mm watchOS 26.1 UDID A7CBB23C-F823-4850-BE4B-CAD76922DD08; recent additional managed 40/44-mm captures recorded separately. Earlier watchOS 10 clean install/Release/UI evidence retained in history. Owner now confirms all previously outstanding physical-device checks; exact quote and absence of invented device/timing fields: `AI/evidence/M10/device-confirmation.md`.
 - All M00–M09 and M11–M15 are DONE with their own verified handoffs. English plus twelve added locales; no app, data, rule or purchase changes made during this resumption.
 - Owner authorized production publication of already prepared Web content after a genuine live Privacy mismatch. Deployment and 131-file readback passed: `AI/evidence/M10/site-publication.md`. Store metadata upload and Archive/Organizer/distribution/App Review remain separate unperformed actions.
-- Same full scheme is required for M10 and release. Optional SwiftLint/SwiftFormat/ShellCheck/additional scanner not configured, not called passing. Gates have not yet run for the pending clean REVIEW candidate; their fields below remain pending until actual completion.
+- Same full scheme is required for M10 and release. Optional SwiftLint/SwiftFormat/ShellCheck/additional scanner not configured, not called passing. Both unchanged full gates passed on the exact candidate above; actual results and preserved reports are recorded below.
 
 ## Functional Correctness / Bug Hunt
 
@@ -134,7 +134,7 @@ This is Builder self-review, not independent release approval. This is the same 
 
 ## Release / App Store / Privacy / Monetization
 
-- Resumed last. Current manifest, no-backend/no-permission architecture, static WidgetKit launcher, identity and DEBUG isolation reviewed. Canonical public legal/support pages and all translated routes now serve current prepared content after owner-approved deployment. Existing ASC privacy/rating/category/review evidence remains applicable because collection/content risks did not change. Closing clean milestone/strict Release gates still must execute; coverage does not fabricate their outcomes.
+- Resumed last. Current manifest, no-backend/no-permission architecture, static WidgetKit launcher, identity and DEBUG isolation reviewed. Canonical public legal/support pages and all translated routes now serve current prepared content after owner-approved deployment. Existing ASC privacy/rating/category/review evidence remains applicable because collection/content risks did not change. Closing clean milestone/strict Release gates both passed on the exact candidate; their actual outcomes are recorded below.
 
 ## Coverage: release
 
@@ -152,10 +152,10 @@ This is Builder self-review, not independent release approval. This is the same 
 - REL-406 | OUTCOME=VERIFIED | EVIDENCE=AccessView Terms/Privacy/Close, neutral 44-point dismiss target and current-game/draft/result preservation; twelve locale offline legal journeys. Current multilingual runtime: AI/localization/evidence/integration-final.md, source 8dd50d72b04689da93bfaed2599eb28bd26e3591, exit 0, 510/510 definitions, 884 invocations, no failed/skipped/expected. App inputs unchanged at resumption c343c4ebb40d5f4e7f60c869ddc9410fa54d5a3f.
 - REL-407 | OUTCOME=VERIFIED | EVIDENCE=Five completed games free; one lifetime purchase, no countdown/trial/subscription or after-result offer. AccessOffer state derives from one entitlement owner; voluntary demo/history remain free. Current multilingual runtime: AI/localization/evidence/integration-final.md, source 8dd50d72b04689da93bfaed2599eb28bd26e3591, exit 0, 510/510 definitions, 884 invocations, no failed/skipped/expected. App inputs unchanged at resumption c343c4ebb40d5f4e7f60c869ddc9410fa54d5a3f.
 - REL-408 | OUTCOME=VERIFIED | EVIDENCE=No comparison price/saving/introductory offer exists. Access renders actual StoreKit price and one-payment/no-subscription wording; no fabricated savings. Current multilingual runtime: AI/localization/evidence/integration-final.md, source 8dd50d72b04689da93bfaed2599eb28bd26e3591, exit 0, 510/510 definitions, 884 invocations, no failed/skipped/expected. App inputs unchanged at resumption c343c4ebb40d5f4e7f60c869ddc9410fa54d5a3f.
-- REL-501 | OUTCOME=VERIFIED | EVIDENCE=PrivacyInfo.xcprivacy has tracking=false, empty collected/accessed arrays; no developer backend or SDK, launcher has no shared game data or refresh schedule; UserDefaults/fixtures remain DEBUG-only. Strict Release build/binary check remains part of the closing gate.
+- REL-501 | OUTCOME=VERIFIED | EVIDENCE=PrivacyInfo.xcprivacy has tracking=false, empty collected/accessed arrays; no developer backend or SDK, launcher has no shared game data or refresh schedule; UserDefaults/fixtures remain DEBUG-only. Strict generic-device Release build and binary check passed in the recorded release gate.
 - REL-502 | OUTCOME=VERIFIED | EVIDENCE=Retained published ASC Data Not Collected screenshot and readback in prior M10 record; collection remains absent after M11–M15 and localization. Static launcher adds no collection, networking or app group. Manifest/source checked against current public privacy.
 - REL-503 | OUTCOME=VERIFIED | EVIDENCE=Public canonical privacy HTTP 200 now correctly discloses all local history and deletion/retention after M10-R1 correction. Authorized production deployment and 131/131 byte-identical live readback: AI/evidence/M10/site-publication.md.
-- REL-504 | OUTCOME=VERIFIED | EVIDENCE=Current shipped sources have no print/NSLog/Logger/os_log payloads; no analytics/crash SDK. Strict Release hygiene check follows in closing gate; Apple system diagnostics are not claimed disabled.
+- REL-504 | OUTCOME=VERIFIED | EVIDENCE=Current shipped sources have no print/NSLog/Logger/os_log payloads; no analytics/crash SDK. Strict Release hygiene check passed in the recorded release gate; Apple system diagnostics are not claimed disabled.
 - REL-505 | OUTCOME=VERIFIED | EVIDENCE=SessionStore.delete uses repository.saveErasingCopies; transactional deletion fault tests retain original bytes on failure and remove backups/history on success while preserving approved usage and Apple entitlement. Current multilingual runtime: AI/localization/evidence/integration-final.md, source 8dd50d72b04689da93bfaed2599eb28bd26e3591, exit 0, 510/510 definitions, 884 invocations, no failed/skipped/expected. App inputs unchanged at resumption c343c4ebb40d5f4e7f60c869ddc9410fa54d5a3f.
 - REL-506 | OUTCOME=VERIFIED | EVIDENCE=Watch-only readable offline Privacy/Terms/Support available before purchase in every locale; corresponding public routes now resolve, no browser/phone requirement. Current multilingual runtime: AI/localization/evidence/integration-final.md, source 8dd50d72b04689da93bfaed2599eb28bd26e3591, exit 0, 510/510 definitions, 884 invocations, no failed/skipped/expected. App inputs unchanged at resumption c343c4ebb40d5f4e7f60c869ddc9410fa54d5a3f. Authorized production deployment and 131/131 byte-identical live readback: AI/evidence/M10/site-publication.md.
 - REL-801 | OUTCOME=VERIFIED | EVIDENCE=All catalog values, bundled legal/help, 52 complete site pages and prepared store fields read; no reachable placeholders/debug copy. Current site matches prepared source. AI/localization/HANDOFF.md. Authorized production deployment and 131/131 byte-identical live readback: AI/evidence/M10/site-publication.md.
@@ -163,7 +163,7 @@ This is Builder self-review, not independent release approval. This is the same 
 - REL-1005 | OUTCOME=VERIFIED | EVIDENCE=Retained read-only ASC categories SPORTS/UTILITIES and FOUR_PLUS with NONE/false content-risk answers in prior M10 record. No new content-risk feature or user-generated/social content introduced; current product remains consistent.
 - REL-1007 | OUTCOME=VERIFIED | EVIDENCE=AI/app-store-listing.md and retained ASC review notes describe no sign-in, five short Americano rounds to reach purchase, product ID and About/Access/Restore; no DEBUG-only access needed. Metadata draft upload remains separate; existing real Sandbox route remains valid.
 - REL-1008 | OUTCOME=VERIFIED | EVIDENCE=Public terms HTTP 200; Apple Standard EULA governs with unchanged exact external link, translated pages and purchase terms match approved model. Authorized production deployment and 131/131 byte-identical live readback: AI/evidence/M10/site-publication.md.
-- REL-1101 | OUTCOME=VERIFIED | EVIDENCE=All seed/override/test storage code conditionally compiled under DEBUG; WidgetKit launcher has no app-data handler. Source/host parity checks pass; closing strict Release gate verifies actual shipping build lacks hosts/test configuration/debug paths.
+- REL-1101 | OUTCOME=VERIFIED | EVIDENCE=All seed/override/test storage code conditionally compiled under DEBUG; WidgetKit launcher has no app-data handler. Source/host parity checks pass; the passed strict Release gate verifies the actual shipping build lacks hosts/test configuration/debug paths.
 - REL-1102 | OUTCOME=VERIFIED | EVIDENCE=Initial unshipped version 1.0 build 1; matching Watch app/packaging container/launcher identities checked by current integration. No prior shipped version to increment over; release gate verifies again. Current multilingual runtime: AI/localization/evidence/integration-final.md, source 8dd50d72b04689da93bfaed2599eb28bd26e3591, exit 0, 510/510 definitions, 884 invocations, no failed/skipped/expected. App inputs unchanged at resumption c343c4ebb40d5f4e7f60c869ddc9410fa54d5a3f.
 - REL-1103 | OUTCOME=VERIFIED | EVIDENCE=All four prior P1 findings remain corrected. Localization findings fixed/rechecked; public privacy mismatch M10-R1 corrected by authorized deployment. Six-domain resumed review has no open P0/P1; owner confirms all physical checks. No gate failure waived.
 - REL-1105 | OUTCOME=VERIFIED | EVIDENCE=M13 persistence version 2 keeps v1 fixtures, atomic migration/recovery, original-byte backups and future-version refusal; transactional deletion failures restore all prior files. SessionRepository tests and M13 handoff provide rollback/recovery procedure; initial unshipped release has no prior public upgrade obligation. Current multilingual runtime: AI/localization/evidence/integration-final.md, source 8dd50d72b04689da93bfaed2599eb28bd26e3591, exit 0, 510/510 definitions, 884 invocations, no failed/skipped/expected. App inputs unchanged at resumption c343c4ebb40d5f4e7f60c869ddc9410fa54d5a3f.
@@ -177,7 +177,7 @@ This is Builder self-review, not independent release approval. This is the same 
 | M10-A3 | Accessibility | P1 | Related Cancel toolbar in Edit score also reports 30×30 on watchOS 10. Reproduced with editor-target10.xcresult (1 failure, exit 65). | Same shared minimum frame/content shape; regression checks accessible Cancel, hit area and unchanged score after returning via menu, plus existing dirty-draft confirmation test. | corrected |
 | M10-T1 | Functional verification | P1 | Shared waitForLabel observes a transient expected label, then re-queries it for XCTAssertEqual after expiry. Baseline full run fails at Americano correction. | Cache and assert the label observation that terminated the wait; same expected label/deadline and failure behavior. Focused correction at f1f96d99aa62151b4ac0336685ce998f24167908 passed; full corrected checkpoint passed (389/389). | corrected |
 | M10-P2-1 | Accessibility | P2 | Circle +/- controls do not add an Increase Contrast outline; icons retain text contrast and 44-point hit areas. Unchanged M06 source evidence. | Deferred: no loss of action identification; a border would improve consistency rather than remove a demonstrated barrier. | deferred |
-| M10-P2-2 | Accessibility | P2 | Compact Sets summary speaks each score without its set number; detailed Sets rows identify numbers. Retained M06 observation, unchanged source. | Deferred: explicit numbered detail is available; confirm actual speech/focus in the pending VoiceOver journey before changing grouping. | deferred |
+| M10-P2-2 | Accessibility | P2 | Compact Sets summary speaks each score without its set number; detailed Sets rows identify numbers. Retained M06 observation, unchanged source. | Deferred: explicit numbered detail is available; owner-confirmed actual VoiceOver journey found no blocking barrier; no additional grouping change made. | deferred |
 | M10-P2-3 | UI / UX | P2 | Remove a set, change format and cancel format replacement: the draft’s Restore set shortcut disappears. Whole-draft discard and post-save Undo remain. Retained M06 observation. | Deferred: recovery stays available; preserving an additional transient shortcut is not necessary to protect the saved game. | deferred |
 | M10-P2-4 | UI / UX | P2 | Largest-text collapsed result navigation title may truncate; full result meaning stays in content. Retained M07 observation. | Deferred: standard system navigation title behavior; primary result is readable. | deferred |
 | M10-R1 | Release / Privacy | P1 | Current public privacy page said the latest result was replaced and the app was not a long-term archive, contradicting M13. Initial HTTPS readback preserved the actual text. | Owner approved prepared-site publication; deployment cff74b31 and 131/131 source/live hashes verify local History retention and deletion now disclosed. | corrected |
@@ -186,7 +186,7 @@ This is Builder self-review, not independent release approval. This is the same 
 
 - Prior functional/accessibility fixes retain their original exact-SHA targeted evidence; localization fixes retain full editorial and current runtime proofs. No app code/config was changed while closing M10, so no new app correction loop was introduced.
 - Rechecked the only new resumption finding, M10-R1: HTTPS production readback confirms all 52 pages/78 screenshots/stylesheet match the reviewed source. Current Privacy includes all history/retention/deletion; Terms retain the Apple Standard EULA link. No remaining P0/P1; four nonblocking P2 dispositions above retained.
-- `python3 Scripts/verify-localizations.py --all` and `python3 Scripts/verify-localized-store-materials.py`: exit 0. Production readback: exit 0. Full frozen-candidate gates follow, preserving every original test/assertion.
+- `python3 Scripts/verify-localizations.py --all` and `python3 Scripts/verify-localized-store-materials.py`: exit 0. Production readback: exit 0. Full frozen-candidate gates subsequently passed, preserving every original test/assertion.
 
 ## Additional scanner
 
@@ -196,16 +196,16 @@ Not configured beyond repository static checks and StoreKit source-parity checks
 
 | Field | Evidence |
 | --- | --- |
-| Verified SHA | Pending clean REVIEW candidate |
-| Milestone command / exit | `make milestone ID=M10` — pending |
-| Milestone report / counts | Pending; previous 510/510 integration belongs to 8dd50d72b04689da93bfaed2599eb28bd26e3591 only |
-| Release command / exit | `make release CANDIDATE=<milestone-verified-full-SHA>` — pending |
-| Release report / verdict | Pending; readiness not yet claimed |
-| Manual checklist | Created by successful release gate; subjective review, Archive/Organizer and distribution remain unperformed |
+| Verified SHA | `93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f` |
+| Milestone command / exit | `make milestone ID=M10` — exit 0 |
+| Milestone report / counts | `.artifacts/milestone/M10/20261023T185925Z-5080/report.md`; 510/510 definitions, 884 invocations; failed/skipped/expected/runtime warnings 0; started 2026-10-23T18:59:26Z, completed 2026-10-23T21:18:27Z; preserved `AI/evidence/M10/milestone-verification.md` |
+| Release command / exit | `make release CANDIDATE=93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f` — exit 0 |
+| Release report / verdict | `.artifacts/release/20261023T211900Z-47259/report.md`; READY_FOR_HUMAN; 510/510 definitions, 884 invocations; failed/skipped/expected/runtime warnings 0; generated 2026-10-23T21:19:01Z, test finish 2026-10-23T23:37:34.828Z; clean Debug and unsigned generic-device Release passed; preserved `AI/evidence/M10/release-verification.md` |
+| Manual checklist | `.artifacts/release-checklists/93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f/checklist.md`; 3 PENDING: post-readiness subjective candidate review, Archive/Organizer, distribution decision; exact copy in release evidence |
 
 ## Residuals and handoff
 
-- Known P0/P1: None after M10-R1 publication recheck; actual candidate gates still required before DONE.
+- Known P0/P1: None after M10-R1 publication recheck and passing exact-candidate milestone/release gates. M10 DONE / READY_FOR_HUMAN.
 - Deferred P2: four retained above, no data or primary-action loss.
 - FUTURE_PRODUCT_IDEA: None added.
 - Owner confirmation replaces previous physical-check blocker; no tests or required environments waived. Gate outcomes are recorded only after completion.
@@ -215,4 +215,4 @@ Not configured beyond repository static checks and StoreKit source-parity checks
 
 First REVIEW commit `0d90bf942c8e11b110041615bc051fad56a14678`: `make milestone ID=M10` intentionally stopped after release preflight inspection showed that `AI/PROJECT_STATUS.md` must contain exactly `Blockers: none`, not explanatory text after none. Kept the explanation as ordinary prose and reran unchanged `validate_release_workflow_readiness app-store` through `Scripts/lib/common.sh`: exit 0. No test, coverage requirement or gate changed.
 
-Cancelled command Make exit 2 / milestone gate 69 / owned xcodebuild 143. Report `.artifacts/milestone/M10/20261023T185608Z-82933/report.md`; log `.artifacts/M10-completion/milestone.log`. First SIGINT stalled inside Xcode test setup; SIGTERM was sent only to its exact owned PID/result-bundle command. Incomplete bundle lacks Info.plist; xcresulttool exit 64, counts unavailable and never claimed passing. Full clean candidate verification is restarted after committing the record-format correction.
+Cancelled command Make exit 2 / milestone gate 69 / owned xcodebuild 143. Report `.artifacts/milestone/M10/20261023T185608Z-82933/report.md`; log `.artifacts/M10-completion/milestone.log`. First SIGINT stalled inside Xcode test setup; SIGTERM was sent only to its exact owned PID/result-bundle command. Incomplete bundle lacks Info.plist; xcresulttool exit 64, counts unavailable and never claimed passing. Full clean candidate verification was restarted after committing the record-format correction and passed on the candidate recorded above.
