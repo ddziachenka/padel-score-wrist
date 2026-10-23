@@ -41,3 +41,9 @@ No known open P0/P1 after authorized site correction; candidate verification is 
 Run declared clean REVIEW milestone gate, then strict release gate on its exact SHA. Record actual exits/counts/reports/checklist, mark DONE only after both pass, and run closing static/status/continuity checks.
 
 Pre-freeze checks: `make static` exit 0 (`.artifacts/M10-completion/pre-review-static.log`), `validate_final_polish_coverage` through unchanged `Scripts/lib/common.sh` exit 0, `Scripts/project-status.sh next` resolves M10 REVIEW, `git diff --check` exit 0. No gate or test arguments changed.
+
+## Early verification cancellation and preflight correction
+
+First REVIEW commit `0d90bf942c8e11b110041615bc051fad56a14678`: `make milestone ID=M10` intentionally stopped after release preflight inspection showed that `AI/PROJECT_STATUS.md` must contain exactly `Blockers: none`, not explanatory text after none. Kept the explanation as ordinary prose and reran unchanged `validate_release_workflow_readiness app-store` through `Scripts/lib/common.sh`: exit 0. No test, coverage requirement or gate changed.
+
+Cancelled command Make exit 2 / milestone gate 69 / owned xcodebuild 143. Report `.artifacts/milestone/M10/20261023T185608Z-82933/report.md`; log `.artifacts/M10-completion/milestone.log`. First SIGINT stalled inside Xcode test setup; SIGTERM was sent only to its exact owned PID/result-bundle command. Incomplete bundle lacks Info.plist; xcresulttool exit 64, counts unavailable and never claimed passing. Full clean candidate verification is restarted after committing the record-format correction.

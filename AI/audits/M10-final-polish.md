@@ -210,3 +210,9 @@ Not configured beyond repository static checks and StoreKit source-parity checks
 - FUTURE_PRODUCT_IDEA: None added.
 - Owner confirmation replaces previous physical-check blocker; no tests or required environments waived. Gate outcomes are recorded only after completion.
 - Handoff: `AI/handoffs/M10-handoff.md`. No ASC upload, App Review submission, archive or distribution performed. The prepared website is now published by explicit authorization.
+
+## Early verification cancellation and preflight correction
+
+First REVIEW commit `0d90bf942c8e11b110041615bc051fad56a14678`: `make milestone ID=M10` intentionally stopped after release preflight inspection showed that `AI/PROJECT_STATUS.md` must contain exactly `Blockers: none`, not explanatory text after none. Kept the explanation as ordinary prose and reran unchanged `validate_release_workflow_readiness app-store` through `Scripts/lib/common.sh`: exit 0. No test, coverage requirement or gate changed.
+
+Cancelled command Make exit 2 / milestone gate 69 / owned xcodebuild 143. Report `.artifacts/milestone/M10/20261023T185608Z-82933/report.md`; log `.artifacts/M10-completion/milestone.log`. First SIGINT stalled inside Xcode test setup; SIGTERM was sent only to its exact owned PID/result-bundle command. Incomplete bundle lacks Info.plist; xcresulttool exit 64, counts unavailable and never claimed passing. Full clean candidate verification is restarted after committing the record-format correction.
