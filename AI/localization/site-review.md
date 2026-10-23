@@ -15,3 +15,5 @@ Responsive browser check: the real German privacy page at 280 px, Russian home a
 Final browser pass after editorial corrections: all 52 routes reopened, translated h1 and all thirteen language choices present, no error response. A real language-link click from Russian support to Italian support preserved the support section. Russian deletion paragraphs were corrected for nominative agreement and read again in all three affected pages before freezing the next candidate.
 
 Browser recheck at candidate `b03098d66ec2948b2c840501773078a83c7dd896`: all 52 local routes opened again after the final product layout correction; zero missing h1 headings, zero missing language-navigation groups and zero error responses. The site remains unpublished.
+
+Final repeat at product source `cbe452b0efda5c1c06aac97cc6b5132817876cd8`: browser navigation to all 52 routes, full rendered accessibility state, heading level 1 and all thirteen language links present, no error page (52/52). Original screenshot replacements use the same routes; no publication.

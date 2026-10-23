@@ -1,6 +1,6 @@
 {
   "locale": "pt-PT",
-  "source_sha": "615a98d7e5d549bd4574f07537b3eefb50c14d69",
+  "source_sha": "cbe452b0efda5c1c06aac97cc6b5132817876cd8",
   "device_udid": "5AFDC6D8-A30E-4819-8ABD-88E7448907F1",
   "device": "Apple Watch SE (2nd generation), 44 mm",
   "runtime": "watchOS 26.1 (23S36)",
@@ -8,7 +8,7 @@
     368,
     448
   ],
-  "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/stable-screenshots.xcresult",
+  "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/fit-shipping.xcresult",
   "test": "StoreMaterialsUITests/testLocalizedptPTScreens()",
   "configuration_delta": {
     "SIMULATOR_DEVICE_TYPE": {
@@ -19,51 +19,54 @@
   "screenshots": [
     {
       "file": "pt-PT/watch-44mm/01-match.png",
-      "sha256": "446ea711b20725577c9d2075f957c4fa17d126bde614e792301af270b4de4bcc",
+      "sha256": "ea5f32d3387e3b8660c51e7f4f1e315db477d525a02864475708e28702fc1e22",
       "fixture": "storeMatch",
       "actions": "launch live score; capture before award/Undo check",
-      "attachment": "AE18A2DB-F8EC-4889-9445-94E1FC58BE1F.png",
-      "timestamp": 1792751760.451
+      "attachment": "A6083881-C7B8-43D7-910E-B4B367337546.png",
+      "timestamp": 1792762082.472,
+      "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/portuguese-clock-final.xcresult"
     },
     {
       "file": "pt-PT/watch-44mm/02-golden-point.png",
-      "sha256": "cb263c3d50d04abab1903329da57624ca6ba36a04ac5c8979689d3e86a4a9076",
+      "sha256": "e019758ba8f07bde3e97639a76382bf8d8952c00f174aab80f4c679844e9fb15",
       "fixture": "storeGoldenPoint",
       "actions": "launch at 40–40; capture",
-      "attachment": "C655CF02-EFF0-4EAB-989C-5F61C366D427.png",
-      "timestamp": 1792751766.854
+      "attachment": "1B6F198D-5F55-437F-A505-8C2326CB1B5B.png",
+      "timestamp": 1792762088.998,
+      "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/portuguese-clock-final.xcresult"
     },
     {
       "file": "pt-PT/watch-44mm/03-americano.png",
-      "sha256": "0ecfd7660435ddd259f62342545b6b2e5fdf9ab3de36b0188b09017846f5c0f6",
+      "sha256": "2c3c17995201c065fee5b3b6519c717d185686479b06286de02033c16045ffd9",
       "fixture": "storeAmericano",
       "actions": "launch 13–10 of 32; capture",
-      "attachment": "51A91037-266F-4FE0-8C9C-BE6B9593E0FE.png",
-      "timestamp": 1792751772.004
+      "attachment": "B58FCEA5-CA18-4055-887E-3FAEF66380D8.png",
+      "timestamp": 1792761363.119
     },
     {
       "file": "pt-PT/watch-44mm/04-edit-score.png",
-      "sha256": "d47699b1f63400244053fb1d91156d12e36ec620bf73b71f2239c5832638eaed",
+      "sha256": "2d50707314a9aef61b5468f8a802d141b160a30881c814d02852528c4ffdccf1",
       "fixture": "storeMatch",
       "actions": "Game menu → Edit score; capture",
-      "attachment": "40FAE75A-BB2E-4237-BB09-FEAAD04924B5.png",
-      "timestamp": 1792751779.398
+      "attachment": "4BA28399-0F3B-4105-96F9-915799F7544A.png",
+      "timestamp": 1792761370.516
     },
     {
       "file": "pt-PT/watch-44mm/05-result.png",
-      "sha256": "fe30b10e95ca5592ff48b0ba46adbc87c6ffd54b5b635b7459a2b595616ef5f8",
+      "sha256": "d48fb468ab22a49242e0456c4dc06b48d2b6199edf791ddfac8084e8e729569c",
       "fixture": "storeResult",
       "actions": "launch saved three-set Match result; capture",
-      "attachment": "2539644D-442C-4C18-893D-3589CC0A1F3F.png",
-      "timestamp": 1792751798.486
+      "attachment": "C93A4ACA-31A1-47CF-AE56-06B75BA9625E.png",
+      "timestamp": 1792761390.136
     },
     {
       "file": "pt-PT/watch-44mm/06-history.png",
-      "sha256": "7569913d77e8c6bc74f3b65650325e502916e6f2b250992956aa79deae9dbbb6",
+      "sha256": "5e761ce297c8adeb10b61d727cdf8b3083127e7b5ed75c52b82a5140c2c65729",
       "fixture": "storeHistory",
       "actions": "New game → History; capture",
-      "attachment": "B1728593-23BD-4245-BB77-CEB97BB95790.png",
-      "timestamp": 1792751810.907
+      "attachment": "B2B3A5B9-0310-4A56-B823-118180FE70E1.png",
+      "timestamp": 1792761402.824
     }
-  ]
+  ],
+  "provenance_note": "Each screenshot inherits result_bundle unless its row provides an explicit replacement result_bundle. All original attachments are byte-identical; same source SHA, device and configuration."
 }

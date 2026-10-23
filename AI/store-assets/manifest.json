@@ -1,5 +1,5 @@
 {
-  "source_sha": "615a98d7e5d549bd4574f07537b3eefb50c14d69",
+  "source_sha": "cbe452b0efda5c1c06aac97cc6b5132817876cd8",
   "device_udid": "5AFDC6D8-A30E-4819-8ABD-88E7448907F1",
   "device": "Apple Watch SE (2nd generation), 44 mm",
   "runtime": "watchOS 26.1 (23S36)",
@@ -7,56 +7,56 @@
     368,
     448
   ],
-  "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/stable-screenshots.xcresult",
+  "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/fit-shipping.xcresult",
   "test": "StoreMaterialsUITests/testCaptureSixStoreScreens()",
   "screenshots": [
     {
       "file": "en-US/watch-44mm/01-match.png",
-      "sha256": "d86fdd385b6ea8deb08c735cb16f54d73c1c3699e57aff738316cd8dceafea24",
+      "sha256": "f8eb21f66383e53d0973e3209a5496d3fa1739fde8d54baa92cd3f007c80aa4a",
       "fixture": "storeMatch",
       "actions": "launch live score; capture before award/Undo runtime check",
-      "attachment": "BBAAEC34-B201-4FB2-A438-AD5A99E80E5B.png",
-      "timestamp": 1792751218.56
+      "attachment": "8C4F8F93-60CC-498E-914F-A6E13A7D0209.png",
+      "timestamp": 1792760812.368
     },
     {
       "file": "en-US/watch-44mm/02-golden-point.png",
-      "sha256": "f886b0428e030203bcb63952e56ceed1e3f1f4bea2b76a5e0989bed192fc084e",
+      "sha256": "b94697aa0489a5356f83456d59b30caf0f9a3bf418a0058bad76fcccc0050d57",
       "fixture": "storeGoldenPoint",
       "actions": "launch at 40–40; capture",
-      "attachment": "C36EAD9D-2E41-4372-8C9E-646170065FE4.png",
-      "timestamp": 1792751225.108
+      "attachment": "2D398758-E4A4-4C2C-93E1-D8602EF7EDA3.png",
+      "timestamp": 1792760818.957
     },
     {
       "file": "en-US/watch-44mm/03-americano.png",
-      "sha256": "3ee45b06384e47169f2696da819eb4a24278cfca553ea2d1116c508eff956aac",
+      "sha256": "e22287e25a80a175b6e34ce7afffa2ef4b3d3ea31985089c2f70a4b6f4c5a726",
       "fixture": "storeAmericano",
       "actions": "launch 13–10 of 32 rallies; capture",
-      "attachment": "69C7E2A3-DC97-4115-AADE-6415C1BBD4D3.png",
-      "timestamp": 1792751230.286
+      "attachment": "D04A9119-B10C-46F7-9A24-797F915ECCFB.png",
+      "timestamp": 1792760824.216
     },
     {
       "file": "en-US/watch-44mm/04-edit-score.png",
-      "sha256": "6b8c576f52990bf03296a29b90588f3d7e5d6c740ed08d0239da521de1079818",
+      "sha256": "62f49e78b6e0a593f5ced5c5fc90af91eac9319a6210eebef2a523ad966320e6",
       "fixture": "storeMatch",
       "actions": "Game menu → Edit score; capture",
-      "attachment": "BA8769B0-81AF-4E9B-9AFC-78BDE4FB288B.png",
-      "timestamp": 1792751237.739
+      "attachment": "9EF04A9F-BAD7-4CB2-8C44-4C81D5008D51.png",
+      "timestamp": 1792760831.655
     },
     {
       "file": "en-US/watch-44mm/05-result.png",
-      "sha256": "43408651b92646082b3a4ecdfb1e4ff6e393482b326d4a466d36ff6fcf0cf041",
+      "sha256": "ababf0d07dd7820f66c10c1ee192e85a881c42d496c556acc872da4484c6fb4a",
       "fixture": "storeResult",
       "actions": "launch saved three-set Match result; capture",
-      "attachment": "CEDBCF09-1B7A-49CE-A71F-56E8A69B3837.png",
-      "timestamp": 1792751242.903
+      "attachment": "01AA40A3-4A6B-494D-8961-24105F305E34.png",
+      "timestamp": 1792760836.948
     },
     {
       "file": "en-US/watch-44mm/06-history.png",
-      "sha256": "74e92aa816f82f4ad45658181775dd9bfe314d02a236a1f21a5a09eaa9c390a3",
+      "sha256": "4293526e11a5cd6b8d66a46fea3f8eaad2b4d5bcc8f399ca87d130e7213a22ec",
       "fixture": "storeHistory",
       "actions": "New game → History; capture",
-      "attachment": "6A951126-CC11-4C48-A91C-B4F5C2B42B29.png",
-      "timestamp": 1792751254.526
+      "attachment": "0DA9C360-1066-4EB0-AAEE-A50F34F7BC36.png",
+      "timestamp": 1792760848.167
     }
   ],
   "configuration_delta": {

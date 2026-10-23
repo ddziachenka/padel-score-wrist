@@ -1,6 +1,6 @@
 # Coordinator visual review
 
-Shipping 44-mm screenshots: all 72 added locale images and all six refreshed English images individually inspected. Source `615a98d7e5d549bd4574f07537b3eefb50c14d69`; original exports and hashes are in the shipping manifests. Dutch replacement uses its own passing result bundle at the same source.
+Shipping 44-mm screenshots: all 72 added locale images and all six refreshed English images individually inspected. Source `cbe452b0efda5c1c06aac97cc6b5132817876cd8`; original exports and hashes are in the shipping manifests. French/Russian replacements and the two Portuguese Portugal replacements use passing result bundles at the same source, recorded per image where needed. Every final shipping image was individually inspected and 78/78 matched the exact original attachment bytes.
 
 Final product source under integration: `b03098d66ec2948b2c840501773078a83c7dd896`. Additional bounded QA source `b5ebd6ab23b7edf0899c8c26e65fc9233b44a11f` has identical product files; the only difference under App is added test-only probes in StoreMaterialsUITests.swift. Both devices use managed Apple Watch SE 40-mm simulators on watchOS 26.1.
 

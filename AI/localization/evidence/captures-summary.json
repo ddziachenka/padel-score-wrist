@@ -1,46 +1,125 @@
 {
-  "devicesAndConfigurations" : [
+  "source_sha": "cbe452b0efda5c1c06aac97cc6b5132817876cd8",
+  "runs": [
     {
-      "device" : {
-        "architecture" : "arm64",
-        "deviceId" : "5AFDC6D8-A30E-4819-8ABD-88E7448907F1",
-        "deviceName" : "iosai-padel-l10n-capture-4907800313edbd0fcbd2488c58c6c53cef67a2b3749766fa8ac0619a1e2a4114",
-        "modelName" : "Apple Watch SE",
-        "osBuildNumber" : "23S36",
-        "osVersion" : "26.1",
-        "platform" : "watchOS Simulator"
-      },
-      "expectedFailures" : 0,
-      "failedTests" : 0,
-      "passedTests" : 13,
-      "skippedTests" : 0,
-      "testPlanConfiguration" : {
-        "configurationId" : "1",
-        "configurationName" : "Default"
+      "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/fit-shipping.xcresult",
+      "summary": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "arm64",
+              "deviceId": "5AFDC6D8-A30E-4819-8ABD-88E7448907F1",
+              "deviceName": "iosai-padel-l10n-capture-4907800313edbd0fcbd2488c58c6c53cef67a2b3749766fa8ac0619a1e2a4114",
+              "modelName": "Apple Watch SE",
+              "osBuildNumber": "23S36",
+              "osVersion": "26.1",
+              "platform": "watchOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 0,
+            "passedTests": 13,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Default"
+            }
+          }
+        ],
+        "environmentDescription": "PadelScore · Built with macOS 27.0.1",
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "finishTime": 1792761512.253,
+        "passedTests": 13,
+        "result": "Passed",
+        "runtimeWarnings": [],
+        "skippedTests": 0,
+        "startTime": 1792760793.252,
+        "statistics": [],
+        "testFailures": [],
+        "title": "Test - PadelScore",
+        "topInsights": [],
+        "totalTestCount": 13
+      }
+    },
+    {
+      "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/clock-recheck.xcresult",
+      "summary": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "arm64",
+              "deviceId": "5AFDC6D8-A30E-4819-8ABD-88E7448907F1",
+              "deviceName": "iosai-padel-l10n-capture-4907800313edbd0fcbd2488c58c6c53cef67a2b3749766fa8ac0619a1e2a4114",
+              "modelName": "Apple Watch SE",
+              "osBuildNumber": "23S36",
+              "osVersion": "26.1",
+              "platform": "watchOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 0,
+            "passedTests": 3,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Default"
+            }
+          }
+        ],
+        "environmentDescription": "PadelScore · Built with macOS 27.0.1",
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "finishTime": 1792761992.494,
+        "passedTests": 3,
+        "result": "Passed",
+        "runtimeWarnings": [],
+        "skippedTests": 0,
+        "startTime": 1792761811.334,
+        "statistics": [],
+        "testFailures": [],
+        "title": "Test - PadelScore",
+        "topInsights": [],
+        "totalTestCount": 3
+      }
+    },
+    {
+      "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/portuguese-clock-final.xcresult",
+      "summary": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "arm64",
+              "deviceId": "5AFDC6D8-A30E-4819-8ABD-88E7448907F1",
+              "deviceName": "iosai-padel-l10n-capture-4907800313edbd0fcbd2488c58c6c53cef67a2b3749766fa8ac0619a1e2a4114",
+              "modelName": "Apple Watch SE",
+              "osBuildNumber": "23S36",
+              "osVersion": "26.1",
+              "platform": "watchOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 0,
+            "passedTests": 1,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Default"
+            }
+          }
+        ],
+        "environmentDescription": "PadelScore · Built with macOS 27.0.1",
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "finishTime": 1792762135.372,
+        "passedTests": 1,
+        "result": "Passed",
+        "runtimeWarnings": [],
+        "skippedTests": 0,
+        "startTime": 1792762068.208,
+        "statistics": [],
+        "testFailures": [],
+        "title": "Test - PadelScore",
+        "topInsights": [],
+        "totalTestCount": 1
       }
     }
-  ],
-  "environmentDescription" : "PadelScore · Built with macOS 27.0.1",
-  "expectedFailures" : 0,
-  "failedTests" : 0,
-  "finishTime" : 1792751919.689,
-  "passedTests" : 13,
-  "result" : "Passed",
-  "runtimeWarnings" : [
-
-  ],
-  "skippedTests" : 0,
-  "startTime" : 1792751203.631,
-  "statistics" : [
-
-  ],
-  "testFailures" : [
-
-  ],
-  "title" : "Test - PadelScore",
-  "topInsights" : [
-
-  ],
-  "totalTestCount" : 13
+  ]
 }
-
