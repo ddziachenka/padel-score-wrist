@@ -461,3 +461,22 @@ H2 закрыт 2026-10-20: владелец выбрал вариант 1 — �
 
 | 2026-10-21 | H1: Dzmitry Dziachenka; dzmitry.dziachenka@gmail.com; https://padel-score-wrist.pages.dev; обращения удаляются в течение 90 дней после закрытия, кроме закона/спора. Создание и публикация Pages разрешены; App Review запрещён | Явное подтверждение владельца и исправление email | Подготовка Legal/Support и App Store без часов разрешена; hardware gates не отменены |
 | 2026-10-22 | [План привлекательности покупки](purchase-appeal-plan.md): PD-11…PD-17 — ясное предложение покупки, итог с главным счётом сетов, Play again, фиксированная демонстрация Match, локальная история для всех, статическая кнопка запуска, материалы App Store и сайта. Цена, лимит пяти игр, H4 и правила счёта не меняются; App Review не разрешён | Владелец: план с выбором «история доступна всем», «демо — один фиксированный Match», «M11–M15 до завершения M10» | M11–M15 добавлены; M10 возобновляется после них на обновлённом приложении |
+
+## Owner exception — localization before M10, 2026-10-23
+
+The owner explicitly approved implementation of the 11-language localization plan
+before M10: es, it, fr, pt-PT, pt-BR, nl, de, sv, da, fi, nb, ru, in addition to en.
+The Portuguese language task owns its two locale worktrees sequentially. The
+coordinator prepares shared infrastructure on main, freezes one baseline SHA, then
+each language works independently. App Store and IAP copy is prepared as local
+reviewable drafts under AI/localization; nothing is uploaded or published. This
+explicit product exception overrides the English-only timing and store-draft
+exclusions in the generic localization prompts, not any verification requirement.
+
+Localization is not a milestone and does not complete or reopen another one.
+M10 audits the integrated multilingual candidate. Every applicable language and
+layout check remains required; real-Watch evidence is still mandatory, and M10
+remains BLOCKED until that evidence exists. Earlier evidence describes its own SHA.
+The coordinator performs a full editorial second pass after the language agents.
+All routes, screenshots and store drafts are validated before delivery. No App
+Review submission, App Store Connect upload or site publication is authorized.

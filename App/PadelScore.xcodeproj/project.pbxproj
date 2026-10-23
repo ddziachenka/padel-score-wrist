@@ -958,6 +958,18 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"es",
+				"it",
+				"fr",
+				"pt-PT",
+				"pt-BR",
+				"nl",
+				"de",
+				"sv",
+				"da",
+				"fi",
+				"nb",
+				"ru",
 				Base,
 			);
 			mainGroup = 9C0BA28DBE2BE3B9891472B3;

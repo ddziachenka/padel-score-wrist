@@ -1,0 +1,102 @@
+{
+  "source": "en",
+  "locales": [
+    {
+      "id": "es",
+      "region": "es_ES",
+      "route": "es",
+      "store": [
+        "es-ES",
+        "es-MX"
+      ]
+    },
+    {
+      "id": "it",
+      "region": "it_IT",
+      "route": "it",
+      "store": [
+        "it"
+      ]
+    },
+    {
+      "id": "fr",
+      "region": "fr_FR",
+      "route": "fr",
+      "store": [
+        "fr-FR"
+      ]
+    },
+    {
+      "id": "pt-PT",
+      "region": "pt_PT",
+      "route": "pt-pt",
+      "store": [
+        "pt-PT"
+      ]
+    },
+    {
+      "id": "pt-BR",
+      "region": "pt_BR",
+      "route": "pt-br",
+      "store": [
+        "pt-BR"
+      ]
+    },
+    {
+      "id": "nl",
+      "region": "nl_NL",
+      "route": "nl",
+      "store": [
+        "nl-NL"
+      ]
+    },
+    {
+      "id": "de",
+      "region": "de_DE",
+      "route": "de",
+      "store": [
+        "de-DE"
+      ]
+    },
+    {
+      "id": "sv",
+      "region": "sv_SE",
+      "route": "sv",
+      "store": [
+        "sv"
+      ]
+    },
+    {
+      "id": "da",
+      "region": "da_DK",
+      "route": "da",
+      "store": [
+        "da"
+      ]
+    },
+    {
+      "id": "fi",
+      "region": "fi_FI",
+      "route": "fi",
+      "store": [
+        "fi"
+      ]
+    },
+    {
+      "id": "nb",
+      "region": "nb_NO",
+      "route": "nb",
+      "store": [
+        "no"
+      ]
+    },
+    {
+      "id": "ru",
+      "region": "ru_RU",
+      "route": "ru",
+      "store": [
+        "ru"
+      ]
+    }
+  ]
+}

@@ -69,3 +69,22 @@ dependency waiver and not a change to any validator.
   `make release CANDIDATE=<verified-full-SHA>` on that same SHA.
 - A required environment that is still unavailable keeps M10 `BLOCKED` with the concrete
   blocker; release readiness is not declared.
+
+## Owner exception — localization before M10, 2026-10-23
+
+The owner explicitly approved implementation of the 11-language localization plan
+before M10: es, it, fr, pt-PT, pt-BR, nl, de, sv, da, fi, nb, ru, in addition to en.
+The Portuguese language task owns its two locale worktrees sequentially. The
+coordinator prepares shared infrastructure on main, freezes one baseline SHA, then
+each language works independently. App Store and IAP copy is prepared as local
+reviewable drafts under AI/localization; nothing is uploaded or published. This
+explicit product exception overrides the English-only timing and store-draft
+exclusions in the generic localization prompts, not any verification requirement.
+
+Localization is not a milestone and does not complete or reopen another one.
+M10 audits the integrated multilingual candidate. Every applicable language and
+layout check remains required; real-Watch evidence is still mandatory, and M10
+remains BLOCKED until that evidence exists. Earlier evidence describes its own SHA.
+The coordinator performs a full editorial second pass after the language agents.
+All routes, screenshots and store drafts are validated before delivery. No App
+Review submission, App Store Connect upload or site publication is authorized.

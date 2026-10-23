@@ -11,10 +11,12 @@ extension XCTestCase {
         seed: String? = "empty",
         failingSaves: Bool = false,
         textSize: String? = nil,
-        alwaysOn: Bool = false
+        alwaysOn: Bool = false,
+        language: String = "en",
+        region: String = "en_US"
     ) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", region]
         if let textSize { app.launchArguments += ["-UIPreferredContentSizeCategoryName", textSize] }
         app.launchEnvironment["PADEL_UITEST_STORE"] = store
         if let seed { app.launchEnvironment["PADEL_UITEST_SEED"] = seed }

@@ -273,3 +273,8 @@ if [ -f "${_script_dir}/verify-store-materials.py" ]; then
     python3 "${_script_dir}/verify-store-materials.py" || exit "$EX_VERIFY"
 fi
 log_ok "site verification PASSED"
+
+# Every added locale is validated in addition to the original English checks.
+if [ -f "${_script_dir}/verify-localizations.py" ]; then
+    python3 "${_script_dir}/verify-localizations.py" || exit "$EX_VERIFY"
+fi

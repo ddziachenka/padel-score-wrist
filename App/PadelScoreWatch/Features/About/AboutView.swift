@@ -78,7 +78,7 @@ struct AboutView: View {
     }
 }
 
-/// Bundled English v1 content: reading it never requires a browser or network.
+/// Bundled localized content: reading it never requires a browser or network.
 enum LegalPage: String, CaseIterable, Identifiable {
     case privacy, terms, support
     var id: String { rawValue }
@@ -127,11 +127,16 @@ struct LegalView: View {
     private let email = "dzmitry.dziachenka@gmail.com"
     private let eula = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
 
+    private var localizedSitePrefix: String {
+        let language = Bundle.main.preferredLocalizations.first ?? "en"
+        return language == "en" ? "" : "/" + language.lowercased()
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.md) {
                 Text("Public page").font(Typography.heading)
-                address("\(origin)/\(page.rawValue)/", identifier: "legal.url")
+                address("\(origin)\(localizedSitePrefix)/\(page.rawValue)/", identifier: "legal.url")
                 Text("Email").font(Typography.heading)
                 address(email, identifier: "legal.email")
                 if page == .terms {
