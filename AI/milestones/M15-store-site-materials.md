@@ -1,7 +1,7 @@
 # M15 — App Store and Site Materials
 
 **ID:** M15
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M14
 **Validation:** make milestone ID=M15
 **Handoff:** AI/handoffs/M15-handoff.md

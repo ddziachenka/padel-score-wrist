@@ -1,8 +1,8 @@
 # Cloudflare Pages response headers.
 #
-# This site is four static documents. It runs no script, loads no font, embeds no
-# image, and talks to nothing — so the policy below is written as a deny-list of
-# one: default-src 'none', with the single stylesheet allowed back in. A privacy
+# This site is four static documents with local app screenshots. It runs no script
+# and loads no font. The policy starts with default-src 'none', allowing only
+# the stylesheet and images from this origin. A privacy
 # policy is exactly the kind of page whose integrity matters, and the cheapest way
 # to keep it trustworthy is to give a future injection nothing to reach for.
 #

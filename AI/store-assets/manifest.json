@@ -1,0 +1,62 @@
+{
+  "source_sha": "2f3bec3befa685973f80e6ed4da2dc1bc76c4d7d",
+  "device_udid": "DF6ED19D-1461-4A25-975B-1A4995E8AA20",
+  "device": "Apple Watch SE (2nd generation), 44 mm",
+  "runtime": "watchOS 26.1 (23S36)",
+  "dimensions": [
+    368,
+    448
+  ],
+  "result_bundle": ".artifacts/M15-development/screenshots.xcresult",
+  "test": "StoreMaterialsUITests/testCaptureSixStoreScreens",
+  "screenshots": [
+    {
+      "file": "en-US/watch-44mm/01-match.png",
+      "sha256": "f236915cdfd153105537a57646c2adbb3c9e2ccdb4753b9dcd8eb72b67200e9c",
+      "fixture": "storeMatch",
+      "actions": "launch live score; capture before award/Undo runtime check",
+      "attachment": "D94E1167-5B7D-48F5-AC1B-CE973DB61342.png",
+      "timestamp": 1792737686.145
+    },
+    {
+      "file": "en-US/watch-44mm/02-golden-point.png",
+      "sha256": "14bbc6f854ba4f0d0cdc124738d4b07525d207baca0eb60f38453b39445f6275",
+      "fixture": "storeGoldenPoint",
+      "actions": "launch at 40\u201340; capture",
+      "attachment": "F6EAA7C9-7048-4C6B-BD9D-3C675D14032D.png",
+      "timestamp": 1792737691.359
+    },
+    {
+      "file": "en-US/watch-44mm/03-americano.png",
+      "sha256": "2efc8c6eebd1909e2aee6d4091775d32637ebd281f5bd31d33712788691c6347",
+      "fixture": "storeAmericano",
+      "actions": "launch 13\u201310 of 32 rallies; capture",
+      "attachment": "EFC0459E-0735-4482-85AE-F4015BC07E49.png",
+      "timestamp": 1792737695.248
+    },
+    {
+      "file": "en-US/watch-44mm/04-edit-score.png",
+      "sha256": "b3a61fdf1615bdb7627027e6c4c19a8b67936b28fb22c34f9f5a50c51803f71d",
+      "fixture": "storeMatch",
+      "actions": "Game menu \u2192 Edit score; capture",
+      "attachment": "C813A285-165D-4CD6-9D56-4137A8A88D8B.png",
+      "timestamp": 1792737701.408
+    },
+    {
+      "file": "en-US/watch-44mm/05-result.png",
+      "sha256": "ad166e99583dd863437d87e38c40951261c3a2cf24360574112a1c7597ffec9b",
+      "fixture": "storeResult",
+      "actions": "launch saved three-set Match result; capture",
+      "attachment": "D6D35E6F-A782-45D1-BFED-38D5CDB2D126.png",
+      "timestamp": 1792737705.286
+    },
+    {
+      "file": "en-US/watch-44mm/06-history.png",
+      "sha256": "835789e1d81fdc369fb98500cff9c7b5c81d6b2a718465c5e2abe54e20fdf14b",
+      "fixture": "storeHistory",
+      "actions": "New game \u2192 History; capture",
+      "attachment": "2962EE38-91CB-418E-A4D7-AA0A96AA03BE.png",
+      "timestamp": 1792737715.873
+    }
+  ]
+}

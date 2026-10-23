@@ -3,7 +3,7 @@
 Live: https://padel-score-wrist.pages.dev/ (Cloudflare account
 `61273605cefdc42ca422521f82319c72`). Owner authorized publication on 2026-10-21.
 Support: `dzmitry.dziachenka@gmail.com`; developer: Dzmitry Dziachenka.
-All four pages ship in English. `Web/public` contains only public static files;
+M15 prepares a local update; that update has not been published. All four pages ship in English. `Web/public` contains only public static files;
 there is no analytics script or server-side function.
 
 
@@ -39,6 +39,10 @@ place and not the other is a failure rather than a surprise after deployment.
 
 The pages match the approved product: five completed games free automatically,
 then a one-time lifetime unlock, with the count retained on in-app data deletion.
+The landing page presents During the game, After the game, and Try and buy with
+six real app captures from `AI/store-assets/manifest.json`. The isolated demo is
+free; all finished-game history remains available after the new-game limit.
+
 Keep the offline Watch documents in AboutView.swift and the public pages aligned.
 Terms link to Apple's Standard EULA. Only update public identity and retention
 from an explicit owner decision recorded in AI/PRODUCT.md.
@@ -69,7 +73,8 @@ Hermetic and offline: it never contacts the network. It confirms the four pages
 exist, that every internal link resolves to a file in this tree, that each page keeps
 its required headings, that `/terms` still links to Apple's Standard EULA, and that
 the configured email, developer name, and site URL are the ones the pages actually
-carry.
+carry. The M15 asset check also verifies all six PNG dimensions, hashes, provenance,
+and byte-identical website copies.
 
 ## Deploy
 

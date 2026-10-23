@@ -269,4 +269,7 @@ if [ "$FAILURES" -gt 0 ]; then
     log_error "site verification FAILED — ${FAILURES} problem(s)"
     exit "$EX_VERIFY"
 fi
+if [ -f "${_script_dir}/verify-store-materials.py" ]; then
+    python3 "${_script_dir}/verify-store-materials.py" || exit "$EX_VERIFY"
+fi
 log_ok "site verification PASSED"

@@ -19,6 +19,7 @@
   color-scheme: light dark;
 
   --background: #ffffff;
+  --screenshot-background: #000000;
   --surface: #f7f7f8;
   --text: #1a1a1c;
   --text-muted: #5c5c63;
@@ -199,13 +200,13 @@ h2 {
   margin: 0;
 }
 
-.card-links {
+.document .card-links {
   display: grid;
   gap: 1rem;
   margin-block-start: 2rem;
   padding: 0;
   list-style: none;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
 }
 
 .card-links li {
@@ -233,7 +234,7 @@ h2 {
 .hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.8fr); align-items: center; gap: 2.5rem; }
 .hero h1 { font-size: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem); max-width: 12ch; }
 figure { margin: 0; min-width: 0; }
-figure img { display: block; width: 100%; max-width: 276px; height: auto; margin-inline: auto; border-radius: 1.5rem; background: #000; }
+figure img { display: block; width: 100%; max-width: 276px; height: auto; margin-inline: auto; border-radius: 1.5rem; background: var(--screenshot-background); }
 figcaption { margin-block-start: 1rem; color: var(--text-muted); text-align: center; }
 .screens { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-block: 2rem; }
 .screens-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; margin-inline: auto; }
