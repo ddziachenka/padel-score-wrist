@@ -6,8 +6,10 @@ Structural checks validate canonical identity, all 13 hreflang alternatives plus
 
 Visual correction: Russian homepage’s literal long heading split inside a word at the desktop hero width. Replaced it with «Всё внимание — игре.» and reloaded the browser; the heading now breaks at word boundaries. The Portuguese (Portugal) terms page was also read in browser context, including purchased entitlement and no automatic refund from local data deletion.
 
-Screenshot rendering is pending final raw captures; completion will be recorded with the final asset/gate evidence. No live site was published.
+All 78 final raw captures were individually inspected (including the six Dutch replacements). No black frame or incomplete clock remains. Website image files are identical to the original attachments. No live site was published.
 
 German and Finnish desktop hero headings were inspected after giving translated headlines the full text column rather than an English-specific 12-character measure. Added language-link tap targets of at least 44 px.
 
 Responsive browser check: the real German privacy page at 280 px, Russian home at 320 px and Brazilian Portuguese home at 375 px were rendered inside local viewport frames. Navigation wraps, headings stay readable with native hyphenation, and the actual localized images load. The temporary QA wrapper was removed before the candidate. General legal-page headings now enable native hyphenation as well.
+
+Final browser pass after editorial corrections: all 52 routes reopened, translated h1 and all thirteen language choices present, no error response. A real language-link click from Russian support to Italian support preserved the support section. Russian deletion paragraphs were corrected for nominative agreement and read again in all three affected pages before freezing the next candidate.
