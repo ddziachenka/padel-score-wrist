@@ -10,7 +10,7 @@ Categories: Sports; Utilities.
 
 ## Promotional text
 
-Track Match and Americano scores on your Apple Watch. Five completed games free, then one lifetime unlock. Offline scoring, serving order, and Undo.
+Keep your focus on the game. Score on your Watch with serving order, Undo, and local history. Try the demo. Five completed games free, then one lifetime unlock.
 
 ## Keywords
 
@@ -18,44 +18,51 @@ padel,scoreboard,counter,americano,match,serve,tiebreak,racket,court,doubles
 
 ## Description
 
-Keep the score on your Apple Watch, from the first serve to the last rally.
+Keep your focus on the game.
 
-Padel Score — Wrist helps you record a Match or an Americano round with one tap per rally. See the score and the next server at a glance, undo a mistaken tap, and return to your saved game after closing the app.
+See the score and the next server at a glance. Tap a team after each rally, use Undo for a mistaken tap, and keep scoring offline on your Apple Watch. No iPhone companion app or account needed.
 
-MATCH
-• Track games and sets, with a tie-break at 6–6.
-• Choose golden point, single advantage, or unlimited advantage at deuce.
+Play your first five completed games free. Then unlock unlimited Match and Americano scoring with one lifetime purchase. One payment. No subscription.
+
+DURING THE GAME
+• Match: games and sets, with a tie-break at 6–6.
+• Choose Golden point, One advantage, or Advantage at deuce.
 • Confirm serving order for each new set.
-• Finish when you choose and keep the latest result.
+• Americano: score your own round with a shared rally total and serves per player.
+• See each team’s points, rallies remaining, and the next server.
+• Undo a tap or correct the score and serving order.
+• Return to your saved game after closing the app.
 
-AMERICANO
-• Choose a shared rally total and serves per player.
-• Track each team’s points, rallies remaining, and the next server.
-• Finish a round, including a draw, or end it early.
+AFTER THE GAME
+• Read completed set scores and any incomplete set. Finish a Match whenever you choose.
+• See an Americano round’s final points, including a draw or an early finish.
+• Use Play again from the latest result to reuse its rules and serving order. Check the first server before starting.
+• Browse all your finished games in local History, with dates and detailed results. History is free, including after the five-game limit.
 
-MADE FOR YOUR WATCH
-• Large score buttons with US and THEM in fixed positions.
-• Undo and correction controls for scoring mistakes.
-• Local saved games and offline scoring.
-• No account, ads, or iPhone companion app.
+TRY IT ON YOUR WATCH
+Try the scoreboard opens a fixed Match example with a Demo label. Tap, Undo, or reset it without changing your games or using a free game. The example ends after one game, not a whole match.
+
+Add the Padel Score launcher to a compatible watch face or Smart Stack to open the app quickly. The launcher opens the app; it does not display a live score.
 
 FIVE GAMES FREE
-Your first five completed games are free automatically. After that, a single lifetime purchase unlocks unlimited Match and Americano games. There are no recurring payments. Your current game and last result remain accessible without purchasing. Deleting local game data does not reset the completed-game count.
+The first five completed real games are free automatically. After that, one lifetime purchase unlocks unlimited new games. Your current game, latest result, history, and demo stay accessible without purchasing. Deleting local game data does not reset the completed-game count.
 
-Buying and restoring require an App Store connection. Use About → Access → Restore purchases with the Apple Account used for the purchase. Local game data may be lost if you remove the app or change Watches.
+Buying and restoring require an internet connection to the App Store. Use About → Access → Restore purchases with the Apple Account used for the purchase.
 
-Requires Apple Watch with watchOS 10 or later. English interface.
+Games and history stay locally on this Watch. There is no transfer between Watches, cloud sync, or cloud backup service in the app. Removing the app or changing Watches may lose local data. Americano scoring covers your own round, without tournament scheduling or standings.
+
+Requires Apple Watch with watchOS 10 or later. English interface. No ads.
 
 Privacy: https://padel-score-wrist.pages.dev/privacy/
 Terms: https://padel-score-wrist.pages.dev/terms/
 
 ## Review notes
 
-Watch-only app; there is no iPhone companion UI and no sign-in or demo account.
+Watch-only app; there is no iPhone companion UI and no sign-in or demo account. New game → Try the scoreboard (also in About) opens an isolated, fixed Match demo. It ends after one game; Undo and Reset demo let you explore again. Demo use does not consume free games.
 
 The first five completed games are free automatically. To reach the purchase gate quickly: choose Americano, set a small rally total and serving order, start, record rallies up to the total, then tap Done. Repeat with five separate games. Starting the sixth game shows Access. A game is counted once; resuming and finishing it again does not use another free game.
 
-The non-consumable com.dziachenka.padelscore.lifetime unlocks unlimited Match and Americano games for a one-time purchase. Close returns to setup without losing the last result. About → Access also offers purchase and Restore purchases. Current games and the last result remain available without purchase. Settings → Delete local data preserves the completed-game count and purchase entitlement.
+The non-consumable com.dziachenka.padelscore.lifetime unlocks unlimited Match and Americano games for a one-time purchase. Close returns to setup without losing the last result. About → Access also offers purchase and Restore purchases. Current games, the last result, all local History, and the demo remain available without purchase. History is reachable from New game, the result, or the game menu. Play again on the latest result opens setup with its rules and serving order; starting is still subject to the five-game limit. Settings → Delete local data removes games and finished-game history while preserving the completed-game count and purchase entitlement.
 
 About contains offline Privacy, Terms, and Support. The purchase screen also links to Terms and Privacy. Scoring works offline; purchase/restore need App Store connectivity.
 

@@ -15,6 +15,8 @@ struct UITestStore {
         case empty
         case history
         case history500
+        /// Store materials: fixed real scoring states, dates and archive order.
+        case storeMatch, storeGoldenPoint, storeAmericano, storeResult, storeHistory
         case freeGamesUsed
         case fifthGame
         /// An americano round and then a match were played and finished, so both formats
@@ -83,6 +85,16 @@ struct UITestStore {
         let damaged = Data("This is not a saved session.".utf8)
         switch seed {
         case .empty: break
+        case .storeHistory:
+            var session = Session.empty
+            let seeds: [Seed] = [.storeResult, .roundFinished, .matchFinished]
+            session.archive = seeds.enumerated().compactMap { index, seed in
+                guard let game = Self.session(for: seed)?.current?.game else { return nil }
+                let id = GameID(rawValue: UUID(uuidString: String(format: "00000000-0000-0000-0000-%012d", index + 1))!)
+                return ArchivedResult(game: GameSnapshot(id: id, format: game.format, status: .finished),
+                                      finishedAt: Date(timeIntervalSince1970: 1_792_461_600 - Double(index * 86_400)))
+            }
+            write(try? SessionFile(session: session).encoded(), to: location.main)
         case .history, .history500:
             var session = seed == .history500 ? Self.session(for: .matchStart) ?? .empty : .empty
             if let match = Self.session(for: .matchFinishedSets)?.current?.game,
@@ -109,7 +121,8 @@ struct UITestStore {
         case .restorable:
             write(lastSettings, to: location.backup)
             write(damaged, to: location.main)
-        case .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong,
+        case .storeMatch, .storeGoldenPoint, .storeAmericano, .storeResult,
+             .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong,
              .matchFinished, .roundFinished, .roundEndedEarly, .afterResult, .matchFinishedFirstSet, .matchFinishedSets:
             write(Self.session(for: seed).flatMap { try? SessionFile(session: $0).encoded() }, to: location.main)
         }
@@ -141,6 +154,24 @@ struct UITestStore {
     /// A game being played or finished, reached point by point, so every change of it can be undone.
     static func session(for seed: Seed) -> Session? {
         switch seed {
+        case .storeMatch, .storeGoldenPoint, .storeResult:
+            let setup = GameSetup(
+                rules: .match(MatchRules(deuceRule: .goldenPoint, setPolicy: .tieBreakAtSixAll)),
+                serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
+            )
+            let firstSet = String(repeating: "UUUUTTTT", count: 4) + "UUUUUUUU"
+            let rallies = seed == .storeResult
+                ? firstSet + String(repeating: "UUUUTTTT", count: 4) + "TTTTTTTT"
+                    + String(repeating: "UUUUTTTT", count: 3) + "UUUUUUUUUUUU"
+                : firstSet + String(repeating: "UUUUTTTT", count: 2) + "UUUU"
+                    + (seed == .storeGoldenPoint ? "UTUTUT" : "UUT")
+            return session(playing: setup, rallies: rallies, then: seed == .storeResult ? [.finish] : [])
+        case .storeAmericano:
+            let setup = GameSetup(
+                rules: .americano(AmericanoRules(totalRallies: 32, ralliesPerServer: 4)),
+                serving: ServingSetup(order: .youThenOpponent1, firstServer: .you)
+            )
+            return session(playing: setup, rallies: String(repeating: "UT", count: 10) + "UUU", then: [])
         case .matchFinished, .afterResult:
             let match = GameSetup(
                 rules: .match(MatchRules(deuceRule: .oneAdvantage, setPolicy: .tieBreakAtSixAll)),

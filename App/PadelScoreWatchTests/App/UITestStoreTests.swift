@@ -143,6 +143,32 @@ final class UITestStoreTests {
         }
     }
 
+    @Test("Store screenshots use valid real games with representative scores and fixed history")
+    func storeMaterialsSeeds() async throws {
+        for seed in [UITestStore.Seed.storeMatch, .storeGoldenPoint, .storeAmericano, .storeResult] {
+            let session = try #require(UITestStore.session(for: seed))
+            #expect(session.issues.isEmpty)
+        }
+        let match = try #require(UITestStore.session(for: .storeMatch)?.matchState)
+        #expect(match.completedSets == [SetGames(us: 6, them: 4)])
+        #expect(match.games == SetGames(us: 3, them: 2))
+        #expect(match.gameScore == .points(us: .thirty, them: .fifteen))
+        let golden = try #require(UITestStore.session(for: .storeGoldenPoint)?.current?.game)
+        #expect(ScoreBoard(game: golden).context == .goldenPoint)
+        let round = try #require(UITestStore.session(for: .storeAmericano)?.round)
+        #expect(round.score == AmericanoScore(us: 13, them: 10))
+        #expect(round.rules.totalRallies == 32)
+        #expect(round.remaining == 9)
+        let result = try #require(UITestStore.session(for: .storeResult))
+        #expect(result.current?.game.status == .finished)
+        #expect(result.matchState?.completedSets == [SetGames(us: 6, them: 4), SetGames(us: 4, them: 6), SetGames(us: 6, them: 3)])
+        let history = try await openStore(["PADEL_UITEST_SEED": "storeHistory"]).session
+        #expect(history.issues.isEmpty)
+        #expect(history.archive.count == 3)
+        #expect(history.archive.map(\.finishedAt) == (0..<3).map { Date(timeIntervalSince1970: 1_792_461_600 - Double($0 * 86_400)) })
+        #expect(history.archive.allSatisfy { $0.game.status == .finished })
+    }
+
     @Test("Only the Always On switch draws the app as with the wrist lowered")
     func alwaysOnSwitch() throws {
         let plain = try #require(UITestStore(environment: ["PADEL_UITEST_STORE": name]))

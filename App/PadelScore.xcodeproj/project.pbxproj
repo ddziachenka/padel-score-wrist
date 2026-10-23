@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CCB56632672E7012AD09BBBD /* StoreMaterialsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31629E6B3D95916A1FA32006 /* StoreMaterialsUITests.swift */; };
 		F55F8C3148A23C8A0E60B3C3 /* PlayAgainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9797B56F6E6B729F696FFF8 /* PlayAgainUITests.swift */; };
 		2C3939CB7BDDC5C6194F6A4D /* AccessOfferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07D12EA418EF06637DD828C /* AccessOfferTests.swift */; };
 		CB741DF702C21F6A7EF22F31 /* PlayAgainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400616655D7391AD5C3291F8 /* PlayAgainTests.swift */; };
@@ -208,6 +209,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		31629E6B3D95916A1FA32006 /* StoreMaterialsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMaterialsUITests.swift; sourceTree = "<group>"; };
 		B9797B56F6E6B729F696FFF8 /* PlayAgainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayAgainUITests.swift; path = "PadelScoreWatchUITests/PlayAgainUITests.swift"; sourceTree = SOURCE_ROOT; };
 		C07D12EA418EF06637DD828C /* AccessOfferTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccessOfferTests.swift; sourceTree = "<group>"; };
 		400616655D7391AD5C3291F8 /* PlayAgainTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlayAgainTests.swift; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 				B9797B56F6E6B729F696FFF8 /* PlayAgainUITests.swift */,
 				F8F1A6C6AC9C65950FE1503D /* LiveScoreUITests.swift */,
 				76AE58C6C69ED10F11602FE4 /* BootstrapUITests.swift */,
+				31629E6B3D95916A1FA32006 /* StoreMaterialsUITests.swift */,
 				2E1568D97716E441DEF45624 /* NewGameUITests.swift */,
 				71186ECC27FE38B2616A5239 /* UITestSupport.swift */,
 				B623CC6F3C7B08B42AFE89DA /* LargeTextUITests.swift */,
@@ -1108,6 +1111,7 @@
 				F31A6E4D6B52A4B68CB3AA25 /* AccessUITests.swift in Sources */,
 				B25C7F148DD76475B3BE595F /* LiveScoreUITests.swift in Sources */,
 				6B39455141E6AA364ACE1E32 /* BootstrapUITests.swift in Sources */,
+				CCB56632672E7012AD09BBBD /* StoreMaterialsUITests.swift in Sources */,
 				27BBD00EA610E124345AB1CE /* NewGameUITests.swift in Sources */,
 				52C82235AC6E456908C1D094 /* UITestSupport.swift in Sources */,
 				4D11BA601F78B0A706C09A32 /* LargeTextUITests.swift in Sources */,

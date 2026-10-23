@@ -57,7 +57,7 @@ body {
   color: var(--text);
   font-size: 1rem;
   line-height: 1.65;
-  overflow-x: clip;
+  overflow-wrap: anywhere;
   text-rendering: optimizeLegibility;
 }
 
@@ -223,4 +223,27 @@ h2 {
 .card-links p {
   margin-block: 0 0.6rem;
   color: var(--text-muted);
+}
+
+/* App screenshots are unchanged simulator captures, presented without a device mockup. */
+.landing { width: min(100% - 2rem, 1040px); }
+.landing section { margin-block: 2.5rem 4rem; }
+.landing h2 { margin-block: 0.25rem 1rem; font-size: clamp(1.6rem, 1.2rem + 1vw, 2rem); }
+.landing .eyebrow { margin-block-end: 0.5rem; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.8fr); align-items: center; gap: 2.5rem; }
+.hero h1 { font-size: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem); max-width: 12ch; }
+figure { margin: 0; min-width: 0; }
+figure img { display: block; width: 100%; max-width: 276px; height: auto; margin-inline: auto; border-radius: 1.5rem; background: #000; }
+figcaption { margin-block-start: 1rem; color: var(--text-muted); text-align: center; }
+.screens { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-block: 2rem; }
+.screens-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; margin-inline: auto; }
+.availability { display: inline-block; font-weight: 600; border-block-end: 2px solid var(--accent); padding-block-end: 0.2rem; }
+.landing .purchase { padding: clamp(1.15rem, 3vw, 2rem); }
+.landing .purchase p + p { margin-block-start: 1rem; }
+@media (max-width: 600px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .hero h1 { max-width: 14ch; }
+  .hero figure img { max-width: 240px; }
+  .screens, .screens-pair { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+  .screens img { max-width: 240px; }
 }
