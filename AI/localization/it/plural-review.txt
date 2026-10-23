@@ -1,0 +1,26 @@
+Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Reviewed both messages for each requested value. Runtime layout evidence is separate.
+
+0: 0 su 0 punti giocati.
+0: 0 punti in totale, 0 a battitore.
+1: 1 su 1 punto giocato.
+1: 1 punto in totale, 1 a battitore.
+2: 2 su 2 punti giocati.
+2: 2 punti in totale, 2 a battitore.
+4: 4 su 4 punti giocati.
+4: 4 punti in totale, 4 a battitore.
+5: 5 su 5 punti giocati.
+5: 5 punti in totale, 5 a battitore.
+11: 11 su 11 punti giocati.
+11: 11 punti in totale, 11 a battitore.
+21: 21 su 21 punti giocati.
+21: 21 punti in totale, 21 a battitore.
+22: 22 su 22 punti giocati.
+22: 22 punti in totale, 22 a battitore.
+25: 25 su 25 punti giocati.
+25: 25 punti in totale, 25 a battitore.
+101: 101 su 101 punti giocati.
+101: 101 punti in totale, 101 a battitore.
+999: 999 su 999 punti giocati.
+999: 999 punti in totale, 999 a battitore.

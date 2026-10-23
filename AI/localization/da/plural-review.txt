@@ -1,0 +1,26 @@
+Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Reviewed both messages for each requested value. Runtime layout evidence is separate.
+
+0: 0 af 0 dueller spillet.
+0: 0 dueller i alt, 0 pr. server.
+1: 1 af 1 duel spillet.
+1: 1 duel i alt, 1 pr. server.
+2: 2 af 2 dueller spillet.
+2: 2 dueller i alt, 2 pr. server.
+4: 4 af 4 dueller spillet.
+4: 4 dueller i alt, 4 pr. server.
+5: 5 af 5 dueller spillet.
+5: 5 dueller i alt, 5 pr. server.
+11: 11 af 11 dueller spillet.
+11: 11 dueller i alt, 11 pr. server.
+21: 21 af 21 dueller spillet.
+21: 21 dueller i alt, 21 pr. server.
+22: 22 af 22 dueller spillet.
+22: 22 dueller i alt, 22 pr. server.
+25: 25 af 25 dueller spillet.
+25: 25 dueller i alt, 25 pr. server.
+101: 101 af 101 dueller spillet.
+101: 101 dueller i alt, 101 pr. server.
+999: 999 af 999 dueller spillet.
+999: 999 dueller i alt, 999 pr. server.

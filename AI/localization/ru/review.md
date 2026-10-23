@@ -13,7 +13,7 @@ Base: 809aa64036c4027d7aba141e889e90d97669e9e6.
 - Partner → партнёр; You → Вы; Opponent → соперник.
 - Undo → отменить действие; Undo history → действия для отмены (available prior actions, never a log of past cancellations).
 - Smart Stack → Смарт-стопка; Apple Account → Аккаунт Apple.
-- Access → Доступ; Lifetime unlock → покупка навсегда / открыть навсегда, as grammar requires.
+- Access → Доступ; Lifetime unlock → бессрочный доступ; purchase → разовая покупка бессрочного доступа. The CTA «Открыть навсегда» stays a short action label.
 
 Respectful neutral Russian, clear verbs and concise watch labels. Instructions use plural polite imperatives without unnecessary formalities. Brand names and the conventional score AD remain unchanged with explicit reasons in unchanged.json. Full accessibility messages keep their explanatory detail.
 
@@ -58,3 +58,5 @@ Examples of corrections after the language agent’s own review:
 - Restore and refunds → Восстановление и возврат средств
 - Serving: %@. → Подающий: %@.
 - Set %lld isn’t a finished set. → Сет %lld не может закончиться с таким счётом.
+
+Browser correction: the literal long headline broke inside a word at desktop width. Reworded the landing headline to «Всё внимание — игре.»; same focus-on-play meaning, natural line breaks. Rechecked the rendered page.

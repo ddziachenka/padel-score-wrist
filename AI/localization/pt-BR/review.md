@@ -41,3 +41,5 @@ Examples of corrections after the language agent’s own review:
 - Opened the tie-break → Primeiro a sacar no tie-break
 - Unlimited Match & Americano scoring. → Partidas e Americano sem limites.
 - Game → Partida
+
+Coordinator numeric correction: added an explicit zero form, giving «0 pontos» while retaining «1 ponto». Verified with xcstringstool compilation and Foundation for every requested numeric value; added an installed-bundle regression check.

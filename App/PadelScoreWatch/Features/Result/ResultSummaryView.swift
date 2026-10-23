@@ -71,10 +71,10 @@ private struct TeamColumns: View {
     var body: some View {
         if !textSize.isAccessibilitySize {
             HStack(spacing: Spacing.xs) {
-                name(Text("US"), color: Palette.accent)
+                name(Text("US"), color: Palette.accent, alignment: .leading)
                 Color.clear
                     .frame(width: labelWidth, height: 1)
-                name(Text("THEM"), color: Palette.textPrimary)
+                name(Text("THEM"), color: Palette.textPrimary, alignment: .trailing)
             }
             .font(Typography.caption.weight(.semibold))
             .lineLimit(1)
@@ -83,14 +83,13 @@ private struct TeamColumns: View {
         }
     }
 
-    /// A column's name, centred over it in full. On the smallest Watch THEM is a little wider than
-    /// its column of numbers, so it reaches into the empty middle of this line rather than being cut;
-    /// the hidden copy gives the line its height without moving the columns.
-    private func name(_ name: Text, color: Color) -> some View {
+    /// Anchor the full names inside the outer edges. Longer translations may extend
+    /// into the empty middle, while the hidden copy keeps the count columns aligned.
+    private func name(_ name: Text, color: Color, alignment: Alignment) -> some View {
         name
             .hidden()
             .frame(maxWidth: .infinity)
-            .overlay {
+            .overlay(alignment: alignment) {
                 name
                     .foregroundStyle(color)
                     .fixedSize()
@@ -311,6 +310,8 @@ private struct ResultRow: View {
             .font(Typography.caption)
             .foregroundStyle(Palette.textSecondary)
             .multilineTextAlignment(textSize.isAccessibilitySize ? .leading : .center)
+            .lineLimit(textSize.isAccessibilitySize ? nil : 2)
+            .fixedSize(horizontal: false, vertical: true)
             .minimumScaleFactor(0.8)
     }
 }

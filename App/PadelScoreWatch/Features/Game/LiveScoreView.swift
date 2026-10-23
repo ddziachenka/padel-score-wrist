@@ -626,6 +626,8 @@ private struct ScoreButton: View {
             content {
                 Text(team.label)
                     .font(Typography.caption.weight(.semibold))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
                 if layout == .stacked { Spacer(minLength: 0) }
                 Text(verbatim: points.shown)
                     .font(.system(size: pointSize, weight: .semibold).monospacedDigit())

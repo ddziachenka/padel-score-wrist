@@ -1,0 +1,26 @@
+Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Reviewed both messages for each requested value. Runtime layout evidence is separate.
+
+0: 0 av 0 ballvekslinger spilt.
+0: 0 ballvekslinger totalt. 0 per server.
+1: 1 av 1 ballveksling spilt.
+1: 1 ballveksling totalt. 1 per server.
+2: 2 av 2 ballvekslinger spilt.
+2: 2 ballvekslinger totalt. 2 per server.
+4: 4 av 4 ballvekslinger spilt.
+4: 4 ballvekslinger totalt. 4 per server.
+5: 5 av 5 ballvekslinger spilt.
+5: 5 ballvekslinger totalt. 5 per server.
+11: 11 av 11 ballvekslinger spilt.
+11: 11 ballvekslinger totalt. 11 per server.
+21: 21 av 21 ballvekslinger spilt.
+21: 21 ballvekslinger totalt. 21 per server.
+22: 22 av 22 ballvekslinger spilt.
+22: 22 ballvekslinger totalt. 22 per server.
+25: 25 av 25 ballvekslinger spilt.
+25: 25 ballvekslinger totalt. 25 per server.
+101: 101 av 101 ballvekslinger spilt.
+101: 101 ballvekslinger totalt. 101 per server.
+999: 999 av 999 ballvekslinger spilt.
+999: 999 ballvekslinger totalt. 999 per server.

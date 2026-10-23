@@ -1,0 +1,26 @@
+Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Reviewed both messages for each requested value. Runtime layout evidence is separate.
+
+0: 0 van 0 rally’s gespeeld.
+0: 0 rally’s in totaal, 0 per serveerder.
+1: 1 van 1 rally gespeeld.
+1: 1 rally in totaal, 1 per serveerder.
+2: 2 van 2 rally’s gespeeld.
+2: 2 rally’s in totaal, 2 per serveerder.
+4: 4 van 4 rally’s gespeeld.
+4: 4 rally’s in totaal, 4 per serveerder.
+5: 5 van 5 rally’s gespeeld.
+5: 5 rally’s in totaal, 5 per serveerder.
+11: 11 van 11 rally’s gespeeld.
+11: 11 rally’s in totaal, 11 per serveerder.
+21: 21 van 21 rally’s gespeeld.
+21: 21 rally’s in totaal, 21 per serveerder.
+22: 22 van 22 rally’s gespeeld.
+22: 22 rally’s in totaal, 22 per serveerder.
+25: 25 van 25 rally’s gespeeld.
+25: 25 rally’s in totaal, 25 per serveerder.
+101: 101 van 101 rally’s gespeeld.
+101: 101 rally’s in totaal, 101 per serveerder.
+999: 999 van 999 rally’s gespeeld.
+999: 999 rally’s in totaal, 999 per serveerder.

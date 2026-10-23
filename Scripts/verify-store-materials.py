@@ -20,3 +20,8 @@ for row in manifest['screenshots']:
     assert web_copy.read_bytes() == data, f'{web_copy}: must be the original capture'
     assert row['attachment'] and row['fixture'] and row['actions'], 'capture provenance required'
 print('Store materials: six 368 × 448 PNG captures, SHA-256 and identical site images verified')
+
+# Fan-in requires every added locale's original captures as well.
+import subprocess
+import sys
+subprocess.run([sys.executable, str(ROOT / 'Scripts/verify-localized-store-materials.py')], check=True)

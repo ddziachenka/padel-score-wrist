@@ -1,0 +1,26 @@
+Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Reviewed both messages for each requested value. Runtime layout evidence is separate.
+
+0: 0 av 0 bollar spelade.
+0: 0 bollar totalt, 0 per servare.
+1: 1 av 1 boll spelad.
+1: 1 boll totalt, 1 per servare.
+2: 2 av 2 bollar spelade.
+2: 2 bollar totalt, 2 per servare.
+4: 4 av 4 bollar spelade.
+4: 4 bollar totalt, 4 per servare.
+5: 5 av 5 bollar spelade.
+5: 5 bollar totalt, 5 per servare.
+11: 11 av 11 bollar spelade.
+11: 11 bollar totalt, 11 per servare.
+21: 21 av 21 bollar spelade.
+21: 21 bollar totalt, 21 per servare.
+22: 22 av 22 bollar spelade.
+22: 22 bollar totalt, 22 per servare.
+25: 25 av 25 bollar spelade.
+25: 25 bollar totalt, 25 per servare.
+101: 101 av 101 bollar spelade.
+101: 101 bollar totalt, 101 per servare.
+999: 999 av 999 bollar spelade.
+999: 999 bollar totalt, 999 per servare.

@@ -2038,6 +2038,12 @@
                       "state": "translated",
                       "value": "%arg pontos disputados."
                     }
+                  },
+                  "zero": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg pontos disputados."
+                    }
                   }
                 }
               }
@@ -2446,6 +2452,12 @@
                     }
                   },
                   "many": {
+                    "stringUnit": {
+                      "state": "translated",
+                      "value": "%arg pontos no total"
+                    }
+                  },
+                  "zero": {
                     "stringUnit": {
                       "state": "translated",
                       "value": "%arg pontos no total"
@@ -14505,7 +14517,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Первым подавал на тай-брейке"
+            "value": "Первый подающий на тай-брейке"
           }
         }
       }
@@ -27492,7 +27504,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kumoa virhenapautus Kumoa-toiminnolla tai tee korjaukset pelivalikossa. Vahvista syöttöjärjestys ennen uutta erää. Avaa sovellus uudelleen palataksesi tallennettuun peliin. Jos tallentaminen epäonnistuu, vapauta tarvittaessa tilaa ja yritä uudelleen."
+            "value": "Jos napautat väärin, käytä Kumoa-toimintoa. Muut korjaukset voit tehdä pelivalikossa. Vahvista syöttöjärjestys ennen uutta erää. Avaa sovellus uudelleen, niin voit jatkaa tallennettua peliä. Jos tallentaminen epäonnistuu, vapauta tarvittaessa tilaa ja yritä uudelleen."
           }
         },
         "nb": {

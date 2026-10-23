@@ -1,0 +1,26 @@
+Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Reviewed both messages for each requested value. Runtime layout evidence is separate.
+
+0: 0 sur 0 point joué.
+0: 0 point au total, 0 par serveur.
+1: 1 sur 1 point joué.
+1: 1 point au total, 1 par serveur.
+2: 2 sur 2 points joués.
+2: 2 points au total, 2 par serveur.
+4: 4 sur 4 points joués.
+4: 4 points au total, 4 par serveur.
+5: 5 sur 5 points joués.
+5: 5 points au total, 5 par serveur.
+11: 11 sur 11 points joués.
+11: 11 points au total, 11 par serveur.
+21: 21 sur 21 points joués.
+21: 21 points au total, 21 par serveur.
+22: 22 sur 22 points joués.
+22: 22 points au total, 22 par serveur.
+25: 25 sur 25 points joués.
+25: 25 points au total, 25 par serveur.
+101: 101 sur 101 points joués.
+101: 101 points au total, 101 par serveur.
+999: 999 sur 999 points joués.
+999: 999 points au total, 999 par serveur.

@@ -1,0 +1,26 @@
+Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Reviewed both messages for each requested value. Runtime layout evidence is separate.
+
+0: 0 de 0 puntos jugados.
+0: 0 puntos en total, 0 por sacador.
+1: 1 de 1 punto jugado.
+1: 1 punto en total, 1 por sacador.
+2: 2 de 2 puntos jugados.
+2: 2 puntos en total, 2 por sacador.
+4: 4 de 4 puntos jugados.
+4: 4 puntos en total, 4 por sacador.
+5: 5 de 5 puntos jugados.
+5: 5 puntos en total, 5 por sacador.
+11: 11 de 11 puntos jugados.
+11: 11 puntos en total, 11 por sacador.
+21: 21 de 21 puntos jugados.
+21: 21 puntos en total, 21 por sacador.
+22: 22 de 22 puntos jugados.
+22: 22 puntos en total, 22 por sacador.
+25: 25 de 25 puntos jugados.
+25: 25 puntos en total, 25 por sacador.
+101: 101 de 101 puntos jugados.
+101: 101 puntos en total, 101 por sacador.
+999: 999 de 999 puntos jugados.
+999: 999 puntos en total, 999 por sacador.

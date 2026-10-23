@@ -1,0 +1,26 @@
+Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Reviewed both messages for each requested value. Runtime layout evidence is separate.
+
+0: 0 de 0 pontos disputados.
+0: 0 pontos no total, 0 por jogador ao serviço.
+1: 1 de 1 ponto disputado.
+1: 1 ponto no total, 1 por jogador ao serviço.
+2: 2 de 2 pontos disputados.
+2: 2 pontos no total, 2 por jogador ao serviço.
+4: 4 de 4 pontos disputados.
+4: 4 pontos no total, 4 por jogador ao serviço.
+5: 5 de 5 pontos disputados.
+5: 5 pontos no total, 5 por jogador ao serviço.
+11: 11 de 11 pontos disputados.
+11: 11 pontos no total, 11 por jogador ao serviço.
+21: 21 de 21 pontos disputados.
+21: 21 pontos no total, 21 por jogador ao serviço.
+22: 22 de 22 pontos disputados.
+22: 22 pontos no total, 22 por jogador ao serviço.
+25: 25 de 25 pontos disputados.
+25: 25 pontos no total, 25 por jogador ao serviço.
+101: 101 de 101 pontos disputados.
+101: 101 pontos no total, 101 por jogador ao serviço.
+999: 999 de 999 pontos disputados.
+999: 999 pontos no total, 999 por jogador ao serviço.

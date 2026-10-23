@@ -1,0 +1,26 @@
+Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Reviewed both messages for each requested value. Runtime layout evidence is separate.
+
+0: 0 von 0 Ballwechseln gespielt.
+0: 0 Ballwechsel insgesamt, 0 pro Aufschläger.
+1: 1 von 1 Ballwechsel gespielt.
+1: 1 Ballwechsel insgesamt, 1 pro Aufschläger.
+2: 2 von 2 Ballwechseln gespielt.
+2: 2 Ballwechsel insgesamt, 2 pro Aufschläger.
+4: 4 von 4 Ballwechseln gespielt.
+4: 4 Ballwechsel insgesamt, 4 pro Aufschläger.
+5: 5 von 5 Ballwechseln gespielt.
+5: 5 Ballwechsel insgesamt, 5 pro Aufschläger.
+11: 11 von 11 Ballwechseln gespielt.
+11: 11 Ballwechsel insgesamt, 11 pro Aufschläger.
+21: 21 von 21 Ballwechseln gespielt.
+21: 21 Ballwechsel insgesamt, 21 pro Aufschläger.
+22: 22 von 22 Ballwechseln gespielt.
+22: 22 Ballwechsel insgesamt, 22 pro Aufschläger.
+25: 25 von 25 Ballwechseln gespielt.
+25: 25 Ballwechsel insgesamt, 25 pro Aufschläger.
+101: 101 von 101 Ballwechseln gespielt.
+101: 101 Ballwechsel insgesamt, 101 pro Aufschläger.
+999: 999 von 999 Ballwechseln gespielt.
+999: 999 Ballwechsel insgesamt, 999 pro Aufschläger.

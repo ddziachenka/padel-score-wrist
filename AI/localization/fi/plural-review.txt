@@ -1,0 +1,26 @@
+Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Reviewed both messages for each requested value. Runtime layout evidence is separate.
+
+0: Pelattu 0, yhteensä 0 palloa.
+0: Yhteensä 0 palloa, 0 syöttäjää kohti.
+1: Pelattu 1, yhteensä 1 pallo.
+1: Yhteensä 1 pallo, 1 syöttäjää kohti.
+2: Pelattu 2, yhteensä 2 palloa.
+2: Yhteensä 2 palloa, 2 syöttäjää kohti.
+4: Pelattu 4, yhteensä 4 palloa.
+4: Yhteensä 4 palloa, 4 syöttäjää kohti.
+5: Pelattu 5, yhteensä 5 palloa.
+5: Yhteensä 5 palloa, 5 syöttäjää kohti.
+11: Pelattu 11, yhteensä 11 palloa.
+11: Yhteensä 11 palloa, 11 syöttäjää kohti.
+21: Pelattu 21, yhteensä 21 palloa.
+21: Yhteensä 21 palloa, 21 syöttäjää kohti.
+22: Pelattu 22, yhteensä 22 palloa.
+22: Yhteensä 22 palloa, 22 syöttäjää kohti.
+25: Pelattu 25, yhteensä 25 palloa.
+25: Yhteensä 25 palloa, 25 syöttäjää kohti.
+101: Pelattu 101, yhteensä 101 palloa.
+101: Yhteensä 101 palloa, 101 syöttäjää kohti.
+999: Pelattu 999, yhteensä 999 palloa.
+999: Yhteensä 999 palloa, 999 syöttäjää kohti.
