@@ -615,20 +615,23 @@ private struct ScoreButton: View {
     let award: (Team) -> Void
     @ScaledMetric(relativeTo: .title) private var pointSize: CGFloat = 40
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
         Button {
             award(team)
         } label: {
-            let content = layout == .columns
-                ? AnyLayout(VStackLayout(spacing: 0))
+            let content = layout == .columns || textSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(alignment: textSize.isAccessibilitySize ? .leading : .center,
+                                        spacing: textSize.isAccessibilitySize ? Spacing.xs : 0))
                 : AnyLayout(HStackLayout(alignment: .firstTextBaseline, spacing: Spacing.sm))
             content {
                 Text(team.label)
                     .font(Typography.caption.weight(.semibold))
-                    .lineLimit(1)
+                    .lineLimit(textSize.isAccessibilitySize ? nil : 1)
+                    .fixedSize(horizontal: false, vertical: textSize.isAccessibilitySize)
                     .minimumScaleFactor(0.7)
-                if layout == .stacked { Spacer(minLength: 0) }
+                if layout == .stacked && !textSize.isAccessibilitySize { Spacer(minLength: 0) }
                 Text(verbatim: points.shown)
                     .font(.system(size: pointSize, weight: .semibold).monospacedDigit())
                     .lineLimit(1)
@@ -844,12 +847,13 @@ struct ServingBlock: View {
                 Text("Serving")
                     .font(Typography.caption)
                     .foregroundStyle(Palette.textSecondary)
-                // Between the round buttons a role keeps to one line, a little smaller if it must;
-                // the screen has room for two lines once the teams are stacked.
+                // A long role must keep its player number. Two lines fit between the
+                // round controls as well as on the stacked accessibility layout.
                 Text(player.name)
                     .font(Typography.caption.weight(.semibold))
                     .foregroundStyle(Palette.textPrimary)
-                    .lineLimit(layout == .columns ? 1 : 2)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
                     .minimumScaleFactor(layout == .columns ? 0.75 : 1)
                     .id(player)
                     .transition(.opacity)

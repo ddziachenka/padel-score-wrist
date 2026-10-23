@@ -66,3 +66,5 @@ Runtime context refinement: the external legal-page heading is «Pagina web», t
 ## Coordinator blind reading — final pass
 
 Read all 330 Watch messages (including every plural form), all four launcher messages, all four complete web pages and every store field without English source text. Then checked changes against the source meaning and repeated the affected passages. Blind reading removed partite di Incontro, clarified the web address and made best-effort support/forensic recovery language plain while retaining the same limits. This is coordinator editorial review, not an invited native-speaker review.
+
+Terminology cross-check (23 October 2026): current [Apple Italian account guidance](https://support.apple.com/it-it/105023) uses Apple Account, so that name is retained. [Apple Watch guidance](https://support.apple.com/it-it/guide/watch/-apdb93ea3872/watchos) confirms Raccolta smart.

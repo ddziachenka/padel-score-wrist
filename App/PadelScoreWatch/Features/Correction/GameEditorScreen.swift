@@ -319,21 +319,46 @@ struct TeamPair: View {
     let them: String
     var usSpoken: String?
     var themSpoken: String?
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
-        // Side by side while both fit whole; otherwise one under the other, ours first.
-        ViewThatFits(in: .horizontal) {
-            HStack(spacing: Spacing.sm) {
-                side("US", value: us, color: Palette.accent)
-                side("THEM", value: them, color: Palette.textPrimary)
-            }
-            VStack(alignment: .leading, spacing: Spacing.xs) {
-                side("US", value: us, color: Palette.accent)
-                side("THEM", value: them, color: Palette.textPrimary)
+        Group {
+            if textSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: Spacing.sm) {
+                    accessibleSide("US", value: us, color: Palette.accent)
+                    accessibleSide("THEM", value: them, color: Palette.textPrimary)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            } else {
+                // Side by side while both fit whole; otherwise one under the other.
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: Spacing.sm) {
+                        side("US", value: us, color: Palette.accent)
+                        side("THEM", value: them, color: Palette.textPrimary)
+                    }
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
+                        side("US", value: us, color: Palette.accent)
+                        side("THEM", value: them, color: Palette.textPrimary)
+                    }
+                }
             }
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Us \(usSpoken ?? us), them \(themSpoken ?? them)", comment: "VoiceOver value of a correction row: one value for each team. Arguments: ours, theirs, such as 15 and Advantage."))
+    }
+
+    /// Let full team names wrap independently of their values at accessibility sizes.
+    private func accessibleSide(_ team: LocalizedStringKey, value: String, color: Color) -> some View {
+        VStack(alignment: .leading, spacing: Spacing.xs) {
+            Text(team)
+                .font(Typography.caption)
+                .foregroundStyle(Palette.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+            Text(verbatim: value)
+                .font(Typography.body.weight(.semibold).monospacedDigit())
+                .foregroundStyle(color)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func side(_ team: LocalizedStringKey, value: String, color: Color) -> some View {

@@ -102,3 +102,5 @@ Runtime context refinement: the external legal-page heading is «Nettside», the
 ## Coordinator blind reading — final pass
 
 Read all 330 Watch messages (including every plural form), all four launcher messages, all four complete web pages and every store field without English source text. Then checked changes against the source meaning and repeated the affected passages. Blind reading clarified the website/privacy references and technical deletion limitations; service order already uses the unambiguous Server deretter. This is coordinator editorial review, not an invited native-speaker review.
+
+Terminology cross-check (23 October 2026): [Apple Norwegian Watch guidance](https://support.apple.com/no-no/guide/watch/apdecf142fb9/27/watchos/27) confirms the two-word Watch name Smart stabel; retained.

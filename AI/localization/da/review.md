@@ -95,3 +95,5 @@ Runtime context refinement: the external legal-page heading is «Webside», the 
 ## Coordinator blind reading — final pass
 
 Read all 330 Watch messages (including every plural form), all four launcher messages, all four complete web pages and every store field without English source text. Then checked changes against the source meaning and repeated the affected passages. Blind reading clarifies the web privacy policy/address, purchased access and permanent access in the store promotion. Official Apple Danish Anonymitet terminology retained. This is coordinator editorial review, not an invited native-speaker review.
+
+Terminology cross-check (23 October 2026): [Apple Danish watchOS guidance](https://support.apple.com/da-dk/123002) confirms the two-word name Smart stak; retained.

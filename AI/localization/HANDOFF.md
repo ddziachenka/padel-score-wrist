@@ -1,6 +1,6 @@
 # Localization handoff
 
-**Status:** reverification pending after expanded-layout and Danish AX findings; no completion or release verdict yet.
+**Status:** final layout batch and repeated visual checks in progress; no completion or release verdict yet.
 
 ## Scope
 
@@ -27,9 +27,9 @@ Prepared 72 new raw 44-mm screenshots and refreshed six English screenshots afte
 | Field | Evidence |
 | --- | --- |
 | Common base | `809aa64036c4027d7aba141e889e90d97669e9e6` |
-| Final candidate | PENDING after correction; previous f0a0619 run was interrupted, not passed |
-| Exact integration command | PENDING new correction candidate |
-| Integration result/counts/time/report | PENDING; command log `/private/tmp/padel-corrected-integration.log` |
+| Final candidate | PENDING after complete 40-mm visual findings; b03098d integration interrupted |
+| Exact integration command | `make integration CANDIDATE=b03098d66ec2948b2c840501773078a83c7dd896` |
+| Integration result/counts/time/report | PENDING; command log `/private/tmp/padel-layout-final-integration.log` |
 | Per-language commands | `make static` and `make fast` in each recorded worktree; `inputs.json` records full source SHAs |
 | Baseline `make fast` | Exit 0; 472 passed, 0 failed/skipped/expected; `evidence/fast-baseline.md` |
 | Language `make fast` reports | es, fr, it, pt-PT, pt-BR, nl passed, each 472/472 with zero failed/skipped/expected; remaining streams PENDING |

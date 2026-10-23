@@ -13,3 +13,5 @@ German and Finnish desktop hero headings were inspected after giving translated 
 Responsive browser check: the real German privacy page at 280 px, Russian home at 320 px and Brazilian Portuguese home at 375 px were rendered inside local viewport frames. Navigation wraps, headings stay readable with native hyphenation, and the actual localized images load. The temporary QA wrapper was removed before the candidate. General legal-page headings now enable native hyphenation as well.
 
 Final browser pass after editorial corrections: all 52 routes reopened, translated h1 and all thirteen language choices present, no error response. A real language-link click from Russian support to Italian support preserved the support section. Russian deletion paragraphs were corrected for nominative agreement and read again in all three affected pages before freezing the next candidate.
+
+Browser recheck at candidate `b03098d66ec2948b2c840501773078a83c7dd896`: all 52 local routes opened again after the final product layout correction; zero missing h1 headings, zero missing language-navigation groups and zero error responses. The site remains unpublished.
