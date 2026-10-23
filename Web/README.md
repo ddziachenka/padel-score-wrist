@@ -3,7 +3,7 @@
 Live: https://padel-score-wrist.pages.dev/ (Cloudflare account
 `61273605cefdc42ca422521f82319c72`). Owner authorized publication on 2026-10-21.
 Support: `dzmitry.dziachenka@gmail.com`; developer: Dzmitry Dziachenka.
-M15 prepares a local update; that update has not been published. All four pages ship in English. `Web/public` contains only public static files;
+The owner authorized the prepared multilingual update in the M10 completion task on 2026-10-23. It is published: English plus twelve added locales, four pages each. Production readback and deployment evidence: `../AI/evidence/M10/site-publication.md`. `Web/public` contains only public static files;
 there is no analytics script or server-side function.
 
 
@@ -116,5 +116,4 @@ ships, or to record why it does not. The convention, once a second language exis
 
 Lowercase, with the region subtag after a hyphen. Every page in every language lists
 every other language in `<link rel="alternate" hreflang="…">`, plus one `x-default`
-pointing at the English page. English ships alone here, so its alternates point at
-themselves — which is correct, not a placeholder.
+pointing at the English page. All thirteen locales are present. Each translated page links to the matching section in every other language, with English as x-default.

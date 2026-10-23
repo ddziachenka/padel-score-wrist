@@ -17,3 +17,5 @@ Final browser pass after editorial corrections: all 52 routes reopened, translat
 Browser recheck at candidate `b03098d66ec2948b2c840501773078a83c7dd896`: all 52 local routes opened again after the final product layout correction; zero missing h1 headings, zero missing language-navigation groups and zero error responses. The site remains unpublished.
 
 Final repeat at product source `cbe452b0efda5c1c06aac97cc6b5132817876cd8`: browser navigation to all 52 routes, full rendered accessibility state, heading level 1 and all thirteen language links present, no error page (52/52). Original screenshot replacements use the same routes; no publication.
+
+M10 completion update: owner authorized production publication. Deployment cff74b31 is live at the canonical origin; 131/131 tracked public files matched source over HTTPS, including all 52 routes and 78 images. `AI/evidence/M10/site-publication.md`. Earlier unpublished statements above describe their original review checkpoints.

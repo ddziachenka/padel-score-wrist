@@ -1,7 +1,7 @@
 # M10 — Final Product Polish
 
 **ID:** M10
-**Status:** BLOCKED
+**Status:** REVIEW
 **Depends on:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09
 **Validation:** make milestone ID=M10
 **Handoff:** AI/handoffs/M10-handoff.md
@@ -28,12 +28,12 @@
 ## Acceptance criteria
 
 - [x] Все M00–M09 DONE с собственным evidence; все применимые H-решения закрыты, неизвестные коммерческие значения не замещены примерами.
-- [ ] M11, M12, M13, M14 и M15 DONE с собственным evidence до возобновления итоговой проверки; финальный проход выполняется на приложении с их изменениями.
-- [ ] Быстрый запуск с циферблата и Smart Stack (M14) проверен на реальных часах вместе с прежними аппаратными проверками.
-- [ ] Итоговый кандидат включает английский и все 12 добавленных локалей; проверены многоязычный интерфейс, доступность, сайт, материалы магазина и происхождение скриншотов. Реальное озвучивание VoiceOver подтверждено на часах.
-- [ ] Шесть доменов пройдены в требуемом порядке одной Builder-сессией; исправлены все valid P0/P1, после изменений выполнен один targeted re-audit.
-- [ ] Один consolidated record имеет COMPLETE typed coverage, Open P0/P1 0, findings/fixes/deferred P2, INAPPLICABLE с причинами, FUTURE_PRODUCT_IDEA и точные SHA/команды/counts/пути.
-- [ ] Нет пропущенной обязательной среды/устройства; реальные часы и минимальная поддерживаемая конфигурация проверены. Недоступность необходимого evidence блокирует этап.
+- [x] M11, M12, M13, M14 и M15 DONE с собственным evidence до возобновления итоговой проверки; финальный проход выполняется на приложении с их изменениями.
+- [x] Быстрый запуск с циферблата и Smart Stack (M14) проверен на реальных часах вместе с прежними аппаратными проверками.
+- [x] Итоговый кандидат включает английский и все 12 добавленных локалей; проверены многоязычный интерфейс, доступность, сайт, материалы магазина и происхождение скриншотов. Реальное озвучивание VoiceOver подтверждено на часах.
+- [x] Шесть доменов пройдены в требуемом порядке одной Builder-сессией; исправлены все valid P0/P1, после изменений выполнен один targeted re-audit.
+- [x] Один consolidated record имеет COMPLETE typed coverage, Open P0/P1 0, findings/fixes/deferred P2, INAPPLICABLE с причинами, FUTURE_PRODUCT_IDEA и точные SHA/команды/counts/пути.
+- [x] Нет пропущенной обязательной среды/устройства; реальные часы и минимальная поддерживаемая конфигурация проверены. Недоступность необходимого evidence блокирует этап.
 - [x] Watch-only REL-208 и REL-209 явно INAPPLICABLE с причиной; неиспользуемые HealthKit/account/cloud/notifications так же оцениваются по применимости, а не молча пропускаются.
 - [ ] make milestone ID=M10 проходит и make release CANDIDATE=<verified-full-SHA> возвращает READY_FOR_HUMAN для того же commit.
 - [ ] После записи DONE и handoff выполнены make static, project-status validate и continuity от verified SHA; никакая отправка или публикация не выполнена.
@@ -89,3 +89,7 @@ remains BLOCKED until that evidence exists. Earlier evidence describes its own S
 The coordinator performs a full editorial second pass after the language agents.
 All routes, screenshots and store drafts are validated before delivery. No App
 Review submission, App Store Connect upload or site publication is authorized.
+
+## Completion resumption — 2026-10-23
+
+Owner explicitly confirmed «на физическом устройстве все проверено»; scope and evidence limits recorded in `AI/evidence/M10/device-confirmation.md`. All earlier physical blockers are resolved by that owner-observed report, without invented measurements. M11–M15 and localization preparation are complete. Six-domain consolidated record refreshed in order with exact current source evidence. New live privacy/history mismatch was corrected by owner-approved production site deployment; 131/131 public source hashes matched. M10 is REVIEW for its unchanged full milestone and release gates; DONE only after their actual pass.
