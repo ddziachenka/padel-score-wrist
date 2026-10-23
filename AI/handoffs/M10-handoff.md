@@ -50,4 +50,4 @@ Cancelled command Make exit 2 / milestone gate 69 / owned xcodebuild 143. Report
 
 ## Post-DONE continuity
 
-Pending: commit only AI Markdown completion evidence, then run `make static`, `Scripts/project-status.sh validate` and `Scripts/project-status.sh continuity 93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f`; record actual exits. No build inputs changed after the verified candidate.
+At clean DONE record commit `85dd04256a445ba2e7066fad6130fe6ef695f826`, `make static` exit 0 (`.artifacts/M10-completion/post-done-static.log`), `Scripts/project-status.sh validate` exit 0 (`post-done-status.log` in the same directory), and `Scripts/project-status.sh continuity 93b7d26a5d1a10154affe27ca2d9d00ceeff6f4f` exit 0 (`post-done-continuity.log`). Continuity explicitly confirms the exact verified build inputs; only AI Markdown completion records changed. This last evidence-only update checks the acceptance box after those actual passes. No further milestone started.

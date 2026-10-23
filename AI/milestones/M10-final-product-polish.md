@@ -36,7 +36,7 @@
 - [x] Нет пропущенной обязательной среды/устройства; реальные часы и минимальная поддерживаемая конфигурация проверены. Недоступность необходимого evidence блокирует этап.
 - [x] Watch-only REL-208 и REL-209 явно INAPPLICABLE с причиной; неиспользуемые HealthKit/account/cloud/notifications так же оцениваются по применимости, а не молча пропускаются.
 - [x] make milestone ID=M10 проходит и make release CANDIDATE=<verified-full-SHA> возвращает READY_FOR_HUMAN для того же commit.
-- [ ] После записи DONE и handoff выполнены make static, project-status validate и continuity от verified SHA; отправка в App Store не выполнена; подготовленный сайт опубликован по отдельному явному разрешению владельца.
+- [x] После записи DONE и handoff выполнены make static, project-status validate и continuity от verified SHA; отправка в App Store не выполнена; подготовленный сайт опубликован по отдельному явному разрешению владельца.
 
 ## Validation
 
