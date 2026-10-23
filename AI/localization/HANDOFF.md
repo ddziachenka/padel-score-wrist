@@ -34,7 +34,7 @@ Prepared 72 new raw 44-mm screenshots and refreshed six English screenshots afte
 | Per-language commands | `make static` and `make fast` in each recorded worktree; `inputs.json` records full source SHAs |
 | Baseline `make fast` | Exit 0; 472 passed, 0 failed/skipped/expected; `evidence/fast-baseline.md` |
 | Language `make fast` reports | all twelve streams passed, each 472/472 with zero failed/skipped/expected; `evidence/language-gates.md` |
-| Final static | `make static`, exit 0 before candidate freeze; post-record continuity checks follow the evidence commit |
+| Final static | `make static`, exit 0 before candidate freeze; post-record `make static`, status validation and continuity all exit 0; evidence below |
 | 44-mm captures | Source `cbe452b0efda5c1c06aac97cc6b5132817876cd8`; full run exit 0, 13/13; replacement runs exit 0, 3/3 and 1/1; zero failed/skipped/expected |
 | Capture command | `evidence/capture-command.txt`; every manifest records its exact result bundle and source |
 | Visual count | All 78 shipping PNGs plus all 156 final bounded 40-mm QA PNGs and 156 combined context PNGs individually inspected, plus three fresh Danish correction frames; all 52 website routes opened in browser |
@@ -61,3 +61,5 @@ Localization preparation and required automated/editorial verification are compl
 ## Evidence-record checks
 
 `make static` after final editorial/report updates: exit 0, log `/private/tmp/padel-localization-complete-static.log`; HEAD `8dd50d72b04689da93bfaed2599eb28bd26e3591` with only AI Markdown records changed. `Scripts/project-status.sh validate`: exit 0. Initial `Scripts/project-status.sh continuity 8dd50d72b04689da93bfaed2599eb28bd26e3591` returned 65 because those records were not yet committed; its clean-checkout guard is preserved. Commit records, then repeat static/validate/continuity before handoff.
+
+At clean record commit `1a2f5e4ae252696b9da3849b0f72f93ebf81a83e`: `make static` exit 0 (log `/private/tmp/padel-post-record-static.log`), `Scripts/project-status.sh validate` exit 0, `Scripts/project-status.sh continuity 8dd50d72b04689da93bfaed2599eb28bd26e3591` exit 0. Continuity confirms exactly the verified build inputs; only AI Markdown evidence changed. All localization test/capture device reservations are released. M10 hardware blockers unchanged.
