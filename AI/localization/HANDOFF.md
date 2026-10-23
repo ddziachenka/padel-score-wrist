@@ -1,6 +1,6 @@
 # Localization handoff
 
-**Status:** final layout batch and repeated visual checks in progress; no completion or release verdict yet.
+**Status:** all twelve language gates and previous combined integration passed; final Danish editorial correction awaits a fresh exact integration. No release verdict.
 
 ## Scope
 
@@ -27,16 +27,16 @@ Prepared 72 new raw 44-mm screenshots and refreshed six English screenshots afte
 | Field | Evidence |
 | --- | --- |
 | Common base | `809aa64036c4027d7aba141e889e90d97669e9e6` |
-| Final candidate | PENDING after complete 40-mm visual findings; b03098d integration interrupted |
-| Exact integration command | `make integration CANDIDATE=b03098d66ec2948b2c840501773078a83c7dd896` |
-| Integration result/counts/time/report | PENDING; command log `/private/tmp/padel-layout-final-integration.log` |
+| Previous verified candidate | `b6cbb53163027283e8466b97b0f35e67b8ae62f4` |
+| Exact integration command | `make integration CANDIDATE=b6cbb53163027283e8466b97b0f35e67b8ae62f4` |
+| Integration result/counts/time/report | Exit 0; 510/510 definitions, 884 passed invocations, 0 failed/skipped/expected; 8,267.178 s. Report `.artifacts/integration/20261023T134109Z-94630/report.md`; preserved `evidence/integration.md` |
 | Per-language commands | `make static` and `make fast` in each recorded worktree; `inputs.json` records full source SHAs |
 | Baseline `make fast` | Exit 0; 472 passed, 0 failed/skipped/expected; `evidence/fast-baseline.md` |
-| Language `make fast` reports | es, fr, it, pt-PT, pt-BR, nl passed, each 472/472 with zero failed/skipped/expected; remaining streams PENDING |
+| Language `make fast` reports | all twelve streams passed, each 472/472 with zero failed/skipped/expected; `evidence/language-gates.md` |
 | Final static | `make static`, exit 0 before candidate freeze; final continuity static PENDING |
-| 44-mm captures | Source `615a98d7e5d549bd4574f07537b3eefb50c14d69`; full run exit 0, 13/13 tests; Dutch replacement exit 0, 1/1; zero failed/skipped/expected |
+| 44-mm captures | Source `cbe452b0efda5c1c06aac97cc6b5132817876cd8`; full run exit 0, 13/13; replacement runs exit 0, 3/3 and 1/1; zero failed/skipped/expected |
 | Capture command | `evidence/capture-command.txt`; every manifest records its exact result bundle and source |
-| Visual count | All 78 final PNGs individually inspected; all 52 website routes opened in browser |
+| Visual count | All 78 shipping PNGs plus all 156 final bounded 40-mm QA PNGs and 156 combined context PNGs individually inspected; all 52 website routes opened in browser |
 | Numeric proof | `xcrun xcstringstool compile` plus `Scripts/probe-localized-plurals.swift`; both messages at 0,1,2,4,5,11,21,22,25,101,999 in every locale; catalog SHA-256 in each `plural-review.txt` |
 
 ## Tests and review
@@ -51,7 +51,7 @@ Rejected failed/black/incomplete capture attempts instead of accepting structura
 
 M10 remains BLOCKED on real-Watch evidence: spoken VoiceOver, on-court operation, Always On/Low Power, oldest-device launch performance, adverse-network StoreKit and the watch-face launcher. Simulator evidence does not replace these checks. No `make milestone ID=M10` or release-ready claim for this candidate. Those gates require the completed hardware audit on the same candidate.
 
-No App Store Connect upload, site publication, App Review submission or archive was performed. Store materials remain local drafts. Original language branches/worktrees and ignored result bundles remain available for reproduction.
+No App Store Connect upload, site publication, App Review submission or archive was performed. Store materials remain local drafts. Localized public website routes and StoreKit/App Store metadata require their separate publication/upload before live localized-link and store validation; this work proves the local prepared materials only. Original language branches/worktrees and ignored result bundles remain available for reproduction.
 
 ## Next step
 

@@ -1,4 +1,4 @@
-# Multilingual integration — in progress
+# Multilingual integration — Danish editorial correction under final verification
 
 Base: `809aa64036c4027d7aba141e889e90d97669e9e6`.
 First combined source: `ec49b053b17a5bfe15863c18a8f8b9c897d08b84`.
@@ -26,7 +26,7 @@ Catalogs were combined structurally, preserving every language and English sourc
 
 ## Editorial review
 
-The coordinator read every catalog value and plural variant, all four pages, all store fields and launcher labels for every locale. Reviewed readability before comparison with source meaning. Individual glossaries and correction examples are in each locale’s `review.md`. Numeric proof for both pluralized messages is in `plural-review.txt`, generated from compiled catalogs using `Scripts/probe-localized-plurals.swift`.
+The coordinator read every catalog value and plural variant, all four pages, all store fields and launcher labels for every locale. Reviewed readability before comparison with source meaning. Individual glossaries and correction examples are in each locale’s `review.md`. Numeric proof for both pluralized messages is in `plural-review.txt`, generated from compiled catalogs using `Scripts/probe-localized-plurals.swift`. Catalog SHA-256: `d0ad1247309f02aa8e20aa967eddf38759324fd18398456e2bc3af061917cbd3`. Values 0,1,2,4,5,11,21,22,25,101,999 were checked in every locale.
 
 This is the coordinator’s own editorial audit, not independent review or certification by an invited native speaker. UI labels, VoiceOver sentences, scoring rules, the five-completed-game limit, lifetime access, data deletion and privacy claims were checked separately. Final shared runtime evidence must still pass before translation completion is recorded.
 
@@ -38,19 +38,22 @@ The first attempt failed packaging because this checkout’s reused DerivedData 
 
 ## Capture and targeted evidence
 
-Capture source: `615a98d7e5d549bd4574f07537b3eefb50c14d69`.
+Capture source: `cbe452b0efda5c1c06aac97cc6b5132817876cd8`.
 `AI/localization/evidence/capture-command.txt` records UDID-targeted `xcodebuild test` through the managed lease wrapper, with all 12 `testLocalized<locale>Screens` selectors plus `testCaptureSixStoreScreens`. Exit 0; 13 passed, 0 failed, 0 skipped. Summary: `AI/localization/evidence/captures-summary.json`. The only capture-checkout configuration delta is the recorded 40→44-mm device type; manifests preserve source SHA, device, fixture/action, raw exported attachment, timestamp and SHA-256.
 
-72 new localized PNGs and six refreshed English PNGs are stored under `AI/store-assets`; site copies are byte-identical. No image text was composited or edited. English was refreshed because the common result header changed. `Scripts/verify-store-materials.py` validates all 78 images and linked alt text. See `runtime-findings.md` for failed attempts and corrections; none was omitted from the findings.
+72 new localized PNGs and six refreshed English PNGs are stored under `AI/store-assets`; site copies are byte-identical. No image text was composited or edited. English was refreshed after common result/serving layout corrections. `Scripts/verify-store-materials.py` validates all 78 images and linked alt text. See `runtime-findings.md` for failed attempts and corrections; none was omitted from the findings.
 
 Russian creation and installed resources on the capture source passed the targeted 40-mm recheck: 6 test definitions / 17 invocations, zero failures/skips. German and Russian largest-text journeys passed earlier targeted checks. The final exact integration gate still covers all locales and all original tests.
 
-## Validation still in progress
+## Final verification
 
-- Each language stream: exact `make static` and `make fast`; build queue owns isolated simulators.
-- 72 raw 44-mm XCTest screenshots; capture checkout changes only the managed device type from 40 to 44 mm. Capture source SHA and configuration delta must be recorded in manifests.
+- All twelve original language commits: `make static` exit 0; coordinator `make fast` exit 0, 472/472 each with zero failed/skipped/expected. Exact sources/worktrees/commands/bundles: `evidence/language-gates.md`.
+- 72 new raw 44-mm XCTest screenshots plus six refreshed English originals complete; all 78 individually reviewed and compared byte-for-byte with source attachments. French/Russian full replacement and two Portuguese Portugal replacements have exact bundle provenance in manifests. No text or pixels edited.
 - Final 40-mm shared test scheme: all languages, largest text, creation, scoring/Undo, correction, finish, replay/history, legal links, restore, save error and deletion.
-- Final `make integration CANDIDATE=<full-SHA>` after assets and corrections, with zero failed/skipped tests.
+- Final exact command: `make integration CANDIDATE=b6cbb53163027283e8466b97b0f35e67b8ae62f4`; exit 0; 510/510 definitions, 884 passed invocations, 0 failed/skipped/expected. Report `.artifacts/integration/20261023T134109Z-94630/report.md`; preserved report and raw summary `evidence/integration.md`. All 156 context images reviewed; Danish result banner correction requires a new final candidate gate.
+- Final bounded 40-mm QA complete at source `43a2d7460d21d785fed6dc193f8aab2d094a2398`, identical product files: exit 0, 24/24, zero failed/skipped/expected; all 156 frames individually inspected. Exact command, source comparison, bundle and 156 attachment hashes: `evidence/final-40mm.md`.
+- Browser: all 52 final routes opened with full heading and thirteen-language navigation; no error pages.
+- Earlier interrupted integrations do not count as passes; all failures/cancellations and corrections are recorded in `runtime-findings.md`.
 
 ## Release boundary
 

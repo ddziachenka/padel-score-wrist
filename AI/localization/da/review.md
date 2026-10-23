@@ -97,3 +97,13 @@ Runtime context refinement: the external legal-page heading is «Webside», the 
 Read all 330 Watch messages (including every plural form), all four launcher messages, all four complete web pages and every store field without English source text. Then checked changes against the source meaning and repeated the affected passages. Blind reading clarifies the web privacy policy/address, purchased access and permanent access in the store promotion. Official Apple Danish Anonymitet terminology retained. This is coordinator editorial review, not an invited native-speaker review.
 
 Terminology cross-check (23 October 2026): [Apple Danish watchOS guidance](https://support.apple.com/da-dk/123002) confirms the two-word name Smart stak; retained.
+
+## Coordinator final visual validation
+
+Original language-agent execution notes above remain historical. Coordinator completed the shared runtime review after integration: six original 44-mm store images and thirteen bounded 40-mm normal/maximum-text images for this locale were individually inspected. Product source `cbe452b0efda5c1c06aac97cc6b5132817876cd8`, final candidate `b6cbb53163027283e8466b97b0f35e67b8ae62f4`; QA source `43a2d7460d21d785fed6dc193f8aab2d094a2398` differs only by added test probes under App. QA batch exit 0, 24/24 tests, zero failed/skipped/expected; all 156 images reviewed across the twelve locales. Full metric copy, team names, serving player numbers and editor rows remain readable. Evidence and original hashes: `../evidence/final-40mm.md`, `../visual-review.md`, and store manifests. Final combined integration/runtime verdict is recorded separately in `../HANDOFF.md`; no provisional run is a pass. Real spoken VoiceOver remains unverified until required Watch evidence is recorded.
+
+Coordinator executed `make fast` on the original language commit `7e3da467c1b2fa7cee4fe287f50b8032504a3d39`: exit 0; 472 passed, 0 failed/skipped/expected, every test in that original scheme. Exact worktree/device/report/bundle and log provenance: `../evidence/fast-da.md`. This does not replace the complete final combined integration gate.
+
+## Final result-banner correction
+
+Actual combined Creation frame exposed `OS vandt`: object-form scoreboard labels had been reused as subjects. Corrected `US won` to `Vi vandt`, `THEM won` to `De vandt`, `US ahead` to `Vi er foran`, and `THEM ahead` to `De er foran`. Danish language agent independently confirmed the grammatical issue read-only; coordinator applied and re-read the four phrases. Short OS/DEM scoreboard labels remain appropriate. Full announcements and object phrases such as `Parti til os` remain correct. Fresh exact runtime verification pending.
