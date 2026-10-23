@@ -8,7 +8,7 @@
     368,
     448
   ],
-  "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/stable-screenshots.xcresult",
+  "result_bundle": "/private/tmp/padel-l10n-capture/.artifacts/localization/dutch-final.xcresult",
   "test": "StoreMaterialsUITests/testLocalizednlScreens()",
   "configuration_delta": {
     "SIMULATOR_DEVICE_TYPE": {
@@ -19,51 +19,51 @@
   "screenshots": [
     {
       "file": "nl/watch-44mm/01-match.png",
-      "sha256": "01fe28d301be4e14c206771759aaf97ba4ff87fbf44e6e376f499b30bbe2eba9",
+      "sha256": "40929bd42eeb54fff65bd89196bf9a714596219060252d5aaf6526e36a061d4f",
       "fixture": "storeMatch",
       "actions": "launch live score; capture before award/Undo check",
-      "attachment": "CEE622D4-2EF9-498D-9B78-E1BF400A7B00.png",
-      "timestamp": 1792751649.797
+      "attachment": "616D9413-BAB1-4559-9523-D1891FE2E520.png",
+      "timestamp": 1792753378.109
     },
     {
       "file": "nl/watch-44mm/02-golden-point.png",
-      "sha256": "7f0fa57fe574edaa3cb7dab1d3867c17b7174f481097d7feff9aa03eb0f1b5c1",
+      "sha256": "b1875b9df863aea7692a1f2f31bc8cd374b20b8dc7b9b7f605d98dc6cee851a1",
       "fixture": "storeGoldenPoint",
       "actions": "launch at 40–40; capture",
-      "attachment": "492D7798-166D-4DFC-8BFB-3D54E616B5CE.png",
-      "timestamp": 1792751656.216
+      "attachment": "A300822B-94D2-4CC3-A0BC-ED5EAF4DFC53.png",
+      "timestamp": 1792753384.627
     },
     {
       "file": "nl/watch-44mm/03-americano.png",
-      "sha256": "7de29419f542f3cd51f063cad2bc82a94e53708e45e64a2c43141e56077299d0",
+      "sha256": "c4601826a817454a136f6c89cf7bb2e39ae806babf2386089f3bec1dd68140d2",
       "fixture": "storeAmericano",
       "actions": "launch 13–10 of 32; capture",
-      "attachment": "C7DC09C6-ADF5-4FF9-ABA3-AF33CD9F8660.png",
-      "timestamp": 1792751661.327
+      "attachment": "1ACCC804-CEFC-47D4-996A-2A479463EE44.png",
+      "timestamp": 1792753389.809
     },
     {
       "file": "nl/watch-44mm/04-edit-score.png",
-      "sha256": "4dc4df6f1212e65779827ff4c033a638e577c872897ebf99f1084379c678128d",
+      "sha256": "5f4ab181a46963c09a8ffaee2e10b64748abe42abb6592f96715d1d8a80839a5",
       "fixture": "storeMatch",
       "actions": "Game menu → Edit score; capture",
-      "attachment": "4457C959-E376-48D2-8CEE-157D88344C12.png",
-      "timestamp": 1792751668.632
+      "attachment": "97114989-2281-4500-A647-E6B54D395E51.png",
+      "timestamp": 1792753397.193
     },
     {
       "file": "nl/watch-44mm/05-result.png",
-      "sha256": "0c100c2262601b5e16f381f9618e88e2e6d6df97cbf71df4bca36058f1c3c7dc",
+      "sha256": "bef0b772ab415e3e2c8d1a4691d82f8fec710c91244f2d05db77834fb3ffadb5",
       "fixture": "storeResult",
       "actions": "launch saved three-set Match result; capture",
-      "attachment": "9F50FBC0-E29C-4D2B-A765-67E42539FF93.png",
-      "timestamp": 1792751687.658
+      "attachment": "33930502-A22E-4EED-89FE-559A060A964C.png",
+      "timestamp": 1792753416.721
     },
     {
       "file": "nl/watch-44mm/06-history.png",
-      "sha256": "9e813b297860c583fb429b3cb3ba18aca2d5a152479fe9cddf64195d5cb7f926",
+      "sha256": "4d41dd51ec0d0cb676f68ae8750664fbbc29e3408e058559ea538020de1bd253",
       "fixture": "storeHistory",
       "actions": "New game → History; capture",
-      "attachment": "AE2FADDF-B49B-46C7-B7FC-FAE7612EC5B5.png",
-      "timestamp": 1792751700.405
+      "attachment": "88E143E8-6735-40FE-906F-9AEDF25BDE8E.png",
+      "timestamp": 1792753429.572
     }
   ]
 }
