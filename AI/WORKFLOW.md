@@ -705,9 +705,11 @@ conflict in a file holding more than one language is never resolved by taking on
 whole side, because one of those sides is a language being deleted. Publishing the
 site waits until every expected language is integrated and the gate has passed.
 
-`make site-check`, which `make static` runs, knows the four English routes and the
-links between them. It has no knowledge of localized routes, so combined validation
-opens them explicitly and its passing alone says nothing about them.
+`make site-check`, which `make static` runs, validates the four English pages plus
+the added locales in `Config/localizations.json`: catalogs, store drafts, canonical
+and alternate routes, language navigation, and original screenshot provenance.
+Combined validation also opens every route in a browser and inspects the localized
+application; structural checks alone do not establish rendered quality.
 
 The candidate `Final Product Polish` established describes the commit before these
 languages existed, so the integration commit is what now represents the shipping

@@ -277,5 +277,5 @@ log_ok "site verification PASSED"
 # Every added locale is validated in addition to the original English checks.
 if [ -f "${_script_dir}/verify-localizations.py" ]; then
     PYTHONDONTWRITEBYTECODE=1 python3 "${_script_dir}/test-localizations.py" || exit "$EX_VERIFY"
-    python3 "${_script_dir}/verify-localizations.py" || exit "$EX_VERIFY"
+    python3 "${_script_dir}/verify-localizations.py" --all || exit "$EX_VERIFY"
 fi

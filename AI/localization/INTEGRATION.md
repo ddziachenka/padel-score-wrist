@@ -36,6 +36,15 @@ This is the coordinator’s own editorial audit, not independent review or certi
 
 The first attempt failed packaging because this checkout’s reused DerivedData still contained test hosts from an earlier test run (`.artifacts/fast/20261023T082651Z-84768/build.log`). Cleaning only the checkout-owned DerivedData resolved it; the unchanged exact baseline then passed. No test or packaging check was weakened.
 
+## Capture and targeted evidence
+
+Capture source: `62e2cee5e8e2c12361ff43d53013f3752d57e604`.
+`/private/tmp/padel-capture-command.py` invoked UDID-targeted `xcodebuild test` through the managed lease wrapper, with all 12 `testLocalized<locale>Screens` selectors plus `testCaptureSixStoreScreens`. Exit 0; 13 passed, 0 failed, 0 skipped. Summary: `AI/localization/evidence/captures-summary.json`. The only capture-checkout configuration delta is the recorded 40→44-mm device type; manifests preserve source SHA, device, fixture/action, raw exported attachment, timestamp and SHA-256.
+
+72 new localized PNGs and six refreshed English PNGs are stored under `AI/store-assets`; site copies are byte-identical. No image text was composited or edited. English was refreshed because the common result header changed. `Scripts/verify-store-materials.py` validates all 78 images and linked alt text. See `runtime-findings.md` for failed attempts and corrections; none was omitted from the findings.
+
+Russian creation and installed resources on the capture source passed the targeted 40-mm recheck: 6 test definitions / 17 invocations, zero failures/skips. German and Russian largest-text journeys passed earlier targeted checks. The final exact integration gate still covers all locales and all original tests.
+
 ## Validation still in progress
 
 - Each language stream: exact `make static` and `make fast`; build queue owns isolated simulators.

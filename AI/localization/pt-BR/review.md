@@ -43,3 +43,5 @@ Examples of corrections after the language agent’s own review:
 - Game → Partida
 
 Coordinator numeric correction: added an explicit zero form, giving «0 pontos» while retaining «1 ponto». Verified with xcstringstool compilation and Foundation for every requested numeric value; added an installed-bundle regression check.
+
+Runtime context refinement: the external legal-page heading is «Página na web», the natural word for a web page, rather than a literal “public page”. The URL and privacy meaning are unchanged.

@@ -62,3 +62,5 @@ Examples of corrections after the language agent’s own review:
 - Second server → Zweiter Aufschläger
 - Next server → Nächster Aufschläger
 - Opened the tie-break → Erster Aufschläger im Tie-Break
+
+Runtime context refinement: the external legal-page heading is «Webseite», the natural word for a web page, rather than a literal “public page”. The URL and privacy meaning are unchanged.

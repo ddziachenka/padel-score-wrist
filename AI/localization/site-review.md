@@ -9,3 +9,5 @@ Visual correction: Russian homepage’s literal long heading split inside a word
 Screenshot rendering is pending final raw captures; completion will be recorded with the final asset/gate evidence. No live site was published.
 
 German and Finnish desktop hero headings were inspected after giving translated headlines the full text column rather than an English-specific 12-character measure. Added language-link tap targets of at least 44 px.
+
+Responsive browser check: the real German privacy page at 280 px, Russian home at 320 px and Brazilian Portuguese home at 375 px were rendered inside local viewport frames. Navigation wraps, headings stay readable with native hyphenation, and the actual localized images load. The temporary QA wrapper was removed before the candidate. General legal-page headings now enable native hyphenation as well.

@@ -1,7 +1,7 @@
-Catalog SHA-256: 44b9f0583781fd09c30865def1aacd34fc55846a4b9e322ad4b834579f164e66
-Compiler: xcrun xcstringstool compile (pt-BR)
-Probe: Scripts/probe-localized-plurals.swift, Foundation resource resolution
-Explicit zero form reviewed after coordinator correction.
+Catalog SHA-256: c9c7a5a658b51d9b92de8c03a5b615c4681139968b8596ebbdf2ea58d3644ca4
+Compiler: xcrun xcstringstool compile
+Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
+Both messages reviewed for all eleven requested values. App runtime evidence is recorded separately.
 
 0: 0 de 0 pontos disputados.
 0: 0 pontos no total, 0 por sacador.

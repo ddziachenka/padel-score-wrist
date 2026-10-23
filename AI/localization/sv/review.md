@@ -69,3 +69,5 @@ Examples of corrections after the language agent’s own review:
 - Second server → Andra servaren
 - No lifetime purchase was found for this Apple Account. → Inget köp för permanent åtkomst hittades för det här Apple-kontot.
 - Game → Spel
+
+Runtime context refinement: the external legal-page heading is «Webbsida», the natural word for a web page, rather than a literal “public page”. The URL and privacy meaning are unchanged.

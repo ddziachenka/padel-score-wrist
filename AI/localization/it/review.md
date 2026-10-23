@@ -60,3 +60,5 @@ Examples of corrections after the language agent’s own review:
 - Opened the tie-break → Primo battitore del tie-break
 - Unlimited Match & Americano scoring. → Incontri e Americano senza limiti.
 - Game → Partita
+
+Runtime context refinement: the external legal-page heading is «Pagina web», the natural word for a web page, rather than a literal “public page”. The URL and privacy meaning are unchanged.

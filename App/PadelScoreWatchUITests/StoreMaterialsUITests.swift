@@ -1,4 +1,6 @@
 import XCTest
+import CoreGraphics
+import ImageIO
 
 /// Direct captures of the real interface, using only Debug's isolated fixture store.
 @MainActor
@@ -7,6 +9,49 @@ final class StoreMaterialsUITests: XCTestCase {
 
     private func element(_ id: String, in app: XCUIApplication) -> XCUIElement {
         app.descendants(matching: .any)[id]
+    }
+
+    /// Read pixels to reject the system's black launch overlay and unfinished transitions.
+    /// The attachment is still the original, unmodified XCTest screenshot.
+    private func attachStoreCapture(_ name: String) {
+        var previous: Data?
+        let deadline = Date().addingTimeInterval(10)
+        while Date() < deadline {
+            let screenshot = XCUIScreen.main.screenshot()
+            if let pixels = renderedPixels(screenshot) {
+                if pixels == previous {
+                    let attachment = XCTAttachment(screenshot: screenshot)
+                    attachment.name = name
+                    attachment.lifetime = .keepAlways
+                    add(attachment)
+                    return
+                }
+                previous = pixels
+            } else {
+                previous = nil
+            }
+            RunLoop.current.run(until: Date().addingTimeInterval(0.3))
+        }
+        XCTFail("No fully rendered, stable screen for \(name)")
+    }
+
+    private func renderedPixels(_ screenshot: XCUIScreenshot) -> Data? {
+        guard let source = CGImageSourceCreateWithData(screenshot.pngRepresentation as CFData, nil),
+              let image = CGImageSourceCreateImageAtIndex(source, 0, nil),
+              let context = CGContext(data: nil, width: image.width, height: image.height,
+                                      bitsPerComponent: 8, bytesPerRow: image.width * 4,
+                                      space: CGColorSpaceCreateDeviceRGB(),
+                                      bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue),
+              let address = context.data else { return nil }
+        context.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
+        let pixels = Data(bytes: address, count: image.width * image.height * 4)
+        let visible = pixels.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
+            stride(from: 0, to: bytes.count, by: 4).filter {
+                max(bytes[$0], bytes[$0 + 1], bytes[$0 + 2]) > 48
+            }.count
+        }
+        // Every store fixture has substantial text; a clock or spinner alone does not.
+        return visible > image.width * image.height / 100 ? pixels : nil
     }
 
     private func launchForCapture(store: String, seed: String, language: String = "en", region: String = "en_US") -> XCUIApplication {
@@ -23,7 +68,7 @@ final class StoreMaterialsUITests: XCTestCase {
         XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
         XCTAssertEqual(element("game.context", in: app).label, "Set 2")
         XCTAssertEqual(element("game.games", in: app).value as? String, "Us 3, them 2")
-        attachScreenshot("store-01-match")
+        attachStoreCapture("store-01-match")
         // Judge the pictured scoring surface as an interaction too: award and undo.
         award(app.buttons["game.us"], showing: "Our score, 40")
         app.buttons["game.undo"].tap()
@@ -33,14 +78,14 @@ final class StoreMaterialsUITests: XCTestCase {
         app = launchForCapture(store: "store-golden", seed: "storeGoldenPoint")
         XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
         XCTAssertEqual(element("game.context", in: app).label, "Golden point")
-        attachScreenshot("store-02-golden-point")
+        attachStoreCapture("store-02-golden-point")
         app.terminate()
 
         app = launchForCapture(store: "store-round", seed: "storeAmericano")
         XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
         XCTAssertEqual(app.buttons["game.us"].label, "Our score, 13")
         XCTAssertEqual(app.buttons["game.them"].label, "Their score, 10")
-        attachScreenshot("store-03-americano")
+        attachStoreCapture("store-03-americano")
         app.terminate()
 
         app = launchForCapture(store: "store-correction", seed: "storeMatch")
@@ -48,21 +93,21 @@ final class StoreMaterialsUITests: XCTestCase {
         app.buttons["game.menu"].tap()
         app.buttons["menu.editScore"].tap()
         XCTAssertTrue(app.buttons["editor.games"].waitForExistence(timeout: 5))
-        attachScreenshot("store-04-edit-score")
+        attachStoreCapture("store-04-edit-score")
         app.terminate()
 
         app = launchForCapture(store: "store-result", seed: "storeResult")
         XCTAssertTrue(element("result.set.3", in: app).waitForExistence(timeout: 10))
         XCTAssertEqual(element("result.set.1", in: app).value as? String, "Us 6, them 4")
         XCTAssertEqual(element("result.set.3", in: app).value as? String, "Us 6, them 3")
-        attachScreenshot("store-05-result")
+        attachStoreCapture("store-05-result")
         app.terminate()
 
         app = launchForCapture(store: "store-history", seed: "storeHistory")
         app.buttons["home.history"].scrollToAndTap(in: app)
         let rows = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'history.entry.'"))
         XCTAssertEqual(rows.count, 3)
-        attachScreenshot("store-06-history")
+        attachStoreCapture("store-06-history")
     }
     // Localization regression tests verify the built resources and real navigation,
     // independently of the original English journeys above.
@@ -82,7 +127,7 @@ final class StoreMaterialsUITests: XCTestCase {
         XCTAssertTrue(us.isHittable && us.isEnabled, "The score is not ready for interaction")
         XCTAssertEqual(element("game.context", in: app).label, words["set2"])
         XCTAssertEqual(us.label, words["score30"])
-        attachScreenshot("l10n-\(language)-01-match")
+        attachStoreCapture("l10n-\(language)-01-match")
         award(us, showing: words["score40"]!)
         app.buttons["game.undo"].tap()
         waitForLabel(us, words["score30"]!)
@@ -91,13 +136,13 @@ final class StoreMaterialsUITests: XCTestCase {
         app = start("storeGoldenPoint", "golden")
         XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
         XCTAssertEqual(element("game.context", in: app).label, words["golden"])
-        attachScreenshot("l10n-\(language)-02-golden-point")
+        attachStoreCapture("l10n-\(language)-02-golden-point")
         app.terminate()
 
         app = start("storeAmericano", "round")
         XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
         XCTAssertEqual(app.buttons["game.us"].label, words["score13"])
-        attachScreenshot("l10n-\(language)-03-americano")
+        attachStoreCapture("l10n-\(language)-03-americano")
         app.terminate()
 
         app = start("storeMatch", "edit")
@@ -105,7 +150,7 @@ final class StoreMaterialsUITests: XCTestCase {
         app.buttons["game.menu"].tap()
         app.buttons["menu.editScore"].tap()
         XCTAssertTrue(app.buttons["editor.games"].waitForExistence(timeout: 5))
-        attachScreenshot("l10n-\(language)-04-edit-score")
+        attachStoreCapture("l10n-\(language)-04-edit-score")
         app.buttons["editor.save"].scrollToAndTap(in: app)
         XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 5))
         app.terminate()
@@ -113,14 +158,14 @@ final class StoreMaterialsUITests: XCTestCase {
         app = start("storeResult", "result")
         XCTAssertTrue(element("result.set.3", in: app).waitForExistence(timeout: 10))
         XCTAssertEqual(element("result.set.1", in: app).value as? String, words["games64"])
-        attachScreenshot("l10n-\(language)-05-result")
+        attachStoreCapture("l10n-\(language)-05-result")
         app.terminate()
 
         app = start("storeHistory", "history")
         app.buttons["home.history"].scrollToAndTap(in: app)
         let rows = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'history.entry.'"))
         XCTAssertEqual(rows.count, 3)
-        attachScreenshot("l10n-\(language)-06-history")
+        attachStoreCapture("l10n-\(language)-06-history")
         app.terminate()
     }
 

@@ -96,3 +96,5 @@ website source dates are 23 October, each kept as supplied.
 Read all 330 Watch entries (including plural variants), four launcher entries, four full web pages and all store fields. Reviewed first for natural phrasing, then for scoring, purchase and privacy meaning. This is the coordinator’s editorial review, not an independent or invited native-speaker certification. Runtime layout and capture evidence is recorded separately in the integration handoff.
 
 Second reading retained the language agent’s phrasing; context and layout checks remain separate.
+
+Runtime context refinement: the external legal-page heading is «Nettside», the natural word for a web page, rather than a literal “public page”. The URL and privacy meaning are unchanged.

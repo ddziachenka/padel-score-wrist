@@ -28114,13 +28114,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Página pública"
+            "value": "Página web"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pagina pubblica"
+            "value": "Pagina web"
           }
         },
         "fr": {
@@ -28132,37 +28132,37 @@
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Página pública"
+            "value": "Página web"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Página pública"
+            "value": "Página na web"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Openbare pagina"
+            "value": "Webpagina"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Öffentliche Seite"
+            "value": "Webseite"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Offentlig sida"
+            "value": "Webbsida"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Offentlig side"
+            "value": "Webside"
           }
         },
         "fi": {
@@ -28174,7 +28174,7 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Offentlig side"
+            "value": "Nettside"
           }
         },
         "ru": {

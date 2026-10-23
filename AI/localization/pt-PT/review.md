@@ -41,3 +41,5 @@ Examples of corrections after the language agent’s own review:
 - Unlimited Match & Americano scoring. → Partidas e Americano sem limites.
 - Rallies per server → Pontos por turno de serviço
 - Game → Partida
+
+Runtime context refinement: the external legal-page heading is «Página web», the natural word for a web page, rather than a literal “public page”. The URL and privacy meaning are unchanged.

@@ -1,6 +1,7 @@
-Compiled catalog: ec49b053b17a5bfe15863c18a8f8b9c897d08b84
+Catalog SHA-256: c9c7a5a658b51d9b92de8c03a5b615c4681139968b8596ebbdf2ea58d3644ca4
+Compiler: xcrun xcstringstool compile
 Probe: Scripts/probe-localized-plurals.swift (Foundation resource resolution)
-Reviewed both messages for each requested value. Runtime layout evidence is separate.
+Both messages reviewed for all eleven requested values. App runtime evidence is recorded separately.
 
 0: 0 de 0 pontos disputados.
 0: 0 pontos no total, 0 por jogador ao serviço.

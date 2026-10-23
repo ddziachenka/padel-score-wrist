@@ -157,12 +157,14 @@ a:hover {
 }
 
 h1 {
+  hyphens: auto;
   margin-block: 0 0.5rem;
   font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.5rem);
   line-height: 1.2;
 }
 
 h2 {
+  hyphens: auto;
   margin-block-start: 2.25rem;
   font-size: 1.25rem;
   line-height: 1.3;

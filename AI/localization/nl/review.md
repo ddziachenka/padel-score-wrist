@@ -88,3 +88,5 @@ Examples of corrections after the language agent’s own review:
 - Earlier save restored → Eerdere versie hersteld
 - No lifetime purchase was found for this Apple Account. → Geen aankoop voor levenslange toegang gevonden voor dit Apple Account.
 - Game → Wedstrijd
+
+Runtime context refinement: the external legal-page heading is «Webpagina», the natural word for a web page, rather than a literal “public page”. The URL and privacy meaning are unchanged.
