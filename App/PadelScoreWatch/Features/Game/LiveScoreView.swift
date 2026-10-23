@@ -793,19 +793,38 @@ private struct CountRow: View {
 private struct ValueRow: View {
     let label: LocalizedStringKey
     let value: Int
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
-        HStack(spacing: Spacing.sm) {
-            Text(label)
-                .font(Typography.caption)
-                .foregroundStyle(Palette.textSecondary)
-            Text(value, format: .number)
-                .font(Typography.heading.monospacedDigit())
-                .foregroundStyle(Palette.textPrimary)
+        Group {
+            if textSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: Spacing.xs) {
+                    name.fixedSize(horizontal: false, vertical: true)
+                    count
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            } else {
+                HStack(spacing: Spacing.sm) {
+                    name
+                    count
+                }
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+            }
         }
-        .lineLimit(1)
-        .minimumScaleFactor(0.8)
         .accessibilityElement(children: .combine)
+    }
+
+    private var name: some View {
+        Text(label)
+            .font(Typography.caption)
+            .foregroundStyle(Palette.textSecondary)
+    }
+
+    private var count: some View {
+        Text(value, format: .number)
+            .font(Typography.heading.monospacedDigit())
+            .foregroundStyle(Palette.textPrimary)
     }
 }
 

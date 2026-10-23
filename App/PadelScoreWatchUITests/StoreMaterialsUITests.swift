@@ -294,11 +294,11 @@ final class StoreMaterialsUITests: XCTestCase {
     }
 
     func testLocalizeddaScreens() {
-        localizedCapture("da", "da_DK", ["set2": "Sæt 2", "score30": "Vores stilling, 30", "score40": "Vores stilling, 40", "score13": "Vores stilling, 13", "golden": "Golden point", "games64": "Os 6, dem 4", "oneAdvantageExplanation": "Anden gang stillingen er 40⁠–⁠40, afgør næste point partiet.", "promise": "Hold fokus på spillet", "saveFailed": "Kunne ikke gemme."])
+        localizedCapture("da", "da_DK", ["set2": "Sæt 2", "score30": "Vores stilling, 30", "score40": "Vores stilling, 40", "score13": "Vores stilling, 13", "golden": "Golden point", "games64": "Os 6, dem 4", "oneAdvantageExplanation": "Anden gang stillingen er 40–40, afgør næste point partiet.", "promise": "Hold fokus på spillet", "saveFailed": "Kunne ikke gemme."])
     }
 
     func testLocalizeddaJourneys() {
-        localizedJourney("da", "da_DK", ["set2": "Sæt 2", "score30": "Vores stilling, 30", "score40": "Vores stilling, 40", "score13": "Vores stilling, 13", "golden": "Golden point", "games64": "Os 6, dem 4", "oneAdvantageExplanation": "Anden gang stillingen er 40⁠–⁠40, afgør næste point partiet.", "promise": "Hold fokus på spillet", "saveFailed": "Kunne ikke gemme."])
+        localizedJourney("da", "da_DK", ["set2": "Sæt 2", "score30": "Vores stilling, 30", "score40": "Vores stilling, 40", "score13": "Vores stilling, 13", "golden": "Golden point", "games64": "Os 6, dem 4", "oneAdvantageExplanation": "Anden gang stillingen er 40–40, afgør næste point partiet.", "promise": "Hold fokus på spillet", "saveFailed": "Kunne ikke gemme."])
     }
 
     func testLocalizedfiScreens() {
