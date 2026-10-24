@@ -108,6 +108,8 @@ The initial broad capture run was cancelled and a temporary diagnostic compile f
 
 Await Apple's response to case **103007020727** and its supported submission path. No companion-app milestone is authorized. If app or build configuration changes become necessary, create the authorized milestone and fully verify the new candidate; do not transfer the old binary-readiness evidence. If Apple supplies a supported path without code changes, recheck the same saved draft and proceed under the already-given submission authorization.
 
+The owner also requested investigation of simple alternatives. [Research and option comparison](../launch-20261024/watch-only-iap-options.md) found matching developer reports but no confirmed workaround preserving Watch-only plus the first lifetime IAP. Paid download with a free launch period is the simplest assessed fallback architecture; it changes monetization and has not been authorized or implemented. No additional Apple message or submission attempt was made during this research.
+
 ## Closing repository checks
 
 `make static` exit 0 (`evidence/static-closing.log`), `make site-check` exit 0 (`evidence/site-check-closing.log`), and `git diff --check` exit 0 after the release-preparation records were written. These checks pass with the honest submission blocker recorded; no readiness gate was weakened. Final clean-commit continuity is recorded in the package after the documentation commit.
