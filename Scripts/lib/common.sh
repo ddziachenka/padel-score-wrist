@@ -3718,7 +3718,7 @@ validate_watch_companion_transition() (
     sha="$(awk -F '|' '$2 ~ /^[[:space:]]*Verified SHA[[:space:]]*$/ {
         value=$3; gsub(/[`[:space:]]/, "", value); print value
     }' "$handoff")"
-    if ! printf '%s\n' "$sha" | grep -Eq '^[0-9a-f]{40}$' \
+    if ! printf '%s\n' "$sha" | grep -E '^[0-9a-f]{40}$' >/dev/null \
        || [ "$(printf '%s\n' "$sha" | wc -l | tr -d ' ')" != 1 ] \
        || ! git cat-file -e "${sha}^{commit}" 2>/dev/null; then
         log_error 'historical Watch audit needs one available full Verified SHA in its handoff'

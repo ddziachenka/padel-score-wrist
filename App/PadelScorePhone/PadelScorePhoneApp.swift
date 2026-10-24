@@ -1,9 +1,13 @@
 import SwiftUI
 import StoreKit
+import UIKit
 
 @main
 struct PadelScorePhoneApp: App {
     @State private var entitlements = EntitlementStore(client: StoreKitPurchaseClient())
+    init() {
+        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "PhoneSecondaryText")
+    }
     var body: some Scene {
         WindowGroup { CompanionRootView().environment(entitlements).tint(PhoneTheme.accent) }
     }

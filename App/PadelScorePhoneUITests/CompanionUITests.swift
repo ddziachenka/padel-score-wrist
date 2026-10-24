@@ -71,6 +71,18 @@ final class CompanionUITests: XCTestCase {
         app.terminate()
     }
 
+    func testSpanishTeamNamesAtLargestTextAreNotClipped() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(es)", "-AppleLocale", "es_ES", "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        app.launch()
+        defer { app.terminate() }
+        XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+        app.buttons["phone.start.demo"].tap()
+        XCTAssertTrue(app.buttons["phone.demo.us"].waitForExistence(timeout: 5))
+        capture(app, "spanish-largest-team-names")
+        try auditIncludingOccludedText(app)
+    }
+
     private func localStore() throws -> SKTestSession {
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "Lifetime", withExtension: "storekit"))
         let session = try SKTestSession(contentsOf: url)
@@ -154,8 +166,8 @@ final class CompanionUITests: XCTestCase {
         }
         func audit() throws {
             let rechecked = pending.filter { fullyVisible($0.value) }.map(\.key)
-            try app.performAccessibilityAudit(for: [.contrast, .elementDetection, .hitRegion, .sufficientElementDescription, .trait]) { issue in
-                if issue.auditType == .contrast, let element = issue.element,
+            try app.performAccessibilityAudit(for: [.contrast, .textClipped, .elementDetection, .hitRegion, .sufficientElementDescription, .trait]) { issue in
+                if (issue.auditType == .contrast || issue.auditType == .textClipped), let element = issue.element,
                    element.frame.width > 0, element.frame.height > 0, !fullyVisible(element) {
                     let identity = key(element)
                     if !checked.contains(identity) { pending[identity] = element }
@@ -194,6 +206,8 @@ final class CompanionUITests: XCTestCase {
     }
 
     private func capture(_ app: XCUIApplication, _ name: String) {
+        // System chrome finishes its transition after the app's accessibility tree is idle.
+        Thread.sleep(forTimeInterval: 1)
         let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }
