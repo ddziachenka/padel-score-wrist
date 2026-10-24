@@ -527,6 +527,12 @@ transaction API и изолированное defaults-хранилище. От�
 доступности сайта. Синхронность on-watch copy и Web проверяет Legal and Support.
 Deployment сайта не выполняется verification gate.
 
+### Verification policy retained for both platforms
+
+The DEBUG-only override resolves through the single entitlement owner and never creates, alters, or finishes a StoreKit transaction. Tests use an injected defaults suite, so they cannot change a developer's simulator entitlement. A Release-absence assertion compiled only under `#if !DEBUG` can never fail in the Debug suite and is forbidden; the source scan and actual Release build prove exclusion instead.
+
+The actual amount charged is the most prominent number. This product has one lifetime product and no comparison price (REL-408 is inapplicable). Any future approved comparison is computed from loaded products: a monthly equivalent is twelve times the price StoreKit returned; rounding can only understate the claim. A missing comparison product leaves the loaded actual price rather than a comparison it cannot justify. This policy does not authorize adding a subscription or a comparison to Padel Score.
+
 ## Security and privacy
 
 | Question | Answer |

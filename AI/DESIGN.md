@@ -332,6 +332,8 @@ Crown используется как предсказуемая навигац�
 
 ## Craftsmanship and signature experience
 
+Premium means clarity, hierarchy, readable copy, immediate feedback and low friction. It is not gradients, glass, cards, or animation added for decoration. This section remains short: it is a product language, not a design-system specification.
+
 | Question | Answer |
 | --- | --- |
 | Interaction personality, in one sentence | Короткое касание даёт уверенный результат, короткая отмена возвращает весь контекст. |

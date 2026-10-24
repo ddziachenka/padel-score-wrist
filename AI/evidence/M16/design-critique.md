@@ -39,3 +39,11 @@ After repair, rerun the token test and live UI audit at largest Dynamic Type, pl
 Compiled-resource regression after repair: `.artifacts/M16/color-regression-after.xcresult`, exit0, 1/1 test, zero failures/skips. `make static` passed (exit0; `.artifacts/M16/static-precommit.log`). A signed Debug build was installed on the connected iPhone; the owner confirmed “Текст виден, приложение на часах обновлено”. The old invisible-copy photographs and failing bundles remain preserved. Native large-text audit and full candidate gates are still pending.
 
 Read-only DEBUG diagnostics on the connected iPhone show a verified StoreKit Sandbox entitlement and USD price0 (`.artifacts/M16/iphone-console-visual-fix.log`). This proves the phone is using Apple Sandbox; it does not substitute for the remaining bidirectional hardware scenarios.
+
+## Second runtime pass
+
+The first post-alpha native audit still reported contrast for labels underneath translucent system bars. Diagnostic attachments identified their exact rectangles below the usable viewport, rather than a failing foreground color. UI tests now queue every such label, scroll it fully into view, and run the same native audit again; every queued element must be rechecked or the test fails. All visible issues still fail immediately. No audit type or required element was excluded. Slow controlled drags keep inspection from flinging past the target. The layout retains native scrolling.
+
+Demo now leads with the real scoreboard, moves its repeated introduction below it, fits the Demo/context header vertically where needed, and keeps team labels on one line with horizontal padding. A stacked large-text experiment was rejected because it hid the comparison between scores. The iPhone Home Screen label is PadelScore per the owner's clarification; ASC title is unchanged.
+
+Complete development UI suite: `.artifacts/M16/ios-ui-final-development.xcresult`, exit0, 4/4 cases, zero failures/skips, including13-language gallery and largest-text native audit. This is development evidence, not the clean-REVIEW milestone result. Earlier failed experiments remain preserved. Dark appearance and final source verification follow.

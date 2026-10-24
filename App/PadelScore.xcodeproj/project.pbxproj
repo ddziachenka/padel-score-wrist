@@ -1385,7 +1385,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Padel Score — Wrist";
+				INFOPLIST_KEY_CFBundleDisplayName = PadelScore;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore;
@@ -1681,7 +1681,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Padel Score — Wrist";
+				INFOPLIST_KEY_CFBundleDisplayName = PadelScore;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore;
