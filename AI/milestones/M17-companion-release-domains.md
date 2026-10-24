@@ -1,7 +1,7 @@
 # M17 — Companion Release Domain Revalidation
 
 **ID:** M17
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M16
 **Validation:** make milestone ID=M17
 **Handoff:** AI/handoffs/M17-handoff.md
@@ -22,12 +22,12 @@ No product expansion. No scoring, storage or purchase-model change.
 
 ## Acceptance criteria
 
-- [ ] Six current typed domain records cover the maintained inventory honestly.
-- [ ] Current runtime review covers Start, both exact demos, Access, navigation,
+- [x] Six current typed domain records cover the maintained inventory honestly.
+- [x] Current runtime review covers Start, both exact demos, Access, navigation,
       cancellation and known localized/large-text boundaries.
-- [ ] Public legal/support copy matches the companion privacy architecture.
-- [ ] No new P0/P1 remains. Exact owner-accepted exceptions are retained, not passes.
-- [ ] Unchanged full make milestone ID=M17 runs on clean REVIEW SHA; command,
+- [x] Public legal/support copy matches the companion privacy architecture.
+- [x] No new P0/P1 remains. Exact owner-accepted exceptions are retained, not passes.
+- [x] Unchanged full make milestone ID=M17 runs on clean REVIEW SHA; command,
       exits, per-platform counts and all other checks are recorded in handoff.
 
 ## Owner acceptance
@@ -50,3 +50,5 @@ The first full run exposed a later-day native review prompt covering the first U
 journey. AI/evidence/M17/review-prompt-regression.md records fail-before/pass-after
 evidence. Explicitly declining only this known prompt preserves production review
 behavior and every existing assertion; no suite, audit category or parser weakened.
+
+Completion: AI/handoffs/M17-handoff.md; raw FAILED preserved under exact owner acceptance.

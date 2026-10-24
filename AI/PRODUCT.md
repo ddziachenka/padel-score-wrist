@@ -513,3 +513,14 @@ Owner approved the complete [M16 contract](milestones/M16-iphone-companion.md). 
 The Match demo remains the existing one-game Golden point example. The iPhone Americano demo starts 10–10 of 24 total rallies, two rallies per server, Partner at the first rally of the block; ends after four rallies with exact Undo/Reset and possible draw. Leaving/switching resets demos. System rating eligibility requires both demos completed, a later calendar-day use, and no attempted request within 365 days; request only on returning to Start with no purchase in progress. Manual Rate opens the existing app review URL. These local eligibility preferences do not collect or transmit data.
 
 Owner clarification 2026-10-24: the iPhone Home Screen display name is `PadelScore`, so the icon label fits. The App Store title remains `Padel Score — Wrist`.
+
+## Store presentation decision — 2026-10-25
+
+Owner requests calm, feature-led store copy and no subscription/purchase message
+in Promotional Text. All14 locales use neutral evergreen feature copy without
+price, offer, deadline or urgency. Description retains factual five-free-completed-
+games and existing one-time lifetime terms later for transparency. No recurring
+subscription, automatic early paywall or product-model change. Public-launch-day
+plus seven full regional days at0 remains authorized; monitor must not replace
+neutral promo with offer copy. AI/launch-20261024/companion-aso-final.md records
+reviewed words, actual saved copy and native image provenance.

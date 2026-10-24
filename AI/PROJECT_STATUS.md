@@ -1,9 +1,9 @@
 # Project status
 
 **Phase:** release-preparation
-**Current milestone:** M17
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16
-**Next milestone:** M17
+**Current milestone:** M18
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17
+**Next milestone:** M18
 **Blockers:** none
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; nothing submitted. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
@@ -80,3 +80,16 @@ The known optional review prompt is now explicitly declined by UI setup, preserv
 all existing assertions and production behavior. Targeted ordinary/qualifying
 launches pass; fresh full gates remain pending. Evidence:
 AI/evidence/M17/review-prompt-regression.md.
+
+## M17 completed — current checkpoint
+
+M17 DONE under explicit bounded owner acceptance. Exact `02ec9c97b1c6e1d2c1c58aec64f990ed76399f77` ran full
+make milestone ID=M17: Watch510/884 and phone unit14/20 passed, UI4/6 passed,
+only the two accepted native Contrast failures. Raw FAILED/Make2/verifier1/UI65
+preserved; no skipped/expected/runtime warnings. Known review-prompt interference
+corrected only in UI setup with targeted fail-before/pass-after evidence. Handoff
+AI/handoffs/M17-handoff.md. New signed1.0(2) archive/export/server validation passed.
+Neutral14-locale ASO and168 images saved/read back. ASC app now PREPARE_FOR_SUBMISSION,
+old binary1 still selected; existing IAP remains in draft. Internal owner TF group
+prepared without a build. M18 separate candidate-bound release remains required.
+Nothing uploaded/submitted/public; offer end not scheduled.

@@ -5,7 +5,7 @@
 **Record type:** Builder domain audit
 **Milestone:** M17
 **Domain prompt:** AI/prompts/audit-release.md
-**Candidate:** 9ab02a92c1b78c1153ea98a4f115a745c48c8615
+**Candidate:** 02ec9c97b1c6e1d2c1c58aec64f990ed76399f77
 **Audited at:** 2026-10-24T18:23:00Z
 
 This is current runtime/source reassessment of all affected companion release domains,
@@ -107,3 +107,18 @@ unchanged. Only UI setup identifies and declines the known optional native revie
 prompt; original assertions, audit categories and full gates remain mandatory.
 Both ordinary and qualifying launches passed targeted diagnosis. Full clean M17
 verification follows; this does not reuse the failed first run as completion.
+
+## Exact M17 completion evidence
+
+Unchanged full `make milestone ID=M17` on `02ec9c97b1c6e1d2c1c58aec64f990ed76399f77` completed with raw FAILED,
+Make2/verifier1/UI65: Watch510/884 passed, phone unit14/20 passed, phone UI4/6
+passed and only the two explicitly accepted native Contrast failures remain. Zero
+skips/expected/runtime warnings. AI/evidence/M17/milestone-verification.md binds
+counts, reports, preserved earlier attempts and the narrow review-prompt harness
+correction. This supersedes preliminary pending-verification wording above without
+rewriting historical evidence. All six typed domains remain assessed by Builder,
+not independent review. Signed archive/export and Apple validation passed; actual
+new build upload/selection/TestFlight/joint submission remain subsequent steps.
+Neutral14-locale ASO,42 saved records and168 placements were read back, with all
+canonical galleries visually reviewed. AI/launch-20261024/companion-aso-final.md
+records keywords, real-function boundaries and preview limits. No promotion clock.

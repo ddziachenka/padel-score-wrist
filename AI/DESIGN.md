@@ -840,3 +840,14 @@ Review submission, App Store Connect upload or site publication is authorized.
 Three native tabs: Start, Demo, Access. Cold launch opens Start. Start explains Watch installation, scoring, Undo, serving, formats and watch-face launcher; includes demo/access actions, useful help and localized legal/support links. Real games explicitly require Apple Watch. No mandatory onboarding/paywall. Phone uses semantic light/dark surfaces, graphite/lime identity, readable Dynamic Type, 44pt targets and Reduce Motion. Independent Watch retains its existing design and journeys.
 
 Demo has a Match/Americano segmented selector, an always-visible Demo label, score and next server, two team point buttons, Undo and Reset. Exact fixtures and stopping boundaries are in M16. Both modes reset on switching/leaving/cold launch. Access displays StoreKit localized price and one-time ownership, loading/retry/cancel/pending/restore/refund states, network guidance and Terms/Privacy. Users may acquire lifetime before Watch installation after reading the Apple Watch requirement. No remaining-game count is shown on phone. All new copy ships in the existing languages; iPhone gallery has Start, Match, Americano and Access.
+
+## Store presentation decision — 2026-10-25
+
+Owner requests calm, feature-led store copy and no subscription/purchase message
+in Promotional Text. All14 locales use neutral evergreen feature copy without
+price, offer, deadline or urgency. Description retains factual five-free-completed-
+games and existing one-time lifetime terms later for transparency. No recurring
+subscription, automatic early paywall or product-model change. Public-launch-day
+plus seven full regional days at0 remains authorized; monitor must not replace
+neutral promo with offer copy. AI/launch-20261024/companion-aso-final.md records
+reviewed words, actual saved copy and native image provenance.
