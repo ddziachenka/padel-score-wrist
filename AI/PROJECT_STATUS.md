@@ -1,11 +1,11 @@
 # Project status
 
-**Phase:** implementation
+**Phase:** release-preparation
 **Current milestone:** M16
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15
-**Next milestone:** M16
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16
+**Next milestone:** none — separate Release Readiness Revalidation to be started in a new session
 **Blockers:** none
-**Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; Watch-only; approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; nothing submitted. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
+**Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; nothing submitted. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
 
@@ -17,28 +17,45 @@ Owner explicitly authorized version 1.0 submission with lifetime IAP, AFTER_APPR
 
 Draft `17c2964a-e72b-4558-983f-4a40c5545d9f` contains app 1.0 (1) and IAP version `d96baf47-39f7-4632-856e-b2cd28ec458f`. Both items are READY_FOR_REVIEW, but Submit for Review is disabled: Apple says Watch IAPs cannot be included. An attempted API submission tool call was rejected by automatic approval review before execution as a bypass of the observed restriction. **Nothing submitted; not Waiting for Review.** This newly observed distribution blocker supersedes earlier preparation assumptions without rewriting historical M10 verification.
 
-Handoff: [ASC launch](handoffs/ASC-launch-20261024.md). The owner authorized the [Apple support inquiry](launch-20261024/apple-support-draft.md), now sent and confirmed as case **103007020727**; await Apple and preserve Watch-only. All assets, API backups, scripts and archive are in `.artifacts/asc-launch-20261024/`; retain that directory for the active promotion monitor. No app/configuration change or new milestone was made.
+Handoff: [ASC launch](handoffs/ASC-launch-20261024.md). The owner authorized the [Apple support inquiry](launch-20261024/apple-support-draft.md), now sent and confirmed as case **103007020727**. The then-current decision to await Apple and preserve Watch-only was superseded by the owner-approved M16 companion below. All assets, API backups, scripts and archive are in `.artifacts/asc-launch-20261024/`; retain that directory for the active promotion monitor. No app/configuration change or new milestone was made.
 
-## M16 authorization — 2026-10-24
+## M16 completed — 2026-10-24
 
-Owner approved compact iPhone companion (iOS17+) with Start, Match and Americano demos, and existing lifetime purchase, while Watch remains independent (watchOS10+). Purchase before Watch installation is allowed with an explicit explanation. All existing locales and launch-day-plus-seven-full-days zero-price offer remain required. M16 is REVIEW on main; historical M10 evidence describes its old source only. New build requires separate release revalidation before App Review. Owner will connect the physical pair for purchase/restore verification. Contract: [M16](milestones/M16-iphone-companion.md).
+M16 is **DONE under explicit owner acceptance**, with raw automated failure
+preserved. Compact iOS17 companion provides Start, real-engine Match/Americano demos
+and the existing lifetime flow; watchOS10 app remains independent. Home Screen label
+is PadelScore. Invisible explanatory copy/spacing and Spanish largest-text truncation
+were fixed. All languages,56 native iPhone store images/14 ASC locales, store/site/
+review drafts, dual-platform harness and signed1.0(2) archive are prepared.
 
-## M16 implementation checkpoint
+Exact clean REVIEW candidate `b671bb1d611daebb03718429f1036eab569a1cca` ran unchanged
+`make milestone ID=M16`: Watch510 definitions/884 invocations passed; iPhone unit14
+/20 passed; iPhone UI6 executed,4 passed/2 native Contrast failed. No skipped,
+expected-failure or runtime-warning results. Raw verdict FAILED: Make2/verifier1/
+UI xcodebuild65. Report `.artifacts/milestone/M16/20261024T143428Z-49481/report.md`.
+The owner explicitly accepts those exact two SE/iOS17 audits based on passed iOS27
+checks and accepts already observed current physical-pair coverage; fresh acquisition,
+reinstall and extra physical assistive-technology scenarios were not executed or
+reported as passes. No test/parser/suite was weakened. Scope and quote:
+[owner acceptance](evidence/M16/owner-acceptance-20261024.md).
 
-Compact companion, shared demo engines, existing lifetime flow and all locale drafts are implemented. Home Screen label is PadelScore. The invisible secondary-copy defect was repaired and owner-confirmed; accessibility sizes now use full-width score cards. Signed1.0(2) archive packaging/signature passed. Four real iPhone images per ASC locale (56 total) are committed with source SHA/hashes; old84 Watch and28 creative files remain intact. Approved generic tooling self-test passed99 cases/2161 checks; primary static/site/material checks passed. Current iOS27 smoke4/4 and watchOS27 supplement13 definitions/24 invocations passed. These development checks are not the exact M16 milestone gate. Full minimum/current suite details, unresolved native audit and hardware limits: [verification progress](evidence/M16/verification-progress.md). Complete M16 and separate Release Readiness Revalidation before selecting/submitting a new ASC build.
+Generic tooling self-test passed99 cases/2161 checks in the approved byte-matched
+original-template fixture; actual product static/site/package checks passed. Both
+watchOS10/27 supplements passed13 definitions/24 invocations each; iOS27 passed4/4.
+Signed archive source `fc118f8a0b357d52e0b06f8ba1f17449297ca623` has identical
+App/Config/Scripts inputs at the final candidate. Old84 Watch/28 creative assets and
+historical readiness evidence remain intact. Earlier failures and cache diagnosis
+are preserved, not counted as passes.
 
-Current M16 handoff: [M16](handoffs/M16-handoff.md). Full iPhone unit/StoreKit suite
-passed14 definitions/20 invocations; full UI suite failed2/6 native largest-text
-contrast audits (4 passed,0 skips). Minimum/current Watch supplements each passed
-13 definitions/24 invocations. Required clean-REVIEW milestone verification is not
-a passing result and full primary Watch coverage remains required before DONE.
-
-## M16 owner acceptance — 2026-10-24
-
-Owner explicitly accepts existing physical-pair observations and the two SE/iOS17
-native contrast audit failures based on the passed current-iOS27 checks. No new
-Sandbox testers or reinstall scenarios are required. See
-[evidence](evidence/M16/owner-acceptance-20261024.md). Mac is accessible again. The
-raw failures remain preserved; all other mandatory checks still apply. M16 enters
-clean-REVIEW verification; do not equate owner acceptance with an automated pass or
-release readiness. Historical blocker paragraphs above describe their checkpoints.
+Handoff: [M16](handoffs/M16-handoff.md). Exact commands, exits, timestamps, bundle
+counts, archive and material provenance:
+[final verification](evidence/M16/milestone-verification.md).
+Builder session stops after closing static/status/continuity checks. **Separate
+Release Readiness Revalidation is still required for the new candidate** and must
+carry the owner exception plus raw FAILED verdict; M10 READY_FOR_HUMAN does not apply.
+No new ASC build upload/selection/submission occurred; old build1/draft remain as
+recorded above. No public launch or offer-end schedule exists. New site/store texts
+are local drafts. Existing authorization to submit remains valid after new readiness
+and ordinary ASC app+IAP verification. The monitor remains read-only until those
+guards are met; Sandbox/TestFlight do not start the launch-day-plus-seven-full-days
+offer. Keep both `.artifacts/M16/` and `.artifacts/asc-launch-20261024/`.

@@ -4,111 +4,95 @@
 
 ## Milestone
 
-M16 — Compact iPhone Companion; **REVIEW, not DONE**. Full candidate verification resumes under explicit owner acceptance.
+M16 — Compact iPhone Companion; **DONE under explicit owner acceptance**.
+Raw automated gate: FAILED, solely the two accepted native contrast audits.
 No independent review or release approval is claimed.
 
 ## Summary
 
-Implemented Start, real-engine Match/Americano demos and the existing lifetime flow
-on iOS17, retaining independent watchOS10 operation and the launch offer. All app
-languages/store drafts are updated. Fixed invisible explanatory text/spacing and
-Spanish largest-text truncation; Home Screen label is PadelScore. Prepared56 native
-phone store images, a signed1.0(2) archive, dual-platform harness and passing tooling
-regressions. Small-phone native contrast audits and mandatory physical scenarios
-remain incomplete; Mac is locked and the physical pair is unavailable.
+Added Start, real-engine Match/Americano demos and the existing lifetime flow on
+iOS17 while retaining independent watchOS10 operation. All app languages and store
+copy are updated. Fixed invisible explanatory text and spacing, Spanish largest-text
+truncation, and named the Home Screen icon PadelScore. Prepared56 native phone store
+images, signed1.0(2) archive and dual-platform verification. The launch offer remains
+unchanged; Sandbox/TestFlight do not start its clock.
 
 ## Changed files
 
 - App/PadelScorePhone, PhoneTests, PhoneUITests and Xcode targets/plans: companion,
-  localized UI, shared score engines/StoreKit and isolated test host.
-- Watch shared-value/message extraction and independent companion packaging;
-  actual identity/build/launcher assertions are preserved and updated for build2.
-- Scripts/lib/companion.sh, common/platform/simulator/gates and product Python
-  guards: both required platforms, actual packaging and failure-closed results.
+  localized UI, shared engines/StoreKit, rating eligibility and isolated test host.
+- Watch shared display/message extraction and independent companion packaging;
+  precise identity, build and launcher assertions retained.
+- Scripts/lib/companion.sh and common/platform/simulator/gates: mandatory complete
+  platform suites, actual packaging and failure-closed results; regression fixtures.
 - AI/store-assets/iphone-m16/manifest.json and56 native PNGs:14 locales,1320×2868,
-  opaque, unmodified captures with source SHA and hashes. Old Watch/Header/Search
-  assets are preserved; site/store/review texts remain local drafts.
-- Product/architecture/design/workflow/status/M16 contracts; evidence and monitor
-  guard. Historical milestones/readiness records were not rewritten.
+  opaque, original captures with SHA/provenance. Old Watch/Header/Search assets kept.
+- Product/architecture/design/workflow/M16 contracts, local store/site/review drafts
+  and guarded launch monitor. Historical milestones/readiness remain unchanged.
 
 ## Validation
 
 | Field | Evidence |
 | --- | --- |
-| Current tested implementation SHA | `fc118f8a0b357d52e0b06f8ba1f17449297ca623`; later handoff/status changes are evidence only |
-| Required exact milestone command | `make milestone ID=M16` — **not yet run on a qualified clean REVIEW candidate**: two full iOS UI failures and required hardware remain open; no passing M16 gate |
-| Full iPhone unit / exit | `Scripts/simulator.sh --profile companion run -- bash .artifacts/M16/check-phone-complete.sh`, first xcodebuild action schemePadelScorePhoneUnit, exit0 |
-| Unit counts / report | 14 definitions/20 invocations,0 failed/skipped/expected/warnings; `.artifacts/M16/ios-unit-current-complete.xcresult`, summary alongside; UTC2026-10-24T14:00:44.129Z–14:00:53.949Z |
-| Full iPhone UI / exit | Same driver, second action schemePadelScorePhone, **exit65**;6 cases,4 passed/2 failed,0 skipped/expected/warnings; `.artifacts/M16/ios-ui-current-complete.xcresult`; UTC14:00:54.672Z–14:04:42.148Z |
-| Watch supplements | Managed watchOS10 and27 drivers under `.artifacts/M16/`; each exit0,13 definitions/24 invocations,0 failed/skipped/expected/warnings. `watch10-smoke.xcresult` UTC13:54:17.177Z–13:58:05.467Z; `watch27-smoke.xcresult` UTC13:47:43.320Z–13:52:22.895Z. Explicit scope: AppConfigurationTests, LauncherTests, BootstrapUITests, LauncherUITests; **not the complete primary Watch suite** |
-| Current iOS supplement | `ios27-smoke.xcresult`, exit0,4/4,0 failures/skips on large iPhone at checkpointb2a30e0; no transfer to minimum-OS coverage |
-| Generic tooling command / exit | `make self-test` in owner-approved byte-matched M00 fixture, exit0;99 cases/2161 checks/0 failures; log completion2026-10-24T13:51:43.750295Z |
-| Tooling provenance / report | Sourceb2a30e091d423d3414a59d1d2c9c2a65daeb59e5; fixture76aa09b05613156708b304bdc65bf4ed8911c0e6;28 generic files byte-matched; `AI/evidence/M16/tooling-fixture-manifest.json`, `.artifacts/M16/self-test-approved-final-corrected.log` |
-| Product static/site | `make static` and `make site-check` exit0: `.artifacts/M16/static-gallery-final.log`, `site-gallery-final.log`. Closing runs follow this handoff |
-| Store captures | `iphone-gallery-m16-v2.xcresult`, exit0,1/1; sourceb2a30e091d423d3414a59d1d2c9c2a65daeb59e5;56 native images/14 regions; seven inspected contact sheets plus local Vision OCR of all score figures. Production delta since capture is limited to the accessibility-size neutral card background |
-| Current signed archive | `.artifacts/M16/PadelScore-M16-fc118f8.xcarchive`; archive exit0, `verify-companion.py --phone-app` and `codesign --verify --deep --strict` each exit0; logs `archive-fc118f8.log`, `archive-fc118f8-packaging.log` |
-| Overall result | BLOCKED; full primary Watch suite, exact milestone verification and required hardware are not established. No READY_FOR_HUMAN, upload, submission or public launch |
+| Exact verified candidate | `b671bb1d611daebb03718429f1036eab569a1cca`, clean REVIEW on main |
+| Exact command | `make milestone ID=M16` |
+| Actual exit codes | Make2, verifier1, iPhone UI xcodebuild65; raw verdict FAILED |
+| UTC verification | 2026-10-24T14:34:30Z–17:07:22.459Z (last bundle finish) |
+| Report | `.artifacts/milestone/M16/20261024T143428Z-49481/report.md` |
+| Full Watch | exit0;510/510 definitions,884 invocations,0 failed/skipped/expected/warnings; `milestone.xcresult` under report directory |
+| Full iPhone unit/StoreKit | exit0;14/14 definitions,20 invocations,0 failed/skipped/expected/warnings; `companion/unit.xcresult` |
+| Full iPhone UI | exit65;6/6 executed,4 passed/2 Contrast failed,0 skipped/expected/warnings; `companion/ui.xcresult` |
+| Owner disposition | Exactly those two audits and existing physical coverage accepted; `AI/evidence/M16/owner-acceptance-20261024.md`. No test/parser changed |
+| Supplemental runtimes | watchOS10 and27 each13 definitions/24 invocations passed, exit0; current iOS27 smoke4/4 passed, including both native audits |
+| Generic tooling | Owner-approved original-template fixture `make self-test` exit0,99 cases/2161 checks;28 file hashes still match `AI/evidence/M16/tooling-fixture-manifest.json` |
+| Product static/site | Exact gate static/Debug packaging passed; `make site-check` exit0, `.artifacts/M16/site-owner-final.log` |
+| Archive | `.artifacts/M16/PadelScore-M16-fc118f8.xcarchive`; archive/packaging/codesign exit0; source `fc118f8a0b357d52e0b06f8ba1f17449297ca623`, App/Config/Scripts unchanged at final candidate |
+| Store assets |56 native phone images/14 locales; `AI/store-assets/iphone-m16/manifest.json`; capture source `b2a30e091d423d3414a59d1d2c9c2a65daeb59e5`; old84 Watch/28 creative assets hash-identical |
+
+Complete commands, per-platform timestamps, source/fixture SHAs and limits:
+[final verification](../evidence/M16/milestone-verification.md).
+Earlier failures/checkpoints are preserved in
+[verification progress](../evidence/M16/verification-progress.md).
+The first same-candidate attempt failed strict packaging due to a stale old Debug
+XCTest bundle; only the owned Watch DerivedData was cleaned, then the same complete
+gate ran unchanged. Clean that owned cache before future strict gates; preserve the
+guard. Closing Markdown commit is followed by static, status and production-input
+continuity checks; their logs remain under `.artifacts/M16/`.
 
 ## Tests
 
-Real engine initial states/serving/end/Undo/reset/isolation; live StoreKit free/paid,
-cancel/pending/unverified/unavailable/refund/relaunch/restore/price-return; local
-rating eligibility and localized links; compiled text-opacity/AA regression; native
-UI audits and14-locale gallery. Harness covers separate profiles and rejects missing
-or incomplete platform results; package mutations and source/test-host parity are
-mandatory. New readiness regression preserves verified historical Watch-only context
-only with six current domains and current iPhone rating evidence. The initial new
-pipeline failure was fixed and all2161 unchanged/added assertions subsequently passed.
-Self-review: AI/evidence/M16/self-review.md. All failed experiments are retained and
-are never counted as passes.
+Real engine initial state/service/end/Undo/reset/navigation/isolation; StoreKit
+free/paid/cancel/pending/unavailable/network/unverified/refund/relaunch/restore and
+ownership after price return; rating day/365-day eligibility and localized links;
+compiled text-opacity/AA regression; full phone gallery and native UI audits.
+Harness tests require both complete platforms, reject missing/skipped results and
+mutated packages, preserve source/test-host parity and verified historical context
+plus six current readiness domains. All2161 tooling checks passed. Full Watch was
+not reduced. Builder self-review and fixes: [self-review](../evidence/M16/self-review.md).
 
 ## Known issues
 
-Two current small-iPhone UI cases fail Contrast failed, including an unmapped native
-issue: testLargestTextAccessibility and testSpanishTeamNamesAtLargestTextAreNotClipped.
-These have not been proven false positives. No category/unknown issue is excluded.
-An experimental broad recheck helper triggered XCTest injected logging/quarantine
-crashes and was removed; no normal production crash is inferred from that experiment.
+`CompanionUITests/testLargestTextAccessibility()` and
+`CompanionUITests/testSpanishTeamNamesAtLargestTextAreNotClipped()` report native
+**Contrast failed** on SE3/iOS17. These are not proven false positives; owner accepts
+them as nonblocking based on passed current-iOS27 audits. No other error is waived.
 
-Computer Use's normal Xcode path reports the Mac locked. No lock was bypassed; the
-owned simulator/desktop lease was released. Physical CoreDevice inventory reports
-the owner pair unavailable. The owner previously confirmed visible text, Watch
-update, restore on both and scoring disconnected from phone only. Fresh acquisition
-in both directions, reinstall/restore, Watch with the iPhone app absent and physical
-VoiceOver/haptics/Reduce Motion remain required. No testers were created or existing
-purchase histories reset; the proposed two isolated Sandbox testers need the pending
-owner choice. Preserve actual Watch data.
+Owner confirmed visible text/Watch update, restore on both devices and Watch scoring
+without phone connection. Fresh acquisition in both directions, reinstall, deletion
+of only the phone app and additional physical accessibility/haptics scenarios were
+not executed; the owner explicitly accepts existing physical coverage as sufficient.
+No new Sandbox testers were created or purchase histories reset.
 
 ## Next step
 
-Unlock Mac/reconnect the pair; resolve the native small-phone audit through normal
-visual inspection and finish the isolated Sandbox scenarios. Fix/retest any finding;
-complete full primary Watch and phone coverage, then set REVIEW, commit and run the
-exact M16 milestone command. Only a passing gate plus all hardware evidence permits
-DONE/continuity and stopping this Builder session. Separate Release Readiness
-Revalidation, normal ASC app+first-IAP verification and submission follow afterward
-under the existing owner authorization. Do not re-ask for submission permission.
+Stop this Builder session. A separate **Release Readiness Revalidation** must assess
+the new candidate with this owner decision and actual raw test result. Do not inherit
+M10 READY_FOR_HUMAN. Then upload/select the new build and verify app plus first IAP
+submission through ordinary ASC under existing submission authorization. The former
+Watch-only restriction is not proven resolved until that actual normal path works.
 
-Keep `.artifacts/M16/` and `.artifacts/asc-launch-20261024/`: they hold xcresults,
-archives, price backups and active monitor inputs. Promotion has no start/end date;
-Sandbox/TestFlight do not start it. Monitor stays read-only until M16/new readiness
-and the new actual public build meet its guards. No new App Review status is claimed.
-
-Closing checks: `make static` exit0 (`static-handoff-final.log`), `make site-check`
-exit0 (`site-handoff-final.log`), `Scripts/project-status.sh validate` exit0 and
-`git diff --check` exit0. Canonical PRODUCT/DESIGN/ARCHITECTURE rating/packaging/device
-sections were then reconciled with M16 so current documents do not instruct a future
-auditor to treat iPhone rating rows as INAPPLICABLE or the iOS executable as a stub;
-`make static` passed again (`static-contract-final.log`). Historical milestones,
-audits and verified SHAs remain intact. Final documentation commit remains BLOCKED;
-no milestone continuity or DONE claim is made from these lightweight checks.
-
-## Resumed owner decision — 2026-10-24
-
-The owner accepts the existing physical-pair evidence, without extra Sandbox
-accounts/reinstalls, and explicitly permits the two SE/iOS17 Contrast failed audits
-to be nonblocking based on the passed current-iOS27 checks. Exact quote and bounded
-scope: AI/evidence/M16/owner-acceptance-20261024.md. Mac access is restored. The raw
-failures remain failures; tests and generic result parsing stay unchanged. The full
-M16 milestone command now runs on a clean REVIEW commit. Any other failure still
-blocks completion. Earlier blocked sections above describe their recorded checkpoint.
+No new upload/submission/publication occurred. Old build1 remains selected, draft
+READY_FOR_REVIEW; not Waiting for Review. New store/site/review texts remain drafts.
+Keep `.artifacts/M16/` and `.artifacts/asc-launch-20261024/` for xcresults, archives,
+regional baseline prices and monitor inputs. The monitor stays read-only until its
+new readiness/build guards are met. Promotion has no public start/end date yet.

@@ -3,8 +3,10 @@
 This is the Builder reviewing its own baseline-to-tip diff, not independent review
 or release approval. Baseline feed3ea7ceb1f5c2ce08075b434dbca4ed9a718f. Current
 implementation checkpoint fc118f8a0b357d52e0b06f8ba1f17449297ca623; evidence-only
-closing documents may follow. M16 remains incomplete until every declared gate and
-hardware scenario passes.
+closing documents may follow. Final unchanged full verification and the bounded
+owner acceptance are recorded in
+[milestone-verification.md](milestone-verification.md). M16 is DONE under that
+exception; raw automated result remains FAILED, not release approval.
 
 - Scope/state: phone has only Start, isolated demos and Access. CompanionDemo owns
   in-memory GameFormat/history with the shared real engines. It has no real game
@@ -16,7 +18,8 @@ hardware scenario passes.
   grants access. Activity guards avoid concurrent purchase/restore. Tests cover
   zero/paid prices, cancellation, pending, unavailable product/network, verification,
   refund, relaunch/restore and verified ownership after price restoration. Actual
-  bidirectional Sandbox acquisition and reinstall remain hardware blockers.
+  bidirectional Sandbox acquisition and reinstall were not executed; owner explicitly
+  accepts the observed current-pair coverage as sufficient for M16.
 - Packaging: root target is a real iOS17 iPhone executable; embedded watchOS10 app
   requires exact companion ID and independent execution, matching versions/builds,
   existing launcher, and no test host/config in distribution. Production/test-host
@@ -31,8 +34,9 @@ hardware scenario passes.
   visible copy. Card/link spacing follows content; all store locales have real
   native images. Spanish largest-text truncation prompted full-width cards, wrapping
   headings/actions and an opaque contrasting neutral card at accessibility sizes.
-  Small-iPhone native audit errors remain open; no unknown issue/category is waived.
-  Physical VoiceOver, haptics and Reduce Motion are still unverified.
+  Two small-iPhone native Contrast failed results remain known and explicitly
+  owner-accepted; no issue/category is filtered from tests. Additional physical
+  VoiceOver, haptics and Reduce Motion remain unverified and accepted as omissions.
 - Review/privacy: manual rating link is localized in Help. Automatic request requires
   both demos, another day, idle purchase state and365 days between attempts; no
   sentiment gate or paywall prompt. RequestReview is injected from the SwiftUI
@@ -48,8 +52,9 @@ hardware scenario passes.
 - Verification infrastructure: separate managed bindings/schemes/xcresults are
   mandatory; the primary full Watch suite remains intact. Current iOS unit/StoreKit
   tests pass14 definitions/20 invocations. Supplemental watchOS10 and27 tests pass13
-  definitions/24 invocations each; large iOS27 smoke passes4/4. These are not the
-  complete Watch suite or clean-REVIEW milestone gate. The approved byte-matched
+  definitions/24 invocations each; large iOS27 smoke passes4/4. Those earlier
+  supplements do not replace the final full Watch510/884 and phone14/20 plus UI6
+  runs recorded separately. The approved byte-matched
   generic fixture passed99 cases/2161 checks; actual Padel Python guards still run
   in primary static/site. Historical readiness context requires a verified Watch-only
   SHA and six current companion domain audits; current rating evidence cannot be
