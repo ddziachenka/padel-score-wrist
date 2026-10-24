@@ -136,7 +136,9 @@ struct PhoneDemoView: View {
             .padding(.vertical, 16)
             .padding(.horizontal, 12)
             .foregroundStyle(team == .us ? PhoneTheme.ink : Color.primary)
-            .background(team == .us ? PhoneTheme.lime : Color(.tertiarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 20))
+            .background(team == .us ? PhoneTheme.lime : Color(dynamicTypeSize.isAccessibilitySize
+                ? .secondarySystemGroupedBackground : .tertiarySystemGroupedBackground),
+                in: RoundedRectangle(cornerRadius: 20))
         }
         .buttonStyle(.plain)
         .accessibilityLabel(Text(label))

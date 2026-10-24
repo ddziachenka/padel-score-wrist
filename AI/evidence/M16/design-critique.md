@@ -59,3 +59,23 @@ Compared unowned-price and verified-owned Access screens. The first candidate di
 All56 preliminary large-iPhone captures are preserved. Their 1320×2868 native PNGs are already RGB with no alpha. An Apple Intelligence setup banner affected the earliest English frames in the first pass; the final capture reruns use a warmed simulator and uniform system status time9:41, full battery and signal. No app UI pixels are painted or replaced. A settled relaunch keeps transient purchase feedback out of the permanent gallery.
 
 Dark and light large-phone previews were compared. The dark set was selected for permanent store images: it matches the Watch/Header black-lime identity while preserving readable secondary copy. Preview `iphone-dark-preview.xcresult` passed2/2 UI cases on the compatible iOS18.5 capture device; real Start/Match/Americano/owned Access screens were inspected. Final captures use the native full-screen screenshot API for consistent system chrome, not composited artwork. Light appearance remains the system-selected in-app presentation and was separately audited.
+
+## Final regular-size gallery and remaining largest-text work
+
+The later Spanish SE check exposed a real truncated NOSOTROS label. The chosen
+accessibility layout uses full-width score cards; the regular side-by-side design
+is preserved. Context and Undo/Reset have a vertical fallback. A plain persistent
+Demo label avoids making a decorative hand dominate the largest-text screen.
+Earlier rejected experiments and failed bundles remain preserved, including a
+broad repeated-audit helper that triggered XCTest logging/quarantine crashes and
+was removed. Unknown native contrast issues still fail; none is excluded.
+
+Final source b2a30e091d423d3414a59d1d2c9c2a65daeb59e5 produced56 native dark captures
+for14 ASC locales (gallery test exit0,1/1). Seven contact sheets were inspected;
+long German, Portuguese, Finnish and Russian copy wraps within cards, and action/
+legal links fall back vertically. Local Vision OCR recognized40/30 and10/10 in
+all28 demo screenshots; the original PNG bytes, not contact sheets, are committed.
+Header/Search and Watch assets retain their original hashes and accurate promises.
+See verification-progress.md for the unresolved small-iPhone native audit and
+remaining hardware/gate requirements. Large iOS27 smoke passed4/4; it does not
+substitute for a complete minimum-OS suite.
