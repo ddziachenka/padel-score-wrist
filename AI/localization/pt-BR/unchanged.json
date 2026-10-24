@@ -11,5 +11,8 @@
   "Padel Score": "Product brand.",
   "Email": "Conventional Portuguese term.",
   "Game": "Established Brazilian padel scoring term.",
-  "Games": "Established Brazilian padel scoring term."
+  "Games": "Established Brazilian padel scoring term.",
+  "phone.tab.demo": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "phone.demo.games %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "phone.demo.sets %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale."
 }

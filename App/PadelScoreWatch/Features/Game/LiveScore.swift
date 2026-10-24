@@ -58,7 +58,7 @@ final class LiveScore {
 
     /// A second tap on a team this soon after the last recorded rally counts as the same tap: no
     /// rally is over that quickly, and a bounce of the finger must not add another.
-    static let settleTime = Duration.milliseconds(500)
+    static let settleTime = DemoExamples.settleTime
 
     /// The request being saved.
     private(set) var saving: Action?

@@ -9,6 +9,11 @@ final class StoreKitPurchaseClient: PurchaseClient {
     func product() async throws -> LifetimeProduct? {
         let products = try await Product.products(for: [Self.productID])
         loadedProduct = products.first { $0.id == Self.productID && $0.type == .nonConsumable }
+        #if DEBUG
+        if let product = loadedProduct {
+            print("M16_STOREKIT_PRICE=\(product.price) CURRENCY=\(product.priceFormatStyle.currencyCode)")
+        }
+        #endif
         return loadedProduct.map { LifetimeProduct(displayPrice: $0.displayPrice) }
     }
 
@@ -17,7 +22,14 @@ final class StoreKitPurchaseClient: PurchaseClient {
         for await verification in StoreKit.Transaction.currentEntitlements {
             let value = Self.value(verification)
             guard value.isLifetime else { continue }
-            if value.isVerified, !value.isRevoked { return .verified }
+            if value.isVerified, !value.isRevoked {
+                #if DEBUG
+                if case .verified(let transaction) = verification {
+                    print("M16_STOREKIT_ENVIRONMENT=\(transaction.environment)")
+                }
+                #endif
+                return .verified
+            }
             if !value.isVerified { result = .unverified }
         }
         return result

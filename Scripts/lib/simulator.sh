@@ -21,9 +21,9 @@ simulator_owner() { printf '%s\n' "${IOSAI_CACHE_OWNER_PATH:-$IOSAI_ROOT}"; }
 simulator_device_name() {
     local digest
     digest="$(printf '%s' "$(simulator_owner)" | shasum -a 256 | awk '{print $1}')"
-    printf 'iosai-%s-%s\n' "$(basename "$(simulator_owner)")" "$digest"
+    printf 'iosai-%s%s-%s\n' "$(basename "$(simulator_owner)")" "${IOSAI_PLATFORM_PROFILE:+-${IOSAI_PLATFORM_PROFILE}}" "$digest"
 }
-simulator_state_dir() { printf '%s/.iosai-local\n' "$(simulator_owner)"; }
+simulator_state_dir() { printf '%s/.iosai-local%s\n' "$(simulator_owner)" "${IOSAI_PLATFORM_PROFILE:+/${IOSAI_PLATFORM_PROFILE}}"; }
 simulator_lease() {
     local rc=0
     perl "${IOSAI_ROOT}/Scripts/lib/lease.pl" "$@" || rc=$?
@@ -36,7 +36,7 @@ simulator_local_directory() {
     local dir
     dir="$(simulator_state_dir)"
     assert_no_symlink_ancestry "$dir" || exit "$EX_USAGE"
-    if [ ! -d "$dir" ]; then (umask 077; mkdir "$dir") || exit "$EX_CANTCREAT"; fi
+    if [ ! -d "$dir" ]; then (umask 077; mkdir -p "$dir") || exit "$EX_CANTCREAT"; fi
     [ -O "$dir" ] || die "$EX_USAGE" "local simulator state is not owned by this user: $dir"
 }
 

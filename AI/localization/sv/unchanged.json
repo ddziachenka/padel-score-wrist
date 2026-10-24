@@ -12,5 +12,7 @@
   "Set %lld · %@": "Set is the established Swedish padel term; parameters unchanged.",
   "Version %@ (%@)": "Version is a Swedish noun; build placeholders unchanged.",
   "Support": "Idiomatic Swedish word for product assistance.",
-  "Padel Score": "Unchanged launcher brand."
+  "Padel Score": "Unchanged launcher brand.",
+  "phone.tab.start": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "phone.tab.demo": "M16: accepted international UI term or score notation has the same spelling in this locale."
 }

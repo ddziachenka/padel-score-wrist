@@ -9,7 +9,7 @@ from html.parser import HTMLParser
 
 ROOT = Path(__file__).resolve().parent.parent
 REGISTRY = json.loads((ROOT / 'Config/localizations.json').read_text())
-CATALOGS = [ROOT / 'App/PadelScoreWatch/Localizable.xcstrings', ROOT / 'App/PadelScoreLauncher/Localizable.xcstrings']
+CATALOGS = [ROOT / 'App/PadelScoreWatch/Localizable.xcstrings', ROOT / 'App/PadelScoreLauncher/Localizable.xcstrings', ROOT / 'App/PadelScorePhone/Localizable.xcstrings']
 TOKEN = re.compile(r'%(?:(\d+)\$)?(lld|ld|d|@|f)')
 
 def tokens(value):

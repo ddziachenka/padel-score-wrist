@@ -45,8 +45,8 @@ Apple описывает SwiftUI как основу нативного watchOS 
 
 | Field | Value |
 | --- | --- |
-| App platform: iOS or watchOS Watch-only | **Подтверждено: watchOS Watch-only**; нет iPhone companion, телефонного UI и Watch Connectivity как зависимости |
-| Minimum iOS or watchOS version | **Подтверждено: watchOS 10.0; H3 закрыт владельцем 2026-10-20** |
+| App platform: iOS and independent watchOS | **M16 approved:** iPhone companion + independent Watch; no Watch Connectivity dependency |
+| Minimum iOS or watchOS version | **iOS 17.0, watchOS 10.0**; iPhone approved in M16 2026-10-24, Watch H3 preserved |
 | Why that version | Достаточен для Observation, NavigationStack и локальной модели; более высокий минимум сокращает охват без необходимой для счётчика функции |
 | Devices | Apple Watch, совместимые с watchOS 10 и новее; конкретные компактный и крупный размеры и доступные среды проверки фиксируются в M00 |
 | Orientations | Системная ориентация часов, настройки запястья и Digital Crown; ручного portrait/landscape режима нет |
@@ -683,3 +683,9 @@ resource and settings drift fail the build; only the explicit test `@main`
 substitution is allowed. The scheme enables the host/tests only for testing,
 `SKIP_INSTALL` is YES, and the shipping targets cannot depend on them. Thus no
 local test host or StoreKitTest framework is included by the shipping archive.
+
+## Current platform contract — M16, approved 2026-10-24
+
+This section supersedes earlier Watch-only packaging statements for new candidates. One iOS17+ executable (com.dziachenka.padelscore) embeds the independent watchOS10+ app (com.dziachenka.padelscore.watchkitapp) and its existing launcher. Watch declares its companion ID and supports running without iOS app installation; no phone connection is needed for gameplay. Shared pure scoring/board and StoreKit source files compile for both targets; platform UI/haptics stay separate. Each platform independently verifies the existing non-consumable using StoreKit. No backend, Watch Connectivity entitlement flag, shared game database or data migration. Phone demos have memory-only state; UserDefaults holds only local review eligibility. Privacy manifest declares that required-reason API use.
+
+Verification uses explicit watchOS and iOS companion profiles, separate owned simulator bindings and xcresults. Both full suites are mandatory at milestone/integration/release boundaries; packaging verifies actual executables, companion identity, independent Watch flags, matching versions/builds, embedded launcher and exclusion of test-only components. Existing Watch tests and Watch-only fixture coverage remain intact.

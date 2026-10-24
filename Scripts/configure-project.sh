@@ -300,6 +300,8 @@ rendered="$(cat <<EOF
 # Committed on purpose: this is what makes a build reproducible elsewhere.
 # It must never contain credentials, tokens, or signing material.
 
+WATCH_APP_MODE="watch-only"
+COMPANION_PROFILE=""
 APP_PLATFORM="${opt_platform}"
 PROJECT_NAME="${opt_name}"
 BUNDLE_IDENTIFIER="${opt_bundle_id}"

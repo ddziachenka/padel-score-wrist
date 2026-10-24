@@ -16,5 +16,9 @@
   "Sets": "Standard Dutch plural of set.",
   "Padel Score": "Unchanged launcher brand.",
   "Open app": "Idiomatic Dutch imperative using the conventional Dutch loanword app.",
-  "Open Padel Score": "Dutch imperative and unchanged product brand."
+  "Open Padel Score": "Dutch imperative and unchanged product brand.",
+  "phone.tab.start": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "phone.tab.demo": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "phone.demo.games %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "phone.demo.sets %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale."
 }

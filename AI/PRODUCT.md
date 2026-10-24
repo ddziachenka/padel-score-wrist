@@ -31,7 +31,7 @@ Watch executable — `com.dziachenka.padelscore.watchkitapp`, packaging containe
 
 | # | Decision | Observable consequence | Approved |
 | --- | --- | --- | --- |
-| PD-01 | Приложение только для Apple Watch, без приложения для iPhone | Создание, ведение, исправление и завершение игры доступны на часах самостоятельно | Владелец, brief |
+| PD-01 | Самостоятельный счётчик Apple Watch с компактным iPhone-компаньоном (M16) | Реальные игры ведутся на часах без зависимости от телефона; iPhone содержит начало работы, два демо и общую покупку | Владелец, план M16 2026-10-24 |
 | PD-02 | Ведётся только собственная текущая игра | Нет турнира, расписания, общей таблицы и ротации пар между матчами | Владелец, brief |
 | PD-03 | Два формата: обычный матч и американо | Создание начинается с выбора `Match` или `Americano` | Владелец, brief |
 | PD-04 | Обычный матч не ограничен числом сетов и завершается вручную | Нет выбора best-of; после любого сета можно продолжать; `Finish match` доступно при любом счёте | Владелец, brief |
@@ -259,7 +259,7 @@ Setup явно просит проверить подачу. Очки, заве�
 | Siri, голосовой ввод и Shortcuts для очков | Распознавание среди шума и случайные команды требуют отдельного исследования; касания уже покрывают ввод |
 | Уведомления и напоминания о возвращении | Не улучшают ведение текущего матча без доказанной причины; добавляют отвлечение и разрешения |
 | HealthKit / тренировка / фоновая сессия | Пользователь просил счёт; тренировочные данные и постоянно активный экран не согласованы |
-| Live Activities, экран iPhone и межустройственная синхронизация | Выбран самостоятельный Watch-only продукт, зависимость от телефона противоречит PD-01 |
+| Live Activities, реальные игры на iPhone и межустройственная синхронизация истории | M16 добавляет только компактный компаньон; реальные игры остаются самостоятельными на Watch |
 | Глубокие ссылки, sharing и системные pickers | Нет текущего сценария входящего контента или экспорта, который оправдывает эти возможности |
 | Star Point | Это не один из трёх согласованных вариантов PD-05 |
 | Социальные функции, награды, серии посещений и AI | Не решают чтение счёта/подачи и исправление; в данных нет основания расширять ими первую версию |
@@ -422,7 +422,7 @@ H2 закрыт 2026-10-20: владелец выбрал вариант 1 — �
 
 | # | Not building | Why | Reconsider when |
 | --- | --- | --- | --- |
-| N1 | Пользовательское приложение для iPhone/iPad | Прямое ограничение PD-01; упаковочный контейнер Xcode не создаёт companion-продукт | Только если владелец меняет платформенное решение |
+| N1 | Реальные матчи на iPhone и отдельный iPad-интерфейс | M16 разрешает компактный iPhone-компаньон, но реальные игры остаются на Watch | Только после нового решения владельца |
 | N2 | Турниры, расписание, рейтинги и смена пар | PD-02: только свой текущий матч | Отдельное расширение продукта, не текущий MVP |
 | N3 | Ограничение количества сетов или автоматическая победа в обычном матче | Противоречит PD-04 | Только явное изменение владельцем |
 | N4 | Дополнительные режимы 40:40, включая Star Point | Согласовано ровно три варианта | После отдельного решения владельца |
@@ -502,3 +502,9 @@ $4.99 USD и сохранённые региональные price points. Пр�
 быть доступен до записи расписания. Пропущенный срок фиксируется как отклонение, а не
 успешное завершение. Временные условия находятся в Promotional Text; после акции
 восстанавливается постоянный текст. Подробности: `AI/handoffs/ASC-launch-20261024.md`.
+
+## Approved iPhone companion — 2026-10-24 (M16)
+
+Owner approved the complete [M16 contract](milestones/M16-iphone-companion.md). It supersedes earlier Watch-only/no-iPhone statements for current product direction, without changing historical milestones. iPhone iOS17+ provides Start, in-memory Match/Americano demos, and the existing lifetime IAP. It is not a real-match scoring surface; Watch remains independent and retains five free completed games, local history and direct purchase/restore. No history/usage syncing, accounts, backend, or transferred purchase Boolean. A purchase can be made before Watch installation with a clear Apple Watch requirement; entitlement is independently verified by StoreKit on both platforms. Existing launch offer authorization remains in force. iPhone never claims to know the remaining Watch free-game count.
+
+The Match demo remains the existing one-game Golden point example. The iPhone Americano demo starts 10–10 of 24 total rallies, two rallies per server, Partner at the first rally of the block; ends after four rallies with exact Undo/Reset and possible draw. Leaving/switching resets demos. System rating eligibility requires both demos completed, a later calendar-day use, and no attempted request within 365 days; request only on returning to Start with no purchase in progress. Manual Rate opens the existing app review URL. These local eligibility preferences do not collect or transmit data.

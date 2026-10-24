@@ -509,28 +509,49 @@
 		};
 		9C0BA28DBE2BE3B9891472B3 = {
 			isa = PBXGroup;
+			sourceTree = "<group>";
 			children = (
 				D1D50D18D3527FE450910D47,
 				09CB70667544E48EED180A0C,
 				5089C6D6DD35CBA50092A7DC,
-				A039DCC85BE50368425A1D003 /* StoreKitTestApp.swift */,
-				4CDA5EBDA6D35B9DCC9F39EB /* PadelScoreStoreKitTests */,
-				DF1EB97BFDA8417D915C7492 /* PadelScore.xctestplan */,
-				EE9BEC4CB14D1D7ACF278FEF /* Products */,
-				691D7FB3D84E58B7BBF08649 /* Frameworks */,
-				9AB621FD8AFF69AFCE4C162A /* PadelScoreWatch */,
-				776730C04EA1B6FBCCA57B3C /* PadelScoreWatchTests */,
-				EB6463C62D5F36EBA9B54CF0 /* PadelScoreWatchUITests */,
+				A039DCC85BE50368425A1D003,
+				4CDA5EBDA6D35B9DCC9F39EB,
+				DF1EB97BFDA8417D915C7492,
+				EE9BEC4CB14D1D7ACF278FEF,
+				691D7FB3D84E58B7BBF08649,
+				9AB621FD8AFF69AFCE4C162A,
+				776730C04EA1B6FBCCA57B3C,
+				EB6463C62D5F36EBA9B54CF0,
+				97A0894028CB260103109503,
+				930CCB3CEFAAF3BB34A8D48C,
+				BCBB5859902B8DF7056AC22F,
+				FA1AC565CE5836C0D8C01491,
+				E885332E46ACA1F7D054B547,
+				09256AB8035307F0E4878CB6,
+				42E0A3CA46DA203BA8ABEF89,
+				BC748A6427CCDD01CF56A975,
+				15D01C30B208DA12CED7542C,
+				1C1705B4CC840581A57B411C,
+				53FB4EF69D62C4B0BDABB5A8,
+				2537237BA61172F1D0E63B4C,
+				D70481982C9C57DCDB4AB220,
+				8C3D2FCEFA43601C5D8D4B37,
+				32A35B105369AC222D7E1C75,
+				6993764531181CD563554E43,
+				49EB345147213E0A303B212A,
+				B850CDFD4D1389740CB7CA88,
+				B5EA922C12E38D855EDB8855,
+				A2F227692B2090CF99721CCB,
 			);
-			sourceTree = "<group>";
 		};
-		A1A5FA764662935A1390D5E4 /* iOS */ = {
+		A1A5FA764662935A1390D5E4 = {
 			isa = PBXGroup;
-			children = (
-				F86A22EC68F07FF5AE5C7035 /* Foundation.framework */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
+			name = iOS;
+			children = (
+				F86A22EC68F07FF5AE5C7035,
+				4611E435ED2A2A60EE05A6A0,
+			);
 		};
 		D4B97F6576E5F8D86E31A3E7 /* Domain */ = {
 			isa = PBXGroup;
@@ -576,19 +597,22 @@
 			path = PadelScoreWatchUITests;
 			sourceTree = "<group>";
 		};
-		EE9BEC4CB14D1D7ACF278FEF /* Products */ = {
+		EE9BEC4CB14D1D7ACF278FEF = {
 			isa = PBXGroup;
-			children = (
-				D7038237C16C68E581703858 /* PadelScoreStoreKitHost.app */,
-				A2063D647EEC292B6FABAB98 /* PadelScoreStoreKitTests.xctest */,
-				61DDBB426516CEA7720E17E7 /* PadelScoreWatch.app */,
-				35934F2194CA18F4253E0674 /* PadelScore.app */,
-				90B81947F6FD97B6DF256422 /* PadelScoreWatchTests.xctest */,
-				A88E7CD2B9E6D9BBC58247DE /* PadelScoreWatchUITests.xctest */,
-				286A5F990FB691E20911DAD7,
-			);
-			name = Products;
 			sourceTree = "<group>";
+			name = Products;
+			children = (
+				D7038237C16C68E581703858,
+				A2063D647EEC292B6FABAB98,
+				61DDBB426516CEA7720E17E7,
+				35934F2194CA18F4253E0674,
+				90B81947F6FD97B6DF256422,
+				A88E7CD2B9E6D9BBC58247DE,
+				286A5F990FB691E20911DAD7,
+				4206DA866A7CF9E913CADC87,
+				9B42D1E7EEF42AB8A219C208,
+				9C81062FFC43421376871FA5,
+			);
 		};
 		FD98D20C899505796B8B99F1 /* Services */ = {
 			isa = PBXGroup;
@@ -796,23 +820,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		22F01B39811FC98D7354B35C /* PadelScore */ = {
+		22F01B39811FC98D7354B35C = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E18FDFF77E96CC5F3762EB01 /* Build configuration list for PBXNativeTarget "PadelScore" */;
-			buildPhases = (
-				E381E885E5E1BDDB56B5A28B /* Frameworks */,
-				1FFC20FFBB6950767E6447E3 /* Resources */,
-				4AA038E4FF122E942BA5CBFD /* Embed Watch Content */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B9A29370D981E5753C88C7EE /* PBXTargetDependency */,
-			);
+			productType = "com.apple.product-type.application";
 			name = PadelScore;
 			productName = PadelScore;
-			productReference = 35934F2194CA18F4253E0674 /* PadelScore.app */;
-			productType = "com.apple.product-type.application.watchapp2-container";
+			productReference = 35934F2194CA18F4253E0674;
+			buildConfigurationList = E18FDFF77E96CC5F3762EB01;
+			buildRules = (
+			);
+			buildPhases = (
+				E381E885E5E1BDDB56B5A28B,
+				1FFC20FFBB6950767E6447E3,
+				4AA038E4FF122E942BA5CBFD,
+				DE068901BCECD49D185DB63A,
+			);
+			dependencies = (
+				B9A29370D981E5753C88C7EE,
+			);
 		};
 		333DF6997F7C79204340B517 /* PadelScoreWatchUITests */ = {
 			isa = PBXNativeTarget;
@@ -925,17 +950,19 @@
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1E3335C5DD050FDEE5322E30 /* Project object */ = {
+		1E3335C5DD050FDEE5322E30 = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
-                    29698D29C3A686C7611451CB = { CreatedOnToolsVersion = 27.0; };
-                    CFBDD33FDFEF8F2B058FFC70 = {
-                        CreatedOnToolsVersion = 27.0;
-                        TestTargetID = 29698D29C3A686C7611451CB;
-                    };
+					29698D29C3A686C7611451CB = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					CFBDD33FDFEF8F2B058FFC70 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = 29698D29C3A686C7611451CB;
+					};
 					22F01B39811FC98D7354B35C = {
 						CreatedOnToolsVersion = 27.0;
 					};
@@ -950,53 +977,69 @@
 						CreatedOnToolsVersion = 27.0;
 						TestTargetID = 6BE7B1F86B27A0EA377ED4FD;
 					};
+					76F39A432659ED19BD6A6174 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 7F51B5167B8248F41C090FD2;
+					};
+					5A9E1708B587ABB79E51CBE7 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 22F01B39811FC98D7354B35C;
+					};
 				};
 			};
-			buildConfigurationList = 1D38F04B80CACB3ABA848152 /* Build configuration list for PBXProject "PadelScore" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				"es",
-				"it",
-				"fr",
+				es,
+				it,
+				fr,
 				"pt-PT",
 				"pt-BR",
-				"nl",
-				"de",
-				"sv",
-				"da",
-				"fi",
-				"nb",
-				"ru",
+				nl,
+				de,
+				sv,
+				da,
+				fi,
+				nb,
+				ru,
 				Base,
 			);
-			mainGroup = 9C0BA28DBE2BE3B9891472B3;
 			minimizedProjectReferenceProxies = 0;
 			preferredProjectObjectVersion = 100;
-			productRefGroup = EE9BEC4CB14D1D7ACF278FEF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
+			buildConfigurationList = 1D38F04B80CACB3ABA848152;
+			mainGroup = 9C0BA28DBE2BE3B9891472B3;
+			productRefGroup = EE9BEC4CB14D1D7ACF278FEF;
 			targets = (
-				29698D29C3A686C7611451CB /* PadelScoreStoreKitHost */,
-				CFBDD33FDFEF8F2B058FFC70 /* PadelScoreStoreKitTests */,
-				6BE7B1F86B27A0EA377ED4FD /* PadelScoreWatch */,
-				22F01B39811FC98D7354B35C /* PadelScore */,
-				DBA2160DA60A18E11E5BB2E1 /* PadelScoreWatchTests */,
-				333DF6997F7C79204340B517 /* PadelScoreWatchUITests */,
+				29698D29C3A686C7611451CB,
+				CFBDD33FDFEF8F2B058FFC70,
+				6BE7B1F86B27A0EA377ED4FD,
+				22F01B39811FC98D7354B35C,
+				DBA2160DA60A18E11E5BB2E1,
+				333DF6997F7C79204340B517,
 				49E8B0A64FA38AC82571A5B8,
+				7F51B5167B8248F41C090FD2,
+				76F39A432659ED19BD6A6174,
+				5A9E1708B587ABB79E51CBE7,
+			);
+			projectReferences = (
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1FFC20FFBB6950767E6447E3 /* Resources */ = {
+		1FFC20FFBB6950767E6447E3 = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				6DA299ED6A17A21179FEA308,
+				ED8FDA9991418BC2C42B07EC,
+				50CA2AAE819F57E1AE5EC3AB,
+			);
 		};
 		98936046BFFC7AB40CBF090E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -1136,87 +1179,91 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7B18315A7034CA12E7C7449B /* Sources */ = {
+		7B18315A7034CA12E7C7449B = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-				F9C3CDF4850484C8E1B6E705 /* AccessOffer.swift in Sources */,
-				779E9B5E834E21A0E13A6625 /* AccessView.swift in Sources */,
-				F061D5732BF146D7E92745D5 /* EntitlementStore.swift in Sources */,
-				FE17A969137C04A9C56FD107 /* StoreKitPurchaseClient.swift in Sources */,
-				9A6CCEF40F6A2CBF10C0D496 /* PurchaseClient.swift in Sources */,
-				24C77644872899C0E03660FB /* LifetimeAccess.swift in Sources */,
-				3E388EFD2D1D606927CC2ECC /* Haptics.swift in Sources */,
-				DADDF0D22A1EEBED93A6C248 /* SetServingView.swift in Sources */,
-				535785600E79E233DF820906 /* GameMenuView.swift in Sources */,
-				5C22845667AE0A8FC2560EBA /* LiveScore.swift in Sources */,
-				1F4AED759E48C89EF01F305E /* ScoreAnnouncement.swift in Sources */,
-				D8EF30EB3B502A4F79CD8224 /* ScoreBoard.swift in Sources */,
-				ABDB0CF7D0D267E483651B91 /* PadelScoreApp.swift in Sources */,
-				898AB2DE39FA17E85F40E1F8 /* AmericanoEngine.swift in Sources */,
-				00399FD4958510F9D741DA50 /* AmericanoState.swift in Sources */,
-				A1D77DCD8540A7A6A21A5072 /* AmericanoValidation.swift in Sources */,
-				642778BEE2C4EF639E5D2DC2 /* GameSnapshot.swift in Sources */,
-				7B48E58279A7189F96957AE8 /* MatchEngine.swift in Sources */,
-				CC7AD11A2D0EB83EB59F3EFB /* MatchRules.swift in Sources */,
-				38036E01E5B24775349239E5 /* MatchState.swift in Sources */,
-				D3B37EC9903D2E7E560C977C /* MatchValidation.swift in Sources */,
-				57B021A22738CDBFE2302253 /* ServiceOrder.swift in Sources */,
-				28A6B373ADD3A67027016762 /* Team.swift in Sources */,
-				662B4557FD461E0865017E8B /* GameSetup.swift in Sources */,
-				8933D1E4EB456F02F525383D /* Session.swift in Sources */,
-				938D5BCA20E3077DF1CC4099 /* SessionCommand.swift in Sources */,
-				6FFD2659BC54D820D2F8B820 /* SessionValidation.swift in Sources */,
-				B4C5966C30808C387C49C1E8 /* UsageLedger.swift in Sources */,
-				69385B535C2962CD415A4619 /* SessionFile.swift in Sources */,
-				0376F51BF61F4C89153768C0 /* SessionRepository.swift in Sources */,
-				7BE878E6FCE506F41168577C /* SessionStore.swift in Sources */,
-				104D52B75B9E7962E21C8948 /* StorageFileSystem.swift in Sources */,
-				EF483649604BCDBD9B2BAB94 /* AppComposition.swift in Sources */,
-				AE9CCE359560FE50D20F355F /* UITestStore.swift in Sources */,
-				D7DCDA427139350BF984CD5B /* AboutView.swift in Sources */,
-				237786EE402CF63C579F4989 /* ChoiceButton.swift in Sources */,
-				EC63ED50CE202E1C6E995785 /* DeuceRuleEditor.swift in Sources */,
-				77E10FB5310211C57B362B6F /* NumberEditor.swift in Sources */,
-				905A6E9A71F47DB44655E8F2 /* ServingEditor.swift in Sources */,
-				E75484BE25A0798B6FFFBF13 /* LiveScoreView.swift in Sources */,
-				02952938C511CD1BB3759BBF /* NewGameFlow.swift in Sources */,
-				EDCE9FD041C0A7266146EDD6 /* NewGameView.swift in Sources */,
-				EC4B66FCEEDB99B8F667B8D8 /* SetupDraft.swift in Sources */,
-				B2AF6201DA0A27FC101CD08B /* SetupView.swift in Sources */,
-				5655185AD00C5C26C9E87EDB /* LaunchScreen.swift in Sources */,
-				7A9140CF7DB1C37494CC1C15 /* RecoveryView.swift in Sources */,
-				9ABEB39DAAE546EC9F1B8CE2 /* RootView.swift in Sources */,
-				15E4ADBAD3307ABE77911E30 /* DesignSystem.swift in Sources */,
-				B92B327BB09232BDB8846715 /* DisplayNames.swift in Sources */,
-				F0FDF53EC732E1F5268474D7 /* SavingLabel.swift in Sources */,
-				FA98EC835512D9582D90EF61 /* EditorActions.swift in Sources */,
-				40338F12C6D620A5DB5F354A /* CorrectionDraft.swift in Sources */,
-				B779CC06C7E052771DC6F696 /* GameEditor.swift in Sources */,
-				9FB7837074EC7C37AE1B0ED8 /* ScoreDrafts.swift in Sources */,
-				D3C0CF9960275947EB5B1851 /* CorrectionText.swift in Sources */,
-				F403F842B6147E4CE239FFEB /* TeamValuesEditor.swift in Sources */,
-				8CAD7673EB08D6EED38E1F72 /* ScoreEditors.swift in Sources */,
-				E01D6E58FE205EC716796EAA /* CompletedSetsView.swift in Sources */,
-				D5EF114D0D299786AC90B8A0 /* CorrectionServingView.swift in Sources */,
-				2F6792BDBBF20648E7A49F84 /* FormatEditor.swift in Sources */,
-				40E0E81204FBC0609286E91F /* GameEditorScreen.swift in Sources */,
-				F81DB364AE8DA6A73AF546CD /* ResultSummary.swift in Sources */,
-				4F6FC8A26011CCD79A25FFD2 /* ResultSummaryView.swift in Sources */,
-				960B6B4F674A53A9D2A02531 /* ResultView.swift in Sources */,
-				47753FE860B34C668E0BE867 /* HistoryView.swift in Sources */,
-				705E995E6D850E93195DB112 /* LocalDataSettings.swift in Sources */,
-				19A6FDE1C3049BF8C5C888FB /* LocalDataSettingsView.swift in Sources */,
-				B4C39A0F4DA0DFF052B08E96 /* ScoreboardDemo.swift in Sources */,
-				C48D32C95AC7B9DB612D5212 /* ScoreboardDemoView.swift in Sources */,
-			);
 			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				F9C3CDF4850484C8E1B6E705,
+				779E9B5E834E21A0E13A6625,
+				F061D5732BF146D7E92745D5,
+				FE17A969137C04A9C56FD107,
+				9A6CCEF40F6A2CBF10C0D496,
+				24C77644872899C0E03660FB,
+				3E388EFD2D1D606927CC2ECC,
+				DADDF0D22A1EEBED93A6C248,
+				535785600E79E233DF820906,
+				5C22845667AE0A8FC2560EBA,
+				1F4AED759E48C89EF01F305E,
+				D8EF30EB3B502A4F79CD8224,
+				ABDB0CF7D0D267E483651B91,
+				898AB2DE39FA17E85F40E1F8,
+				00399FD4958510F9D741DA50,
+				A1D77DCD8540A7A6A21A5072,
+				642778BEE2C4EF639E5D2DC2,
+				7B48E58279A7189F96957AE8,
+				CC7AD11A2D0EB83EB59F3EFB,
+				38036E01E5B24775349239E5,
+				D3B37EC9903D2E7E560C977C,
+				57B021A22738CDBFE2302253,
+				28A6B373ADD3A67027016762,
+				662B4557FD461E0865017E8B,
+				8933D1E4EB456F02F525383D,
+				938D5BCA20E3077DF1CC4099,
+				6FFD2659BC54D820D2F8B820,
+				B4C5966C30808C387C49C1E8,
+				69385B535C2962CD415A4619,
+				0376F51BF61F4C89153768C0,
+				7BE878E6FCE506F41168577C,
+				104D52B75B9E7962E21C8948,
+				EF483649604BCDBD9B2BAB94,
+				AE9CCE359560FE50D20F355F,
+				D7DCDA427139350BF984CD5B,
+				237786EE402CF63C579F4989,
+				EC63ED50CE202E1C6E995785,
+				77E10FB5310211C57B362B6F,
+				905A6E9A71F47DB44655E8F2,
+				E75484BE25A0798B6FFFBF13,
+				02952938C511CD1BB3759BBF,
+				EDCE9FD041C0A7266146EDD6,
+				EC4B66FCEEDB99B8F667B8D8,
+				B2AF6201DA0A27FC101CD08B,
+				5655185AD00C5C26C9E87EDB,
+				7A9140CF7DB1C37494CC1C15,
+				9ABEB39DAAE546EC9F1B8CE2,
+				15E4ADBAD3307ABE77911E30,
+				B92B327BB09232BDB8846715,
+				F0FDF53EC732E1F5268474D7,
+				FA98EC835512D9582D90EF61,
+				40338F12C6D620A5DB5F354A,
+				B779CC06C7E052771DC6F696,
+				9FB7837074EC7C37AE1B0ED8,
+				D3C0CF9960275947EB5B1851,
+				F403F842B6147E4CE239FFEB,
+				8CAD7673EB08D6EED38E1F72,
+				E01D6E58FE205EC716796EAA,
+				D5EF114D0D299786AC90B8A0,
+				2F6792BDBBF20648E7A49F84,
+				40E0E81204FBC0609286E91F,
+				F81DB364AE8DA6A73AF546CD,
+				4F6FC8A26011CCD79A25FFD2,
+				960B6B4F674A53A9D2A02531,
+				47753FE860B34C668E0BE867,
+				705E995E6D850E93195DB112,
+				19A6FDE1C3049BF8C5C888FB,
+				B4C39A0F4DA0DFF052B08E96,
+				C48D32C95AC7B9DB612D5212,
+				D5E137B480EB459861BB645F,
+				52C68A013B4E31E2A270438F,
+				2BFDB380B679E06457688E8B,
+			);
 		};
-		A78D5A3009A3BD818BED81FA /* PBXSourcesBuildPhase */ = {
+		A78D5A3009A3BD818BED81FA = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
 			files = (
-				F9C3CDF4850484C8E1B6E705 /* AccessOffer.swift in Sources */,
+				F9C3CDF4850484C8E1B6E705,
 				779E9B5E834E21A0E13A6625,
 				F061D5732BF146D7E92745D5,
 				FE17A969137C04A9C56FD107,
@@ -1280,13 +1327,15 @@
 				F81DB364AE8DA6A73AF546CD,
 				4F6FC8A26011CCD79A25FFD2,
 				960B6B4F674A53A9D2A02531,
-				47753FE860B34C668E0BE867 /* HistoryView.swift in Sources */,
+				47753FE860B34C668E0BE867,
 				705E995E6D850E93195DB112,
 				19A6FDE1C3049BF8C5C888FB,
-				B4C39A0F4DA0DFF052B08E96 /* ScoreboardDemo.swift in Sources */,
-				C48D32C95AC7B9DB612D5212 /* ScoreboardDemoView.swift in Sources */,
+				B4C39A0F4DA0DFF052B08E96,
+				C48D32C95AC7B9DB612D5212,
+				FF102A5C5606E45260A6E58D,
+				BE4D4513B5A4EB915B6A7E8A,
+				D9F7F27765415880D70063D3,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2BD6AEC54EE5A86A7D037514 /* PBXSourcesBuildPhase */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1327,12 +1376,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		27959160DBC5B0D082C09D6E /* Debug */ = {
+		27959160DBC5B0D082C09D6E = {
 			isa = XCBuildConfiguration;
+			name = Debug;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Padel Score — Wrist";
@@ -1345,9 +1395,16 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = PhoneAccent;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 			};
-			name = Debug;
 		};
 		3DDDC14030C9DDCD51BB718D /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1407,19 +1464,19 @@
 			};
 			name = Release;
 		};
-		5B5F4BB675EAFEF1830ACAE7 /* Release */ = {
+		5B5F4BB675EAFEF1830ACAE7 = {
 			isa = XCBuildConfiguration;
+			name = Release;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Padel Score — Wrist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.watchkitapp;
@@ -1432,23 +1489,24 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.dziachenka.padelscore;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 			};
-			name = Release;
 		};
-		679810F1B6B4340F21D78CAC /* Debug */ = {
+		679810F1B6B4340F21D78CAC = {
 			isa = XCBuildConfiguration;
+			name = Debug;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Padel Score — Wrist";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.watchkitapp;
@@ -1460,15 +1518,17 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.dziachenka.padelscore;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 			};
-			name = Debug;
 		};
-		6894C0D0EBDA362D471D88BA /* Debug */ = {
+		6894C0D0EBDA362D471D88BA = {
 			isa = XCBuildConfiguration;
+			name = Debug;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1483,7 +1543,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PadelScoreWatch.app/PadelScoreWatch";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
-			name = Debug;
 		};
 		7078B281ADDAE1460741EF99 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1550,11 +1609,12 @@
 			};
 			name = Debug;
 		};
-		737C6842F19ED764F5B5D1EB /* Release */ = {
+		737C6842F19ED764F5B5D1EB = {
 			isa = XCBuildConfiguration;
+			name = Release;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MARKETING_VERSION = 1.0;
@@ -1569,13 +1629,13 @@
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
-			name = Release;
 		};
-		9DE86F8BC8B97EFFAEA35DC5 /* Debug */ = {
+		9DE86F8BC8B97EFFAEA35DC5 = {
 			isa = XCBuildConfiguration;
+			name = Debug;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1590,14 +1650,14 @@
 				TEST_TARGET_NAME = PadelScoreWatch;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
-			name = Debug;
 		};
-		D8FBA11522B228BA3280F807 /* Release */ = {
+		D8FBA11522B228BA3280F807 = {
 			isa = XCBuildConfiguration;
+			name = Release;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MARKETING_VERSION = 1.0;
@@ -1612,14 +1672,14 @@
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
-			name = Release;
 		};
-		E12FF98C44F7C86A34F7849C /* Release */ = {
+		E12FF98C44F7C86A34F7849C = {
 			isa = XCBuildConfiguration;
+			name = Release;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Padel Score — Wrist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1631,19 +1691,27 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = PhoneAccent;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 			};
-			name = Release;
 		};
-		90B28E88531DD28B1FA76731 /* Release */ = {
+		90B28E88531DD28B1FA76731 = {
 			isa = XCBuildConfiguration;
+			name = Release;
 			buildSettings = {
 				VALIDATE_PRODUCT = YES;
 				MARKETING_VERSION = 1.0;
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				SUPPORTED_PLATFORMS = "watchos watchsimulator";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				INFOPLIST_KEY_CFBundleDisplayName = "StoreKit Test Host";
@@ -1662,15 +1730,15 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 			};
-			name = Release;
 		};
-		8F2839043BECD383DA29AB22 /* Debug */ = {
+		8F2839043BECD383DA29AB22 = {
 			isa = XCBuildConfiguration;
+			name = Debug;
 			buildSettings = {
 				MARKETING_VERSION = 1.0;
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				SUPPORTED_PLATFORMS = "watchos watchsimulator";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				INFOPLIST_KEY_CFBundleDisplayName = "StoreKit Test Host";
@@ -1690,10 +1758,10 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 			};
-			name = Debug;
 		};
-		91147F2C5DBC2F511C863AE5 /* Release */ = {
+		91147F2C5DBC2F511C863AE5 = {
 			isa = XCBuildConfiguration;
+			name = Release;
 			buildSettings = {
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1709,13 +1777,13 @@
 				SDKROOT = watchos;
 				SWIFT_VERSION = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.storekittests;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
-			name = Release;
 		};
-		70312BEFA7F1DE568CB2A9DB /* Debug */ = {
+		70312BEFA7F1DE568CB2A9DB = {
 			isa = XCBuildConfiguration;
+			name = Debug;
 			buildSettings = {
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1731,12 +1799,11 @@
 				SDKROOT = watchos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.storekittests;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				SWIFT_VERSION = 6.0;
 			};
-			name = Debug;
 		};
-		81A6577840F89AE17D83170F /* Launcher Debug */ = {
+		81A6577840F89AE17D83170F = {
 			isa = XCBuildConfiguration;
 			name = Debug;
 			buildSettings = {
@@ -1756,11 +1823,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.watchkitapp.launcher;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				SWIFT_VERSION = 6.0;
 			};
 		};
-		B7E83116B21A4BA0285EF711 /* Launcher Release */ = {
+		B7E83116B21A4BA0285EF711 = {
 			isa = XCBuildConfiguration;
 			name = Release;
 			buildSettings = {
@@ -1780,7 +1847,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.watchkitapp.launcher;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				SWIFT_VERSION = 6.0;
 			};
 		};
@@ -1860,6 +1927,943 @@
 			);
 		};
 /* End XCConfigurationList section */
+		97A0894028CB260103109503 = {
+			isa = PBXFileReference;
+			name = DemoExamples.swift;
+			path = PadelScoreWatch/Features/Demo/DemoExamples.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		D5E137B480EB459861BB645F = {
+			isa = PBXBuildFile;
+			fileRef = 97A0894028CB260103109503;
+		};
+		FF102A5C5606E45260A6E58D = {
+			isa = PBXBuildFile;
+			fileRef = 97A0894028CB260103109503;
+		};
+		930CCB3CEFAAF3BB34A8D48C = {
+			isa = PBXFileReference;
+			name = PurchaseMessages.swift;
+			path = PadelScoreWatch/Services/PurchaseMessages.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		52C68A013B4E31E2A270438F = {
+			isa = PBXBuildFile;
+			fileRef = 930CCB3CEFAAF3BB34A8D48C;
+		};
+		BE4D4513B5A4EB915B6A7E8A = {
+			isa = PBXBuildFile;
+			fileRef = 930CCB3CEFAAF3BB34A8D48C;
+		};
+		DE068901BCECD49D185DB63A = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				7399CA2916AFA16D6F6EACCB,
+				5E5867185D01D6822C76D543,
+				F5620F75737CD44591489699,
+				4830B327FE617DBBE5E773EF,
+				3F53D19921A9932904B64455,
+				D47FAA70D8E7744221442E8A,
+				11D0D07A0C45DEEDB44A8B4C,
+				C19E749155ACCEE6F0D0B1E8,
+				10B4D3887F4B53F9994515F6,
+				5F22C4CC43B3F09507709233,
+				F294AED547A8E6F21668ABDD,
+				A2B71A5D308DED0390C4EE5E,
+				397FC3730185E5B12940596A,
+				1A07694B43E40A56FC93F4F4,
+				2AC86714B81E536C951CA218,
+				2BD1F7BCCCB5FF93F35DD202,
+				E5FA605DBF22521485D84B69,
+				101DC0518AA806973E519FDC,
+				60BC026CD0D5274200596230,
+				66BD22ADCE485D2D385DB2E4,
+				3407AFA0952F4D6CC038CFED,
+				38D71B6CD8B34DB31D101B7A,
+				F95B886D3A7A0F63997B2822,
+				085AEB201962573D7668EB44,
+				623E3EF6B9E2052BFEF4E061,
+				7C7D82D99E51BBD0733D4BFF,
+				AEFEEF79F5CA821A7C19CE2B,
+				863EA4729F2C022DF83AFAC3,
+				22BE88D8BDD43F57FB4847FA,
+				CEF6490167E7DA489C87FA49,
+				0DB7BEC697FA89F77F2C5418,
+				6A8A074500CDEE009A20D51C,
+			);
+		};
+		7399CA2916AFA16D6F6EACCB = {
+			isa = PBXBuildFile;
+			fileRef = FEEBF69E0BBA9FC59CFFF85F;
+		};
+		5E5867185D01D6822C76D543 = {
+			isa = PBXBuildFile;
+			fileRef = 8D1B9D6F91BBD8039EE2046F;
+		};
+		F5620F75737CD44591489699 = {
+			isa = PBXBuildFile;
+			fileRef = FA92E97B904A1D23EC9C52C8;
+		};
+		4830B327FE617DBBE5E773EF = {
+			isa = PBXBuildFile;
+			fileRef = 2E751A28D0CF730D13537234;
+		};
+		3F53D19921A9932904B64455 = {
+			isa = PBXBuildFile;
+			fileRef = DA5BA77E432D0853B554E409;
+		};
+		D47FAA70D8E7744221442E8A = {
+			isa = PBXBuildFile;
+			fileRef = B10800F8C6163FA9C2F7D4D1;
+		};
+		11D0D07A0C45DEEDB44A8B4C = {
+			isa = PBXBuildFile;
+			fileRef = 2747452052B941818F8E046C;
+		};
+		C19E749155ACCEE6F0D0B1E8 = {
+			isa = PBXBuildFile;
+			fileRef = 58631B4BDF55255D6FF4A0E9;
+		};
+		10B4D3887F4B53F9994515F6 = {
+			isa = PBXBuildFile;
+			fileRef = F858F799F166B8AFB1C28C70;
+		};
+		5F22C4CC43B3F09507709233 = {
+			isa = PBXBuildFile;
+			fileRef = FAE45CF8142C8BEE246C7961;
+		};
+		F294AED547A8E6F21668ABDD = {
+			isa = PBXBuildFile;
+			fileRef = DB54139A07D60A816766E23F;
+		};
+		A2B71A5D308DED0390C4EE5E = {
+			isa = PBXBuildFile;
+			fileRef = 689BBEF44FD43806E800614D;
+		};
+		397FC3730185E5B12940596A = {
+			isa = PBXBuildFile;
+			fileRef = 26A4941EB6CF627602AC60A1;
+		};
+		1A07694B43E40A56FC93F4F4 = {
+			isa = PBXBuildFile;
+			fileRef = DD385D2EAA394824F450A9B8;
+		};
+		2AC86714B81E536C951CA218 = {
+			isa = PBXBuildFile;
+			fileRef = 59BD19914E46ABA6C661F2FB;
+		};
+		2BD1F7BCCCB5FF93F35DD202 = {
+			isa = PBXBuildFile;
+			fileRef = 8562DDFE80E32DFA4FBE6840;
+		};
+		E5FA605DBF22521485D84B69 = {
+			isa = PBXBuildFile;
+			fileRef = 7448B86ECFD0900ECA682636;
+		};
+		101DC0518AA806973E519FDC = {
+			isa = PBXBuildFile;
+			fileRef = C955CBD6007111808D6A3B03;
+		};
+		60BC026CD0D5274200596230 = {
+			isa = PBXBuildFile;
+			fileRef = 97A0894028CB260103109503;
+		};
+		66BD22ADCE485D2D385DB2E4 = {
+			isa = PBXBuildFile;
+			fileRef = A121A2D730B1A96FD3ACBC63;
+		};
+		3407AFA0952F4D6CC038CFED = {
+			isa = PBXBuildFile;
+			fileRef = BB5E5C9218B0AE13437B2543;
+		};
+		38D71B6CD8B34DB31D101B7A = {
+			isa = PBXBuildFile;
+			fileRef = C696B3F612E5EE6F9FC3DD84;
+		};
+		F95B886D3A7A0F63997B2822 = {
+			isa = PBXBuildFile;
+			fileRef = 930CCB3CEFAAF3BB34A8D48C;
+		};
+		BCBB5859902B8DF7056AC22F = {
+			isa = PBXFileReference;
+			name = CompanionDemo.swift;
+			path = PadelScorePhone/CompanionDemo.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		085AEB201962573D7668EB44 = {
+			isa = PBXBuildFile;
+			fileRef = BCBB5859902B8DF7056AC22F;
+		};
+		FA1AC565CE5836C0D8C01491 = {
+			isa = PBXFileReference;
+			name = PadelScorePhoneApp.swift;
+			path = PadelScorePhone/PadelScorePhoneApp.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		623E3EF6B9E2052BFEF4E061 = {
+			isa = PBXBuildFile;
+			fileRef = FA1AC565CE5836C0D8C01491;
+		};
+		E885332E46ACA1F7D054B547 = {
+			isa = PBXFileReference;
+			name = PhoneAccessView.swift;
+			path = PadelScorePhone/PhoneAccessView.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		7C7D82D99E51BBD0733D4BFF = {
+			isa = PBXBuildFile;
+			fileRef = E885332E46ACA1F7D054B547;
+		};
+		09256AB8035307F0E4878CB6 = {
+			isa = PBXFileReference;
+			name = PhoneDemoView.swift;
+			path = PadelScorePhone/PhoneDemoView.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		AEFEEF79F5CA821A7C19CE2B = {
+			isa = PBXBuildFile;
+			fileRef = 09256AB8035307F0E4878CB6;
+		};
+		42E0A3CA46DA203BA8ABEF89 = {
+			isa = PBXFileReference;
+			name = PhoneDesign.swift;
+			path = PadelScorePhone/PhoneDesign.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		863EA4729F2C022DF83AFAC3 = {
+			isa = PBXBuildFile;
+			fileRef = 42E0A3CA46DA203BA8ABEF89;
+		};
+		BC748A6427CCDD01CF56A975 = {
+			isa = PBXFileReference;
+			name = PhoneLinks.swift;
+			path = PadelScorePhone/PhoneLinks.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		22BE88D8BDD43F57FB4847FA = {
+			isa = PBXBuildFile;
+			fileRef = BC748A6427CCDD01CF56A975;
+		};
+		15D01C30B208DA12CED7542C = {
+			isa = PBXFileReference;
+			name = PhoneStartView.swift;
+			path = PadelScorePhone/PhoneStartView.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		CEF6490167E7DA489C87FA49 = {
+			isa = PBXBuildFile;
+			fileRef = 15D01C30B208DA12CED7542C;
+		};
+		1C1705B4CC840581A57B411C = {
+			isa = PBXFileReference;
+			name = ReviewEligibility.swift;
+			path = PadelScorePhone/ReviewEligibility.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		0DB7BEC697FA89F77F2C5418 = {
+			isa = PBXBuildFile;
+			fileRef = 1C1705B4CC840581A57B411C;
+		};
+		53FB4EF69D62C4B0BDABB5A8 = {
+			isa = PBXFileReference;
+			name = Localizable.xcstrings;
+			path = PadelScorePhone/Localizable.xcstrings;
+			sourceTree = "<group>";
+			includeInIndex = 1;
+		};
+		6DA299ED6A17A21179FEA308 = {
+			isa = PBXBuildFile;
+			fileRef = 53FB4EF69D62C4B0BDABB5A8;
+		};
+		2537237BA61172F1D0E63B4C = {
+			isa = PBXFileReference;
+			name = Assets.xcassets;
+			path = PadelScorePhone/Assets.xcassets;
+			sourceTree = "<group>";
+			lastKnownFileType = folder.assetcatalog;
+			includeInIndex = 1;
+		};
+		ED8FDA9991418BC2C42B07EC = {
+			isa = PBXBuildFile;
+			fileRef = 2537237BA61172F1D0E63B4C;
+		};
+		D70481982C9C57DCDB4AB220 = {
+			isa = PBXFileReference;
+			name = PrivacyInfo.xcprivacy;
+			path = PadelScorePhone/PrivacyInfo.xcprivacy;
+			sourceTree = "<group>";
+			includeInIndex = 1;
+		};
+		50CA2AAE819F57E1AE5EC3AB = {
+			isa = PBXBuildFile;
+			fileRef = D70481982C9C57DCDB4AB220;
+		};
+		7F51B5167B8248F41C090FD2 = {
+			isa = PBXNativeTarget;
+			productType = "com.apple.product-type.application";
+			name = PadelScorePhoneStoreKitHost;
+			productName = PadelScorePhoneStoreKitHost;
+			productReference = 4206DA866A7CF9E913CADC87;
+			buildConfigurationList = 2F05CD9F91DB7E922CCDBACD;
+			buildRules = (
+			);
+			buildPhases = (
+				A0ED49182F5A3E94F12085F9,
+				EF2343F36E96334AA85308D4,
+				63FB4DB365720514C3CF483B,
+			);
+			dependencies = (
+			);
+		};
+		C8DE3C6831B4C72ADB947083 = {
+			isa = XCBuildConfiguration;
+			name = Release;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "StoreKit Test Host";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dziachenka.padelscore.phone-storekit-host";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = PhoneAccent;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+			};
+		};
+		A8A3BA3A270445C8E0F5C90D = {
+			isa = XCBuildConfiguration;
+			name = Debug;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "StoreKit Test Host";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dziachenka.padelscore.phone-storekit-host";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = PhoneAccent;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+			};
+		};
+		2F05CD9F91DB7E922CCDBACD = {
+			isa = XCConfigurationList;
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			buildConfigurations = (
+				C8DE3C6831B4C72ADB947083,
+				A8A3BA3A270445C8E0F5C90D,
+			);
+		};
+		4206DA866A7CF9E913CADC87 = {
+			isa = PBXFileReference;
+			path = PadelScorePhoneStoreKitHost.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+		};
+		A0ED49182F5A3E94F12085F9 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				E039CBC3DE343D041A29FED7,
+				87E08C290E2D14ACDD87DD22,
+				22EEB281045A5A1C921B3165,
+				236F7CC20F13864211919267,
+				5190F58A44CD2429B31D9603,
+				F7127ABD8F0EA45912C2CD60,
+				C5905CEEAD3DB5DCA7DBA006,
+				EA2ED2623B8D99330347AD77,
+				21EF6A47447F9C4020F3F71A,
+				2B72FB0E370A3B988022C82B,
+				63B44BFE2A172E42C1C40BDF,
+				257E23E613F6C54104325240,
+				707CFF48FBB2B253EF1BD857,
+				78BD03B5E5DC05251A730A3A,
+				7308962F7DB48B2AD2CBEFC5,
+				86A712066781690A8CF1270F,
+				0A9DD28DB1BC9EBA0DD0C55E,
+				9ACFCFCA9DF8A3C326BB1750,
+				1A843E6EEDD6198D3D480DA1,
+				C8232963BE8965CD4DBA1A88,
+				8E1A8D5BDE49AE75BE691B0A,
+				05F846264E8FD4EA0D62CF20,
+				1324756FD18E9880463554DC,
+				081829E9285EB064FCF851BF,
+				40EC1E58CE497DA37FACA7AB,
+				E46E1D3E1DC5038E774273F1,
+				30D5EEA8F18CFA5E15387A56,
+				03A25D6821DE5F1FCB48C435,
+				EFD2F484EFE44B25B80346DA,
+				20B9A266D25E08DE1F1CEB6C,
+				2BDA650BE2AA0DC4BB1986DC,
+				D1903CFECC7338F20A847D7B,
+			);
+		};
+		EF2343F36E96334AA85308D4 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				4A6D581E1AD60E50A02741FC,
+			);
+		};
+		63FB4DB365720514C3CF483B = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				E8678762DDFDA5BAB106DCF7,
+				6880538690D6066F9583A681,
+				F39C41774EB619C2EA879878,
+			);
+		};
+		4611E435ED2A2A60EE05A6A0 = {
+			isa = PBXFileReference;
+			name = Foundation.framework;
+			path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework;
+			sourceTree = DEVELOPER_DIR;
+			lastKnownFileType = wrapper.framework;
+		};
+		4A6D581E1AD60E50A02741FC = {
+			isa = PBXBuildFile;
+			fileRef = 4611E435ED2A2A60EE05A6A0;
+		};
+		E039CBC3DE343D041A29FED7 = {
+			isa = PBXBuildFile;
+			fileRef = FEEBF69E0BBA9FC59CFFF85F;
+		};
+		87E08C290E2D14ACDD87DD22 = {
+			isa = PBXBuildFile;
+			fileRef = 8D1B9D6F91BBD8039EE2046F;
+		};
+		22EEB281045A5A1C921B3165 = {
+			isa = PBXBuildFile;
+			fileRef = FA92E97B904A1D23EC9C52C8;
+		};
+		236F7CC20F13864211919267 = {
+			isa = PBXBuildFile;
+			fileRef = 2E751A28D0CF730D13537234;
+		};
+		5190F58A44CD2429B31D9603 = {
+			isa = PBXBuildFile;
+			fileRef = DA5BA77E432D0853B554E409;
+		};
+		F7127ABD8F0EA45912C2CD60 = {
+			isa = PBXBuildFile;
+			fileRef = B10800F8C6163FA9C2F7D4D1;
+		};
+		C5905CEEAD3DB5DCA7DBA006 = {
+			isa = PBXBuildFile;
+			fileRef = 2747452052B941818F8E046C;
+		};
+		EA2ED2623B8D99330347AD77 = {
+			isa = PBXBuildFile;
+			fileRef = 58631B4BDF55255D6FF4A0E9;
+		};
+		21EF6A47447F9C4020F3F71A = {
+			isa = PBXBuildFile;
+			fileRef = F858F799F166B8AFB1C28C70;
+		};
+		2B72FB0E370A3B988022C82B = {
+			isa = PBXBuildFile;
+			fileRef = FAE45CF8142C8BEE246C7961;
+		};
+		63B44BFE2A172E42C1C40BDF = {
+			isa = PBXBuildFile;
+			fileRef = DB54139A07D60A816766E23F;
+		};
+		257E23E613F6C54104325240 = {
+			isa = PBXBuildFile;
+			fileRef = 689BBEF44FD43806E800614D;
+		};
+		707CFF48FBB2B253EF1BD857 = {
+			isa = PBXBuildFile;
+			fileRef = 26A4941EB6CF627602AC60A1;
+		};
+		78BD03B5E5DC05251A730A3A = {
+			isa = PBXBuildFile;
+			fileRef = DD385D2EAA394824F450A9B8;
+		};
+		7308962F7DB48B2AD2CBEFC5 = {
+			isa = PBXBuildFile;
+			fileRef = 59BD19914E46ABA6C661F2FB;
+		};
+		86A712066781690A8CF1270F = {
+			isa = PBXBuildFile;
+			fileRef = 8562DDFE80E32DFA4FBE6840;
+		};
+		0A9DD28DB1BC9EBA0DD0C55E = {
+			isa = PBXBuildFile;
+			fileRef = 7448B86ECFD0900ECA682636;
+		};
+		9ACFCFCA9DF8A3C326BB1750 = {
+			isa = PBXBuildFile;
+			fileRef = C955CBD6007111808D6A3B03;
+		};
+		1A843E6EEDD6198D3D480DA1 = {
+			isa = PBXBuildFile;
+			fileRef = 97A0894028CB260103109503;
+		};
+		C8232963BE8965CD4DBA1A88 = {
+			isa = PBXBuildFile;
+			fileRef = A121A2D730B1A96FD3ACBC63;
+		};
+		8E1A8D5BDE49AE75BE691B0A = {
+			isa = PBXBuildFile;
+			fileRef = BB5E5C9218B0AE13437B2543;
+		};
+		05F846264E8FD4EA0D62CF20 = {
+			isa = PBXBuildFile;
+			fileRef = C696B3F612E5EE6F9FC3DD84;
+		};
+		1324756FD18E9880463554DC = {
+			isa = PBXBuildFile;
+			fileRef = 930CCB3CEFAAF3BB34A8D48C;
+		};
+		081829E9285EB064FCF851BF = {
+			isa = PBXBuildFile;
+			fileRef = BCBB5859902B8DF7056AC22F;
+		};
+		40EC1E58CE497DA37FACA7AB = {
+			isa = PBXBuildFile;
+			fileRef = E885332E46ACA1F7D054B547;
+		};
+		E46E1D3E1DC5038E774273F1 = {
+			isa = PBXBuildFile;
+			fileRef = 09256AB8035307F0E4878CB6;
+		};
+		30D5EEA8F18CFA5E15387A56 = {
+			isa = PBXBuildFile;
+			fileRef = 42E0A3CA46DA203BA8ABEF89;
+		};
+		03A25D6821DE5F1FCB48C435 = {
+			isa = PBXBuildFile;
+			fileRef = BC748A6427CCDD01CF56A975;
+		};
+		EFD2F484EFE44B25B80346DA = {
+			isa = PBXBuildFile;
+			fileRef = 15D01C30B208DA12CED7542C;
+		};
+		20B9A266D25E08DE1F1CEB6C = {
+			isa = PBXBuildFile;
+			fileRef = 1C1705B4CC840581A57B411C;
+		};
+		8C3D2FCEFA43601C5D8D4B37 = {
+			isa = PBXFileReference;
+			name = PhoneStoreKitTestApp.swift;
+			path = PadelScorePhoneStoreKitHost/PhoneStoreKitTestApp.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		2BDA650BE2AA0DC4BB1986DC = {
+			isa = PBXBuildFile;
+			fileRef = 8C3D2FCEFA43601C5D8D4B37;
+		};
+		E8678762DDFDA5BAB106DCF7 = {
+			isa = PBXBuildFile;
+			fileRef = 53FB4EF69D62C4B0BDABB5A8;
+		};
+		6880538690D6066F9583A681 = {
+			isa = PBXBuildFile;
+			fileRef = 2537237BA61172F1D0E63B4C;
+		};
+		F39C41774EB619C2EA879878 = {
+			isa = PBXBuildFile;
+			fileRef = D70481982C9C57DCDB4AB220;
+		};
+		76F39A432659ED19BD6A6174 = {
+			isa = PBXNativeTarget;
+			productType = "com.apple.product-type.bundle.unit-test";
+			name = PadelScorePhoneTests;
+			productName = PadelScorePhoneTests;
+			productReference = 9B42D1E7EEF42AB8A219C208;
+			buildConfigurationList = BBF29E545CEED433591CCB4D;
+			buildRules = (
+			);
+			buildPhases = (
+				DF8C07E5BA54E54D2BD989D9,
+				D959DD6D14266A8838529755,
+				1E599435404ED07D08D50CFA,
+			);
+			dependencies = (
+				2C761F78071A15E35F5A6DEB,
+			);
+		};
+		7FEAB236BCED6F7D3471C3D8 = {
+			isa = XCBuildConfiguration;
+			name = Release;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.padelscorephonetests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SKIP_INSTALL = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PadelScorePhoneStoreKitHost.app/PadelScorePhoneStoreKitHost";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CURRENT_PROJECT_VERSION = 2;
+				MARKETING_VERSION = 1.0;
+			};
+		};
+		5F6F43DEB06694F5A141DD98 = {
+			isa = XCBuildConfiguration;
+			name = Debug;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.padelscorephonetests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SKIP_INSTALL = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PadelScorePhoneStoreKitHost.app/PadelScorePhoneStoreKitHost";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CURRENT_PROJECT_VERSION = 2;
+				MARKETING_VERSION = 1.0;
+			};
+		};
+		BBF29E545CEED433591CCB4D = {
+			isa = XCConfigurationList;
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			buildConfigurations = (
+				7FEAB236BCED6F7D3471C3D8,
+				5F6F43DEB06694F5A141DD98,
+			);
+		};
+		9B42D1E7EEF42AB8A219C208 = {
+			isa = PBXFileReference;
+			path = PadelScorePhoneTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+		};
+		DF8C07E5BA54E54D2BD989D9 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				52F8BAE587157352D59C4C7A,
+				D69344D817BEC36D46DD3147,
+				7A919F26561DE0469C9E85F6,
+				13D3455CE8F41089B8A11C63,
+			);
+		};
+		D959DD6D14266A8838529755 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				9E5C0E46965B076BB81ADCCD,
+			);
+		};
+		1E599435404ED07D08D50CFA = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				EB74BDD0795E6F4AB9D4867F,
+			);
+		};
+		9E5C0E46965B076BB81ADCCD = {
+			isa = PBXBuildFile;
+			fileRef = 4611E435ED2A2A60EE05A6A0;
+		};
+		AB02996ADB51D35B8CCE0DA4 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E3335C5DD050FDEE5322E30;
+			proxyType = 1;
+			remoteGlobalIDString = 7F51B5167B8248F41C090FD2;
+			remoteInfo = PadelScorePhoneStoreKitHost;
+		};
+		2C761F78071A15E35F5A6DEB = {
+			isa = PBXTargetDependency;
+			name = PadelScorePhoneStoreKitHost;
+			target = 7F51B5167B8248F41C090FD2;
+			targetProxy = AB02996ADB51D35B8CCE0DA4;
+		};
+		5A9E1708B587ABB79E51CBE7 = {
+			isa = PBXNativeTarget;
+			productType = "com.apple.product-type.bundle.ui-testing";
+			name = PadelScorePhoneUITests;
+			productName = PadelScorePhoneUITests;
+			productReference = 9C81062FFC43421376871FA5;
+			buildConfigurationList = A65B736DD15C84FD4002ABC8;
+			buildRules = (
+			);
+			buildPhases = (
+				2DFD296F2A5A0FC6E9FB81C5,
+				A97348148A9ED87BEFFC0AEA,
+				DAC9ED636EA45F728C1B33E0,
+			);
+			dependencies = (
+				11D5748EF46C7AB8CBE757EC,
+			);
+		};
+		188CFF69FB81F9343D735819 = {
+			isa = XCBuildConfiguration;
+			name = Release;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.padelscorephoneuitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SKIP_INSTALL = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				TEST_TARGET_NAME = PadelScore;
+				CURRENT_PROJECT_VERSION = 2;
+				MARKETING_VERSION = 1.0;
+			};
+		};
+		AF780317400711154B81D7AD = {
+			isa = XCBuildConfiguration;
+			name = Debug;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dziachenka.padelscore.padelscorephoneuitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SKIP_INSTALL = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				TEST_TARGET_NAME = PadelScore;
+				CURRENT_PROJECT_VERSION = 2;
+				MARKETING_VERSION = 1.0;
+			};
+		};
+		A65B736DD15C84FD4002ABC8 = {
+			isa = XCConfigurationList;
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			buildConfigurations = (
+				188CFF69FB81F9343D735819,
+				AF780317400711154B81D7AD,
+			);
+		};
+		9C81062FFC43421376871FA5 = {
+			isa = PBXFileReference;
+			path = PadelScorePhoneUITests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+		};
+		2DFD296F2A5A0FC6E9FB81C5 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				C12D60AC7766CC5437720909,
+			);
+		};
+		A97348148A9ED87BEFFC0AEA = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+				C9551A7C5939BDA70303C588,
+			);
+		};
+		DAC9ED636EA45F728C1B33E0 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			runOnlyForDeploymentPostprocessing = 0;
+			files = (
+			);
+		};
+		C9551A7C5939BDA70303C588 = {
+			isa = PBXBuildFile;
+			fileRef = 4611E435ED2A2A60EE05A6A0;
+		};
+		41D7DDF1B33C17421957E656 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E3335C5DD050FDEE5322E30;
+			proxyType = 1;
+			remoteGlobalIDString = 22F01B39811FC98D7354B35C;
+			remoteInfo = PadelScore;
+		};
+		11D5748EF46C7AB8CBE757EC = {
+			isa = PBXTargetDependency;
+			name = PadelScore;
+			target = 22F01B39811FC98D7354B35C;
+			targetProxy = 41D7DDF1B33C17421957E656;
+		};
+
+		32A35B105369AC222D7E1C75 = {
+			isa = PBXFileReference;
+			name = GameKind.swift;
+			path = PadelScoreWatch/Domain/GameKind.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		D9F7F27765415880D70063D3 = {
+			isa = PBXBuildFile;
+			fileRef = 32A35B105369AC222D7E1C75;
+		};
+		2BFDB380B679E06457688E8B = {
+			isa = PBXBuildFile;
+			fileRef = 32A35B105369AC222D7E1C75;
+		};
+		6A8A074500CDEE009A20D51C = {
+			isa = PBXBuildFile;
+			fileRef = 32A35B105369AC222D7E1C75;
+		};
+		D1903CFECC7338F20A847D7B = {
+			isa = PBXBuildFile;
+			fileRef = 32A35B105369AC222D7E1C75;
+		};
+
+		6993764531181CD563554E43 = {
+			isa = PBXFileReference;
+			name = CompanionDemoTests.swift;
+			path = PadelScorePhoneTests/CompanionDemoTests.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		52F8BAE587157352D59C4C7A = {
+			isa = PBXBuildFile;
+			fileRef = 6993764531181CD563554E43;
+		};
+		49EB345147213E0A303B212A = {
+			isa = PBXFileReference;
+			name = ReviewAndLinksTests.swift;
+			path = PadelScorePhoneTests/ReviewAndLinksTests.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		D69344D817BEC36D46DD3147 = {
+			isa = PBXBuildFile;
+			fileRef = 49EB345147213E0A303B212A;
+		};
+		B850CDFD4D1389740CB7CA88 = {
+			isa = PBXFileReference;
+			name = PhoneStoreKitPurchaseTests.swift;
+			path = PadelScorePhoneTests/PhoneStoreKitPurchaseTests.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		7A919F26561DE0469C9E85F6 = {
+			isa = PBXBuildFile;
+			fileRef = B850CDFD4D1389740CB7CA88;
+		};
+		B5EA922C12E38D855EDB8855 = {
+			isa = PBXFileReference;
+			name = CompanionUITests.swift;
+			path = PadelScorePhoneUITests/CompanionUITests.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		C12D60AC7766CC5437720909 = {
+			isa = PBXBuildFile;
+			fileRef = B5EA922C12E38D855EDB8855;
+		};
+
+		EB74BDD0795E6F4AB9D4867F = {
+			isa = PBXBuildFile;
+			fileRef = A9B925E1513084C61A8C9194;
+		};
+
+
+
+		A2F227692B2090CF99721CCB = {
+			isa = PBXFileReference;
+			name = PhoneDesignTokenTests.swift;
+			path = PadelScorePhoneTests/PhoneDesignTokenTests.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+			includeInIndex = 1;
+		};
+		13D3455CE8F41089B8A11C63 = {
+			isa = PBXBuildFile;
+			fileRef = A2F227692B2090CF99721CCB;
+		};
+
 	};
 	rootObject = 1E3335C5DD050FDEE5322E30 /* Project object */;
 }

@@ -530,6 +530,12 @@ done
 report_line "$report" '```'
 report_line "$report" "## Result"
 report_line "$report" ""
+if [ -n "${COMPANION_PROFILE:-}" ]; then
+    simulator_release
+    verify_companion_profile release "$run_dir" "$report" || { emit_verdict VERIFICATION_FAILED; exit "$EX_FAIL"; }
+    assert_immutable_candidate_root "$opt_candidate"
+fi
+
 report_line "$report" "**VERIFIED_COMMIT:** \`${head_sha}\`"
 report_line "$report" "**Audit coverage:** COMPLETE"
 report_line "$report" "**VERDICT:** READY_FOR_HUMAN"

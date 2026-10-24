@@ -9,5 +9,6 @@
   "Set %lld": "Set est le terme sportif français usuel, suivi du numéro.",
   "Set %lld · %@": "Même terme sportif et structure de titre en français.",
   "Sets": "Pluriel français usuel de set.",
-  "Version %@ (%@)": "Version est le mot français usuel ; les numéros restent inchangés."
+  "Version %@ (%@)": "Version est le mot français usuel ; les numéros restent inchangés.",
+  "phone.demo.sets %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale."
 }

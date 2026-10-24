@@ -1,0 +1,32 @@
+{
+  "configurations": [
+    {
+      "id": "A6AB093F-9863-47D4-96DE-7C628FBA94EC",
+      "name": "Default",
+      "options": {}
+    }
+  ],
+  "defaultOptions": {
+    "language": "en",
+    "region": "US",
+    "storeKitConfigurationFileReference": {
+      "identifier": "StoreKit/Lifetime.storekit"
+    },
+    "targetForVariableExpansion": {
+      "containerPath": "container:PadelScore.xcodeproj",
+      "identifier": "22F01B39811FC98D7354B35C",
+      "name": "PadelScore"
+    }
+  },
+  "testTargets": [
+    {
+      "target": {
+        "containerPath": "container:PadelScore.xcodeproj",
+        "identifier": "5A9E1708B587ABB79E51CBE7",
+        "name": "PadelScorePhoneUITests"
+      },
+      "parallelizable": false
+    }
+  ],
+  "version": 1
+}

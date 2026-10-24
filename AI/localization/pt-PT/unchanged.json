@@ -9,5 +9,7 @@
   "Tie-break.": "Conventional padel scoring notation, unchanged in Portuguese.",
   "Padel Score — Wrist": "Product brand.",
   "Padel Score": "Product brand.",
-  "Email": "Conventional Portuguese term."
+  "Email": "Conventional Portuguese term.",
+  "phone.tab.demo": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "phone.demo.sets %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale."
 }

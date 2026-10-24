@@ -7,5 +7,7 @@
   "Padel Score — Wrist": "Product brand remains unchanged.",
   "Partner": "Ordinary German word for the teammate.",
   "Version %@ (%@)": "Version is the same German noun; placeholders retain the version/build format.",
-  "Padel Score": "Launcher product brand remains unchanged."
+  "Padel Score": "Launcher product brand remains unchanged.",
+  "phone.tab.start": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "phone.tab.demo": "M16: accepted international UI term or score notation has the same spelling in this locale."
 }

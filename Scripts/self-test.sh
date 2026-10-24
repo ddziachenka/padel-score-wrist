@@ -85,7 +85,8 @@ done
 
 require_tools git shasum sed awk grep find tar perl xargs
 
-CASES="config_parser
+CASES="companion_profiles
+config_parser
 watch_platform
 watch_coverage
 watch_builds
@@ -376,16 +377,40 @@ run_capture() {
 # would slow the suite by minutes without testing anything. Excluding them keeps
 # a developer who has published Web/ locally from paying for it here.
 fixture_copy() {
-    local dest="$1"
+    local dest="$1" source_commit="" source relative
     mkdir -p "$dest"
-    ( cd "$IOSAI_ROOT" && tar -cf - --exclude='./.git' --exclude='./.artifacts' --exclude='./.iosai-local' \
-        --exclude='./.wrangler' --exclude='./Web/.wrangler' \
-        --exclude='./node_modules' --exclude='./Web/node_modules' . ) \
-        | ( cd "$dest" && tar -xf - )
-    # The integration gate executes this suite from an intentionally read-only
-    # candidate. tar preserves those modes, but each throwaway fixture must be
-    # writable so its attack case can corrupt its own copy. Restore write access
-    # only beneath the fresh SELFTEST_DIR destination; never on IOSAI_ROOT.
+    # Product-owned contracts are not universal-template fixtures. Use the
+    # explicitly recorded initial template tree, then overlay the CURRENT tooling.
+    # Assertions are unchanged; only synthetic inputs are separated from real app data.
+    if [ -f "${IOSAI_ROOT}/.iosai-project" ]; then
+        source_commit="$(sed -n 's/^tooling_fixture_source_commit=//p' "${IOSAI_ROOT}/.iosai-project")"
+    fi
+    if [ -n "$source_commit" ]; then
+        [[ "$source_commit" =~ ^[0-9a-f]{40}$ ]] \
+            || die "$EX_USAGE" 'tooling fixture source must be one full commit'
+        git -C "$IOSAI_ROOT" cat-file -e "${source_commit}^{commit}" \
+            || die "$EX_NOINPUT" 'recorded template fixture source is unavailable'
+        git -C "$IOSAI_ROOT" archive "$source_commit" | tar -xf - -C "$dest"
+        # The first local import contained a product brief handoff. A fresh
+        # universal fixture has no completed product handoff (M00 recorded this).
+        rm -f "${dest}/AI/handoffs/product-brief.md"
+        mkdir -p "${dest}/Scripts/lib" "${dest}/.githooks"
+        for source in "${IOSAI_ROOT}"/Scripts/*.sh "${IOSAI_ROOT}"/Scripts/lib/*.sh "${IOSAI_ROOT}"/Scripts/lib/*.pl; do
+            [ -f "$source" ] || continue
+            relative="${source#${IOSAI_ROOT}/}"
+            cp -p "$source" "${dest}/${relative}"
+        done
+        for relative in Makefile .gitignore Config/project.env.example Config/release-requirements.v3.tsv .githooks/pre-commit; do
+            [ -f "${IOSAI_ROOT}/${relative}" ] || continue
+            cp -p "${IOSAI_ROOT}/${relative}" "${dest}/${relative}"
+        done
+        "${dest}/Scripts/configure-project.sh" --template-mode --print > "${dest}/Config/project.env"
+    else
+        ( cd "$IOSAI_ROOT" && tar -cf - --exclude='./.git' --exclude='./.artifacts' --exclude='./.iosai-local' \
+            --exclude='./.wrangler' --exclude='./Web/.wrangler' \
+            --exclude='./node_modules' --exclude='./Web/node_modules' . ) \
+            | ( cd "$dest" && tar -xf - )
+    fi
     chmod -R u+w "$dest"
     mkdir -p "${dest}/.artifacts"
     : > "${dest}/.artifacts/.gitkeep"
@@ -763,6 +788,53 @@ esac
 STUB
     chmod +x "${STUB_BIN}/xcodebuild"
     fixture_commit_unchecked "$fx" 'Watch-only fixture'
+}
+
+case_companion_profiles() {
+    local fx="${SELFTEST_DIR}/companion-config" work="${SELFTEST_DIR}/companion-work" rc
+    fixture_product "$fx" "$work"
+    cat > "${fx}/Config/companion.env" <<'PROFILE'
+APP_PLATFORM="iOS"
+SCHEME="FixturePhone"
+APP_TARGET="FixturePhone"
+SIMULATOR_MODE="explicit"
+COMPANION_PROFILE=""
+PROFILE
+    rc="$(run_capture "${work}/profiles" bash -c '
+        . "$1/Scripts/lib/common.sh"; load_project_config --required
+        simulator_state_dir
+        COMPANION_PROFILE=Config/companion.env; load_companion_profile
+        app_platform; simulator_state_dir; simulator_device_name
+    ' _ "$fx")"
+    expect_exit 0 "$rc" 'explicit iOS companion profile loads'
+    expect_contains "$(cat "${work}/profiles")" '/.iosai-local/companion' 'companion binding is separate'
+    expect_contains "$(cat "${work}/profiles")" 'companion-' 'companion simulator name is distinct'
+    expect_contains "$(cat "${work}/profiles")" 'iOS' 'companion runs on iOS'
+    rc="$(run_capture "${work}/recursive" bash -c '
+        . "$1/Scripts/lib/common.sh"; load_project_config --required
+        printf "\nCOMPANION_PROFILE=\"Config/companion.env\"\n" >> "$1/Config/companion.env"
+        COMPANION_PROFILE=Config/companion.env; load_companion_profile
+    ' _ "$fx")"
+    expect_exit 65 "$rc" 'recursive or duplicate companion profile is rejected'
+    sed '/^COMPANION_PROFILE=/d; /^MILESTONE_TEST_ARGUMENTS=/d' "${fx}/Config/companion.env" > "${work}/clean-profile"
+    cp "${work}/clean-profile" "${fx}/Config/companion.env"
+    printf 'COMPANION_PROFILE=""\nMILESTONE_TEST_ARGUMENTS="-only-testing:OneTest"\n' >> "${fx}/Config/companion.env"
+    rc="$(run_capture "${work}/narrow" bash -c '
+        . "$1/Scripts/lib/common.sh"; load_project_config --required
+        COMPANION_PROFILE=Config/companion.env; load_companion_profile
+    ' _ "$fx")"
+    expect_exit 64 "$rc" 'narrowed companion test scope is refused'
+    rc="$(run_capture "${work}/rating" bash -c '
+        . "$1/Scripts/lib/common.sh"; APP_PLATFORM=watchOS; WATCH_APP_MODE=companion
+        release_coverage_allows_inapplicable REL-208 product app-store
+        release_coverage_allows_inapplicable REL-209 release app-store
+    ' _ "$fx")"
+    expect_exit 0 "$rc" 'companion applicability query works'
+    expect_same "$(printf 'no\nno')" "$(cat "${work}/rating")" 'iOS companion removes Watch-only rating exemption'
+    rm "${fx}/Config/companion.env"
+    printf '\nAPP_PLATFORM="watchOS"\nWATCH_APP_MODE="companion"\nCOMPANION_PROFILE="Config/companion.env"\n' >> "${fx}/Config/project.env"
+    rc="$(run_capture "${work}/missing" bash -c '. "$1/Scripts/lib/common.sh"; load_project_config --required' _ "$fx")"
+    expect_exit 66 "$rc" 'missing companion profile cannot silently skip the iOS suite'
 }
 
 case_watch_platform() {

@@ -52,6 +52,11 @@ for name, actual in host_settings.items():
             "shipping Watch identifier must retain its standard suffix")
     expected["PRODUCT_BUNDLE_IDENTIFIER"] = expected["PRODUCT_BUNDLE_IDENTIFIER"].removesuffix(".watchkitapp")
     expected["INFOPLIST_KEY_CFBundleDisplayName"] = "StoreKit Test Host"
+    # The test-only Watch host is independently installable in the canonical container
+    # namespace. Production now embeds an independent Watch counterpart in a real iOS app.
+    if expected.pop("INFOPLIST_KEY_WKCompanionAppBundleIdentifier", None):
+        expected.pop("INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp", None)
+        expected["INFOPLIST_KEY_WKWatchOnly"] = "YES"
     require(actual == expected, f"{name} settings may differ only in test-host identity/name")
     require(actual["SKIP_INSTALL"] == "YES", "test host must not be installed by an archive")
 

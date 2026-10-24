@@ -19,7 +19,7 @@ struct PadelScoreApp: App {
                 .environment(entitlements)
                 .task { await entitlements.start() }
                 .onChange(of: scenePhase) {
-                    if scenePhase == .active { Task { await entitlements.refresh() } }
+                    if scenePhase == .active { Task { await entitlements.refresh(); await entitlements.loadProduct() } }
                 }
                 #if DEBUG
                 .environment(\.drawsAlwaysOnForUITest, AppComposition.drawsAlwaysOnForUITest)

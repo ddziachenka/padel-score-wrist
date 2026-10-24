@@ -201,6 +201,11 @@ if [ "$test_rc" -ne 0 ] || [ "$bundle_rc" -ne 0 ]; then
     exit "$EX_FAIL"
 fi
 
+if [ -n "${COMPANION_PROFILE:-}" ]; then
+    simulator_release
+    verify_companion_profile integration "$run_dir" "$report" || exit "$EX_FAIL"
+fi
+
 assert_immutable_candidate_root "$opt_candidate"
 
 report_line "$report" "## Checks performed"

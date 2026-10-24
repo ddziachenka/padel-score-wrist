@@ -57,13 +57,14 @@ IOSAI_CONFIG_EXAMPLE="${IOSAI_ROOT}/Config/project.env.example"
 # gates may set this again only after validating their explicit publishing-root
 # argument; ordinary callers always key caches to their own physical checkout.
 IOSAI_CACHE_OWNER_PATH=""
+IOSAI_PLATFORM_PROFILE=""
 
 # Every key the template understands, and the ONLY keys its parser accepts.
 # Used by configure-project.sh to write a complete file, by verify-template.sh
 # to assert the example documents all of them, and by env_file_validate to
 # reject anything else. A key here must also have an assignment branch in
 # env_file_load.
-IOSAI_CONFIG_KEYS="APP_PLATFORM PROJECT_NAME BUNDLE_IDENTIFIER PROJECT_PATH WORKSPACE_PATH \
+IOSAI_CONFIG_KEYS="WATCH_APP_MODE COMPANION_PROFILE APP_PLATFORM PROJECT_NAME BUNDLE_IDENTIFIER PROJECT_PATH WORKSPACE_PATH \
 SCHEME APP_TARGET CONFIGURATION_DEBUG CONFIGURATION_RELEASE BUILD_DESTINATION \
 TEST_DESTINATION SIMULATOR_MODE SIMULATOR_DEVICE_TYPE SIMULATOR_RUNTIME \
 DERIVED_DATA_PATH FAST_TEST_ARGUMENTS \
@@ -463,6 +464,8 @@ env_file_load() {
         value="${value#\"}"
         value="${value%\"}"
         case "$key" in
+            WATCH_APP_MODE)                   WATCH_APP_MODE="$value" ;;
+            COMPANION_PROFILE)                COMPANION_PROFILE="$value" ;;
             APP_PLATFORM)                     APP_PLATFORM="$value" ;;
             PROJECT_NAME)                     PROJECT_NAME="$value" ;;
             BUNDLE_IDENTIFIER)                BUNDLE_IDENTIFIER="$value" ;;
@@ -1344,6 +1347,7 @@ derived_data_path() {
     else
         path="$(derived_data_default_path)"
     fi
+    if [ -n "${IOSAI_PLATFORM_PROFILE:-}" ]; then path="${path}-${IOSAI_PLATFORM_PROFILE}"; fi
     validate_derived_data_path "$path" || exit "$EX_USAGE"
     printf '%s\n' "$path"
 }
@@ -3354,6 +3358,10 @@ release_coverage_allows_inapplicable() {
     # Narrow platform exception; the inventory remains mandatory for iOS.
     case "$(app_platform):$id" in
         watchOS:REL-208|watchOS:REL-209)
+            if [ "${WATCH_APP_MODE-watch-only}" = companion ]; then
+                release_coverage_rows "$domain" "$channel" | awk -F '\t' -v id="$id" '$1 == id { found=1 } END { if (!found) exit 1; print "no" }'
+                return $?
+            fi
             release_coverage_rows "$domain" "$channel" | awk -F '\t' -v id="$id" \
                 '$1 == id { found=1 } END { if (!found) exit 1; print "yes" }'
             return $? ;;
@@ -4014,3 +4022,6 @@ scan_matching_lines() {
 
 # shellcheck source=platform.sh
 . "${IOSAI_ROOT}/Scripts/lib/platform.sh"
+
+# Companion verification is additive: the original platform suite always runs first.
+. "${IOSAI_ROOT}/Scripts/lib/companion.sh"

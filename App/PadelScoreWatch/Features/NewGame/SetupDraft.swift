@@ -1,9 +1,3 @@
-/// The format a new game is set up in.
-enum GameKind: String, Hashable, Sendable, CaseIterable {
-    case match
-    case americano
-}
-
 /// A value the person chooses before a game starts.
 enum SetupField: Hashable, Sendable, CaseIterable {
     case deuceRule

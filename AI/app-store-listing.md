@@ -1,6 +1,6 @@
 # App Store listing — English (US)
 
-Prepared for app 6825393194, version 1.0. No App Review submission authorized.
+Prepared for app 6825393194, version 1.0. Submission is authorized after new-candidate release revalidation; M16 preparation does not establish readiness.
 
 Name: Padel Score — Wrist
 
@@ -56,9 +56,12 @@ Requires Apple Watch with watchOS 10 or later. Available in English, Spanish, It
 Privacy: https://padel-score-wrist.pages.dev/privacy/
 Terms: https://padel-score-wrist.pages.dev/terms/
 
+iPHONE COMPANION
+Try the real scoring rules. Tap a team, follow the serve, then undo a point. You can unlock now, even before installing the Watch app. Use the same Apple Account on both devices. History and the free-game count are local to your Watch. They do not sync to iPhone. Demos do not save results or use your free games.
+
 ## Review notes
 
-Watch-only app; there is no iPhone companion UI and no sign-in or demo account. New game → Try the scoreboard (also in About) opens an isolated, fixed Match demo. It ends after one game; Undo and Reset demo let you explore again. Demo use does not consume free games.
+Independent Watch app with an iPhone companion. iPhone tabs: Start (installation and help), Demo (isolated Match and Americano examples), Access (the same lifetime IAP and Restore). Real games are played on Apple Watch; iPhone only has demos. No sign-in or demo account. New game → Try the scoreboard (also in About) opens an isolated, fixed Match demo. It ends after one game; Undo and Reset demo let you explore again. Demo use does not consume free games.
 
 The first five completed games are free automatically. To reach the purchase gate quickly: choose Americano, set a small rally total and serving order, start, record rallies up to the total, then tap Done. Repeat with five separate games. Starting the sixth game shows Access. A game is counted once; resuming and finishing it again does not use another free game.
 

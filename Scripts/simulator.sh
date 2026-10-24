@@ -6,7 +6,7 @@ _script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 iosai_enter_root
 usage() {
     cat <<'HELP'
-Usage: ./Scripts/simulator.sh COMMAND [arguments]
+Usage: ./Scripts/simulator.sh [--profile companion|capture] COMMAND [arguments]
   setup                         create/reuse this checkout's pinned simulator
   context | status              JSON context (status includes current device state)
   boot | shutdown               operate only on the owned device
@@ -24,6 +24,11 @@ Busy resources exit 75; no live lease expires by timeout. Keep the token private
 until release. GUI sessions hold acquire --desktop across the whole interaction.
 HELP
 }
+profile=""
+if [ "${1:-}" = --profile ]; then
+    case "${2:-}" in companion|capture) profile="$2" ;; *) die "$EX_USAGE" "only --profile companion or capture is supported" ;; esac
+    shift 2
+fi
 command="${1:---help}"
 shift || true
 case "$command" in -h|--help) usage; exit 0 ;; esac
@@ -37,6 +42,17 @@ case "$command" in
         simulator_lease acquire "$2" "$IOSAI_ROOT" desktop; exit ;;
 esac
 load_project_config --required
+if [ -n "$profile" ]; then
+    load_companion_profile
+    if [ "$profile" = capture ]; then
+        assert_no_symlink_ancestry "${IOSAI_ROOT}/Config/companion-capture.env" || exit "$EX_USAGE"
+        env_file_load "${IOSAI_ROOT}/Config/companion-capture.env"
+        IOSAI_PLATFORM_PROFILE=companion-capture
+        [ "$(app_platform)" = iOS ] || die "$EX_VERIFY" "capture profile must use iOS"
+        platform_config_validate
+        simulator_config_validate
+    fi
+fi
 [ "${SIMULATOR_MODE-explicit}" = managed ] || die "$EX_USAGE" 'set SIMULATOR_MODE="managed" and pin SIMULATOR_DEVICE_TYPE and SIMULATOR_RUNTIME first'
 trap simulator_release EXIT
 simulator_signal_traps

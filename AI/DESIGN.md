@@ -9,7 +9,7 @@
 **Approved on:** 2026-10-20
 **Updated:** 2026-10-22
 
-Подтверждены Watch-only, два формата своей игры, исправление всех введённых данных,
+Подтверждены самостоятельный Watch с iPhone-компаньоном M16, два формата своей игры, исправление всех введённых данных,
 ручное завершение обычного матча, английский язык v1 и премиальный минимализм.
 Описанные ниже компоновка, обратная связь и восстановление одобрены как направление
 2026-10-20. Числа и русские подписи HTML-макетов не задают правила или язык v1.
@@ -828,3 +828,9 @@ remains BLOCKED until that evidence exists. Earlier evidence describes its own S
 The coordinator performs a full editorial second pass after the language agents.
 All routes, screenshots and store drafts are validated before delivery. No App
 Review submission, App Store Connect upload or site publication is authorized.
+
+## iPhone companion — M16, approved 2026-10-24
+
+Three native tabs: Start, Demo, Access. Cold launch opens Start. Start explains Watch installation, scoring, Undo, serving, formats and watch-face launcher; includes demo/access actions, useful help and localized legal/support links. Real games explicitly require Apple Watch. No mandatory onboarding/paywall. Phone uses semantic light/dark surfaces, graphite/lime identity, readable Dynamic Type, 44pt targets and Reduce Motion. Independent Watch retains its existing design and journeys.
+
+Demo has a Match/Americano segmented selector, an always-visible Demo label, score and next server, two team point buttons, Undo and Reset. Exact fixtures and stopping boundaries are in M16. Both modes reset on switching/leaving/cold launch. Access displays StoreKit localized price and one-time ownership, loading/retry/cancel/pending/restore/refund states, network guidance and Terms/Privacy. Users may acquire lifetime before Watch installation after reading the Apple Watch requirement. No remaining-game count is shown on phone. All new copy ships in the existing languages; iPhone gallery has Start, Match, Americano and Access.

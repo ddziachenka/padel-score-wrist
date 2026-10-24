@@ -444,6 +444,11 @@ if [ "$test_rc" -ne 0 ]; then
     exit "$EX_FAIL"
 fi
 
+if [ -n "${COMPANION_PROFILE:-}" ]; then
+    simulator_release
+    verify_companion_profile milestone "$run_dir" "$report" || exit "$EX_FAIL"
+fi
+
 verify_source_unchanged
 report_line "$report" ""
 report_line "$report" "## Result"

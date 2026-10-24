@@ -865,3 +865,22 @@ remains BLOCKED until that evidence exists. Earlier evidence describes its own S
 The coordinator performs a full editorial second pass after the language agents.
 All routes, screenshots and store drafts are validated before delivery. No App
 Review submission, App Store Connect upload or site publication is authorized.
+
+## Independent Watch with iPhone companion — M16
+
+The owner approved M16 on 2026-10-24. `WATCH_APP_MODE="companion"` adds a mandatory
+committed `Config/companion.env` iOS profile to the primary Watch profile. Milestone,
+integration and release run the existing complete Watch suite first, then the full
+iOS suite in its own scheme, simulator binding, DerivedData and xcresult. Neither
+suite can be omitted, narrowed, retried into a pass or treated as optional. The
+Watch-only path and its regression fixtures remain supported for historical work.
+
+`Scripts/simulator.sh --profile companion` manages the iOS17 SE binding separately;
+`--profile capture` manages the iOS26.5 large iPhone screenshot binding. Both keep the
+same checkout lease and distinct device leases; captures do not replace mandatory
+minimum-OS coverage. The ordinary commands still address the original Watch device.
+Actual built-plist checks require the iPhone executable and independent Watch with
+`WKRunsIndependentlyOfCompanionApp=true`, correct companion ID, versions and launcher.
+The iOS rating rows are mandatory for companion mode too. Hardware StoreKit exchange
+must be observed on the owner-connected pair; Simulator results cannot claim it.
+M16 does not reopen M10 or authorize carrying its old candidate evidence forward.

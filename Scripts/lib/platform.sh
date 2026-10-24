@@ -12,6 +12,18 @@ platform_config_validate() {
         iOS|watchOS) : ;;
         *) die "$EX_USAGE" 'APP_PLATFORM must be iOS or watchOS (Watch-only)' ;;
     esac
+    case "${WATCH_APP_MODE-watch-only}" in
+        watch-only|companion) : ;;
+        *) die "$EX_USAGE" 'WATCH_APP_MODE must be watch-only or companion' ;;
+    esac
+    if [ "$(app_platform)" = watchOS ] && [ "${WATCH_APP_MODE-watch-only}" = companion ]; then
+        [ "${COMPANION_PROFILE:-}" = Config/companion.env ] \
+            || die "$EX_USAGE" 'companion mode requires the committed Config/companion.env profile'
+        [ -f "${IOSAI_ROOT}/Config/companion.env" ] \
+            || die "$EX_NOINPUT" 'companion profile is missing'
+        assert_no_symlink_ancestry "${IOSAI_ROOT}/Config/companion.env" || exit "$EX_USAGE"
+        env_file_validate "${IOSAI_ROOT}/Config/companion.env" || exit "$EX_VERIFY"
+    fi
     # Managed destinations are derived from the binding. Explicit destinations
     # may omit platform (Xcode resolves an ID), but must not contradict it.
     [ "${SIMULATOR_MODE-explicit}" = explicit ] || return 0
@@ -78,6 +90,10 @@ platform_built_plist() {
 validate_watch_build() (
     [ "$(app_platform)" = watchOS ] || exit 0
     local configuration="$1" destination="$2" derived="$3" report="$4"
+    if [ "${WATCH_APP_MODE-watch-only}" = companion ]; then
+        validate_independent_watch_build "$configuration" "$destination" "$derived" "$report"
+        exit $?
+    fi
     local settings apps containers app container app_plist container_plist embedded
     local app_path container_path product_name built_platform
     require_tools xcodebuild jq plutil

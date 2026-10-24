@@ -1035,6 +1035,16 @@ if [ -f "${_script_dir}/verify-launcher.py" ]; then
     fi
 fi
 
+# Companion packaging mutations must fail before any distribution gate can pass.
+if [ -f "${_script_dir}/verify-companion.py" ]; then
+    if ! python3 "${_script_dir}/verify-companion.py" --source; then
+        fail "companion source configuration failed"
+    fi
+    if ! python3 -m unittest discover -s "${_script_dir}/tests" -p test_companion.py; then
+        fail "companion packaging regression tests failed"
+    fi
+fi
+
 # ---------------------------------------------------------------------------
 # 10. Milestone bookkeeping.
 # ---------------------------------------------------------------------------

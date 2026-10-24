@@ -1,10 +1,10 @@
 # Project status
 
-**Phase:** release-preparation
-**Current milestone:** none
+**Phase:** implementation
+**Current milestone:** M16
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15
-**Next milestone:** none
-**Blockers:** App Store Connect blocks the approved Watch-only version + first lifetime IAP submission; Apple clarification is required; support case 103007020727 was sent with owner authorization, preserving Watch-only.
+**Next milestone:** M16
+**Blockers:** Historical Watch-only submission remains blocked; owner now authorized M16 iPhone companion. Actual cross-device StoreKit evidence on the owner-connected iPhone–Watch pair is required before M16 DONE. Apple case 103007020727 remains monitored; no submission has occurred.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; Watch-only; approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; nothing submitted. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -18,3 +18,7 @@ Owner explicitly authorized version 1.0 submission with lifetime IAP, AFTER_APPR
 Draft `17c2964a-e72b-4558-983f-4a40c5545d9f` contains app 1.0 (1) and IAP version `d96baf47-39f7-4632-856e-b2cd28ec458f`. Both items are READY_FOR_REVIEW, but Submit for Review is disabled: Apple says Watch IAPs cannot be included. An attempted API submission tool call was rejected by automatic approval review before execution as a bypass of the observed restriction. **Nothing submitted; not Waiting for Review.** This newly observed distribution blocker supersedes earlier preparation assumptions without rewriting historical M10 verification.
 
 Handoff: [ASC launch](handoffs/ASC-launch-20261024.md). The owner authorized the [Apple support inquiry](launch-20261024/apple-support-draft.md), now sent and confirmed as case **103007020727**; await Apple and preserve Watch-only. All assets, API backups, scripts and archive are in `.artifacts/asc-launch-20261024/`; retain that directory for the active promotion monitor. No app/configuration change or new milestone was made.
+
+## M16 authorization — 2026-10-24
+
+Owner approved compact iPhone companion (iOS17+) with Start, Match and Americano demos, and existing lifetime purchase, while Watch remains independent (watchOS10+). Purchase before Watch installation is allowed with an explicit explanation. All existing locales and launch-day-plus-seven-full-days zero-price offer remain required. M16 is IN_PROGRESS on main; historical M10 evidence describes its old source only. New build requires separate release revalidation before App Review. Owner will connect the physical pair for purchase/restore verification. Contract: [M16](milestones/M16-iphone-companion.md).

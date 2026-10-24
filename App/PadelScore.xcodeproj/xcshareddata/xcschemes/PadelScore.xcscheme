@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "22F01B39811FC98D7354B35C"
-               BuildableName = "PadelScore.app"
-               BlueprintName = "PadelScore"
-               ReferencedContainer = "container:PadelScore.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "6BE7B1F86B27A0EA377ED4FD"
                BuildableName = "PadelScoreWatch.app"
                BlueprintName = "PadelScoreWatch"

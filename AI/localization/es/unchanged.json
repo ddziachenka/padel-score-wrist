@@ -8,5 +8,7 @@
   "Sets": "Established plural in Spanish padel.",
   "Padel Score": "Untranslated launcher product identity.",
   "Set %lld": "Set is the established Spanish padel term; numeric argument preserved.",
-  "Set %lld · %@": "Set is the established Spanish padel term; numbering and state placeholders preserved."
+  "Set %lld · %@": "Set is the established Spanish padel term; numbering and state placeholders preserved.",
+  "phone.tab.demo": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "phone.demo.sets %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale."
 }

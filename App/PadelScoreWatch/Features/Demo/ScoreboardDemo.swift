@@ -29,13 +29,7 @@ final class ScoreboardDemo {
 
     /// The example every demo starts from: a match under Golden point, the first set at 2–2 in games
     /// and 40–30 in points, You serving, then Opponent 1, Partner and Opponent 2.
-    static let example = MatchState(
-        rules: MatchRules(deuceRule: .goldenPoint, setPolicy: .tieBreakAtSixAll),
-        completedSets: [],
-        games: SetGames(us: 2, them: 2),
-        phase: .game(.points(us: .forty, them: .thirty)),
-        service: ServiceAnchor(order: .youThenOpponent1, server: .you, tieBreak: nil, isConfirmed: true)
-    )
+    static let example = DemoExamples.match
 
     /// Shown under the demo, and said once its game is won.
     static let endNote = LocalizedStringResource(
