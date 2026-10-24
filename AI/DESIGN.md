@@ -279,12 +279,16 @@ Development-only premium override не имеет пользовательско
 
 ## Review request
 
-**INAPPLICABLE: watchOS Watch-only.** Продукт не имеет iOS-приложения; rating prompt,
-ручной пункт оценки и milestone `Review Request` не генерируются. Строки REL-208
-и REL-209 фиксируются как INAPPLICABLE с этой причиной в релизном аудите. Никакое
-игровое действие не зависит от показа рейтинга.
+M16: на iPhone есть ручной пункт оценки в Help и ненавязчивый системный запрос
+после завершения обоих демо и повторного использования в другой день. Запрос
+появляется только на Start, вне покупки и первоначального знакомства, максимум
+одна попытка за365 дней. Нет собственного окна «Нравится приложение?» и sentiment gate;
+оценка не блокирует действия и не зависит от lifetime. Система решает, показать ли
+окно. VoiceOver и Reduce Motion сохраняют нативное поведение этого интерфейса.
 
-Platform policy: watchOS has no required rating request.
+Platform policy: watchOS has no required rating request. The M16 iPhone companion
+makes current REL-208/REL-209 evidence mandatory; historical Watch-only audit rows
+remain tied to their original verified candidate.
 
 ## Legal and support
 
@@ -734,12 +738,12 @@ M14: S19 использует нативную ракетку `tennis.racket`, �
 
 | Question | Answer |
 | --- | --- |
-| Light and dark appearance | Одна намеренно тёмная Watch-палитра сохраняет контраст при обоих системных traits; страницы не инвертируются автоматически. Системные экраны сохраняют нативное оформление. |
+| Light and dark appearance | Watch сохраняет намеренно тёмную палитру при обоих системных traits. iPhone следует светлой/тёмной теме с непрозрачными семантическими цветами и лаймовым акцентом; системные экраны нативные. |
 | Elevation and imagery variants in dark mode | Непрозрачные тональные поверхности; изображения не нужны. Increase Contrast может добавить различимый контур. |
 | Smallest supported screen | M00 выбирает конкретную модель в рамках утверждённого минимума watchOS 10; область 162×197 в HTML — лишь проверочный макет, не обещание поддерживаемой модели. M00 фиксирует реальные модели/runtime, M05/M10 доказывают layout. |
-| Largest supported layout / iPad behavior | Самый большой выбранный Watch увеличивает свободное пространство, не добавляет новые панели. iPhone/iPad не поддерживаются продуктом. |
+| Largest supported layout / iPad behavior | Самый большой выбранный Watch увеличивает свободное пространство, не добавляет новые панели. На большом iPhone сохраняется одноколоночный компактный компаньон M16; отдельного iPad-интерфейса нет. |
 | Orientation and multitasking policy | Нативная ориентация Watch; при изменении руки/ориентации Crown смысл US/THEM остаётся тем же. Нет телефонного split view. |
-| Screens that reflow vertically at large text | Все формы, result, legal и доступная компоновка Live score; нативная прокрутка Crown/touch. |
+| Screens that reflow vertically at large text | Все Watch формы, result, legal и доступная компоновка Live score; нативная прокрутка Crown/touch. На iPhone карточки счёта становятся полноширинными, длинные тексты и действия переносятся вертикально; Small iPhone остаётся обязательной проверкой. |
 | Text that may truncate / must never truncate | Нельзя обрезать счёт, команды, текущего server, смысл правила, цену/условия и действие ошибки. Необязательный длинный app title может уступить место системному Back. |
 
 Always On, опущенное запястье и системный возврат к циферблату требуют runtime- и

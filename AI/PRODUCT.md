@@ -316,18 +316,17 @@ Product.displayPrice в кнопке `Unlock forever`; с M11 непосредс
 
 ### Review request
 
-Watch-only исключение шаблона: просьба поставить оценку и ручной пункт оценки
-не обязательны. Не создавать iPhone-компаньон ради рейтинга и не генерировать
-отдельный этап `Review Request`. В финальном аудите REL-208 и REL-209 записываются
-как `INAPPLICABLE` с причиной «самостоятельное приложение watchOS; поток оценки
-не предусмотрен Watch-only контрактом», а не просто пропускаются.
+M16 добавляет обязательный поток оценки на iPhone. На часах запрос не появляется.
+Для нового кандидата REL-208 и REL-209 требуют текущего подтверждения в product и
+release аудитах; прежнее Watch-only исключение относится только к исторической
+сборке M10. Отдельный milestone Review Request не создаётся: это часть M16.
 
 | Question | Answer |
 | --- | --- |
-| The moment that qualifies | Не применяется для выбранного Watch-only scope |
-| What must be true before asking | Запрос оценки не реализуется |
-| How often it may be asked again | Не применяется; никакой счётчик запросов не хранится |
-| How the person rates without being asked | В приложении ручной пункт оценки не требуется; отдельная поверхность не создаётся |
+| The moment that qualifies | Оба демо завершены и приложение повторно используется в другой календарный день; запрос при возврате в Start либо подходящем повторном запуске |
+| What must be true before asking | Пользователь уже знаком с демо; покупка/восстановление не выполняется; нет sentiment gate и обязательного ответа |
+| How often it may be asked again | Не чаще одной попытки за365 дней; дата попытки хранится локально, даже если система не показала окно |
+| How the person rates without being asked | Ручной пункт оценки в iPhone Help открывает страницу оценки существующего приложения; доступен независимо от покупки |
 
 ### Legal and support
 
@@ -335,7 +334,8 @@ H1 closed 2026-10-21: support messages and attachments are deleted within 90 day
 after closure, except when a legal obligation or active dispute requires longer
 retention. The owner approved the same identity/retention as Film Rescue and then
 corrected the email to `dzmitry.dziachenka@gmail.com`. Publication of this site is
-authorized; App Review submission remains explicitly prohibited.
+authorized at that checkpoint. Current App Review authorization is recorded in the
+2026-10-24 launch decision below; M16/new readiness remain prerequisites.
 
 
 Обязателен этап `Legal and Support`: публичные Home, Privacy, Terms и Support
@@ -487,12 +487,15 @@ Review submission, App Store Connect upload or site publication is authorized.
 Владелец явно поручил подготовить и отправить 1.0 вместе с существующим non-consumable
 `com.dziachenka.padelscore.lifetime` на App Review и выпустить автоматически после
 одобрения (`AFTER_APPROVAL`). Это решение заменяет прежний запрет на отправку только
-для данной подачи. Название, Watch-only формат, лимит пяти бесплатных завершённых игр
-и модель доступа не меняются; исходники проверенного кандидата сохраняются.
+для данной подачи. Название, лимит пяти бесплатных завершённых игр на часах и модель
+доступа не меняются. Первоначально подавался Watch-only кандидат; одобренный M16
+заменяет его новым companion-кандидатом с обязательной отдельной Release Readiness
+Revalidation. Прежняя проверка не переносится на изменённые исходники.
 
 Скачивание остаётся бесплатным. Lifetime оформляется за 0 во всех доступных регионах
 в день публичного выхода и следующие семь полных дней. Пользователь подтверждает
-покупку через App Store в About → Access, в том числе до расходования пяти игр;
+покупку через App Store на Watch в About → Access либо на iPhone в Access, в том
+числе до расходования пяти игр;
 установка сама по себе права не даёт. Полученное право бессрочно. Затем возвращаются
 $4.99 USD и сохранённые региональные price points. Приложение показывает цену StoreKit.
 

@@ -1,7 +1,7 @@
 # M16 — Compact iPhone Companion
 
 **ID:** M16
-**Status:** IN_PROGRESS
+**Status:** BLOCKED
 **Depends on:** M10, M15
 **Validation:** make milestone ID=M16
 **Handoff:** AI/handoffs/M16-handoff.md
@@ -100,3 +100,14 @@ the primary product static/site gates. Neither the generic fixture nor its stubb
 Xcode replaces a real platform suite or physical hardware scenario. Record both
 fixture provenance/hash equality and the actual product results. The rejected
 proposal for an automatic wrapper was not executed; invocation logic is unchanged.
+
+## Current blocker — 2026-10-24
+
+The complete iOS17 UI suite has two unresolved native Contrast failed audits at
+largest text on iPhone SE; no issue or category is waived. The normal Xcode
+inspection path cannot run while the Mac is locked. The physical pair is also
+unavailable, with fresh bidirectional Sandbox acquisitions/reinstall/Watch-without-
+companion and physical accessibility/haptics still incomplete. Resume this same
+milestone after manual Mac unlock/pair reconnection and the pending isolated
+Sandbox tester choice. Implementation, signed archive and56 native gallery images
+are preserved. Exact evidence and remaining gates: AI/handoffs/M16-handoff.md.

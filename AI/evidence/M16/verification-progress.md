@@ -1,6 +1,6 @@
 # M16 verification progress — 2026-10-24
 
-Builder evidence; M16 is IN_PROGRESS. This record is not an independent audit, a
+Builder evidence; M16 is BLOCKED. This record is not an independent audit, a
 passing milestone gate, or release readiness. Historical M10 evidence remains intact.
 
 ## Source and artifact checkpoints
@@ -110,3 +110,46 @@ summary `watch27-smoke-summary.json`, UTC13:47:43.320–13:52:22.895. Command dr
 Its explicit scope is AppConfigurationTests, LauncherTests, BootstrapUITests and
 LauncherUITests. It validates actual independence/companion/version/localizations
 and launcher journeys; it does not replace the complete primary Watch suite.
+
+## Minimum Watch supplement and current iPhone unit suite
+
+watchOS10.0 SE40mm supplement: `watch10-smoke.xcresult`, exit0,13 definitions/
+24 invocations,0 failures/skips/expected failures/warnings. UTC13:54:17.177–13:58:05.467.
+Driver `runtime-profile.sh watch-minimum run bash check-watch-minimum.sh` performs
+build-for-testing, then test-without-building for the same four explicit classes as
+watchOS27. The generated xctestrun copy adds only the previously documented M14 UI
+DYLD_FRAMEWORK_PATH bootstrap prefix; assertions, SDK/runtime files and diagnostics
+remain unchanged. The copy stays alongside its original Products/test paths.
+
+Full iPhone unit/StoreKit suite on sourcefc118f8a0b357d52e0b06f8ba1f17449297ca623:
+`ios-unit-current-complete.xcresult`, exit0,14 definitions/20 invocations,0 failures/
+skips/expected failures/warnings. UTC14:00:44.129–14:00:53.949. Exact command driver:
+`Scripts/simulator.sh --profile companion run -- bash .artifacts/M16/check-phone-complete.sh`;
+its first action uses schemePadelScorePhoneUnit with no only-testing/skip-testing or
+retry arguments. Full companion UI suite is the next separate xcresult.
+
+## Current full UI outcome and desktop blocker
+
+Full iPhone UI suite on fc118f8a0b357d52e0b06f8ba1f17449297ca623 completed:
+`ios-ui-current-complete.xcresult`, exit65,6 definitions/invocations,4 passed/2 failed,
+0 skipped/expected failures/runtime warnings; UTC14:00:54.672–14:04:42.148. Failures:
+`testLargestTextAccessibility` and `testSpanishTeamNamesAtLargestTextAreNotClipped`,
+both Contrast failed. Both demos, optional Access, StoreKit-owned relaunch and the
+14-regional-context gallery passed. The full suite has no only-testing/skip-testing
+or retry arguments. This failed suite blocks M16 verification.
+
+At14:05–14:06Z the Builder acquired the owned iPhone SE + desktop reservation and
+attempted the normal Xcode UI route for a visual audit. Computer Use returned:
+“The Mac is locked and automatic unlock could not unlock it.” No UI action was
+performed and no lock was bypassed. The reservation was explicitly released.
+Manual Mac unlock and physical pair reconnection are required to continue that
+inspection/hardware work; previous questions remain unanswered.
+
+A current signed archive at the same fc118f8 source also completed, exit0:
+`.artifacts/M16/PadelScore-M16-fc118f8.xcarchive`. Its exact archive command matches
+the earlier command with that archive path; packaging guard and deep strict
+codesign verification both exited0 (`archive-fc118f8.log`,
+`archive-fc118f8-packaging.log`). This is a local archive, not an ASC upload or
+release-readiness verdict. The b2a30e0 permanent gallery remains accurate at regular
+text sizes; the subsequent production delta only distinguishes the neutral card's
+background at accessibility sizes. Its original capture provenance is preserved.

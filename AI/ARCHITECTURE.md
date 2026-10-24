@@ -1,11 +1,11 @@
 # Architecture
 
-Технический контракт самостоятельного приложения для Apple Watch. Прямые решения
-владельца — Watch-only, оба формата счёта, исправление всех введённых данных и
-английская v1 — сохранены. Архитектурное направление одобрено владельцем 2026-10-20;
-минимальная watchOS 10 выбрана отдельно в тот же день, правило сета H2 — тоже.
-H1 и H4 закрыты владельцем 2026-10-21. Одобрение не означает,
-что приложение уже реализовано или проверено.
+Технический контракт самостоятельного Watch-приложения с компактным iPhone-
+компаньоном M16. Минимумы: watchOS10 и iOS17. Реальные игры, история и launcher
+остаются на часах; телефон содержит начало работы, изолированные демо и общую
+покупку. Первоначальное направление утверждено2026-10-20, H1/H4 —2026-10-21,
+компаньон и все существующие локали — текущие утверждённые решения. Одобрение
+направления не заменяет проверку конкретного кандидата.
 
 **Status:** approved direction — H1–H4 resolved in PRODUCT
 **Approved by:** владелец проекта, сообщение «одобряю»
@@ -469,7 +469,7 @@ HealthKit workout или extended runtime session ради обхода сист
 | Backend service | Нет | Сценарий локальный | Не требуется | Подтверждено общим архитектурным направлением 2026-10-20 |
 | Authentication provider | Нет | Собственный аккаунт не нужен | Не требуется | Apple Account обслуживает только Apple |
 | StoreKit | StoreKit 2, H4 утверждён | Lifetime non-consumable entitlement | Retry/restore; не прерывать активную игру | Единый EntitlementStore и StoreKitPurchaseClient |
-| Review request (StoreKit) | INAPPLICABLE | Watch-only не имеет обязательного rating flow в этом workflow | Нет запроса оценки и ручного rate-entry | REL-208/REL-209: платформенное исключение watchOS, не пропуск проверки |
+| Review request (StoreKit) | На iPhone, M16 | SwiftUI requestReview как injected dependency; локальный ReviewEligibility ограничивает момент/частоту; ручной rate URL в Help | Система может не показать окно; приложение продолжает работу, ручная ссылка остаётся | REL-208/REL-209 обязательны для нового companion-кандидата; historical Watch-only exception сохраняется только для старой сборки |
 | HealthKit | Нет | Учёт тренировки не входит в MVP | Счёт работает без разрешений | Не использовать для удержания экрана |
 | Push notifications | Нет | Основному loop не нужны | Не требуется | Не включать entitlement |
 | Analytics | Предложено: нет | Проверка гипотез ранними наблюдениями и доступными агрегатами магазина | Полевой тест без встроенной отправки событий | Любая телеметрия требует новой privacy-оценки и решения владельца |
@@ -559,16 +559,18 @@ The actual amount charged is the most prominent number. This product has one lif
 
 | Question | Answer |
 | --- | --- |
-| Single target, or several? | Современный Xcode Watch-only: один executable Watch target, его packaging container, unit/UI test targets; без WatchKit extension или iPhone executable. С M14 — WidgetKit extension, встроенный в Watch app, с теми же marketing version и build |
+| Single target, or several? | M16: настоящий iOS executable включает независимый Watch executable и его WidgetKit launcher. Отдельные iPhone/Watch unit/UI targets и test-only StoreKit hosts; version/build совпадают у распространяемых компонентов |
 | Local Swift packages? | Нет на старте; логические слои каталогами и API, без преждевременного дробления маленького продукта |
 | Where new files go | `App/<Project>/Domain`, `Services`, `Features`, `Resources`, `App`; тесты рядом в test targets, test fixtures в их ресурсах |
 | Are folders synchronized groups? | В M00 выбраны явные PBXGroups и membership source/resource/test файлов; проект редактируется напрямую в Xcode, отдельный генератор для сборки не требуется |
 
-Packaging container нужен Xcode для упаковки Watch-only продукта; это не companion
-приложение и не устанавливаемый iPhone UI. Shared scheme собирает container и Watch
-executable, выполняет Watch unit/UI tests. `APP_TARGET` и `BUNDLE_IDENTIFIER`
-указывают на Watch executable; версия/build container синхронизированы с Watch app.
-[Apple: Watch-only targets](https://developer.apple.com/documentation/watchos-apps/creating-independent-watchos-apps).
+M16 заменяет прежний packaging container настоящим iPhone-приложением с тем же
+корневым bundle ID. Watch объявляет точный companion ID и независимое исполнение.
+Основной профиль APP_TARGET/BUNDLE_IDENTIFIER по-прежнему адресует Watch executable;
+Config/companion.env задаёт отдельные iOS target/schemes. Строгие gates выполняют оба
+полных набора и проверяют фактические plist/вложенные продукты. Архив строится схемой
+PadelScorePhone; test hosts, .xctest и локальная StoreKit-конфигурация не входят в него.
+[Apple: independent Watch apps](https://developer.apple.com/documentation/watchos-apps/creating-independent-watchos-apps).
 
 ## Testing strategy
 
@@ -631,7 +633,7 @@ Clean-HEAD и explicit-candidate milestone gates прошли для одног�
 
 | # | Alternative | Rejected because | Reconsider when |
 | --- | --- | --- | --- |
-| R1 | Companion iPhone + Watch Connectivity как основной store | Противоречит прямому Watch-only требованию | Только при новом продуктовом решении пользователя |
+| R1 | Companion iPhone + Watch Connectivity как основной store | Противоречит самостоятельности часов и границам компактного компаньона M16 | Только при новом продуктовом решении пользователя |
 | R2 | WebView с кодом интерактивного макета | JS модели и ограничения — демонстрация UX; нет нативного жизненного цикла и доказанных правил | Не предполагается для MVP |
 | R3 | SwiftData/Core Data для текущей игры | Нет запросов по архиву; explicit small snapshot проще контролировать в миграциях и атомарном undo. Утверждённая история M13 — локальный список компактных снимков без поиска, поэтому остаётся в том же версионированном файле | Если одобрен большой searchable history или sync |
 | R4 | UserDefaults как база матча | Счёт, подача, undo и usage должны сохраняться согласованно одной транзакцией | Не пересматривать для игрового состояния |
