@@ -1,0 +1,609 @@
+{
+  "source_sha": "b2a30e091d423d3414a59d1d2c9c2a65daeb59e5",
+  "source_app_tree": "1f41f612901e2fb431cf12d8fbc38ec2bae7ca8a",
+  "capture_kind": "native-xcuiscreen-unmodified",
+  "appearance": "dark",
+  "access_state": "StoreKit-verified lifetime; no temporary price",
+  "device_udid": "AFA90878-52C5-43C6-B7CA-9F076B7673F4",
+  "device": "iPhone 16 Pro Max",
+  "runtime": "iOS 18.5 (22F77)",
+  "dimensions": [
+    1320,
+    2868
+  ],
+  "result_bundle": ".artifacts/M16/iphone-gallery-m16-v2.xcresult",
+  "test": "PadelScorePhoneUITests/CompanionUITests/testLocalizedGallery",
+  "storekit_fixture": "App/StoreKit/Lifetime.storekit",
+  "storekit_fixture_sha256": "b181f9f2a1df80ac4e6bb5d51727acd1ba47f46bb8b4834067002e4b654af83f",
+  "system_status": "9:41; full battery and signal; no setup banner",
+  "locales": {
+    "en-US": [
+      {
+        "file": "en-US/01-start.png",
+        "sha256": "5f64cdb70f88c40ad5e007019a2d891e6e5aa295429350c3639bfccd3dd9483f",
+        "attachment": "5FE8D664-AC65-48D9-BE20-59E7D0B2D04B.png",
+        "attachment_name": "en_US-01-start_0_CAF24A06-1A93-4A83-8821-01DD9C79DE9C.png",
+        "timestamp": 1792848958.771,
+        "language": "en",
+        "region": "en_US",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "en-US/02-match.png",
+        "sha256": "85e4bed80dba530f45dc5c085f7c84d88406a5e0741d6885fe10ca79c12c11ec",
+        "attachment": "BC538D46-D5FC-4419-84EF-584A6E768524.png",
+        "attachment_name": "en_US-02-match_0_BF29847F-5390-469F-9475-6C7479B73E7A.png",
+        "timestamp": 1792848961.835,
+        "language": "en",
+        "region": "en_US",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "en-US/03-americano.png",
+        "sha256": "0829c8b28339ac79db3cc117e437e1a134c5b43acb03daec747012918ef62a81",
+        "attachment": "60AE2A0A-E6F1-45D5-9854-70E807993770.png",
+        "attachment_name": "en_US-03-americano_0_AE89AB65-729A-4A28-A94A-69BB438B456E.png",
+        "timestamp": 1792848963.436,
+        "language": "en",
+        "region": "en_US",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "en-US/04-access.png",
+        "sha256": "029e11f1dd4439a9d013caa8a190823b54f8b873dfe816a71ca26758ad1dcccc",
+        "attachment": "2D3450A6-CA71-4DCD-A428-A49964FC17AF.png",
+        "attachment_name": "en_US-04-access_0_52B295F1-095D-4ADC-85B6-1B5918250D0D.png",
+        "timestamp": 1792848967.445,
+        "language": "en",
+        "region": "en_US",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "es-ES": [
+      {
+        "file": "es-ES/01-start.png",
+        "sha256": "858a56a7bb5240e972fac605ff4faed87879b3acf01653826065d0172a2a4433",
+        "attachment": "294863BE-E6BF-43EB-BBFE-560C19320828.png",
+        "attachment_name": "es_ES-01-start_0_85256965-9D18-44B0-8AA4-4F2645A6F913.png",
+        "timestamp": 1792848972.521,
+        "language": "es",
+        "region": "es_ES",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "es-ES/02-match.png",
+        "sha256": "13b534e702182fda57dc19e83e58fb614c72021a04acac41da20ef7126031ec1",
+        "attachment": "B7976E64-5946-4DBF-855A-51621D478C37.png",
+        "attachment_name": "es_ES-02-match_0_EB2B2B12-44F8-4231-A4B1-EBCBBCFEB86C.png",
+        "timestamp": 1792848975.522,
+        "language": "es",
+        "region": "es_ES",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "es-ES/03-americano.png",
+        "sha256": "1410ed570e3b97047574c1e9a1f426925a00640c4892c5d1d94fb9e0ad5993bf",
+        "attachment": "5D33ED39-0274-41F8-BEF3-9F8B4E93B0D1.png",
+        "attachment_name": "es_ES-03-americano_0_08F5C370-35B5-4447-819F-4BEFE7DA58D1.png",
+        "timestamp": 1792848977.112,
+        "language": "es",
+        "region": "es_ES",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "es-ES/04-access.png",
+        "sha256": "11595ca131db4f463bb732dbab143e7285a1dae2d225b6692903d5046af97ecc",
+        "attachment": "5D6582C7-1A15-404F-8A3E-D7BFD002879B.png",
+        "attachment_name": "es_ES-04-access_0_5B4BA831-6A2D-4DFA-8023-6144FB2BBA3A.png",
+        "timestamp": 1792848981.164,
+        "language": "es",
+        "region": "es_ES",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "es-MX": [
+      {
+        "file": "es-MX/01-start.png",
+        "sha256": "858a56a7bb5240e972fac605ff4faed87879b3acf01653826065d0172a2a4433",
+        "attachment": "C4518EEC-7A32-4572-A143-B1D9AB6BE2AA.png",
+        "attachment_name": "es_MX-01-start_0_29B02148-A6C5-4A0E-BFFE-66B496A13F50.png",
+        "timestamp": 1792848986.169,
+        "language": "es",
+        "region": "es_MX",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "es-MX/02-match.png",
+        "sha256": "13b534e702182fda57dc19e83e58fb614c72021a04acac41da20ef7126031ec1",
+        "attachment": "4E14898F-ACCE-4BBD-8626-9E4308FC55FB.png",
+        "attachment_name": "es_MX-02-match_0_D24C1E5C-16CE-4F1C-BC2D-B8EA4D09A698.png",
+        "timestamp": 1792848989.138,
+        "language": "es",
+        "region": "es_MX",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "es-MX/03-americano.png",
+        "sha256": "1410ed570e3b97047574c1e9a1f426925a00640c4892c5d1d94fb9e0ad5993bf",
+        "attachment": "3453D49B-2BA1-4C85-8C55-22D0F92AA78D.png",
+        "attachment_name": "es_MX-03-americano_0_89CE2E8D-3162-49F4-8ADD-1F5D22B6F552.png",
+        "timestamp": 1792848990.741,
+        "language": "es",
+        "region": "es_MX",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "es-MX/04-access.png",
+        "sha256": "11595ca131db4f463bb732dbab143e7285a1dae2d225b6692903d5046af97ecc",
+        "attachment": "51F76E32-8DD0-4A18-9061-C5BF6EA19ECC.png",
+        "attachment_name": "es_MX-04-access_0_18044293-CD5A-457D-B3AA-AA8EBC2FDB0C.png",
+        "timestamp": 1792848994.746,
+        "language": "es",
+        "region": "es_MX",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "it": [
+      {
+        "file": "it/01-start.png",
+        "sha256": "9ada84f9fe8615fcffbd0ce723ea8ecf23d885674ac91c68e3efc6b56f78a900",
+        "attachment": "A3087BA1-F413-42C4-B15A-29AC289C9354.png",
+        "attachment_name": "it_IT-01-start_0_4E0B05E8-81F6-44C8-B47F-0D58F7D445EE.png",
+        "timestamp": 1792848999.791,
+        "language": "it",
+        "region": "it_IT",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "it/02-match.png",
+        "sha256": "86597843c6bdb49965550b54fb78557b83543d658c24f03ec438cf5b583c29f4",
+        "attachment": "EC3774C9-5281-4047-BC61-6FAB2D2A74AD.png",
+        "attachment_name": "it_IT-02-match_0_A10DD969-BD34-46AC-BC16-F9ADF16A581E.png",
+        "timestamp": 1792849002.761,
+        "language": "it",
+        "region": "it_IT",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "it/03-americano.png",
+        "sha256": "764cac08fa51f8f45c69a378b4e2befd49b476c23651743994c5cdd57d1c0855",
+        "attachment": "84724900-35B1-4C7A-B339-074C6D4F79B4.png",
+        "attachment_name": "it_IT-03-americano_0_DF87DE2F-D58E-47C4-B4AA-A550880D7579.png",
+        "timestamp": 1792849004.357,
+        "language": "it",
+        "region": "it_IT",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "it/04-access.png",
+        "sha256": "110fe71d9435c64b01a726a267a6f68f33513cdcc7b7854b2a03245325c0eaba",
+        "attachment": "13BF9A5B-1F0E-49A9-8E21-FF0C3A0350A7.png",
+        "attachment_name": "it_IT-04-access_0_02FAF626-8EE8-4186-8112-0AB1AA619D9E.png",
+        "timestamp": 1792849008.347,
+        "language": "it",
+        "region": "it_IT",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "fr-FR": [
+      {
+        "file": "fr-FR/01-start.png",
+        "sha256": "8e6a9643feb666a4c773ce4666ef9cbab4ab492dc05525aaa6a21d3fc865fb56",
+        "attachment": "67C990A0-4395-4559-B852-F585DBC96E7A.png",
+        "attachment_name": "fr_FR-01-start_0_9D1F328A-41B4-4233-88FF-CB102F31BAD6.png",
+        "timestamp": 1792849013.341,
+        "language": "fr",
+        "region": "fr_FR",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "fr-FR/02-match.png",
+        "sha256": "858bc954460d2a92fbee06339b84c232f293794e10184a7848338915d2984464",
+        "attachment": "3125DA30-86C2-4739-A0C8-E2588E0E97C9.png",
+        "attachment_name": "fr_FR-02-match_0_D76DCA40-0859-49EA-95F8-9D6A2A31994A.png",
+        "timestamp": 1792849016.332,
+        "language": "fr",
+        "region": "fr_FR",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "fr-FR/03-americano.png",
+        "sha256": "e47eebff52d81c15fd2d3b555f23acd00ee2ab45f38714541db3c61fcb0cd187",
+        "attachment": "06C40E22-A847-4661-BCB7-3FD3FB682491.png",
+        "attachment_name": "fr_FR-03-americano_0_5C2E4E55-EE0B-484A-ADF6-C4C1EFD54C11.png",
+        "timestamp": 1792849017.938,
+        "language": "fr",
+        "region": "fr_FR",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "fr-FR/04-access.png",
+        "sha256": "5b7535e59618d0de5573b3708a812f9947848362de4b9a8a18ca79f447a87e37",
+        "attachment": "89FB2D22-3006-41C3-9720-67C35E0CC075.png",
+        "attachment_name": "fr_FR-04-access_0_4EB36B6E-B349-491A-BFA5-9E76C9581752.png",
+        "timestamp": 1792849021.926,
+        "language": "fr",
+        "region": "fr_FR",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "pt-PT": [
+      {
+        "file": "pt-PT/01-start.png",
+        "sha256": "19d3c16b12ada4b3a2735843f38c9f1477a559d4c32f05741b7f936897145cb4",
+        "attachment": "B07A53F1-5BF7-4A46-A1A6-DDDE2B030A9C.png",
+        "attachment_name": "pt_PT-01-start_0_328FAF01-B83A-46A2-BAF8-B080A3B452FF.png",
+        "timestamp": 1792849026.969,
+        "language": "pt-PT",
+        "region": "pt_PT",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "pt-PT/02-match.png",
+        "sha256": "940e0e604cb110f2bd359f43fa71f36d73edf72aebc78fb801b0612583c2ca0f",
+        "attachment": "F951C6BE-DE2E-4E9F-8894-660CE42E229E.png",
+        "attachment_name": "pt_PT-02-match_0_F8EF7E1B-E87A-4A9C-B9AC-4B5AFED93FBF.png",
+        "timestamp": 1792849029.966,
+        "language": "pt-PT",
+        "region": "pt_PT",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "pt-PT/03-americano.png",
+        "sha256": "afd03f425c0576c9f1e2c930da50758481f58f6ab3793f23315f5d1160eb1565",
+        "attachment": "69F98C9A-2824-4C76-9B24-C52FD5372097.png",
+        "attachment_name": "pt_PT-03-americano_0_037AF7A7-7B8D-4CD3-A991-B627060474D4.png",
+        "timestamp": 1792849031.593,
+        "language": "pt-PT",
+        "region": "pt_PT",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "pt-PT/04-access.png",
+        "sha256": "05e8f7cf01ce6635e1a233a6661975bcd92e4238b971dbee8e98085bdff2d0d0",
+        "attachment": "3236984B-F6B5-4F00-9C92-3CE3C10D40D3.png",
+        "attachment_name": "pt_PT-04-access_0_5F6BCBEB-E17F-4B4D-A501-B406C27881AC.png",
+        "timestamp": 1792849035.567,
+        "language": "pt-PT",
+        "region": "pt_PT",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "pt-BR": [
+      {
+        "file": "pt-BR/01-start.png",
+        "sha256": "e02312f17337930c401aa212576758ce4c4e7a7bbdd73c24ec4c1d46efc429c1",
+        "attachment": "8ED2A817-9B5D-43AF-BA5F-DB9672659962.png",
+        "attachment_name": "pt_BR-01-start_0_772D28C3-95B0-4C02-98A0-033EE51837AF.png",
+        "timestamp": 1792849040.552,
+        "language": "pt-BR",
+        "region": "pt_BR",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "pt-BR/02-match.png",
+        "sha256": "14577081b0519afcedbcc459319285817da241a2a922faf0680a5f25d74c6c38",
+        "attachment": "70EC9071-AE8E-4C80-954D-071F8188EA1E.png",
+        "attachment_name": "pt_BR-02-match_0_E866548F-B68E-490C-A0C7-F0485630E4E8.png",
+        "timestamp": 1792849043.553,
+        "language": "pt-BR",
+        "region": "pt_BR",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "pt-BR/03-americano.png",
+        "sha256": "ee390dc97f2c47532244e487e3bfbc41815a03483a824470c7670aaeeeaabcb1",
+        "attachment": "74A698D5-5400-40EC-999B-39CEEECC352A.png",
+        "attachment_name": "pt_BR-03-americano_0_0E549467-7A43-4721-BD8A-913041479522.png",
+        "timestamp": 1792849045.162,
+        "language": "pt-BR",
+        "region": "pt_BR",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "pt-BR/04-access.png",
+        "sha256": "3fb402e6c42d0446206511610ab9a0654b75d8880ad3bbfbb785096a00d15f35",
+        "attachment": "3385B1B3-454A-48F5-9134-E65B26EFAC4B.png",
+        "attachment_name": "pt_BR-04-access_0_E9CC8AC9-0D27-4395-BF07-20D77FB9F3BF.png",
+        "timestamp": 1792849049.147,
+        "language": "pt-BR",
+        "region": "pt_BR",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "nl-NL": [
+      {
+        "file": "nl-NL/01-start.png",
+        "sha256": "5110d5c7662119e90e5113af44f250c40183897ed8a392d8361058ce7fd72a80",
+        "attachment": "21E8F2B6-C469-49F1-80DE-456DEFAFD989.png",
+        "attachment_name": "nl_NL-01-start_0_B0E3860A-4E81-477A-AF2F-FB96F627B623.png",
+        "timestamp": 1792849054.235,
+        "language": "nl",
+        "region": "nl_NL",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "nl-NL/02-match.png",
+        "sha256": "3039c812d7e6ef3815a22b2cc6cfdabf636e7c61ec2a261fd5cb525c54342693",
+        "attachment": "176D2E56-B4F6-4491-976D-43BF0F42BB8B.png",
+        "attachment_name": "nl_NL-02-match_0_004CE1D3-38D0-4DE0-8AB4-D089C2B13688.png",
+        "timestamp": 1792849057.224,
+        "language": "nl",
+        "region": "nl_NL",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "nl-NL/03-americano.png",
+        "sha256": "31a13acd97cb0c527ead7d011171d1960fd05a8524f679cf79efc7c4ba464417",
+        "attachment": "35CB86B8-3784-4B24-8C15-1A4B06824DB0.png",
+        "attachment_name": "nl_NL-03-americano_0_3514B984-2E2E-465F-8962-55B697C98488.png",
+        "timestamp": 1792849058.818,
+        "language": "nl",
+        "region": "nl_NL",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "nl-NL/04-access.png",
+        "sha256": "1b305005d95783f0f511eaab241d9d3ccaab3d4eef9a8fcd873817a0cb4e0abb",
+        "attachment": "1DC1CE66-E10A-46D9-8C44-D47FEFC436A8.png",
+        "attachment_name": "nl_NL-04-access_0_035D67BF-C470-47BC-832A-425AEC30FE22.png",
+        "timestamp": 1792849062.765,
+        "language": "nl",
+        "region": "nl_NL",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "de-DE": [
+      {
+        "file": "de-DE/01-start.png",
+        "sha256": "97e8dfa0eeb39ad3cadd71e8e8781405d2a07a94ff5ee6ebd044ed8f4a9476f9",
+        "attachment": "3AF61EC2-9E1E-485C-9894-AA44754C1405.png",
+        "attachment_name": "de_DE-01-start_0_569FD523-55AD-43C9-9926-CB9E36D3461E.png",
+        "timestamp": 1792849067.92,
+        "language": "de",
+        "region": "de_DE",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "de-DE/02-match.png",
+        "sha256": "0df8263495abde1b6c709d0f66ae7ebec1f5a0f624641be324edfde694b81ce6",
+        "attachment": "DCC88E25-CA47-4A90-8840-84D6D64DE790.png",
+        "attachment_name": "de_DE-02-match_0_70E1E648-F6E6-44FF-A456-7833B4183AF6.png",
+        "timestamp": 1792849070.908,
+        "language": "de",
+        "region": "de_DE",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "de-DE/03-americano.png",
+        "sha256": "02bd294f69d1fedd6abfdc1466e74bedce9c391158bcdcd56a497d660dd10f89",
+        "attachment": "EB0FEA09-038E-4402-BF82-E9E531259C56.png",
+        "attachment_name": "de_DE-03-americano_0_98AB49C1-A431-4F5E-A077-AF1FD530029A.png",
+        "timestamp": 1792849072.531,
+        "language": "de",
+        "region": "de_DE",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "de-DE/04-access.png",
+        "sha256": "2f25e634777ebbe8315cc8e0f948386bf6d69585cd1e49160d70804786181890",
+        "attachment": "6EE32472-052E-4A0B-B925-EDD63BBC37B3.png",
+        "attachment_name": "de_DE-04-access_0_64D1F20C-ABEE-4AC6-A90F-57137846CCC6.png",
+        "timestamp": 1792849076.523,
+        "language": "de",
+        "region": "de_DE",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "sv": [
+      {
+        "file": "sv/01-start.png",
+        "sha256": "651c231e56861d8db506e35147c47b07e0852d2064d5ab195da3714d1ae8efd1",
+        "attachment": "494882CD-79FB-4CEA-AAE2-4A096838B5AD.png",
+        "attachment_name": "sv_SE-01-start_0_BE9AA8CB-4E03-423A-B9CE-4E1E5CA1D821.png",
+        "timestamp": 1792849081.524,
+        "language": "sv",
+        "region": "sv_SE",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "sv/02-match.png",
+        "sha256": "bb218c8380c8a336c1d0c310ea812f84f269754513d400609ad4e768f20895c1",
+        "attachment": "15DCD722-BB45-4EAA-A49C-C13D3E1B8A56.png",
+        "attachment_name": "sv_SE-02-match_0_2C7F86E8-DE90-4E2B-8A59-9FFF73349A2A.png",
+        "timestamp": 1792849084.502,
+        "language": "sv",
+        "region": "sv_SE",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "sv/03-americano.png",
+        "sha256": "ea1589ba67f44007031bb7b6df01ef2742e871333b8edde6e29fa6c4baf58ba2",
+        "attachment": "23C65A84-BD14-48A1-81E6-F883A69FC9C2.png",
+        "attachment_name": "sv_SE-03-americano_0_287095FF-F220-4405-8F43-6D4FC73F3979.png",
+        "timestamp": 1792849086.107,
+        "language": "sv",
+        "region": "sv_SE",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "sv/04-access.png",
+        "sha256": "dc027a4450215210aaf78d62aead646e939138546b0a45e4ccaff73ac11457cf",
+        "attachment": "18855D43-4983-4A46-B395-B325C480B2B8.png",
+        "attachment_name": "sv_SE-04-access_0_86A4FE6A-1002-48BF-B6F9-C5AC2024F577.png",
+        "timestamp": 1792849090.081,
+        "language": "sv",
+        "region": "sv_SE",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "da": [
+      {
+        "file": "da/01-start.png",
+        "sha256": "c5525c76bdf96ca7876d09aac6870e3865dc0e9930bd8107d46071b46e78e904",
+        "attachment": "F9200F2A-85A4-4527-836B-D8B44FE6FE24.png",
+        "attachment_name": "da_DK-01-start_0_2C4284B7-FD30-4056-99B0-30AB608402FE.png",
+        "timestamp": 1792849095.088,
+        "language": "da",
+        "region": "da_DK",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "da/02-match.png",
+        "sha256": "f171cd0e0147aeed6421a3b4e2eea85da242851b13b1b79ac3358cc31b6da7b3",
+        "attachment": "557A912E-C4A6-49B4-A0FD-284E7B88D59F.png",
+        "attachment_name": "da_DK-02-match_0_B36961F7-667E-4466-B279-B77924A71C94.png",
+        "timestamp": 1792849098.048,
+        "language": "da",
+        "region": "da_DK",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "da/03-americano.png",
+        "sha256": "554320cec4863a20ee45bb4b46cec6539ce2b95705d7016dab8a58c8eb8d8fa8",
+        "attachment": "ED093653-798E-4B9D-B056-8B405F351708.png",
+        "attachment_name": "da_DK-03-americano_0_77BE0999-29B2-4FB2-AD0F-8F0B1A61636F.png",
+        "timestamp": 1792849099.64,
+        "language": "da",
+        "region": "da_DK",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "da/04-access.png",
+        "sha256": "b2e123cc2740de5d82b3ef964c49d7d6ddf38d9a206c1180b55d3c41787fd548",
+        "attachment": "FCCED611-E468-43CD-9AEF-D01AEE209808.png",
+        "attachment_name": "da_DK-04-access_0_A033B914-6536-44AC-8A0D-A60BB13C251D.png",
+        "timestamp": 1792849103.636,
+        "language": "da",
+        "region": "da_DK",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "fi": [
+      {
+        "file": "fi/01-start.png",
+        "sha256": "2cc8a9231c7982c57d0d7dc829fdd57d59f5c63009b4533434d9d0a75bc91c16",
+        "attachment": "46419B88-9FC1-4E7F-B9E7-BE9A14D04E29.png",
+        "attachment_name": "fi_FI-01-start_0_0E283E70-8F55-44D0-9D2F-E48E3F445A08.png",
+        "timestamp": 1792849108.681,
+        "language": "fi",
+        "region": "fi_FI",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "fi/02-match.png",
+        "sha256": "ab9843ae028a9aeacf7174d6f8469f9cda8131de70ea4351cae4cd933fcf27f6",
+        "attachment": "B7FD7661-13C0-4827-9E8D-DC0BF47B46B7.png",
+        "attachment_name": "fi_FI-02-match_0_8215B5FE-F834-4C96-BFF7-8E4D204C8C75.png",
+        "timestamp": 1792849111.645,
+        "language": "fi",
+        "region": "fi_FI",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "fi/03-americano.png",
+        "sha256": "543626bc01ace5aa494c227eb0ad023a8dec5fc7a02af29940df43d6ef2b3f81",
+        "attachment": "86DC9065-6FCA-4830-87F9-195A897E9C1A.png",
+        "attachment_name": "fi_FI-03-americano_0_B31F155E-AA15-462E-8111-5B1313C55D2F.png",
+        "timestamp": 1792849113.255,
+        "language": "fi",
+        "region": "fi_FI",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "fi/04-access.png",
+        "sha256": "755e8dbe537b4bd344df90cbb55db2b8becf59d9bfe98576117da052d7b6dbce",
+        "attachment": "E499BD7C-1D5A-4892-A648-DFED79428933.png",
+        "attachment_name": "fi_FI-04-access_0_E74DB9F9-F506-42FA-82C6-687EE7CBECC6.png",
+        "timestamp": 1792849117.231,
+        "language": "fi",
+        "region": "fi_FI",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "no": [
+      {
+        "file": "no/01-start.png",
+        "sha256": "eafe562828094e2659e05214921fdfe95ca901b967e8bf3830b8a318f153facc",
+        "attachment": "5578E03A-88E2-40B1-9753-336E4B22276E.png",
+        "attachment_name": "nb_NO-01-start_0_FCF7E145-B114-4857-BFEF-F490BF8F4DB5.png",
+        "timestamp": 1792849122.273,
+        "language": "nb",
+        "region": "nb_NO",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "no/02-match.png",
+        "sha256": "57e40a9d29e776484831f5e2a79e1ed742a750f2bf0a3f514601128b4834e67f",
+        "attachment": "7E436E78-6C6F-4342-B100-F71CB17CA8FB.png",
+        "attachment_name": "nb_NO-02-match_0_DA2A331F-610B-42F1-8DFF-4843E4643A0F.png",
+        "timestamp": 1792849125.25,
+        "language": "nb",
+        "region": "nb_NO",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "no/03-americano.png",
+        "sha256": "8bffaef83e3d6cf0bbf9ad766408c8b25261932b1c119ebdd36542625a21c656",
+        "attachment": "2546C1EA-8A6C-45A0-B95D-EBC5702EB708.png",
+        "attachment_name": "nb_NO-03-americano_0_026144C1-1EAB-41E1-8723-8639417F3913.png",
+        "timestamp": 1792849126.834,
+        "language": "nb",
+        "region": "nb_NO",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "no/04-access.png",
+        "sha256": "a867ee94554731aacd1c8f5ee6e2bf6c4bb956adf4aec9891ca840c3a10153f3",
+        "attachment": "C284F78C-46C3-498D-8DD1-29F35450C9E2.png",
+        "attachment_name": "nb_NO-04-access_0_94FA39E9-9F07-417A-91A2-8A71DCEE7BAE.png",
+        "timestamp": 1792849130.798,
+        "language": "nb",
+        "region": "nb_NO",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ],
+    "ru": [
+      {
+        "file": "ru/01-start.png",
+        "sha256": "b3b47edeef0ee465fb8084c363f9cdb861b4d94a49a33346bf457d362135d0aa",
+        "attachment": "E024FA59-0BA6-4F9A-A54B-B338FE7FBB40.png",
+        "attachment_name": "ru_RU-01-start_0_0423250C-3A37-430B-8334-42182EED088C.png",
+        "timestamp": 1792849135.919,
+        "language": "ru",
+        "region": "ru_RU",
+        "state": "Start; onboarding optional; actual localized copy"
+      },
+      {
+        "file": "ru/02-match.png",
+        "sha256": "d6b1717f7ffb0aa369036b433cd0c082f63d1c415c088ed8728e8b409dcd5726",
+        "attachment": "20FE3549-68A9-49F3-AA8D-C149AD27C8BC.png",
+        "attachment_name": "ru_RU-02-match_0_6D0AC99C-8445-4AB5-86CC-607690FE7D05.png",
+        "timestamp": 1792849138.891,
+        "language": "ru",
+        "region": "ru_RU",
+        "state": "Golden point demo; games 2–2; points 40–30; You serving"
+      },
+      {
+        "file": "ru/03-americano.png",
+        "sha256": "49c28434a17659644dffc720874d4f87cd0154c1c6999094f8b36faac5357ca6",
+        "attachment": "DDA964A5-AE12-496E-8C80-5BA6B5183278.png",
+        "attachment_name": "ru_RU-03-americano_0_290AB3C7-CA59-4227-A3F5-BC4050CA6906.png",
+        "timestamp": 1792849140.486,
+        "language": "ru",
+        "region": "ru_RU",
+        "state": "24 total rallies; score 10–10; Partner first rally of two-serve block"
+      },
+      {
+        "file": "ru/04-access.png",
+        "sha256": "96df2839b1e5c37fdd99bbbcba5beb05ad2cb64c7e552da0fadb098a902dc4d0",
+        "attachment": "1EFF065D-5CD3-49B5-BD78-441BD2F11E75.png",
+        "attachment_name": "ru_RU-04-access_0_0E011B75-A1A0-4427-99D5-DBF6E3DFE58B.png",
+        "timestamp": 1792849144.451,
+        "language": "ru",
+        "region": "ru_RU",
+        "state": "Verified lifetime, settled relaunch; no temporary price"
+      }
+    ]
+  }
+}

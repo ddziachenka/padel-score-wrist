@@ -3,11 +3,12 @@ import Testing
 
 struct AppConfigurationTests {
     @Test("The installed app runs independently on Apple Watch")
-    func watchOnlyIdentity() {
+    func independentCompanionIdentity() {
         let bundle = Bundle.main
         #expect(bundle.bundleIdentifier == "com.dziachenka.padelscore.watchkitapp")
-        #expect(bundle.object(forInfoDictionaryKey: "WKWatchOnly") as? Bool == true)
-        #expect(bundle.object(forInfoDictionaryKey: "WKCompanionAppBundleIdentifier") == nil)
+        #expect(bundle.object(forInfoDictionaryKey: "WKWatchOnly") == nil)
+        #expect(bundle.object(forInfoDictionaryKey: "WKCompanionAppBundleIdentifier") as? String == "com.dziachenka.padelscore")
+        #expect(bundle.object(forInfoDictionaryKey: "WKRunsIndependentlyOfCompanionApp") as? Bool == true)
         #expect(bundle.object(forInfoDictionaryKey: "MinimumOSVersion") as? String == "10.0")
     }
 
@@ -25,7 +26,7 @@ struct AppConfigurationTests {
         #expect(bundle.developmentLocalization == "en")
         #expect(bundle.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String == "Padel Score — Wrist")
         #expect(bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String == "1.0")
-        #expect(bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String == "1")
+        #expect(bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String == "2")
     }
     @Test("Every shipped language is present in the installed Watch bundle", arguments: ["es", "it", "fr", "pt-PT", "pt-BR", "nl", "de", "sv", "da", "fi", "nb", "ru"])
     func installedLocalization(_ language: String) throws {

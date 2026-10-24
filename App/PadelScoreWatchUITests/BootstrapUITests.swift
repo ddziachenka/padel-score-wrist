@@ -38,7 +38,7 @@ final class BootstrapUITests: XCTestCase {
 
         let version = app.staticTexts["about.version"]
         XCTAssertTrue(version.waitForExistence(timeout: 5))
-        XCTAssertEqual(version.label, "Version 1.0 (1)")
+        XCTAssertEqual(version.label, "Version 1.0 (2)")
         XCTAssertTrue(app.staticTexts["Padel Score — Wrist"].exists)
         attachScreenshot("About")
 

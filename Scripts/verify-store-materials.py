@@ -25,3 +25,4 @@ print('Store materials: six 368 × 448 PNG captures, SHA-256 and identical site 
 import subprocess
 import sys
 subprocess.run([sys.executable, str(ROOT / 'Scripts/verify-localized-store-materials.py')], check=True)
+subprocess.run([sys.executable, str(ROOT / 'Scripts/verify-iphone-store-materials.py')], check=True)
