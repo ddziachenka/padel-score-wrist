@@ -884,3 +884,15 @@ Actual built-plist checks require the iPhone executable and independent Watch wi
 The iOS rating rows are mandatory for companion mode too. Hardware StoreKit exchange
 must be observed on the owner-connected pair; Simulator results cannot claim it.
 M16 does not reopen M10 or authorize carrying its old candidate evidence forward.
+
+## Owner exception — M16 current-device acceptance, 2026-10-24
+
+The owner explicitly accepts the already observed current physical pair and the two
+named SE/iOS17 native contrast audit failures, relying on the passing iOS27 checks.
+Scope: AI/evidence/M16/owner-acceptance-20261024.md. For M16 only, after the unchanged
+full milestone command executes, these exact two contrast failures may remain
+nonblocking. Any other failure, skipped/missing suite or crash still blocks DONE.
+Report actual command exits and counts; never call the failed automated gate a pass.
+No assertion/parser/suite is changed. This explicit decision supersedes the earlier
+all-green/extra-physical-scenario requirements for these items only. Separate release
+readiness remains necessary and must carry the actual results plus owner decision.

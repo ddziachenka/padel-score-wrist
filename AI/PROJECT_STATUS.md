@@ -4,7 +4,7 @@
 **Current milestone:** M16
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15
 **Next milestone:** M16
-**Blockers:** M16 BLOCKED: Mac is locked, preventing the visual audit; fresh bidirectional Sandbox purchase/reinstall/independent-Watch hardware scenarios remain incomplete and the physical pair is currently unavailable. Strict largest-text native accessibility audits on small iPhone remain unresolved. Historical Watch-only ASC submission is still blocked; no new submission or public launch. Apple case 103007020727 remains monitored.
+**Blockers:** none
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; Watch-only; approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; nothing submitted. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -21,7 +21,7 @@ Handoff: [ASC launch](handoffs/ASC-launch-20261024.md). The owner authorized the
 
 ## M16 authorization — 2026-10-24
 
-Owner approved compact iPhone companion (iOS17+) with Start, Match and Americano demos, and existing lifetime purchase, while Watch remains independent (watchOS10+). Purchase before Watch installation is allowed with an explicit explanation. All existing locales and launch-day-plus-seven-full-days zero-price offer remain required. M16 is BLOCKED on main; historical M10 evidence describes its old source only. New build requires separate release revalidation before App Review. Owner will connect the physical pair for purchase/restore verification. Contract: [M16](milestones/M16-iphone-companion.md).
+Owner approved compact iPhone companion (iOS17+) with Start, Match and Americano demos, and existing lifetime purchase, while Watch remains independent (watchOS10+). Purchase before Watch installation is allowed with an explicit explanation. All existing locales and launch-day-plus-seven-full-days zero-price offer remain required. M16 is REVIEW on main; historical M10 evidence describes its old source only. New build requires separate release revalidation before App Review. Owner will connect the physical pair for purchase/restore verification. Contract: [M16](milestones/M16-iphone-companion.md).
 
 ## M16 implementation checkpoint
 
@@ -32,3 +32,13 @@ passed14 definitions/20 invocations; full UI suite failed2/6 native largest-text
 contrast audits (4 passed,0 skips). Minimum/current Watch supplements each passed
 13 definitions/24 invocations. Required clean-REVIEW milestone verification is not
 a passing result and full primary Watch coverage remains required before DONE.
+
+## M16 owner acceptance — 2026-10-24
+
+Owner explicitly accepts existing physical-pair observations and the two SE/iOS17
+native contrast audit failures based on the passed current-iOS27 checks. No new
+Sandbox testers or reinstall scenarios are required. See
+[evidence](evidence/M16/owner-acceptance-20261024.md). Mac is accessible again. The
+raw failures remain preserved; all other mandatory checks still apply. M16 enters
+clean-REVIEW verification; do not equate owner acceptance with an automated pass or
+release readiness. Historical blocker paragraphs above describe their checkpoints.

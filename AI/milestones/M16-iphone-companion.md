@@ -1,7 +1,7 @@
 # M16 — Compact iPhone Companion
 
 **ID:** M16
-**Status:** BLOCKED
+**Status:** REVIEW
 **Depends on:** M10, M15
 **Validation:** make milestone ID=M16
 **Handoff:** AI/handoffs/M16-handoff.md
@@ -101,13 +101,14 @@ Xcode replaces a real platform suite or physical hardware scenario. Record both
 fixture provenance/hash equality and the actual product results. The rejected
 proposal for an automatic wrapper was not executed; invocation logic is unchanged.
 
-## Current blocker — 2026-10-24
+## Owner acceptance and resumed verification — 2026-10-24
 
-The complete iOS17 UI suite has two unresolved native Contrast failed audits at
-largest text on iPhone SE; no issue or category is waived. The normal Xcode
-inspection path cannot run while the Mac is locked. The physical pair is also
-unavailable, with fresh bidirectional Sandbox acquisitions/reinstall/Watch-without-
-companion and physical accessibility/haptics still incomplete. Resume this same
-milestone after manual Mac unlock/pair reconnection and the pending isolated
-Sandbox tester choice. Implementation, signed archive and56 native gallery images
-are preserved. Exact evidence and remaining gates: AI/handoffs/M16-handoff.md.
+The owner explicitly accepts the current physical-pair evidence without fresh
+Sandbox accounts or reinstall scenarios, and accepts the two small-iPhone native
+Contrast failed results as nonblocking based on the passed current-iOS27 checks.
+Exact scope and quote: AI/evidence/M16/owner-acceptance-20261024.md. This later owner
+instruction supersedes only those earlier acceptance requirements. No unperformed
+check is reported as passing; no test/assertion/generic gate is weakened. All suites
+still run on a clean REVIEW commit, with raw exit codes/counts retained. Any failure
+other than those exact two native contrast results blocks DONE. M16 completion under
+this owner exception is not a claim that the raw automated gate passed.

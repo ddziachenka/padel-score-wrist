@@ -4,7 +4,7 @@
 
 ## Milestone
 
-M16 — Compact iPhone Companion; **BLOCKED, not DONE**. Continue this same milestone.
+M16 — Compact iPhone Companion; **REVIEW, not DONE**. Full candidate verification resumes under explicit owner acceptance.
 No independent review or release approval is claimed.
 
 ## Summary
@@ -102,3 +102,13 @@ auditor to treat iPhone rating rows as INAPPLICABLE or the iOS executable as a s
 `make static` passed again (`static-contract-final.log`). Historical milestones,
 audits and verified SHAs remain intact. Final documentation commit remains BLOCKED;
 no milestone continuity or DONE claim is made from these lightweight checks.
+
+## Resumed owner decision — 2026-10-24
+
+The owner accepts the existing physical-pair evidence, without extra Sandbox
+accounts/reinstalls, and explicitly permits the two SE/iOS17 Contrast failed audits
+to be nonblocking based on the passed current-iOS27 checks. Exact quote and bounded
+scope: AI/evidence/M16/owner-acceptance-20261024.md. Mac access is restored. The raw
+failures remain failures; tests and generic result parsing stay unchanged. The full
+M16 milestone command now runs on a clean REVIEW commit. Any other failure still
+blocks completion. Earlier blocked sections above describe their recorded checkpoint.
