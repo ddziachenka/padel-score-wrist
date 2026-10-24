@@ -306,7 +306,7 @@ lifetime-разблокировка; нет второго тарифа и ср�
 
 **Comparison shown, if any:** none.
 
-**Offer duration, and the price that applies when it ends:** акции нет. Цена из
+**Offer duration, and the price that applies when it ends:** базовая цена сохраняется; владелец утвердил launch-акцию 2026-10-24 (см. ниже). Цена из
 Product.displayPrice в кнопке `Unlock forever`; с M11 непосредственно рядом
 `One payment. No subscription.` (до M11 — `One-time purchase`). При недоступном продукте
 нет fake price; Restore и выход доступны. Paywall появляется при Start game, в том числе
@@ -480,3 +480,25 @@ remains BLOCKED until that evidence exists. Earlier evidence describes its own S
 The coordinator performs a full editorial second pass after the language agents.
 All routes, screenshots and store drafts are validated before delivery. No App
 Review submission, App Store Connect upload or site publication is authorized.
+
+
+## Launch authorization — 2026-10-24
+
+Владелец явно поручил подготовить и отправить 1.0 вместе с существующим non-consumable
+`com.dziachenka.padelscore.lifetime` на App Review и выпустить автоматически после
+одобрения (`AFTER_APPROVAL`). Это решение заменяет прежний запрет на отправку только
+для данной подачи. Название, Watch-only формат, лимит пяти бесплатных завершённых игр
+и модель доступа не меняются; исходники проверенного кандидата сохраняются.
+
+Скачивание остаётся бесплатным. Lifetime оформляется за 0 во всех доступных регионах
+в день публичного выхода и следующие семь полных дней. Пользователь подтверждает
+покупку через App Store в About → Access, в том числе до расходования пяти игр;
+установка сама по себе права не даёт. Полученное право бессрочно. Затем возвращаются
+$4.99 USD и сохранённые региональные price points. Приложение показывает цену StoreKit.
+
+Граница акции определяется после подтверждения публичной доступности по региональному
+календарю смены цен Apple. Ежечасная автоматизация Codex обнаруживает выход, записывает
+и читает обратно окончательное расписание; его выполняет Apple. Mac с Codex должен
+быть доступен до записи расписания. Пропущенный срок фиксируется как отклонение, а не
+успешное завершение. Временные условия находятся в Promotional Text; после акции
+восстанавливается постоянный текст. Подробности: `AI/handoffs/ASC-launch-20261024.md`.
