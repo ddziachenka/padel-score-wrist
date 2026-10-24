@@ -68,3 +68,15 @@ records then M18 candidate-bound gates follow the existing process; source input
 remain unchanged. M17 REVIEW, M18 PLANNED. Authorization and bounded exception:
 AI/evidence/M17/owner-release-authorization.md. Prior M16 completion is historical;
 new release readiness/submission has not yet been established.
+
+M17 first unchanged full run on9ab72b4fec5f657b2e606c09e5e776099a541c24 failed:
+Watch510/884 and iPhone unit14/20 passed, UI3/6 passed. In addition to the two
+accepted contrast cases, the first Access test was covered by the native
+Enjoying PadelScore? / Not Now review prompt after the calendar-day change.
+This third failure is not accepted. M17 returns to IN_PROGRESS for reproduction
+and a narrow UI-test correction; no upload/selection/submission occurred.
+
+The known optional review prompt is now explicitly declined by UI setup, preserving
+all existing assertions and production behavior. Targeted ordinary/qualifying
+launches pass; fresh full gates remain pending. Evidence:
+AI/evidence/M17/review-prompt-regression.md.

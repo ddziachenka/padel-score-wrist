@@ -8,6 +8,7 @@ final class CompanionUITests: XCTestCase {
         app.launchArguments = ["-AppleLanguages", "(\(locale))", "-AppleLocale", region]
         app.launch()
         XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+        declineOptionalReview(app)
         return app
     }
 
@@ -61,6 +62,7 @@ final class CompanionUITests: XCTestCase {
         app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
         app.launch()
         XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+        declineOptionalReview(app)
         app.buttons["phone.start.demo"].tap()
         XCTAssertTrue(app.buttons["phone.demo.us"].waitForExistence(timeout: 5))
         try auditIncludingOccludedText(app)
@@ -77,6 +79,7 @@ final class CompanionUITests: XCTestCase {
         app.launch()
         defer { app.terminate() }
         XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+        declineOptionalReview(app)
         app.buttons["phone.start.demo"].tap()
         XCTAssertTrue(app.buttons["phone.demo.us"].waitForExistence(timeout: 5))
         capture(app, "spanish-largest-team-names")
@@ -203,6 +206,19 @@ final class CompanionUITests: XCTestCase {
             try audit()
         }
         XCTAssertTrue(pending.isEmpty, "Every occluded contrast result must receive a native audit while fully visible")
+    }
+
+    /// A later-day launch can legitimately present StoreKit's optional review UI.
+    /// Decline only this identified prompt; never dismiss unknown blocking dialogs.
+    /// All journey and native accessibility assertions below remain mandatory.
+    private func declineOptionalReview(_ app: XCUIApplication) {
+        let title = app.staticTexts["Enjoying PadelScore?"]
+        guard title.waitForExistence(timeout: 3) else { return }
+        capture(app, "optional-native-review-before-decline")
+        let notNow = app.buttons["Not Now"]
+        XCTAssertTrue(notNow.exists, "The identified review prompt must offer Not Now")
+        notNow.tap()
+        XCTAssertTrue(title.waitForNonExistence(timeout: 5), "Declining the review prompt must reveal the app")
     }
 
     private func capture(_ app: XCUIApplication, _ name: String) {

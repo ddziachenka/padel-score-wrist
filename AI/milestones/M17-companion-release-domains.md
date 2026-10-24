@@ -43,3 +43,10 @@ A raw FAILED gate is never described as passed or READY_FOR_HUMAN.
 No new feature or model. Actual archive/export/upload/selection/submission follows
 M18 readiness and existing owner authorization; no promotion clock before public
 availability. M17 alone is not release approval.
+
+## Corrected verification setup
+
+The first full run exposed a later-day native review prompt covering the first UI
+journey. AI/evidence/M17/review-prompt-regression.md records fail-before/pass-after
+evidence. Explicitly declining only this known prompt preserves production review
+behavior and every existing assertion; no suite, audit category or parser weakened.

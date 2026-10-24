@@ -58,7 +58,7 @@ Public site revalidation: .artifacts/M17/live-readback.json,131/131 identical fi
 ## Fixes
 
 Public M16 prepared website published using existing make site-deploy PRODUCTION=1,
-exit0. No app, data model, price, transaction policy, test or parser changed.
+exit0. No production app, data model, price or transaction policy changed. The narrowly identified native review prompt is now declined in UI setup, with every existing assertion and native audit retained; see AI/evidence/M17/review-prompt-regression.md.
 Evidence: .artifacts/M17/site-deploy.log, live-before.json, live-readback.json.
 
 ## Deferred P2
@@ -84,3 +84,12 @@ Current source/runtime evidence: AI/evidence/M16/milestone-verification.md plus 
 physical observations above. Exact new make milestone ID=M17 result and candidate
 will be recorded in AI/handoffs/M17-handoff.md after its unchanged full run. No new
 passing gate or release verdict is claimed by this preliminary domain record.
+
+## Later-day UI harness correction
+
+AI/evidence/M17/review-prompt-regression.md records the additional blocking failure,
+reproduction and correction. Production inputs and approved review timing remain
+unchanged. Only UI setup identifies and declines the known optional native review
+prompt; original assertions, audit categories and full gates remain mandatory.
+Both ordinary and qualifying launches passed targeted diagnosis. Full clean M17
+verification follows; this does not reuse the failed first run as completion.
