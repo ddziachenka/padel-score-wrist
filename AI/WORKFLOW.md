@@ -896,3 +896,17 @@ Report actual command exits and counts; never call the failed automated gate a p
 No assertion/parser/suite is changed. This explicit decision supersedes the earlier
 all-green/extra-physical-scenario requirements for these items only. Separate release
 readiness remains necessary and must carry the actual results plus owner decision.
+
+## Owner extension — separate companion readiness and submission, 2026-10-24
+
+The owner explicitly requested separate Release Readiness Revalidation with the
+already agreed exceptions, followed by TestFlight checking, upload and ordinary
+app+first lifetime IAP submission. AI/evidence/M17/owner-release-authorization.md
+contains the quote. The same exact two native SE/iOS17 Contrast failed cases and
+accepted current-pair coverage carry into M17/M18. Unchanged complete milestone
+and release commands still run; raw FAILED/VERIFICATION_FAILED exits are preserved
+and never called automated READY_FOR_HUMAN. Only those bounded failures may have an
+owner-accepted completion/submission disposition; any new failure remains blocking.
+No test, assertion, parser or gate is changed. Six current domain records belong to
+M17, then M18 binds candidate readiness; these sequential phases implement the
+explicit end-to-end owner request without reopening historical M10/M16 records.

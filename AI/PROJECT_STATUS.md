@@ -1,9 +1,9 @@
 # Project status
 
 **Phase:** release-preparation
-**Current milestone:** M16
+**Current milestone:** M17
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16
-**Next milestone:** none — separate Release Readiness Revalidation to be started in a new session
+**Next milestone:** M17
 **Blockers:** none
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; nothing submitted. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
@@ -59,3 +59,12 @@ are local drafts. Existing authorization to submit remains valid after new readi
 and ordinary ASC app+IAP verification. The monitor remains read-only until those
 guards are met; Sandbox/TestFlight do not start the launch-day-plus-seven-full-days
 offer. Keep both `.artifacts/M16/` and `.artifacts/asc-launch-20261024/`.
+
+## Separate companion release revalidation — active
+
+Owner explicitly requested separate readiness with existing exceptions, TestFlight
+verification, upload and app+first lifetime submission. Sequential M17 six-domain
+records then M18 candidate-bound gates follow the existing process; source inputs
+remain unchanged. M17 REVIEW, M18 PLANNED. Authorization and bounded exception:
+AI/evidence/M17/owner-release-authorization.md. Prior M16 completion is historical;
+new release readiness/submission has not yet been established.
