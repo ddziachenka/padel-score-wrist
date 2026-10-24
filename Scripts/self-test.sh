@@ -8544,7 +8544,7 @@ _plant_cache() {
     mkdir -p "${owner}/Scripts/lib"
     cp "${IOSAI_ROOT}/Scripts/lib/common.sh" "${IOSAI_ROOT}/Scripts/lib/simulator.sh" \
         "${IOSAI_ROOT}/Scripts/lib/platform.sh" "${IOSAI_ROOT}/Scripts/lib/lease.pl" \
-        "${owner}/Scripts/lib/"
+        "${IOSAI_ROOT}/Scripts/lib/companion.sh" "${owner}/Scripts/lib/"
     # Printed only once the directory demonstrably exists, so the outer check can
     # never pass because nothing was created in the first place.
     bash -c 'set -e

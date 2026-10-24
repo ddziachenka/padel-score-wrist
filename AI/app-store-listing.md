@@ -20,7 +20,7 @@ padel,scoreboard,counter,americano,match,serve,tiebreak,racket,court,doubles
 
 Keep your focus on the game.
 
-See the score and the next server at a glance. Tap a team after each rally, use Undo for a mistaken tap, and keep scoring offline on your Apple Watch. No iPhone companion app or account needed.
+See the score and the next server at a glance. Tap a team after each rally, use Undo for a mistaken tap, and keep scoring offline on your Apple Watch. Your Watch works independently. No account needed.
 
 Play your first five completed games free. Then unlock unlimited Match and Americano scoring with one lifetime purchase. One payment. No subscription.
 
@@ -56,8 +56,8 @@ Requires Apple Watch with watchOS 10 or later. Available in English, Spanish, It
 Privacy: https://padel-score-wrist.pages.dev/privacy/
 Terms: https://padel-score-wrist.pages.dev/terms/
 
-iPHONE COMPANION
-Try the real scoring rules. Tap a team, follow the serve, then undo a point. You can unlock now, even before installing the Watch app. Use the same Apple Account on both devices. History and the free-game count are local to your Watch. They do not sync to iPhone. Demos do not save results or use your free games.
+ON YOUR IPHONE
+Get started with a short guide, try interactive Match and Americano demos, and get or restore lifetime access. Real games stay on your Apple Watch, which works independently. Demos work offline and do not use your free games. Use the same Apple Account on both devices; history and the free-game count stay on the Watch. The iPhone companion requires iOS 17 or later.
 
 ## Review notes
 
