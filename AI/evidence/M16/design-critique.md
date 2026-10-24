@@ -51,3 +51,9 @@ Complete development UI suite: `.artifacts/M16/ios-ui-final-development.xcresult
 The full phone unit/StoreKit suite passed at checkpoint9fbbef5: `.artifacts/M16/ios-unit-final-development.xcresult`, exit0,14 definitions/20 invocations,0 failures/skips. The largest-text native audit also passed in dark appearance (`ios-dark-ax.xcresult`, exit0,1/1), including assertions that audit scrolling did not award a point. The managed simulator appearance was restored to light. `make static` passed with all Padel-specific Python validators and their regressions (`static-final-development.log`, exit0).
 
 The final capture test adds a separate es_MX launch and region-specific attachment names, producing14 regional placements from the actual supported app languages. This does not add a new app language or change Spanish copy.
+
+## Store gallery choice
+
+Compared unowned-price and verified-owned Access screens. The first candidate displays the launch price0; keeping it in permanent store screenshots would become misleading after the offer ends. The final gallery uses actual StoreKit-verified lifetime ownership, acquired through the local SKTestSession controller and read by the unchanged production entitlement owner. It uses no bought flag or premium override. The local controller is test-only, and its configuration remains excluded from the shipping app. A separate UI test proves ownership appears through transaction updates and survives a relaunch (`ios-ui-owned-access.xcresult`, exit0,1/1).
+
+All56 preliminary large-iPhone captures are preserved. Their 1320×2868 native PNGs are already RGB with no alpha. An Apple Intelligence setup banner affected the earliest English frames in the first pass; the final capture reruns use a warmed simulator and uniform system status time9:41, full battery and signal. No app UI pixels are painted or replaced. A settled relaunch keeps transient purchase feedback out of the permanent gallery.

@@ -15,6 +15,7 @@ struct PhoneAccessView: View {
                         .font(.callout.weight(.medium)).fixedSize(horizontal: false, vertical: true)
                     if store.isUnlocked {
                         Text("phone.access.owned.body").foregroundStyle(PhoneTheme.secondaryText)
+                            .accessibilityIdentifier("phone.access.owned")
                     } else {
                         purchase
                         Text("One payment. No subscription.").font(.footnote).foregroundStyle(PhoneTheme.secondaryText)

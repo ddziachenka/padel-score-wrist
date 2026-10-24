@@ -1,4 +1,5 @@
 import XCTest
+import StoreKitTest
 
 @MainActor
 final class CompanionUITests: XCTestCase {
@@ -69,7 +70,44 @@ final class CompanionUITests: XCTestCase {
         app.terminate()
     }
 
-    func testLocalizedGallery() {
+    private func localStore() throws -> SKTestSession {
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "Lifetime", withExtension: "storekit"))
+        let session = try SKTestSession(contentsOf: url)
+        session.resetToDefaultState()
+        session.clearTransactions()
+        session.disableDialogs = true
+        XCTAssertTrue(session.disableDialogs, "Local StoreKit must be active; no purchase may fall back to Sandbox")
+        return session
+    }
+
+    func testVerifiedLifetimeAppearsInAccessAndSurvivesRelaunch() async throws {
+        let session = try localStore()
+        defer { session.resetToDefaultState(); session.clearTransactions() }
+        let phone = app()
+        phone.tabBars.buttons["Access"].tap()
+        XCTAssertTrue(phone.buttons["phone.access.restore"].waitForExistence(timeout: 10))
+        XCTAssertFalse(phone.staticTexts["phone.access.owned"].exists)
+        _ = try await session.buyProduct(identifier: "com.dziachenka.padelscore.lifetime")
+        XCTAssertTrue(phone.staticTexts["phone.access.owned"].waitForExistence(timeout: 10))
+        XCTAssertFalse(phone.buttons["phone.access.purchase"].exists)
+        capture(phone, "verified-lifetime-access")
+        phone.terminate()
+        let relaunched = app()
+        relaunched.tabBars.buttons["Access"].tap()
+        XCTAssertTrue(relaunched.staticTexts["phone.access.owned"].waitForExistence(timeout: 10))
+        relaunched.terminate()
+    }
+
+    func testLocalizedGallery() async throws {
+        let session = try localStore()
+        defer { session.resetToDefaultState(); session.clearTransactions() }
+        _ = try await session.buyProduct(identifier: "com.dziachenka.padelscore.lifetime")
+        // Reach a verified, settled ownership state, then relaunch for clean captures.
+        // The production app reads StoreKit; no local entitlement override is used.
+        let warmup = app()
+        warmup.tabBars.buttons["Access"].tap()
+        XCTAssertTrue(warmup.staticTexts["phone.access.owned"].waitForExistence(timeout: 10))
+        warmup.terminate()
         let languages = [("en", "en_US"), ("es", "es_ES"), ("es", "es_MX"), ("it", "it_IT"), ("fr", "fr_FR"),
                          ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"),
                          ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
@@ -83,6 +121,8 @@ final class CompanionUITests: XCTestCase {
             capture(app, "\(region)-03-americano")
             app.tabBars.buttons.element(boundBy: 2).tap()
             XCTAssertTrue(app.buttons["phone.access.restore"].waitForExistence(timeout: 15))
+            XCTAssertTrue(app.staticTexts["phone.access.owned"].waitForExistence(timeout: 10))
+            XCTAssertFalse(app.buttons["phone.access.purchase"].exists)
             capture(app, "\(region)-04-access")
             app.terminate()
         }
