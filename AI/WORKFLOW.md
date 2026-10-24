@@ -910,3 +910,16 @@ owner-accepted completion/submission disposition; any new failure remains blocki
 No test, assertion, parser or gate is changed. Six current domain records belong to
 M17, then M18 binds candidate readiness; these sequential phases implement the
 explicit end-to-end owner request without reopening historical M10/M16 records.
+
+## M18 bounded command consolidation — 2026-10-25
+
+In response to the owner's explicit time-saving direction, before M18 starts the
+agent chooses the stricter unchanged immutable make release CANDIDATE=<full-SHA>
+as M18's declared validation, combining the otherwise redundant M18 milestone
+rerun with final release verification. Current M17 already executes both complete
+platforms. M18 still runs all suites, test definitions/assertions, native audit
+categories, static checks, clean Debug/device Release builds, package guards and
+release policy. No generic gate/parser/config/test filtering changed. Record that
+make milestone ID=M18 was consolidated and not executed, never passed. This narrow
+ordering exception changes no accepted failure scope. App/Config/Scripts continuity
+from exact M17 SHA is required; production changes create a new candidate.

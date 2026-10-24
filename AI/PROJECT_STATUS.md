@@ -93,3 +93,9 @@ Neutral14-locale ASO and168 images saved/read back. ASC app now PREPARE_FOR_SUBM
 old binary1 still selected; existing IAP remains in draft. Internal owner TF group
 prepared without a build. M18 separate candidate-bound release remains required.
 Nothing uploaded/submitted/public; offer end not scheduled.
+
+M18 begins on a clean REVIEW Markdown-only continuity candidate. Its declared
+validation is the unchanged full immutable make release command; the unstarted
+extra M18 milestone rerun is consolidated to save time under owner steering.
+AI/WORKFLOW.md and M18 contract record the precise boundary. No test/platform/
+assertion/parser omitted and no new failure accepted.
