@@ -47,3 +47,7 @@ The first post-alpha native audit still reported contrast for labels underneath 
 Demo now leads with the real scoreboard, moves its repeated introduction below it, fits the Demo/context header vertically where needed, and keeps team labels on one line with horizontal padding. A stacked large-text experiment was rejected because it hid the comparison between scores. The iPhone Home Screen label is PadelScore per the owner's clarification; ASC title is unchanged.
 
 Complete development UI suite: `.artifacts/M16/ios-ui-final-development.xcresult`, exit0, 4/4 cases, zero failures/skips, including13-language gallery and largest-text native audit. This is development evidence, not the clean-REVIEW milestone result. Earlier failed experiments remain preserved. Dark appearance and final source verification follow.
+
+The full phone unit/StoreKit suite passed at checkpoint9fbbef5: `.artifacts/M16/ios-unit-final-development.xcresult`, exit0,14 definitions/20 invocations,0 failures/skips. The largest-text native audit also passed in dark appearance (`ios-dark-ax.xcresult`, exit0,1/1), including assertions that audit scrolling did not award a point. The managed simulator appearance was restored to light. `make static` passed with all Padel-specific Python validators and their regressions (`static-final-development.log`, exit0).
+
+The final capture test adds a separate es_MX launch and region-specific attachment names, producing14 regional placements from the actual supported app languages. This does not add a new app language or change Spanish copy.

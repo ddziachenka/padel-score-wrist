@@ -70,20 +70,20 @@ final class CompanionUITests: XCTestCase {
     }
 
     func testLocalizedGallery() {
-        let languages = [("en", "en_US"), ("es", "es_ES"), ("it", "it_IT"), ("fr", "fr_FR"),
+        let languages = [("en", "en_US"), ("es", "es_ES"), ("es", "es_MX"), ("it", "it_IT"), ("fr", "fr_FR"),
                          ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"),
                          ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
         for (language, region) in languages {
             let app = app(locale: language, region: region)
-            capture(app, "\(language)-01-start")
+            capture(app, "\(region)-01-start")
             app.buttons["phone.start.demo"].tap()
             XCTAssertTrue(app.buttons["phone.demo.us"].waitForExistence(timeout: 5))
-            capture(app, "\(language)-02-match")
+            capture(app, "\(region)-02-match")
             app.segmentedControls.buttons.element(boundBy: 1).tap()
-            capture(app, "\(language)-03-americano")
+            capture(app, "\(region)-03-americano")
             app.tabBars.buttons.element(boundBy: 2).tap()
             XCTAssertTrue(app.buttons["phone.access.restore"].waitForExistence(timeout: 15))
-            capture(app, "\(language)-04-access")
+            capture(app, "\(region)-04-access")
             app.terminate()
         }
     }

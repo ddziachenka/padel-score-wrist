@@ -71,8 +71,11 @@ Americano и оформить общий lifetime, сохраняя самост
       failed/skipped mandatory tests отвергаются; meaningful harness self-tests pass.
 - [ ] 14 комплектов iPhone screenshot и актуальные store/site/review материалы
       подготовлены; существующие assets сохранены; launch monitor учитывает M16.
-- [ ] make static, make site-check, make self-test и make milestone ID=M16 проходят
-      на clean REVIEW SHA; reports/counts/exit codes/limitations записаны в handoff.
+- [ ] make static, make site-check и make milestone ID=M16 проходят на clean
+      REVIEW SHA. make self-test проходит на byte-matched generic tooling в
+      одобренной владельцем M00 fixture; все Padel-specific guards и regression
+      tests отдельно обязательны в primary static/site gates. Точные SHA,
+      manifests/counts/exit codes/limitations записаны в handoff.
 
 ## Validation
 
@@ -86,3 +89,14 @@ Record exact SHA, all command exit codes, timestamps, per-platform xcresult coun
 actual hardware evidence and asset manifest. Mark DONE only after all required
 coverage. After DONE/continuity, stop the Builder session. A separate readiness
 revalidation establishes the next distributable candidate.
+
+## Owner-approved tooling fixture clarification — 2026-10-24
+
+The owner explicitly approved repeating the documented M00 temporary template
+procedure without changing assertions. Direct product-root self-test failures are
+preserved. Universal shell/Perl tooling runs with original English template inputs;
+Padel-specific Python guards require actual App/store assets and run unchanged in
+the primary product static/site gates. Neither the generic fixture nor its stubbed
+Xcode replaces a real platform suite or physical hardware scenario. Record both
+fixture provenance/hash equality and the actual product results. The rejected
+proposal for an automatic wrapper was not executed; invocation logic is unchanged.
