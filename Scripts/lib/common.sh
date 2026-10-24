@@ -3686,11 +3686,57 @@ EOF
     fi
     record="$(milestone_field "$found" 'Audit record')"
     record_id="$(milestone_field "$found" ID)"
-    validate_final_polish_coverage "${IOSAI_ROOT}/${record}" "$record_id" "$channel" \
-        || problems=$((problems + 1))
+    if [ "$(milestone_display_title "$active_file")" = 'Release Readiness Revalidation' ] \
+       && [ "${WATCH_APP_MODE-watch-only}" = companion ] \
+       && grep -Eq '^- REL-20[89] \| OUTCOME=INAPPLICABLE \|' "${IOSAI_ROOT}/${record}"; then
+        validate_watch_companion_transition "$found" "$active_file" "${IOSAI_ROOT}/${record}" "$record_id" "$channel" \
+            || problems=$((problems + 1))
+    else
+        validate_final_polish_coverage "${IOSAI_ROOT}/${record}" "$record_id" "$channel" \
+            || problems=$((problems + 1))
+    fi
 
     [ "$problems" -eq 0 ]
 }
+
+# The original Watch-only audit describes its own verified configuration. Adding
+# an iPhone companion requires six CURRENT domain records (validated above), while
+# preserving the historical rating-row applicability. Never apply this context to
+# current revalidation records or infer it just from an INAPPLICABLE explanation.
+validate_watch_companion_transition() (
+    local original="$1" current="$2" record="$3" id="$4" channel="$5"
+    local domain domains handoff sha config
+    domains="$(milestone_field "$current" 'Revalidated domains' | tr ',' '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+    for domain in functional ui-ux content accessibility product release; do
+        if ! line_in_list "$domain" "$domains"; then
+            log_error 'Watch-to-companion transition requires all six current audit domains'
+            return 1
+        fi
+    done
+    handoff="${IOSAI_ROOT}/$(milestone_field "$original" Handoff)"
+    [ -f "$handoff" ] && [ ! -L "$handoff" ] || return 1
+    sha="$(awk -F '|' '$2 ~ /^[[:space:]]*Verified SHA[[:space:]]*$/ {
+        value=$3; gsub(/[`[:space:]]/, "", value); print value
+    }' "$handoff")"
+    if ! printf '%s\n' "$sha" | grep -Eq '^[0-9a-f]{40}$' \
+       || [ "$(printf '%s\n' "$sha" | wc -l | tr -d ' ')" != 1 ] \
+       || ! git cat-file -e "${sha}^{commit}" 2>/dev/null; then
+        log_error 'historical Watch audit needs one available full Verified SHA in its handoff'
+        return 1
+    fi
+    config="$(mktemp "${TMPDIR:-/tmp}/iosai-historical-config.XXXXXX")" || return 1
+    trap 'rm -f "$config"' EXIT
+    git show "${sha}:Config/project.env" > "$config" || return 1
+    APP_PLATFORM=iOS
+    WATCH_APP_MODE=watch-only
+    COMPANION_PROFILE=''
+    env_file_load "$config"
+    if [ "$(app_platform)" != watchOS ] || [ "$WATCH_APP_MODE" != watch-only ]; then
+        log_error 'historical rating exceptions require a verified Watch-only configuration'
+        return 1
+    fi
+    validate_final_polish_coverage "$record" "$id" "$channel"
+)
 
 # prepare_human_release_checklist <sha> <channel> <candidate-id>
 # Human work follows automated readiness. Pending rows are reported, never passed;

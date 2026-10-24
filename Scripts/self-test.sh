@@ -86,6 +86,7 @@ done
 require_tools git shasum sed awk grep find tar perl xargs
 
 CASES="companion_profiles
+watch_companion_readiness
 config_parser
 watch_platform
 watch_coverage
@@ -5431,6 +5432,65 @@ fixture_prepare_release_ready() {
 # A candidate changed after initial readiness needs a new readiness milestone.
 # The earlier consolidated audit record remains historical input; the affected domain is
 # re-audited in the appended sequence before the new exact candidate can pass.
+fixture_companion_readiness() (
+    cd "$1"
+    bash -c '. ./Scripts/lib/common.sh; iosai_enter_root; env_file_load Config/project.env;
+        WATCH_APP_MODE=companion; validate_release_workflow_readiness app-store'
+)
+
+case_watch_companion_readiness() {
+    local fx="${SELFTEST_DIR}/watch-companion-readiness" work="${SELFTEST_DIR}/watch-companion-readiness-work"
+    local rc historical domain
+    mkdir -p "$work"
+    fixture_product "$fx" "$work"
+    sed 's/^DISTRIBUTION_CHANNEL=.*/DISTRIBUTION_CHANNEL="app-store"/' "${fx}/Config/project.env" > "${work}/config"
+    cp "${work}/config" "${fx}/Config/project.env"
+    printf '\nAPP_PLATFORM="watchOS"\n' >> "${fx}/Config/project.env"
+    fixture_prepare_release_ready "$fx"
+    sed 's/^\*\*Status:\*\* REVIEW$/**Status:** DONE/' "${fx}/AI/milestones/M01-final-product-polish.md" > "${work}/original"
+    cp "${work}/original" "${fx}/AI/milestones/M01-final-product-polish.md"
+    sed -E 's/^- (REL-20[89]) \|.*/- \1 | OUTCOME=INAPPLICABLE | EVIDENCE=reason=Watch-only has no iPhone rating interface./' \
+        "${fx}/AI/audits/M01-final-polish.md" > "${work}/audit"
+    cp "${work}/audit" "${fx}/AI/audits/M01-final-polish.md"
+    fixture_commit_unchecked "$fx" 'verified Watch-only configuration'
+    historical="$(git -C "$fx" rev-parse HEAD)"
+    printf '| Verified SHA | `%s` |\n' "$historical" > "${fx}/AI/handoffs/M01-handoff.md"
+    append_only_write_milestone "${fx}/AI/milestones/M02-companion-audits.md" M02 DONE M01 'Companion domain audits'
+    append_only_write_milestone "${fx}/AI/milestones/M03-readiness.md" M03 REVIEW M02 'Release Readiness Revalidation'
+    printf '\n**Revalidated domains:** functional,ui-ux,content,accessibility,product,release\n' >> "${fx}/AI/milestones/M03-readiness.md"
+    for domain in functional ui-ux content accessibility product release; do
+        fixture_write_audit_record "$fx" M02 "$domain" app-store
+        printf '**%s revalidation record:** AI/audits/M02-%s.md\n' "$domain" "$domain" >> "${fx}/AI/milestones/M03-readiness.md"
+    done
+    cp "${fx}/AI/milestones/M03-readiness.md" "${work}/current"
+    rc="$(run_capture "${work}/ready.txt" fixture_companion_readiness "$fx")"
+    expect_exit 0 "$rc" 'six current companion audits preserve verified historical Watch applicability'
+
+    sed 's/^\*\*Revalidated domains:.*/**Revalidated domains:** functional/' "${work}/current" > "${fx}/AI/milestones/M03-readiness.md"
+    rc="$(run_capture "${work}/partial.txt" fixture_companion_readiness "$fx")"
+    expect_exit 1 "$rc" 'platform transition cannot inherit five unaudited domains'
+    cp "${work}/current" "${fx}/AI/milestones/M03-readiness.md"
+
+    cp "${fx}/AI/audits/M02-product.md" "${work}/product"
+    sed -E 's/^- (REL-208) \|.*/- \1 | OUTCOME=INAPPLICABLE | EVIDENCE=reason=old Watch-only exception./' "${work}/product" > "${fx}/AI/audits/M02-product.md"
+    rc="$(run_capture "${work}/rating.txt" fixture_companion_readiness "$fx")"
+    expect_exit 1 "$rc" 'current companion rating evidence remains mandatory'
+    cp "${work}/product" "${fx}/AI/audits/M02-product.md"
+
+    printf 'No verified source.\n' > "${fx}/AI/handoffs/M01-handoff.md"
+    rc="$(run_capture "${work}/missing.txt" fixture_companion_readiness "$fx")"
+    expect_exit 1 "$rc" 'historical platform exception cannot be inferred without a verified SHA'
+    printf '| Verified SHA | `%s` |\n| Verified SHA | `%s` |\n' "$historical" "$historical" > "${fx}/AI/handoffs/M01-handoff.md"
+    rc="$(run_capture "${work}/ambiguous.txt" fixture_companion_readiness "$fx")"
+    expect_exit 1 "$rc" 'ambiguous historical source fails closed'
+
+    printf '\nWATCH_APP_MODE="companion"\n' >> "${fx}/Config/project.env"
+    fixture_commit_unchecked "$fx" 'companion configuration cannot justify a Watch-only exception'
+    printf '| Verified SHA | `%s` |\n' "$(git -C "$fx" rev-parse HEAD)" > "${fx}/AI/handoffs/M01-handoff.md"
+    rc="$(run_capture "${work}/wrong-platform.txt" fixture_companion_readiness "$fx")"
+    expect_exit 1 "$rc" 'historical exception requires an actual Watch-only config at the recorded SHA'
+}
+
 case_release_revalidation() {
     local fx="${SELFTEST_DIR}/release-revalidation"
     local work="${SELFTEST_DIR}/release-revalidation-work"
