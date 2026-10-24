@@ -27,6 +27,7 @@ final class CompanionUITests: XCTestCase {
         XCTAssertEqual(us.value as? String, "40")
         app.segmentedControls.buttons["Americano"].tap()
         XCTAssertEqual(us.value as? String, "10")
+        capture(app, "iphone-americano-development")
         for button in [us, them, us, them] {
             button.tap()
             // Let the real 500ms accidental-tap guard expire between intentional rallies.
@@ -76,7 +77,11 @@ final class CompanionUITests: XCTestCase {
         session.resetToDefaultState()
         session.clearTransactions()
         session.disableDialogs = true
-        XCTAssertTrue(session.disableDialogs, "Local StoreKit must be active; no purchase may fall back to Sandbox")
+        guard session.disableDialogs else {
+            throw NSError(domain: "M16.StoreKitUIEnvironment", code: 1, userInfo: [
+                NSLocalizedDescriptionKey: "Local StoreKit is unavailable; refusing to execute purchase setup."
+            ])
+        }
         return session
     }
 
@@ -189,7 +194,7 @@ final class CompanionUITests: XCTestCase {
     }
 
     private func capture(_ app: XCUIApplication, _ name: String) {
-        let attachment = XCTAttachment(screenshot: app.screenshot())
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }
 }
