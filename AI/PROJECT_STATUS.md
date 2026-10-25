@@ -4,7 +4,7 @@
 **Current milestone:** M18
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18
 **Next milestone:** none
-**Blockers:** none
+**Blockers:** ASC website session expired and Mac locked; owner sign-in requested for normal app + first lifetime IAP submission. New build2 is VALID, selected and in internal TestFlight; not submitted.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; nothing submitted. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -110,3 +110,19 @@ passed; source continuity to newly archived02ec9c9 confirmed. Handoff M18-handof
 Actual upload/select/TestFlight/ordinary joint submission follows existing owner
 authorization. Until actual server readback, not submitted/not Waiting for Review.
 Monitor guard requires current new candidate/build match before public offer work.
+
+## Companion distribution prepared — 2026-10-25
+
+New1.0(2) uploaded exit0, AppleVALID, ID283096f1-80fe-4114-93c1-6fb9f2ace782.
+Selected on existing1.0, AFTER_APPROVAL, new2004-character Review Notes saved/read
+back. Internal Owner TestFlight has1existing tester and only build2, IN_BETA_TESTING.
+New runtime TestFlight inspection unavailable because Mac locked; not called passed.
+Final42ASOrecords/14locales exact, neutral promo only;56phone+84Watch+28creative
+placements saved. Appdownload0/all175available choices verified; lifetime0all175,
+no publication/enddate. Handoff: AI/handoffs/ASC-companion-20261025.md.
+
+Normal website session expired (authResult=FAILED); owner asked to sign in while
+remaining API preparation completed. **Not submitted / not Waiting for Review.**
+Existing draft contains firstIAP only; after sign-in, add new selected app2 normally
+and jointly Submit for Review under existing authorization. No API bypass. Former
+Watch-only restriction remains unproven until actual normal joint submission.
