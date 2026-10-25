@@ -1,7 +1,7 @@
 # M18 — Release Readiness Revalidation
 
 **ID:** M18
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M17
 **Validation:** make release CANDIDATE=<full-SHA>
 **Handoff:** AI/handoffs/M18-handoff.md
@@ -28,13 +28,13 @@ follow under the owner's explicit request, before normal app+IAP submission.
 
 ## Acceptance criteria
 
-- [ ] M17 DONE, all six domain records current and no unaccepted P0/P1.
-- [ ] make release CANDIDATE=<full-SHA> executed unchanged on clean REVIEW candidate;
+- [x] M17 DONE, all six domain records current and no unaccepted P0/P1.
+- [x] make release CANDIDATE=<full-SHA> executed unchanged on clean REVIEW candidate;
       raw exits/counts/verdicts recorded. Full M17 is already complete on identical
       App/Config/Scripts inputs, with only continuity Markdown added since.
-- [ ] If only the two accepted Contrast failed cases remain, record the owner's
+- [x] If only the two accepted Contrast failed cases remain, record the owner's
       acceptance separately; never invent automated READY_FOR_HUMAN.
-- [ ] Handoff, static/status/continuity complete. New build identity and active
+- [x] Handoff, static/status/continuity complete. New build identity and active
       monitor guards match before App Review; no Sandbox/TestFlight offer clock.
 
 ## Non-goals
@@ -61,3 +61,5 @@ The previously planned make milestone ID=M18 is not run and not called passed.
 This is scheduling consolidation, not owner acceptance of any additional failure.
 Any changed app/config/test input or new failure still requires fresh verification.
 Raw accepted failures remain FAILED/VERIFICATION_FAILED, not READY_FOR_HUMAN.
+
+Exact result/owner disposition: AI/handoffs/M18-handoff.md. Distribution guards remain required before App Review.

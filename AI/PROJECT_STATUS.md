@@ -2,8 +2,8 @@
 
 **Phase:** release-preparation
 **Current milestone:** M18
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17
-**Next milestone:** M18
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18
+**Next milestone:** none
 **Blockers:** none
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; nothing submitted. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
@@ -99,3 +99,14 @@ validation is the unchanged full immutable make release command; the unstarted
 extra M18 milestone rerun is consolidated to save time under owner steering.
 AI/WORKFLOW.md and M18 contract record the precise boundary. No test/platform/
 assertion/parser omitted and no new failure accepted.
+
+## M18 readiness established — new companion candidate
+
+M18 DONE under exact owner acceptance. Candidate `572e3524157154f9104edab61b1d4311de437857` ran unchanged full
+make release: Watch510/884 and phone unit14/20 passed; UI4/6passed, only two
+accepted Contrast failures. Raw VERIFICATION_FAILED/Make2/verifier1/UI65 preserved.
+No automated READY_FOR_HUMAN claimed. Six domains current; package/servervalidation
+passed; source continuity to newly archived02ec9c9 confirmed. Handoff M18-handoff.md.
+Actual upload/select/TestFlight/ordinary joint submission follows existing owner
+authorization. Until actual server readback, not submitted/not Waiting for Review.
+Monitor guard requires current new candidate/build match before public offer work.
