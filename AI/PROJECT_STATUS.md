@@ -4,8 +4,8 @@
 **Current milestone:** M18
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18
 **Next milestone:** none
-**Blockers:** ASC website session expired and Mac locked; owner sign-in requested for normal app + first lifetime IAP submission. New build2 is VALID, selected and in internal TestFlight; not submitted.
-**Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; nothing submitted. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
+**Blockers:** none for submission; app1.0(2) and first lifetime IAP jointly submitted through ordinary ASC, both Waiting for Review. Awaiting Apple review; not public.
+**Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; jointly submitted 2026-10-25, Waiting for Review. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
 
@@ -126,3 +126,26 @@ remaining API preparation completed. **Not submitted / not Waiting for Review.**
 Existing draft contains firstIAP only; after sign-in, add new selected app2 normally
 and jointly Submit for Review under existing authorization. No API bypass. Former
 Watch-only restriction remains unproven until actual normal joint submission.
+
+
+## Actual joint submission confirmed — 2026-10-25
+
+Owner unlocked Mac, signed into ASC and explicitly reconfirmed TestFlight check
+and joint submission. New1.0(2) installed from the exact TestFlight invitation and
+opened on physical iPhone17ProMax. Start text, Match40–30/2–2, Golden point,
+completed game3–2/server change, Undo/Reset; Americano10–10/4rallies/Partner,
+block change/Opponent2,12–12draw, Undo/Reset; Access StoreKit0.00 and Watch
+requirement were observed. Restore requested Apple Account password and was
+cancelled; no fresh successful restore/acquisition claimed. Existing bounded
+owner hardware exceptions remain.
+
+Ordinary ASC Add for Review accepted app2 into the retained firstIAP draft, then
+Submit for Review returned2 Items Submitted. Both app1.0(2) and Lifetime unlock
+show Waiting for Review. Submission17c2964a-e72b-4558-983f-4a40c5545d9f, actual
+submittedDate2026-10-25T06:33:55.103Z (10:33Tbilisi). API monitor confirms
+WAITING_FOR_REVIEW/newbuild283096f1-80fe-4114-93c1-6fb9f2ace782/AFTER_APPROVAL,
+public=false. Former Watch-only joint-submission restriction is resolved by actual
+normal-path success; no API submission bypass. No application inputs changed.
+Hourly monitor updated in place with submitted identity, silent pending states,
+public-build guards and unchanged neutral Promotional Text policy. Launch offer
+clock/end schedule waits for actual public release. See distribution handoff.

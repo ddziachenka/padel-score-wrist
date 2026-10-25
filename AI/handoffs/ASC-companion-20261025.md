@@ -7,10 +7,12 @@
 New signed **1.0 (2)** is uploaded, processed **VALID**, selected for version1.0,
 with **AFTER_APPROVAL** and current companion Review Notes saved/read back exactly.
 Internal TestFlight state **IN_BETA_TESTING**, only the existing owner tester.
-**Not submitted to App Review. Not Waiting for Review.** Browser sign-in expired
-and Mac is locked; owner has been asked to sign in in the existing Chrome tab.
-New TestFlight runtime inspection was unavailable, never reported as passed.
-Existing owner-accepted physical-pair evidence remains the bounded hardware scope.
+**SUBMITTED jointly through ordinary ASC on 2026-10-25T06:33:55.103Z
+(10:33 Tbilisi). App1.0(2) and Lifetime unlock both Waiting for Review.**
+Owner unlocked Mac and signed in. New exact TestFlight build2 installed and opened;
+focused runtime checks below completed. Fresh StoreKit restoration required an
+Apple Account password and was cancelled, not counted as a successful restore.
+Existing bounded owner-accepted hardware exceptions remain.
 
 ## Candidate and readiness
 
@@ -137,3 +139,54 @@ neutral promo and exact-case Gmail scope preserved. Evidence:
 Actual monitor readback02:35:30Z: selected new build2, AFTER_APPROVAL,
 PREPARE_FOR_SUBMISSION, public=false. No price mutation/end-date schedule.
 Known locked-Mac/ASC-login issue is already notified and must not repeat hourly.
+
+
+## Actual normal-path submission and physical TestFlight — final continuation
+
+- Human explicitly confirmed unlocked Mac/ASC login and requested TestFlight then
+  app+lifetime submission. Clean main HEAD0a0338659b9a6f35e9fab6baf3112d91c69a7cc6;
+  continuity572e3524157154f9104edab61b1d4311de437857 exit0. No App/Config/Scripts
+  changes or repeated upload/full gate.
+- Physical iPhone17ProMax via normal Mirroring, with physical-device+desktop lease.
+  Opened only the exact Padel Score TestFlight invitation, installed1.0(2), confirmed
+  build2 in TestFlight and first-launch notes, opened Start with visible full copy.
+- Match demo40–30/games2–2/You; Them→Golden point40–40; Us→completed3–2,
+  Opponent1next, scoring disabled; Undo restoresGolden point; Reset restores40–30.
+- Americano10–10/4rallies/Partner/serve1of2; alternating points changes serving block
+  toOpponent2, finishes12–12Draw/0remaining with disabled scoring. Undo restores
+ 12–11/1remaining/serve2of2; Reset restores10–10. Demo label present throughout.
+- Access loads StoreKit$0.00 and one-payment/no-subscription/Watch-required copy.
+  Restore presented native Apple Account password request; cancelled without entering
+  credentials. Settled at No lifetime purchase was found for this Apple Account.
+  This is not successful restore/acquisition/cross-device verification. Existing
+  owner exceptions remain; no new Sandbox account/reinstall/Watch proof invented.
+- Ordinary ASC Add for Review→existing draft retained firstIAP and app1.0(2),
+  Items Ready to Submit(2), enabled Submit for Review. Clicked Submit and received
+ 2 Items Submitted. Detail page shows both Waiting for Review. Prior Watch-only
+  submission restriction is factually resolved. No API mutation submitted anything.
+- Submission ID17c2964a-e72b-4558-983f-4a40c5545d9f; API submittedDate
+ 2026-10-25T06:33:55.103Z; submission WAITING_FOR_REVIEW. API included-items
+  attributes remain READY_FOR_REVIEW (item-level schema), while ordinary UI displays
+  Waiting for Review for both. Monitor06:33:59Z confirms appWAITING_FOR_REVIEW,
+  correctbuild283096f1-80fe-4114-93c1-6fb9f2ace782,AFTER_APPROVAL,public=false.
+- Evidence: `.artifacts/asc-companion-20261024/evidence/joint-submission-confirmed.json`,
+  `iap-after-submission.json` (IAP state WAITING_FOR_REVIEW); `.artifacts/M18/two-items-submitted.png`,
+  `joint-waiting-for-review.png`, `testflight-build2-before-install.png`,
+  `testflight-start.png`, `testflight-americano-draw.png`, `testflight-access-zero.png`.
+- Hourly automation updated in place using automation_update, ACTIVE; new submitted
+  state and real TestFlight scope replace stale login blocker. Exact new-build guards,
+  original175baselineprices, public-date-based7full-days offer and no-auto-Promo rule
+  preserved. `.artifacts/M18/automation-submitted-update.json`. No public release,
+  promotion-end schedule or pricing/metadata mutation occurred in this continuation.
+
+Earlier Remaining action and locked-Mac paragraphs above are historical checkpoints;
+this actual submission record supersedes their unresolved status. Next: wait for
+review/public release under the existing monitor, notify only meaningful change.
+
+Continuation validation: `make static` exit0, `./Scripts/project-status.sh validate`
+exit0; pre-documentation clean continuity572e3524157154f9104edab61b1d4311de437857
+exit0. `.artifacts/M18/submission-continuation-checks.json`. Only these two AI
+Markdown files changed; post-commit exact continuity is checked again. Physical
+checkout/device/desktop lease explicitly released exit0. No full-suite rerun needed
+for documentation and external distribution state; prior raw counts/exceptions
+remain recorded above.
