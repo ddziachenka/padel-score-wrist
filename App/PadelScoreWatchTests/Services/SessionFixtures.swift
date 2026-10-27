@@ -53,6 +53,15 @@ enum SessionFixtures {
         for (offset, command) in commands.enumerated() {
             session = try! session.applying(command, id: .number(firstCommand + offset), expectedRevision: session.revision, access: access).session
         }
+        if var record = session.current {
+            record.history = record.history.map {
+                HistoryEntry(change: $0.change, command: $0.command, revision: $0.revision,
+                             before: $0.before, beforeFinishedAt: $0.beforeFinishedAt)
+            }
+            record.journal = .migrated(record.game, revision: session.revision)
+            session.current = record
+        }
+        session.archive = session.archive.map { ArchivedResult(game: $0.game, finishedAt: $0.finishedAt) }
         return session
     }
 }

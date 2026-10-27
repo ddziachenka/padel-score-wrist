@@ -843,3 +843,248 @@ extension SessionFixtureFiles {
     }
     """#
 }
+
+
+// Frozen schema3 migration fixture. Older fixtures above remain byte-for-byte unchanged.
+extension SessionFixtureFiles {
+    static let matchVersion3 = #"""
+    {
+      "schemaVersion": 3,
+      "session": {
+        "archive": [
+          {
+            "game": {
+              "format": {
+                "americano": {
+                  "_0": {
+                    "rules": {
+                      "ralliesPerServer": 2,
+                      "totalRallies": 16
+                    },
+                    "score": {
+                      "them": 7,
+                      "us": 9
+                    },
+                    "service": {
+                      "order": "youThenOpponent1",
+                      "rallyInBlock": 1,
+                      "server": "you"
+                    }
+                  }
+                }
+              },
+              "id": "00000000-0000-0000-0000-000000000010",
+              "status": "finished"
+            },
+            "journal": null
+          }
+        ],
+        "current": {
+          "game": {
+            "format": {
+              "match": {
+                "_0": {
+                  "completedSets": [
+                    {
+                      "them": 6,
+                      "us": 7
+                    }
+                  ],
+                  "games": {
+                    "them": 3,
+                    "us": 2
+                  },
+                  "phase": {
+                    "game": {
+                      "_0": {
+                        "advantage": {
+                          "_0": "them"
+                        }
+                      }
+                    }
+                  },
+                  "rules": {
+                    "deuceRule": "advantage",
+                    "setPolicy": "tieBreakAtSixAll"
+                  },
+                  "service": {
+                    "isConfirmed": true,
+                    "order": "youThenOpponent1",
+                    "server": "opponent1"
+                  }
+                }
+              }
+            },
+            "id": "00000000-0000-0000-0000-000000000011",
+            "status": "active"
+          },
+          "history": [
+            {
+              "before": {
+                "format": {
+                  "match": {
+                    "_0": {
+                      "completedSets": [
+                        {
+                          "them": 6,
+                          "us": 7
+                        }
+                      ],
+                      "games": {
+                        "them": 3,
+                        "us": 2
+                      },
+                      "phase": {
+                        "game": {
+                          "_0": {
+                            "points": {
+                              "them": "thirty",
+                              "us": "forty"
+                            }
+                          }
+                        }
+                      },
+                      "rules": {
+                        "deuceRule": "advantage",
+                        "setPolicy": "tieBreakAtSixAll"
+                      },
+                      "service": {
+                        "isConfirmed": true,
+                        "order": "youThenOpponent1",
+                        "server": "opponent1"
+                      }
+                    }
+                  }
+                },
+                "id": "00000000-0000-0000-0000-000000000011",
+                "status": "active"
+              },
+              "change": "point",
+              "command": "00000000-0000-0000-0001-000000000001",
+              "revision": 41
+            },
+            {
+              "before": {
+                "format": {
+                  "match": {
+                    "_0": {
+                      "completedSets": [
+                        {
+                          "them": 6,
+                          "us": 7
+                        }
+                      ],
+                      "games": {
+                        "them": 3,
+                        "us": 2
+                      },
+                      "phase": {
+                        "game": {
+                          "_0": {
+                            "deuce": {}
+                          }
+                        }
+                      },
+                      "rules": {
+                        "deuceRule": "advantage",
+                        "setPolicy": "tieBreakAtSixAll"
+                      },
+                      "service": {
+                        "isConfirmed": true,
+                        "order": "youThenOpponent1",
+                        "server": "opponent1"
+                      }
+                    }
+                  }
+                },
+                "id": "00000000-0000-0000-0000-000000000011",
+                "status": "active"
+              },
+              "change": "point",
+              "command": "00000000-0000-0000-0001-000000000002",
+              "revision": 42
+            }
+          ],
+          "journal": {
+            "events": [
+              {
+                "id": {
+                  "migration": {
+                    "_0": "00000000-0000-0000-0000-000000000011"
+                  }
+                },
+                "revision": 42,
+                "kind": {
+                  "checkpoint": {
+                    "_0": {
+                      "format": {
+                        "match": {
+                          "_0": {
+                            "completedSets": [
+                              {
+                                "them": 6,
+                                "us": 7
+                              }
+                            ],
+                            "games": {
+                              "them": 3,
+                              "us": 2
+                            },
+                            "phase": {
+                              "game": {
+                                "_0": {
+                                  "advantage": {
+                                    "_0": "them"
+                                  }
+                                }
+                              }
+                            },
+                            "rules": {
+                              "deuceRule": "advantage",
+                              "setPolicy": "tieBreakAtSixAll"
+                            },
+                            "service": {
+                              "isConfirmed": true,
+                              "order": "youThenOpponent1",
+                              "server": "opponent1"
+                            }
+                          }
+                        }
+                      },
+                      "id": "00000000-0000-0000-0000-000000000011",
+                      "status": "active"
+                    },
+                    "reason": "migration"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "lastCommand": "00000000-0000-0000-0001-000000000002",
+        "recentSettings": {
+          "americano": {
+            "ralliesPerServer": 2,
+            "totalRallies": 16
+          },
+          "match": {
+            "deuceRule": "advantage",
+            "setPolicy": "tieBreakAtSixAll"
+          },
+          "serving": {
+            "firstServer": "opponent1",
+            "order": "youThenOpponent1"
+          }
+        },
+        "revision": 42,
+        "usage": {
+          "countedGames": [
+            "00000000-0000-0000-0000-000000000010",
+            "00000000-0000-0000-0000-000000000011"
+          ],
+          "isExact": true
+        }
+      }
+    }
+    """#
+}

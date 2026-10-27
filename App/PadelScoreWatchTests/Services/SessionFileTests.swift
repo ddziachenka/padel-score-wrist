@@ -7,6 +7,7 @@ private let fixtures: [(String, SessionFile)] = [
     (SessionFixtureFiles.americanoVersion1, SessionFixtures.americano),
     (SessionFixtureFiles.matchVersion2, SessionFile(session: SessionFixtures.match)),
     (SessionFixtureFiles.americanoVersion2, SessionFixtures.americano),
+    (SessionFixtureFiles.matchVersion3, SessionFile(session: SessionFixtures.match)),
 ]
 
 /// A session holding every kind of saved value: a tie-break and its serving, a confirmed new
@@ -46,16 +47,16 @@ private let everyShape: SessionFile = {
 private func json(_ text: String) -> Data { Data(text.utf8) }
 
 struct SessionFileTests {
-    @Test("Version 1 migration and committed version 2 fixtures preserve every session field", arguments: fixtures)
+    @Test("All three schema fixtures preserve every session field", arguments: fixtures)
     func fixturesReadBack(text: String, expected: SessionFile) {
         #expect(SessionFile.read(json(text)) == .valid(expected))
     }
 
-    @Test("Migrated files save as version 2 without a duplicate previous result", arguments: fixtures)
-    func savingWritesVersion2(text: String, file: SessionFile) throws {
+    @Test("Migrated files save as version 3 without a duplicate previous result", arguments: fixtures)
+    func savingWritesVersion3(text: String, file: SessionFile) throws {
         let saved = try #require(JSONSerialization.jsonObject(with: file.encoded()) as? [String: Any])
         let session = try #require(saved["session"] as? [String: Any])
-        #expect(saved["schemaVersion"] as? Int == 2)
+        #expect(saved["schemaVersion"] as? Int == 3)
         #expect(session["previousResult"] == nil)
         #expect(session["archive"] != nil)
         #expect(SessionFile.read(try file.encoded()) == .valid(file))
@@ -77,7 +78,7 @@ struct SessionFileTests {
         #expect(try reordered.encoded() == everyShape.encoded())
     }
 
-    @Test("A file from a newer version of the app is recognised and not read", arguments: [3, 7])
+    @Test("A file from a newer version of the app is recognised and not read", arguments: [4, 7])
     func newerVersionNotRead(version: Int) throws {
         var file = SessionFile(session: SessionFixtures.match)
         file.schemaVersion = version
@@ -140,6 +141,8 @@ private let invalidSessions: [(Session, [SessionIssue])] = {
 
     session = SessionFixtures.match
     session.revision = 41
+    let gameAtInvalidRevision = session.current!.game
+    session.current?.journal = .migrated(gameAtInvalidRevision, revision: 41)
     cases.append((session, [.historyEntryInvalid(index: 1)]))
 
     session = SessionFixtures.match
@@ -162,13 +165,31 @@ private let invalidSessions: [(Session, [SessionIssue])] = {
 
 
 extension SessionFileTests {
-    @Test("Version 2 encoding matches committed fixtures", arguments: [
+    @Test("Version 3 retains every version 2 field and adds an honest migration boundary", arguments: [
         (SessionFixtureFiles.matchVersion2, SessionFile(session: SessionFixtures.match)),
         (SessionFixtureFiles.americanoVersion2, SessionFixtures.americano),
     ])
     func version2FixtureEncoding(text: String, file: SessionFile) throws {
-        #expect(try JSONSerialization.jsonObject(with: file.encoded()) as? NSDictionary
-                == JSONSerialization.jsonObject(with: json(text)) as? NSDictionary)
+        var object = try #require(JSONSerialization.jsonObject(with: file.encoded()) as? [String: Any])
+        var session = try #require(object["session"] as? [String: Any])
+        var current = try #require(session["current"] as? [String: Any])
+        #expect(current.removeValue(forKey: "journal") != nil)
+        #expect(file.session.current?.journal == .migrated(file.session.current!.game, revision: file.session.revision))
+        #expect(file.session.archive.allSatisfy { $0.journal == nil })
+        current["history"] = try #require(current["history"] as? [[String: Any]]).map { entry in
+            var entry = entry
+            entry.removeValue(forKey: "beforeJournalCount")
+            return entry
+        }
+        session["current"] = current
+        session["archive"] = try #require(session["archive"] as? [[String: Any]]).map { result in
+            var result = result
+            #expect(result.removeValue(forKey: "journal") is NSNull)
+            return result
+        }
+        object["session"] = session
+        object["schemaVersion"] = 2
+        #expect(try object as NSDictionary == JSONSerialization.jsonObject(with: json(text)) as? NSDictionary)
     }
 
     @Test("Ledger recovery understands both versions even with damaged games", arguments: fixtures)
@@ -214,5 +235,60 @@ extension SessionFileTests {
             object["session"] = session
             #expect(SessionFile.read(try JSONSerialization.data(withJSONObject: object)) == .damaged)
         }
+    }
+}
+
+
+extension SessionFileTests {
+    @Test("Version 3 requires its journal instead of silently treating missing detail as legacy")
+    func missingCurrentJournalIsDamaged() throws {
+        var object = try #require(JSONSerialization.jsonObject(with: SessionFile(session: SessionFixtures.match).encoded()) as? [String: Any])
+        var session = try #require(object["session"] as? [String: Any])
+        var record = try #require(session["current"] as? [String: Any])
+        record.removeValue(forKey: "journal")
+        session["current"] = record
+        object["session"] = session
+        #expect(SessionFile.read(try JSONSerialization.data(withJSONObject: object)) == .damaged)
+    }
+
+    @Test("Every shipped fixture migrates without inventing past events", arguments: fixtures)
+    func migrationHasNoInventedEvents(text: String, expected: SessionFile) throws {
+        guard case .valid(let migrated) = SessionFile.read(json(text)) else {
+            Issue.record("migration failed"); return
+        }
+        let record = try #require(migrated.session.current)
+        #expect(record.journal.events == [JournalEvent(id: .migration(record.game.id), revision: migrated.session.revision,
+                                                     kind: .checkpoint(record.game, reason: .migration))])
+        #expect(record.history.allSatisfy { $0.beforeJournalCount == nil })
+        #expect(migrated.session.archive.allSatisfy { $0.journal == nil })
+        #expect(migrated == expected)
+        #expect(try migrated.session.after(.undo).game == record.history.last?.before)
+    }
+}
+
+
+extension SessionFileTests {
+    @Test("Version 3 encodes unavailable legacy archive detail explicitly and rejects a missing field")
+    func explicitLegacyArchiveDetail() throws {
+        var object = try #require(JSONSerialization.jsonObject(with: SessionFile(session: SessionFixtures.match).encoded()) as? [String: Any])
+        var session = try #require(object["session"] as? [String: Any])
+        var archive = try #require(session["archive"] as? [[String: Any]])
+        #expect(archive[0]["journal"] is NSNull)
+        archive[0].removeValue(forKey: "journal")
+        session["archive"] = archive
+        object["session"] = session
+        #expect(SessionFile.read(try JSONSerialization.data(withJSONObject: object)) == .damaged)
+    }
+}
+
+
+extension SessionFileTests {
+    @Test("Schema 3 encoding matches its frozen fixture without requesting another migration")
+    func version3FixtureEncoding() throws {
+        let file = SessionFile(session: SessionFixtures.match)
+        let fixture = json(SessionFixtureFiles.matchVersion3)
+        #expect(try JSONSerialization.jsonObject(with: file.encoded()) as? NSDictionary
+                == JSONSerialization.jsonObject(with: fixture) as? NSDictionary)
+        #expect(!SessionFile.needsMigration(fixture))
     }
 }

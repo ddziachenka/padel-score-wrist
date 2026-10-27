@@ -138,3 +138,112 @@ struct SessionUndoTests {
         #expect(!session.canUndo)
     }
 }
+
+struct SessionJournalTests {
+    @Test("A real start and accepted actions record stable typed events; retries and rejections add nothing")
+    func typedEvents() throws {
+        let start = CommandID.number(501)
+        var session = try Session.empty.applying(.start(.match(), id: .number(9)), id: start,
+                                                expectedRevision: 0, access: OpenAccess()).session
+        let game = try #require(session.game)
+        #expect(session.current?.journal.events == [
+            JournalEvent(id: .command(start), revision: 1, kind: .checkpoint(game, reason: .start))
+        ])
+        let point = CommandID.number(502)
+        session = try session.applying(.awardPoint(to: .them), id: point, expectedRevision: 1, access: OpenAccess()).session
+        #expect(session.current?.journal.events.last == JournalEvent(id: .command(point), revision: 2, kind: .rally(winner: .them)))
+        #expect(try session.applying(.awardPoint(to: .them), id: point, expectedRevision: 1, access: OpenAccess()).session == session)
+        #expect(throws: SessionError.staleRevision) {
+            try session.applying(.awardPoint(to: .us), id: .number(503), expectedRevision: 1, access: OpenAccess())
+        }
+        let original = session
+        session = try session.after(.correct(.americano(.fixture(total: 8, us: 2, them: 1))), .finish, .resume)
+        let journal = try #require(session.current?.journal)
+        #expect(journal.events.suffix(3).map(\.kind) == [
+            .correction(try #require(session.current?.history.suffix(2).first?.before)), .finished, .resumed
+        ])
+        #expect(journal.latestBoundaryIndex == 2)
+        #expect(try session.after(.undo, .undo, .undo).current == original.current)
+        #expect(session.issues.isEmpty)
+    }
+
+    @Test("New-set service confirmation records the chosen order and server and Undo removes it")
+    func serviceEvent() throws {
+        let starting = Session.playing(.match(.fixture(
+            games: SetGames(us: 5, them: 0), phase: .game(.points(us: .forty, them: .love))
+        )))
+        let pending = try starting.after(.awardPoint(to: .us))
+        let confirmed = try pending.after(.confirmService(order: .youThenOpponent2, firstServer: .opponent2))
+        #expect(confirmed.current?.journal.events.last?.kind == .serviceConfirmed(order: .youThenOpponent2, firstServer: .opponent2))
+        #expect(try confirmed.after(.undo).current == pending.current)
+        #expect(try confirmed.after(.undo, .undo).current == starting.current)
+    }
+
+    @Test("Archived journals retain real winners and no Undo chain after a new game starts")
+    func archive() throws {
+        let completed = try Session.empty.after(.start(.americano(total: 2), id: .number(1)),
+                                                .awardPoint(to: .us), .awardPoint(to: .them),
+                                                access: TestAccess.countingFinishedGames)
+        let archived = try #require(completed.archive.first)
+        #expect(archived.journal == completed.current?.journal)
+        #expect(archived.journal?.events.map(\.kind).suffix(2) == [.rally(winner: .us), .rally(winner: .them)])
+        let next = try completed.after(.start(.match(), id: .number(2)))
+        #expect(next.archive == [archived])
+        #expect(next.current?.journal.events.count == 1)
+        #expect(next.usage.countedGames == [.number(1)])
+        #expect(next.issues.isEmpty)
+    }
+
+    @Test("Legacy Undo preserves unknown history boundaries without inferring rally winners")
+    func legacyUndo() throws {
+        let legacy = SessionFixtures.match
+        let record = try #require(legacy.current)
+        #expect(record.journal.events.count == 1)
+        #expect(record.journal.events.first?.kind == .checkpoint(record.game, reason: .migration))
+        let undone = try legacy.after(.undo)
+        #expect(undone.game == record.history.last?.before)
+        #expect(undone.current?.journal.events.count == 2)
+        #expect(undone.current?.journal.events.last?.kind == .checkpoint(undone.game!, reason: .legacyUndo))
+        #expect(try undone.after(.awardPoint(to: .us), .undo).current == undone.current)
+        let allUndone = try undone.after(.undo)
+        #expect(!allUndone.canUndo)
+        #expect(allUndone.current?.journal.events.count == 3)
+        #expect(allUndone.usage == legacy.usage)
+        #expect(allUndone.issues.isEmpty)
+    }
+
+    @Test("Undo of a new action on a migrated finished result restores unavailable archive detail")
+    func undoRestoresLegacyArchive() throws {
+        let legacy = SessionFixtures.americano.session
+        let changed = try legacy.after(.correct(.americano(.fixture(total: 8, us: 2, them: 1))))
+        #expect(changed.archive.first?.journal != nil)
+        let undone = try changed.after(.undo)
+        #expect(undone.current == legacy.current)
+        #expect(undone.archive == legacy.archive)
+        #expect(undone.usage == legacy.usage)
+    }
+
+    @Test("Malformed event IDs, ordering, boundary games and Undo prefixes are rejected")
+    func malformedJournal() throws {
+        let valid = try Session.empty.after(.start(.match(), id: .number(1)), .awardPoint(to: .us))
+        var cases: [Session] = []
+        var damaged = valid
+        damaged.current?.journal.events = []
+        cases.append(damaged)
+        damaged = valid
+        let duplicate = try #require(damaged.current?.journal.events.last)
+        damaged.current?.journal.events.append(duplicate)
+        cases.append(damaged)
+        damaged = valid
+        damaged.current?.journal.events[0] = JournalEvent(id: .migration(.number(2)), revision: 0,
+            kind: .checkpoint(GameSnapshot(id: .number(2), format: .match(.fixture())), reason: .migration))
+        cases.append(damaged)
+        damaged = valid
+        damaged.current?.history[0].beforeJournalCount = 99
+        cases.append(damaged)
+        for candidate in cases {
+            #expect(candidate.issues.contains(.journalInvalid))
+            #expect(SessionFile.read(try SessionFile(session: candidate).encoded()) == .damaged)
+        }
+    }
+}

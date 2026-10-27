@@ -82,7 +82,7 @@ extension Session {
             let existing = archive.first { $0.id == game.id }
             let date = command == .undo ? undoneDate : (existing != nil ? existing?.finishedAt : timestamp)
             if game.status == .finished {
-                let entry = ArchivedResult(game: game, finishedAt: date)
+                let entry = ArchivedResult(game: game, finishedAt: date, journal: next.current?.journal.archiveDetail)
                 if let index = next.archive.firstIndex(where: { $0.id == game.id }) {
                     next.archive[index] = entry
                 } else {
@@ -98,7 +98,7 @@ extension Session {
     private mutating func apply(_ command: SessionCommand, id: CommandID, access: any AccessPolicy) throws(SessionError) -> SessionOutcome {
         switch command {
         case let .start(setup, gameID):
-            return try start(setup, id: gameID, access: access)
+            return try start(setup, id: gameID, command: id, access: access)
         case .awardPoint(let team):
             return try awardPoint(to: team, by: id, access: access)
         case let .confirmService(order, firstServer):
@@ -109,12 +109,12 @@ extension Session {
             let record = try recordInPlay()
             var game = record.game
             game.status = .finished
-            replace(record, with: game, as: .finish, by: id, access: access)
+            replace(record, with: game, as: .finish, by: id, access: access, event: .finished)
             return .finished
         case .resume:
             return try resume(by: id, access: access)
         case .undo:
-            return try undo()
+            return try undo(by: id)
         case .deleteLocalData:
             current = nil
             archive = []
@@ -123,11 +123,14 @@ extension Session {
         }
     }
 
-    private mutating func start(_ setup: GameSetup, id: GameID, access: any AccessPolicy) throws(SessionError) -> SessionOutcome {
+    private mutating func start(_ setup: GameSetup, id: GameID, command: CommandID, access: any AccessPolicy) throws(SessionError) -> SessionOutcome {
         guard activeGame == nil else { throw .gameInProgress }
         guard access.allowsNewGame(after: usage) else { throw .newGameNotAllowed }
         let format = try setup.startingFormat()
-        current = GameRecord(game: GameSnapshot(id: id, format: format), history: [])
+        let game = GameSnapshot(id: id, format: format)
+        current = GameRecord(game: game, history: [], journal: GameJournal(events: [
+            JournalEvent(id: .command(command), revision: revision, kind: .checkpoint(game, reason: .start))
+        ]))
         recentSettings.remember(setup)
         count(.gameStarted(id), under: access)
         return .started
@@ -151,7 +154,7 @@ extension Session {
             if case .roundComplete = transition.outcome { game.status = .finished }
             outcome = .americano(transition.outcome)
         }
-        replace(record, with: game, as: .point, by: id, access: access)
+        replace(record, with: game, as: .point, by: id, access: access, event: .rally(winner: team))
         return outcome
     }
 
@@ -171,7 +174,7 @@ extension Session {
         }
         var game = record.game
         game.format = .match(transition.state)
-        replace(record, with: game, as: .serviceConfirmed, by: id, access: access)
+        replace(record, with: game, as: .serviceConfirmed, by: id, access: access, event: .serviceConfirmed(order: order, firstServer: firstServer))
         return .match(transition.outcome)
     }
 
@@ -186,7 +189,7 @@ extension Session {
         if game.status == .active, case .americano(let round) = format, round.isComplete {
             game.status = .finished
         }
-        replace(record, with: game, as: .correction, by: id, access: access)
+        replace(record, with: game, as: .correction, by: id, access: access, event: .correction(game))
         recentSettings.remember(format)
         return .corrected
     }
@@ -197,16 +200,24 @@ extension Session {
         if case .americano(let round) = record.game.format, round.isComplete { throw .roundAtTotal }
         var game = record.game
         game.status = .active
-        replace(record, with: game, as: .resume, by: id, access: access)
+        replace(record, with: game, as: .resume, by: id, access: access, event: .resumed)
         return .resumed
     }
 
     /// Restores the whole game as it was before its last change. Counted free use and the
     /// recent settings stay as they are.
-    private mutating func undo() throws(SessionError) -> SessionOutcome {
+    private mutating func undo(by id: CommandID) throws(SessionError) -> SessionOutcome {
         guard var record = current, !record.history.isEmpty else { throw .nothingToUndo }
         let entry = record.history.removeLast()
         record.game = entry.before
+        if let count = entry.beforeJournalCount {
+            record.journal.events.removeSubrange(count...)
+        } else {
+            record.journal.events.append(JournalEvent(
+                id: .command(id), revision: revision,
+                kind: .checkpoint(entry.before, reason: .legacyUndo)
+            ))
+        }
         current = record
         return .undone(entry.change)
     }
@@ -224,10 +235,12 @@ extension Session {
         with game: GameSnapshot,
         as change: GameChange,
         by id: CommandID,
-        access: any AccessPolicy
+        access: any AccessPolicy,
+        event: JournalEvent.Kind
     ) {
         var updated = record
-        updated.history.append(HistoryEntry(change: change, command: id, revision: revision, before: record.game, beforeFinishedAt: archive.first { $0.id == record.game.id }?.finishedAt))
+        updated.history.append(HistoryEntry(change: change, command: id, revision: revision, before: record.game, beforeFinishedAt: archive.first { $0.id == record.game.id }?.finishedAt, beforeJournalCount: record.journal.events.count))
+        updated.journal.events.append(JournalEvent(id: .command(id), revision: revision, kind: event))
         updated.game = game
         current = updated
         if record.game.status == .active, game.status == .finished {

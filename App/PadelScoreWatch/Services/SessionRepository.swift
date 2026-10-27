@@ -178,7 +178,7 @@ actor SessionRepository {
         }
     }
 
-    /// Publish migration using the ordinary atomic save, retaining the original v1 as backup.
+    /// Publish migration using the ordinary atomic save, retaining the original legacy file as backup.
     private func loaded(_ file: SessionFile, from data: Data, keepingBackup: Bool) -> LoadResult {
         if SessionFile.needsMigration(data) {
             do { try write(file, keepingBackup: keepingBackup) }

@@ -182,13 +182,13 @@ final class SessionRepositoryTests {
     @Test("A backup that cannot be used is never restored")
     func unusableBackupNotRestored() async throws {
         var newer = SessionFile(session: SessionFixtures.match)
-        newer.schemaVersion = 3
+        newer.schemaVersion = 4
         try folder.write(Data("{".utf8), to: folder.location.backup)
         #expect(await folder.repository().load() == .unreadable(.damaged))
 
         try folder.write(Data("{".utf8), to: folder.location.main)
         try folder.write(try newer.encoded(), to: folder.location.backup)
-        #expect(await folder.repository().load() == .unreadable(.newerVersion(3)))
+        #expect(await folder.repository().load() == .unreadable(.newerVersion(4)))
         #expect(folder.fileNames == ["session.json", "session-backup.json"])
     }
 
@@ -203,12 +203,12 @@ final class SessionRepositoryTests {
     @Test("A file from a newer version of the app is left exactly as it is")
     func newerVersionUntouched() async throws {
         var newer = SessionFile(session: SessionFixtures.match)
-        newer.schemaVersion = 3
+        newer.schemaVersion = 4
         let data = try newer.encoded()
         try folder.write(data, to: folder.location.main)
         let repository = folder.repository()
 
-        #expect(await repository.load() == .unreadable(.newerVersion(3)))
+        #expect(await repository.load() == .unreadable(.newerVersion(4)))
         await #expect(throws: SessionRepositoryError.notLoaded) { try await repository.save(.empty, notice: nil) }
         #expect(folder.contents(of: folder.location.main) == data)
         #expect(folder.fileNames == ["session.json"])
@@ -360,5 +360,88 @@ extension SessionRepositoryTests {
         let undoData = try JSONEncoder().encode(session.current!.history)
         #expect(undoData.count < 2_000, "one Undo entry contains only its game and timestamp")
         #expect(try session.after(.undo).archive == session.archive)
+    }
+}
+
+extension SessionRepositoryTests {
+    @Test("Both shipped schemas migrate atomically through every write failure",
+          arguments: [SessionFixtureFiles.matchVersion1, SessionFixtureFiles.matchVersion2, SessionFixtureFiles.americanoVersion2],
+          FaultyFileSystem.saveFaults)
+    func journalMigrationFailures(text: String, fault: FaultyFileSystem.Fault) async throws {
+        let original = Data(text.utf8)
+        guard case .valid(let expected) = SessionFile.read(original) else {
+            Issue.record("fixture migration failed"); return
+        }
+        try folder.write(original, to: folder.location.main)
+        let files = FaultyFileSystem(location: folder.location)
+        files.inject(fault)
+        let repository = folder.repository(files: files)
+        #expect(await repository.load() == .unreadable(.unavailable))
+        await #expect(throws: SessionRepositoryError.notLoaded) { try await repository.save(.empty, notice: nil) }
+        #expect(folder.contents(of: folder.location.main) == original || folder.contents(of: folder.location.backup) == original)
+        files.repair()
+        #expect(await folder.repository().load() == .loaded(expected.session, notice: expected.notice))
+        #expect(folder.contents(of: folder.location.backup) == original)
+        #expect(folder.contents(of: folder.location.main).map(SessionFile.needsMigration) == false)
+        #expect(await folder.repository().load() == .loaded(expected.session, notice: expected.notice))
+    }
+
+    @Test("A failed completing rally preserves score, events, archive and usage together",
+          arguments: FaultyFileSystem.saveFaults)
+    func journalCompletionIsAtomic(fault: FaultyFileSystem.Fault) async throws {
+        let active = try Session.empty.after(.start(.americano(total: 2), id: .number(1)), .awardPoint(to: .us))
+        let command = CommandID.number(999)
+        let completed = try active.applying(.awardPoint(to: .them), id: command, expectedRevision: active.revision,
+                                           access: TestAccess.countingFinishedGames).session
+        let files = FaultyFileSystem(location: folder.location)
+        let repository = folder.repository(files: files)
+        _ = await repository.load()
+        try await repository.save(active, notice: nil)
+        files.inject(fault)
+        await #expect(throws: (any Error).self) { try await repository.save(completed, notice: nil) }
+        #expect(await folder.repository().load() == .loaded(active, notice: nil))
+        files.repair()
+        try await repository.save(completed, notice: nil)
+        #expect(await folder.repository().load() == .loaded(completed, notice: nil))
+        #expect(completed.archive.first?.journal == completed.current?.journal)
+        #expect(completed.current?.journal.events.last?.id == .command(command))
+        #expect(completed.usage.countedGames == [.number(1)])
+        let next = try completed.after(.start(.match(), id: .number(2)))
+        try await repository.save(next, notice: nil)
+        #expect(await folder.repository().load() == .loaded(next, notice: nil))
+        try folder.write(Data("damaged".utf8), to: folder.location.main)
+        var recovered = completed
+        recovered.usage = recovered.usage.uncertain()
+        #expect(await folder.repository().load() == .loaded(recovered, notice: .restoredFromBackup))
+    }
+
+    @Test("Long new journals remain flat and untruncated in active and archived storage")
+    func longJournalStorage() async throws {
+        var session = try Session.empty.after(.start(.americano(total: 10_000, perServer: 3), id: .number(1)))
+        for index in 0..<2_000 { session = try session.after(.awardPoint(to: index.isMultiple(of: 2) ? .us : .them)) }
+        let first = try SessionFile(session: session).encoded().count
+        for index in 0..<2_000 { session = try session.after(.awardPoint(to: index.isMultiple(of: 2) ? .us : .them)) }
+        let second = try SessionFile(session: session).encoded().count
+        #expect(session.current?.journal.events.count == 4_001)
+        #expect(session.current?.history.count == 4_000)
+        #expect(Double(second) / Double(first) < 2.1, "doubling rallies must not nest journals into Undo")
+        session = try session.after(.finish, access: TestAccess.countingFinishedGames)
+        let archived = try #require(session.archive.first)
+        session = try session.after(.start(.match(), id: .number(2)))
+        let repository = folder.repository()
+        _ = await repository.load()
+        let clock = ContinuousClock()
+        let saveTime = try await clock.measure { try await repository.save(session, notice: nil) }
+        var loaded = LoadResult.empty
+        let loadTime = await clock.measure { loaded = await folder.repository().load() }
+        #expect(loaded == .loaded(session, notice: nil))
+        #expect(archived.journal?.events.count == 4_002)
+        #expect(session.archive.first == archived)
+        #expect(session.usage.countedGames == [.number(1)])
+        let archivedBytes = try JSONEncoder().encode(archived).count
+        print("M20 journal storage: 2000 active=\(first) bytes; 4000 active=\(second) bytes; archived4000=\(archivedBytes) bytes; save=\(saveTime); load=\(loadTime)")
+        #expect(archivedBytes < second, "archiving drops Undo snapshots, never journal events")
+        #expect(saveTime < .seconds(2))
+        #expect(loadTime < .seconds(2))
     }
 }

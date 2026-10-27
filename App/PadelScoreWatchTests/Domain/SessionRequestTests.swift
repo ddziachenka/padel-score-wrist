@@ -79,7 +79,7 @@ struct SessionRequestTests {
         let long = try Session.empty.after([.start(.match(), id: .number(1))] + points("UUUUTTTTUUUTTTUU") + [.finish])
         let next = try long.after(.start(.match(), id: .number(2)))
 
-        #expect(next.current == GameRecord(game: GameSnapshot(id: .number(2), format: try GameSetup.match().startingFormat()), history: []))
+        #expect(next.current == GameRecord(game: GameSnapshot(id: .number(2), format: try GameSetup.match().startingFormat()), history: [], journal: next.current?.journal))
         #expect(!next.canUndo)
     }
 

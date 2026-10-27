@@ -15,7 +15,7 @@ struct SessionLifecycleTests {
         let session = transition.session
 
         #expect(transition.outcome == .started)
-        #expect(session.current == GameRecord(game: GameSnapshot(id: .number(1), format: try setup.startingFormat()), history: []))
+        #expect(session.current == GameRecord(game: GameSnapshot(id: .number(1), format: try setup.startingFormat()), history: [], journal: session.current?.journal))
         #expect(session.activeGame?.id == .number(1))
         #expect(session.lastResult == nil)
         #expect(!session.canUndo)
@@ -180,7 +180,7 @@ struct HistoryLifecycleTests {
     func lifecycle() throws {
         let active = try Session.empty.after(.start(.match(), id: .number(1)), .awardPoint(to: .us))
         let finished = try send(.finish, to: active, at: first)
-        #expect(finished.archive == [ArchivedResult(game: finished.game!, finishedAt: first)])
+        #expect(finished.archive == [ArchivedResult(game: finished.game!, finishedAt: first, journal: finished.current?.journal)])
         let corrected = try send(.correct(.match(.fixture(games: SetGames(us: 2, them: 1)))), to: finished, at: second)
         #expect(corrected.archive.count == 1)
         #expect(corrected.archive[0].game == corrected.game)
@@ -190,7 +190,7 @@ struct HistoryLifecycleTests {
         #expect(resumed.archive.isEmpty)
         #expect(try send(.undo, to: resumed, at: second).archive == corrected.archive)
         let finishedAgain = try send(.finish, to: resumed, at: second)
-        #expect(finishedAgain.archive == [ArchivedResult(game: corrected.game!, finishedAt: second)])
+        #expect(finishedAgain.archive == [ArchivedResult(game: corrected.game!, finishedAt: second, journal: finishedAgain.current?.journal)])
         #expect(finishedAgain.usage.countedGames == [.number(1)])
         let undone = try send(.undo, to: finishedAgain, at: second)
         #expect(undone.archive.isEmpty)

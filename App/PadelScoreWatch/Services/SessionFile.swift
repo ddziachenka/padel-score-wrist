@@ -5,8 +5,8 @@ import Foundation
 /// and a migration from the old one, tested against the saved form of every version that
 /// shipped.
 struct SessionFile: Hashable, Sendable, Codable {
-    /// Version 2 replaces the independently stored previous result with a compact archive.
-    static let currentSchemaVersion = 2
+    /// Version 3 adds flat event journals and prefix-based journal Undo.
+    static let currentSchemaVersion = 3
 
     var schemaVersion: Int
     var session: Session
@@ -46,7 +46,8 @@ extension SessionFile {
     }
 
     static func needsMigration(_ data: Data) -> Bool {
-        (try? JSONDecoder().decode(Header.self, from: data).schemaVersion) == 1
+        guard let version = try? JSONDecoder().decode(Header.self, from: data).schemaVersion else { return false }
+        return (1..<currentSchemaVersion).contains(version)
     }
 
     static func read(_ data: Data) -> Reading {
@@ -59,6 +60,9 @@ extension SessionFile {
             guard let legacy = try? decoder.decode(Version1.self, from: data),
                   let migrated = legacy.migrated else { return .damaged }
             file = migrated
+        case 2:
+            guard let legacy = try? decoder.decode(Version2.self, from: data) else { return .damaged }
+            file = legacy.migrated
         case currentSchemaVersion:
             guard let decoded = try? decoder.decode(SessionFile.self, from: data) else { return .damaged }
             file = decoded
@@ -87,7 +91,7 @@ extension SessionFile {
     /// The shipped version 1 shape is explicit; version 2 never encodes previousResult.
     private struct Version1: Decodable {
         struct LegacySession: Decodable {
-            let current: GameRecord?
+            let current: LegacyRecord?
             let previousResult: GameSnapshot?
             let recentSettings: RecentSettings
             let usage: UsageLedger
@@ -108,8 +112,48 @@ extension SessionFile {
                 archive.append(ArchivedResult(game: game, finishedAt: nil))
             }
             return SessionFile(session: Session(
-                current: session.current, archive: archive, recentSettings: session.recentSettings,
+                current: session.current?.migrated(revision: session.revision), archive: archive, recentSettings: session.recentSettings,
                 usage: session.usage, revision: session.revision, lastCommand: session.lastCommand
+            ), notice: notice)
+        }
+    }
+
+    /// Explicit old shapes prevent a missing journal in a v3 file being mistaken for
+    /// a legitimate legacy record. Old history contains no inferred event winners.
+    private struct LegacyRecord: Decodable {
+        let game: GameSnapshot
+        let history: [HistoryEntry]
+
+        func migrated(revision: Int) -> GameRecord {
+            GameRecord(game: game, history: history.map {
+                HistoryEntry(change: $0.change, command: $0.command, revision: $0.revision,
+                             before: $0.before, beforeFinishedAt: $0.beforeFinishedAt)
+            }, journal: .migrated(game, revision: revision))
+        }
+    }
+
+    private struct Version2: Decodable {
+        struct LegacySession: Decodable {
+            let current: LegacyRecord?
+            let archive: [LegacyArchive]
+            let recentSettings: RecentSettings
+            let usage: UsageLedger
+            let revision: Int
+            let lastCommand: CommandID?
+        }
+        struct LegacyArchive: Decodable {
+            let game: GameSnapshot
+            let finishedAt: Date?
+        }
+        let session: LegacySession
+        let notice: StorageNotice?
+
+        var migrated: SessionFile {
+            SessionFile(session: Session(
+                current: session.current?.migrated(revision: session.revision),
+                archive: session.archive.map { ArchivedResult(game: $0.game, finishedAt: $0.finishedAt) },
+                recentSettings: session.recentSettings, usage: session.usage,
+                revision: session.revision, lastCommand: session.lastCommand
             ), notice: notice)
         }
     }

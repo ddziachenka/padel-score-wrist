@@ -11,6 +11,8 @@ enum SessionIssue: Hashable, Sendable {
     case historyEntryInvalid(index: Int)
     /// A duplicate, invalid result, or an archive inconsistent with the current game.
     case archiveInvalid
+    /// A journal has malformed identities, boundaries or Undo prefix references.
+    case journalInvalid
     /// The remembered americano rules cannot start a round.
     case recentSettingsInvalid
 }
@@ -34,6 +36,22 @@ extension Session {
                 earlierRevision = entry.revision
             }
         }
+        if let record = current {
+            let validPrefixes = record.history.allSatisfy { entry in
+                guard let count = entry.beforeJournalCount else { return true }
+                guard count > 0, count < record.journal.events.count else { return false }
+                let event = record.journal.events[count]
+                return event.id == .command(entry.command) && event.revision == entry.revision
+            }
+            if !record.journal.isValid(for: record.game.id, through: revision) || !validPrefixes {
+                issues.append(.journalInvalid)
+            }
+        }
+        if archive.contains(where: { result in
+            guard let journal = result.journal else { return false }
+            return !journal.isValid(for: result.id, through: revision)
+                || (result.id == current?.game.id && journal != current?.journal)
+        }) { issues.append(.journalInvalid) }
         let ids = archive.map(\.id)
         if Set(ids).count != ids.count || archive.contains(where: {
             $0.game.status != .finished || !$0.game.format.isValid

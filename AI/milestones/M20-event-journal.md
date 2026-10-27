@@ -1,7 +1,7 @@
 # M20 — Event Journal and Compatible Persistence
 
 **ID:** M20
-**Status:** PLANNED
+**Status:** REVIEW
 **Depends on:** M19
 **Validation:** make milestone ID=M20
 **Handoff:** AI/handoffs/M20-handoff.md

@@ -1,7 +1,7 @@
 # Project status
 
 **Phase:** implementation
-**Current milestone:** M19
+**Current milestone:** M20
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19
 **Next milestone:** M20
 **Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M19 passed; M20–M26 remain planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
