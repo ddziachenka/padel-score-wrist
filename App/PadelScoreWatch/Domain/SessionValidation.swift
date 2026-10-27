@@ -43,13 +43,14 @@ extension Session {
                 let event = record.journal.events[count]
                 return event.id == .command(entry.command) && event.revision == entry.revision
             }
-            if !record.journal.isValid(for: record.game.id, through: revision) || !validPrefixes {
+            if !record.journal.isValid(for: record.game.id, through: revision) || !validPrefixes || !record.hasConsistentRallyCorrections {
                 issues.append(.journalInvalid)
             }
         }
         if archive.contains(where: { result in
             guard let journal = result.journal else { return false }
             return !journal.isValid(for: result.id, through: revision)
+                || !GameRecord(game: result.game, history: [], journal: journal).hasConsistentRallyCorrections
                 || (result.id == current?.game.id && journal != current?.journal)
         }) { issues.append(.journalInvalid) }
         let ids = archive.map(\.id)

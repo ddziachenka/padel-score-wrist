@@ -11,6 +11,7 @@ enum SessionCommand: Hashable, Sendable {
     /// Replaces the score and rules of the current game, or of its result, with corrected
     /// values given in full. The format may change; nothing is converted or replayed.
     case correct(GameFormat)
+    case applyRallyCorrection(RallyCorrectionPreview)
     case finish
     case resume
     case undo
@@ -56,6 +57,7 @@ enum SessionError: Error, Hashable, Sendable {
     case newGameNotAllowed
     /// A serving order is confirmed only in a regular match.
     case notAMatch
+    case rallyCorrection(RallyCorrectionError)
     case match(MatchError)
     case americano(AmericanoError)
 }
@@ -105,6 +107,21 @@ extension Session {
             return try confirmService(order: order, firstServer: firstServer, by: id, access: access)
         case .correct(let format):
             return try correct(to: format, by: id, access: access)
+        case .applyRallyCorrection(let preview):
+            guard preview.revision == revision - 1 else { throw .staleRevision }
+            guard let record = current, record.game.id == preview.gameID else { throw .noGame }
+            guard !record.journal.events.contains(where: { $0.id == .command(id) }) else { throw .rallyCorrection(.duplicateIdentity) }
+            // Recompute from the original revision, never trust a detached candidate.
+            var original = self
+            original.revision -= 1
+            let checked = try original.previewRallyCorrection(preview.correction.edit,
+                expectedRevision: preview.revision, serviceChoices: preview.correction.serviceChoices)
+            guard checked == preview else { throw .staleRevision }
+            if let requirement = checked.requiredService { throw .rallyCorrection(.serviceRequired(requirement)) }
+            guard let game = checked.after else { throw .rallyCorrection(.invalidJournal) }
+            replace(record, with: game, as: .correction, by: id, access: access,
+                    event: .rallyCorrection(checked.correction))
+            return .corrected
         case .finish:
             let record = try recordInPlay()
             var game = record.game

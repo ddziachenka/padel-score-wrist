@@ -1,7 +1,7 @@
 # M21 — Selective Rally Correction and Replay
 
 **ID:** M21
-**Status:** PLANNED
+**Status:** REVIEW
 **Depends on:** M20
 **Validation:** make milestone ID=M21
 **Handoff:** AI/handoffs/M21-handoff.md
@@ -18,10 +18,10 @@ Bounded competitor interaction check first. Pure preview based on revision/event
 
 ## Acceptance criteria
 
-- [ ] Competitor check records exact evidence or unknown; full equivalence requires owner direction before implementation.
-- [ ] All three operations work across game/set/tie-break and all deuce modes while preserving later winners and stable event identity.
-- [ ] Checkpoint crossing, stale previews and Americano premature completion with remaining entries are rejected explicitly; no dropped events or guessed serving.
-- [ ] Cancel/write failure preserve everything; one Undo restores the original journal/state; usage never double-counts.
+- [x] Competitor check records exact evidence or unknown; full equivalence requires owner direction before implementation.
+- [x] All three operations work across game/set/tie-break and all deuce modes while preserving later winners and stable event identity.
+- [x] Checkpoint crossing, stale previews and Americano premature completion with remaining entries are rejected explicitly; no dropped events or guessed serving.
+- [x] Cancel/write failure preserve everything; one Undo restores the original journal/state; usage never double-counts.
 - [ ] Domain tests cover repeated edits, boundary ambiguity, draw/partial service block, completion and undo; full make milestone ID=M21 passes.
 
 ## Non-goals

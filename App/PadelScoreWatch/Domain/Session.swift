@@ -150,10 +150,11 @@ extension CommandID: Codable {
     }
 }
 
-/// Stable identities distinguish a real command from a migration checkpoint even if
-/// their raw UUIDs coincide. A retry creates exactly the same event identity.
+/// Stable identities distinguish recorded commands, inserted rallies and migration
+/// checkpoints even if their raw UUIDs coincide. Retries keep the same identity.
 enum JournalEventID: Hashable, Sendable, Codable {
     case command(CommandID)
+    case inserted(CommandID)
     case migration(GameID)
 }
 
@@ -165,6 +166,7 @@ struct JournalEvent: Hashable, Sendable, Codable, Identifiable {
     enum Kind: Hashable, Sendable, Codable {
         case checkpoint(GameSnapshot, reason: CheckpointReason)
         case rally(winner: Team)
+        case rallyCorrection(RallyCorrection)
         case serviceConfirmed(order: ServiceOrder, firstServer: Player)
         /// Full replacement is a replay boundary, not a claim about past winners.
         case correction(GameSnapshot)
@@ -217,6 +219,7 @@ struct GameJournal: Hashable, Sendable, Codable {
         var ids: Set<JournalEventID> = []
         var previousRevision = -1
         for event in events {
+            if case .inserted = event.id { return false }
             guard event.revision >= 0, event.revision > previousRevision,
                   event.revision <= revision, ids.insert(event.id).inserted else { return false }
             if let game = event.boundary, game.id != gameID || !game.format.isValid { return false }

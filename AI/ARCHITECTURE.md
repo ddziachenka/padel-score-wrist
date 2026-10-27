@@ -707,3 +707,18 @@ Use typed stable journal events (rally winner, service confirmation, checkpoint,
 A pure preview takes the original session revision, stable event ID and edit operation, and returns candidate state, impact list and required clarifications. Commit revalidates the revision and identity; replay preserves later winners in order, rejects checkpoint crossing and impossible Americano overflow, and requests explicit service at changed set boundaries. Atomic storage failure/cancel/stale preview leaves original unchanged. One correction Undo restores journal/score/service/finish but retains the idempotent usage ledger.
 
 Start-from-score reuses domain validators and access policy, creates a normal game ID and initial checkpoint, and never infers earlier events. iPhone recovery scenarios share pure domain code with in-memory stores only; no real Watch session transfer or entitlement Boolean. M25/M26 own current hardware, migration and package evidence, not historical waiver inheritance.
+
+
+M21 implements the pure selective-replay API in `Domain/RallyCorrection.swift`.
+A persisted correction is a flat edit plus explicit serving choices, appended to
+schema3; original events and prefix-based Undo remain intact. Inserted rallies use
+a distinct `JournalEventID.inserted` namespace. Materialization applies patches to
+the editable suffix, preserving later winner identities and lifecycle events.
+Changed set boundaries stop preview one at a time for explicit service; final
+snapshot/impact values stay unknown until resolved. Original service decisions are
+reused only at the same rally boundary with the same state. Commit recomputes the
+preview against its revision/game/checkpoint, then uses the existing atomic store.
+Corrected current/archive snapshots are validated against replay on storage reads.
+There is no journal cap; storage stays flat and work scales with rallies and the
+number of correction patches. M22 owns presentation and M25 owns physical-device
+experience validation.
