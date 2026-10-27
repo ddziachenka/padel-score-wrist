@@ -1,7 +1,7 @@
 # M20 — Event Journal and Compatible Persistence
 
 **ID:** M20
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M19
 **Validation:** make milestone ID=M20
 **Handoff:** AI/handoffs/M20-handoff.md
@@ -18,10 +18,10 @@ Typed stable event IDs for rallies, service confirmations, checkpoints and corre
 
 ## Acceptance criteria
 
-- [ ] Migration preserves old score/service/rules/Undo/settings/archive/usage; unsupported future versions and corrupted backups remain safe.
-- [ ] Legacy archives explicitly lack detailed events; no reconstructed winners or serving claims.
-- [ ] New events and archived journal survive restart, recovery and write failure atomically; long-game storage remains bounded by measured behavior, not silent truncation.
-- [ ] Meaningful migration/repository/domain tests and full make milestone ID=M20 pass.
+- [x] Migration preserves old score/service/rules/Undo/settings/archive/usage; unsupported future versions and corrupted backups remain safe.
+- [x] Legacy archives explicitly lack detailed events; no reconstructed winners or serving claims.
+- [x] New events and archived journal survive restart, recovery and write failure atomically; long-game storage remains bounded by measured behavior, not silent truncation.
+- [x] Meaningful migration/repository/domain tests and full make milestone ID=M20 pass.
 
 ## Non-goals
 

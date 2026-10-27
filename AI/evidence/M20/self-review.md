@@ -88,3 +88,14 @@ Measured on owned WatchSE/watchOS26.1, retained stdout from that passing run:
 These are Simulator measurements, not physical-Watch latency claims. No arbitrary
 journal cap or truncation was added. Final hardware/product experience evidence
 remains owned by M25; the full M20 gate remains required here.
+
+
+## Final outcome
+
+The unchanged clean REVIEW candidate `98a0502e84453d66904cf13654d92850641ed497`
+passed `make milestone ID=M20`, exit 0,2026-10-27T20:39:05Z–23:06:43Z.
+Watch 523/523 definitions/918 invocations; phone unit 14/14 definitions, 20 invocations; phone UI 6/6.
+Zero failed/skipped/expected/runtime-warning results. Exact report, commands,
+measurements and the resolved development-cache packaging stop are preserved in
+[milestone-verification.md](milestone-verification.md). No blocking self-review
+finding remains. No code/configuration/test change followed the verified SHA.
