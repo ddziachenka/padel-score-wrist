@@ -1,7 +1,7 @@
 # M19 — Companion Contrast Repair
 
 **ID:** M19
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M18
 **Validation:** make milestone ID=M19
 **Handoff:** AI/handoffs/M19-handoff.md
@@ -18,10 +18,10 @@ Reproduce the unchanged English and Spanish largest-text cases, identify the ren
 
 ## Acceptance criteria
 
-- [ ] Both previously failing tests reproduce on baseline with raw evidence and exact source SHA.
-- [ ] The same native audit categories and assertions pass after the production fix; unknown issues are never ignored.
-- [ ] Runtime inspection covers the changed presentation in light/dark, English/Spanish largest text and ordinary scoring; no clipping or accidental points.
-- [ ] Full make milestone ID=M19 passes on clean REVIEW SHA; handoff records commands, exits, per-platform counts and self-review.
+- [x] Both previously failing tests reproduce on baseline with raw evidence and exact source SHA.
+- [x] The same native audit categories and assertions pass after the production fix; unknown issues are never ignored.
+- [x] Runtime inspection covers the changed presentation in light/dark, English/Spanish largest text and ordinary scoring; no clipping or accidental points.
+- [x] Full make milestone ID=M19 passes on clean REVIEW SHA; handoff records commands, exits, per-platform counts and self-review.
 
 ## Non-goals
 

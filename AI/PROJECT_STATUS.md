@@ -2,9 +2,9 @@
 
 **Phase:** implementation
 **Current milestone:** M19
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18
-**Next milestone:** M19
-**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M19–M26 approved; M19 contrast repair active. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19
+**Next milestone:** M20
+**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M19 passed; M20–M26 remain planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -159,3 +159,22 @@ Owner subsequently authorized sending the exact response and PDF. ASC draft save
 ## Recovery plan approved — 2026-10-27
 
 Owner approved M19–M26 in AI/recovery-differentiation-plan.md: selective rally recovery, start from known score, retained read-only journals and isolated iPhone scenarios. M19 first fixes both contrast failures; historical acceptance does not carry into new gates. All eight contracts registered PLANNED; this Builder session owns only M19. App Review draft remains unsent/on hold, no automatic submission or pricing changes.
+
+## M19 completed — 2026-10-27 UTC
+
+M19 DONE with a fully passing gate, without historical contrast exceptions. Exact
+clean REVIEW candidate `227a1c43be1fc8cbfe12178683beaeb1308732d8` ran
+`make milestone ID=M19`, exit0, 17:48:07–20:15:45UTC. Watch510/510 definitions
+(884 invocations), phone unit14/14 (20 invocations), phone UI6/6 passed; zero
+failed/skipped/expected/runtime warnings. Both previously failing native contrast
+audits pass. One non-blocking Apple StoreKitTest SDK-header deprecation warning
+is recorded separately. Opaque semantic native bars preserve original inactive
+tab colors; strengthened tests also audit the lower score fully on screen.
+Final light/dark checks3/3 each passed. Builder self-review, not independent review.
+
+Handoff: [M19](handoffs/M19-handoff.md); full evidence:
+[evidence/M19/milestone-verification.md](evidence/M19/milestone-verification.md).
+The next Builder session owns M20 event journal. M20–M26 remain PLANNED; no new
+journal/recovery functionality is claimed yet. App Review draft remains unsent/on
+hold and the old rejection remains unresolved. No upload, submission, pricing or
+Promotional Text change; no new release readiness claimed.

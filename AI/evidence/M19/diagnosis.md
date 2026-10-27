@@ -73,3 +73,7 @@ it does not identify this app's unmapped issue.
 - `dark`: exit0,3/3 passed, zero failed/skipped/expected/runtime warnings; UTC 2026-10-27T17:47:18.723000+00:00; `.artifacts/M19/final-dark.xcresult`.
 
 Actual exported light/dark regular Match and Spanish largest-text screens were inspected: labels wrap fully, score and foreground colors remain readable, inactive tab labels keep their semantic secondary color, both score buttons retain their names/values. The simulator was restored to light. `make static` exited0 (`.artifacts/M19/static-implementation.log`); optional SwiftLint/SwiftFormat/ShellCheck remain disabled by existing configuration, not claimed run. Required full milestone gate follows on the clean REVIEW candidate.
+
+## Full gate result
+
+The clean REVIEW candidate `227a1c43be1fc8cbfe12178683beaeb1308732d8` subsequently passed unchanged `make milestone ID=M19`, exit0. Both contrast tests pass in the full6/6 phone UI suite; Watch510/884 and phone unit14/20 also pass. Exact timestamps, raw bundles and the separately recorded SDK build warning: [milestone-verification.md](milestone-verification.md). No historical failure waiver was used.
