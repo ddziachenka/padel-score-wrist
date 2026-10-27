@@ -1,7 +1,7 @@
 # M19 — Companion Contrast Repair
 
 **ID:** M19
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M18
 **Validation:** make milestone ID=M19
 **Handoff:** AI/handoffs/M19-handoff.md

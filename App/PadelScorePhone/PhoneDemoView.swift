@@ -30,6 +30,10 @@ struct PhoneDemoView: View {
         }
         .navigationTitle("phone.tab.demo")
         .navigationBarTitleDisplayMode(.inline)
+        // Large text can scroll beneath system bars. Keep their foregrounds
+        // on an opaque semantic surface rather than blurred score content.
+        .toolbarBackground(Color(.systemGroupedBackground), for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: demo.revision) { _, _ in
             if demo.isOver { completed(demo.kind) }
             UIAccessibility.post(notification: .announcement, argument: demo.announcement)

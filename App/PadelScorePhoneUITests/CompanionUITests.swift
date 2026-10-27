@@ -66,6 +66,7 @@ final class CompanionUITests: XCTestCase {
         app.buttons["phone.start.demo"].tap()
         XCTAssertTrue(app.buttons["phone.demo.us"].waitForExistence(timeout: 5))
         try auditIncludingOccludedText(app)
+        try auditLowerScore(app)
         XCTAssertEqual(app.buttons["phone.demo.us"].value as? String, "40")
         XCTAssertEqual(app.buttons["phone.demo.them"].value as? String, "30")
         let attachment = XCTAttachment(screenshot: app.screenshot())
@@ -84,6 +85,29 @@ final class CompanionUITests: XCTestCase {
         XCTAssertTrue(app.buttons["phone.demo.us"].waitForExistence(timeout: 5))
         capture(app, "spanish-largest-team-names")
         try auditIncludingOccludedText(app)
+        try auditLowerScore(app)
+    }
+
+    /// The lower card may begin below the fold at large text sizes. Audit it
+    /// fully on screen so a responsive layout cannot merely hide an issue.
+    private func auditLowerScore(_ app: XCUIApplication) throws {
+        let target = app.buttons["phone.demo.them"]
+        let top = app.navigationBars.firstMatch.frame.maxY + 1
+        let bottom = app.tabBars.firstMatch.frame.minY - 1
+        let viewport = CGRect(x: 0, y: top, width: app.frame.width, height: bottom - top)
+        for _ in 0..<12 {
+            if viewport.contains(target.frame) { break }
+            let delta = max(-150, min(150, viewport.midY - target.frame.midY))
+            let origin = app.coordinate(withNormalizedOffset: .zero)
+                .withOffset(CGVector(dx: app.frame.midX, dy: viewport.midY))
+            origin.press(forDuration: 0.1, thenDragTo: origin.withOffset(CGVector(dx: 0, dy: delta)),
+                         withVelocity: .slow, thenHoldForDuration: 0.2)
+        }
+        XCTAssertTrue(viewport.contains(target.frame), "Lower score must be fully visible for its audit")
+        capture(app, "largest-lower-score-visible")
+        try auditIncludingOccludedText(app)
+        XCTAssertEqual(app.buttons["phone.demo.us"].value as? String, "40")
+        XCTAssertEqual(target.value as? String, "30")
     }
 
     private func localStore() throws -> SKTestSession {

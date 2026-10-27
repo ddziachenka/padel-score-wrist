@@ -6,7 +6,19 @@ import UIKit
 struct PadelScorePhoneApp: App {
     @State private var entitlements = EntitlementStore(client: StoreKitPurchaseClient())
     init() {
-        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "PhoneSecondaryText")
+        let tabBar = UITabBar.appearance()
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemGroupedBackground
+        let secondary = UIColor(named: "PhoneSecondaryText")
+        for item in [appearance.stackedLayoutAppearance, appearance.inlineLayoutAppearance,
+                     appearance.compactInlineLayoutAppearance] {
+            item.normal.iconColor = secondary
+            item.normal.titleTextAttributes = [.foregroundColor: secondary ?? UIColor.label]
+        }
+        tabBar.unselectedItemTintColor = secondary
+        tabBar.standardAppearance = appearance
+        tabBar.scrollEdgeAppearance = appearance
     }
     var body: some Scene {
         WindowGroup { CompanionRootView().environment(entitlements).tint(PhoneTheme.accent) }

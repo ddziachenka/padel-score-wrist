@@ -861,3 +861,9 @@ Watch flow: game menu → journal → event → change winner/delete/insert → 
 Setup offers zero or current score, then existing format rules, score and explicit service, ending in a readable summary. Validate each step without guessing unknown earlier rallies; completion cannot start an already finished game. iPhone Demo adds two interactive scenarios while retaining both existing examples, persistent Demo labeling and isolated resets. No new visual dependency on phone during actual play.
 
 All added strings ship in existing supported locales; VoiceOver announces before/after and blocking issues, large text wraps, minimum targets remain, and Reduce Motion has equivalent feedback. M25 owns six-domain review and real-device evidence; no cosmetic redesign or unsupported uniqueness promise substitutes for working recovery.
+
+M19 implementation: the phone tab bar has an opaque semantic grouped background
+in standard and scroll-edge states, with readable secondary-color inactive icons
+and titles in every native layout. The demo navigation bar uses the same opaque
+surface, keeping foregrounds independent of large scrolling score content. Native
+controls and all audit categories remain; no forced appearance or font-size reduction.
