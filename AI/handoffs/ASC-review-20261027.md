@@ -1,5 +1,7 @@
 # ASC review follow-up — 2026-10-27
 
+**Policy status:** current
+
 ## Scope and outcome
 Release follow-up, not an implementation milestone. Owner requests work toward acceptance and states personal-use development without studying competitors or copying. Owner explicitly authorized sending the prepared response and Watch guide (Разрешаю). Response is saved as an ASC draft, NOT SENT; attachment awaits native upload after Mac unlock. No new authorization is needed.
 
@@ -23,3 +25,13 @@ Apple decides acceptance; independent development does not itself prove differen
 
 ## Documentation checks
 Initial project-status validation exited65 because compact Important decisions exceeded600bytes by8; shortened the summary without dropping the rejection decision. Final ./Scripts/project-status.sh validate and git diff --check both exited0. Monitoring automation updated in place, ACTIVE hourly, with known rejection and same privacy/pricing guards.
+
+## Latest owner steering — reconsider before sending
+Owner asks whether to improve product differentiation before another submission. Existing draft remains unsent; sending is held while this strategy is discussed. Mac unlock alone no longer triggers sending. No specific product change or new milestone has yet been approved.
+
+## Competitive research — 2026-10-27
+Owner requested current competitor research before choosing product changes. AI/competitive-review-20261027.md compares primary public descriptions and local implementation. Timeline, serving guidance, Silver/One advantage, offline and full-state Undo already overlap. Recommended hypothesis is selective earlier-rally correction with replay, impact preview and explicit ambiguity handling; not approved or implemented, competitor absence not proven. Prepare improvements without waiting idle for Apple; clarification can be complementary. Existing ASC draft remains unsent/on hold and needs time-qualified provenance wording after this research. No app, price or metadata changes.
+
+## Approved plan — supersedes earlier strategy-pending notes
+
+Owner approved AI/recovery-differentiation-plan.md and requested implementation of M19–M26. This session implements M19 only. The existing draft remains unsent/on hold; the earlier instruction to send after unlocking is superseded. No new submission or public offer is triggered by this approval. Historical evidence and initial independent-development provenance remain intact.

@@ -851,3 +851,13 @@ subscription, automatic early paywall or product-model change. Public-launch-day
 plus seven full regional days at0 remains authorized; monitor must not replace
 neutral promo with offer copy. AI/launch-20261024/companion-aso-final.md records
 reviewed words, actual saved copy and native image provenance.
+
+## Approved recovery experience — M19–M24, 2026-10-27
+
+[Approved plan](recovery-differentiation-plan.md): retain the one-tap scoring surface and native graphite/lime identity. M19 first repairs the small-iPhone contrast failures in the rendered UI while retaining all native audit categories and assertions.
+
+Watch flow: game menu → journal → event → change winner/delete/insert → before/after score, service and finish impact → explicit ambiguity resolution → confirm. Cancel returns unchanged. Manual score/rules replacement remains a separate draft flow and clearly marks the correction boundary. Old/unrecorded detail is labelled unavailable, never shown as a fabricated timeline. Current editable result follows the same rules; archived journals have no edit actions. Give save failure and stale preview clear retry/review actions.
+
+Setup offers zero or current score, then existing format rules, score and explicit service, ending in a readable summary. Validate each step without guessing unknown earlier rallies; completion cannot start an already finished game. iPhone Demo adds two interactive scenarios while retaining both existing examples, persistent Demo labeling and isolated resets. No new visual dependency on phone during actual play.
+
+All added strings ship in existing supported locales; VoiceOver announces before/after and blocking issues, large text wraps, minimum targets remain, and Reduce Motion has equivalent feedback. M25 owns six-domain review and real-device evidence; no cosmetic redesign or unsupported uniqueness promise substitutes for working recovery.

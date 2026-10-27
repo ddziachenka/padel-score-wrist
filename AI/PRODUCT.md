@@ -524,3 +524,15 @@ subscription, automatic early paywall or product-model change. Public-launch-day
 plus seven full regional days at0 remains authorized; monitor must not replace
 neutral promo with offer copy. AI/launch-20261024/companion-aso-final.md records
 reviewed words, actual saved copy and native image provenance.
+
+## Approved recovery direction — M19–M26, 2026-10-27
+
+Owner approved [the recovery plan](recovery-differentiation-plan.md) and instructed implementation. These are approved future behaviors, delivered only by their owning milestones; registration does not claim implementation.
+
+- PD-18: selective change/delete/insert of a rally in the current game or latest editable result, after the most recent checkpoint; preserve later winners, preview effects, resolve ambiguous serving explicitly, then save atomically. One Undo restores the entire correction. Current-state replacement (PP-06) remains and establishes a boundary rather than replaying earlier history.
+- PD-19: new archived games retain read-only rally journals; old archives keep honest compact results. Current migration state is a checkpoint; existing sequential Undo is preserved without fabricated past events.
+- PD-20: start Match/Americano from a known, validated, continuable score and explicit service as an alternative to zero. Earlier rallies are unknown; Undo stops at initial checkpoint. Existing access and once-per-game completion accounting apply.
+- PD-21: two additional isolated iPhone scenarios teach correction and starting mid-game through the shared engines. Existing demos, independence of Watch, review eligibility and monetization stay unchanged.
+- PD-22: M19 fixes both previous small-iPhone contrast failures. New milestones and release require passing mandatory gates; M16–M18 raw failures/acceptance remain historical.
+
+PP-04 remains sequential Undo; PD-18 adds selective recovery within its explicit boundary. PD-15 expands detail only for newly recorded history. No iPad support change, rename, new formats, accounts, cloud or real-game phone synchronization is authorized by this plan. Resubmission and external responses require the separate owner decision; the previous draft stays on hold. Differentiation remains a hypothesis, not a guaranteed Apple outcome.
