@@ -15,8 +15,8 @@ usage, pricing, review eligibility and external review materials are unchanged.
   side. Known-score examples state fixed rules, validate both formats, confirm an
   immutable snapshot, stop Undo at its typed checkpoint, and require explicit
   serving after a set boundary. They do not claim to replace full Watch setup.
-- Lifecycle: back/Close discards the destination; leaving Demo clears its path;
-  reset starts fresh. Background keeps memory, cold launch keeps no demo state.
+- Lifecycle: Close or native sheet dismissal destroys the example; reopening
+  and Reset start fresh. Original Demo tab-leave behavior is preserved. Background keeps memory, cold launch keeps no demo state.
 - Craftsmanship: existing cards/palette and native menu controls, vertically
   wrapping content, persistent Demo navigation title, complete before/after score,
   serving and finish status, explicit unknown earlier history. Preview starts at
@@ -35,7 +35,14 @@ During review, shortened guidance that was unnecessarily long at accessibility
 sizes, made step navigation return to the top, and made the initial unknown-history
 boundary explicit. The first UI run also exposed a test helper selecting a hidden
 retained TabView scroll view; it now drives the visible viewport, preserving every
-journey assertion. Exact runtime results and any subsequent corrections are
+journey assertion. The tab-leave assertions then reproduced a noninteractive recovery entry/return
+control on iOS17 after navigation across retained tab stacks (captured in recordings).
+Guided scenarios now use native sheets with their own lifetime, preserving the
+original tab navigation. Dismiss/reopen, cancellation, score and Undo assertions
+remain. Native auditing also found that replacing the small Review heading's
+accessibility label with its entire spoken summary looked clipped; visible labels
+now remain accurate and localized summaries use native announcements. No audit
+category or issue is suppressed.  Exact runtime results and any subsequent corrections are
 recorded in runtime.md and milestone-verification.md after execution.
 
 No additional problem scanner is configured beyond static; optional analyzers

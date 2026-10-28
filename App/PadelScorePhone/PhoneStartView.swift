@@ -16,10 +16,16 @@ struct PhoneStartView: View {
                 }
                 PhoneCard {
                     Text("phone.recovery.heading").font(.title2.bold()).accessibilityAddTraits(.isHeader)
-                    Button("phone.recovery.correction") { recovery(.correction) }
-                        .frame(minHeight: 44).accessibilityIdentifier("phone.start.correction")
-                    Button("phone.recovery.start") { recovery(.knownScore) }
-                        .frame(minHeight: 44).accessibilityIdentifier("phone.start.knownScore")
+                    Button { recovery(.correction) } label: {
+                        Text("phone.recovery.correction").fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                            .contentShape(Rectangle())
+                    }.accessibilityIdentifier("phone.start.correction")
+                    Button { recovery(.knownScore) } label: {
+                        Text("phone.recovery.start").fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                            .contentShape(Rectangle())
+                    }.accessibilityIdentifier("phone.start.knownScore")
                 }
                 PhoneCard {
                     Text("phone.start.steps").font(.title2.bold()).accessibilityAddTraits(.isHeader)

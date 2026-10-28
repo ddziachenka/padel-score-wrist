@@ -895,7 +895,7 @@ returns to setup without writing, and leaving setup/cold launch discards it.
 
 
 M24 adds “Try score recovery” on Start and below the two original Demo examples.
-Both routes keep Demo in the navigation bar and use the existing native grouped
+Both guided sheets keep Demo in the navigation bar and use the existing native grouped
 cards, graphite/lime palette and vertically wrapping controls. “Correct an earlier
 rally” starts with four recorded winners after 2–2,30–30; choose change, delete or
 insert, then review Before/After score, games/sets, service and finish state plus
@@ -906,7 +906,8 @@ explicit score/server/block input and the fixed stated serving order. Invalid or
 completed states stay in input. Review precedes Start demo; result can score and
 Undo only to the initial checkpoint, with explicit next-set serving confirmation
 when needed. These examples teach the mechanism; Watch retains the full setup.
-New steps open at the top without decorative animation. Close/back/tab leave and
-Reset discard only the demo. No new custom asset or haptic is needed. All copy
+New steps open at the top without decorative animation. Close/native sheet dismissal and
+Reset discard only the demo. The sheet gives the example its own lifetime while
+preserving the original Start/Demo tab navigation. No new custom asset or haptic is needed. All copy
 ships in the existing thirteen locales; M25 retains ownership of real-device and
 full-product six-domain evidence.

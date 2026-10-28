@@ -6,7 +6,10 @@ import Observation
 @MainActor
 @Observable
 final class RecoveryScenario {
-    enum Kind: Hashable { case correction, knownScore }
+    enum Kind: Hashable, Identifiable {
+        case correction, knownScore
+        var id: Self { self }
+    }
     enum Stage: Hashable { case input, preview, result }
     enum Operation: Int, CaseIterable { case change, remove, insert }
 

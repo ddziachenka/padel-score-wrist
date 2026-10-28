@@ -5,7 +5,6 @@ struct PhoneRecoveryView: View {
     @State private var demo: RecoveryScenario
     @State private var nextServer = Player.you
     @Environment(\.dismiss) private var dismiss
-    @AccessibilityFocusState private var focused: RecoveryScenario.Stage?
 
     init(kind: RecoveryScenario.Kind) {
         _demo = State(initialValue: RecoveryScenario(kind))
@@ -18,7 +17,7 @@ struct PhoneRecoveryView: View {
                     Label("Demo", systemImage: "hand.tap").font(.headline).foregroundStyle(PhoneTheme.accent)
                         .accessibilityIdentifier("phone.recovery.badge")
                     Text(title).font(.title2.bold()).fixedSize(horizontal: false, vertical: true)
-                        .accessibilityAddTraits(.isHeader).accessibilityFocused($focused, equals: .input)
+                        .accessibilityAddTraits(.isHeader)
                     if demo.stage == .input {
                         Text(demo.kind == .correction ? "phone.recovery.correctionHelp" : "phone.recovery.startHelp")
                             .foregroundStyle(PhoneTheme.secondaryText)
@@ -39,6 +38,7 @@ struct PhoneRecoveryView: View {
                 .id("recovery.top")
                 .padding(20)
             }
+            .accessibilityIdentifier("phone.recovery.scroll")
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Demo").navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color(.systemGroupedBackground), for: .navigationBar)
@@ -50,7 +50,9 @@ struct PhoneRecoveryView: View {
             }
             .onChange(of: demo.stage) { _, _ in
                 proxy.scrollTo("recovery.top", anchor: .top)
-                focused = demo.stage
+                if demo.stage == .preview {
+                    UIAccessibility.post(notification: .screenChanged, argument: previewAnnouncement)
+                } else if demo.stage == .result { announce(prefix: "phone.recovery.applied") }
             }
             .onChange(of: demo.problem) { _, problem in
                 if let problem { UIAccessibility.post(notification: .announcement, argument: String(localized: problem)) }
@@ -123,8 +125,6 @@ struct PhoneRecoveryView: View {
 
     @ViewBuilder private var preview: some View {
         Text("Review").font(.headline)
-            .accessibilityLabel(Text(verbatim: previewAnnouncement))
-            .accessibilityFocused($focused, equals: .preview)
             .accessibilityIdentifier("phone.recovery.preview")
         if demo.kind == .correction, let preview = demo.preview {
             score(preview.before, title: "Before", id: "before")
@@ -145,8 +145,7 @@ struct PhoneRecoveryView: View {
 
     @ViewBuilder private var result: some View {
         Label("phone.recovery.applied", systemImage: "checkmark.circle")
-            .font(.headline).accessibilityFocused($focused, equals: .result)
-            .accessibilityLabel(Text(verbatim: String(localized: "phone.recovery.applied") + " " + (demo.game.map(spoken) ?? "")))
+            .font(.headline)
             .accessibilityIdentifier("phone.recovery.applied")
         if let game = demo.game {
             score(game, title: "After", id: "result")
@@ -186,7 +185,7 @@ struct PhoneRecoveryView: View {
         } else if let game = demo.startingPreview {
             parts += [String(localized: "Starting score"), spoken(game)]
         }
-        return parts.joined(separator: ". ")
+        return parts.joined(separator: "\n")
     }
 
     private func spoken(_ game: GameSnapshot) -> String {
@@ -203,7 +202,7 @@ struct PhoneRecoveryView: View {
         if let server = board.server { parts.append(String(localized: "phone.demo.serving \(String(localized: server.name))")) }
         parts.append(String(localized: game.status == .finished ? LocalizedStringResource("Game finished") : "phone.recovery.active"))
         if case .ended(let result?) = board.serving { parts.append(String(localized: result.spoken)) }
-        return parts.joined(separator: ". ")
+        return parts.joined(separator: "\n")
     }
 
     private func announce(prefix: LocalizedStringResource? = nil) {
@@ -262,14 +261,15 @@ struct PhoneRecoveryView: View {
 }
 
 struct PhoneRecoveryLinks: View {
+    let open: (RecoveryScenario.Kind) -> Void
     var body: some View {
         PhoneCard {
             Text("phone.recovery.heading").font(.title2.bold()).accessibilityAddTraits(.isHeader)
-            NavigationLink(value: RecoveryScenario.Kind.correction) {
+            Button { open(.correction) } label: {
                 Label("phone.recovery.correction", systemImage: "arrow.uturn.backward")
                     .fixedSize(horizontal: false, vertical: true).frame(minHeight: 44)
             }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.openCorrection")
-            NavigationLink(value: RecoveryScenario.Kind.knownScore) {
+            Button { open(.knownScore) } label: {
                 Label("phone.recovery.start", systemImage: "flag")
                     .fixedSize(horizontal: false, vertical: true).frame(minHeight: 44)
             }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.openStart")

@@ -111,11 +111,15 @@ final class CompanionUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Us 0, them 15."].exists)
         reveal(app.buttons["phone.recovery.review"], in: app).tap()
         reveal(app.buttons["phone.recovery.confirm"], in: app).tap()
+        app.buttons["phone.recovery.close"].tap()
+        app.tabBars.buttons["Demo"].tap()
         app.tabBars.buttons["Start"].tap()
         reveal(app.buttons["phone.start.correction"], in: app).tap()
         XCTAssertFalse(app.staticTexts["phone.recovery.applied"].exists)
         XCTAssertTrue(app.staticTexts["Us 0, them 15."].exists)
         app.buttons["phone.recovery.close"].tap()
+        XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 5))
+        reveal(app.buttons["phone.start.demo"], in: app).tap()
         XCTAssertTrue(app.buttons["phone.demo.us"].waitForExistence(timeout: 5))
         XCTAssertEqual(app.buttons["phone.demo.us"].value as? String, "40")
         app.terminate()
@@ -203,6 +207,7 @@ final class CompanionUITests: XCTestCase {
                 capture(app, "\(region)-\(appearance)-correction-largest")
                 reveal(app.buttons["phone.recovery.undo"], in: app).tap()
                 app.buttons["phone.recovery.close"].tap()
+                app.tabBars.buttons.element(boundBy: 1).tap()
                 reveal(app.buttons["phone.recovery.openStart"], in: app).tap()
                 try auditIncludingOccludedText(app)
                 reveal(app.buttons["phone.recovery.review"], in: app).tap()
@@ -220,9 +225,9 @@ final class CompanionUITests: XCTestCase {
     @discardableResult private func reveal(_ target: XCUIElement, in app: XCUIApplication) -> XCUIElement {
         // TabView retains hidden scroll views. Drive the visible viewport directly,
         // rather than selecting the first ScrollView in the accessibility tree.
-        let top = app.navigationBars.firstMatch.frame.maxY + 1
-        let bottom = app.tabBars.firstMatch.frame.minY - 1
-        let middle = (top + bottom) / 2
+        let viewport = visibleViewport(app)
+        let top = viewport.minY, bottom = viewport.maxY
+        let middle = viewport.midY
         for _ in 0..<40 {
             if target.exists, target.isHittable,
                target.frame.midY > top, target.frame.midY < bottom { return target }
@@ -234,6 +239,14 @@ final class CompanionUITests: XCTestCase {
         }
         XCTAssertTrue(target.isHittable, target.debugDescription)
         return target
+    }
+
+    private func visibleViewport(_ app: XCUIApplication) -> CGRect {
+        let bar = app.navigationBars.allElementsBoundByIndex.first { $0.isHittable }
+        let top = bar?.frame.maxY ?? app.frame.minY
+        let tab = app.tabBars.firstMatch
+        let bottom = tab.exists && tab.isHittable ? tab.frame.minY : app.frame.maxY
+        return CGRect(x: 0, y: top + 1, width: app.frame.width, height: bottom - top - 2)
     }
 
     /// The lower card may begin below the fold at large text sizes. Audit it
@@ -330,11 +343,7 @@ final class CompanionUITests: XCTestCase {
         func key(_ element: XCUIElement) -> String {
             "\(element.elementType.rawValue)|\(element.identifier)|\(element.label)"
         }
-        func viewport() -> CGRect {
-            let top = app.navigationBars.firstMatch.frame.maxY
-            let bottom = app.tabBars.firstMatch.frame.minY
-            return CGRect(x: 0, y: top + 1, width: app.frame.width, height: bottom - top - 2)
-        }
+        func viewport() -> CGRect { visibleViewport(app) }
         func fullyVisible(_ element: XCUIElement) -> Bool {
             let frame = element.frame
             return frame.width > 0 && frame.height > 0 && viewport().contains(frame)

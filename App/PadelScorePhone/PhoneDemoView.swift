@@ -5,6 +5,7 @@ struct PhoneDemoView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Bindable var demo: CompanionDemo
     let completed: (GameKind) -> Void
+    let recover: (RecoveryScenario.Kind) -> Void
     @ScaledMetric(relativeTo: .largeTitle) private var scoreSize = 64.0
 
     var body: some View {
@@ -20,7 +21,7 @@ struct PhoneDemoView: View {
                         servingAndResult
                         Text("phone.demo.intro").foregroundStyle(PhoneTheme.secondaryText)
                         controls
-                        PhoneRecoveryLinks()
+                        PhoneRecoveryLinks(open: recover)
                         Label("phone.demo.isolation", systemImage: "lock.shield")
                             .font(.footnote).foregroundStyle(PhoneTheme.secondaryText)
                     }.padding(16)
@@ -54,7 +55,7 @@ struct PhoneDemoView: View {
                 }
                 Text("phone.demo.intro").font(.callout).foregroundStyle(PhoneTheme.secondaryText)
                 controls
-                PhoneRecoveryLinks()
+                PhoneRecoveryLinks(open: recover)
                 Label("phone.demo.isolation", systemImage: "lock.shield").font(.footnote).foregroundStyle(PhoneTheme.secondaryText)
             }.padding(20)
         }

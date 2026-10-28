@@ -32,19 +32,18 @@ struct CompanionRootView: View {
     @Environment(\.requestReview) private var requestReview
     @State private var selection = Tab.start
     @State private var demo = CompanionDemo()
-    @State private var demoPath: [RecoveryScenario.Kind] = []
+    @State private var recovery: RecoveryScenario.Kind?
     private let review = ReviewEligibility()
 
     var body: some View {
         TabView(selection: $selection) {
             NavigationStack {
                 PhoneStartView(tryDemo: { selection = .demo }, access: { selection = .access },
-                               recovery: { kind in selection = .demo; demoPath = [kind] })
+                               recovery: { recovery = $0 })
             }
             .tabItem { Label("phone.tab.start", systemImage: "figure.tennis") }.tag(Tab.start)
-            NavigationStack(path: $demoPath) {
-                PhoneDemoView(demo: demo, completed: { review.completed($0) })
-                    .navigationDestination(for: RecoveryScenario.Kind.self) { PhoneRecoveryView(kind: $0) }
+            NavigationStack {
+                PhoneDemoView(demo: demo, completed: { review.completed($0) }, recover: { recovery = $0 })
             }
             .tabItem { Label("phone.tab.demo", systemImage: "hand.tap") }.tag(Tab.demo)
             NavigationStack { PhoneAccessView() }
@@ -56,8 +55,11 @@ struct CompanionRootView: View {
             considerReview()
         }
         .onChange(of: selection) { old, new in
-            if old == .demo { demo.reset(); demoPath = [] }
+            if old == .demo { demo.reset() }
             if old == .demo, new == .start { considerReview() }
+        }
+        .sheet(item: $recovery, onDismiss: { considerReview() }) { kind in
+            NavigationStack { PhoneRecoveryView(kind: kind) }
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
@@ -67,7 +69,7 @@ struct CompanionRootView: View {
     }
 
     private func considerReview() {
-        if selection == .start, review.consumeAttempt(purchaseIdle: entitlements.activity == .idle) {
+        if selection == .start, recovery == nil, review.consumeAttempt(purchaseIdle: entitlements.activity == .idle) {
             requestReview()
         }
     }
