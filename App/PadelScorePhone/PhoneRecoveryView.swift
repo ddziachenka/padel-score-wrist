@@ -16,7 +16,7 @@ struct PhoneRecoveryView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     Label("Demo", systemImage: "hand.tap").font(.subheadline.bold()).foregroundStyle(Color.primary)
                         .accessibilityIdentifier("phone.recovery.badge")
-                    RecoveryHeading(text: String(localized: title))
+                    RecoveryMeasuredText(text: String(localized: title))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.vertical, 4)
                     if demo.stage == .input {
@@ -81,25 +81,33 @@ struct PhoneRecoveryView: View {
             Text("Unknown earlier history").font(.footnote).foregroundStyle(PhoneTheme.secondaryText)
             rallyList(demo.rallies)
             PhoneCard {
-                Picker("phone.recovery.rally", selection: $demo.selectedRally) {
-                    ForEach(Array(demo.rallies.enumerated()), id: \.element.id) { index, _ in
-                        Text("Rally \(index + 1)").tag(index)
-                    }
-                }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.rally")
-                Picker("phone.recovery.action", selection: $demo.operation) {
-                    Text("Change winner").tag(RecoveryScenario.Operation.change)
-                    Text("Delete rally").tag(RecoveryScenario.Operation.remove)
-                    Text("Insert rally").tag(RecoveryScenario.Operation.insert)
-                }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.action")
+                field("phone.recovery.rally", id: "rally") {
+                    Picker("phone.recovery.rally", selection: $demo.selectedRally) {
+                        ForEach(Array(demo.rallies.enumerated()), id: \.element.id) { index, _ in
+                            Text("Rally \(index + 1)").tag(index)
+                        }
+                    }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.rally")
+                }
+                field("phone.recovery.action", id: "action") {
+                    Picker("phone.recovery.action", selection: $demo.operation) {
+                        Text("Change winner").tag(RecoveryScenario.Operation.change)
+                        Text("Delete rally").tag(RecoveryScenario.Operation.remove)
+                        Text("Insert rally").tag(RecoveryScenario.Operation.insert)
+                    }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.action")
+                }
                 if demo.operation != .remove {
-                    Picker("phone.recovery.winner", selection: $demo.winner) {
-                        Text("US").tag(Team.us); Text("THEM").tag(Team.them)
-                    }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.winner")
+                    field("phone.recovery.winner", id: "winner") {
+                        Picker("phone.recovery.winner", selection: $demo.winner) {
+                            Text("US").tag(Team.us); Text("THEM").tag(Team.them)
+                        }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.winner")
+                    }
                 }
                 if demo.operation == .insert {
-                    Picker("phone.recovery.position", selection: $demo.insertAfter) {
-                        Text("Before").tag(false); Text("After").tag(true)
-                    }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.position")
+                    field("phone.recovery.position", id: "position") {
+                        Picker("phone.recovery.position", selection: $demo.insertAfter) {
+                            Text("Before").tag(false); Text("After").tag(true)
+                        }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.position")
+                    }
                 }
             }.pickerStyle(.menu)
         } else {
@@ -111,24 +119,30 @@ struct PhoneRecoveryView: View {
 
     private var knownScoreInput: some View {
         PhoneCard {
-            Picker("Format", selection: $demo.input.kind) {
-                Text("Match").tag(GameKind.match); Text("Americano").tag(GameKind.americano)
-            }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.format")
+            field("Format", id: "format") {
+                Picker("Format", selection: $demo.input.kind) {
+                    Text("Match").tag(GameKind.match); Text("Americano").tag(GameKind.americano)
+                }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.format")
+            }
             if demo.input.kind == .match {
-                Text("phone.recovery.matchRules").foregroundStyle(PhoneTheme.secondaryText)
+                RecoveryMeasuredText(text: String(localized: "phone.recovery.matchRules"), role: .rules)
+                    .frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 4)
                 number("phone.recovery.usGames", value: $demo.input.games.us, range: 0...6, id: "usGames")
                 number("phone.recovery.themGames", value: $demo.input.games.them, range: 0...6, id: "themGames")
                 point("phone.recovery.usPoints", value: $demo.input.usPoint, id: "usPoints")
                 point("phone.recovery.themPoints", value: $demo.input.themPoint, id: "themPoints")
             } else {
-                Text("phone.recovery.americanoRules").foregroundStyle(PhoneTheme.secondaryText)
+                RecoveryMeasuredText(text: String(localized: "phone.recovery.americanoRules"), role: .rules)
+                    .frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 4)
                 number("phone.recovery.usPoints", value: $demo.input.score.us, range: 0...24, id: "usPoints")
                 number("phone.recovery.themPoints", value: $demo.input.score.them, range: 0...24, id: "themPoints")
                 number("Next rally in block", value: $demo.input.rallyInBlock, range: 1...2, id: "block")
             }
-            Picker("Next server", selection: $demo.input.server) {
-                ForEach(Player.allCases, id: \.self) { Text($0.name).tag($0) }
-            }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.server")
+            field("Next server", id: "server") {
+                Picker("Next server", selection: $demo.input.server) {
+                    ForEach(Player.allCases, id: \.self) { Text($0.name).tag($0) }
+                }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.server")
+            }
             Text("phone.recovery.order").font(.footnote).foregroundStyle(PhoneTheme.secondaryText)
         }.pickerStyle(.menu)
     }
@@ -168,11 +182,13 @@ struct PhoneRecoveryView: View {
                 if case .match(let match) = game.format, !match.service.isConfirmed {
                     let first = nextServer.team == match.service.server.team ? nextServer : match.service.server
                     Text("Confirm serving").font(.headline)
-                    Picker("First server", selection: Binding(get: { first }, set: { nextServer = $0 })) {
-                        ForEach(Player.allCases.filter { $0.team == match.service.server.team }, id: \.self) {
-                            Text($0.name).tag($0)
-                        }
-                    }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.firstServer")
+                    field("First server", id: "firstServer") {
+                        Picker("First server", selection: Binding(get: { first }, set: { nextServer = $0 })) {
+                            ForEach(Player.allCases.filter { $0.team == match.service.server.team }, id: \.self) {
+                                Text($0.name).tag($0)
+                            }
+                        }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.firstServer")
+                    }
                     Button("Confirm serving") { demo.confirmServing(first); announce() }.buttonStyle(RecoveryButtonStyle(prominent: true))
                         .accessibilityIdentifier("phone.recovery.serving")
                 }
@@ -223,15 +239,30 @@ struct PhoneRecoveryView: View {
     }
 
     private func number(_ title: LocalizedStringKey, value: Binding<Int>, range: ClosedRange<Int>, id: String) -> some View {
-        Picker(title, selection: value) {
-            ForEach(range, id: \.self) { Text($0, format: .number).tag($0) }
-        }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.\(id)")
+        field(title, id: id) {
+            Picker(title, selection: value) {
+                ForEach(range, id: \.self) { Text($0, format: .number).tag($0) }
+            }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.\(id)")
+        }
     }
 
     private func point(_ title: LocalizedStringKey, value: Binding<GamePoint>, id: String) -> some View {
-        Picker(title, selection: value) {
-            ForEach(GamePoint.allCases, id: \.self) { Text(verbatim: ScoreBoard.Points.game($0).shown).tag($0) }
-        }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.\(id)")
+        field(title, id: id) {
+            Picker(title, selection: value) {
+                ForEach(GamePoint.allCases, id: \.self) { Text(verbatim: ScoreBoard.Points.game($0).shown).tag($0) }
+            }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.\(id)")
+        }
+    }
+
+    private func field<Content: View>(_ title: LocalizedStringKey, id: String,
+                                     @ViewBuilder content: () -> Content) -> some View {
+        LabeledContent {
+            content().labelsHidden()
+        } label: {
+            Text(title).font(.subheadline.weight(.semibold)).foregroundStyle(PhoneTheme.secondaryText)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityIdentifier("phone.recovery.\(id).label")
+        }.labeledContentStyle(RecoveryFieldStyle())
     }
 
     private func rallyList(_ rallies: [RecordedRally]) -> some View {
@@ -291,6 +322,15 @@ struct PhoneRecoveryView: View {
     }
 }
 
+private struct RecoveryFieldStyle: LabeledContentStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            configuration.label
+            configuration.content
+        }.frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
 /// The opaque guide toolbar already separates controls from scrolling content.
 private struct RecoveryScrollEdges: ViewModifier {
     @ViewBuilder func body(content: Content) -> some View {
@@ -299,26 +339,29 @@ private struct RecoveryScrollEdges: ViewModifier {
     }
 }
 
-/// Native multiline measurement avoids a tight SwiftUI text box for long,
-/// fully scaled localized headings. The actual UILabel remains auditable.
-private struct RecoveryHeading: UIViewRepresentable {
+/// Native multiline measurement preserves full localized headings and guidance.
+/// The actual UILabel remains auditable at every Dynamic Type size.
+private struct RecoveryMeasuredText: UIViewRepresentable {
+    enum Role { case heading, rules }
     let text: String
+    var role = Role.heading
 
     func makeUIView(context: Context) -> UILabel {
         let label = UILabel()
         label.numberOfLines = 0
         label.adjustsFontForContentSizeCategory = true
-        label.textColor = .label
         label.isAccessibilityElement = true
-        label.accessibilityTraits.insert(.header)
-        label.accessibilityIdentifier = "phone.recovery.title"
+        if role == .heading { label.accessibilityTraits.insert(.header) }
+        label.accessibilityIdentifier = role == .heading ? "phone.recovery.title" : "phone.recovery.rules"
         label.setContentCompressionResistancePriority(.required, for: .vertical)
         return label
     }
 
     func updateUIView(_ label: UILabel, context: Context) {
-        label.font = UIFontMetrics(forTextStyle: .title2)
-            .scaledFont(for: UIFont.systemFont(ofSize: 22, weight: .bold))
+        label.font = UIFontMetrics(forTextStyle: role == .heading ? .title2 : .body)
+            .scaledFont(for: UIFont.systemFont(ofSize: role == .heading ? 22 : 17,
+                                              weight: role == .heading ? .bold : .regular))
+        label.textColor = role == .heading ? .label : UIColor(named: "PhoneSecondaryText") ?? .secondaryLabel
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineBreakMode = .byWordWrapping
         paragraph.hyphenationFactor = 1

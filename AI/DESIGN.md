@@ -925,3 +925,9 @@ appearances and input/preview/result states.
 On iOS26 the guide disables the automatic scroll-edge blur; its existing opaque
 semantic toolbar provides the boundary. Text keeps its full contrast while
 scrolling. Earlier iOS versions retain their native behavior.
+
+Known-score rule paragraphs share the native multiline measurement, preserving
+full wording and body-font scaling in Russian too. Every guide menu has a visible
+localized label above its value using native LabeledContent; labels wrap vertically
+at accessibility sizes, so games, points and service are unambiguous without
+VoiceOver. Picker accessibility names and existing input identifiers remain.

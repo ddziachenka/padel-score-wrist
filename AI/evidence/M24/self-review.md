@@ -134,3 +134,30 @@ and every reveal uses the explicitly named current screen's native swipe. This
 adds only test identifiers to existing screens and retains their layout, behavior,
 all visibility assertions and the complete matrix. The final large supplement
 rechecks all six cases before the declared full gate.
+
+The fifth clean candidate `b1c1d0c202c60edc11bb8fdc0cc32689dff33d0f`
+completed the entire large matrix: the five focused cases passed; the matrix
+failed only the Russian known-score rules paragraph's native clipping checks in
+both appearances. It exited65 naturally, with six definitions/five passed/one
+failed, zero skipped/expected/runtime warnings. Unit and declared gate never ran.
+Explicit SwiftUI vertical sizing/padding also failed the new focused Russian
+regression. The measured native paragraph then passed both appearances on the
+large phone; both German heading and Russian guidance regressions passed on the
+small iOS17 phone. This reuses the existing native measurement with body versus
+heading metrics/traits; copy and scaling remain unchanged. No issue is suppressed.
+
+Inspecting the retained input screenshot also exposed menu values without visible
+field names. All guide menus now use vertical native LabeledContent with a wrapping
+label above the selection. Controls retain their accessibility names/identifiers,
+and the editable-input UI case must reveal each visible field label. This is an
+input-usability correction inside M24, not a new product decision or later polish
+deferral. The complete large supplement and exact gate must verify the final
+labeled implementation afresh.
+
+The final visible-field-label input lifecycle and Russian largest-text native
+regression passed together on iOS17, exit0, two definitions/invocations and zero
+failed/skipped/expected/runtime warnings. The complete final suite includes a
+permanent Russian rule-paragraph regression in both modes alongside the German
+heading regression and thirteen-locale matrix. No known blocking finding remains;
+a new clean REVIEW candidate must run the seven-case large supplement, all phone
+unit definitions and the exact unfiltered milestone gate before DONE.

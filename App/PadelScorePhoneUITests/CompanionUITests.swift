@@ -130,6 +130,11 @@ final class CompanionUITests: XCTestCase {
     func testKnownScoreRealInputPreviewCancelScoreUndoAndRelaunch() {
         let app = app()
         reveal(app.buttons["phone.start.knownScore"], in: app).tap()
+        for id in ["format", "usGames", "themGames", "usPoints", "themPoints", "server"] {
+            let label = reveal(app.staticTexts["phone.recovery.\(id).label"], in: app)
+            XCTAssertFalse(label.label.isEmpty, "Every input needs a visible field name")
+        }
+        capture(app, "known-score-visible-field-labels")
         let points = app.buttons["phone.recovery.usPoints"]
         reveal(points, in: app).tap()
         app.buttons["30"].tap()
@@ -295,6 +300,27 @@ final class CompanionUITests: XCTestCase {
                 capture(app, "\(region)-\(appearance)-start-largest")
                 app.terminate()
             }
+        }
+    }
+
+    func testRussianKnownScoreRulesAtLargestText() throws {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
+        for dark in [false, true] {
+            XCUIDevice.shared.appearance = dark ? .dark : .light
+            let app = XCUIApplication()
+            app.launchArguments = ["-AppleLanguages", "(ru)", "-AppleLocale", "ru_RU",
+                "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+            app.launch()
+            XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+            declineOptionalReview(app)
+            reveal(app.buttons["phone.start.knownScore"], in: app).tap()
+            let rules = reveal(app.staticTexts["phone.recovery.rules"], in: app)
+            XCTAssertEqual(rules.label, "Пример: первый сет, золотое очко, обычные геймы.")
+            XCTAssertGreaterThan(rules.frame.height, 100, "Guidance must retain largest Dynamic Type scaling")
+            try auditIncludingOccludedText(app)
+            capture(app, "russian-known-score-rules-\(dark ? "dark" : "light")")
+            app.terminate()
         }
     }
 

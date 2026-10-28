@@ -751,7 +751,9 @@ the scenario; reopening and Reset create a fresh example; cold launch restores
 none of this state. Real Watch persistence, settings, archive, usage and entitlements
 are unreachable from these models.
 
-The guide heading uses a narrow native UILabel bridge with multiline measurement,
-preferred-font metrics, native Dynamic Type updates and localized hyphenation. It
-keeps the actual title as an auditable header; all other guide layout stays SwiftUI.
+The guide heading and rules paragraphs use a narrow native UILabel bridge with
+multiline measurement, preferred-font metrics, native Dynamic Type updates and
+localized hyphenation. Titles retain header traits; rules retain ordinary text
+traits. All other guide layout stays SwiftUI, including vertically labeled native
+menus so the entered value never loses its visible field name.
 No font-size cap or minimum-scale workaround is used.
