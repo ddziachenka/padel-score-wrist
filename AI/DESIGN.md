@@ -879,3 +879,7 @@ saves use existing Retry/Cancel. Manual score/rules editing explains the new
 checkpoint. History results open read-only journals; unavailable earlier detail
 is stated explicitly. Native wrapped rows and vertical preview sections preserve
 small-Watch tap targets and VoiceOver reading order; no new decorative motion.
+
+M22 Journal navigation and unsaved serving/review choices survive background while
+the process is alive, matching the existing correction-draft lifecycle contract.
+Cold launch still restores only the last saved game; Cancel writes nothing.

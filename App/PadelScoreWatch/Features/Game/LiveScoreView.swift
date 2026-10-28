@@ -128,9 +128,11 @@ struct LiveScoreView: View {
         }
         .onChange(of: scenePhase) { _, phase in
             // On return to the wrist the score comes first. A serving order being chosen stays, and
-            // so does a correction, with its draft, while the app runs. The result keeps its
-            // screens, and with them the next game being set up.
-            if phase != .active, live.editor == nil, !live.showsResult { path.removeAll { !$0.isServing } }
+            // so does either correction flow, with its draft, while the app runs. The result
+            // keeps its screens, and with them the next game being set up.
+            if phase != .active, live.editor == nil, !live.showsResult, !path.contains(.journal) {
+                path.removeAll { !$0.isServing }
+            }
         }
     }
 

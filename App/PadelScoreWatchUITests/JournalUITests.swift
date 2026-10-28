@@ -194,6 +194,34 @@ final class JournalUITests: XCTestCase {
         attachScreenshot("Long journal, scrolled rally")
     }
 
+    func testReviewAndServingChoicesSurviveBackgroundUntilCancelled() {
+        let app = launchApp(store: "journal-background", seed: "journalSetCrossing")
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        openJournal(app); detail(24, in: app)
+        app.buttons["journal.delete"].scrollToAndTap(in: app)
+        app.buttons["journal.resolve"].scrollToAndTap(in: app)
+        app.buttons["journal.first.partner"].scrollToAndTap(in: app)
+        XCUIApplication(bundleIdentifier: "com.apple.NanoCalculator.watchkitapp").activate()
+        app.activate()
+        let first = app.buttons["journal.first.partner"]
+        XCTAssertTrue(first.waitForExistence(timeout: 10), "a live correction must survive background")
+        XCTAssertTrue(first.isSelected, "the explicit first-server choice survives too")
+        app.buttons["journal.second.opponent2"].scrollToAndTap(in: app)
+        app.buttons["journal.confirmServing"].scrollToAndTap(in: app)
+        XCUIApplication(bundleIdentifier: "com.apple.NanoCalculator.watchkitapp").activate()
+        app.activate()
+        XCTAssertTrue(app.buttons["journal.apply"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["journal.apply"].isEnabled)
+        XCTAssertTrue(app.descendants(matching: .any)["journal.before"].exists)
+        XCTAssertTrue(app.descendants(matching: .any)["journal.after"].exists)
+        attachScreenshot("Review preserved after background")
+        app.buttons["journal.cancel"].scrollToAndTap(in: app)
+        app.terminate()
+        let reopened = launchApp(store: "journal-background", seed: nil)
+        XCTAssertTrue(reopened.buttons["game.us"].waitForExistence(timeout: 10))
+        XCTAssertEqual(reopened.buttons["game.us"].label, "Our score, 30", "neither background nor Cancel saves a correction")
+    }
+
     private func audit(_ app: XCUIApplication) throws {
         var issues: [String] = []
         try app.performAccessibilityAudit { issue in
