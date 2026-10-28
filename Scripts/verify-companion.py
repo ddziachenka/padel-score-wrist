@@ -29,7 +29,13 @@ def validate_source(project=None):
         return Counter(objects[objects[f]["fileRef"]]["path"] for p in target["buildPhases"]
                        if objects[p]["isa"] == "PBXSourcesBuildPhase" for f in objects[p]["files"])
 
-    expected = sources(phone)
+    phone_sources = sources(phone)
+    domain_names = {path.name for path in (ROOT / "App/PadelScoreWatch/Domain").glob("*.swift")}
+    phone_names = Counter(Path(path).name for path in phone_sources.elements())
+    require(all(phone_names[name] == 1 for name in domain_names),
+            "iPhone must include every shared domain source exactly once")
+
+    expected = phone_sources.copy()
     expected.subtract({"PadelScorePhone/PadelScorePhoneApp.swift": 1})
     expected.update({"PadelScorePhoneStoreKitHost/PhoneStoreKitTestApp.swift": 1})
     require(sources(host) == +expected, "phone test host must share production sources, replacing only its entry point")

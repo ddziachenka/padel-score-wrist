@@ -1,5 +1,7 @@
 """Mutation tests for independent Watch and real iPhone distribution packaging."""
 import importlib.util
+import json
+import subprocess
 from pathlib import Path
 import plistlib
 import tempfile
@@ -74,6 +76,29 @@ class CompanionPackagingTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     self.check()
                 leaked.unlink()
+
+
+class CompanionSourceGraphTests(unittest.TestCase):
+    def test_complete_production_graph(self):
+        self.assertTrue(companion.validate_source())
+
+    def test_missing_shared_domain_in_both_phone_and_host_is_rejected(self):
+        project = companion.ROOT / "App/PadelScore.xcodeproj/project.pbxproj"
+        graph = json.loads(subprocess.check_output(["plutil", "-convert", "json", "-o", "-", str(project)]))
+        objects = graph["objects"]
+        for target in objects.values():
+            if target.get("isa") != "PBXNativeTarget" or target["name"] not in {"PadelScore", "PadelScorePhoneStoreKitHost"}:
+                continue
+            for phase_id in target["buildPhases"]:
+                phase = objects[phase_id]
+                if phase["isa"] == "PBXSourcesBuildPhase":
+                    phase["files"] = [identity for identity in phase["files"]
+                                      if not objects[objects[identity]["fileRef"]]["path"].endswith("RallyCorrection.swift")]
+        with tempfile.TemporaryDirectory(prefix="padel-domain-graph-") as folder:
+            fixture = Path(folder) / "project.pbxproj"
+            fixture.write_text(json.dumps(graph))
+            with self.assertRaisesRegex(ValueError, "every shared domain source"):
+                companion.validate_source(fixture)
 
 
 if __name__ == "__main__":

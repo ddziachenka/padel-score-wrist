@@ -100,7 +100,60 @@ off; no additional problem scanner is configured.
 
 Final development6 exited0: **413/413 definitions,817 invocations**, zero
 failed/skipped/expected/runtime warnings. Summary: `.artifacts/M21/unit-6-summary.json`.
-UTC test interval: 2026-10-28T00:21:40.357Z–00:21:58.575Z. No blocking
+UTC test interval: 2026-10-27T23:21:40.357Z–23:21:58.575Z. No blocking
 self-review finding remains. Before the immutable gate, only the owned disposable
 build cache is cleared to avoid retaining a hosted unit-test bundle in the shipping
 Debug app; all prior `.artifacts/` evidence is retained.
+
+
+## First full gate and source-graph correction
+
+Clean REVIEW candidate `822b97bc0497d2f6094cbbdf3066be738680960b` ran unchanged
+`make milestone ID=M21`, overall Make2/verifier1. Watch Debug/package checks and
+**536/536 definitions,940 invocations** passed with zero failed/skipped/expected/
+runtime warnings. Report: `.artifacts/milestone/M21/20261027T232244Z-23664/report.md`;
+summary `.artifacts/M21/first-gate-watch-summary.json`.
+
+The next companion Debug build failed65: `RallyCorrection.swift` was registered in
+Watch and Watch StoreKit-host phases but absent from the two separate iPhone phases.
+The iPhone production target could not resolve the new types/extensions. Phone
+unit/UI tests were not reached, not passed. This was caused by this milestone's
+project registration, not a claimed pre-existing failure. All raw evidence remains.
+
+Corrected both phone source phases. The source-graph validator now requires every
+shared Domain source exactly once, in addition to its existing host-parity checks.
+A mutation removes the new file from both phone targets (which kept old parity but
+would not compile) and proves rejection. The new check failed before the project
+repair (exit1); after repair, source validation and all seven tooling tests passed.
+Corrected direct iPhone Debug build passed0. This strengthens verification; no
+original test, parser, assertion, category, repetition or gate scope changed.
+
+The entire unchanged mandatory gate will be repeated against a new clean REVIEW
+candidate. Passing first-candidate Watch evidence is retained as history, not
+reused as verification of the corrected candidate. Companion unit/UI correction
+checks are development evidence only. No independent audit or release verdict.
+
+
+Correction validation: direct `Scripts/simulator.sh --profile companion run --
+xcodebuild build -quiet -project App/PadelScore.xcodeproj -scheme PadelScorePhone
+-configuration Debug -destination 'platform=iOS Simulator,id=51FD3DAD-CE88-4961-8CFF-E1B5EF1F45F7'
+-derivedDataPath /private/tmp/padel-score-1acada2a5b10/DerivedData-companion` exited0.
+The same wrapper/destination/cache with `xcodebuild test -quiet
+-collect-test-diagnostics never` ran `-scheme PadelScorePhoneUnit
+-resultBundlePath .artifacts/M21/phone-unit-correction.xcresult` and then
+`-scheme PadelScorePhone -resultBundlePath .artifacts/M21/phone-ui-correction.xcresult`:
+both exited0, **unit14/14 definitions/20 invocations,UI6/6**, zero failures,
+skips,expected failures or native runtime warnings. Both contrast audits pass.
+Both summaries are retained in `.artifacts/M21/*-correction-summary.json`.
+`python3 Scripts/verify-companion.py --phone-app
+/private/tmp/padel-score-1acada2a5b10/DerivedData-companion/Build/Products/Debug-iphonesimulator/PadelScore.app`
+exited0, including independent Watch/launcher and test-isolation checks.
+`make static` exited0 (`.artifacts/M21/static-correction.log`).
+
+Xcode emitted IDE SDK-build/debugger metadata messages in the development console;
+these did not fail either command, and native result runtime-warning arrays are
+empty. No claim of a baseline reproduction or pre-existing application failure.
+Self-review of the complete baseline-to-corrected diff found no remaining blocking
+issue. The only app-project correction adds the already-shared file to the two
+missing iPhone source phases; no engine or UI semantics changed after Watch passed.
+All required suites will still repeat in the full new-candidate gate.
