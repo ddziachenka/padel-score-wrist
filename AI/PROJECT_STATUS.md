@@ -2,9 +2,9 @@
 
 **Phase:** implementation
 **Current milestone:** M22
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21
-**Next milestone:** M22
-**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M22 REVIEW: background regression corrected, minimum15/15 passed; fresh full verification pending; M23–M26 remain planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22
+**Next milestone:** M23
+**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M22 passed; M23–M26 remain planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -242,3 +242,32 @@ Builder self-review, not independent review or release approval. App Review repl
 remains unsent/on hold,4.3(a) unresolved; no upload/submission/pricing/Promotional
 Text change. Next Builder session owns M22; M22–M26 remain PLANNED. This session
 stops after DONE static/status/continuity checks against the verified SHA.
+
+
+## M22 completed — current checkpoint
+
+M22 DONE. Clean REVIEW/main candidate `b52ea03978bc63664f2b43289fb950bf5d44c611` passed
+`make milestone ID=M22`, exit 0, UTC `20261028T112312Z`–`20261028T140420Z`.
+Watch: 551/551 definitions, 955 invocations; iPhone unit: 14/14, 20; iPhone UI: 6/6, 6.
+Aggregate: 571 definitions / 981 invocations;
+zero failed/skipped/expected/runtime warnings. Both Debug/package guards and both
+native iPhone contrast audits pass. Handoff: [M22](handoffs/M22-handoff.md);
+[exact evidence](evidence/M22/milestone-verification.md).
+
+Watch Journal changes/deletes/inserts an earlier recorded rally with complete
+Before/After score, service and finish review; ambiguities require explicit
+serving. Cancel/save failure/stale preview preserve the original; one Undo
+restores the full correction. Latest result remains editable with Undo, archived
+journals are read-only, legacy detail is unavailable, and manual editing explains
+its checkpoint. All 39 new strings ship in 13 locales. Largest text, native audits,
+4000-rally scrolling and complete minimum-watchOS 10 set pass 15/15. Self-review
+found and reproduced background draft loss, fixed it with a narrow navigation
+condition, and added a fail-before/pass-after regression. Partial serving choices
+and full previews now survive background; cold launch keeps only saved state.
+The first full candidate's cancelled FAILED report is retained and superseded by
+this complete passing candidate, with no test or waiver carried around the failure.
+
+Builder self-review, not independent review or release approval. App Review reply
+remains unsent/on hold and 4.3(a) unresolved; no upload/submission/pricing/Promotional
+Text change. Next Builder owns M23; M23–M26 remain PLANNED. This Builder stops after
+committing DONE records and passing static/status/continuity against the verified SHA.

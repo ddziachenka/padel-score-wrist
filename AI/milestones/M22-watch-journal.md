@@ -1,7 +1,7 @@
 # M22 — Watch Journal and Correction Experience
 
 **ID:** M22
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M21
 **Validation:** make milestone ID=M22
 **Handoff:** AI/handoffs/M22-handoff.md
@@ -18,10 +18,10 @@ Game menu journal, event details, winner/delete/insert actions, before/after pre
 
 ## Acceptance criteria
 
-- [ ] One tap still records ordinary points; correction requires explicit review/apply and cancellation is harmless.
-- [ ] Current game/latest editable result supports corrections within the checkpoint; archived games expose no edit action.
-- [ ] Unknown legacy detail, empty history, stale preview, save failure and ambiguity have actionable localized states.
-- [ ] VoiceOver, large text, minimum Watch runtime and visual/interaction inspection pass; full make milestone ID=M22 passes.
+- [x] One tap still records ordinary points; correction requires explicit review/apply and cancellation is harmless.
+- [x] Current game/latest editable result supports corrections within the checkpoint; archived games expose no edit action.
+- [x] Unknown legacy detail, empty history, stale preview, save failure and ambiguity have actionable localized states.
+- [x] VoiceOver, large text, minimum Watch runtime and visual/interaction inspection pass; full make milestone ID=M22 passes.
 
 ## Non-goals
 
