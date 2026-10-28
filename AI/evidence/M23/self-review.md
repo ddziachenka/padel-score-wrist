@@ -62,3 +62,15 @@ Final-source watchOS10 validation passed16/16 definitions/20 invocations,
 including the added setup-rule preservation regression and all four UI cases.
 Final captures were inspected; no blocking finding remains known. Runtime details
 are in runtime.md. The full clean-SHA milestone gate remains required.
+
+
+## Final copy-audit correction
+
+The earlier provisional no-blocking-finding note is superseded by the final pass:
+known-score checkpoint detail now explicitly says earlier rally detail is
+unavailable; new-game score rows suppress the ordinary correction's promise that
+Saving finishes a round. Blank current-score serving does not ask for a historical
+first server. The original full gate was interrupted, not accepted. Two exact UI
+regressions and the complete expanded minimum-OS set pass17/17/21 on source
+818c1fc59dffef164b66c4622422a8113a560753. Captures were inspected after correction.
+No blocking finding remains known. A fresh complete clean REVIEW gate is required.

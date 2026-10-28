@@ -1,4 +1,7 @@
-# M23 final-source runtime verification
+# M23 runtime verification
+
+The first section is historical development evidence. The final checkpoint/copy-
+corrected source and complete expanded scope are recorded at the end.
 
 Source: `868723c267905cd9e92a445e9f98301a85025777`, clean main.
 Frozen App/Config/Scripts trees: `.artifacts/M23/frozen-runtime.json`.
@@ -45,3 +48,42 @@ failed UI set remains in development.md and is not counted as passing evidence.
 `make clean-derived-data`, exit0, removed only this checkout's354MB primary
 mutable cache before the full gate; all evidence and minimum-profile cache remain.
 No physical-device or all-locale audit is claimed here; M25 owns that work.
+
+
+## Final complete source after checkpoint and invalid-round copy audit
+
+Clean main source `818c1fc59dffef164b66c4622422a8113a560753`.
+Frozen trees `.artifacts/M23/frozen-complete-runtime.json`.
+Exact command `bash .artifacts/M23/run-minimum.sh`, exit **0**.
+Same owned Watch SE40mm/watchOS10.0 profile and compatibility environment above.
+UTC `2026-10-28T16:20:52.865Z`–`2026-10-28T16:27:57.196Z`.
+
+**17/17 definitions, 21 invocations**, zero failed/skipped/expected/runtime warnings.
+Complete KnownScoreStartTests, KnownScoreFlowTests and all **five** KnownScoreUITests
+passed together. Bundle `.artifacts/M23/minimum-complete-final.xcresult`; log
+`.artifacts/M23/minimum-complete-final.log`; JSON
+`.artifacts/M23/minimum-complete-summary.json`.
+
+This adds the exact unknown-history checkpoint-detail assertion and the invalid
+completed-round journey described in development.md. Both new-game score editor
+and overview reject completion, offer no ordinary-correction Finish notice, and
+cancellation/relaunch confirm no saved game. Ordinary correction behavior remains
+covered by the unchanged full gate. All source changes are self-reviewed; no
+blocking finding remains known before the fresh full gate.
+
+Final captures inspected in `.artifacts/M23/minimum-complete-attachments/`:
+
+- `A91B1B63-D2BF-4019-A431-573A463C972C.png` — truthful unavailable earlier detail.
+- `182DF8A7-131B-4718-A16F-D5CAC8270ABD.png` — invalid completed score, no Finish offer.
+- `09A457D7-F814-4C5B-A9AA-CF1635B3EC82.png` — Americano confirmation.
+- `D556A741-2E43-4522-9996-D0A9CABF11B7.png` — Match confirmation.
+- `3D652C21-8610-4350-888E-980F22D03771.png` — native audit confirmation.
+- `D4A6EC8D-0780-4C7E-B6F5-648F26C53206.png` — largest text.
+
+The checkpoint-only source `855e213b9470d0a9756ec9ec955830d42bbb998d` also passed
+16/16/20 at `.artifacts/M23/minimum-checkpoint-final.xcresult`; the complete run
+above supersedes it after the fifth case and overview-copy correction. Static on
+the final source passed exit0, `.artifacts/M23/static-complete-final.log`.
+Primary cache cleanup before the fresh full gate exited0 (336MB); only this
+checkout's disposable primary cache was removed. Earlier partial/interrupted gate
+is retained and never substituted for new candidate verification.
