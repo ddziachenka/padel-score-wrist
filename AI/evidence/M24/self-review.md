@@ -123,3 +123,14 @@ does, and all categories/issue handling/assertions remain. Apple's API explanati
 https://developer.apple.com/documentation/swiftui/view/scrolledgeeffecthidden(_:for:).
 A new clean candidate must run all supplements and the declared gate; none of these
 focused passes is substituted for milestone verification.
+
+Candidate `992bd0d6080bc571f6e4b46807bdafd304359fe6` passed all five
+focused large-phone cases, including both native serving/Undo audits. The matrix
+then reproduced failed test navigation to `phone.recovery.openStart` below the
+original Demo at maximum text; it was interrupted and remains failed evidence.
+The helper had still used coordinate gestures on the two original root screens.
+Start and both original Demo layouts now expose stable ScrollView identifiers,
+and every reveal uses the explicitly named current screen's native swipe. This
+adds only test identifiers to existing screens and retains their layout, behavior,
+all visibility assertions and the complete matrix. The final large supplement
+rechecks all six cases before the declared full gate.

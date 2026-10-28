@@ -303,25 +303,17 @@ final class CompanionUITests: XCTestCase {
         // scroll view; retained TabView scroll views belong to the background.
         let viewport = visibleViewport(app)
         let top = viewport.minY, bottom = viewport.maxY
-        let middle = viewport.midY
         var target = lookup()
         for _ in 0..<40 {
             target = lookup()
             if target.exists, target.isHittable,
                target.frame.midY > top, target.frame.midY < bottom { return target }
-            let guide = app.scrollViews["phone.recovery.scroll"]
-            if guide.exists {
-                if target.exists && target.frame.midY < top { guide.swipeDown(velocity: .slow) }
-                else { guide.swipeUp(velocity: .slow) }
-                continue
-            }
-            let distance = target.exists ? middle - target.frame.midY : -180
-            let limit = min(180, viewport.height / 2 - 30)
-            let delta = max(-limit, min(limit, distance))
-            let origin = app.coordinate(withNormalizedOffset: .zero)
-                .withOffset(CGVector(dx: app.frame.maxX - 10, dy: middle))
-            origin.press(forDuration: 0.1, thenDragTo: origin.withOffset(CGVector(dx: 0, dy: delta)),
-                         withVelocity: .slow, thenHoldForDuration: 0.2)
+            let identifier = app.buttons["phone.recovery.close"].exists ? "phone.recovery.scroll"
+                : target.identifier.hasPrefix("phone.start.") ? "phone.start.scroll" : "phone.demo.scroll"
+            let scroll = app.scrollViews[identifier]
+            XCTAssertTrue(scroll.exists, "The target must have its named scroll view")
+            if target.exists && target.frame.midY < top { scroll.swipeDown(velocity: .slow) }
+            else { scroll.swipeUp(velocity: .slow) }
         }
         XCTAssertTrue(target.isHittable, target.debugDescription)
         XCTAssertTrue(target.frame.midY > top && target.frame.midY < bottom, target.debugDescription)

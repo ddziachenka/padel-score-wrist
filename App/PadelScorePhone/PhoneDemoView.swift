@@ -26,6 +26,7 @@ struct PhoneDemoView: View {
                             .font(.footnote).foregroundStyle(PhoneTheme.secondaryText)
                     }.padding(16)
                 }.background(Color(.systemGroupedBackground))
+                    .accessibilityIdentifier("phone.demo.scroll")
             } else {
                 regularLayout
             }
@@ -59,6 +60,7 @@ struct PhoneDemoView: View {
                 Label("phone.demo.isolation", systemImage: "lock.shield").font(.footnote).foregroundStyle(PhoneTheme.secondaryText)
             }.padding(20)
         }
+        .accessibilityIdentifier("phone.demo.scroll")
         .background(Color(.systemGroupedBackground))
     }
 

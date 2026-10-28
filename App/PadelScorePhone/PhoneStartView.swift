@@ -52,6 +52,7 @@ struct PhoneStartView: View {
                 }
             }.padding(20)
         }
+        .accessibilityIdentifier("phone.start.scroll")
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Padel Score — Wrist")
         .navigationBarTitleDisplayMode(.inline)
