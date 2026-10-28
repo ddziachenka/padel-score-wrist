@@ -3,6 +3,7 @@ import SwiftUI
 struct PhoneStartView: View {
     let tryDemo: () -> Void
     let access: () -> Void
+    let recovery: (RecoveryScenario.Kind) -> Void
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -12,6 +13,13 @@ struct PhoneStartView: View {
                     Text("phone.start.explanation").foregroundStyle(PhoneTheme.secondaryText)
                     Button(action: tryDemo) { Label("phone.start.try", systemImage: "hand.tap") }
                         .buttonStyle(PhonePrimaryStyle()).accessibilityIdentifier("phone.start.demo")
+                }
+                PhoneCard {
+                    Text("phone.recovery.heading").font(.title2.bold()).accessibilityAddTraits(.isHeader)
+                    Button("phone.recovery.correction") { recovery(.correction) }
+                        .frame(minHeight: 44).accessibilityIdentifier("phone.start.correction")
+                    Button("phone.recovery.start") { recovery(.knownScore) }
+                        .frame(minHeight: 44).accessibilityIdentifier("phone.start.knownScore")
                 }
                 PhoneCard {
                     Text("phone.start.steps").font(.title2.bold()).accessibilityAddTraits(.isHeader)

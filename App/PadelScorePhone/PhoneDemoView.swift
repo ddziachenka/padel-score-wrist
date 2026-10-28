@@ -20,6 +20,7 @@ struct PhoneDemoView: View {
                         servingAndResult
                         Text("phone.demo.intro").foregroundStyle(PhoneTheme.secondaryText)
                         controls
+                        PhoneRecoveryLinks()
                         Label("phone.demo.isolation", systemImage: "lock.shield")
                             .font(.footnote).foregroundStyle(PhoneTheme.secondaryText)
                     }.padding(16)
@@ -53,6 +54,7 @@ struct PhoneDemoView: View {
                 }
                 Text("phone.demo.intro").font(.callout).foregroundStyle(PhoneTheme.secondaryText)
                 controls
+                PhoneRecoveryLinks()
                 Label("phone.demo.isolation", systemImage: "lock.shield").font(.footnote).foregroundStyle(PhoneTheme.secondaryText)
             }.padding(20)
         }

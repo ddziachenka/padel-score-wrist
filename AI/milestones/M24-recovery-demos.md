@@ -1,7 +1,7 @@
 # M24 — Interactive iPhone Recovery Scenarios
 
 **ID:** M24
-**Status:** PLANNED
+**Status:** IN_PROGRESS
 **Depends on:** M23
 **Validation:** make milestone ID=M24
 **Handoff:** AI/handoffs/M24-handoff.md

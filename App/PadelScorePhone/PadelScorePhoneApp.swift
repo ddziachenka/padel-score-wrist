@@ -32,16 +32,19 @@ struct CompanionRootView: View {
     @Environment(\.requestReview) private var requestReview
     @State private var selection = Tab.start
     @State private var demo = CompanionDemo()
+    @State private var demoPath: [RecoveryScenario.Kind] = []
     private let review = ReviewEligibility()
 
     var body: some View {
         TabView(selection: $selection) {
             NavigationStack {
-                PhoneStartView(tryDemo: { selection = .demo }, access: { selection = .access })
+                PhoneStartView(tryDemo: { selection = .demo }, access: { selection = .access },
+                               recovery: { kind in selection = .demo; demoPath = [kind] })
             }
             .tabItem { Label("phone.tab.start", systemImage: "figure.tennis") }.tag(Tab.start)
-            NavigationStack {
+            NavigationStack(path: $demoPath) {
                 PhoneDemoView(demo: demo, completed: { review.completed($0) })
+                    .navigationDestination(for: RecoveryScenario.Kind.self) { PhoneRecoveryView(kind: $0) }
             }
             .tabItem { Label("phone.tab.demo", systemImage: "hand.tap") }.tag(Tab.demo)
             NavigationStack { PhoneAccessView() }
@@ -53,7 +56,7 @@ struct CompanionRootView: View {
             considerReview()
         }
         .onChange(of: selection) { old, new in
-            if old == .demo { demo.reset() }
+            if old == .demo { demo.reset(); demoPath = [] }
             if old == .demo, new == .start { considerReview() }
         }
         .onChange(of: scenePhase) { _, phase in

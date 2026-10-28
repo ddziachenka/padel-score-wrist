@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B98680768A71E8D2DFEC58F6 = {isa = PBXBuildFile; fileRef = 7BF8673435EEC3697CA0F716; };
+		7B5CFEAD8197240125653CD3 = {isa = PBXBuildFile; fileRef = 7BF8673435EEC3697CA0F716; };
+		F6C2B0D28C17973C3840D228 = {isa = PBXBuildFile; fileRef = A949ADACCC1A46B2E0687681; };
+		BB04B73BA58F19CE952AF093 = {isa = PBXBuildFile; fileRef = A949ADACCC1A46B2E0687681; };
+
 		CCB56632672E7012AD09BBBD /* StoreMaterialsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31629E6B3D95916A1FA32006 /* StoreMaterialsUITests.swift */; };
 		F55F8C3148A23C8A0E60B3C3 /* PlayAgainUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9797B56F6E6B729F696FFF8 /* PlayAgainUITests.swift */; };
 		2C3939CB7BDDC5C6194F6A4D /* AccessOfferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07D12EA418EF06637DD828C /* AccessOfferTests.swift */; };
@@ -216,6 +221,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7BF8673435EEC3697CA0F716 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelScorePhone/PhoneRecoveryView.swift; sourceTree = "<group>"; };
+
+		A949ADACCC1A46B2E0687681 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelScorePhone/RecoveryScenario.swift; sourceTree = "<group>"; };
+
 		31629E6B3D95916A1FA32006 /* StoreMaterialsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMaterialsUITests.swift; sourceTree = "<group>"; };
 		B9797B56F6E6B729F696FFF8 /* PlayAgainUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayAgainUITests.swift; path = "PadelScoreWatchUITests/PlayAgainUITests.swift"; sourceTree = SOURCE_ROOT; };
 		C07D12EA418EF06637DD828C /* AccessOfferTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccessOfferTests.swift; sourceTree = "<group>"; };
@@ -526,6 +535,8 @@
 			isa = PBXGroup;
 			sourceTree = "<group>";
 			children = (
+				7BF8673435EEC3697CA0F716,
+				A949ADACCC1A46B2E0687681,
 				D1D50D18D3527FE450910D47,
 				09CB70667544E48EED180A0C,
 				5089C6D6DD35CBA50092A7DC,
@@ -1996,6 +2007,8 @@
 			buildActionMask = 2147483647;
 			runOnlyForDeploymentPostprocessing = 0;
 			files = (
+				B98680768A71E8D2DFEC58F6,
+				F6C2B0D28C17973C3840D228,
 				7399CA2916AFA16D6F6EACCB,
 				5E5867185D01D6822C76D543,
 				F5620F75737CD44591489699,
@@ -2351,6 +2364,8 @@
 			buildActionMask = 2147483647;
 			runOnlyForDeploymentPostprocessing = 0;
 			files = (
+				7B5CFEAD8197240125653CD3,
+				BB04B73BA58F19CE952AF093,
 				E039CBC3DE343D041A29FED7,
 				87E08C290E2D14ACDD87DD22,
 				22EEB281045A5A1C921B3165,
