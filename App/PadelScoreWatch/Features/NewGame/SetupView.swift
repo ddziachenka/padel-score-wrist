@@ -285,13 +285,17 @@ struct KnownScoreView: View {
         if let editor = flow.knownScore {
             ScrollView {
                 VStack(spacing: Spacing.sm) {
-                    Caption("Earlier rallies are unknown. Undo stops at this starting score.")
+                    if !reviewing { Caption("Earlier rallies are unknown. Undo stops at this starting score.") }
                     if reviewing, let format = editor.draft.format {
                         JournalScoreView(game: GameSnapshot(id: editor.draft.original.id, format: format))
                         rules(editor.draft)
-                        PointsSummary(draft: editor.draft)
+                        if let match = editor.draft.match, !match.isTieBreak,
+                           match.deuceRule == .oneAdvantage, match.points == EditedPoints(us: .forty, them: .forty) {
+                            Text(match.deuceStage == .decidingPoint ? "Second deuce" : "First deuce")
+                        }
                         ServiceOrderList(sequence: editor.draft.serving.order.sequence(from: editor.draft.serving.firstServer))
                         servingDetail(editor.draft)
+                        Caption("Earlier rallies are unknown. Undo stops at this starting score.")
                         StartSection(flow: flow, started: started, confirming: true)
                     } else {
                         if let match = editor.draft.match {
@@ -307,9 +311,7 @@ struct KnownScoreView: View {
                         link(.serving, label: Text("Serving"), problem: editor.problems.first(at: .serving)) {
                             ServingSummary(draft: editor.draft)
                         }
-                        ForEach(Array(editor.problems.enumerated()), id: \.offset) { _, problem in
-                            ProblemLabel(problem)
-                        }
+                        if editor.problems.contains(.unplayable) { ProblemLabel(.unplayable) }
                         if editor.draft.leavesNoRoom || editor.draft.finishesRound {
                             NoticeLabel(text: Text("A finished round can’t start. Lower the points or increase the total."))
                                 .accessibilityIdentifier("knownScore.finished")
@@ -330,7 +332,7 @@ struct KnownScoreView: View {
             }
             .navigationTitle(reviewing ? Text("Review") : Text("Current score"))
             .sheet(isPresented: Binding(
-                get: { flow.startState == .failed(.notAllowed) },
+                get: { reviewing && flow.startState == .failed(.notAllowed) },
                 set: { if !$0 { flow.cancelFailedStart() } }
             )) {
                 NavigationStack { AccessView(usage: flow.usage, close: { flow.cancelFailedStart() }) }

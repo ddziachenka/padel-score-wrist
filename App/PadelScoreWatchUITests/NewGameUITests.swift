@@ -373,7 +373,9 @@ final class KnownScoreUITests: XCTestCase {
         app.buttons["game.menu"].tap()
         app.buttons["menu.journal"].scrollToAndTap(in: app)
         XCTAssertTrue(app.staticTexts["journal.unknown"].exists)
-        XCTAssertTrue(app.staticTexts["Started from current score"].exists)
+        let checkpoint = app.buttons["Started from current score"]
+        checkpoint.scrollToAndTap(in: app)
+        XCTAssertTrue(app.staticTexts["Started from current score"].waitForExistence(timeout: 5))
         attachScreenshot("Known Match unknown earlier history")
         app.terminate()
         let reopened = launchApp(store: "known-match", seed: nil)

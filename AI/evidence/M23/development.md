@@ -23,3 +23,17 @@ Scope: approved M23 start from a known Match/Americano score only.
   input-and-confirmation flow. No animation or artwork earns a place here.
 
 Further runtime and clean candidate evidence is recorded separately.
+
+The initial new UI set (`bash .artifacts/M23/run-ui.sh 1`) exited65:
+Americano and largest-text/background/cancel passed; Match scoring, service and
+Undo passed before its new checkpoint assertion looked for StaticText although
+Journal deliberately exposes that row as a combined NavigationLink/Button. The
+assertion now taps the correctly typed checkpoint row and requires its exact title
+in detail; no production check or assertion intent was removed. Final new-scope
+minimum-runtime suite includes the whole journey again. The initial failed
+`.artifacts/M23/ui-1.xcresult` remains evidence, never counted as a pass.
+
+Self-review also moved the actual score first in Review, removed duplicate point
+and error presentations, made Cancel discard the score draft, and constrained the
+Access sheet to the visible confirmation (the underlying setup/overview do not
+also try to present it). No production scoring behavior was relaxed.
