@@ -400,7 +400,7 @@ private struct NumberValue: View {
 }
 
 /// The points as the row shows them: both teams', and which 40–40 it is where that matters.
-private struct PointsSummary: View {
+struct PointsSummary: View {
     let draft: CorrectionDraft
 
     var body: some View {
@@ -446,7 +446,7 @@ private struct PointsSummary: View {
 }
 
 /// The completed sets' games in playing order, ours first in each.
-private struct SetsSummary: View {
+struct SetsSummary: View {
     let sets: [SetGames]
 
     var body: some View {
@@ -465,7 +465,7 @@ private struct SetsSummary: View {
 }
 
 /// Who serves next, with their place in a tie-break turn or a round's block.
-private struct ServingSummary: View {
+struct ServingSummary: View {
     let draft: CorrectionDraft
 
     var body: some View {

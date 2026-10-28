@@ -5,6 +5,8 @@ enum SessionCommand: Hashable, Sendable {
     /// Starts a new game with this identity. A game being played is never replaced; a
     /// finished one becomes the previous result.
     case start(GameSetup, id: GameID)
+    /// Joins a continuable known state; no earlier rallies are inferred.
+    case startFromScore(GameFormat, id: GameID)
     case awardPoint(to: Team)
     /// Confirms the serving order of a new set in a regular match.
     case confirmService(order: ServiceOrder, firstServer: Player)
@@ -101,6 +103,8 @@ extension Session {
         switch command {
         case let .start(setup, gameID):
             return try start(setup, id: gameID, command: id, access: access)
+        case let .startFromScore(format, gameID):
+            return try start(format, id: gameID, command: id, access: access, reason: .knownScore)
         case .awardPoint(let team):
             return try awardPoint(to: team, by: id, access: access)
         case let .confirmService(order, firstServer):
@@ -143,12 +147,22 @@ extension Session {
     private mutating func start(_ setup: GameSetup, id: GameID, command: CommandID, access: any AccessPolicy) throws(SessionError) -> SessionOutcome {
         guard activeGame == nil else { throw .gameInProgress }
         guard access.allowsNewGame(after: usage) else { throw .newGameNotAllowed }
-        let format = try setup.startingFormat()
+        let outcome = try start(setup.startingFormat(), id: id, command: command, access: access, reason: .start)
+        recentSettings.remember(setup)
+        return outcome
+    }
+
+    private mutating func start(_ format: GameFormat, id: GameID, command: CommandID,
+                                access: any AccessPolicy, reason: JournalEvent.CheckpointReason) throws(SessionError) -> SessionOutcome {
+        guard activeGame == nil else { throw .gameInProgress }
+        guard access.allowsNewGame(after: usage) else { throw .newGameNotAllowed }
+        try format.validate()
+        if case .americano(let round) = format, round.isComplete { throw .roundAtTotal }
         let game = GameSnapshot(id: id, format: format)
         current = GameRecord(game: game, history: [], journal: GameJournal(events: [
-            JournalEvent(id: .command(command), revision: revision, kind: .checkpoint(game, reason: .start))
+            JournalEvent(id: .command(command), revision: revision, kind: .checkpoint(game, reason: reason))
         ]))
-        recentSettings.remember(setup)
+        recentSettings.remember(format)
         count(.gameStarted(id), under: access)
         return .started
     }

@@ -329,3 +329,123 @@ final class NewGameUITests: XCTestCase {
         XCTFail("the number did not reach \(target)")
     }
 }
+
+@MainActor
+final class KnownScoreUITests: XCTestCase {
+    override func setUp() { continueAfterFailure = false }
+
+    private func open(_ kind: String, store: String, textSize: String? = nil) -> XCUIApplication {
+        let app = launchApp(store: store, seed: "lastSettings", textSize: textSize)
+        app.buttons["result.newGame"].scrollToAndTap(in: app)
+        app.buttons["newGame.\(kind)"].scrollToAndTap(in: app)
+        app.buttons["setup.startingScore"].scrollToAndTap(in: app)
+        app.buttons["startingScore.current"].scrollToAndTap(in: app)
+        app.buttons["setup.start"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["knownScore.points"].waitForExistence(timeout: 5))
+        return app
+    }
+
+    func testKnownMatchReviewsStartsReopensAndUndoStopsAtCheckpoint() {
+        let app = open("match", store: "known-match")
+        app.buttons["knownScore.games"].scrollToAndTap(in: app)
+        app.buttons["pair.us.increase"].tap()
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["knownScore.points"].scrollToAndTap(in: app)
+        app.buttons["pair.us.increase"].tap()
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        XCTAssertFalse(app.buttons["knownScore.review"].isEnabled)
+        app.buttons["knownScore.serving"].scrollToAndTap(in: app)
+        app.buttons["serving.next.partner"].scrollToAndTap(in: app)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["knownScore.review"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.staticTexts["Earlier rallies are unknown. Undo stops at this starting score."].exists)
+        attachScreenshot("Known Match confirmation")
+        app.buttons["setup.start"].scrollToAndTap(in: app)
+        let us = app.buttons["game.us"]
+        XCTAssertTrue(us.waitForExistence(timeout: 10))
+        XCTAssertEqual(us.label, "Our score, 15")
+        XCTAssertFalse(app.buttons["game.undo"].isEnabled)
+        assertLabel(app.descendants(matching: .any)["game.server"], contains: "Partner")
+        award(us, showing: "Our score, 30")
+        app.buttons["game.undo"].tap()
+        waitForLabel(us, "Our score, 15")
+        XCTAssertFalse(app.buttons["game.undo"].isEnabled)
+        app.buttons["game.menu"].tap()
+        app.buttons["menu.journal"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.staticTexts["journal.unknown"].exists)
+        XCTAssertTrue(app.staticTexts["Started from current score"].exists)
+        attachScreenshot("Known Match unknown earlier history")
+        app.terminate()
+        let reopened = launchApp(store: "known-match", seed: nil)
+        XCTAssertTrue(reopened.buttons["game.us"].waitForExistence(timeout: 10))
+        XCTAssertEqual(reopened.buttons["game.us"].label, "Our score, 15")
+        XCTAssertFalse(reopened.buttons["game.undo"].isEnabled)
+    }
+
+    func testKnownAmericanoChoosesBlockAndStartsWithExplicitService() {
+        let app = open("americano", store: "known-americano")
+        XCTAssertFalse(app.buttons["knownScore.review"].isEnabled)
+        app.buttons["knownScore.points"].scrollToAndTap(in: app)
+        app.buttons["pair.us.increase"].tap()
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["knownScore.serving"].scrollToAndTap(in: app)
+        app.buttons["serving.rallyInBlock"].scrollToAndTap(in: app)
+        app.buttons["number.increase"].tap()
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["serving.next.opponent2"].scrollToAndTap(in: app)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["knownScore.review"].scrollToAndTap(in: app)
+        attachScreenshot("Known Americano confirmation")
+        app.buttons["setup.start"].scrollToAndTap(in: app)
+        let us = app.buttons["game.us"]
+        XCTAssertTrue(us.waitForExistence(timeout: 10))
+        XCTAssertEqual(us.label, "Our score, 1")
+        assertLabel(app.descendants(matching: .any)["game.server"], contains: "Opponent 2")
+        award(us, showing: "Our score, 2")
+        assertLabel(app.descendants(matching: .any)["game.server"], contains: "You")
+        app.buttons["game.undo"].tap()
+        waitForLabel(us, "Our score, 1")
+        assertLabel(app.descendants(matching: .any)["game.server"], contains: "Opponent 2")
+    }
+
+    func testKnownScoreDraftSurvivesBackgroundAndCancelPreservesLastResultAtLargestText() {
+        let app = open("match", store: "known-cancel-large", textSize: "UICTContentSizeCategoryAccessibilityXXXL")
+        app.buttons["knownScore.points"].scrollToAndTap(in: app)
+        app.buttons["pair.us.increase"].scrollToAndTap(in: app)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        XCUIDevice.shared.press(.home)
+        app.activate()
+        assertLabel(app.buttons["knownScore.points"], contains: "15")
+        app.buttons["knownScore.review"].scrollToAndTap(in: app)
+        attachScreenshot("Known score review at largest text")
+        app.buttons["knownScore.cancel"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["setup.startingScore"].waitForExistence(timeout: 5))
+        app.goBack(); app.goBack()
+        XCTAssertTrue(app.buttons["result.newGame"].waitForExistence(timeout: 5))
+        app.terminate()
+        let reopened = launchApp(store: "known-cancel-large", seed: nil)
+        XCTAssertTrue(reopened.buttons["result.newGame"].waitForExistence(timeout: 10))
+        XCTAssertFalse(reopened.buttons["game.us"].exists)
+    }
+}
+
+
+extension KnownScoreUITests {
+    func testKnownScoreAndConfirmationPassNativeAccessibilityAudit() throws {
+        let app = open("match", store: "known-audit")
+        var issues: [String] = []
+        try app.performAccessibilityAudit { issue in
+            issues.append("\(issue.auditType): \(issue.compactDescription)")
+            return false
+        }
+        XCTAssertTrue(issues.isEmpty, issues.joined(separator: "\n"))
+        app.buttons["knownScore.review"].scrollToAndTap(in: app)
+        issues.removeAll()
+        try app.performAccessibilityAudit { issue in
+            issues.append("\(issue.auditType): \(issue.compactDescription)")
+            return false
+        }
+        XCTAssertTrue(issues.isEmpty, issues.joined(separator: "\n"))
+        attachScreenshot("Known score confirmation native audit")
+    }
+}

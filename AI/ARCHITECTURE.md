@@ -722,3 +722,14 @@ Corrected current/archive snapshots are validated against replay on storage read
 There is no journal cap; storage stays flat and work scales with rallies and the
 number of correction patches. M22 owns presentation and M25 owns physical-device
 experience validation.
+
+M23 uses `SessionCommand.startFromScore` through the same revision-bound store,
+access policy, game identity and once-per-game usage ledger as a zero start. Domain
+validators reject invalid formats and a round already at its total. A single
+`knownScore` checkpoint holds the supplied state with an empty Undo history;
+JournalPresentation labels earlier rallies unknown. New-game navigation owns its
+in-memory GameEditor; shared correction views receive typed navigation callbacks,
+so score entry never touches the live game's correction flow. Seven new strings
+ship in the existing locales. The additional checkpoint reason is part of the
+unreleased schema-3 journal format, following M20/M21; shipped schema-1/2 migration
+and backup/newer-version protections remain unchanged.

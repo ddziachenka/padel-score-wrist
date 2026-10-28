@@ -9,6 +9,10 @@ import Observation
 final class NewGameFlow {
     enum Route: Hashable, Sendable {
         case setup
+        case startingScore
+        case knownScore
+        case knownEditor(KnownScoreRoute)
+        case reviewStart
         case deuceRule
         case totalRallies
         case ralliesPerServer
@@ -45,6 +49,7 @@ final class NewGameFlow {
         }
     }
 
+    private(set) var knownScore: GameEditor?
     private(set) var draft: SetupDraft?
     /// The editor the person last came back to setup from, so its row takes the focus again.
     private(set) var returnedFrom: Route?
@@ -76,6 +81,7 @@ final class NewGameFlow {
     /// Begins setting up a game in this format with the settings of the last game, if any.
     func choose(_ kind: GameKind) {
         guard !isSaving else { return }
+        knownScore = nil
         draft = SetupDraft(kind: kind, recent: store.session.recentSettings)
         startState = .editing
         showsMissingFields = false
@@ -88,6 +94,7 @@ final class NewGameFlow {
     @discardableResult
     func playAgain() -> Bool {
         guard !isSaving, let record = store.session.current, record.game.status == .finished else { return false }
+        knownScore = nil
         draft = SetupDraft(playingAgain: record.setupToPlayAgain)
         startState = .editing
         showsMissingFields = false
@@ -100,7 +107,38 @@ final class NewGameFlow {
     func edit(_ change: (inout SetupDraft) -> Void) {
         guard startState == .editing, var draft else { return }
         change(&draft)
+        if draft != self.draft { knownScore = nil }
         self.draft = draft
+    }
+
+    /// Opens score entry only after rules and the explicit server/order have been chosen.
+    func enterKnownScore() {
+        guard startState == .editing, let setup = draft?.gameSetup,
+              let format = try? setup.startingFormat() else {
+            showsMissingFields = true
+            refusedStarts += 1
+            return
+        }
+        if knownScore == nil {
+            knownScore = GameEditor(game: GameSnapshot(id: GameID(rawValue: UUID()), format: format),
+                                    revision: store.session.revision, recent: store.session.recentSettings, isStarting: true)
+            // A nonzero score has no inferred block position; the person must choose it.
+            knownScore?.editRound { $0.rallyInBlock = nil }
+        }
+        path.append(.knownScore)
+    }
+
+    func cancelKnownScore() {
+        guard !isSaving else { return }
+        cancelFailedStart()
+        knownScore = nil
+        path = [.setup]
+    }
+
+    var knownScoreCanStart: Bool {
+        guard let format = knownScore?.draft.format else { return false }
+        if case .americano(let round) = format { return !round.isComplete }
+        return true
     }
 
     /// Starts the game set up in the draft. Values still missing are shown at their fields
@@ -113,10 +151,22 @@ final class NewGameFlow {
             refusedStarts += 1
             return false
         }
+        let gameID = GameID(rawValue: UUID())
+        let command: SessionCommand
+        if draft.startsFromScore {
+            guard knownScoreCanStart, let format = knownScore?.draft.format else {
+                refusedStarts += 1
+                return false
+            }
+            command = .startFromScore(format, id: gameID)
+        } else {
+            command = .start(setup, id: gameID)
+        }
         startState = .saving
+        knownScore?.isLocked = true
         return await finishStart { () async throws(SessionStoreError) in
             try await store.perform(
-                .start(setup, id: GameID(rawValue: UUID())),
+                command,
                 id: CommandID(rawValue: UUID()),
                 revision: store.session.revision
             )
@@ -139,12 +189,14 @@ final class NewGameFlow {
         guard hasFailedStart else { return }
         store.discardFailedRequest()
         startState = .editing
+        knownScore?.isLocked = false
     }
 
     private func finishStart(_ request: () async throws(SessionStoreError) -> SessionOutcome) async -> Bool {
         do {
             _ = try await request()
             startState = .editing
+            knownScore?.isLocked = false
             return true
         } catch {
             startState = .failed(Self.failure(for: error))
@@ -168,8 +220,15 @@ final class NewGameFlow {
     private func discardDraft() {
         guard draft != nil else { return }
         draft = nil
+        knownScore = nil
         returnedFrom = nil
         showsMissingFields = false
         cancelFailedStart()
     }
+}
+
+/// New-game routes remain typed separately from the live game's navigation.
+enum KnownScoreRoute: Hashable, Sendable {
+    case points, games, sets, serving, block
+    case set(Int?)
 }

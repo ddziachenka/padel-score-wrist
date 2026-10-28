@@ -124,6 +124,9 @@ struct PointsEditor: View {
         if editor.problems.contains(.pointsExceedTotal) {
             ProblemLabel(.pointsExceedTotal)
                 .accessibilityIdentifier("pair.problem")
+        } else if editor.isStarting, round.totalRallies == round.played {
+            ProblemLabel(Text("A finished round can’t start. Lower the points or increase the total."))
+                .accessibilityIdentifier("pair.problem")
         } else if editor.draft.finishesRound || editor.draft.completesResult {
             RoundEndNotice(round: round, finishes: editor.draft.finishesRound)
         }

@@ -87,6 +87,28 @@ struct NewGameDestination: View {
         switch route {
         case .setup:
             SetupView(flow: flow, started: started)
+        case .startingScore:
+            StartingScoreChoice(flow: flow)
+        case .knownScore:
+            KnownScoreView(flow: flow, started: started)
+        case .reviewStart:
+            KnownScoreView(flow: flow, started: started, reviewing: true)
+        case .knownEditor(let route):
+            if let editor = flow.knownScore {
+                switch route {
+                case .points: PointsEditor(editor: editor)
+                case .games: GamesEditor(editor: editor)
+                case .sets: CompletedSetsView(editor: editor, openSet: { flow.path.append(.knownEditor(.set($0))) })
+                case .set(let index): CompletedSetEditor(editor: editor, index: index)
+                case .serving: CorrectionServingView(editor: editor, openBlock: { flow.path.append(.knownEditor(.block)) })
+                case .block:
+                    NumberEditor(title: "Next rally in block", explanation: "Which rally of their block the next server serves.",
+                                 range: 1...(editor.draft.round?.ralliesPerServer ?? 1),
+                                 number: Binding { editor.draft.round?.rallyInBlock } set: { value in
+                                     editor.editRound { $0.rallyInBlock = value }
+                                 })
+                }
+            }
         case .deuceRule:
             DeuceRuleEditor(rule: draft(\.deuceRule, otherwise: nil))
         case .totalRallies:

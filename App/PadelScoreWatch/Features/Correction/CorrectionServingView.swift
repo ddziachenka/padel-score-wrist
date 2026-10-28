@@ -9,12 +9,14 @@ import SwiftUI
 /// puts back the draft as it was when the editor opened, unchecked again if it was.
 struct CorrectionServingView: View {
     let editor: GameEditor
+    var openBlock: (() -> Void)? = nil
     /// The draft when the editor opened, for Cancel. Kept in state: the view is created again each
     /// time a change reaches the draft, and must not take that change as the original.
     @State private var original: CorrectionDraft
     @Environment(\.dismiss) private var dismiss
 
-    init(editor: GameEditor) {
+    init(editor: GameEditor, openBlock: (() -> Void)? = nil) {
+        self.openBlock = openBlock
         self.editor = editor
         _original = State(initialValue: editor.draft)
     }
@@ -96,11 +98,19 @@ struct CorrectionServingView: View {
         }
     }
 
+    @ViewBuilder private func blockLink<Label: View>(@ViewBuilder label: () -> Label) -> some View {
+        if let openBlock {
+            Button(action: openBlock, label: label)
+        } else {
+            NavigationLink(value: GameRoute.rallyInBlock, label: label)
+        }
+    }
+
     /// Where the next rally falls in the server's block.
     @ViewBuilder
     private func block(_ round: AmericanoDraft) -> some View {
         if let block = round.ralliesPerServer {
-            NavigationLink(value: GameRoute.rallyInBlock) {
+            blockLink {
                 EditorRowLabel(
                     label: Text("Next rally in block"),
                     problem: editor.problems.contains(.rallyInBlockOutsideBlock) ? .rallyInBlockOutsideBlock : nil

@@ -176,6 +176,7 @@ struct JournalEvent: Hashable, Sendable, Codable, Identifiable {
 
     enum CheckpointReason: String, Hashable, Sendable, Codable {
         case start
+        case knownScore
         case migration
         case legacyUndo
     }

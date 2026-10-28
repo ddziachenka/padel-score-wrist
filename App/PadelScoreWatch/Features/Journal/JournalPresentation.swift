@@ -24,7 +24,7 @@ struct JournalPresentation {
         boundary = lastBoundary.map { journal.events[$0].id }
         hasUnknownPast = journal.events.contains {
             switch $0.kind {
-            case .checkpoint(_, reason: .migration), .checkpoint(_, reason: .legacyUndo): true
+            case .checkpoint(_, reason: .migration), .checkpoint(_, reason: .legacyUndo), .checkpoint(_, reason: .knownScore): true
             default: false
             }
         }

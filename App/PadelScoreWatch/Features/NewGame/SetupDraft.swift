@@ -28,6 +28,7 @@ struct SetupDraft: Hashable, Sendable {
     static let totalRalliesRange = 1...999
     static let ralliesPerServerRange = 1...99
 
+    var startsFromScore = false
     let kind: GameKind
     var deuceRule: DeuceRule?
     var totalRallies: Int? {

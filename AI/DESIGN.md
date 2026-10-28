@@ -883,3 +883,12 @@ small-Watch tap targets and VoiceOver reading order; no new decorative motion.
 M22 Journal navigation and unsaved serving/review choices survive background while
 the process is alive, matching the existing correction-draft lifecycle contract.
 Cold launch still restores only the last saved game; Cancel writes nothing.
+
+M23 adds a Starting score row in existing setup: From zero (the default) or Current
+score. Rules and explicit serving are chosen first; Enter current score then opens
+the shared games, completed sets, points/deuce/tie-break and serving editors. The
+next Americano rally's place in its block is required, never calculated from the
+points. Review shows the complete score, rules, order and serving context before
+Start game. Unknown earlier rallies and the Undo boundary are stated. Invalid or
+already completed states cannot proceed. Back keeps the in-memory draft; Cancel
+returns to setup without writing, and leaving setup/cold launch discards it.

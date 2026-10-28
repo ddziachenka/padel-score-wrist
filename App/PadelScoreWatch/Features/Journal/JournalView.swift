@@ -141,6 +141,7 @@ enum JournalText {
     static func title(_ kind: JournalEvent.Kind) -> LocalizedStringResource {
         switch kind {
         case .checkpoint(_, reason: .start): "Game started"
+        case .checkpoint(_, reason: .knownScore): "Started from current score"
         case .checkpoint: "Unknown earlier history"
         case .correction: "Score / rules checkpoint"
         case .rally: "Rally"

@@ -44,7 +44,7 @@ struct SetupView: View {
                 focusedRow = flow.returnedFrom.flatMap(SetupRow.init)
             }
             .sheet(isPresented: Binding(
-                get: { flow.startState == .failed(.notAllowed) },
+                get: { flow.startState == .failed(.notAllowed) && flow.draft?.startsFromScore != true },
                 set: { if !$0 { flow.cancelFailedStart() } }
             ), onDismiss: {
                 // Keep setup editable after system dismissal as well as Close.
@@ -62,6 +62,7 @@ struct SetupView: View {
     @ViewBuilder
     private func rows(for draft: SetupDraft) -> some View {
         let missing = flow.missingFields
+        row(.startingScore, label: "Starting score", value: draft.startsFromScore ? Text("Current score") : Text("From zero"), problem: nil)
         switch draft.kind {
         case .match:
             row(
@@ -121,6 +122,7 @@ struct SetupView: View {
 
 /// A row of setup, which VoiceOver and scrolling can be sent to.
 private enum SetupRow: Hashable {
+    case startingScore
     case deuceRule
     case totalRallies
     case ralliesPerServer
@@ -142,6 +144,7 @@ private enum SetupRow: Hashable {
         case .totalRallies: self = .totalRallies
         case .ralliesPerServer: self = .ralliesPerServer
         case .serving: self = .serving
+        case .startingScore, .knownScore, .knownEditor, .reviewStart: self = .startingScore
         case .setup, .about, .demo, .history, .settings: return nil
         }
     }
@@ -149,6 +152,7 @@ private enum SetupRow: Hashable {
     /// The editor the row opens.
     var route: NewGameFlow.Route {
         switch self {
+        case .startingScore: .startingScore
         case .deuceRule: .deuceRule
         case .totalRallies: .totalRallies
         case .ralliesPerServer: .ralliesPerServer
@@ -201,17 +205,22 @@ private struct SettingRow: View {
 }
 
 /// Start game, its saving status, and what to do when the game did not start.
-private struct StartSection: View {
+struct StartSection: View {
     let flow: NewGameFlow
     let started: (() -> Void)?
+    var confirming = false
 
     var body: some View {
         switch flow.startState {
         case .editing, .saving:
             Button {
-                Task { if await flow.start() { started?() } }
+                if flow.draft?.startsFromScore == true, !confirming {
+                    flow.enterKnownScore()
+                } else {
+                    Task { if await flow.start() { started?() } }
+                }
             } label: {
-                SavingLabel("Start game", isSaving: flow.isSaving)
+                SavingLabel(flow.draft?.startsFromScore == true && !confirming ? "Enter current score" : "Start game", isSaving: flow.isSaving)
             }
             .buttonStyle(PrimaryButtonStyle())
             .allowsHitTesting(!flow.isSaving)
@@ -261,5 +270,125 @@ extension NewGameFlow.StartFailure {
         case .refused:
             LocalizedStringResource("The game couldn’t start. Nothing has changed.", comment: "Starting a game was refused.")
         }
+    }
+}
+
+
+/// The alternative start uses the same score controls and validation as manual correction.
+/// Its draft belongs to NewGameFlow and survives navigation/background, never a cold launch.
+struct KnownScoreView: View {
+    let flow: NewGameFlow
+    var started: (() -> Void)?
+    var reviewing = false
+
+    var body: some View {
+        if let editor = flow.knownScore {
+            ScrollView {
+                VStack(spacing: Spacing.sm) {
+                    Caption("Earlier rallies are unknown. Undo stops at this starting score.")
+                    if reviewing, let format = editor.draft.format {
+                        JournalScoreView(game: GameSnapshot(id: editor.draft.original.id, format: format))
+                        rules(editor.draft)
+                        PointsSummary(draft: editor.draft)
+                        ServiceOrderList(sequence: editor.draft.serving.order.sequence(from: editor.draft.serving.firstServer))
+                        servingDetail(editor.draft)
+                        StartSection(flow: flow, started: started, confirming: true)
+                    } else {
+                        if let match = editor.draft.match {
+                            link(.games, label: Text("Games"), problem: editor.problems.first(at: .games)) {
+                                TeamPair(us: match.games.us.formatted(), them: match.games.them.formatted())
+                            }
+                            link(.sets, label: Text("Sets"), problem: editor.problems.first(at: .sets)) {
+                                SetsSummary(sets: match.completedSets)
+                            }
+                        }
+                        link(.points, label: editor.draft.match?.isTieBreak == true ? Text("Tie-break") : Text("Points"),
+                             problem: editor.problems.first(at: .points)) { PointsSummary(draft: editor.draft) }
+                        link(.serving, label: Text("Serving"), problem: editor.problems.first(at: .serving)) {
+                            ServingSummary(draft: editor.draft)
+                        }
+                        ForEach(Array(editor.problems.enumerated()), id: \.offset) { _, problem in
+                            ProblemLabel(problem)
+                        }
+                        if editor.draft.leavesNoRoom || editor.draft.finishesRound {
+                            NoticeLabel(text: Text("A finished round can’t start. Lower the points or increase the total."))
+                                .accessibilityIdentifier("knownScore.finished")
+                        }
+                        Button("Review") { flow.path.append(.reviewStart) }
+                            .buttonStyle(PrimaryButtonStyle())
+                            .disabled(!flow.knownScoreCanStart)
+                            .accessibilityIdentifier("knownScore.review")
+                    }
+                    Button("Cancel") {
+                        flow.cancelKnownScore()
+                    }
+                    .buttonStyle(SecondaryButtonStyle())
+                    .disabled(flow.isSaving)
+                    .accessibilityIdentifier("knownScore.cancel")
+                }
+                .fixedSize(horizontal: false, vertical: true)
+            }
+            .navigationTitle(reviewing ? Text("Review") : Text("Current score"))
+            .sheet(isPresented: Binding(
+                get: { flow.startState == .failed(.notAllowed) },
+                set: { if !$0 { flow.cancelFailedStart() } }
+            )) {
+                NavigationStack { AccessView(usage: flow.usage, close: { flow.cancelFailedStart() }) }
+            }
+        }
+    }
+
+    private func link<Value: View>(_ route: KnownScoreRoute, label: Text, problem: CorrectionProblem?,
+                                   @ViewBuilder value: () -> Value) -> some View {
+        Button { flow.path.append(.knownEditor(route)) } label: {
+            EditorRowLabel(label: label, problem: problem, value: value)
+        }
+        .buttonStyle(RowButtonStyle())
+        .accessibilityIdentifier("knownScore.\(route)")
+    }
+
+    @ViewBuilder private func rules(_ draft: CorrectionDraft) -> some View {
+        if let rule = draft.match?.deuceRule {
+            Text("At 40–40: \(Text(rule.name))")
+        }
+        if let total = draft.round?.totalRallies, let block = draft.round?.ralliesPerServer {
+            Text("\(total) rallies in total, \(block) per server.")
+        }
+    }
+
+    @ViewBuilder private func servingDetail(_ draft: CorrectionDraft) -> some View {
+        if let match = draft.match, match.isTieBreak {
+            if let turn = match.serving.tieBreakTurn {
+                Text("Serve \(turn == .firstOfTwo ? 1 : 2) of \(2)")
+            }
+            if let opener = match.serving.tieBreakOpener {
+                Text("Opened the tie-break").font(Typography.caption)
+                Text(opener.team == .us ? "Your team" : "The opponents")
+            }
+        }
+    }
+}
+
+struct StartingScoreChoice: View {
+    let flow: NewGameFlow
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: Spacing.sm) {
+                ChoiceButton(title: Text("From zero"), isSelected: flow.draft?.startsFromScore == false) {
+                    flow.edit { $0.startsFromScore = false }
+                    dismiss()
+                }
+                .accessibilityIdentifier("startingScore.zero")
+                ChoiceButton(title: Text("Current score"), isSelected: flow.draft?.startsFromScore == true) {
+                    flow.edit { $0.startsFromScore = true }
+                    dismiss()
+                }
+                .accessibilityIdentifier("startingScore.current")
+                Caption("Earlier rallies are unknown. Undo stops at this starting score.")
+            }
+        }
+        .navigationTitle(Text("Starting score"))
     }
 }

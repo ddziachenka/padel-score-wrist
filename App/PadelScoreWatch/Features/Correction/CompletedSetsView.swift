@@ -6,6 +6,15 @@ import SwiftUI
 /// each team won follow from this list.
 struct CompletedSetsView: View {
     let editor: GameEditor
+    var openSet: ((Int?) -> Void)? = nil
+
+    @ViewBuilder private func setLink<Label: View>(index: Int?, @ViewBuilder label: () -> Label) -> some View {
+        if let openSet {
+            Button { openSet(index) } label: { label() }
+        } else {
+            NavigationLink(value: index.map(GameRoute.completedSet) ?? .newSet, label: label)
+        }
+    }
 
     private var policy: SetPolicy { editor.draft.match?.setPolicy ?? .tieBreakAtSixAll }
 
@@ -29,7 +38,7 @@ struct CompletedSetsView: View {
                         .accessibilityIdentifier("sets.empty")
                 }
                 ForEach(Array(sets.enumerated()), id: \.offset) { index, games in
-                    NavigationLink(value: GameRoute.completedSet(index)) {
+                    setLink(index: index) {
                         EditorRowLabel(label: Text("Set \(index + 1)"), problem: policy.isFinished(games) ? nil : .completedSetInvalid(index: index)) {
                             TeamPair(us: games.us.formatted(), them: games.them.formatted())
                         }
@@ -37,7 +46,7 @@ struct CompletedSetsView: View {
                     .buttonStyle(RowButtonStyle())
                     .accessibilityIdentifier("sets.set.\(index + 1)")
                 }
-                NavigationLink(value: GameRoute.newSet) {
+                setLink(index: nil) {
                     Label("Add set", systemImage: "plus")
                         .font(Typography.body.weight(.medium))
                         .foregroundStyle(Palette.accent)

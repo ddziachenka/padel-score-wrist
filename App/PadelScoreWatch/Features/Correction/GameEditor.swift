@@ -22,6 +22,8 @@ final class GameEditor {
     /// Opened from Resume of a round at its total, which takes no more rallies until the total grows
     /// or the score comes down.
     let makesRoomToResume: Bool
+    /// New-game entry must never describe a completed score as saveable.
+    let isStarting: Bool
     /// Counts the saves refused for something left to put right, for the feedback after each.
     private(set) var refusedSaves = 0
     /// The session store refused the save without saving anything.
@@ -33,11 +35,12 @@ final class GameEditor {
     /// not change.
     var isLocked = false
 
-    init(game: GameSnapshot, revision: Int, recent: RecentSettings, makesRoomToResume: Bool = false) {
+    init(game: GameSnapshot, revision: Int, recent: RecentSettings, makesRoomToResume: Bool = false, isStarting: Bool = false) {
         draft = CorrectionDraft(game)
         self.revision = revision
         self.recent = recent
         self.makesRoomToResume = makesRoomToResume
+        self.isStarting = isStarting
     }
 
     var problems: [CorrectionProblem] { draft.problems }

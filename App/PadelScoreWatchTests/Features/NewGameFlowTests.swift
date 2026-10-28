@@ -276,3 +276,132 @@ final class NewGameFlowTests {
         #expect(flow.draft?.gameSetup == setup)
     }
 }
+
+@MainActor
+final class KnownScoreFlowTests {
+    let folder = TestFolder()
+    deinit { folder.remove() }
+
+    private func open(files: any StorageFileSystem = LocalFileSystem(), access: any AccessPolicy = OpenAccess()) async -> SessionStore {
+        let store = SessionStore(repository: folder.repository(files: files), access: access)
+        await store.load()
+        return store
+    }
+
+    private func prepare(_ flow: NewGameFlow, kind: GameKind = .match) {
+        flow.choose(kind)
+        flow.edit {
+            $0.startsFromScore = true
+            $0.deuceRule = .oneAdvantage
+            $0.totalRallies = 10
+            $0.ralliesPerServer = 4
+            $0.serving.choose(first: .partner)
+            $0.serving.choose(second: .opponent2)
+        }
+        flow.enterKnownScore()
+    }
+
+    @Test("Unknown history remains labelled and persisted; save failure retries the same known game atomically")
+    func persistence() async throws {
+        let files = FaultyFileSystem(location: folder.location)
+        let store = await open(files: files)
+        let flow = NewGameFlow(store: store)
+        prepare(flow)
+        let editor = try #require(flow.knownScore)
+        editor.editMatch {
+            $0.games = SetGames(us: 3, them: 2)
+            $0.points = EditedPoints(us: .forty, them: .forty)
+            $0.deuceStage = .decidingPoint
+            $0.completedSets = [SetGames(us: 7, them: 5)]
+        }
+        #expect(!flow.knownScoreCanStart)
+        editor.checkServing()
+        #expect(flow.knownScoreCanStart)
+        let draft = editor.draft
+        files.inject(.publishFails)
+        #expect(await flow.start() == false)
+        #expect(store.session == .empty)
+        #expect(editor.isLocked)
+        editor.editMatch { $0.games = .start }
+        #expect(editor.draft == draft)
+        let request = try #require(store.failedRequest)
+        files.repair()
+        #expect(await flow.retryStart())
+        guard case .startFromScore(let format, let id) = request.command else { Issue.record("Expected known start"); return }
+        #expect(store.session.game?.id == id)
+        #expect(store.session.game?.format == format)
+        #expect(await open().session == store.session)
+        let journal = JournalPresentation(journal: store.session.current?.journal, editable: true)
+        #expect(journal.hasUnknownPast)
+        #expect(journal.entries.count == 1)
+        #expect(!store.session.canUndo)
+        #expect(store.session.usage.countedGames.isEmpty)
+    }
+
+    @Test("Leaving setup or cancelling a review changes neither the result, settings nor disk")
+    func cancellation() async throws {
+        let store = await open()
+        try await store.perform(.start(.match(), id: .number(1)), id: .fresh(), revision: 0)
+        try await store.perform(.finish, id: .fresh(), revision: 1)
+        let original = store.session
+        let flow = NewGameFlow(store: store)
+        prepare(flow)
+        flow.knownScore?.editMatch { $0.games = SetGames(us: 4, them: 4) }
+        flow.path.append(.reviewStart)
+        flow.path = [.setup]
+        #expect(store.session == original)
+        flow.path = []
+        #expect(flow.knownScore == nil)
+        #expect(await open().session == original)
+    }
+
+    @Test("Known Americano requires explicit block position and refuses finished states")
+    func round() async throws {
+        let store = await open()
+        let flow = NewGameFlow(store: store)
+        prepare(flow, kind: .americano)
+        let editor = try #require(flow.knownScore)
+        #expect(!flow.knownScoreCanStart)
+        editor.editRound { $0.score = AmericanoScore(us: 5, them: 5); $0.rallyInBlock = 3 }
+        editor.checkServing()
+        #expect(!flow.knownScoreCanStart)
+        #expect(await flow.start() == false)
+        #expect(store.session == .empty)
+        editor.editRound { $0.score.them = 4 }
+        #expect(!flow.knownScoreCanStart)
+        editor.checkServing()
+        #expect(flow.knownScoreCanStart)
+        #expect(await flow.start())
+        #expect(store.session.round?.service.rallyInBlock == 3)
+        #expect(store.session.round?.score == AmericanoScore(us: 5, them: 4))
+    }
+
+    @Test("Rules changes invalidate earlier score entry and switching back to Zero starts a fresh score")
+    func changedSetup() async throws {
+        let store = await open()
+        let flow = NewGameFlow(store: store)
+        prepare(flow)
+        flow.knownScore?.editMatch { $0.games = SetGames(us: 4, them: 4) }
+        flow.path = [.setup]
+        flow.edit { $0.deuceRule = .goldenPoint }
+        #expect(flow.knownScore == nil)
+        flow.edit { $0.startsFromScore = false }
+        #expect(await flow.start())
+        #expect(store.session.matchState?.games == .start)
+        #expect(store.session.matchState?.rules.deuceRule == .goldenPoint)
+    }
+
+    @Test("Known start access refusal keeps the full score draft and saved session untouched")
+    func access() async {
+        let store = await open(access: TestAccess.refusingNewGames)
+        let flow = NewGameFlow(store: store)
+        prepare(flow)
+        let original = flow.knownScore?.draft
+        #expect(await flow.start() == false)
+        #expect(flow.startState == .failed(.notAllowed))
+        #expect(store.session == .empty)
+        flow.cancelFailedStart()
+        #expect(flow.knownScore?.isLocked == false)
+        #expect(flow.knownScore?.draft == original)
+    }
+}

@@ -238,3 +238,123 @@ struct HistoryLifecycleTests {
         #expect(finished.finishedGames.map(\.id) == [.number(2), .number(1)])
     }
 }
+
+struct KnownScoreStartTests {
+    @Test("Known Match starts retain completed sets, deuce stages, games and explicit service", arguments: DeuceRule.allCases)
+    func match(rule: DeuceRule) throws {
+        var draft = CorrectionDraft(GameSnapshot(id: .number(99), format: try GameSetup.match(rule).startingFormat()))
+        draft.editMatch {
+            $0.completedSets = [SetGames(us: 6, them: 4), SetGames(us: 6, them: 7)]
+            $0.games = SetGames(us: 5, them: 6)
+            $0.points = EditedPoints(us: .forty, them: .forty)
+            $0.deuceStage = .decidingPoint
+        }
+        draft.setServing(ServingSetup(order: .youThenOpponent2, firstServer: .partner))
+        let format = try #require(draft.format)
+        let session = try Session.empty.after(.startFromScore(format, id: .number(1)))
+        #expect(session.game?.format == format)
+        #expect(session.issues.isEmpty)
+        #expect(!session.canUndo)
+        #expect(session.current?.journal.events.count == 1)
+        #expect(session.current?.journal.events[0].kind == .checkpoint(session.game!, reason: .knownScore))
+        #expect(throws: SessionError.nothingToUndo) { try session.after(.undo) }
+        let advanced = try session.after(.awardPoint(to: .us))
+        #expect(advanced.matchState?.completedSets.count == 2)
+        #expect(try advanced.after(.undo).current == session.current)
+    }
+
+    @Test("Extended tie-breaks and completed set boundaries are valid known starts")
+    func tieBreak() throws {
+        var playing = try Session.empty.after(.start(.match(.advantage), id: .number(7)))
+        // Reach an actual valid tie-break service anchor, including an extended 8–8 score.
+        playing = try playing.after(points(String(repeating: "UUUUTTTT", count: 6)))
+        playing = try playing.after(points(String(repeating: "UT", count: 8)))
+        let format = try #require(playing.game?.format)
+        let joined = try Session.empty.after(.startFromScore(format, id: .number(1)))
+        #expect(joined.game?.format == format)
+        #expect(joined.issues.isEmpty)
+        let after = try joined.after(.awardPoint(to: .us))
+        #expect(after.matchState?.phase == .tieBreak(TieBreakScore(us: 9, them: 8)))
+        let endedSet = try after.after(.awardPoint(to: .us))
+        #expect(endedSet.matchState?.completedSets == [SetGames(us: 7, them: 6)])
+        // The ordinary next-set confirmation remains part of play after a known start.
+        #expect(endedSet.matchState?.service.isConfirmed == false)
+    }
+
+    @Test("Known Americano preserves arbitrary explicit block positions, including partial final blocks", arguments: [1, 2, 4])
+    func americano(place: Int) throws {
+        var round = AmericanoState.start(rules: AmericanoRules(totalRallies: 10, ralliesPerServer: 4),
+                                          order: .youThenOpponent2, firstServer: .opponent2)
+        round.score = AmericanoScore(us: 5, them: 4)
+        round.service.rallyInBlock = place
+        let joined = try Session.empty.after(.startFromScore(.americano(round), id: .number(1)), access: LifetimeAccess(isUnlocked: false))
+        #expect(joined.round == round)
+        #expect(joined.usage.countedGames.isEmpty)
+        let finished = try joined.after(.awardPoint(to: .them), access: LifetimeAccess(isUnlocked: false))
+        #expect(finished.game?.status == .finished)
+        #expect(finished.round?.result == .draw)
+        let again = try finished.after(.undo, .awardPoint(to: .us), .correct(.americano(round)), .resume, .finish,
+                                       access: LifetimeAccess(isUnlocked: false))
+        #expect(again.usage.countedGames == [.number(1)])
+        #expect(again.archive.count == 1)
+        #expect(again.issues.isEmpty)
+    }
+
+    @Test("Domain refuses decided rounds, decided sets, invalid points and invalid service without changing session")
+    func invalid() throws {
+        var round = AmericanoState.start(rules: AmericanoRules(totalRallies: 10, ralliesPerServer: 4),
+                                          order: .youThenOpponent1, firstServer: .you)
+        round.score = AmericanoScore(us: 5, them: 5)
+        #expect(throws: SessionError.roundAtTotal) { try Session.empty.after(.startFromScore(.americano(round), id: .number(1))) }
+        var invalid: [GameFormat] = []
+        round.score.us = 6
+        invalid.append(.americano(round))
+        round.score = .start
+        round.service.rallyInBlock = 0
+        invalid.append(.americano(round))
+        var match = MatchState.start(rules: MatchRules(deuceRule: .goldenPoint, setPolicy: .tieBreakAtSixAll),
+                                     order: .youThenOpponent1, firstServer: .you)
+        match.games = SetGames(us: 6, them: 4)
+        invalid.append(.match(match))
+        match.games = .start
+        match.completedSets = [SetGames(us: 6, them: 5)]
+        invalid.append(.match(match))
+        match.completedSets = []
+        match.phase = .game(.advantage(.us))
+        invalid.append(.match(match))
+        for format in invalid {
+            #expect(throws: SessionError.self) { try Session.empty.after(.startFromScore(format, id: .number(1))) }
+        }
+    }
+
+    @Test("Known starts obey access, current-game protection and request idempotence")
+    func policy() throws {
+        let format = try GameSetup.match().startingFormat()
+        let command = SessionCommand.startFromScore(format, id: .number(6))
+        var exhausted = Session.empty
+        for number in 1...5 { exhausted.usage.count(.number(number)) }
+        #expect(throws: SessionError.newGameNotAllowed) {
+            try exhausted.after(command, access: LifetimeAccess(isUnlocked: false))
+        }
+        let allowed = try exhausted.applying(command, id: .number(1), expectedRevision: 0, access: LifetimeAccess(isUnlocked: true)).session
+        #expect(allowed.usage == exhausted.usage)
+        #expect(throws: SessionError.gameInProgress) { try allowed.after(command) }
+        let repeated = try allowed.applying(command, id: .number(1), expectedRevision: 0, access: LifetimeAccess(isUnlocked: true))
+        #expect(repeated.session == allowed)
+        #expect(repeated.outcome == .alreadyApplied)
+    }
+
+    @Test("Selective corrections begin after the known checkpoint and Undo restores the same start")
+    func corrections() throws {
+        let format = GameFormat.match(.fixture(games: SetGames(us: 2, them: 3)))
+        let joined = try Session.empty.after(.startFromScore(format, id: .number(1)))
+        let played = try joined.after(.awardPoint(to: .us), .awardPoint(to: .them))
+        let target = played.current!.journal.events[1].id
+        let preview = try played.previewRallyCorrection(.change(target, winner: .them), expectedRevision: played.revision)
+        let corrected = try played.after(.applyRallyCorrection(preview))
+        #expect(corrected.current?.journal.events.first == joined.current?.journal.events.first)
+        #expect(try corrected.after(.undo).current == played.current)
+        #expect(try corrected.after(.undo, .undo, .undo).current == joined.current)
+        #expect(throws: SessionError.nothingToUndo) { try joined.after(.undo) }
+    }
+}
