@@ -452,3 +452,37 @@ extension KnownScoreUITests {
         attachScreenshot("Known score confirmation native audit")
     }
 }
+
+
+extension KnownScoreUITests {
+    func testCompletedKnownRoundExplainsWhyItCannotStartWithoutOfferingAFinish() {
+        let app = launchApp(store: "known-finished-invalid")
+        app.buttons["newGame.americano"].tap()
+        app.buttons["setup.startingScore"].scrollToAndTap(in: app)
+        app.buttons["startingScore.current"].scrollToAndTap(in: app)
+        app.buttons["setup.totalRallies"].scrollToAndTap(in: app)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["setup.ralliesPerServer"].scrollToAndTap(in: app)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["setup.serving"].scrollToAndTap(in: app)
+        app.buttons["serving.first.you"].scrollToAndTap(in: app)
+        app.buttons["serving.second.opponent1"].scrollToAndTap(in: app)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["setup.start"].scrollToAndTap(in: app)
+        app.buttons["knownScore.points"].scrollToAndTap(in: app)
+        app.buttons["pair.us.increase"].tap()
+        assertLabel(app.descendants(matching: .any)["pair.problem"], contains: "A finished round can’t start.")
+        XCTAssertFalse(app.descendants(matching: .any)["editor.roundEnd"].exists)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.descendants(matching: .any)["knownScore.finished"].exists)
+        XCTAssertFalse(app.buttons["knownScore.review"].isEnabled)
+        XCTAssertFalse(app.descendants(matching: .any)["editor.roundEnd"].exists)
+        attachScreenshot("Completed known round cannot start")
+        app.buttons["knownScore.cancel"].scrollToAndTap(in: app)
+        app.goBack()
+        app.terminate()
+        let reopened = launchApp(store: "known-finished-invalid", seed: nil)
+        XCTAssertTrue(reopened.buttons["newGame.americano"].waitForExistence(timeout: 10))
+        XCTAssertFalse(reopened.buttons["game.us"].exists)
+    }
+}

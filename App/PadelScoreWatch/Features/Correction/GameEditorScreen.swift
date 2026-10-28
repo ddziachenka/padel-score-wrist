@@ -402,6 +402,7 @@ private struct NumberValue: View {
 /// The points as the row shows them: both teams', and which 40–40 it is where that matters.
 struct PointsSummary: View {
     let draft: CorrectionDraft
+    var isStarting = false
 
     var body: some View {
         switch draft.score {
@@ -424,7 +425,7 @@ struct PointsSummary: View {
                         .font(Typography.caption)
                         .foregroundStyle(Palette.textSecondary)
                 }
-                if draft.finishesRound || draft.completesResult {
+                if !isStarting, draft.finishesRound || draft.completesResult {
                     RoundEndNotice(round: round, finishes: draft.finishesRound)
                 }
             }

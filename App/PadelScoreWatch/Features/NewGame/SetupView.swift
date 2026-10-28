@@ -307,7 +307,7 @@ struct KnownScoreView: View {
                             }
                         }
                         link(.points, label: editor.draft.match?.isTieBreak == true ? Text("Tie-break") : Text("Points"),
-                             problem: editor.problems.first(at: .points)) { PointsSummary(draft: editor.draft) }
+                             problem: editor.problems.first(at: .points)) { PointsSummary(draft: editor.draft, isStarting: true) }
                         link(.serving, label: Text("Serving"), problem: editor.problems.first(at: .serving)) {
                             ServingSummary(draft: editor.draft)
                         }

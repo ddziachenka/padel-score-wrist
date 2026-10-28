@@ -30,7 +30,7 @@ struct ServingEditor: View {
 
                 SectionHeading(joiningGame ? "After them" : "Second server")
                 if serving.first == nil {
-                    Caption("Choose who serves first.")
+                    Caption(joiningGame ? "Choose" : "Choose who serves first.")
                 } else {
                     ForEach(serving.secondCandidates, id: \.self) { player in
                         ChoiceButton(title: Text(player.name), isSelected: serving.second == player) {

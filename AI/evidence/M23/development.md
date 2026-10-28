@@ -61,3 +61,21 @@ known-score checkpoint, in addition to its existing title/score/Undo/relaunch
 assertions. No existing checkpoint/correction statement is changed for other
 reasons; no suite/assertion/parser/category was weakened. M23 returned to
 IN_PROGRESS for correction and fresh targeted/full verification.
+
+Interrupted gate actual disposition: Make2 / verifier65 / xcodebuild73, raw
+FAILED. Partial bundle535 definitions:534 passed,1 failed (“Testing was canceled”,
+StoreMaterialsUITests/testLocalizeddeCreation);943 invocations:942 passed/1
+failed; no skips/expected/runtime warnings. Static and Debug passed, iPhone suites
+not reached. Xcode also reported incomplete action-log import after interruption.
+The raw JSON is `.artifacts/M23/interrupted-gate-summary.json`; these partial
+counts and builds are never substituted for the required fresh complete gate.
+
+The same final copy audit found that PointsSummary still showed the ordinary
+correction's “Saving finishes the round” notice for an invalid known-score start.
+New-game score rows now suppress that notice, keep the explicit cannot-start
+explanation and disabled Review, and preserve ordinary correction behavior. A
+fifth UI case builds an invalid completed known round from blank setup, checks
+both editor and overview explanations, absence of a finish offer, cancellation
+and cold-launch proof that no game started. The blank current-score service
+chooser also uses neutral Choose under After them rather than asking for an
+unknown game's historical first server. All text is reused from translated keys.
