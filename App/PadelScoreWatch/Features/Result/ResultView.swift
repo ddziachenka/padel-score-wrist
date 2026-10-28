@@ -12,6 +12,7 @@ struct ResultView: View {
     let edit: () -> Void
     let about: () -> Void
     let history: () -> Void
+    let journal: () -> Void
 
     var body: some View {
         let summary = ResultSummary(game: game)
@@ -43,6 +44,16 @@ struct ResultView: View {
                     Button("Edit result", action: edit)
                         .buttonStyle(SecondaryButtonStyle())
                         .accessibilityIdentifier("result.edit")
+                    Button("Journal", action: journal)
+                        .buttonStyle(SecondaryButtonStyle())
+                        .accessibilityIdentifier("result.journal")
+                    if live.canUndo || live.saving == .undo {
+                        Button {
+                            Task { await live.undo() }
+                        } label: { SavingLabel("Undo", isSaving: live.saving == .undo) }
+                        .buttonStyle(SecondaryButtonStyle())
+                        .accessibilityIdentifier("result.undo")
+                    }
                     Button("History", action: history)
                         .buttonStyle(SecondaryButtonStyle())
                         .accessibilityIdentifier("result.history")

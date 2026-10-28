@@ -28,6 +28,8 @@ struct UITestStore {
         case restorable
         /// A match under One advantage at 0–0, You serving first, then Opponent 1.
         case matchStart
+        case journalLong
+        case journalSetCrossing
         /// The same match at 5–4 in games and 40–0, with US one point from the first set.
         case matchSetPoint
         /// The same match in the first set's tie-break, US ahead 6–5 with Partner serving.
@@ -122,7 +124,7 @@ struct UITestStore {
             write(lastSettings, to: location.backup)
             write(damaged, to: location.main)
         case .storeMatch, .storeGoldenPoint, .storeAmericano, .storeResult,
-             .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong,
+             .journalLong, .journalSetCrossing, .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong,
              .matchFinished, .roundFinished, .roundEndedEarly, .afterResult, .matchFinishedFirstSet, .matchFinishedSets:
             write(Self.session(for: seed).flatMap { try? SessionFile(session: $0).encoded() }, to: location.main)
         }
@@ -154,6 +156,14 @@ struct UITestStore {
     /// A game being played or finished, reached point by point, so every change of it can be undone.
     static func session(for seed: Seed) -> Session? {
         switch seed {
+        case .journalLong:
+            let setup = GameSetup(rules: .match(MatchRules(deuceRule: .advantage, setPolicy: .tieBreakAtSixAll)),
+                                  serving: ServingSetup(order: .youThenOpponent1, firstServer: .you))
+            return session(playing: setup, rallies: String(repeating: "UT", count: 2000), then: [])
+        case .journalSetCrossing:
+            let setup = GameSetup(rules: .match(MatchRules(deuceRule: .oneAdvantage, setPolicy: .tieBreakAtSixAll)),
+                                  serving: ServingSetup(order: .youThenOpponent1, firstServer: .you))
+            return session(playing: setup, rallies: String(repeating: "UUUU", count: 6) + "UU", then: [])
         case .storeMatch, .storeGoldenPoint, .storeResult:
             let setup = GameSetup(
                 rules: .match(MatchRules(deuceRule: .goldenPoint, setPolicy: .tieBreakAtSixAll)),

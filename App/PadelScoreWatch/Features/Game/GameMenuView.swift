@@ -14,6 +14,9 @@ struct GameMenuView: View {
                     .accessibilityIdentifier("menu.editScore")
                 menuRow("Game settings", route: .gameSettings)
                     .accessibilityIdentifier("menu.gameSettings")
+                NavigationLink(value: GameRoute.journal) { rowLabel(Text("Journal")) }
+                    .buttonStyle(RowButtonStyle())
+                    .accessibilityIdentifier("menu.journal")
                 if let game = live.game, game.status == .active {
                     NavigationLink(value: GameRoute.finish) {
                         rowLabel(game.format.kind == .match ? Text("Finish match") : Text("Finish round"))

@@ -867,3 +867,15 @@ in standard and scroll-edge states, with readable secondary-color inactive icons
 and titles in every native layout. The demo navigation bar uses the same opaque
 surface, keeping foregrounds independent of large scrolling score content. Native
 controls and all audit categories remain; no forced appearance or font-size reduction.
+
+
+M22 implements Journal from the Watch game menu and latest editable result. Recent
+entries appear first; numbered effective rallies retain later winners after a
+correction. Event detail offers Change winner, Delete rally and Insert rally
+before/after, followed by a separate Review with complete Before/After score,
+service and finish state. Changed set boundaries require an explicit first and
+second server before Apply becomes available. Cancel/Back write nothing; failed
+saves use existing Retry/Cancel. Manual score/rules editing explains the new
+checkpoint. History results open read-only journals; unavailable earlier detail
+is stated explicitly. Native wrapped rows and vertical preview sections preserve
+small-Watch tap targets and VoiceOver reading order; no new decorative motion.

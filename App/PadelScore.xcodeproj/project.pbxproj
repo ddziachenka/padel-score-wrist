@@ -151,6 +151,11 @@
 		DF42437F3C261F6D39DEB0D0 /* PadelScoreWatchTests/Features/LauncherTests.swift0 */ = {isa = PBXBuildFile; fileRef = 09CB70667544E48EED180A0C; };
 		5CC561EA22A27F9BCCE7F0CD /* PadelScoreWatchTests/Features/LauncherTests.swift1 */ = {isa = PBXBuildFile; fileRef = 6BE686D36958B4F4AC6A2149; };
 		E3F7D6A35BE856AF2B3B63A8 /* PadelScoreWatchUITests/LauncherUITests.swift0 */ = {isa = PBXBuildFile; fileRef = D1D50D18D3527FE450910D47; };
+		99B5ED6E37E828190EDB5E6A /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6181D430D1EAE20FC712D28 /* JournalView.swift */; };
+		DD7BC95B9A5F2F675779CF35 /* JournalPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85257D7B38BCC939FA01815D /* JournalPresentation.swift */; };
+		8D510F1BE1F9B8E846C2BF3A /* RallyReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1C9118F3D4376432BDC69 /* RallyReviewView.swift */; };
+		CDAA782D488F9CBFA328D33F /* JournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F401B8F7D44CCFE384288F /* JournalTests.swift */; };
+		EF5B0AD4F5B4BAA3D3641EBB /* JournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCBF19D61AA544D8F7448A8 /* JournalUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -371,6 +376,11 @@
 		286A5F990FB691E20911DAD7 /* PadelScoreLauncher.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; path = PadelScoreLauncher.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		09CB70667544E48EED180A0C /* LauncherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchTests/Features/LauncherTests.swift"; sourceTree = SOURCE_ROOT; };
 		D1D50D18D3527FE450910D47 /* LauncherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchUITests/LauncherUITests.swift"; sourceTree = SOURCE_ROOT; };
+		F6181D430D1EAE20FC712D28 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatch/Features/Journal/JournalView.swift"; sourceTree = SOURCE_ROOT; };
+		85257D7B38BCC939FA01815D /* JournalPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatch/Features/Journal/JournalPresentation.swift"; sourceTree = SOURCE_ROOT; };
+		D5A1C9118F3D4376432BDC69 /* RallyReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatch/Features/Journal/RallyReviewView.swift"; sourceTree = SOURCE_ROOT; };
+		63F401B8F7D44CCFE384288F /* JournalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchTests/Features/JournalTests.swift"; sourceTree = SOURCE_ROOT; };
+		1CCBF19D61AA544D8F7448A8 /* JournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchUITests/JournalUITests.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -585,6 +595,7 @@
 		EB6463C62D5F36EBA9B54CF0 /* PadelScoreWatchUITests */ = {
 			isa = PBXGroup;
 			children = (
+				1CCBF19D61AA544D8F7448A8 /* JournalUITests.swift */,
 				2E2D55319145D23348FCA77E /* AccessUITests.swift */,
 				B9797B56F6E6B729F696FFF8 /* PlayAgainUITests.swift */,
 				F8F1A6C6AC9C65950FE1503D /* LiveScoreUITests.swift */,
@@ -648,6 +659,9 @@
 		9CB58CC1E7C7ACBC638DF9C3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				D5A1C9118F3D4376432BDC69 /* RallyReviewView.swift */,
+				85257D7B38BCC939FA01815D /* JournalPresentation.swift */,
+				F6181D430D1EAE20FC712D28 /* JournalView.swift */,
 				FD6504F9186AC943569F3C1A /* AccessView.swift */,
 				BD82746DF096E4CB547EC46E /* AccessOffer.swift */,
 				3CC3ECDDE1427DB2B65FBBAC /* About */,
@@ -739,6 +753,7 @@
 		E4C02F8C90D3543BC35DD294 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				63F401B8F7D44CCFE384288F /* JournalTests.swift */,
 				3EC3C2936D5F52C6B8D064CA /* LiveScoreTests.swift */,
 				BBBC5A62C5087429728F0DF6 /* ScoreAnnouncementTests.swift */,
 				21DC5A45ACBD3D4DE82BFA02 /* ScoreBoardTests.swift */,
@@ -1117,6 +1132,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDAA782D488F9CBFA328D33F /* JournalTests.swift in Sources */,
 				2C3939CB7BDDC5C6194F6A4D /* AccessOfferTests.swift in Sources */,
 				CB741DF702C21F6A7EF22F31 /* PlayAgainTests.swift in Sources */,
 				D2887948224C7323ED07C051 /* EntitlementStoreTests.swift in Sources */,
@@ -1169,6 +1185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF5B0AD4F5B4BAA3D3641EBB /* JournalUITests.swift in Sources */,
 				F55F8C3148A23C8A0E60B3C3 /* PlayAgainUITests.swift in Sources */,
 				F31A6E4D6B52A4B68CB3AA25 /* AccessUITests.swift in Sources */,
 				B25C7F148DD76475B3BE595F /* LiveScoreUITests.swift in Sources */,
@@ -1191,6 +1208,9 @@
 			buildActionMask = 2147483647;
 			runOnlyForDeploymentPostprocessing = 0;
 			files = (
+				8D510F1BE1F9B8E846C2BF3A /* RallyReviewView.swift in Sources */,
+				DD7BC95B9A5F2F675779CF35 /* JournalPresentation.swift in Sources */,
+				99B5ED6E37E828190EDB5E6A /* JournalView.swift in Sources */,
 				F9C3CDF4850484C8E1B6E705,
 				779E9B5E834E21A0E13A6625,
 				F061D5732BF146D7E92745D5,
@@ -1271,6 +1291,9 @@
 			buildActionMask = 2147483647;
 			runOnlyForDeploymentPostprocessing = 0;
 			files = (
+				8D510F1BE1F9B8E846C2BF3A /* RallyReviewView.swift in Sources */,
+				DD7BC95B9A5F2F675779CF35 /* JournalPresentation.swift in Sources */,
+				99B5ED6E37E828190EDB5E6A /* JournalView.swift in Sources */,
 				F9C3CDF4850484C8E1B6E705,
 				779E9B5E834E21A0E13A6625,
 				F061D5732BF146D7E92745D5,

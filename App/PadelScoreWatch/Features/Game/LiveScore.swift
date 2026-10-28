@@ -194,6 +194,17 @@ final class LiveScore {
         }
     }
 
+    /// Uses the same save, retry and feedback path as the manual editor.
+    func applyRallyCorrection(_ preview: RallyCorrectionPreview) async -> CorrectionSave {
+        guard isIdle, editor == nil, preview.canApply else { return .notSaved }
+        lastRally = nil
+        switch await send(.applyRallyCorrection(preview), as: .correct, revision: preview.revision) {
+        case .saved: return .saved
+        case .failed: return .failed
+        case .notSaved: return .notSaved
+        }
+    }
+
     /// Finishes the game being played by hand, at whatever score it has. Once saved, the game is
     /// shown as its result.
     func finish() async {

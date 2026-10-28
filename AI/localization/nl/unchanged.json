@@ -20,5 +20,7 @@
   "phone.tab.start": "M16: accepted international UI term or score notation has the same spelling in this locale.",
   "phone.tab.demo": "M16: accepted international UI term or score notation has the same spelling in this locale.",
   "phone.demo.games %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale.",
-  "phone.demo.sets %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale."
+  "phone.demo.sets %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "Rally": "Rally is the Dutch padel term for a rally.",
+  "Rally %lld": "Rally is the Dutch padel term; the numbered event retains its placeholder."
 }

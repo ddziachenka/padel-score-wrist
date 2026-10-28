@@ -10,5 +10,6 @@
   "Set %lld · %@": "Même terme sportif et structure de titre en français.",
   "Sets": "Pluriel français usuel de set.",
   "Version %@ (%@)": "Version est le mot français usuel ; les numéros restent inchangés.",
-  "phone.demo.sets %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale."
+  "phone.demo.sets %lld %lld": "M16: accepted international UI term or score notation has the same spelling in this locale.",
+  "Journal": "Journal is the native French noun for an event log."
 }

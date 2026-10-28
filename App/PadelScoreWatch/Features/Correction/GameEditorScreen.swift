@@ -33,6 +33,8 @@ struct GameEditorScreen: View {
             ScrollView {
                 VStack(spacing: Spacing.sm) {
                     Caption("Changes are saved when you tap Save.")
+                    Caption("Saving a score or rules change creates a checkpoint. Earlier rallies stay readable; selective corrections begin after it.")
+                        .accessibilityIdentifier("editor.checkpoint")
                     if editor.makesRoomToResume, editor.draft.leavesNoRoom {
                         NoticeLabel(text: ResultView.needsRoom)
                             .accessibilityIdentifier("editor.needsRoom")

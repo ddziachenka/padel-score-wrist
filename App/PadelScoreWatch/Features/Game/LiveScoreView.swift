@@ -16,6 +16,7 @@ enum GameRoute: Hashable, Sendable {
     /// The previous game's result, which can only be viewed.
     case lastResult
     case history
+    case journal
     /// Choosing the next game's format, from the result.
     case formats
     /// A screen of setting up the next game, kept by its flow.
@@ -42,7 +43,7 @@ enum GameRoute: Hashable, Sendable {
     /// A screen of a correction.
     var isEditor: Bool {
         switch self {
-        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .formats, .newGame: false
+        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .journal, .formats, .newGame: false
         default: true
         }
     }
@@ -195,7 +196,8 @@ struct LiveScoreView: View {
                         resume: resume,
                         edit: { edit(.editScore) },
                         about: { path.append(.about) },
-                        history: { path.append(.history) }
+                        history: { path.append(.history) },
+                        journal: { path.append(.journal) }
                     )
                     .transition(.opacity)
                 } else if let board = live.board {
@@ -234,6 +236,8 @@ struct LiveScoreView: View {
             FinishView(live: live, keepPlaying: { path.removeAll() }, finished: { path.removeAll() })
         case .history:
             HistoryView(store: store)
+        case .journal:
+            JournalView(journal: store.session.current?.journal, store: store, live: live) { path.removeAll() }
         case .lastResult:
             if let earlier = live.earlierResult {
                 EarlierResultView(game: earlier)
@@ -323,7 +327,7 @@ struct LiveScoreView: View {
             )
         case .format:
             FormatEditor(editor: editor)
-        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .formats, .newGame:
+        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .journal, .formats, .newGame:
             EmptyView()
         }
     }
