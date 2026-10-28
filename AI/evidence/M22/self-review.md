@@ -73,3 +73,29 @@ Final frozen-source watchOS10 runtime set passed14/14, including all native audi
 categories and largest-text interaction. Final captures were inspected; no blocking
 finding remains known. See runtime.md. Full exact-SHA milestone verification follows
 on the clean REVIEW commit; this self-review does not replace that gate.
+
+
+## Lifecycle finding during full verification
+
+A final contract check found Journal reviews were not included in the existing
+background-preservation branch. AI/DESIGN.md requires a live correction draft to
+survive background while the process remains alive. The new regression reproduced
+loss of the partial serving choice on the original implementation (1 test failed,
+exit65). The original full REVIEW gate was interrupted rather than accepted or
+reused. See lifecycle.md for raw partial counts and the exact before/after evidence.
+
+The narrow fix retains the journal navigation stack through background, preserving
+both partial ServingChoice and completed JournalReview state. Ordinary menus still
+return to the score as before; the existing manual editor/result/setup branches
+retain their prior behavior. The same regression then passes (1/1, exit0), including
+two background transitions, selected-server retention, complete preview retention,
+Cancel and cold-launch proof that the original score was never changed. No assertion
+or lifecycle contract was weakened. The final full gate must run anew on the new
+clean REVIEW SHA. This supersedes the earlier provisional no-blocking-finding note;
+it does not relabel the interrupted run as a pass.
+
+
+Corrected-source follow-up: all15 new-scope watchOS10 cases now pass together,
+exit0, including the new background regression. Static passes. The one production
+condition and the complete regression were self-reviewed; no blocking finding
+remains known. Full exact-SHA verification must still complete on the new candidate.

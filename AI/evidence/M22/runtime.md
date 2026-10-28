@@ -1,4 +1,8 @@
-# M22 runtime checks
+# M22 initial runtime checks
+
+The presentation evidence below precedes the lifecycle correction. It remains
+historical evidence, not the final complete M22 claim. See lifecycle.md and the
+final milestone-verification.md for the corrected source and full gate.
 
 Frozen source: `d0abfa0390cea60009d1f53f5ed655303031fe7f`.
 App/Config/Scripts trees recorded in `.artifacts/M22/frozen-inputs.json`;

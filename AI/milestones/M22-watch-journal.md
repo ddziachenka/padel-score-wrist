@@ -1,7 +1,7 @@
 # M22 — Watch Journal and Correction Experience
 
 **ID:** M22
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M21
 **Validation:** make milestone ID=M22
 **Handoff:** AI/handoffs/M22-handoff.md
