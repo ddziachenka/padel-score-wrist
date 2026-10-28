@@ -1,7 +1,7 @@
 # M23 — Start from a Known Score
 
 **ID:** M23
-**Status:** REVIEW
+**Status:** IN_PROGRESS
 **Depends on:** M22
 **Validation:** make milestone ID=M23
 **Handoff:** AI/handoffs/M23-handoff.md

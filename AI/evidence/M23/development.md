@@ -44,3 +44,20 @@ updates only the chosen rules/service, and revalidates conflicts with the shared
 draft. The regression requires preserved score plus changed rule; explicitly
 choosing From zero still clears that alternative draft. Cancellation coverage now
 uses the production Cancel method and checks that it discards only the draft.
+
+## Late checkpoint-detail finding
+
+The initial clean REVIEW candidate `0f337a4551a6f518b0a1cec42aa744e09177508b`
+started `make milestone ID=M23`. During a further reading of the runtime capture,
+self-review found that its known-score checkpoint detail reused the manual-boundary
+explanation “Earlier rallies can be viewed”, contradicting this start's unknown
+past. The Watch test process was deliberately interrupted with SIGINT; this partial
+run is not accepted as a passing milestone, and its raw report/bundle remain at
+`.artifacts/milestone/M23/20261028T144716Z-40213/`.
+
+The detail now reuses the existing translated statement that earlier rally detail
+is unavailable. A UI regression requires that exact statement after opening the
+known-score checkpoint, in addition to its existing title/score/Undo/relaunch
+assertions. No existing checkpoint/correction statement is changed for other
+reasons; no suite/assertion/parser/category was weakened. M23 returned to
+IN_PROGRESS for correction and fresh targeted/full verification.

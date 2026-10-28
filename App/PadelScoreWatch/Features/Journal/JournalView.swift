@@ -87,6 +87,9 @@ private struct JournalEventView: View {
                 } else {
                     Text(JournalText.title(entry.kind)).font(Typography.heading).accessibilityAddTraits(.isHeader)
                     switch entry.kind {
+                    case .checkpoint(let game, reason: .knownScore):
+                        Caption("Earlier rally detail is unavailable. Only recorded events are shown.")
+                        JournalScoreView(game: game)
                     case .checkpoint(let game, _), .correction(let game):
                         Caption("Earlier rallies can be viewed, but corrections start after this checkpoint.")
                         JournalScoreView(game: game)

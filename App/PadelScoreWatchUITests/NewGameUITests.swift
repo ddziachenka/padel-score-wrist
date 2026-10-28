@@ -376,6 +376,7 @@ final class KnownScoreUITests: XCTestCase {
         let checkpoint = app.buttons["Started from current score"]
         checkpoint.scrollToAndTap(in: app)
         XCTAssertTrue(app.staticTexts["Started from current score"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Earlier rally detail is unavailable. Only recorded events are shown."].exists)
         attachScreenshot("Known Match unknown earlier history")
         app.terminate()
         let reopened = launchApp(store: "known-match", seed: nil)
