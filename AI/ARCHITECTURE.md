@@ -750,3 +750,8 @@ tab navigation/reset behavior is preserved. Close or accessibility escape destro
 the scenario; reopening and Reset create a fresh example; cold launch restores
 none of this state. Real Watch persistence, settings, archive, usage and entitlements
 are unreachable from these models.
+
+The guide heading uses a narrow native UILabel bridge with multiline measurement,
+preferred-font metrics, native Dynamic Type updates and localized hyphenation. It
+keeps the actual title as an auditable header; all other guide layout stays SwiftUI.
+No font-size cap or minimum-scale workaround is used.

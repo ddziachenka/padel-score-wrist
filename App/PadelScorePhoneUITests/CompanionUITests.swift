@@ -218,6 +218,39 @@ final class CompanionUITests: XCTestCase {
         app.terminate()
     }
 
+    func testGermanRecoveryHeadingsAtLargestText() throws {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
+        for dark in [false, true] {
+            XCUIDevice.shared.appearance = dark ? .dark : .light
+            let app = XCUIApplication()
+            app.launchArguments = ["-AppleLanguages", "(de)", "-AppleLocale", "de_DE",
+                "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+            app.launch()
+            XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+            declineOptionalReview(app)
+            for (entry, expected) in [("phone.start.correction", "Früheren Ballwechsel korrigieren"),
+                                      ("phone.start.knownScore", "Mit bekanntem Spielstand starten")] {
+                reveal(app.buttons[entry], in: app).tap()
+                let heading = app.staticTexts["phone.recovery.title"]
+                XCTAssertEqual(heading.label, expected)
+                XCTAssertTrue(visibleViewport(app).contains(heading.frame))
+                XCTAssertGreaterThan(heading.frame.height, 100, "The heading must retain largest Dynamic Type scaling")
+                try auditIncludingOccludedText(app)
+                reveal(app.buttons["phone.recovery.review"], in: app).tap()
+                XCTAssertEqual(heading.label, expected)
+                try auditIncludingOccludedText(app)
+                reveal(app.buttons["phone.recovery.confirm"], in: app).tap()
+                XCTAssertEqual(heading.label, expected)
+                try auditIncludingOccludedText(app)
+                capture(app, "german-heading-\(entry)-\(dark ? "dark" : "light")")
+                app.buttons["phone.recovery.close"].tap()
+                XCTAssertTrue(app.buttons["phone.recovery.close"].waitForNonExistence(timeout: 5))
+            }
+            app.terminate()
+        }
+    }
+
     func testRecoveryLocalesAppearancesAndLargestText() throws {
         let originalAppearance = XCUIDevice.shared.appearance
         defer { XCUIDevice.shared.appearance = originalAppearance }

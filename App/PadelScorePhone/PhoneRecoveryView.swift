@@ -14,10 +14,11 @@ struct PhoneRecoveryView: View {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    Label("Demo", systemImage: "hand.tap").font(.headline).foregroundStyle(PhoneTheme.accent)
+                    Label("Demo", systemImage: "hand.tap").font(.subheadline.bold()).foregroundStyle(PhoneTheme.accent)
                         .accessibilityIdentifier("phone.recovery.badge")
-                    Text(title).font(.title2.bold()).fixedSize(horizontal: false, vertical: true)
-                        .accessibilityAddTraits(.isHeader)
+                    RecoveryHeading(text: String(localized: title))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, 4)
                     if demo.stage == .input {
                         Text(demo.kind == .correction ? "phone.recovery.correctionHelp" : "phone.recovery.startHelp")
                             .foregroundStyle(PhoneTheme.secondaryText)
@@ -68,7 +69,7 @@ struct PhoneRecoveryView: View {
         }
     }
 
-    private var title: LocalizedStringKey {
+    private var title: LocalizedStringResource {
         demo.kind == .correction ? "phone.recovery.correction" : "phone.recovery.start"
     }
 
@@ -286,6 +287,41 @@ struct PhoneRecoveryView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("phone.recovery.\(id)")
+    }
+}
+
+/// Native multiline measurement avoids a tight SwiftUI text box for long,
+/// fully scaled localized headings. The actual UILabel remains auditable.
+private struct RecoveryHeading: UIViewRepresentable {
+    let text: String
+
+    func makeUIView(context: Context) -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.adjustsFontForContentSizeCategory = true
+        label.textColor = .label
+        label.isAccessibilityElement = true
+        label.accessibilityTraits.insert(.header)
+        label.accessibilityIdentifier = "phone.recovery.title"
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
+        return label
+    }
+
+    func updateUIView(_ label: UILabel, context: Context) {
+        label.font = UIFontMetrics(forTextStyle: .title2)
+            .scaledFont(for: UIFont.systemFont(ofSize: 22, weight: .bold))
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = .byWordWrapping
+        paragraph.hyphenationFactor = 1
+        label.attributedText = NSAttributedString(string: text, attributes: [.paragraphStyle: paragraph])
+        label.accessibilityLanguage = Bundle.main.preferredLocalizations.first
+    }
+
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView: UILabel, context: Context) -> CGSize? {
+        guard let width = proposal.width else { return nil }
+        uiView.preferredMaxLayoutWidth = width
+        let size = uiView.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude))
+        return CGSize(width: width, height: ceil(size.height))
     }
 }
 

@@ -65,3 +65,17 @@ recorded in runtime.md and milestone-verification.md after execution.
 No additional problem scanner is configured beyond static; optional analyzers
 remain disabled by existing product configuration. Physical-device/VoiceOver and
 full-product six-domain coverage remains owned by M25; no such pass is claimed here.
+
+
+The first clean REVIEW candidate `bbf9b0bca1823f58c8187e6074107560c34ac395`
+passed the four functional UI cases, but its small-phone supplement found German
+heading clipping at maximum Dynamic Type. The pipeline stopped before the large
+phone, unit supplement and declared milestone gate; that candidate is not verified.
+Raw failure: `.artifacts/M24/small-complete.xcresult`, outer exit75. Padding and a
+compact SwiftUI title alone did not resolve the finding; their failed focused
+bundles remain. A native multiline UILabel with preferred-font metrics and natural
+hyphenation then passed both German titles through input/preview/result in both
+appearances, with actual large rendering inspected. The permanent regression also
+requires a scaled heading height, full copy and visible bounds. No title was
+shortened, font cap added, audit filtered or mandatory check removed. A new clean
+candidate must run all supplemental and declared validation afresh.

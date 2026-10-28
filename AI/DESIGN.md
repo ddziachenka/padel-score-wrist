@@ -913,3 +913,9 @@ and explicit disabled traits replace faded secondary actions in these guides;
 the original scoreboard and purchase button styles remain unchanged. No new custom asset or haptic is needed. All copy
 ships in the existing thirteen locales; M25 retains ownership of real-device and
 full-product six-domain evidence.
+
+M24's full-screen guide title uses native multiline text measurement and natural
+hyphenation for long localized words at maximum accessibility sizes. The full
+wording and all Dynamic Type sizes remain available. A focused German check
+verifies both titles, their scaled size, and every native audit category in both
+appearances and input/preview/result states.
