@@ -2,9 +2,9 @@
 
 **Phase:** implementation
 **Current milestone:** M21
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20
-**Next milestone:** M21
-**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M20 passed; M21 REVIEW: source registration fixed; complete companion development checks passed; fresh full gate pending. M22–M26 planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21
+**Next milestone:** M22
+**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M21 passed; M22–M26 remain planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -213,3 +213,32 @@ hands-on competitor correction-flow check required by the approved recovery plan
 inaccessibility stays unknown, and an already matching full flow returns product
 direction to the owner. M21–M26 remain PLANNED. This Builder stops after committing
 DONE records and passing static/status/continuity checks against the verified SHA.
+
+
+## M21 completed — 2026-10-28 UTC
+
+M21 DONE. Exact clean REVIEW/main candidate `9b10f99b6b96a45fc91bff736b68ff9d4df243ac`
+passed `make milestone ID=M21`, exit0,06:07:52–08:34:50UTC. Watch536/536
+ definitions/940 invocations, phone unit14/14/20, phone UI6/6; zero
+failed/skipped/expected/runtime warnings. Both native contrast audits pass.
+Both Debug/package guards pass. Handoff: [M21](handoffs/M21-handoff.md);
+[exact evidence](evidence/M21/milestone-verification.md).
+
+Selective change/remove/insert previews preserve later winners and stable IDs after
+the last checkpoint; changed set serving is explicit, unresolved results unknown.
+Apply is revision-bound/atomic; one Undo restores the whole original record and
+archive timestamp; usage never double-counts. Flat patches retain original audit
+events without copied journals or truncation.4000-rally preview/apply about0.0166s
+on Simulator;1945791encoded bytes. No new user-facing UI inM21.
+
+The first full candidate's Watch536/940 passed, but the overall gate failed on
+missing iPhone source registration. Both missing memberships were fixed and a
+strict source-graph omission regression added; all required suites then reran and
+passed at the exact new SHA above. Failed report retained, never counted as a pass.
+Competitor correction-flow equivalence remains unknown under the approved
+inaccessibility rule; exact listing version/access evidence is recorded.
+
+Builder self-review, not independent review or release approval. App Review reply
+remains unsent/on hold,4.3(a) unresolved; no upload/submission/pricing/Promotional
+Text change. Next Builder session owns M22; M22–M26 remain PLANNED. This session
+stops after DONE static/status/continuity checks against the verified SHA.
