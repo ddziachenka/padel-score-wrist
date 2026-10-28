@@ -909,7 +909,9 @@ when needed. These examples teach the mechanism; Watch retains the full setup.
 New steps open at the top without decorative animation. Close/accessibility escape and
 Reset discard only the demo. The presentation gives the example its own lifetime
 while preserving the original Start/Demo tab navigation. Readable neutral colors
-and explicit disabled traits replace faded secondary actions in these guides;
+and explicit disabled traits replace faded secondary actions in these guides.
+The persistent Demo badge uses semantic primary text/symbol color for maximum
+contrast at normal and accessibility sizes;
 the original scoreboard and purchase button styles remain unchanged. No new custom asset or haptic is needed. All copy
 ships in the existing thirteen locales; M25 retains ownership of real-device and
 full-product six-domain evidence.
@@ -919,3 +921,7 @@ hyphenation for long localized words at maximum accessibility sizes. The full
 wording and all Dynamic Type sizes remain available. A focused German check
 verifies both titles, their scaled size, and every native audit category in both
 appearances and input/preview/result states.
+
+On iOS26 the guide disables the automatic scroll-edge blur; its existing opaque
+semantic toolbar provides the boundary. Text keeps its full contrast while
+scrolling. Earlier iOS versions retain their native behavior.

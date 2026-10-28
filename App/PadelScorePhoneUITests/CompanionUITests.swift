@@ -424,6 +424,8 @@ final class CompanionUITests: XCTestCase {
     /// Defer that element until it is fully visible, then run the SAME native audit.
     /// Every deferred element must be rechecked; real visible issues still fail.
     private func auditIncludingOccludedText(_ app: XCUIApplication) throws {
+        // Let the compositor finish score/scroll updates before pixel auditing.
+        Thread.sleep(forTimeInterval: 1)
         var pending: [String: XCUIElement] = [:]
         var checked: Set<String> = []
         var recorded: Set<String> = []

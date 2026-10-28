@@ -101,3 +101,25 @@ The final clean candidate runs the full six-case large-phone supplement and full
 phone-unit supplement, followed by the exact unfiltered milestone gate. That gate
 owns the complete small-phone UI suite, including the same thirteen-locale/two-mode
 largest-text matrix, so a redundant separate small-phone supplement is unnecessary.
+
+The third clean candidate `713fd5fba1f19b6c2860a9060663bf2e92c6c159`
+passed the large-phone heading, editable-score, Americano and correction journeys,
+but its normal-size next-set audits found contrast on `phone.recovery.badge`.
+The large supplement was stopped before its matrix, unit supplement and declared
+gate; raw exit75 and four-passed/two-failed bundle remain. The recorded badge was
+fully visible (19.3pt high), so this finding is fixed in the UI: its text and
+symbol now use opaque semantic primary color. Branded lime primary actions stay
+intact. No test or native issue handler changed for this correction.
+
+Changing badge color alone, capturing a settled frame, and splitting text from its
+redundant icon did not clear the large-phone native result; those failed focused
+bundles remain. The split-label experiment was reverted. iOS26's automatic
+scroll-edge effect was then disabled for the guide, whose toolbar already has an
+opaque semantic background. With this sole final comparison, the exact serving/Undo
+case passed, exit0, including both native state audits. The conditional native API
+keeps the iOS17 path intact; the guide badge retains high-contrast semantic primary
+color. Audits wait one second for compositor updates, as screenshot capture already
+does, and all categories/issue handling/assertions remain. Apple's API explanation:
+https://developer.apple.com/documentation/swiftui/view/scrolledgeeffecthidden(_:for:).
+A new clean candidate must run all supplements and the declared gate; none of these
+focused passes is substituted for milestone verification.

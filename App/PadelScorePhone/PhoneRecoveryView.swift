@@ -14,7 +14,7 @@ struct PhoneRecoveryView: View {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    Label("Demo", systemImage: "hand.tap").font(.subheadline.bold()).foregroundStyle(PhoneTheme.accent)
+                    Label("Demo", systemImage: "hand.tap").font(.subheadline.bold()).foregroundStyle(Color.primary)
                         .accessibilityIdentifier("phone.recovery.badge")
                     RecoveryHeading(text: String(localized: title))
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -43,6 +43,7 @@ struct PhoneRecoveryView: View {
                 .id("recovery.top")
                 .padding(20)
             }
+            .modifier(RecoveryScrollEdges())
             .accessibilityIdentifier("phone.recovery.scroll")
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Demo").navigationBarTitleDisplayMode(.inline)
@@ -287,6 +288,14 @@ struct PhoneRecoveryView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("phone.recovery.\(id)")
+    }
+}
+
+/// The opaque guide toolbar already separates controls from scrolling content.
+private struct RecoveryScrollEdges: ViewModifier {
+    @ViewBuilder func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) { content.scrollEdgeEffectHidden() }
+        else { content }
     }
 }
 
