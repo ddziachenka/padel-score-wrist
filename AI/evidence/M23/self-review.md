@@ -57,3 +57,8 @@ results are recorded in runtime.md and milestone-verification.md after execution
 No test, audit category, parser or required suite is weakened; no inherited waiver
 or unproved pre-existing failure is used. No additional scanner is configured
 beyond static; existing optional analyzers are disabled by product configuration.
+
+Final-source watchOS10 validation passed16/16 definitions/20 invocations,
+including the added setup-rule preservation regression and all four UI cases.
+Final captures were inspected; no blocking finding remains known. Runtime details
+are in runtime.md. The full clean-SHA milestone gate remains required.
