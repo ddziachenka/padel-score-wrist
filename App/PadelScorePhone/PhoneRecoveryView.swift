@@ -256,13 +256,12 @@ struct PhoneRecoveryView: View {
 
     private func field<Content: View>(_ title: LocalizedStringKey, id: String,
                                      @ViewBuilder content: () -> Content) -> some View {
-        LabeledContent {
-            content().labelsHidden()
-        } label: {
+        VStack(alignment: .leading, spacing: 4) {
             Text(title).font(.subheadline.weight(.semibold)).foregroundStyle(PhoneTheme.secondaryText)
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityIdentifier("phone.recovery.\(id).label")
-        }.labeledContentStyle(RecoveryFieldStyle())
+            content()
+        }.frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func rallyList(_ rallies: [RecordedRally]) -> some View {
@@ -319,15 +318,6 @@ struct PhoneRecoveryView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("phone.recovery.\(id)")
-    }
-}
-
-private struct RecoveryFieldStyle: LabeledContentStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            configuration.label
-            configuration.content
-        }.frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -394,10 +384,6 @@ private struct RecoveryButtonStyle: ButtonStyle {
             .foregroundStyle(enabled && prominent ? PhoneTheme.ink : enabled ? Color.primary : PhoneTheme.secondaryText)
             .background(enabled && prominent ? PhoneTheme.lime : Color(.secondarySystemGroupedBackground),
                         in: RoundedRectangle(cornerRadius: 18))
-            .overlay {
-                RoundedRectangle(cornerRadius: 18)
-                    .stroke(enabled && prominent ? Color.clear : PhoneTheme.secondaryText, lineWidth: 1)
-            }
             .opacity(enabled && configuration.isPressed ? 0.85 : 1)
     }
 }

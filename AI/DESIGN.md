@@ -928,6 +928,9 @@ scrolling. Earlier iOS versions retain their native behavior.
 
 Known-score rule paragraphs share the native multiline measurement, preserving
 full wording and body-font scaling in Russian too. Every guide menu has a visible
-localized label above its value using native LabeledContent; labels wrap vertically
+localized label above its value using simple vertical stacks; labels wrap vertically
 at accessibility sizes, so games, points and service are unambiguous without
 VoiceOver. Picker accessibility names and existing input identifiers remain.
+
+Secondary guide actions use opaque semantic text on filled rounded surfaces;
+their normal-size serving/Undo regression explicitly covers Light and Dark Mode.

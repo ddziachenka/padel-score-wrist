@@ -51,7 +51,7 @@ inspection and is not accepted as Dark Mode evidence. Navigation addresses the p
 native issue rechecks retain precise slow positioning.
 The explicit new-set regression checks valid serving choices and exact Undo.
 Normal-text auditing caught a faded disabled Undo; guide actions now keep opaque
-semantic text/borders in disabled states. The original scoring/purchase styles
+semantic text and filled surfaces in disabled states. The original scoring/purchase styles
 are unaffected. A visible score label in a partially clipped card receives its
 same native audit again with the whole card visible when it fits. Oversized cards
 still recheck individual labels. Every score label has a unique context identifier,
@@ -147,7 +147,7 @@ small iOS17 phone. This reuses the existing native measurement with body versus
 heading metrics/traits; copy and scaling remain unchanged. No issue is suppressed.
 
 Inspecting the retained input screenshot also exposed menu values without visible
-field names. All guide menus now use vertical native LabeledContent with a wrapping
+field names. That revision added vertical native LabeledContent with a wrapping
 label above the selection. Controls retain their accessibility names/identifiers,
 and the editable-input UI case must reveal each visible field label. This is an
 input-usability correction inside M24, not a new product decision or later polish
@@ -161,3 +161,21 @@ permanent Russian rule-paragraph regression in both modes alongside the German
 heading regression and thirteen-locale matrix. No known blocking finding remains;
 a new clean REVIEW candidate must run the seven-case large supplement, all phone
 unit definitions and the exact unfiltered milestone gate before DONE.
+
+The sixth candidate `a096a2aad8bddfd2fec0d4e5961efe497a2ed767` stopped
+before the locale matrix after native contrast reports on the three outlined
+secondary actions in the serving/Undo result. Their screenshot remained readable;
+the unnecessary stroke was removed, retaining opaque semantic text and filled
+backgrounds. The exact large-phone case then passed, exit0. The regression now
+explicitly tests both normal-text appearances without changing its assertions.
+
+The small-phone follow-up twice timed out inside the native audit after the
+serving selector disappeared, code-56. Restarting only the owned device did not
+resolve it; neither failed run is a pass. Simplifying the new field wrapper from
+LabeledContent to a plain vertical label/native picker cleared the same transition
+in both appearances. This preserves visible labels, picker names/identifiers and
+all native categories. The paired small-phone serving/Undo and Russian regressions
+then passed, exit0, two definitions/invocations, zero failed/skipped/expected/runtime
+warnings. No timeout is caught/ignored and no audit is retried inside a test.
+The final clean candidate must verify all seven large-phone cases, all twenty-one
+phone unit definitions and the complete unfiltered milestone gate.
