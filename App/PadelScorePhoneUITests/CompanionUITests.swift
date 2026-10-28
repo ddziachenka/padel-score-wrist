@@ -298,24 +298,33 @@ final class CompanionUITests: XCTestCase {
         }
     }
 
-    @discardableResult private func reveal(_ target: XCUIElement, in app: XCUIApplication) -> XCUIElement {
-        // TabView retains hidden scroll views. Drive the visible viewport directly,
-        // rather than selecting the first ScrollView in the accessibility tree.
+    @discardableResult private func reveal(_ lookup: @autoclosure () -> XCUIElement, in app: XCUIApplication) -> XCUIElement {
+        // Resolve again after scrolling. Address the presented guide's named
+        // scroll view; retained TabView scroll views belong to the background.
         let viewport = visibleViewport(app)
         let top = viewport.minY, bottom = viewport.maxY
         let middle = viewport.midY
+        var target = lookup()
         for _ in 0..<40 {
+            target = lookup()
             if target.exists, target.isHittable,
                target.frame.midY > top, target.frame.midY < bottom { return target }
-            let travel = max(1, viewport.height - 60)
-            let delta = target.exists ? max(-travel, min(travel, middle - target.frame.midY)) : -travel
-            let start = delta < 0 ? bottom - 30 : top + 30
+            let guide = app.scrollViews["phone.recovery.scroll"]
+            if guide.exists {
+                if target.exists && target.frame.midY < top { guide.swipeDown(velocity: .slow) }
+                else { guide.swipeUp(velocity: .slow) }
+                continue
+            }
+            let distance = target.exists ? middle - target.frame.midY : -180
+            let limit = min(180, viewport.height / 2 - 30)
+            let delta = max(-limit, min(limit, distance))
             let origin = app.coordinate(withNormalizedOffset: .zero)
-                .withOffset(CGVector(dx: app.frame.midX, dy: start))
+                .withOffset(CGVector(dx: app.frame.maxX - 10, dy: middle))
             origin.press(forDuration: 0.1, thenDragTo: origin.withOffset(CGVector(dx: 0, dy: delta)),
-                         withVelocity: .fast, thenHoldForDuration: 0.1)
+                         withVelocity: .slow, thenHoldForDuration: 0.2)
         }
         XCTAssertTrue(target.isHittable, target.debugDescription)
+        XCTAssertTrue(target.frame.midY > top && target.frame.midY < bottom, target.debugDescription)
         return target
     }
 

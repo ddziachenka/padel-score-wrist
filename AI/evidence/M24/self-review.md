@@ -47,8 +47,8 @@ category or issue is suppressed.
 Repeated presentations have a fresh UUID and keyed view tree. UI assertions check
 which input form opened. The appearance matrix now sets and reads XCTest's native
 device appearance; the earlier unsupported launch argument was caught by visual
-inspection and is not accepted as Dark Mode evidence. Navigation scrolls use
-normal fast gestures; native issue rechecks retain precise slow positioning.
+inspection and is not accepted as Dark Mode evidence. Navigation addresses the presented guide by its stable ScrollView identifier;
+native issue rechecks retain precise slow positioning.
 The explicit new-set regression checks valid serving choices and exact Undo.
 Normal-text auditing caught a faded disabled Undo; guide actions now keep opaque
 semantic text/borders in disabled states. The original scoring/purchase styles
@@ -79,3 +79,25 @@ appearances, with actual large rendering inspected. The permanent regression als
 requires a scaled heading height, full copy and visible bounds. No title was
 shortened, font cap added, audit filtered or mandatory check removed. A new clean
 candidate must run all supplemental and declared validation afresh.
+
+
+The second clean REVIEW candidate `8bdaa7a7978b63b13182e6ef0a563bb51c5752d2`
+stopped in its small-phone supplement with four passing functional cases and a
+failed German visibility assertion; the locale matrix was interrupted, so its
+bundle records four passed/two failed, with no skipped/expected/runtime warnings.
+It never reached the large supplement or declared gate. Native heading audits and
+size assertions did not fail. Slower coordinate gestures and side-padding drags
+also failed to move the presented scroll view reliably; both failed focused runs
+remain recorded. The helper now resolves the guide's uniquely identified native
+ScrollView and uses XCTest's swipe gesture, re-resolving the target and retaining
+all journey assertions. An explicit viewport assertion also checks the exhausted
+helper path. This correction changes only test navigation; product, audit categories,
+heading wording and font scaling are unchanged.
+
+The named-scroll-view German regression then passed on the small iOS17 phone,
+exit0, one definition/invocation and all twelve native state audits. Temporary
+scroll-position diagnostics were removed; no assertion or interaction was removed.
+The final clean candidate runs the full six-case large-phone supplement and full
+phone-unit supplement, followed by the exact unfiltered milestone gate. That gate
+owns the complete small-phone UI suite, including the same thirteen-locale/two-mode
+largest-text matrix, so a redundant separate small-phone supplement is unnecessary.
