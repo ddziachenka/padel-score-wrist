@@ -60,3 +60,16 @@ in their existing unchanged-word records; the verification rules are unchanged.
 Validation, runtime results and remaining dispositions are recorded in the final
 milestone verification record. Early development failures are retained and are not
 claimed as passes. No pre-existing failure or historical acceptance is invoked.
+
+The first watchOS10 bundle passed14/14 with no failure/skip/expected/runtime
+warnings, but its outer shell exited2 after the development helper was changed
+while still running. This is a Builder tooling error, not a passing shell command.
+The complete minimum-runtime set is rerun against the frozen final source and an
+unchanged helper; its separate final evidence is authoritative.
+
+## Outcome
+
+Final frozen-source watchOS10 runtime set passed14/14, including all native audit
+categories and largest-text interaction. Final captures were inspected; no blocking
+finding remains known. See runtime.md. Full exact-SHA milestone verification follows
+on the clean REVIEW commit; this self-review does not replace that gate.
