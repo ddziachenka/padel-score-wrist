@@ -37,3 +37,10 @@ Self-review also moved the actual score first in Review, removed duplicate point
 and error presentations, made Cancel discard the score draft, and constrained the
 Access sheet to the visible confirmation (the underlying setup/overview do not
 also try to present it). No production scoring behavior was relaxed.
+
+A further state-ownership review found that returning to setup to change a rule
+silently cleared the entered known score. The flow now preserves games/sets/points,
+updates only the chosen rules/service, and revalidates conflicts with the shared
+draft. The regression requires preserved score plus changed rule; explicitly
+choosing From zero still clears that alternative draft. Cancellation coverage now
+uses the production Cancel method and checks that it discards only the draft.

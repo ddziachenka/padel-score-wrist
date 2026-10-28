@@ -99,7 +99,7 @@ struct SetupDraft: Hashable, Sendable {
         }
     }
 
-    /// The game to start, once every value is chosen.
+    /// The rules and serving once chosen. Known-score entry supplies its own score format.
     var gameSetup: GameSetup? {
         guard let servingSetup = serving.setup else { return nil }
         switch kind {

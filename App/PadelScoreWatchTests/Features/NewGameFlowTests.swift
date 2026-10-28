@@ -348,7 +348,8 @@ final class KnownScoreFlowTests {
         prepare(flow)
         flow.knownScore?.editMatch { $0.games = SetGames(us: 4, them: 4) }
         flow.path.append(.reviewStart)
-        flow.path = [.setup]
+        flow.cancelKnownScore()
+        #expect(flow.knownScore == nil)
         #expect(store.session == original)
         flow.path = []
         #expect(flow.knownScore == nil)
@@ -376,7 +377,7 @@ final class KnownScoreFlowTests {
         #expect(store.session.round?.score == AmericanoScore(us: 5, them: 4))
     }
 
-    @Test("Rules changes invalidate earlier score entry and switching back to Zero starts a fresh score")
+    @Test("Rules changes preserve entered score and switching back to From zero starts a fresh score")
     func changedSetup() async throws {
         let store = await open()
         let flow = NewGameFlow(store: store)
@@ -384,11 +385,35 @@ final class KnownScoreFlowTests {
         flow.knownScore?.editMatch { $0.games = SetGames(us: 4, them: 4) }
         flow.path = [.setup]
         flow.edit { $0.deuceRule = .goldenPoint }
-        #expect(flow.knownScore == nil)
+        #expect(flow.knownScore?.draft.match?.games == SetGames(us: 4, them: 4))
+        #expect(flow.knownScore?.draft.match?.deuceRule == .goldenPoint)
         flow.edit { $0.startsFromScore = false }
+        #expect(flow.knownScore == nil)
         #expect(await flow.start())
         #expect(store.session.matchState?.games == .start)
         #expect(store.session.matchState?.rules.deuceRule == .goldenPoint)
+    }
+
+    @Test("Returning to change Americano rules preserves score and revalidates total and serving")
+    func changedRoundRules() async throws {
+        let flow = NewGameFlow(store: await open())
+        prepare(flow, kind: .americano)
+        let editor = try #require(flow.knownScore)
+        editor.editRound { $0.score = AmericanoScore(us: 5, them: 4); $0.rallyInBlock = 3 }
+        editor.checkServing()
+        #expect(flow.knownScoreCanStart)
+        flow.path = [.setup]
+        flow.edit { $0.totalRallies = 8 }
+        #expect(flow.knownScore === editor)
+        #expect(editor.problems.contains(.pointsExceedTotal))
+        #expect(!flow.knownScoreCanStart)
+        flow.edit { $0.totalRallies = 12; $0.ralliesPerServer = 2 }
+        #expect(editor.draft.round?.score == AmericanoScore(us: 5, them: 4))
+        #expect(editor.problems.contains(.rallyInBlockOutsideBlock))
+        #expect(!flow.knownScoreCanStart)
+        editor.editRound { $0.rallyInBlock = 2 }
+        editor.checkServing()
+        #expect(flow.knownScoreCanStart)
     }
 
     @Test("Known start access refusal keeps the full score draft and saved session untouched")

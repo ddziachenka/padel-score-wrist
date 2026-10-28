@@ -107,7 +107,20 @@ final class NewGameFlow {
     func edit(_ change: (inout SetupDraft) -> Void) {
         guard startState == .editing, var draft else { return }
         change(&draft)
-        if draft != self.draft { knownScore = nil }
+        if !draft.startsFromScore {
+            knownScore = nil
+        } else if let editor = knownScore {
+            // Going back to adjust rules must not erase a carefully entered score.
+            // Preserve values and let the shared validators expose any new conflict.
+            editor.editMatch { $0.deuceRule = draft.deuceRule }
+            editor.editRound {
+                $0.totalRallies = draft.totalRallies
+                $0.ralliesPerServer = draft.ralliesPerServer
+            }
+            if draft.serving != self.draft?.serving, let serving = draft.serving.setup {
+                editor.setServing(serving)
+            }
+        }
         self.draft = draft
     }
 

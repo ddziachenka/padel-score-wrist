@@ -132,7 +132,7 @@ struct NewGameDestination: View {
                 number: draft(\.ralliesPerServer, otherwise: nil)
             )
         case .serving:
-            ServingEditor(serving: draft(\.serving, otherwise: ServingChoice()))
+            ServingEditor(serving: draft(\.serving, otherwise: ServingChoice()), joiningGame: flow.draft?.startsFromScore == true)
         case .about:
             AboutView(usage: store.session.usage, tryScoreboard: { flow.path.append(.demo) }, settings: { flow.path.append(.settings) })
         case .demo:

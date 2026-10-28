@@ -5,12 +5,14 @@ import SwiftUI
 /// both keep it; Cancel restores the serving the draft had when the editor opened.
 struct ServingEditor: View {
     @Binding var serving: ServingChoice
+    let joiningGame: Bool
     /// The field's value when the editor opened. Kept in state: the view is created again
     /// each time a change reaches the draft, and must not take that change as the original.
     @State private var original: ServingChoice
     @Environment(\.dismiss) private var dismiss
 
-    init(serving: Binding<ServingChoice>) {
+    init(serving: Binding<ServingChoice>, joiningGame: Bool = false) {
+        self.joiningGame = joiningGame
         _serving = serving
         _original = State(initialValue: serving.wrappedValue)
     }
@@ -18,7 +20,7 @@ struct ServingEditor: View {
     var body: some View {
         ScrollView {
             VStack(spacing: Spacing.sm) {
-                SectionHeading("First server")
+                SectionHeading(joiningGame ? "Next server" : "First server")
                 ForEach(Player.allCases, id: \.self) { player in
                     ChoiceButton(title: Text(player.name), isSelected: serving.first == player) {
                         serving.choose(first: player)
@@ -26,7 +28,7 @@ struct ServingEditor: View {
                     .accessibilityIdentifier("serving.first.\(player.rawValue)")
                 }
 
-                SectionHeading("Second server")
+                SectionHeading(joiningGame ? "After them" : "Second server")
                 if serving.first == nil {
                     Caption("Choose who serves first.")
                 } else {

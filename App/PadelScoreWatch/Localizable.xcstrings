@@ -31642,7 +31642,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Startpoäng"
+            "value": "Startställning"
           }
         },
         "da": {
@@ -31725,7 +31725,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aktuell poäng"
+            "value": "Aktuell ställning"
           }
         },
         "da": {
@@ -31808,7 +31808,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ange aktuell poäng"
+            "value": "Ange aktuell ställning"
           }
         },
         "da": {
@@ -31891,7 +31891,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Startade från aktuell poäng"
+            "value": "Startade från aktuell ställning"
           }
         },
         "da": {
@@ -31974,7 +31974,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tidigare bolldueller är okända. Ångra stannar vid denna startpoäng."
+            "value": "Tidigare bolldueller är okända. Ångra stannar vid denna startställning."
           }
         },
         "da": {
