@@ -15,13 +15,13 @@ usage, pricing, review eligibility and external review materials are unchanged.
   side. Known-score examples state fixed rules, validate both formats, confirm an
   immutable snapshot, stop Undo at its typed checkpoint, and require explicit
   serving after a set boundary. They do not claim to replace full Watch setup.
-- Lifecycle: Close or native sheet dismissal destroys the example; reopening
+- Lifecycle: Close or accessibility escape destroys the example; reopening
   and Reset start fresh. Original Demo tab-leave behavior is preserved. Background keeps memory, cold launch keeps no demo state.
 - Craftsmanship: existing cards/palette and native menu controls, vertically
   wrapping content, persistent Demo navigation title, complete before/after score,
   serving and finish status, explicit unknown earlier history. Preview starts at
-  the top. VoiceOver focus follows the step; before/after and scoring/Undo have
-  localized spoken summaries; errors are announced. No decorative animation,
+  the top. Step transitions and before/after, scoring, serving confirmation and Undo have
+  localized native announcements; errors are announced. No decorative animation,
   bespoke asset or new haptic is warranted by this instructional flow.
 - Copy: 25 new keys and reused Watch journal strings ship in all thirteen locales.
   No uniqueness claim, new paywall, entitlement flag or free-game claim is added.
@@ -37,12 +37,29 @@ boundary explicit. The first UI run also exposed a test helper selecting a hidde
 retained TabView scroll view; it now drives the visible viewport, preserving every
 journey assertion. The tab-leave assertions then reproduced a noninteractive recovery entry/return
 control on iOS17 after navigation across retained tab stacks (captured in recordings).
-Guided scenarios now use native sheets with their own lifetime, preserving the
+Guided scenarios now use native full-screen presentations with their own lifetime, preserving the
 original tab navigation. Dismiss/reopen, cancellation, score and Undo assertions
 remain. Native auditing also found that replacing the small Review heading's
 accessibility label with its entire spoken summary looked clipped; visible labels
 now remain accurate and localized summaries use native announcements. No audit
-category or issue is suppressed.  Exact runtime results and any subsequent corrections are
+category or issue is suppressed.
+
+Repeated presentations have a fresh UUID and keyed view tree. UI assertions check
+which input form opened. The appearance matrix now sets and reads XCTest's native
+device appearance; the earlier unsupported launch argument was caught by visual
+inspection and is not accepted as Dark Mode evidence. Navigation scrolls use
+normal fast gestures; native issue rechecks retain precise slow positioning.
+The explicit new-set regression checks valid serving choices and exact Undo.
+Normal-text auditing caught a faded disabled Undo; guide actions now keep opaque
+semantic text/borders in disabled states. The original scoring/purchase styles
+are unaffected. A visible score label in a partially clipped card receives its
+same native audit again with the whole card visible when it fits. Oversized cards
+still recheck individual labels. Every score label has a unique context identifier,
+so Before/After cannot share a recheck. The complete-card serving/Undo regression
+then passed with zero failed/skipped/expected/runtime warnings. Invalid input and
+Reset return the guide to the top; serving confirmation is announced.
+
+Exact runtime results and any subsequent corrections are
 recorded in runtime.md and milestone-verification.md after execution.
 
 No additional problem scanner is configured beyond static; optional analyzers

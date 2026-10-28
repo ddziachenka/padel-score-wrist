@@ -735,7 +735,7 @@ unreleased schema-3 journal format, following M20/M21; shipped schema-1/2 migrat
 and backup/newer-version protections remain unchanged.
 
 
-M24 implements two guided iPhone recovery sheets from Start and the existing Demo
+M24 implements two guided full-screen iPhone recovery presentations from Start and the existing Demo
 examples. `RecoveryScenario` owns a disposable `Session` value, applies the same
 revision-bound `Session.applying`, `previewRallyCorrection`, and known-score
 validation as Watch, and uses uncounted `OpenAccess`. It has no store, file system,
@@ -745,8 +745,8 @@ change/remove/insert, winner and insertion side. Preview is pure, confirm applie
 the shared command, one Undo restores the original record. Known-score examples
 expose Match or Americano input, a validated immutable summary, and subsequent
 real-engine scoring/Undo. Only the two original demos call review completion;
-automatic review presentation waits until no recovery sheet is open. The existing
-tab navigation/reset behavior is preserved. Close or native sheet dismissal destroys
+automatic review presentation waits until no recovery presentation is open. Each opening has a new UUID and an explicitly keyed presentation tree. The existing
+tab navigation/reset behavior is preserved. Close or accessibility escape destroys
 the scenario; reopening and Reset create a fresh example; cold launch restores
 none of this state. Real Watch persistence, settings, archive, usage and entitlements
 are unreachable from these models.

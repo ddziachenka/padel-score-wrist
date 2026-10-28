@@ -112,12 +112,14 @@ final class CompanionUITests: XCTestCase {
         reveal(app.buttons["phone.recovery.review"], in: app).tap()
         reveal(app.buttons["phone.recovery.confirm"], in: app).tap()
         app.buttons["phone.recovery.close"].tap()
+        XCTAssertTrue(app.buttons["phone.recovery.close"].waitForNonExistence(timeout: 5))
         app.tabBars.buttons["Demo"].tap()
         app.tabBars.buttons["Start"].tap()
         reveal(app.buttons["phone.start.correction"], in: app).tap()
         XCTAssertFalse(app.staticTexts["phone.recovery.applied"].exists)
         XCTAssertTrue(app.staticTexts["Us 0, them 15."].exists)
         app.buttons["phone.recovery.close"].tap()
+        XCTAssertTrue(app.buttons["phone.recovery.close"].waitForNonExistence(timeout: 5))
         XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 5))
         reveal(app.buttons["phone.start.demo"], in: app).tap()
         XCTAssertTrue(app.buttons["phone.demo.us"].waitForExistence(timeout: 5))
@@ -157,7 +159,7 @@ final class CompanionUITests: XCTestCase {
         app.terminate()
     }
 
-    func testRecoveryAmericanoRejectsFinishedInputThenScoresAndUndoesDraw() {
+    func testRecoveryAmericanoRejectsFinishedInputThenScoresAndUndoesDraw() throws {
         let app = app()
         reveal(app.buttons["phone.start.knownScore"], in: app).tap()
         reveal(app.buttons["phone.recovery.format"], in: app).tap()
@@ -167,6 +169,7 @@ final class CompanionUITests: XCTestCase {
         reveal(app.buttons["phone.recovery.review"], in: app).tap()
         XCTAssertTrue(app.staticTexts["phone.recovery.problem"].exists)
         XCTAssertFalse(app.buttons["phone.recovery.confirm"].exists)
+        try auditIncludingOccludedText(app)
         capture(app, "known-score-invalid-completed-round")
         reveal(app.buttons["phone.recovery.usPoints"], in: app).tap()
         app.buttons["10"].tap()
@@ -178,27 +181,64 @@ final class CompanionUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Us 12, them 12."].exists)
         XCTAssertTrue(app.staticTexts["Draw"].exists)
         XCTAssertFalse(app.buttons["phone.recovery.us"].isEnabled)
+        try auditIncludingOccludedText(app)
         reveal(app.buttons["phone.recovery.undo"], in: app).tap()
         XCTAssertTrue(app.buttons["phone.recovery.us"].isEnabled)
         XCTAssertTrue(app.staticTexts["Us 12, them 11."].exists)
         app.terminate()
     }
 
+    func testKnownScoreSetBoundaryRequiresServingAndExactUndo() throws {
+        let app = app()
+        reveal(app.buttons["phone.start.knownScore"], in: app).tap()
+        reveal(app.buttons["phone.recovery.usGames"], in: app).tap()
+        app.buttons["5"].tap()
+        reveal(app.buttons["phone.recovery.themGames"], in: app).tap()
+        app.buttons["0"].tap()
+        reveal(app.buttons["phone.recovery.review"], in: app).tap()
+        reveal(app.buttons["phone.recovery.confirm"], in: app).tap()
+        reveal(app.buttons["phone.recovery.us"], in: app).tap()
+        XCTAssertFalse(app.buttons["phone.recovery.us"].isEnabled)
+        XCTAssertTrue(app.buttons["phone.recovery.serving"].exists)
+        try auditIncludingOccludedText(app)
+        reveal(app.buttons["phone.recovery.firstServer"], in: app).tap()
+        app.buttons["Opponent 2"].tap()
+        reveal(app.buttons["phone.recovery.serving"], in: app).tap()
+        XCTAssertTrue(app.buttons["phone.recovery.us"].isEnabled)
+        XCTAssertTrue(app.staticTexts["Next server: Opponent 2"].exists)
+        reveal(app.buttons["phone.recovery.undo"], in: app).tap()
+        XCTAssertFalse(app.buttons["phone.recovery.us"].isEnabled)
+        XCTAssertTrue(app.buttons["phone.recovery.serving"].exists)
+        reveal(app.buttons["phone.recovery.undo"], in: app).tap()
+        XCTAssertTrue(app.buttons["phone.recovery.us"].isEnabled)
+        XCTAssertFalse(app.buttons["phone.recovery.serving"].exists)
+        XCTAssertTrue(app.staticTexts["Games 5–0"].exists)
+        try auditIncludingOccludedText(app)
+        capture(app, "known-score-set-serving-and-undo")
+        app.terminate()
+    }
+
     func testRecoveryLocalesAppearancesAndLargestText() throws {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
         let languages = [("en", "en_US"), ("es", "es_ES"), ("it", "it_IT"), ("fr", "fr_FR"),
                          ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"),
                          ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
         for (language, region) in languages {
             for appearance in ["Light", "Dark"] {
+                XCUIDevice.shared.appearance = appearance == "Light" ? .light : .dark
+                XCTAssertEqual(XCUIDevice.shared.appearance, appearance == "Light" ? .light : .dark)
                 let app = XCUIApplication()
                 app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", region,
-                    "-AppleInterfaceStyle", appearance, "-UIPreferredContentSizeCategoryName",
+                    "-UIPreferredContentSizeCategoryName",
                     "UICTContentSizeCategoryAccessibilityXXXL"]
                 app.launch()
                 XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
                 declineOptionalReview(app)
                 // Use stable identifiers throughout; every shipping locale traverses both flows.
                 reveal(app.buttons["phone.start.correction"], in: app).tap()
+                XCTAssertTrue(app.buttons["phone.recovery.action"].exists)
+                XCTAssertFalse(app.buttons["phone.recovery.format"].exists)
                 try auditIncludingOccludedText(app)
                 reveal(app.buttons["phone.recovery.review"], in: app).tap()
                 try auditIncludingOccludedText(app)
@@ -207,8 +247,11 @@ final class CompanionUITests: XCTestCase {
                 capture(app, "\(region)-\(appearance)-correction-largest")
                 reveal(app.buttons["phone.recovery.undo"], in: app).tap()
                 app.buttons["phone.recovery.close"].tap()
+                XCTAssertTrue(app.buttons["phone.recovery.close"].waitForNonExistence(timeout: 5))
                 app.tabBars.buttons.element(boundBy: 1).tap()
                 reveal(app.buttons["phone.recovery.openStart"], in: app).tap()
+                XCTAssertTrue(app.buttons["phone.recovery.format"].exists)
+                XCTAssertFalse(app.buttons["phone.recovery.action"].exists)
                 try auditIncludingOccludedText(app)
                 reveal(app.buttons["phone.recovery.review"], in: app).tap()
                 try auditIncludingOccludedText(app)
@@ -231,11 +274,13 @@ final class CompanionUITests: XCTestCase {
         for _ in 0..<40 {
             if target.exists, target.isHittable,
                target.frame.midY > top, target.frame.midY < bottom { return target }
-            let delta = target.exists ? max(-220, min(220, middle - target.frame.midY)) : -220
+            let travel = max(1, viewport.height - 60)
+            let delta = target.exists ? max(-travel, min(travel, middle - target.frame.midY)) : -travel
+            let start = delta < 0 ? bottom - 30 : top + 30
             let origin = app.coordinate(withNormalizedOffset: .zero)
-                .withOffset(CGVector(dx: app.frame.midX, dy: middle))
+                .withOffset(CGVector(dx: app.frame.midX, dy: start))
             origin.press(forDuration: 0.1, thenDragTo: origin.withOffset(CGVector(dx: 0, dy: delta)),
-                         withVelocity: .slow, thenHoldForDuration: 0.1)
+                         withVelocity: .fast, thenHoldForDuration: 0.1)
         }
         XCTAssertTrue(target.isHittable, target.debugDescription)
         return target
@@ -344,8 +389,22 @@ final class CompanionUITests: XCTestCase {
             "\(element.elementType.rawValue)|\(element.identifier)|\(element.label)"
         }
         func viewport() -> CGRect { visibleViewport(app) }
+        func fittingScoreCard(_ element: XCUIElement) -> XCUIElement? {
+            for name in ["before", "after", "result"] {
+                let identifier = "phone.recovery." + name
+                guard element.identifier.hasPrefix(identifier + ".") else { continue }
+                let card = app.otherElements[identifier]
+                if card.exists, card.frame.height <= viewport().height, card.frame.width <= viewport().width {
+                    return card
+                }
+            }
+            return nil
+        }
         func fullyVisible(_ element: XCUIElement) -> Bool {
-            let frame = element.frame
+            // iOS17 can sample the clipped card surface for a visible child.
+            // Recheck that SAME child with its entire card visible when it fits.
+            // Oversized accessibility cards still use each individual label.
+            let frame = fittingScoreCard(element)?.frame ?? element.frame
             return frame.width > 0 && frame.height > 0 && viewport().contains(frame)
         }
         func audit() throws {
@@ -373,7 +432,8 @@ final class CompanionUITests: XCTestCase {
             for _ in 0..<12 {
                 if fullyVisible(target) { break }
                 let middle = viewport().midY
-                let delta = max(-150, min(150, middle - target.frame.midY))
+                let context = fittingScoreCard(target) ?? target
+                let delta = max(-150, min(150, middle - context.frame.midY))
                 let origin = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0))
                     .withOffset(CGVector(dx: 0, dy: middle))
                 origin.press(forDuration: 0.1, thenDragTo: origin.withOffset(CGVector(dx: 0, dy: delta)),

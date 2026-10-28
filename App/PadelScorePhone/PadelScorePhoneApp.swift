@@ -32,18 +32,22 @@ struct CompanionRootView: View {
     @Environment(\.requestReview) private var requestReview
     @State private var selection = Tab.start
     @State private var demo = CompanionDemo()
-    @State private var recovery: RecoveryScenario.Kind?
+    private struct RecoveryPresentation: Identifiable {
+        let id = UUID()
+        let kind: RecoveryScenario.Kind
+    }
+    @State private var recovery: RecoveryPresentation?
     private let review = ReviewEligibility()
 
     var body: some View {
         TabView(selection: $selection) {
             NavigationStack {
                 PhoneStartView(tryDemo: { selection = .demo }, access: { selection = .access },
-                               recovery: { recovery = $0 })
+                               recovery: { recovery = RecoveryPresentation(kind: $0) })
             }
             .tabItem { Label("phone.tab.start", systemImage: "figure.tennis") }.tag(Tab.start)
             NavigationStack {
-                PhoneDemoView(demo: demo, completed: { review.completed($0) }, recover: { recovery = $0 })
+                PhoneDemoView(demo: demo, completed: { review.completed($0) }, recover: { recovery = RecoveryPresentation(kind: $0) })
             }
             .tabItem { Label("phone.tab.demo", systemImage: "hand.tap") }.tag(Tab.demo)
             NavigationStack { PhoneAccessView() }
@@ -58,8 +62,9 @@ struct CompanionRootView: View {
             if old == .demo { demo.reset() }
             if old == .demo, new == .start { considerReview() }
         }
-        .sheet(item: $recovery, onDismiss: { considerReview() }) { kind in
-            NavigationStack { PhoneRecoveryView(kind: kind) }
+        .fullScreenCover(item: $recovery, onDismiss: { considerReview() }) { presentation in
+            NavigationStack { PhoneRecoveryView(kind: presentation.kind) }
+                .id(presentation.id)
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {

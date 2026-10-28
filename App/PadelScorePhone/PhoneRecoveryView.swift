@@ -30,7 +30,11 @@ struct PhoneRecoveryView: View {
                     case .preview: preview
                     case .result: result
                     }
-                    Button("Reset demo") { demo.reset(); announce(prefix: "Demo reset.") }.buttonStyle(.bordered).controlSize(.large)
+                    Button("Reset demo") {
+                        demo.reset()
+                        proxy.scrollTo("recovery.top", anchor: .top)
+                        announce(prefix: "Demo reset.")
+                    }.buttonStyle(RecoveryButtonStyle())
                         .accessibilityIdentifier("phone.recovery.reset")
                     Text("phone.demo.isolation").font(.footnote).foregroundStyle(PhoneTheme.secondaryText)
                 }
@@ -48,6 +52,7 @@ struct PhoneRecoveryView: View {
                     Button("Close") { dismiss() }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.close")
                 }
             }
+            .accessibilityAction(.escape) { dismiss() }
             .onChange(of: demo.stage) { _, _ in
                 proxy.scrollTo("recovery.top", anchor: .top)
                 if demo.stage == .preview {
@@ -55,7 +60,10 @@ struct PhoneRecoveryView: View {
                 } else if demo.stage == .result { announce(prefix: "phone.recovery.applied") }
             }
             .onChange(of: demo.problem) { _, problem in
-                if let problem { UIAccessibility.post(notification: .announcement, argument: String(localized: problem)) }
+                if let problem {
+                    proxy.scrollTo("recovery.top", anchor: .top)
+                    UIAccessibility.post(notification: .announcement, argument: String(localized: problem))
+                }
             }
         }
     }
@@ -95,7 +103,7 @@ struct PhoneRecoveryView: View {
         } else {
             knownScoreInput
         }
-        Button("Review") { demo.review() }.buttonStyle(PhonePrimaryStyle())
+        Button("Review") { demo.review() }.buttonStyle(RecoveryButtonStyle(prominent: true))
             .accessibilityIdentifier("phone.recovery.review")
     }
 
@@ -138,8 +146,8 @@ struct PhoneRecoveryView: View {
                 .foregroundStyle(PhoneTheme.secondaryText)
         }
         Button(demo.kind == .correction ? "Apply correction" : "phone.recovery.begin") { demo.confirm() }
-            .buttonStyle(PhonePrimaryStyle()).accessibilityIdentifier("phone.recovery.confirm")
-        Button("Cancel") { demo.cancelPreview() }.buttonStyle(.bordered).controlSize(.large)
+            .buttonStyle(RecoveryButtonStyle(prominent: true)).accessibilityIdentifier("phone.recovery.confirm")
+        Button("Cancel") { demo.cancelPreview() }.buttonStyle(RecoveryButtonStyle())
             .accessibilityIdentifier("phone.recovery.cancel")
     }
 
@@ -156,24 +164,25 @@ struct PhoneRecoveryView: View {
                 Text("Earlier rallies are unknown. Undo stops at this starting score.")
                     .foregroundStyle(PhoneTheme.secondaryText)
                 if case .match(let match) = game.format, !match.service.isConfirmed {
+                    let first = nextServer.team == match.service.server.team ? nextServer : match.service.server
                     Text("Confirm serving").font(.headline)
-                    Picker("First server", selection: $nextServer) {
+                    Picker("First server", selection: Binding(get: { first }, set: { nextServer = $0 })) {
                         ForEach(Player.allCases.filter { $0.team == match.service.server.team }, id: \.self) {
                             Text($0.name).tag($0)
                         }
-                    }.onAppear { nextServer = match.service.server }
-                    Button("Confirm serving") { demo.confirmServing(nextServer) }.buttonStyle(PhonePrimaryStyle())
+                    }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.firstServer")
+                    Button("Confirm serving") { demo.confirmServing(first); announce() }.buttonStyle(RecoveryButtonStyle(prominent: true))
                         .accessibilityIdentifier("phone.recovery.serving")
                 }
                 Button { demo.award(.us); announce() } label: { Text("phone.recovery.pointUs") }
-                    .buttonStyle(PhonePrimaryStyle()).disabled(!demo.canAward)
+                    .buttonStyle(RecoveryButtonStyle(prominent: true)).disabled(!demo.canAward)
                     .accessibilityIdentifier("phone.recovery.us")
                 Button { demo.award(.them); announce() } label: { Text("phone.recovery.pointThem") }
-                    .buttonStyle(.bordered).controlSize(.large).disabled(!demo.canAward)
+                    .buttonStyle(RecoveryButtonStyle()).disabled(!demo.canAward)
                     .accessibilityIdentifier("phone.recovery.them")
             }
         }
-        Button("Undo") { demo.undo(); announce(prefix: "Action undone.") }.buttonStyle(.bordered).controlSize(.large).disabled(!demo.canUndo)
+        Button("Undo") { demo.undo(); announce(prefix: "Action undone.") }.buttonStyle(RecoveryButtonStyle()).disabled(!demo.canUndo)
             .accessibilityIdentifier("phone.recovery.undo")
     }
 
@@ -199,6 +208,7 @@ struct PhoneRecoveryView: View {
             parts.append(String(localized: "phone.demo.remaining \(remaining)"))
             if let serving { parts.append(String(localized: "phone.demo.block \(serving.rally) \(serving.block)")) }
         }
+        if case .toConfirm = board.serving { parts.append(String(localized: "Confirm serving")) }
         if let server = board.server { parts.append(String(localized: "phone.demo.serving \(String(localized: server.name))")) }
         parts.append(String(localized: game.status == .finished ? LocalizedStringResource("Game finished") : "phone.recovery.active"))
         if case .ended(let result?) = board.serving { parts.append(String(localized: result.spoken)) }
@@ -240,23 +250,67 @@ struct PhoneRecoveryView: View {
         let board = ScoreBoard(format: game.format, isFinished: game.status == .finished)
         return PhoneCard {
             Text(title).font(.headline).accessibilityAddTraits(.isHeader)
+                .accessibilityIdentifier("phone.recovery.\(id).title")
             Text("phone.demo.announcement \(board.us.shown) \(board.them.shown)")
                 .font(.title2.bold().monospacedDigit()).fixedSize(horizontal: false, vertical: true)
-            Text(board.context.title)
+                .accessibilityIdentifier("phone.recovery.\(id).points")
+            Text(board.context.title).font(.subheadline.weight(.semibold)).foregroundStyle(Color.primary)
+                .accessibilityIdentifier("phone.recovery.\(id).context")
             switch board.details {
             case .match(let games, let sets):
                 Text("phone.demo.games \(games.us) \(games.them)")
+                    .accessibilityIdentifier("phone.recovery.\(id).games")
                 Text("phone.demo.sets \(sets.us) \(sets.them)")
+                    .accessibilityIdentifier("phone.recovery.\(id).sets")
             case .americano(let remaining, let serving):
                 Text("phone.demo.remaining \(remaining)")
-                if let serving { Text("phone.demo.block \(serving.rally) \(serving.block)") }
+                    .accessibilityIdentifier("phone.recovery.\(id).remaining")
+                if let serving {
+                    Text("phone.demo.block \(serving.rally) \(serving.block)")
+                        .accessibilityIdentifier("phone.recovery.\(id).block")
+                }
             }
-            if let server = board.server { Text("phone.demo.serving \(String(localized: server.name))") }
-            if case .ended(let result?) = board.serving { Text(result.title) }
+            if case .toConfirm = board.serving {
+                Text("Confirm serving").font(.headline)
+                    .accessibilityIdentifier("phone.recovery.\(id).serviceHint")
+            }
+            if let server = board.server {
+                Text("phone.demo.serving \(String(localized: server.name))")
+                    .accessibilityIdentifier("phone.recovery.\(id).server")
+            }
+            if case .ended(let result?) = board.serving {
+                Text(result.title).accessibilityIdentifier("phone.recovery.\(id).outcome")
+            }
             Text(game.status == .finished ? "Game finished" : "phone.recovery.active")
+                .accessibilityIdentifier("phone.recovery.\(id).status")
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("phone.recovery.\(id)")
+    }
+}
+
+/// Keep disabled actions identifiable and readable instead of fading their text.
+/// The original scoreboard/purchase styles are deliberately unaffected.
+private struct RecoveryButtonStyle: ButtonStyle {
+    var prominent = false
+    @Environment(\.isEnabled) private var enabled
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.headline)
+            .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, minHeight: 50)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 6)
+            .foregroundStyle(enabled && prominent ? PhoneTheme.ink : enabled ? Color.primary : PhoneTheme.secondaryText)
+            .background(enabled && prominent ? PhoneTheme.lime : Color(.secondarySystemGroupedBackground),
+                        in: RoundedRectangle(cornerRadius: 18))
+            .overlay {
+                RoundedRectangle(cornerRadius: 18)
+                    .stroke(enabled && prominent ? Color.clear : PhoneTheme.secondaryText, lineWidth: 1)
+            }
+            .opacity(enabled && configuration.isPressed ? 0.85 : 1)
     }
 }
 
