@@ -74,3 +74,5 @@ first server. The original full gate was interrupted, not accepted. Two exact UI
 regressions and the complete expanded minimum-OS set pass17/17/21 on source
 818c1fc59dffef164b66c4622422a8113a560753. Captures were inspected after correction.
 No blocking finding remains known. A fresh complete clean REVIEW gate is required.
+
+Final clean candidate `ec20c1f8a02fbfe640cbe18e65871e92b75e5a6e` passed the complete `make milestone ID=M23`, exit0; 588 definitions/1002 invocations, no failures/skips/expected/runtime warnings. No blocking finding remains known; see milestone-verification.md.

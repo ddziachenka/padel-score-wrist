@@ -1,7 +1,7 @@
 # M23 — Start from a Known Score
 
 **ID:** M23
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M22
 **Validation:** make milestone ID=M23
 **Handoff:** AI/handoffs/M23-handoff.md
@@ -18,10 +18,10 @@ Zero/current-score choice in existing setup. Guided rules/score/service and conf
 
 ## Acceptance criteria
 
-- [ ] Match handles completed sets/current games/points/deuce/tie-break and explicit service; Americano handles points/N/B/block position.
-- [ ] Invalid or already-completed states cannot start; cancellation leaves stored game/settings untouched.
-- [ ] Undo cannot cross initial checkpoint; later corrections and finish/undo count the same game once.
-- [ ] Tests cover valid boundary states, invalid combinations, access/ledger and persistence; full make milestone ID=M23 passes.
+- [x] Match handles completed sets/current games/points/deuce/tie-break and explicit service; Americano handles points/N/B/block position.
+- [x] Invalid or already-completed states cannot start; cancellation leaves stored game/settings untouched.
+- [x] Undo cannot cross initial checkpoint; later corrections and finish/undo count the same game once.
+- [x] Tests cover valid boundary states, invalid combinations, access/ledger and persistence; full make milestone ID=M23 passes.
 
 ## Non-goals
 

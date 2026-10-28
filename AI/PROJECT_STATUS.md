@@ -2,9 +2,9 @@
 
 **Phase:** implementation
 **Current milestone:** M23
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22
-**Next milestone:** M23
-**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M23 REVIEW, final copy/runtime corrections passed; fresh full gate pending; M24–M26 remain planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23
+**Next milestone:** M24
+**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M23 passed; M24–M26 remain planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -23,14 +23,14 @@ Handoff: [ASC launch](handoffs/ASC-launch-20261024.md). The owner authorized the
 
 M16 is **DONE under explicit owner acceptance**, with raw automated failure
 preserved. Compact iOS17 companion provides Start, real-engine Match/Americano demos
-and the existing lifetime flow; watchOS10 app remains independent. Home Screen label
+and the existing lifetime flow; watchOS 10 app remains independent. Home Screen label
 is PadelScore. Invisible explanatory copy/spacing and Spanish largest-text truncation
 were fixed. All languages,56 native iPhone store images/14 ASC locales, store/site/
 review drafts, dual-platform harness and signed1.0(2) archive are prepared.
 
 Exact clean REVIEW candidate `b671bb1d611daebb03718429f1036eab569a1cca` ran unchanged
-`make milestone ID=M16`: Watch510 definitions/884 invocations passed; iPhone unit14
-/20 passed; iPhone UI6 executed,4 passed/2 native Contrast failed. No skipped,
+`make milestone ID=M16`: Watch510 definitions/884 invocations passed; iPhone unit 14
+/20 passed; iPhone UI 6 executed,4 passed/2 native Contrast failed. No skipped,
 expected-failure or runtime-warning results. Raw verdict FAILED: Make2/verifier1/
 UI xcodebuild65. Report `.artifacts/milestone/M16/20261024T143428Z-49481/report.md`.
 The owner explicitly accepts those exact two SE/iOS17 audits based on passed iOS27
@@ -41,7 +41,7 @@ reported as passes. No test/parser/suite was weakened. Scope and quote:
 
 Generic tooling self-test passed99 cases/2161 checks in the approved byte-matched
 original-template fixture; actual product static/site/package checks passed. Both
-watchOS10/27 supplements passed13 definitions/24 invocations each; iOS27 passed4/4.
+watchOS 10/27 supplements passed13 definitions/24 invocations each; iOS27 passed4/4.
 Signed archive source `fc118f8a0b357d52e0b06f8ba1f17449297ca623` has identical
 App/Config/Scripts inputs at the final candidate. Old84 Watch/28 creative assets and
 historical readiness evidence remain intact. Earlier failures and cache diagnosis
@@ -70,7 +70,7 @@ AI/evidence/M17/owner-release-authorization.md. Prior M16 completion is historic
 new release readiness/submission has not yet been established.
 
 M17 first unchanged full run on9ab72b4fec5f657b2e606c09e5e776099a541c24 failed:
-Watch510/884 and iPhone unit14/20 passed, UI3/6 passed. In addition to the two
+Watch510/884 and iPhone unit 14/20 passed, UI3/6 passed. In addition to the two
 accepted contrast cases, the first Access test was covered by the native
 Enjoying PadelScore? / Not Now review prompt after the calendar-day change.
 This third failure is not accepted. M17 returns to IN_PROGRESS for reproduction
@@ -84,8 +84,8 @@ AI/evidence/M17/review-prompt-regression.md.
 ## M17 completed — current checkpoint
 
 M17 DONE under explicit bounded owner acceptance. Exact `02ec9c97b1c6e1d2c1c58aec64f990ed76399f77` ran full
-make milestone ID=M17: Watch510/884 and phone unit14/20 passed, UI4/6 passed,
-only the two accepted native Contrast failures. Raw FAILED/Make2/verifier1/UI65
+make milestone ID=M17: Watch510/884 and phone unit 14/20 passed, UI4/6 passed,
+only the two accepted native Contrast failures. Raw FAILED/Make2/verifier1/UI 65
 preserved; no skipped/expected/runtime warnings. Known review-prompt interference
 corrected only in UI setup with targeted fail-before/pass-after evidence. Handoff
 AI/handoffs/M17-handoff.md. New signed1.0(2) archive/export/server validation passed.
@@ -103,8 +103,8 @@ assertion/parser omitted and no new failure accepted.
 ## M18 readiness established — new companion candidate
 
 M18 DONE under exact owner acceptance. Candidate `572e3524157154f9104edab61b1d4311de437857` ran unchanged full
-make release: Watch510/884 and phone unit14/20 passed; UI4/6passed, only two
-accepted Contrast failures. Raw VERIFICATION_FAILED/Make2/verifier1/UI65 preserved.
+make release: Watch510/884 and phone unit 14/20 passed; UI4/6passed, only two
+accepted Contrast failures. Raw VERIFICATION_FAILED/Make2/verifier1/UI 65 preserved.
 No automated READY_FOR_HUMAN claimed. Six domains current; package/servervalidation
 passed; source continuity to newly archived02ec9c9 confirmed. Handoff M18-handoff.md.
 Actual upload/select/TestFlight/ordinary joint submission follows existing owner
@@ -113,7 +113,7 @@ Monitor guard requires current new candidate/build match before public offer wor
 
 ## Companion distribution prepared — 2026-10-25
 
-New1.0(2) uploaded exit0, AppleVALID, ID283096f1-80fe-4114-93c1-6fb9f2ace782.
+New1.0(2) uploaded exit 0, AppleVALID, ID283096f1-80fe-4114-93c1-6fb9f2ace782.
 Selected on existing1.0, AFTER_APPROVAL, new2004-character Review Notes saved/read
 back. Internal Owner TestFlight has1existing tester and only build2, IN_BETA_TESTING.
 New runtime TestFlight inspection unavailable because Mac locked; not called passed.
@@ -164,8 +164,8 @@ Owner approved M19–M26 in AI/recovery-differentiation-plan.md: selective rally
 
 M19 DONE with a fully passing gate, without historical contrast exceptions. Exact
 clean REVIEW candidate `227a1c43be1fc8cbfe12178683beaeb1308732d8` ran
-`make milestone ID=M19`, exit0, 17:48:07–20:15:45UTC. Watch510/510 definitions
-(884 invocations), phone unit14/14 (20 invocations), phone UI6/6 passed; zero
+`make milestone ID=M19`, exit 0, 17:48:07–20:15:45UTC. Watch510/510 definitions
+(884 invocations), phone unit 14/14 (20 invocations), phone UI 6/6 passed; zero
 failed/skipped/expected/runtime warnings. Both previously failing native contrast
 audits pass. One non-blocking Apple StoreKitTest SDK-header deprecation warning
 is recorded separately. Opaque semantic native bars preserve original inactive
@@ -184,8 +184,8 @@ Promotional Text change; no new release readiness claimed.
 
 M20 DONE. Exact clean REVIEW/main candidate
 `98a0502e84453d66904cf13654d92850641ed497` passed `make milestone ID=M20`,
-exit0,20:39:05–23:06:43UTC. Watch523/523 definitions/918 invocations,
-iPhone unit14/14/20, iPhone UI6/6; zero failed/skipped/expected/runtime warnings.
+exit 0,20:39:05–23:06:43UTC. Watch523/523 definitions/918 invocations,
+iPhone unit 14/14/20, iPhone UI 6/6; zero failed/skipped/expected/runtime warnings.
 Both native iPhone contrast audits pass without historical waivers. Both Debug
 builds and independent Watch/companion packaging guards pass.
 
@@ -218,8 +218,8 @@ DONE records and passing static/status/continuity checks against the verified SH
 ## M21 completed — 2026-10-28 UTC
 
 M21 DONE. Exact clean REVIEW/main candidate `9b10f99b6b96a45fc91bff736b68ff9d4df243ac`
-passed `make milestone ID=M21`, exit0,06:07:52–08:34:50UTC. Watch536/536
- definitions/940 invocations, phone unit14/14/20, phone UI6/6; zero
+passed `make milestone ID=M21`, exit 0,06:07:52–08:34:50UTC. Watch536/536
+ definitions/940 invocations, phone unit 14/14/20, phone UI 6/6; zero
 failed/skipped/expected/runtime warnings. Both native contrast audits pass.
 Both Debug/package guards pass. Handoff: [M21](handoffs/M21-handoff.md);
 [exact evidence](evidence/M21/milestone-verification.md).
@@ -271,3 +271,30 @@ Builder self-review, not independent review or release approval. App Review repl
 remains unsent/on hold and 4.3(a) unresolved; no upload/submission/pricing/Promotional
 Text change. Next Builder owns M23; M23–M26 remain PLANNED. This Builder stops after
 committing DONE records and passing static/status/continuity against the verified SHA.
+
+
+## M23 completed — current checkpoint
+
+M23 DONE. Clean REVIEW/main candidate `ec20c1f8a02fbfe640cbe18e65871e92b75e5a6e` passed
+`make milestone ID=M23`, exit 0, UTC `2026-10-28T16:28:52Z`–`2026-10-28T19:16:57Z`.
+Watch 568/568 definitions/976 invocations; phone unit 14/14/20, UI 6/6/6.
+Aggregate 588 definitions/1002 invocations; zero failed/skipped/expected/runtime
+warnings. Both Debug/package guards and native iPhone contrast audits pass.
+Handoff: [M23](handoffs/M23-handoff.md);
+[exact evidence](evidence/M23/milestone-verification.md).
+
+Match/Americano can start from a validated known score and explicit service,
+confirmed before saving a normal game with an initial checkpoint. Earlier rallies
+remain unknown; Undo cannot cross the start. Invalid/completed rounds cannot
+start, cancellation writes nothing, and later corrections/finish/Undo count one
+GameID once. Going back to change setup rules preserves entered score and
+revalidates it. All seven strings ship in thirteen locales. Final-source minimum
+watchOS 10 set passes17/17 definitions/21 invocations, including five UI cases,
+native audits, largest text, background, cold launch and exact copy regressions.
+The deliberately interrupted first full candidate remains raw FAILED evidence;
+this fresh complete pass supersedes it without weakening any check or waiver.
+
+Builder self-review, not independent review or release approval. App Review reply
+remains unsent/on hold and 4.3(a) unresolved; no upload/submission/pricing/Promotional
+Text change. Next Builder owns M24; M24–M26 remain PLANNED. This Builder stops after
+DONE static/status/continuity checks against the verified SHA.
