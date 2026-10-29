@@ -491,8 +491,25 @@ extension KnownScoreUITests {
 final class PlayerNamesUITests: XCTestCase {
     override func setUp() { continueAfterFailure = false }
 
+    /// watchOS 10 puts the SwiftUI identifier on a wrapper around the native input;
+    /// current watchOS exposes the TextField itself. Always resolve the same role's
+    /// actual editable field, never an unrelated first field on the screen.
+    private func playerField(_ player: String, in app: XCUIApplication) -> XCUIElement {
+        let identified = app.descendants(matching: .any).matching(identifier: "players.\(player)").firstMatch
+        XCTAssertTrue(identified.waitForExistence(timeout: 5))
+        if identified.elementType == .textField { return identified }
+        XCTAssertEqual(identified.textFields.count, 1)
+        return identified.textFields.firstMatch
+    }
+
+    private func playerValue(_ player: String, in app: XCUIApplication) -> String {
+        let field = playerField(player, in: app)
+        if let value = field.value as? String, !value.isEmpty { return value }
+        return field.placeholderValue ?? ""
+    }
+
     private func enterName(_ name: String, player: String, replacing old: String = "", in app: XCUIApplication) {
-        let field = app.textFields["players.\(player)"]
+        let field = playerField(player, in: app)
         field.scrollToAndTap(in: app)
         app.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count) + name)
         attachScreenshot("Native player-name input")
@@ -560,8 +577,8 @@ extension PlayerNamesUITests {
         enterName("", player: "opponent1", replacing: long, in: app)
         XCUIApplication(bundleIdentifier: "com.apple.NanoCalculator.watchkitapp").activate()
         app.activate()
-        XCTAssertTrue(app.textFields["players.opponent1"].waitForExistence(timeout: 10))
-        XCTAssertEqual(app.textFields["players.opponent1"].value as? String, "Opponent 1")
+        XCTAssertTrue(playerField("opponent1", in: app).waitForExistence(timeout: 10))
+        XCTAssertEqual(playerValue("opponent1", in: app), "Opponent 1")
         attachScreenshot("Player draft preserved through background")
         app.buttons["players.cancel"].scrollToAndTap(in: app)
         app.goBack()
@@ -579,8 +596,8 @@ extension PlayerNamesUITests {
         assertLabel(app.descendants(matching: .any)["roster.opponent2"], contains: long)
         app.buttons["result.playAgain"].scrollToAndTap(in: app)
         app.buttons["setup.players"].scrollToAndTap(in: app)
-        XCTAssertEqual(app.textFields["players.partner"].value as? String, "Zoë")
-        XCTAssertEqual(app.textFields["players.opponent2"].value as? String, long)
+        XCTAssertEqual(playerValue("partner", in: app), "Zoë")
+        XCTAssertEqual(playerValue("opponent2", in: app), long)
         app.buttons["players.cancel"].scrollToAndTap(in: app)
         app.goBack()
         app.buttons["result.history"].scrollToAndTap(in: app)
@@ -608,7 +625,7 @@ extension PlayerNamesUITests {
         let reopened = launchApp(store: "names-failure", seed: nil)
         XCTAssertTrue(reopened.buttons["game.us"].waitForExistence(timeout: 10))
         openPlayers(reopened)
-        XCTAssertEqual(reopened.textFields["players.partner"].value as? String, "Partner")
+        XCTAssertEqual(playerValue("partner", in: reopened), "Partner")
     }
 
     func testLiteralNamesAndPlayersCopyInEveryLocaleAtLargestText() throws {
@@ -631,8 +648,8 @@ extension PlayerNamesUITests {
             XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
             openPlayers(app)
             XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5))
-            XCTAssertEqual(app.textFields["players.partner"].value as? String, "Golden point")
-            XCTAssertEqual(app.textFields["players.opponent1"].value as? String, "Alexandra Maria de la Cruz")
+            XCTAssertEqual(playerValue("partner", in: app), "Golden point")
+            XCTAssertEqual(playerValue("opponent1", in: app), "Alexandra Maria de la Cruz")
             attachScreenshot("\(language) Players, largest text")
             app.buttons["players.save"].scrollToAndTap(in: app)
             XCTAssertTrue(app.buttons["menu.players"].waitForExistence(timeout: 5))

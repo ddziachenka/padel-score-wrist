@@ -80,3 +80,39 @@ Self-review added the explicit old-schema-3 strict-journal regression while that
 mutable fast run was executing. The entire affected SessionFileTests suite then
 ran on final source with exit0, `.artifacts/M27/schema-final.xcresult` and native
 `schema-final-summary.json`; the full candidate gate still reruns everything.
+
+## Minimum-OS correction
+
+The first watchOS10 supplement at `aa638e4629a711d5be5e5a0610c6d73dee0285f9`
+returned65: **449/454 definitions passed**, five UI failures, zero skips/expected/
+runtime warnings; all449 unit definitions/871 unit invocations passed. Each UI
+failure queried a TextField carrying the role ID. Native hierarchy proves watchOS10
+places that ID on an Other wrapper containing exactly one actual TextField. The
+test now resolves that identified role's actual editable child (or the field
+itself on current OS), asserting its presence/count and all the same values,
+input, persistence and result behavior. Empty value reads the native placeholder
+when the OS exposes it separately. No app state injection or assertion skip.
+
+A focused mutable-source watchOS10 native input/service/start/relaunch test passed
+exit0 in74.452s: `.artifacts/M27/watch-minimum-smoke-1.xcresult`. Complete minimum
+coverage must rerun on the new candidate. Failed original summary/hierarchy remain
+in `.artifacts/M27/watch-minimum-failed-summary.json` and
+`minimum-failed-attachments/`; the old bundle is retained as attempt1.
+
+Visual inspection of successful fast attachments confirmed long names use the
+approved compact two-line serving layout with full accessible value. At maximum
+text size the optional explanatory paragraph filled the editor's initial screen.
+Moved it below the three fields so entering names comes first; it remains before
+Save. This narrow native-form polish and the test compatibility correction require
+new fast/compatibility/full-candidate verification, not inherited UI evidence.
+
+## Final fast after minimum-OS/visual correction
+
+Exact `make fast` passed exit0 through the documented temporary-scope wrapper:
+**454/454 definitions,876 invocations**, zero failed/skipped/expected/runtime
+warnings; Debug/package guards pass. Report:
+`.artifacts/fast/20261029T082750Z-84551/report.md`; native summary
+`.artifacts/M27/fast-final-summary.json`. The config is restored before the new
+REVIEW commit. The complete native failed/passed development bundles originally
+in /private/tmp are retained under `.artifacts/M27/development/`; bundle-index.json
+maps their original command paths to retained paths. No failed report is deleted.

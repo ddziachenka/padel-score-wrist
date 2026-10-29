@@ -62,3 +62,12 @@ explicit direction; no failed connection is represented as a hardware pass.
 M27 precedes M25/M26, and this Builder stops after M27. The full milestone gate
 retains both platform suites and strict parser counts. Development failures remain
 raw failed evidence; the owned cache cleanup preserves all reports and guards.
+
+## Minimum-OS and visual corrections
+
+The actual watchOS10 hierarchy exposed the role ID on a wrapper around the native
+TextField. Tests now resolve that exact role's editable field across both shapes,
+assert a single child where wrapped, and preserve all input/value/persistence
+assertions. A focused native-input/start/relaunch check passed before the complete
+rerun. The optional explanation was moved below fields after maximum-text-size
+screenshots showed it filled the opening screen; the useful action is now first.

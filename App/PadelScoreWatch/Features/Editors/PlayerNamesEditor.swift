@@ -74,13 +74,13 @@ struct PlayerNamesEditor: View {
     var body: some View {
         ScrollView {
             VStack(spacing: Spacing.sm) {
-                Caption("Names are optional. Leave blank to use player roles.")
                 Group {
                     field(.partner, text: $draft.partner)
                     field(.opponent1, text: $draft.opponent1)
                     field(.opponent2, text: $draft.opponent2)
                 }
                 .disabled(isSaving || failed || rejected)
+                Caption("Names are optional. Leave blank to use player roles.")
                 if failed {
                     Caption("Couldn’t save the names. Nothing has changed.")
                         .accessibilityIdentifier("players.saveError")
