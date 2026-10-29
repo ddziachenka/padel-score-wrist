@@ -62,3 +62,30 @@ No hardware check was attempted or claimed here. M29 owns real recognition,
 comfort, wrist/racket-hand behavior, haptics, VoiceOver, interruptions, purchases,
 recovery and the remaining M27 physical scenarios. Simulator action-button taps
 exercise the shared software path, never prove actual finger recognition.
+
+- `fast-2.log`: `bash .artifacts/M28/run-fast.sh` / exact `make fast` exited0;
+  474/474 definitions passed, no failures/skips/expected failures. Report
+  `.artifacts/fast/20261029T143425Z-37599/report.md`; summary/attachments exported
+  under `.artifacts/M28/fast-2-*`. Source was mutable development input; later
+  small pending-label/lifecycle/timer-review corrections are verified by the
+  final immutable milestone, not retroactively attributed to this run.
+- `phone-build-for-testing-1.log`: exited0, iPhone test build prepared.
+- `phone-gestures-1.log`: exited65 before tests; command selected the phone unit
+  target in the UI-only scheme. Corrected command; production schemes unchanged.
+
+Largest-text Watch captures inspected from fast-2: Russian live/action and practice,
+German practice and Portuguese/German matrices available in manifest. Native
+scrolling keeps enlarged content readable, actions reachable and counts correct.
+Normal40mm compact/action captures from ui-3 exposed a cramped pending label; it
+now uses an hourglass and localized team, retaining a full spoken Pending label.
+
+The phone preflight matrix was deliberately stopped after successful English
+Light/Dark native audits at largest text and the next locale began. It is partial
+development evidence, never a matrix pass. The unchanged full M28 gate owns the
+entire13-language/two-appearance matrix and both complete phone schemes; no
+assertion, test, plan or parser is removed or skipped.
+
+The partial phone preflight exited143 after its normal interrupt stalled while
+Xcode tried to save the unfinished action log; only its own xcodebuild process
+was terminated. No simulator/service reset or foreign process termination.
+Partial/incomplete bundle and raw logs are preserved and never count as passes.

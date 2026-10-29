@@ -13,11 +13,21 @@ struct GestureActionButton: View {
         Button(action: action) {
             Group {
                 if let serving, team == nil {
-                    HStack(spacing: 2) {
-                        Image(systemName: "hand.pinch")
-                            .font(Typography.caption)
-                            .accessibilityHidden(true)
-                        ServingBlock(board: serving, layout: .columns, idPrefix: "game", names: names)
+                    if let player = serving.server {
+                        VStack(spacing: 0) {
+                            Text("Serving").font(.caption2)
+                                .foregroundStyle(Palette.textSecondary)
+                            HStack(spacing: 2) {
+                                Image(systemName: "hand.pinch")
+                                    .font(.caption2).accessibilityHidden(true)
+                                Text(verbatim: player.displayName(in: names))
+                                    .font(Typography.caption.weight(.semibold))
+                                    .lineLimit(2).minimumScaleFactor(0.75)
+                            }
+                        }
+                        .multilineTextAlignment(.center)
+                        .accessibilityElement(children: .combine)
+                        .accessibilityIdentifier("game.server")
                     }
                 } else if serving != nil {
                     VStack(spacing: 0) {
@@ -33,6 +43,11 @@ struct GestureActionButton: View {
                         else { Text("Double Tap") }
                     }.fixedSize(horizontal: false, vertical: true)
                 }
+            }
+            .contentTransition(.identity)
+            .transaction { transaction in
+                transaction.animation = nil
+                transaction.disablesAnimations = true
             }
             .font(Typography.caption)
             .frame(maxWidth: .infinity, minHeight: 44)

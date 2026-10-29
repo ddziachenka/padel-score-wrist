@@ -24,6 +24,7 @@ final class GestureScoringUITests: XCTestCase {
         action.tap()
         XCTAssertTrue(action.label.contains("Pending: US"))
         XCTAssertEqual(app.buttons["game.us"].label, "Our score, 0")
+        Thread.sleep(forTimeInterval: 0.5)
         attachScreenshot("Gesture pending our team")
         waitForLabel(app.buttons["game.us"], "Our score, 15", timeout: 6)
         action.tap(withNumberOfTaps: 2, numberOfTouches: 1)

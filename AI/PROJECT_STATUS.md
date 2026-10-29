@@ -381,3 +381,10 @@ including outstanding M27 coverage. M25 owns digital experience and three genera
 artwork directions/all14locale galleries; M30 replaces old reply and handles
 separately authorized resubmission. Owner clarified initial competitor research;
 old no-research wording must not be sent. No new app behavior is verified yet.
+
+
+M28 implementation/self-review complete; REVIEW candidate follows. Minimum
+watchOS10 supplement469/469 definitions/907 invocations and current27
+supplement471/471/909 passed, exit0, on frozen app source1c6860f. Mutable make fast
+passed474/474 during development. Full unchanged make milestone ID=M28 remains
+required before DONE; no release readiness or physical recognition pass claimed.
