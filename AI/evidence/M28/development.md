@@ -89,3 +89,10 @@ The partial phone preflight exited143 after its normal interrupt stalled while
 Xcode tried to save the unfinished action log; only its own xcodebuild process
 was terminated. No simulator/service reset or foreign process termination.
 Partial/incomplete bundle and raw logs are preserved and never count as passes.
+
+Final compact visual correction: use a single smaller native Serving heading and
+hand/name row; stable pending hourglass/team geometry and identity transitions.
+At source872ed0f, watch-current-v2 passes471/471 definitions/909 invocations and
+watch-minimum-v2 passes469/469/907, both exit0. Final captures inspected: no
+wrapped Serving heading, no ghost previous label after settled transition.
+Earlier runtime bundles remain as historical development evidence.

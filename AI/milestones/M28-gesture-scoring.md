@@ -1,7 +1,7 @@
 # M28 — Gesture Scoring
 
 **ID:** M28
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M27
 **Validation:** make milestone ID=M28
 **Handoff:** AI/handoffs/M28-handoff.md

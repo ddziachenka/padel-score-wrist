@@ -4,7 +4,7 @@ Builder inspection/self-review, not independent review or release approval.
 
 ## Frozen-source supplements
 
-App/Config/Scripts source: `1c6860f588ea2a0a7960cd6657fe9939cf305868`.
+App/Config/Scripts source: `872ed0f06599dc13a3b4e758b40f8a7f257d19fe`.
 
 | Run | Owned device / OS | Definitions / invocations | Exit |
 | --- | --- | --- | --- |
@@ -12,11 +12,11 @@ App/Config/Scripts source: `1c6860f588ea2a0a7960cd6657fe9939cf305868`.
 | Current Watch | SE3 40mm / watchOS27.0 /36C94878-A329-4B51-92E9-4D72A40B178B | 471/471 /909 | 0 |
 
 Both rows have zero failed/skipped/expected failures. Native summary/test-tree JSON
-and result bundles live in `.artifacts/M28/watch-{minimum,current}*`. Exact commands:
+and result bundles live in `.artifacts/M28/watch-{minimum,current}-v2*`. Exact commands:
 
 ```sh
-bash .artifacts/M16/runtime-profile.sh watch-minimum run bash .artifacts/M28/check-runtime.sh watch-minimum
-bash .artifacts/M16/runtime-profile.sh watch-current run bash .artifacts/M28/check-runtime.sh watch-current
+M28_RUNTIME_RUN=watch-minimum-v2 bash .artifacts/M16/runtime-profile.sh watch-minimum run bash .artifacts/M28/check-runtime.sh watch-minimum
+M28_RUNTIME_RUN=watch-current-v2 bash .artifacts/M16/runtime-profile.sh watch-current run bash .artifacts/M28/check-runtime.sh watch-current
 ```
 
 Minimum runs every Watch unit definition plus the new minimum-runtime UI journey:
@@ -26,15 +26,15 @@ both teams, immediate touch/Undo/relaunch, menu opt-in/disable/background and
 native accessibility audits. Only watchOS10's generated test-runner xctestrun uses
 the established M23/M27 host private-framework compatibility path; no shipping
 dependency or check changes. Owned devices retain their original boot state.
-UTC native test times: minimum2026-10-29T14:58:42.748Z–14:59:20.490Z;
-current2026-10-29T15:00:54.852Z–15:02:18.041Z.
+UTC native test times: minimum2026-10-29T15:11:30.329Z–15:12:03.615Z;
+current2026-10-29T15:09:09.351Z–15:10:32.836Z.
 
 ## Inspected application captures
 
-Current-source captures exported from watch-current.xcresult:
+Current-source captures exported from watch-current-v2.xcresult:
 
-- `watch-current-attachments/86D578FF-8D24-433D-830F-AE7BC04E28F3.png`: normal40mm score, games/sets, serving, visible gesture button, Undo/Menu fit together.
-- `watch-current-attachments/8DC59C84-1B9B-4106-8B32-87A69707A045.png`: pending team uses hourglass/US without wrapping into the score or changing saved points.
+- `watch-current-v2-attachments/5C8BACA7-46AD-4D8B-9709-D757F3E937EC.png`: normal40mm score, games/sets, serving, visible gesture button, Undo/Menu fit together.
+- `watch-current-v2-attachments/63F3BA30-D89D-4C9C-B89A-1D823D048164.png`: pending team uses hourglass/US without wrapping into the score or changing saved points.
 
 Paths above are beneath `.artifacts/M28/`; their export manifest records source
 test/device/timestamps. Earlier primary26.1 development captures inspected Russian

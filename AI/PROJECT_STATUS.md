@@ -388,3 +388,8 @@ watchOS10 supplement469/469 definitions/907 invocations and current27
 supplement471/471/909 passed, exit0, on frozen app source1c6860f. Mutable make fast
 passed474/474 during development. Full unchanged make milestone ID=M28 remains
 required before DONE; no release readiness or physical recognition pass claimed.
+
+After final compact-label correction, source872ed0f passed both supplements again:
+watchOS10 469/469/907, watchOS27 471/471/909, exits0. Final visuals inspected.
+M28 REVIEW now runs the complete unchanged milestone gate on a clean main commit.
+All required physical checks remain M29; no external distribution action.
