@@ -46,3 +46,11 @@ used by recovery guidance; no text is hidden or scaled down. The strengthened
 generic regression covers all failing locales, and both it and the full matrix
 require the real explanation element to retain largest-size height. No audit
 helper, category, exception, timing assertion or count parser changed.
+
+The native-label regression passed all10 variants. Strengthened its coverage and
+the full matrix further: the explanation must retain largest-font height, fit and
+be fully visible for an explicit native audit before controls are shown. The
+original audit helper stays byte-identical. The interrupted preflight is not
+counted as passing; final full phone suites own these stronger checks. The later
+owner-authorized Watch-result reuse is a verification-policy exception, not a
+native audit exemption; it is recorded separately and expires after M28.

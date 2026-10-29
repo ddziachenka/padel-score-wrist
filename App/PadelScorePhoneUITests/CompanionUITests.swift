@@ -491,6 +491,7 @@ final class CompanionUITests: XCTestCase {
                 let explanation = app.staticTexts["phone.gesture.explanation"]
                 XCTAssertTrue(explanation.waitForExistence(timeout: 5))
                 XCTAssertGreaterThan(explanation.frame.height, 100, "Guidance must retain largest Dynamic Type scaling")
+                try auditGestureExplanation(app)
                 let action = reveal(app.buttons["phone.gesture.action"], in: app)
                 XCTAssertTrue(action.isHittable)
                 capture(app, "gesture-\(language)-\(appearance)-largest")
@@ -519,6 +520,7 @@ final class CompanionUITests: XCTestCase {
                 let explanation = app.staticTexts["phone.gesture.explanation"]
                 XCTAssertTrue(explanation.waitForExistence(timeout: 5))
                 XCTAssertGreaterThan(explanation.frame.height, 100, "Guidance must retain largest Dynamic Type scaling")
+                try auditGestureExplanation(app)
                 reveal(app.buttons["phone.gesture.action"], in: app)
                 capture(app, "gesture-\(language)-\(appearance)-before-audit-largest")
                 try auditIncludingOccludedText(app)
@@ -526,6 +528,26 @@ final class CompanionUITests: XCTestCase {
                 app.terminate()
             }
         }
+    }
+
+    /// Exercise the explanatory text on screen before moving to the controls.
+    private func auditGestureExplanation(_ app: XCUIApplication) throws {
+        let explanation = app.staticTexts["phone.gesture.explanation"]
+        XCTAssertLessThanOrEqual(explanation.frame.height, visibleViewport(app).height,
+                                 "The short simulation explanation must fit for its full native audit")
+        for _ in 0..<12 {
+            let viewport = visibleViewport(app)
+            if viewport.contains(explanation.frame) { break }
+            let delta = max(-150, min(150, viewport.midY - explanation.frame.midY))
+            let origin = app.coordinate(withNormalizedOffset: .zero)
+                .withOffset(CGVector(dx: app.frame.midX, dy: viewport.midY))
+            origin.press(forDuration: 0.1, thenDragTo: origin.withOffset(CGVector(dx: 0, dy: delta)),
+                         withVelocity: .slow, thenHoldForDuration: 0.2)
+        }
+        XCTAssertTrue(visibleViewport(app).contains(explanation.frame),
+                      "The real explanation must be fully visible during its native audit")
+        capture(app, "gesture-explanation-fully-visible")
+        try auditIncludingOccludedText(app)
     }
 
     /// iOS17 also reports "contrast" for text occluded by a translucent system bar.

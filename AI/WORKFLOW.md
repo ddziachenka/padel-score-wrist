@@ -8,6 +8,13 @@ their recorded commits; they never override this file.
 
 ## The workflow
 
+M28-only owner exception,2026-10-30 Tbilisi: the owner explicitly authorized reuse
+of the already passing Watch result when every protected input remains identical,
+with complete new iPhone verification, static/runtime/continuity before DONE.
+See [the exact authorization and fail-closed procedure](evidence/M28/owner-verification-exception.md).
+The old full report remains FAILED. No test/parser is changed and no later gate
+inherits this exception; M26 still runs complete milestone and release checks.
+
 ```text
 idea → PRODUCT_BRIEF → PRODUCT / ARCHITECTURE / DESIGN / milestones
      → developer approves direction

@@ -166,3 +166,16 @@ hide a failure. The focused regression is now named
 `testGestureExplanationContrastAtLargestText` and includes English, Spanish,
 Portuguese PT/BR and German in both actual appearances. Generic iPhone build
 passed (`native-guide-build.log`); native reruns remain required.
+
+At `bc8aca48322ece7b52f7c70bee09c1078d98465d`, the native guide regression passed
+1/1 definition across10 locale/appearance variants, exit0
+(`native-guide-regression.xcresult`). Presence and largest-font height assertions
+passed. The next matrix preflight was deliberately interrupted, exit73, to
+strengthen verification: both matrix and focused regression now center the actual
+explanation fully in the viewport and run the same native audit there before
+moving to controls. Its partial `phone-gesture-matrix-3` is not a pass.
+
+The owner subsequently approved the narrow verification exception recorded in
+`owner-verification-exception.md`. Final complete phone suites include the stronger
+visibility assertions and unchanged native audit helper/categories; the prior
+complete Watch result is reused only after protected-input identity is proved.
