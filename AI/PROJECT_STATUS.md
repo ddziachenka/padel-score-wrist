@@ -2,9 +2,9 @@
 
 **Phase:** implementation
 **Current milestone:** M27
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24
-**Next milestone:** M27
-**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M27 Player Names REVIEW; full verification pending; M25–M26 remain planned and follow M27. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27
+**Next milestone:** M25
+**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. No blocking M27 issue. M25–M26 remain planned; M25 owns all physical-Watch checks before M26 by explicit owner direction. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -339,3 +339,33 @@ M26, including M27 native name input/VoiceOver/lifecycle. M27 requires its full
 automated gate and Simulator runtime coverage. Physical connection attempts failed
 with CoreDevice Bluetooth L2CAP/tunnel errors and executed no tests; no hardware
 pass or release waiver is claimed.
+
+
+## M27 completed — current checkpoint
+
+M27 DONE. Clean REVIEW/main candidate `488809d6c06b29233e7c1d1f7687c9cec03bbab4`
+passed `make milestone ID=M27`, exit0, UTC2026-10-29T09:23:11Z–13:30:22Z.
+Watch591/591 definitions/1013 invocations; phone unit21/21/30; UI13/13/13;
+aggregate625/1056, zero failed/skipped/expected/runtime warnings. Both Debug
+builds and independent package guards pass. Final-source minimum watchOS10 and
+current27 supplements each pass454/454/876, exit0. Final mutable make fast
+passes454/454/876, exit0. Handoff: [M27](handoffs/M27-handoff.md);
+[exact evidence](evidence/M27/milestone-verification.md).
+
+Optional native Players editor in setup and active menus supports both formats,
+remembered roster, game-local service/score/correction/journal/result/VoiceOver
+names and independent archived rosters. Names are metadata outside snapshots;
+rename is atomic/revision-bound, does not consume usage or Undo, and invalidates
+old correction previews. Schema4 explicitly migrates1–3. Thirteen locales,
+maximum text, native audits/input, real-file failure/retry/backup/restart/delete
+and cancel/background/clear/Undo/result/repeat pass. Final runtime captures were
+inspected after fixing the maximum-text form hierarchy. Earlier failures remain
+raw evidence; no test/assertion/category/parser was weakened. Builder self-review,
+not independent audit or release approval.
+
+Owner explicitly assigned every physical-Watch check to M25 before M26. Failed
+Bluetooth tunnel attempts executed no tests; no physical pass or hardware waiver
+is claimed. M25 now depends on M24 and M27 and is the next Builder session;
+M25–M26 remain planned. Existing App Review4.3(a) and unsent/on-hold reply remain;
+no upload/submission/pricing/Promotional Text/public-release action. This session
+stops after DONE static/status/continuity against the exact verified SHA.

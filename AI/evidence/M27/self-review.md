@@ -71,3 +71,14 @@ assert a single child where wrapped, and preserve all input/value/persistence
 assertions. A focused native-input/start/relaunch check passed before the complete
 rerun. The optional explanation was moved below fields after maximum-text-size
 screenshots showed it filled the opening screen; the useful action is now first.
+
+## Final evidence
+
+Final candidate `488809d6c06b29233e7c1d1f7687c9cec03bbab4` passed the complete
+both-platform milestone gate:625 definitions/1056 invocations, zero failures,
+skips, expected failures or runtime warnings. Minimum/current Watch supplements
+each passed454/454 definitions/876 invocations on that candidate. Final native
+input/large-text/live-name captures were inspected; fields appear first and
+controls remain usable. Exact provenance and physical coverage ownership are
+in runtime.md and milestone-verification.md. No known blocking M27 finding remains.
+Stop after DONE continuity checks; this is not independent or release approval.
