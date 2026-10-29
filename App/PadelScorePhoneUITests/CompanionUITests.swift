@@ -460,11 +460,19 @@ final class CompanionUITests: XCTestCase {
         let score = app.descendants(matching: .any)["phone.gesture.score"]
         XCTAssertEqual(score.value as? String, "1:0")
         capture(app, "gesture-phone-simulation-us")
-        action.tap(withNumberOfTaps: 2, numberOfTouches: 1)
+        // One deliberate button activation simulates one native Watch Double
+        // Tap series. A touchscreen multi-tap is a different system gesture.
+        action.press(forDuration: 0.1)
+        XCTAssertTrue(app.staticTexts["phone.gesture.pending"].label.contains("US"))
+        action.press(forDuration: 0.1)
         XCTAssertTrue(app.staticTexts["phone.gesture.pending"].label.contains("THEM"))
         Thread.sleep(forTimeInterval: 3.3)
         XCTAssertEqual(score.value as? String, "1:1")
-        action.tap(withNumberOfTaps: 3, numberOfTouches: 1)
+        action.press(forDuration: 0.1)
+        XCTAssertTrue(app.staticTexts["phone.gesture.pending"].label.contains("US"))
+        action.press(forDuration: 0.1)
+        XCTAssertTrue(app.staticTexts["phone.gesture.pending"].label.contains("THEM"))
+        action.press(forDuration: 0.1)
         XCTAssertFalse(app.staticTexts["phone.gesture.pending"].exists)
         XCTAssertEqual(score.value as? String, "1:1")
         capture(app, "gesture-phone-simulation-both-teams")

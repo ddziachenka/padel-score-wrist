@@ -32,21 +32,15 @@ struct PhoneGestureView: View {
                         .accessibilityElement(children: .combine)
                         .accessibilityValue(Text(verbatim: "\(practice.us):\(practice.them)"))
                         .accessibilityIdentifier("phone.gesture.score")
-                    // Keep the action stationary while repeated activations select
-                    // a team. Reserve the larger localized preview even when idle.
-                    ZStack(alignment: .leading) {
-                        Text("Pending: US").hidden().accessibilityHidden(true)
-                        Text("Pending: THEM").hidden().accessibilityHidden(true)
-                        if let team = practice.input.team {
-                            Group { if team == .us { Text("Pending: US") } else { Text("Pending: THEM") } }
-                                .accessibilityIdentifier("phone.gesture.pending")
-                        }
-                    }
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                     Button("Simulate Double Tap") { practice.activate() }
                         .buttonStyle(PhonePrimaryStyle())
                         .accessibilityIdentifier("phone.gesture.action")
+                    // Feedback below the action keeps its target stationary,
+                    // without reserving empty pages at accessibility text sizes.
+                    if let team = practice.input.team {
+                        Group { if team == .us { Text("Pending: US") } else { Text("Pending: THEM") } }
+                            .font(.headline).accessibilityIdentifier("phone.gesture.pending")
+                    }
                     Button("Reset") { practice.reset() }
                         .frame(minHeight: 44).accessibilityIdentifier("phone.gesture.reset")
                     GestureGuideText(text: String(localized: "Practice only. Your games stay unchanged."),

@@ -70,3 +70,13 @@ and a stable, localized preview slot fix the actual surfaces; new header-presenc
 and button-frame assertions retain all old audit/rapid-input expectations. Current
 appearance readback/capture disagreement is still under investigation; final
 minimum/current and complete phone reruns must pass before DONE.
+
+Follow-up: current-v2's no-motion assertion passed but the synthetic touchscreen
+multi-tap still selected one series. Keep the failed run. The test now delivers
+separate actual button activations (each explicitly simulates one Watch callback)
+and checks every intermediate team as well as all original final values/cancel/
+three-second expectations. Focused real-UI check passes. Moved feedback below the
+action to avoid the reserved slot's excessive empty space at accessibility sizes.
+The measured header passes all10 current-iOS variants; actual Light/Dark captures
+and independent device-style readback agree in this run. No theme override/filter
+or native audit helper change. New complete clean-source checks remain required.

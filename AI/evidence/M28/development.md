@@ -244,3 +244,34 @@ Current-iOS manual captures also show Light surfaces in both labelled appearance
 iterations despite the XCTest appearance getter assertion. This is an observed
 validation-environment discrepancy to resolve before claiming actual Dark coverage;
 no production theme override or audit exemption has been added.
+
+At `8f0a9c583facf3e8c828bacf8b17fda74a6987f4`, current-v2's complete
+10-variant heading/explanation regression passed (305.382s), but the simulation
+still failed; native overall2 definitions/1passed/1failed, command65,
+23:16:58.063457Z–23:22:59.345054Z. The new no-movement assertion passed. This
+proves motion was not the complete explanation of touchscreen multi-tap failure.
+The retained multi-tap stimulus yields one simulated-series selection on iOS27;
+a touchscreen N-tap gesture is not N native Watch primary-action callbacks.
+
+The simulation regression now sends one deliberate100ms button press per
+simulated Watch series and additionally asserts US after the first, THEM after
+the second and no pending selection after the third. Every original1:0/1:1,
+three-second wait, cancel, reset and navigation expectation remains. There is no
+retry, clock bypass or reduced audit. Mutable focused
+`bash .artifacts/M16/runtime-profile.sh phone-current run bash .artifacts/M28/check-current-simulation.sh`
+passed exit0,1/1 definition,24.864s (`phone-current-simulation-v3.xcresult`).
+This run includes the two uncommitted phone-source corrections after8f0; it is
+development evidence, not clean-candidate verification.
+
+Visual review also rejected the reserved idle slot's large empty area at maximum
+Dynamic Type. Pending feedback now follows the action, keeping its target fixed
+without invisible sizing copies or empty space. The actual status remains separate
+from saved score. The no-movement assertion remains. This affects only phone UI.
+
+Read-only per-device `simctl ui … appearance` monitoring during current-v2 confirms
+actual system light/dark switching. Exported PT-PT Light/Dark manual captures now
+show their correct surfaces; Dark inspected at `current-v2-guide-attachments/019E808B-0C45-4617-BC33-1C8DD3F48E6B.png`.
+No production theme override was added. The v1 capture discrepancy is retained as
+observed; its cause is not claimed established or used to waive coverage.
+Final complete current/minimum phone verification is still required after these
+corrections; original Watch574-path identity remains unchanged.
