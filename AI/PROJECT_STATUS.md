@@ -2,9 +2,9 @@
 
 **Phase:** implementation
 **Current milestone:** M24
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23
-**Next milestone:** M24
-**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M24 verifying complete recovery guides after native field/layout corrections; M25–M26 remain planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24
+**Next milestone:** M25
+**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M24 DONE; M25–M26 remain planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -298,3 +298,29 @@ Builder self-review, not independent review or release approval. App Review repl
 remains unsent/on hold and 4.3(a) unresolved; no upload/submission/pricing/Promotional
 Text change. Next Builder owns M24; M24–M26 remain PLANNED. This Builder stops after
 DONE static/status/continuity checks against the verified SHA.
+
+
+## M24 completed — current checkpoint
+
+M24 DONE. Clean REVIEW/main `9831216685a4bbcf8e9c567cf1c11cebb7b57e85` passed `make milestone ID=M24`,
+exit 0, UTC `2026-10-29T00:49:37Z`–`2026-10-29T04:28:38Z`.
+Watch 568/568 definitions/976 invocations; phone unit 21/21/30, UI 13/13/13;
+aggregate 602 definitions/1019 invocations, zero failed/skipped/expected/runtime
+warnings. Both Debug/package guards pass. Large-phone supplement 7/7 and full
+phone-unit supplement 21/21/30 pass on the same frozen source.
+Handoff: [M24](handoffs/M24-handoff.md);
+[exact evidence](evidence/M24/milestone-verification.md).
+
+Two real interactive guides teach historical rally correction and known-score
+Match/Americano play through input, preview, confirmation, cancel/Undo and result.
+Disposable sessions cannot reach real storage, settings, usage, entitlements or
+review eligibility; original demos stay intact. All thirteen locales run in actual
+Light/Dark and largest Dynamic Type on small/large phones. Self-review corrected
+navigation/field identity, native text measurement, visible input labels and action
+surfaces; prior failures remain raw failures, without a waiver or skipped check.
+
+Builder self-review, not independent audit or release approval. App Review 4.3(a)
+and the unsent/on-hold reply remain unchanged; no upload/submission/pricing/
+Promotional Text/public-release action. A new Builder owns M25 — Recovery Experience
+and Review Materials; M25–M26 remain planned. This session stops after DONE
+static/status/continuity against the verified SHA.

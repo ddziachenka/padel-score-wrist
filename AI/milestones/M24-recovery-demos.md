@@ -1,7 +1,7 @@
 # M24 — Interactive iPhone Recovery Scenarios
 
 **ID:** M24
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M23
 **Validation:** make milestone ID=M24
 **Handoff:** AI/handoffs/M24-handoff.md
@@ -18,10 +18,10 @@ Keep existing Match/Americano examples and add guided historical correction and 
 
 ## Acceptance criteria
 
-- [ ] Each new scenario exposes actual input, preview, confirmation, Undo/cancel and result, not a video-only claim.
-- [ ] Existing demos and review eligibility behavior remain intact; no real session, archive, settings, free-game or entitlement mutations.
-- [ ] All supported locales, small/large phones, light/dark and accessibility sizes are usable.
-- [ ] Isolation/domain/UI tests and full make milestone ID=M24 pass.
+- [x] Each new scenario exposes actual input, preview, confirmation, Undo/cancel and result, not a video-only claim.
+- [x] Existing demos and review eligibility behavior remain intact; no real session, archive, settings, free-game or entitlement mutations.
+- [x] All supported locales, small/large phones, light/dark and accessibility sizes are usable.
+- [x] Isolation/domain/UI tests and full make milestone ID=M24 pass.
 
 ## Non-goals
 
@@ -30,3 +30,5 @@ No iPhone real-game storage/sync or new paywall.
 ## Validation
 
 `make milestone ID=M24` on a clean REVIEW commit. No skipped/failed mandatory test or inherited contrast waiver. Record exact SHA, commands, exits, bundles and counts; self-review is not independent review. Complete handoff, DONE commit, static/status/continuity, then stop.
+
+Verified evidence: [handoff](../handoffs/M24-handoff.md), [exact milestone report](../evidence/M24/milestone-verification.md).

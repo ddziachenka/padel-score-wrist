@@ -179,3 +179,12 @@ then passed, exit0, two definitions/invocations, zero failed/skipped/expected/ru
 warnings. No timeout is caught/ignored and no audit is retried inside a test.
 The final clean candidate must verify all seven large-phone cases, all twenty-one
 phone unit definitions and the complete unfiltered milestone gate.
+
+## Final verification
+
+Clean REVIEW/main `9831216685a4bbcf8e9c567cf1c11cebb7b57e85` passed exact `make milestone ID=M24`, exit0,
+602 definitions/1019 invocations, zero failed/skipped/expected/runtime warnings.
+The seven-case large supplement and complete phone-unit supplement also passed.
+All tracked App/Config/Scripts bytes match the frozen source; final small/large
+normal and largest-text captures were inspected. No known blocking finding remains.
+Exact evidence: [milestone verification](milestone-verification.md) and [runtime](runtime.md).
