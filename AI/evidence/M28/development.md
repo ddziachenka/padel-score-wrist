@@ -204,3 +204,43 @@ then performs one explicit200ms press. No retry, scoring expectation, draw/Undo
 assertion or gesture timing changed. The same focused case passed again
 (`americano-after.xcresult`, exit0). The complete phone suites must pass again;
 neither focused success is treated as a full verification pass.
+
+## Complete phone pass, then current-iOS findings
+
+Clean REVIEW/main `d651863762361ca32f8b31c91921f804601529b2` passed
+`bash .artifacts/M28/verify-phone-complete.sh owner-verification-3`, exit0,
+2026-10-29T21:42:49.061106Z–23:05:23.488301Z. Complete phone unit21/21
+/30 invocations and UI16/16/16 passed with zero failed/skipped/expected/runtime
+warnings; static, Debug/package guards and both574-path protected manifests pass.
+Report `owner-verification-3/report.md` preserves this exact-source success.
+The prior run2 remains FAILED (command65/UI75): native accessibility Code-56
+failed to complete in time at known-score set boundary, plus deliberately canceled
+recovery matrix. Its own diagnostic child was terminated to finalize, then only
+the managed companion51FD3DAD was rebooted under lease. The same-SHA run3 passed
+both that boundary and the corrected Americano picker. No timeout/assertion/filter
+changed; no pre-existing defect claim.
+
+The required iOS27/large-phone supplement then failed, exit65, same candidate,
+2026-10-29T23:05:37.204064Z–23:12:14.818907Z. Native2 definitions/0passed/2failed,
+no skipped/expected/runtime warnings. Preserved `phone-current-v1.xcresult`,
+summary/tests/exit JSON and `current-v1-*-attachments/`. Contrast identifies the
+visible PT-PT SwiftUI heading in both appearance iterations. The real screenshot
+shows the title; it is not omitted from auditing. Simulation also loses fast
+second/third taps: adding the pending row moves the button away from the original
+tap coordinate; resulting2:0/pending THEM violates the retained1:1/cancel assertions.
+This required supplement is not accepted or called passed; M28 remains REVIEW.
+
+The phone heading now uses the same measured semantic-surface UILabel as the
+explanation, retaining title2 bold Dynamic Type and real header/static-text traits.
+A reserved preview slot sizes to both localized team labels, keeping the action
+stationary. Invisible sizing copies are accessibility-hidden; the actual selected
+preview remains visible and auditable. A new frame assertion enforces no movement;
+original double/triple tap and every score/cancel assertion stay intact. Header
+presence is asserted in both existing locale/audit matrices. No Watch/project/
+configuration/resource/gate input changed. Focused minimum/current and new complete
+phone verification are required on the corrected final source.
+
+Current-iOS manual captures also show Light surfaces in both labelled appearance
+iterations despite the XCTest appearance getter assertion. This is an observed
+validation-environment discrepancy to resolve before claiming actual Dark coverage;
+no production theme override or audit exemption has been added.

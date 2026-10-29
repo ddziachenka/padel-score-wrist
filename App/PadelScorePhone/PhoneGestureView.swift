@@ -11,8 +11,8 @@ struct PhoneGestureView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 VStack(alignment: .leading, spacing: 12) {
-                    Label("Gesture scoring", systemImage: "hand.pinch").font(.title2.bold())
-                        .accessibilityAddTraits(.isHeader)
+                    GestureGuideText(text: String(localized: "Gesture scoring"),
+                                     identifier: "phone.gesture.heading", isHeading: true)
                     GestureGuideText(text: String(localized: "Simulation. Real gestures work on Apple Watch."),
                                      identifier: "phone.gesture.explanation")
                     GestureGuideText(text: String(localized: "One series means touching your thumb and index finger together twice."))
@@ -32,10 +32,18 @@ struct PhoneGestureView: View {
                         .accessibilityElement(children: .combine)
                         .accessibilityValue(Text(verbatim: "\(practice.us):\(practice.them)"))
                         .accessibilityIdentifier("phone.gesture.score")
-                    if let team = practice.input.team {
-                        Group { if team == .us { Text("Pending: US") } else { Text("Pending: THEM") } }
-                            .font(.headline).accessibilityIdentifier("phone.gesture.pending")
+                    // Keep the action stationary while repeated activations select
+                    // a team. Reserve the larger localized preview even when idle.
+                    ZStack(alignment: .leading) {
+                        Text("Pending: US").hidden().accessibilityHidden(true)
+                        Text("Pending: THEM").hidden().accessibilityHidden(true)
+                        if let team = practice.input.team {
+                            Group { if team == .us { Text("Pending: US") } else { Text("Pending: THEM") } }
+                                .accessibilityIdentifier("phone.gesture.pending")
+                        }
                     }
+                    .font(.headline)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     Button("Simulate Double Tap") { practice.activate() }
                         .buttonStyle(PhonePrimaryStyle())
                         .accessibilityIdentifier("phone.gesture.action")
@@ -78,6 +86,7 @@ private struct GestureGuideText: UIViewRepresentable {
     let text: String
     var background: UIColor = .systemGroupedBackground
     var identifier = ""
+    var isHeading = false
 
     func makeUIView(context: Context) -> UILabel {
         let label = UILabel()
@@ -91,7 +100,11 @@ private struct GestureGuideText: UIViewRepresentable {
     }
 
     func updateUIView(_ label: UILabel, context: Context) {
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        let font = UIFont.preferredFont(forTextStyle: isHeading ? .title2 : .body)
+        label.font = isHeading
+            ? UIFont(descriptor: font.fontDescriptor.withSymbolicTraits(.traitBold) ?? font.fontDescriptor, size: 0)
+            : font
+        label.accessibilityTraits = isHeading ? [.staticText, .header] : .staticText
         label.textColor = .label
         label.backgroundColor = background
         label.text = text

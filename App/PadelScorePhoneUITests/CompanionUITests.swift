@@ -450,8 +450,12 @@ final class CompanionUITests: XCTestCase {
         let app = app()
         reveal(app.buttons["phone.start.gestures"], in: app).tap()
         let action = app.buttons["phone.gesture.action"]
-        reveal(action, in: app).tap()
+        reveal(action, in: app)
+        let idleActionFrame = action.frame
+        action.tap()
         XCTAssertTrue(app.staticTexts["phone.gesture.pending"].label.contains("US"))
+        XCTAssertEqual(action.frame.minY, idleActionFrame.minY, accuracy: 0.5,
+                       "Pending selection must not move the repeated-input button")
         Thread.sleep(forTimeInterval: 3.3)
         let score = app.descendants(matching: .any)["phone.gesture.score"]
         XCTAssertEqual(score.value as? String, "1:0")
@@ -492,6 +496,7 @@ final class CompanionUITests: XCTestCase {
                 reveal(app.buttons["phone.start.gestures"], in: app).tap()
                 let explanation = app.staticTexts["phone.gesture.explanation"]
                 XCTAssertTrue(explanation.waitForExistence(timeout: 5))
+                XCTAssertTrue(app.staticTexts["phone.gesture.heading"].exists)
                 XCTAssertGreaterThan(explanation.frame.height, 100, "Guidance must retain largest Dynamic Type scaling")
                 try auditGestureExplanation(app)
                 let action = reveal(app.buttons["phone.gesture.action"], in: app)
@@ -521,6 +526,7 @@ final class CompanionUITests: XCTestCase {
                 reveal(app.buttons["phone.start.gestures"], in: app).tap()
                 let explanation = app.staticTexts["phone.gesture.explanation"]
                 XCTAssertTrue(explanation.waitForExistence(timeout: 5))
+                XCTAssertTrue(app.staticTexts["phone.gesture.heading"].exists)
                 XCTAssertGreaterThan(explanation.frame.height, 100, "Guidance must retain largest Dynamic Type scaling")
                 try auditGestureExplanation(app)
                 reveal(app.buttons["phone.gesture.action"], in: app)

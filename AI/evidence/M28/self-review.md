@@ -62,3 +62,11 @@ coordinates matched the visible picker. The interaction now asserts its complete
 frame visible and uses one deliberate200ms press, retaining option10, completed
 score, draw and Undo expectations. No blind retry or timeout relaxation. Focused
 check passed; final complete phone rerun remains required.
+
+The D651 complete phone suite passed21 unit/16UI definitions, but required iOS27
+coverage found a visible PT-PT SwiftUI header audit and a real moving-target
+simulation interaction. Preserve that failed supplement. Native measured header
+and a stable, localized preview slot fix the actual surfaces; new header-presence
+and button-frame assertions retain all old audit/rapid-input expectations. Current
+appearance readback/capture disagreement is still under investigation; final
+minimum/current and complete phone reruns must pass before DONE.
