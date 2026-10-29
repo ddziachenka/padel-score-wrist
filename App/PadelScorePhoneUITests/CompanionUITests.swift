@@ -472,14 +472,17 @@ final class CompanionUITests: XCTestCase {
     }
 
     func testGestureGuideAllLocalesLightDarkAndLargestText() throws {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
         let locales = [("en", "en_US"), ("es", "es_ES"), ("it", "it_IT"), ("fr", "fr_FR"),
                        ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"),
                        ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
         for (language, region) in locales {
             for appearance in ["Light", "Dark"] {
+                XCUIDevice.shared.appearance = appearance == "Light" ? .light : .dark
+                XCTAssertEqual(XCUIDevice.shared.appearance, appearance == "Light" ? .light : .dark)
                 let app = XCUIApplication()
                 app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", region,
-                    "-AppleInterfaceStyle", appearance,
                     "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
                 app.launch()
                 XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
@@ -492,6 +495,26 @@ final class CompanionUITests: XCTestCase {
                 reveal(app.buttons["phone.gesture.reset"], in: app).tap()
                 app.terminate()
             }
+        }
+    }
+
+    func testSpanishGestureExplanationContrastAtLargestText() throws {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
+        for appearance in ["Light", "Dark"] {
+            XCUIDevice.shared.appearance = appearance == "Light" ? .light : .dark
+            XCTAssertEqual(XCUIDevice.shared.appearance, appearance == "Light" ? .light : .dark)
+            let app = XCUIApplication()
+            app.launchArguments = ["-AppleLanguages", "(es)", "-AppleLocale", "es_ES",
+                "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+            app.launch()
+            XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+            declineOptionalReview(app)
+            reveal(app.buttons["phone.start.gestures"], in: app).tap()
+            reveal(app.buttons["phone.gesture.action"], in: app)
+            try auditIncludingOccludedText(app)
+            capture(app, "spanish-gesture-contrast-\(appearance)-largest")
+            app.terminate()
         }
     }
 

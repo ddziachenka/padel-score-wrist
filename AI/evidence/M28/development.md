@@ -70,7 +70,7 @@ exercise the shared software path, never prove actual finger recognition.
   small pending-label/lifecycle/timer-review corrections are verified by the
   final immutable milestone, not retroactively attributed to this run.
 - `phone-build-for-testing-1.log`: exited0, iPhone test build prepared.
-- `phone-gestures-1.log`: exited65 before tests; command selected the phone unit
+- `phone-gestures-1.log`: exited70 before tests; command selected the phone unit
   target in the UI-only scheme. Corrected command; production schemes unchanged.
 
 Largest-text Watch captures inspected from fast-2: Russian live/action and practice,
@@ -96,3 +96,39 @@ At source872ed0f, watch-current-v2 passes471/471 definitions/909 invocations and
 watch-minimum-v2 passes469/469/907, both exit0. Final captures inspected: no
 wrapped Serving heading, no ghost previous label after settled transition.
 Earlier runtime bundles remain as historical development evidence.
+
+## First immutable milestone candidate
+
+Clean REVIEW/main `3db256e040e4306477d63f2e75b0223561c1e240` ran the complete
+`make milestone ID=M28`,2026-10-29T15:14:41Z–18:55:43Z. Make exited2/verifier1;
+report `.artifacts/milestone/M28/20261029T151440Z-2914/report.md` is FAILED.
+Watch619/619 definitions and phone unit21/21 passed. The new phone gesture matrix
+reported native contrast failures for the visible Spanish simulation explanation.
+It was deliberately interrupted after those failures, not accepted as a partial
+pass. Native UI result contains4 definitions:3 passed/1 failed/0 skipped/0 expected;
+the interrupted xcodebuild exited75. Watch/phone unit bundles and complete raw
+phone diagnostics remain intact; exported failure attachments are under
+`.artifacts/M28/full-gate-1-phone-attachments/`.
+
+Both nominal Light/Dark failure captures actually show Light. Correct the new
+matrix to set/assert/restore XCUIDevice appearance exactly as the existing suites
+do, instead of relying on a launch argument. Keep all thirteen languages and all
+native audit categories. Add an explicit Spanish largest-text contrast regression,
+reproduce before the product fix, then rerun the full unchanged milestone gate on
+the new clean REVIEW candidate. No baseline or accepted-failure claim is made.
+
+The focused Spanish regression reproduced the same visible explanation failure:
+`spanish-contrast-before-2.xcresult`,1 definition/1 failed, native91.119s,
+xcodebuild exit65. It explicitly switched both actual device appearances; Light
+failed and Dark passed its native audits. Xcode then collected600s diagnostics.
+The first wrapper invocation omitted `--` and exited64 before tests; retained as
+`spanish-contrast-before.log`, never counted as a test run.
+
+Critical simulation/practice/compatibility guidance now uses primary semantic text
+instead of secondary text. No shared palette or other screen changed. The same
+focused test passed1/1, exit0, in `spanish-contrast-after.xcresult`. The full matrix
+now explicitly sets/asserts/restores actual device appearance; no locale, native
+audit category, assertion or deferred-text obligation was removed. Bounded
+development reruns disable diagnostic collection only, retaining xcresult and all
+audit attachments; the mandatory milestone command/configuration is unchanged.
+`make static` passed after this correction; raw log `static-contrast-fix.log`.

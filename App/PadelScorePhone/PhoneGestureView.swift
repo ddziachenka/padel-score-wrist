@@ -12,7 +12,7 @@ struct PhoneGestureView: View {
                 PhoneCard {
                     Label("Gesture scoring", systemImage: "hand.pinch").font(.title2.bold())
                     Text("Simulation. Real gestures work on Apple Watch.")
-                        .foregroundStyle(PhoneTheme.secondaryText)
+                        .foregroundStyle(.primary)
                     Text("One series means touching your thumb and index finger together twice.")
                     Text("One series: us. Two: them. Three: cancel. Wait three seconds to save.")
                 }
@@ -40,13 +40,13 @@ struct PhoneGestureView: View {
                     Button("Reset") { practice.reset() }
                         .frame(minHeight: 44).accessibilityIdentifier("phone.gesture.reset")
                     Text("Practice only. Your games stay unchanged.")
-                        .foregroundStyle(PhoneTheme.secondaryText)
+                        .foregroundStyle(.primary)
                 }
                 PhoneCard {
                     Text("Optional. Off for every new game.").font(.headline)
                     Text("Enable Gesture scoring when setting up a game on your Watch, or in the game menu.")
                     Text("Requires watchOS 11 and an Apple Watch that supports Double Tap, with the screen awake and system gestures enabled.")
-                        .foregroundStyle(PhoneTheme.secondaryText)
+                        .foregroundStyle(.primary)
                 }
             }
             .fixedSize(horizontal: false, vertical: true)

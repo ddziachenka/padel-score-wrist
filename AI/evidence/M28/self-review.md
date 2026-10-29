@@ -23,3 +23,9 @@ now participates in every reactivation check. Due timer callbacks release their
 own task handle before storage, avoiding self-cancellation of the accepted writer.
 New tests cover stale timer identity, named schema4 migration, frozen schema4
 required fields and once-per-game completion after Undo/re-completion.
+
+The first full candidate found visible Spanish largest-text explanation contrast.
+A focused native regression failed before the fix and passed after critical guide
+copy switched to primary semantic text. New matrix appearance switching now uses
+the actual device with assertions/restoration, matching the established suites.
+Full corrected matrix and a fresh immutable milestone gate remain required.
