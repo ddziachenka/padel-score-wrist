@@ -501,20 +501,24 @@ final class CompanionUITests: XCTestCase {
     func testSpanishGestureExplanationContrastAtLargestText() throws {
         let originalAppearance = XCUIDevice.shared.appearance
         defer { XCUIDevice.shared.appearance = originalAppearance }
-        for appearance in ["Light", "Dark"] {
-            XCUIDevice.shared.appearance = appearance == "Light" ? .light : .dark
-            XCTAssertEqual(XCUIDevice.shared.appearance, appearance == "Light" ? .light : .dark)
-            let app = XCUIApplication()
-            app.launchArguments = ["-AppleLanguages", "(es)", "-AppleLocale", "es_ES",
-                "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
-            app.launch()
-            XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
-            declineOptionalReview(app)
-            reveal(app.buttons["phone.start.gestures"], in: app).tap()
-            reveal(app.buttons["phone.gesture.action"], in: app)
-            try auditIncludingOccludedText(app)
-            capture(app, "spanish-gesture-contrast-\(appearance)-largest")
-            app.terminate()
+        // Preserve the sequence that exposed this regression in the full matrix.
+        for (language, region) in [("en", "en_US"), ("es", "es_ES")] {
+            for appearance in ["Light", "Dark"] {
+                XCUIDevice.shared.appearance = appearance == "Light" ? .light : .dark
+                XCTAssertEqual(XCUIDevice.shared.appearance, appearance == "Light" ? .light : .dark)
+                let app = XCUIApplication()
+                app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", region,
+                    "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+                app.launch()
+                XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+                declineOptionalReview(app)
+                reveal(app.buttons["phone.start.gestures"], in: app).tap()
+                reveal(app.buttons["phone.gesture.action"], in: app)
+                capture(app, "gesture-\(language)-\(appearance)-before-audit-largest")
+                try auditIncludingOccludedText(app)
+                capture(app, "gesture-\(language)-\(appearance)-after-audit-largest")
+                app.terminate()
+            }
         }
     }
 

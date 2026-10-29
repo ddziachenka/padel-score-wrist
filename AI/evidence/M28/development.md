@@ -132,3 +132,20 @@ audit category, assertion or deferred-text obligation was removed. Bounded
 development reruns disable diagnostic collection only, retaining xcresult and all
 audit attachments; the mandatory milestone command/configuration is unchanged.
 `make static` passed after this correction; raw log `static-contrast-fix.log`.
+
+That isolated pass was insufficient: the sequential phone matrix on
+`daa03bccb6491da40ad4fda0b07e3b0e3da32289` reported the same Spanish explanation
+contrast. `phone-gesture-matrix-1` was deliberately interrupted after the failure,
+exit73 with raw partial bundle/log retained, never a pass. Strengthened the focused
+regression to preserve English→Spanish, both actual appearances, and the matrix's
+pre-audit capture. Applying the existing opaque navigation-bar style alone still
+failed (`spanish-sequence-after`, exit65); deferred text must still be rechecked.
+
+The oversized decorative introduction card was then replaced with a leading native
+VStack on the existing grouped background, matching the neighboring recovery
+introduction. All text and Dynamic Type scaling remain. Interactive controls retain
+their card; critical copy remains primary, the navigation bar opaque, and the title
+is a VoiceOver heading. The same four-scenario focused regression now passes1/1,
+exit0 (`gesture-intro-sequence.xcresult`). Full thirteen-language matrix and fresh
+immutable milestone gate remain required. Audit helper/categories/obligations were
+not changed for these fixes.

@@ -29,3 +29,12 @@ A focused native regression failed before the fix and passed after critical guid
 copy switched to primary semantic text. New matrix appearance switching now uses
 the actual device with assertions/restoration, matching the established suites.
 Full corrected matrix and a fresh immutable milestone gate remain required.
+
+The initial focused contrast pass did not survive the sequential matrix. Preserved
+that failed run, strengthened the regression with the English prelude and capture,
+and kept all deferred-text rechecks. Opaque navigation alone was insufficient.
+Removing the oversized decorative intro card (preserving every localized Text and
+font scale) passed the same strengthened four-scenario regression. The guide now
+follows the native grouped-background introduction used by the adjacent recovery
+flow; its interactive card remains and its title has a heading trait. No native
+audit helper or assertion was loosened. Full matrix/gate still required.

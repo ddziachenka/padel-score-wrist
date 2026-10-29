@@ -9,8 +9,9 @@ struct PhoneGestureView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                PhoneCard {
+                VStack(alignment: .leading, spacing: 12) {
                     Label("Gesture scoring", systemImage: "hand.pinch").font(.title2.bold())
+                        .accessibilityAddTraits(.isHeader)
                     Text("Simulation. Real gestures work on Apple Watch.")
                         .foregroundStyle(.primary)
                     Text("One series means touching your thumb and index finger together twice.")
@@ -56,6 +57,8 @@ struct PhoneGestureView: View {
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Try gestures")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(Color(.systemGroupedBackground), for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
         .task(id: practice.input.deadline) {
             guard let deadline = practice.input.deadline else { return }
             do { try await ContinuousClock().sleep(until: deadline) } catch { return }
