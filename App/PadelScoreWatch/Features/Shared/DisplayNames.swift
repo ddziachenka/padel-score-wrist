@@ -1,7 +1,7 @@
 import Foundation
 
 extension Player {
-    /// The role as it is shown and spoken. Version 1 has roles rather than names.
+    /// The role as it is shown and spoken. Custom names are resolved with an explicit game-local roster.
     var name: LocalizedStringResource {
         switch self {
         case .you: LocalizedStringResource("You", comment: "Role: the person wearing the Watch.")
@@ -49,5 +49,11 @@ extension GameKind {
         case .match: LocalizedStringResource("Games and sets", comment: "Explains the Match format on New game.")
         case .americano: LocalizedStringResource("A fixed total of rallies", comment: "Explains the Americano format on New game.")
         }
+    }
+}
+
+extension Player {
+    func displayName(in names: PlayerNames) -> String {
+        names[self] ?? String(localized: name)
     }
 }

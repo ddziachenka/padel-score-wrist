@@ -20,6 +20,7 @@ struct ResultView: View {
             VStack(spacing: Spacing.sm) {
                 // The score leads; that it is saved is a quieter confirmation under it.
                 ResultSummaryView(summary: summary)
+                PlayerRosterView(names: live.playerNames)
                 SavedLabel(live: live)
                     .padding(.bottom, Spacing.xs)
                 Group {
@@ -117,6 +118,7 @@ private struct SavedLabel: View {
 /// viewed: correcting or resuming it ended when the next game started.
 struct EarlierResultView: View {
     let game: GameSnapshot
+    var names: PlayerNames = .empty
 
     var body: some View {
         let summary = ResultSummary(game: game)
@@ -129,6 +131,7 @@ struct EarlierResultView: View {
                     .padding(.horizontal, Spacing.xs)
                     .accessibilityAddTraits(.isHeader)
                 ResultSummaryView(summary: summary)
+                PlayerRosterView(names: names)
                 Caption("All finished games are kept in History.")
                     .padding(.top, Spacing.xs)
             }

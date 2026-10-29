@@ -105,8 +105,8 @@ Watch executable — `com.dziachenka.padelscore.watchkitapp`, packaging containe
 #### Подача
 
 Четыре роли: `You`, `Partner`, `Opponent 1`, `Opponent 2`. Имена не обязательны;
-в первой версии предлагается использовать эти роли без отдельного управления
-профилями. `US` — You и Partner, `THEM` — два соперника. Создание показывает
+с M27 можно задать необязательные имена Partner и двух соперников на Watch,
+без управления профилями. `US` — You и Partner, `THEM` — два соперника. Создание показывает
 первого подающего и порядок всех четырёх игроков с чередованием команд.
 
 В обычном гейме один игрок подаёт весь гейм; следующий гейм начинает следующий
@@ -536,3 +536,17 @@ Owner approved [the recovery plan](recovery-differentiation-plan.md) and instruc
 - PD-22: M19 fixes both previous small-iPhone contrast failures. New milestones and release require passing mandatory gates; M16–M18 raw failures/acceptance remain historical.
 
 PP-04 remains sequential Undo; PD-18 adds selective recovery within its explicit boundary. PD-15 expands detail only for newly recorded history. No iPad support change, rename, new formats, accounts, cloud or real-game phone synchronization is authorized by this plan. Resubmission and external responses require the separate owner decision; the previous draft stays on hold. Differentiation remains a hypothesis, not a guaranteed Apple outcome.
+
+
+## Player names — M27, approved 2026-10-29
+
+Players opens in setup and active-game menu for both formats. Three optional
+native text fields map to Partner/Opponent 1/Opponent 2; You remains a role.
+Save trims surrounding whitespace; empty names use localized roles. Duplicate
+names are allowed, with role context in editors. Names are free and local to Watch.
+The latest successfully saved roster is offered for either next format; Play again
+uses its game's roster. Setup cancellation writes nothing. Rename changes metadata
+only, not score, usage, serving identities, rally events or Undo; score Undo keeps
+names. Results/archive retain each game's own roster, displayed in result details
+and throughout serving/journal/correction/VoiceOver. Archived names are read-only.
+No phone management/sync, contacts or profiles.

@@ -486,3 +486,170 @@ extension KnownScoreUITests {
         XCTAssertFalse(reopened.buttons["game.us"].exists)
     }
 }
+
+@MainActor
+final class PlayerNamesUITests: XCTestCase {
+    override func setUp() { continueAfterFailure = false }
+
+    private func enterName(_ name: String, player: String, replacing old: String = "", in app: XCUIApplication) {
+        let field = app.textFields["players.\(player)"]
+        field.scrollToAndTap(in: app)
+        app.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count) + name)
+        attachScreenshot("Native player-name input")
+        let done = app.buttons["Done"]
+        if done.firstMatch.waitForExistence(timeout: 2) { done.firstMatch.tap() }
+    }
+
+    func testSetupNamesUseNativeInputAndPersistInTheGame() {
+        let app = launchApp(store: "names-setup", seed: "lastSettings")
+        app.buttons["result.newGame"].scrollToAndTap(in: app)
+        app.buttons["newGame.match"].tap()
+        app.buttons["setup.players"].scrollToAndTap(in: app)
+        enterName("Marta", player: "partner", in: app)
+        app.buttons["players.save"].scrollToAndTap(in: app)
+        app.buttons["setup.serving"].scrollToAndTap(in: app)
+        assertLabel(app.buttons["serving.first.partner"], contains: "Marta")
+        assertLabel(app.buttons["serving.first.partner"], contains: "Partner")
+        app.buttons["serving.first.partner"].scrollToAndTap(in: app)
+        app.buttons["serving.second.opponent1"].scrollToAndTap(in: app)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["setup.start"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        assertLabel(app.descendants(matching: .any)["game.server"], contains: "Marta")
+        attachScreenshot("Named partner serving")
+        app.terminate()
+        let reopened = launchApp(store: "names-setup", seed: nil)
+        XCTAssertTrue(reopened.buttons["game.us"].waitForExistence(timeout: 10))
+        assertLabel(reopened.descendants(matching: .any)["game.server"], contains: "Marta")
+    }
+}
+
+extension PlayerNamesUITests {
+    private func openPlayers(_ app: XCUIApplication) {
+        let menu = app.buttons["game.menu"]
+        if menu.isHittable { menu.tap() } else { menu.scrollToAndTap(in: app) }
+        app.buttons["menu.players"].scrollToAndTap(in: app)
+    }
+
+    private func savePlayers(_ app: XCUIApplication) {
+        app.buttons["players.save"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["menu.players"].waitForExistence(timeout: 5))
+        app.goBack()
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 5))
+    }
+
+    func testLiveNamesCancelBackgroundClearUndoAndArchivedRoster() {
+        let app = launchApp(store: "names-live", seed: "americanoStart")
+        let us = app.buttons["game.us"]
+        XCTAssertTrue(us.waitForExistence(timeout: 10))
+        award(us, showing: "Our score, 1")
+        award(us, showing: "Our score, 2")
+        openPlayers(app)
+        enterName("Zoë", player: "partner", in: app)
+        let long = "Alexandra Maria de la Cruz"
+        enterName(long, player: "opponent1", in: app)
+        enterName(long, player: "opponent2", in: app)
+        savePlayers(app)
+        assertLabel(app.descendants(matching: .any)["game.server"], contains: long)
+        attachScreenshot("Long player names on the live score")
+        award(us, showing: "Our score, 3")
+        app.buttons["game.undo"].tap()
+        waitForLabel(us, "Our score, 2")
+        assertLabel(app.descendants(matching: .any)["game.server"], contains: long)
+        openPlayers(app)
+        enterName("", player: "opponent1", replacing: long, in: app)
+        XCUIApplication(bundleIdentifier: "com.apple.NanoCalculator.watchkitapp").activate()
+        app.activate()
+        XCTAssertTrue(app.textFields["players.opponent1"].waitForExistence(timeout: 10))
+        XCTAssertEqual(app.textFields["players.opponent1"].value as? String, "Opponent 1")
+        attachScreenshot("Player draft preserved through background")
+        app.buttons["players.cancel"].scrollToAndTap(in: app)
+        app.goBack()
+        assertLabel(app.descendants(matching: .any)["game.server"], contains: long)
+        openPlayers(app)
+        enterName("", player: "opponent1", replacing: long, in: app)
+        savePlayers(app)
+        assertLabel(app.descendants(matching: .any)["game.server"], contains: "Opponent 1")
+        let menu = app.buttons["game.menu"]
+        if menu.isHittable { menu.tap() } else { menu.scrollToAndTap(in: app) }
+        app.buttons["menu.finish"].scrollToAndTap(in: app)
+        app.buttons["finish.confirm"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["result.playAgain"].waitForExistence(timeout: 10))
+        assertLabel(app.descendants(matching: .any)["roster.partner"], contains: "Zoë")
+        assertLabel(app.descendants(matching: .any)["roster.opponent2"], contains: long)
+        app.buttons["result.playAgain"].scrollToAndTap(in: app)
+        app.buttons["setup.players"].scrollToAndTap(in: app)
+        XCTAssertEqual(app.textFields["players.partner"].value as? String, "Zoë")
+        XCTAssertEqual(app.textFields["players.opponent2"].value as? String, long)
+        app.buttons["players.cancel"].scrollToAndTap(in: app)
+        app.goBack()
+        app.buttons["result.history"].scrollToAndTap(in: app)
+        let entry = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "history.entry.")).firstMatch
+        entry.scrollToAndTap(in: app)
+        assertLabel(app.descendants(matching: .any)["roster.partner"], contains: "Zoë")
+        XCTAssertFalse(app.buttons["menu.players"].exists)
+        attachScreenshot("Archived game keeps its roster")
+    }
+
+    func testRosterSaveFailureRetryAndCancelPreserveGame() {
+        let app = launchApp(store: "names-failure", seed: "matchStart", failingSaves: true)
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        openPlayers(app)
+        enterName("Marta", player: "partner", in: app)
+        app.buttons["players.save"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.staticTexts["players.saveError"].waitForExistence(timeout: 5))
+        assertLabel(app.buttons["players.save"], contains: "Retry")
+        app.buttons["players.save"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.staticTexts["players.saveError"].exists)
+        app.buttons["players.cancel"].scrollToAndTap(in: app)
+        app.goBack()
+        XCTAssertEqual(app.buttons["game.us"].label, "Our score, 0")
+        app.terminate()
+        let reopened = launchApp(store: "names-failure", seed: nil)
+        XCTAssertTrue(reopened.buttons["game.us"].waitForExistence(timeout: 10))
+        openPlayers(reopened)
+        XCTAssertEqual(reopened.textFields["players.partner"].value as? String, "Partner")
+    }
+
+    func testLiteralNamesAndPlayersCopyInEveryLocaleAtLargestText() throws {
+        var app = launchApp(store: "names-locales", seed: "matchStart")
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        openPlayers(app)
+        enterName("Golden point", player: "partner", in: app)
+        enterName("Alexandra Maria de la Cruz", player: "opponent1", in: app)
+        savePlayers(app)
+        app.terminate()
+        let locales = [
+            ("en", "en_US", "Players"), ("es", "es_ES", "Jugadores"), ("it", "it_IT", "Giocatori"),
+            ("fr", "fr_FR", "Joueurs"), ("pt-PT", "pt_PT", "Jogadores"), ("pt-BR", "pt_BR", "Jogadores"),
+            ("nl", "nl_NL", "Spelers"), ("de", "de_DE", "Spieler"), ("sv", "sv_SE", "Spelare"),
+            ("da", "da_DK", "Spillere"), ("fi", "fi_FI", "Pelaajat"), ("nb", "nb_NO", "Spillere"),
+            ("ru", "ru_RU", "Игроки")
+        ]
+        for (language, region, title) in locales {
+            app = launchApp(store: "names-locales", seed: nil, textSize: "UICTContentSizeCategoryAccessibilityXXXL", language: language, region: region)
+            XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+            openPlayers(app)
+            XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5))
+            XCTAssertEqual(app.textFields["players.partner"].value as? String, "Golden point")
+            XCTAssertEqual(app.textFields["players.opponent1"].value as? String, "Alexandra Maria de la Cruz")
+            attachScreenshot("\(language) Players, largest text")
+            app.buttons["players.save"].scrollToAndTap(in: app)
+            XCTAssertTrue(app.buttons["menu.players"].waitForExistence(timeout: 5))
+            app.terminate()
+        }
+    }
+
+    func testPlayersEditorPassesNativeAccessibilityAudit() throws {
+        let app = launchApp(store: "names-audit", seed: "matchStart")
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        openPlayers(app)
+        try app.performAccessibilityAudit()
+        enterName("Alexandra Maria de la Cruz", player: "partner", in: app)
+        app.buttons["players.save"].scrollToAndTap(in: app)
+        app.buttons["menu.players"].scrollToAndTap(in: app)
+        try app.performAccessibilityAudit()
+        app.buttons["players.cancel"].scrollToAndTap(in: app)
+        attachScreenshot("Players native accessibility audit")
+    }
+}

@@ -5,13 +5,15 @@ import SwiftUI
 /// both keep it; Cancel restores the serving the draft had when the editor opened.
 struct ServingEditor: View {
     @Binding var serving: ServingChoice
+    let names: PlayerNames
     let joiningGame: Bool
     /// The field's value when the editor opened. Kept in state: the view is created again
     /// each time a change reaches the draft, and must not take that change as the original.
     @State private var original: ServingChoice
     @Environment(\.dismiss) private var dismiss
 
-    init(serving: Binding<ServingChoice>, joiningGame: Bool = false) {
+    init(serving: Binding<ServingChoice>, joiningGame: Bool = false, names: PlayerNames = .empty) {
+        self.names = names
         self.joiningGame = joiningGame
         _serving = serving
         _original = State(initialValue: serving.wrappedValue)
@@ -22,7 +24,7 @@ struct ServingEditor: View {
             VStack(spacing: Spacing.sm) {
                 SectionHeading(joiningGame ? "Next server" : "First server")
                 ForEach(Player.allCases, id: \.self) { player in
-                    ChoiceButton(title: Text(player.name), isSelected: serving.first == player) {
+                    ChoiceButton(player: player, names: names, isSelected: serving.first == player) {
                         serving.choose(first: player)
                     }
                     .accessibilityIdentifier("serving.first.\(player.rawValue)")
@@ -33,7 +35,7 @@ struct ServingEditor: View {
                     Caption(joiningGame ? "Choose" : "Choose who serves first.")
                 } else {
                     ForEach(serving.secondCandidates, id: \.self) { player in
-                        ChoiceButton(title: Text(player.name), isSelected: serving.second == player) {
+                        ChoiceButton(player: player, names: names, isSelected: serving.second == player) {
                             serving.choose(second: player)
                         }
                         .accessibilityIdentifier("serving.second.\(player.rawValue)")
@@ -42,7 +44,7 @@ struct ServingEditor: View {
 
                 if let sequence = serving.sequence {
                     SectionHeading("Service order")
-                    ServiceOrderList(sequence: sequence)
+                    ServiceOrderList(sequence: sequence, names: names)
                 }
 
                 EditorActions {
@@ -61,6 +63,7 @@ struct ServingEditor: View {
 /// The four players numbered in the order they serve.
 struct ServiceOrderList: View {
     let sequence: [Player]
+    var names: PlayerNames = .empty
 
     var body: some View {
         VStack(alignment: .leading, spacing: Spacing.xs) {
@@ -69,7 +72,7 @@ struct ServiceOrderList: View {
                     Text(index + 1, format: .number)
                         .font(Typography.caption.monospacedDigit())
                         .foregroundStyle(Palette.textSecondary)
-                    Text(player.name)
+                    PlayerLabel(player: player, names: names)
                         .font(Typography.body)
                         .foregroundStyle(index == 0 ? Palette.accent : Palette.textPrimary)
                 }

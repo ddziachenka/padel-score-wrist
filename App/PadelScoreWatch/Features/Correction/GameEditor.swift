@@ -18,6 +18,7 @@ final class GameEditor {
     /// correction never lands on a game that changed under it.
     let revision: Int
     /// The rules last played in each format, offered when the game changes format.
+    var playerNames: PlayerNames
     let recent: RecentSettings
     /// Opened from Resume of a round at its total, which takes no more rallies until the total grows
     /// or the score comes down.
@@ -35,10 +36,11 @@ final class GameEditor {
     /// not change.
     var isLocked = false
 
-    init(game: GameSnapshot, revision: Int, recent: RecentSettings, makesRoomToResume: Bool = false, isStarting: Bool = false) {
+    init(game: GameSnapshot, revision: Int, recent: RecentSettings, makesRoomToResume: Bool = false, isStarting: Bool = false, playerNames: PlayerNames = .empty) {
         draft = CorrectionDraft(game)
         self.revision = revision
         self.recent = recent
+        self.playerNames = playerNames
         self.makesRoomToResume = makesRoomToResume
         self.isStarting = isStarting
     }

@@ -28,14 +28,14 @@ struct RallyReviewView: View {
                 if let preview = review.preview {
                     VStack(spacing: Spacing.sm) {
                         SectionHeading("Before")
-                        JournalScoreView(game: preview.before)
+                        JournalScoreView(game: preview.before, names: live.playerNames)
                     }
                     .accessibilityElement(children: .combine)
                     .accessibilityIdentifier("journal.before")
                     if let after = preview.after {
                         VStack(spacing: Spacing.sm) {
                             SectionHeading("After")
-                            JournalScoreView(game: after)
+                            JournalScoreView(game: after, names: live.playerNames)
                         }
                         .accessibilityElement(children: .combine)
                         .accessibilityIdentifier("journal.after")
@@ -44,7 +44,7 @@ struct RallyReviewView: View {
                         NoticeLabel(text: Text("Choose serving for set \(requirement.setNumber) to complete the preview."))
                             .accessibilityIdentifier("journal.ambiguity")
                         NavigationLink {
-                            JournalServingView(requirement: requirement) { setup in
+                            JournalServingView(requirement: requirement, names: live.playerNames) { setup in
                                 review.confirm(setup, session: store.session)
                             }
                         } label: { Text("Resolve serving") }
@@ -111,6 +111,7 @@ struct RallyReviewView: View {
 /// Both players are explicitly selected. The serving pair comes from the replay engine.
 private struct JournalServingView: View {
     let requirement: RallyServiceRequirement
+    let names: PlayerNames
     let confirm: (ServingSetup) -> Void
     @State private var choice = ServingChoice()
     @Environment(\.dismiss) private var dismiss
@@ -121,16 +122,16 @@ private struct JournalServingView: View {
                 Caption(requirement.servingTeam == .us ? "Your team serves first in this set." : "The opponents serve first in this set.")
                 SectionHeading("First server")
                 ForEach(Player.allCases.filter { $0.team == requirement.servingTeam }, id: \.self) { player in
-                    ChoiceButton(title: Text(player.name), isSelected: choice.first == player) { choice.choose(first: player) }
+                    ChoiceButton(player: player, names: names, isSelected: choice.first == player) { choice.choose(first: player) }
                         .accessibilityIdentifier("journal.first.\(player.rawValue)")
                 }
                 SectionHeading("Second server")
                 if choice.first == nil { Caption("Choose who serves first.") }
                 ForEach(choice.secondCandidates, id: \.self) { player in
-                    ChoiceButton(title: Text(player.name), isSelected: choice.second == player) { choice.choose(second: player) }
+                    ChoiceButton(player: player, names: names, isSelected: choice.second == player) { choice.choose(second: player) }
                         .accessibilityIdentifier("journal.second.\(player.rawValue)")
                 }
-                if let sequence = choice.sequence { ServiceOrderList(sequence: sequence) }
+                if let sequence = choice.sequence { ServiceOrderList(sequence: sequence, names: names) }
                 Button("Confirm serving") {
                     guard let setup = choice.setup else { return }
                     confirm(setup)
@@ -148,6 +149,7 @@ private struct JournalServingView: View {
 /// A complete factual preview: points, current games and every completed set, service and status.
 struct JournalScoreView: View {
     let game: GameSnapshot
+    var names: PlayerNames = .empty
 
     var body: some View {
         let board = ScoreBoard(game: game)
@@ -164,7 +166,7 @@ struct JournalScoreView: View {
             }
             switch board.serving {
             case .next(let player):
-                Text("\(Text(player.name)) serves next")
+                Text("\(Text(verbatim: player.displayName(in: names))) serves next")
                 if case .americano(let round) = game.format {
                     Text("Serve \(round.service.rallyInBlock) of \(round.rules.ralliesPerServer)")
                 }

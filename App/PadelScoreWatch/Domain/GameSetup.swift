@@ -14,6 +14,7 @@ struct ServingSetup: Hashable, Sendable, Codable {
 struct GameSetup: Hashable, Sendable {
     var rules: GameRules
     var serving: ServingSetup
+    var playerNames: PlayerNames = .empty
 
     /// The game before its first point, when the chosen rules can be played.
     func startingFormat() throws(SessionError) -> GameFormat {
@@ -28,12 +29,13 @@ struct GameSetup: Hashable, Sendable {
     }
 }
 
-/// The rules and serving used most recently, offered when the next game is set up. Each
+/// The rules, serving and roster used most recently, offered when the next game is set up. Each
 /// format keeps its own rules. Scores, sets, deuce stages and undo history never carry over.
 struct RecentSettings: Hashable, Sendable, Codable {
     var match: MatchRules?
     var americano: AmericanoRules?
     var serving: ServingSetup?
+    var playerNames: PlayerNames = .empty
 
     static let none = RecentSettings(match: nil, americano: nil, serving: nil)
 
@@ -44,6 +46,7 @@ struct RecentSettings: Hashable, Sendable, Codable {
         case .americano(let rules): americano = rules
         }
         serving = setup.serving
+        playerNames = setup.playerNames
     }
 
     /// Remembers the rules and service order a correction saved. Who served first stays as
@@ -68,7 +71,8 @@ extension GameRecord {
         let opener = history.first { $0.change == .point }?.before.format ?? game.format
         return GameSetup(
             rules: game.format.rules,
-            serving: ServingSetup(order: game.format.serving.order, firstServer: opener.serving.firstServer)
+            serving: ServingSetup(order: game.format.serving.order, firstServer: opener.serving.firstServer),
+            playerNames: playerNames
         )
     }
 }

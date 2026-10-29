@@ -8,6 +8,7 @@ private let fixtures: [(String, SessionFile)] = [
     (SessionFixtureFiles.matchVersion2, SessionFile(session: SessionFixtures.match)),
     (SessionFixtureFiles.americanoVersion2, SessionFixtures.americano),
     (SessionFixtureFiles.matchVersion3, SessionFile(session: SessionFixtures.match)),
+    (SessionFixtureFiles.matchVersion4, SessionFile(session: SessionFixtures.match)),
 ]
 
 /// A session holding every kind of saved value: a tie-break and its serving, a confirmed new
@@ -47,16 +48,16 @@ private let everyShape: SessionFile = {
 private func json(_ text: String) -> Data { Data(text.utf8) }
 
 struct SessionFileTests {
-    @Test("All three schema fixtures preserve every session field", arguments: fixtures)
+    @Test("All four schema fixtures preserve every session field", arguments: fixtures)
     func fixturesReadBack(text: String, expected: SessionFile) {
         #expect(SessionFile.read(json(text)) == .valid(expected))
     }
 
-    @Test("Migrated files save as version 3 without a duplicate previous result", arguments: fixtures)
-    func savingWritesVersion3(text: String, file: SessionFile) throws {
+    @Test("Migrated files save as version 4 without a duplicate previous result", arguments: fixtures)
+    func savingWritesVersion4(text: String, file: SessionFile) throws {
         let saved = try #require(JSONSerialization.jsonObject(with: file.encoded()) as? [String: Any])
         let session = try #require(saved["session"] as? [String: Any])
-        #expect(saved["schemaVersion"] as? Int == 3)
+        #expect(saved["schemaVersion"] as? Int == 4)
         #expect(session["previousResult"] == nil)
         #expect(session["archive"] != nil)
         #expect(SessionFile.read(try file.encoded()) == .valid(file))
@@ -78,7 +79,7 @@ struct SessionFileTests {
         #expect(try reordered.encoded() == everyShape.encoded())
     }
 
-    @Test("A file from a newer version of the app is recognised and not read", arguments: [4, 7])
+    @Test("A file from a newer version of the app is recognised and not read", arguments: [SessionFile.currentSchemaVersion + 1, 7])
     func newerVersionNotRead(version: Int) throws {
         var file = SessionFile(session: SessionFixtures.match)
         file.schemaVersion = version
@@ -181,10 +182,15 @@ extension SessionFileTests {
             entry.removeValue(forKey: "beforeJournalCount")
             return entry
         }
+        current.removeValue(forKey: "playerNames")
         session["current"] = current
+        var settings = try #require(session["recentSettings"] as? [String: Any])
+        settings.removeValue(forKey: "playerNames")
+        session["recentSettings"] = settings
         session["archive"] = try #require(session["archive"] as? [[String: Any]]).map { result in
             var result = result
             #expect(result.removeValue(forKey: "journal") is NSNull)
+            result.removeValue(forKey: "playerNames")
             return result
         }
         object["session"] = session
@@ -240,7 +246,7 @@ extension SessionFileTests {
 
 
 extension SessionFileTests {
-    @Test("Version 3 requires its journal instead of silently treating missing detail as legacy")
+    @Test("The current schema requires its journal instead of silently treating missing detail as legacy")
     func missingCurrentJournalIsDamaged() throws {
         var object = try #require(JSONSerialization.jsonObject(with: SessionFile(session: SessionFixtures.match).encoded()) as? [String: Any])
         var session = try #require(object["session"] as? [String: Any])
@@ -268,7 +274,7 @@ extension SessionFileTests {
 
 
 extension SessionFileTests {
-    @Test("Version 3 encodes unavailable legacy archive detail explicitly and rejects a missing field")
+    @Test("The current schema encodes unavailable legacy archive detail explicitly and rejects a missing field")
     func explicitLegacyArchiveDetail() throws {
         var object = try #require(JSONSerialization.jsonObject(with: SessionFile(session: SessionFixtures.match).encoded()) as? [String: Any])
         var session = try #require(object["session"] as? [String: Any])
@@ -283,12 +289,84 @@ extension SessionFileTests {
 
 
 extension SessionFileTests {
-    @Test("Schema 3 encoding matches its frozen fixture without requesting another migration")
-    func version3FixtureEncoding() throws {
+    @Test("Schema 4 encoding matches its frozen fixture without requesting another migration")
+    func version4FixtureEncoding() throws {
         let file = SessionFile(session: SessionFixtures.match)
-        let fixture = json(SessionFixtureFiles.matchVersion3)
+        let fixture = json(SessionFixtureFiles.matchVersion4)
         #expect(try JSONSerialization.jsonObject(with: file.encoded()) as? NSDictionary
                 == JSONSerialization.jsonObject(with: fixture) as? NSDictionary)
         #expect(!SessionFile.needsMigration(fixture))
+    }
+}
+
+
+extension SessionFileTests {
+    @Test("Version 3 migrates real journals and all session fields without inventing names")
+    func namedSchemaMigrationPreservesJournal() throws {
+        var object = try #require(JSONSerialization.jsonObject(with: everyShape.encoded()) as? [String: Any])
+        var session = try #require(object["session"] as? [String: Any])
+        var current = try #require(session["current"] as? [String: Any])
+        current.removeValue(forKey: "playerNames")
+        session["current"] = current
+        var settings = try #require(session["recentSettings"] as? [String: Any])
+        settings.removeValue(forKey: "playerNames")
+        session["recentSettings"] = settings
+        session["archive"] = try #require(session["archive"] as? [[String: Any]]).map {
+            var item = $0; item.removeValue(forKey: "playerNames"); return item
+        }
+        object["session"] = session
+        object["schemaVersion"] = 3
+        let data = try JSONSerialization.data(withJSONObject: object)
+        #expect(SessionFile.needsMigration(data))
+        #expect(SessionFile.read(data) == .valid(everyShape))
+    }
+
+    @Test("Schema 4 refuses missing roster objects rather than silently losing names", arguments: ["current", "recentSettings", "archive"])
+    func missingNamesAreDamaged(location: String) throws {
+        var object = try #require(JSONSerialization.jsonObject(with: everyShape.encoded()) as? [String: Any])
+        var session = try #require(object["session"] as? [String: Any])
+        if location == "archive" {
+            var items = try #require(session[location] as? [[String: Any]])
+            items[0].removeValue(forKey: "playerNames")
+            session[location] = items
+        } else {
+            var item = try #require(session[location] as? [String: Any])
+            item.removeValue(forKey: "playerNames")
+            session[location] = item
+        }
+        object["session"] = session
+        #expect(SessionFile.read(try JSONSerialization.data(withJSONObject: object)) == .damaged)
+    }
+
+    @Test("A named current game and independent archived roster round-trip exactly")
+    func namedRoundTrip() throws {
+        var session = try everyShape.session.after(.renamePlayers(PlayerNames(partner: "Мария", opponent1: "Zoë", opponent2: "Zoë")), .finish)
+        session.archive[0].playerNames = PlayerNames(partner: "Earlier partner")
+        let file = SessionFile(session: session)
+        #expect(session.issues.isEmpty)
+        #expect(SessionFile.read(try file.encoded()) == .valid(file))
+        #expect(session.archive.last?.playerNames == session.current?.playerNames)
+        #expect(session.archive.first?.playerNames != session.current?.playerNames)
+    }
+}
+
+
+extension SessionFileTests {
+    @Test("Frozen schema 3 still refuses missing current and archived journals", arguments: ["current", "archive"])
+    func version3JournalRemainsRequired(location: String) throws {
+        var object = try #require(JSONSerialization.jsonObject(with: json(SessionFixtureFiles.matchVersion3)) as? [String: Any])
+        #expect(SessionFile.read(json(SessionFixtureFiles.matchVersion3)) == .valid(SessionFile(session: SessionFixtures.match)))
+        var session = try #require(object["session"] as? [String: Any])
+        if location == "current" {
+            var record = try #require(session["current"] as? [String: Any])
+            record.removeValue(forKey: "journal")
+            session["current"] = record
+        } else {
+            var archive = try #require(session["archive"] as? [[String: Any]])
+            #expect(archive[0].removeValue(forKey: "journal") is NSNull)
+            session["archive"] = archive
+        }
+        object["session"] = session
+        #expect(SessionFile.read(try JSONSerialization.data(withJSONObject: object)) == .damaged)
     }
 }

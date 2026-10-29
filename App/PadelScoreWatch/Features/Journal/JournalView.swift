@@ -2,6 +2,7 @@ import SwiftUI
 
 struct JournalView: View {
     let journal: GameJournal?
+    var names: PlayerNames = .empty
     var store: SessionStore? = nil
     var live: LiveScore? = nil
     var saved: () -> Void = {}
@@ -31,7 +32,7 @@ struct JournalView: View {
                 }
                 ForEach(presentation.entries.reversed()) { entry in
                     NavigationLink {
-                        JournalEventView(entry: entry, store: store, live: live, saved: saved)
+                        JournalEventView(entry: entry, names: names, store: store, live: live, saved: saved)
                     } label: {
                         VStack(alignment: .leading, spacing: Spacing.xs) {
                             if case .rally(let winner) = entry.kind {
@@ -59,6 +60,7 @@ struct JournalView: View {
 
 private struct JournalEventView: View {
     let entry: JournalPresentation.Entry
+    let names: PlayerNames
     let store: SessionStore?
     let live: LiveScore?
     let saved: () -> Void
@@ -89,12 +91,12 @@ private struct JournalEventView: View {
                     switch entry.kind {
                     case .checkpoint(let game, reason: .knownScore):
                         Caption("Earlier rally detail is unavailable. Only recorded events are shown.")
-                        JournalScoreView(game: game)
+                        JournalScoreView(game: game, names: names)
                     case .checkpoint(let game, _), .correction(let game):
                         Caption("Earlier rallies can be viewed, but corrections start after this checkpoint.")
-                        JournalScoreView(game: game)
+                        JournalScoreView(game: game, names: names)
                     case .serviceConfirmed(_, let player):
-                        Text(player.name)
+                        Text(verbatim: player.displayName(in: names))
                     case .rallyCorrection(let correction):
                         Text(JournalText.operation(correction.edit))
                         Caption("Later recorded winners were kept in order.")

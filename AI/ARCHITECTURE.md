@@ -757,3 +757,16 @@ localized hyphenation. Titles retain header traits; rules retain ordinary text
 traits. All other guide layout stays SwiftUI, including vertically labeled native
 menus so the entered value never loses its visible field name.
 No font-size cap or minimum-scale workaround is used.
+
+
+## Player-name metadata — M27
+
+Player roles remain stable. PlayerNames belongs to GameRecord, ArchivedResult and
+RecentSettings, passed by GameSetup/known-score start; never GameSnapshot or rally
+events. renamePlayers is a revision-bound SessionCommand persisted atomically
+through SessionStore, without history/journal entries or usage changes. Current
+roster survives score Undo and is copied on archive publication. Schema 4 uses
+explicit version 1–3 decoding/migration to empty names, preserving all old state.
+Display resolution receives the game's roster, never a global recent roster; demos
+default to empty names. Editor drafts live in memory through background and save
+only on explicit confirmation; failed saves keep saved state and support retry.

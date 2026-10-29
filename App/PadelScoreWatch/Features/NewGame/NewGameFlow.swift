@@ -17,6 +17,7 @@ final class NewGameFlow {
         case totalRallies
         case ralliesPerServer
         case serving
+        case players
         case about
         case history
         /// The scoreboard demo, from New game or About.
@@ -112,6 +113,7 @@ final class NewGameFlow {
         } else if let editor = knownScore {
             // Going back to adjust rules must not erase a carefully entered score.
             // Preserve values and let the shared validators expose any new conflict.
+            editor.playerNames = draft.playerNames
             editor.editMatch { $0.deuceRule = draft.deuceRule }
             editor.editRound {
                 $0.totalRallies = draft.totalRallies
@@ -134,7 +136,7 @@ final class NewGameFlow {
         }
         if knownScore == nil {
             knownScore = GameEditor(game: GameSnapshot(id: GameID(rawValue: UUID()), format: format),
-                                    revision: store.session.revision, recent: store.session.recentSettings, isStarting: true)
+                                    revision: store.session.revision, recent: store.session.recentSettings, isStarting: true, playerNames: draft?.playerNames ?? .empty)
             // A nonzero score has no inferred block position; the person must choose it.
             knownScore?.editRound { $0.rallyInBlock = nil }
         }
@@ -171,7 +173,7 @@ final class NewGameFlow {
                 refusedStarts += 1
                 return false
             }
-            command = .startFromScore(format, id: gameID)
+            command = .startFromScore(format, id: gameID, playerNames: draft.playerNames)
         } else {
             command = .start(setup, id: gameID)
         }

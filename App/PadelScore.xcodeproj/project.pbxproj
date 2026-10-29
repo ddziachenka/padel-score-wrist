@@ -161,6 +161,8 @@
 		8D510F1BE1F9B8E846C2BF3A /* RallyReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1C9118F3D4376432BDC69 /* RallyReviewView.swift */; };
 		CDAA782D488F9CBFA328D33F /* JournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F401B8F7D44CCFE384288F /* JournalTests.swift */; };
 		EF5B0AD4F5B4BAA3D3641EBB /* JournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCBF19D61AA544D8F7448A8 /* JournalUITests.swift */; };
+		F29EC52B47C3D0ED8E6803BD /* PlayerNamesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B1E60C92DDC6FD8BC6665 /* PlayerNamesEditor.swift */; };
+		DCAB6C9087831CBABB572B93 /* PlayerNamesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B1E60C92DDC6FD8BC6665 /* PlayerNamesEditor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -390,6 +392,7 @@
 		D5A1C9118F3D4376432BDC69 /* RallyReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatch/Features/Journal/RallyReviewView.swift"; sourceTree = SOURCE_ROOT; };
 		63F401B8F7D44CCFE384288F /* JournalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchTests/Features/JournalTests.swift"; sourceTree = SOURCE_ROOT; };
 		1CCBF19D61AA544D8F7448A8 /* JournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchUITests/JournalUITests.swift"; sourceTree = SOURCE_ROOT; };
+		A35B1E60C92DDC6FD8BC6665 /* PlayerNamesEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNamesEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -704,6 +707,7 @@
 				3DC81DBD65565A7436C499EC /* DeuceRuleEditor.swift */,
 				136FA959252D855C141788D3 /* NumberEditor.swift */,
 				C1003716CBB394C3A7A6290B /* ServingEditor.swift */,
+				A35B1E60C92DDC6FD8BC6665 /* PlayerNamesEditor.swift */,
 				969058B0A7BF1FC481BE84B7 /* EditorActions.swift */,
 			);
 			path = Editors;
@@ -1219,6 +1223,7 @@
 			buildActionMask = 2147483647;
 			runOnlyForDeploymentPostprocessing = 0;
 			files = (
+				F29EC52B47C3D0ED8E6803BD /* PlayerNamesEditor.swift in Sources */,
 				8D510F1BE1F9B8E846C2BF3A /* RallyReviewView.swift in Sources */,
 				DD7BC95B9A5F2F675779CF35 /* JournalPresentation.swift in Sources */,
 				99B5ED6E37E828190EDB5E6A /* JournalView.swift in Sources */,
@@ -1302,6 +1307,7 @@
 			buildActionMask = 2147483647;
 			runOnlyForDeploymentPostprocessing = 0;
 			files = (
+				DCAB6C9087831CBABB572B93 /* PlayerNamesEditor.swift in Sources */,
 				8D510F1BE1F9B8E846C2BF3A /* RallyReviewView.swift in Sources */,
 				DD7BC95B9A5F2F675779CF35 /* JournalPresentation.swift in Sources */,
 				99B5ED6E37E828190EDB5E6A /* JournalView.swift in Sources */,

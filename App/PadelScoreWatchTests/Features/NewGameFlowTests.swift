@@ -327,7 +327,8 @@ final class KnownScoreFlowTests {
         let request = try #require(store.failedRequest)
         files.repair()
         #expect(await flow.retryStart())
-        guard case .startFromScore(let format, let id) = request.command else { Issue.record("Expected known start"); return }
+        guard case .startFromScore(let format, let id, let names) = request.command else { Issue.record("Expected known start"); return }
+        #expect(names == .empty)
         #expect(store.session.game?.id == id)
         #expect(store.session.game?.format == format)
         #expect(await open().session == store.session)
@@ -428,5 +429,26 @@ final class KnownScoreFlowTests {
         flow.cancelFailedStart()
         #expect(flow.knownScore?.isLocked == false)
         #expect(flow.knownScore?.draft == original)
+    }
+}
+
+extension NewGameFlowTests {
+    @Test("Cancelling setup leaves the saved roster; ordinary and known-score starts publish the chosen names", arguments: [false, true])
+    func rosterStartAndCancel(known: Bool) async throws {
+        let store = await openStore()
+        let flow = NewGameFlow(store: store)
+        completeMatch(in: flow)
+        let names = PlayerNames(partner: "Мария", opponent1: "Zoë")
+        flow.edit { $0.playerNames = names }
+        flow.path = []
+        #expect(store.session.recentSettings.playerNames == .empty)
+        #expect(folder.fileNames.isEmpty)
+        completeMatch(in: flow)
+        flow.edit { $0.playerNames = names; $0.startsFromScore = known }
+        if known { flow.enterKnownScore() }
+        #expect(await flow.start())
+        #expect(store.session.current?.playerNames == names)
+        #expect(store.session.recentSettings.playerNames == names)
+        #expect(store.session.current?.history.isEmpty == true)
     }
 }

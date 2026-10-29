@@ -934,3 +934,16 @@ VoiceOver. Picker accessibility names and existing input identifiers remain.
 
 Secondary guide actions use opaque semantic text on filled rounded surfaces;
 their normal-size serving/Undo regression explicitly covers Light and Dark Mode.
+
+
+## Players — M27
+
+Add Players to setup and the active-game menu. A scrolling native editor shows
+three persistent role labels and optional native text fields, Save and Cancel.
+Clearing a field restores its role; cancelled edits leave the caller untouched.
+Selection rows show a custom name with the role beneath it so duplicates remain
+identifiable. All real serving labels and announcements resolve the game's names.
+Long names wrap in editors/results; the compact serving block keeps its two-line
+layout and full accessible label. Result details show a read-only roster when any
+custom name exists. Background preserves the open editor and draft. Translate new
+copy in all thirteen locales; keep literal user text out of localization lookup.

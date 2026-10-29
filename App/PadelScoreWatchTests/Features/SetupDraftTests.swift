@@ -225,3 +225,30 @@ struct ServingChoiceTests {
         #expect(Player.allCases.map(\.partner) == [.partner, .you, .opponent2, .opponent1])
     }
 }
+
+extension SetupDraftTests {
+    @Test("Roster drafts preserve raw spaces while normalized names keep Unicode and role fallback")
+    func rawNameDraft() {
+        var draft = PlayerNamesDraft(.empty)
+        draft.partner = "Anne "
+        #expect(draft.partner == "Anne ")
+        draft.partner += "Marie"
+        draft.opponent1 = "  Мария  "
+        #expect(draft.names == PlayerNames(partner: "Anne Marie", opponent1: "Мария"))
+        #expect(Player.opponent2.displayName(in: draft.names) == "Opponent 2")
+        draft.opponent2 = "Golden point"
+        #expect(Player.opponent2.displayName(in: draft.names) == "Golden point")
+    }
+
+    @Test("Both formats inherit the latest roster; Play again uses its game's own roster", arguments: GameKind.allCases)
+    func rosterDefaults(kind: GameKind) {
+        var settings = lastSettings
+        settings.playerNames = PlayerNames(partner: "Recent partner")
+        let draft = SetupDraft(kind: kind, recent: settings)
+        #expect(draft.playerNames == settings.playerNames)
+        #expect(draft.gameSetup?.playerNames == settings.playerNames)
+        var setup = GameSetup.match()
+        setup.playerNames = PlayerNames(opponent1: "Previous opponent")
+        #expect(SetupDraft(playingAgain: setup).playerNames == setup.playerNames)
+    }
+}

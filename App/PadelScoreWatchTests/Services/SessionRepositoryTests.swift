@@ -182,13 +182,13 @@ final class SessionRepositoryTests {
     @Test("A backup that cannot be used is never restored")
     func unusableBackupNotRestored() async throws {
         var newer = SessionFile(session: SessionFixtures.match)
-        newer.schemaVersion = 4
+        newer.schemaVersion = SessionFile.currentSchemaVersion + 1
         try folder.write(Data("{".utf8), to: folder.location.backup)
         #expect(await folder.repository().load() == .unreadable(.damaged))
 
         try folder.write(Data("{".utf8), to: folder.location.main)
         try folder.write(try newer.encoded(), to: folder.location.backup)
-        #expect(await folder.repository().load() == .unreadable(.newerVersion(4)))
+        #expect(await folder.repository().load() == .unreadable(.newerVersion(SessionFile.currentSchemaVersion + 1)))
         #expect(folder.fileNames == ["session.json", "session-backup.json"])
     }
 
@@ -203,12 +203,12 @@ final class SessionRepositoryTests {
     @Test("A file from a newer version of the app is left exactly as it is")
     func newerVersionUntouched() async throws {
         var newer = SessionFile(session: SessionFixtures.match)
-        newer.schemaVersion = 4
+        newer.schemaVersion = SessionFile.currentSchemaVersion + 1
         let data = try newer.encoded()
         try folder.write(data, to: folder.location.main)
         let repository = folder.repository()
 
-        #expect(await repository.load() == .unreadable(.newerVersion(4)))
+        #expect(await repository.load() == .unreadable(.newerVersion(SessionFile.currentSchemaVersion + 1)))
         await #expect(throws: SessionRepositoryError.notLoaded) { try await repository.save(.empty, notice: nil) }
         #expect(folder.contents(of: folder.location.main) == data)
         #expect(folder.fileNames == ["session.json"])

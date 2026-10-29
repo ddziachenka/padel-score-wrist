@@ -37,11 +37,13 @@ struct SetupDraft: Hashable, Sendable {
     var ralliesPerServer: Int? {
         didSet { ralliesPerServer = Self.offered(ralliesPerServer, in: Self.ralliesPerServerRange) }
     }
+    var playerNames: PlayerNames
     var serving: ServingChoice
     let origin: Origin
 
     init(kind: GameKind, recent: RecentSettings) {
         self.kind = kind
+        playerNames = recent.playerNames
         serving = recent.serving.map(ServingChoice.init) ?? ServingChoice()
         switch kind {
         case .match:
@@ -57,6 +59,7 @@ struct SetupDraft: Hashable, Sendable {
     /// The draft for playing a game again: its format, rules and serving, for the person to check.
     /// Its score never carries over; a number the editors do not offer waits to be chosen.
     init(playingAgain setup: GameSetup) {
+        playerNames = setup.playerNames
         switch setup.rules {
         case .match(let rules):
             kind = .match
@@ -105,11 +108,11 @@ struct SetupDraft: Hashable, Sendable {
         switch kind {
         case .match:
             guard let deuceRule else { return nil }
-            return GameSetup(rules: .match(MatchRules(deuceRule: deuceRule, setPolicy: .tieBreakAtSixAll)), serving: servingSetup)
+            return GameSetup(rules: .match(MatchRules(deuceRule: deuceRule, setPolicy: .tieBreakAtSixAll)), serving: servingSetup, playerNames: playerNames)
         case .americano:
             guard let totalRallies, let ralliesPerServer else { return nil }
             let rules = AmericanoRules(totalRallies: totalRallies, ralliesPerServer: ralliesPerServer)
-            return GameSetup(rules: .americano(rules), serving: servingSetup)
+            return GameSetup(rules: .americano(rules), serving: servingSetup, playerNames: playerNames)
         }
     }
 }

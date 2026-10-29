@@ -5,7 +5,7 @@ import Foundation
 /// no focus. Each part is a whole sentence of its own, so none is pieced together from fragments.
 enum ScoreAnnouncement {
     /// `result` is the summary of the game after the change, when that game is finished.
-    static func text(for outcome: SessionOutcome, before: ScoreBoard?, after: ScoreBoard, result: ResultSummary? = nil) -> String? {
+    static func text(for outcome: SessionOutcome, before: ScoreBoard?, after: ScoreBoard, result: ResultSummary? = nil, names: PlayerNames = .empty) -> String? {
         var sentences: [String] = []
         switch outcome {
         case .match(.point), .americano(.point):
@@ -51,12 +51,14 @@ enum ScoreAnnouncement {
             sentences.append(String(localized: "Game resumed.", comment: "VoiceOver, after a finished game was resumed exactly where it stopped."))
             sentences.append(points(after))
             if let context = contextSentence(after.context) { sentences.append(context) }
+        case .playersRenamed:
+            return String(localized: "Changes saved.")
         case .started, .deleted, .alreadyApplied:
             return nil
         }
         switch after.serving {
         case .next(let player):
-            if case .next(player) = before?.serving {} else { sentences.append(serving(player)) }
+            if case .next(player) = before?.serving {} else { sentences.append(serving(player, names: names)) }
         case .toConfirm:
             if case let .match(_, sets) = after.details {
                 let set = sets.us + sets.them + 1
@@ -203,9 +205,9 @@ enum ScoreAnnouncement {
         }
     }
 
-    private static func serving(_ player: Player) -> String {
+    private static func serving(_ player: Player, names: PlayerNames = .empty) -> String {
         String(
-            localized: "Serving: \(String(localized: player.name)).",
+            localized: "Serving: \(player.displayName(in: names)).",
             comment: "VoiceOver: who serves the next point or rally, after it changed. Argument: a role, such as You or Opponent 1."
         )
     }

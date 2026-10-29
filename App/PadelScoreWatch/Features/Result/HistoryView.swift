@@ -78,7 +78,8 @@ private struct HistoryResultView: View {
                     .accessibilityAddTraits(.isHeader)
                 CompletionDate(date: entry.finishedAt, includesTime: true)
                 ResultSummaryView(summary: ResultSummary(game: entry.game))
-                NavigationLink { JournalView(journal: entry.journal) } label: { Text("Journal") }
+                PlayerRosterView(names: entry.playerNames)
+                NavigationLink { JournalView(journal: entry.journal, names: entry.playerNames) } label: { Text("Journal") }
                     .buttonStyle(SecondaryButtonStyle())
                     .accessibilityIdentifier("history.journal")
             }

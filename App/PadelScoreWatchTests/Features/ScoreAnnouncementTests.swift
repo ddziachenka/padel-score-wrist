@@ -175,3 +175,14 @@ struct ScoreAnnouncementTests {
         #expect(ScoreAnnouncement.text(for: .finished, before: board, after: board) == nil, "Finish is told with its result")
     }
 }
+
+extension ScoreAnnouncementTests {
+    @Test("Serving announcements speak literal game-local names")
+    func namedServingAnnouncement() throws {
+        let before = try Session.empty.after(.start(.americano(perServer: 1), id: .number(1)))
+        let after = try before.after(.awardPoint(to: .us))
+        let announcement = ScoreAnnouncement.text(for: .americano(.point), before: ScoreBoard(game: before.game!), after: ScoreBoard(game: after.game!), names: PlayerNames(opponent1: "Zoë"))
+        #expect(announcement?.contains("Serving: Zoë.") == true)
+        #expect(announcement?.contains("Opponent 1") == false)
+    }
+}

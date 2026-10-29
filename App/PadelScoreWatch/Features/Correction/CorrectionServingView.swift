@@ -29,13 +29,13 @@ struct CorrectionServingView: View {
                 // What is checked comes first: the order from the next server, and where the next
                 // rally falls in their block.
                 SectionHeading("Service order")
-                ServiceOrderList(sequence: serving.order.sequence(from: serving.firstServer))
+                ServiceOrderList(sequence: serving.order.sequence(from: serving.firstServer), names: editor.playerNames)
                 if let round = editor.draft.round {
                     block(round)
                 }
                 SectionHeading("Next server")
                 ForEach(Player.allCases, id: \.self) { player in
-                    ChoiceButton(title: Text(player.name), isSelected: serving.firstServer == player) {
+                    ChoiceButton(player: player, names: editor.playerNames, isSelected: serving.firstServer == player) {
                         var changed = choice
                         changed.choose(first: player)
                         if let setup = changed.setup { editor.setServing(setup) }
@@ -44,7 +44,7 @@ struct CorrectionServingView: View {
                 }
                 SectionHeading("After them")
                 ForEach(choice.secondCandidates, id: \.self) { player in
-                    ChoiceButton(title: Text(player.name), isSelected: choice.second == player) {
+                    ChoiceButton(player: player, names: editor.playerNames, isSelected: choice.second == player) {
                         var changed = choice
                         changed.choose(second: player)
                         if let setup = changed.setup { editor.setServing(setup) }

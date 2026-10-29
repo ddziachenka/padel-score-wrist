@@ -13,6 +13,8 @@ enum SessionIssue: Hashable, Sendable {
     case archiveInvalid
     /// A journal has malformed identities, boundaries or Undo prefix references.
     case journalInvalid
+    /// A roster is not normalized, or the current result disagrees with its archive.
+    case playerNamesInvalid
     /// The remembered americano rules cannot start a round.
     case recentSettingsInvalid
 }
@@ -59,6 +61,10 @@ extension Session {
                 || ($0.id == current?.game.id && $0.game != current?.game)
         }) || (current?.game.status == .finished && !archive.contains(where: { $0.game == current?.game })) {
             issues.append(.archiveInvalid)
+        }
+        if !recentSettings.playerNames.isValid || current?.playerNames.isValid == false
+            || archive.contains(where: { !$0.playerNames.isValid || ($0.id == current?.game.id && $0.playerNames != current?.playerNames) }) {
+            issues.append(.playerNamesInvalid)
         }
         if let rules = recentSettings.americano, rules.totalRallies < 1 || rules.ralliesPerServer < 1 {
             issues.append(.recentSettingsInvalid)

@@ -104,6 +104,8 @@ final class LiveScore {
         store.session.activeGame == nil ? nil : store.session.previousResult
     }
 
+    var playerNames: PlayerNames { store.session.current?.playerNames ?? .empty }
+
     var board: ScoreBoard? {
         game.map(ScoreBoard.init)
     }
@@ -158,7 +160,8 @@ final class LiveScore {
             game: game,
             revision: store.session.revision,
             recent: store.session.recentSettings,
-            makesRoomToResume: toResume
+            makesRoomToResume: toResume,
+            playerNames: playerNames
         )
     }
 
@@ -316,7 +319,8 @@ final class LiveScore {
                 for: outcome,
                 before: before,
                 after: after,
-                result: game.status == .finished ? ResultSummary(game: game) : nil
+                result: game.status == .finished ? ResultSummary(game: game) : nil,
+                names: playerNames
             )
         )
     }
@@ -331,7 +335,7 @@ extension Haptic {
         case .match(.game), .match(.set): self = .gameOrSet
         case .americano(.roundComplete), .finished: self = .finished
         case .undone: self = .undo
-        case .match(.serviceConfirmed), .started, .corrected, .resumed, .deleted, .alreadyApplied: return nil
+        case .match(.serviceConfirmed), .started, .corrected, .playersRenamed, .resumed, .deleted, .alreadyApplied: return nil
         }
     }
 }

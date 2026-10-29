@@ -1,10 +1,10 @@
 # Project status
 
 **Phase:** implementation
-**Current milestone:** M24
+**Current milestone:** M27
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24
-**Next milestone:** M25
-**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M24 DONE; M25–M26 remain planned. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
+**Next milestone:** M27
+**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. M27 Player Names REVIEW; full verification pending; M25–M26 remain planned and follow M27. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -324,3 +324,18 @@ and the unsent/on-hold reply remain unchanged; no upload/submission/pricing/
 Promotional Text/public-release action. A new Builder owns M25 — Recovery Experience
 and Review Materials; M25–M26 remain planned. This session stops after DONE
 static/status/continuity against the verified SHA.
+
+
+## M27 approved — 2026-10-29
+
+Owner approved optional Partner/Opponent 1/Opponent 2 names on Apple Watch before
+and during games, remembered latest roster, immutable archived rosters, native input,
+local-only storage and schema 4 migration. M27 depends on M24 and precedes M25/M26.
+This Builder owns only M27. No submission or release action is authorized here.
+
+Owner validation direction, 2026-10-29: “давай все проверки на физических часах
+сделаем перед подготовкой к релизу”. M25 owns all physical-Watch checks before
+M26, including M27 native name input/VoiceOver/lifecycle. M27 requires its full
+automated gate and Simulator runtime coverage. Physical connection attempts failed
+with CoreDevice Bluetooth L2CAP/tunnel errors and executed no tests; no hardware
+pass or release waiver is claimed.

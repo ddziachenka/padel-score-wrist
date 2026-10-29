@@ -26,14 +26,14 @@ struct SetServingView: View {
                 Group {
                     SectionHeading("First server")
                     ForEach(Player.allCases.filter { $0.team == servingTeam }, id: \.self) { player in
-                        ChoiceButton(title: Text(player.name), isSelected: choice.first == player) {
+                        ChoiceButton(player: player, names: live.playerNames, isSelected: choice.first == player) {
                             choice.choose(first: player)
                         }
                         .accessibilityIdentifier("serving.first.\(player.rawValue)")
                     }
                     SectionHeading("Second server")
                     ForEach(choice.secondCandidates, id: \.self) { player in
-                        ChoiceButton(title: Text(player.name), isSelected: choice.second == player) {
+                        ChoiceButton(player: player, names: live.playerNames, isSelected: choice.second == player) {
                             choice.choose(second: player)
                         }
                         .accessibilityIdentifier("serving.second.\(player.rawValue)")
@@ -43,7 +43,7 @@ struct SetServingView: View {
                 .allowsHitTesting(live.isIdle)
                 if let sequence = choice.sequence {
                     SectionHeading("Service order")
-                    ServiceOrderList(sequence: sequence)
+                    ServiceOrderList(sequence: sequence, names: live.playerNames)
                 }
                 Button {
                     guard let setup = choice.setup else { return }

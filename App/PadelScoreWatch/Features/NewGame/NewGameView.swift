@@ -131,8 +131,12 @@ struct NewGameDestination: View {
                 range: SetupDraft.ralliesPerServerRange,
                 number: draft(\.ralliesPerServer, otherwise: nil)
             )
+        case .players:
+            PlayerNamesEditor(names: flow.draft?.playerNames ?? .empty) { names in
+                flow.edit { $0.playerNames = names }
+            }
         case .serving:
-            ServingEditor(serving: draft(\.serving, otherwise: ServingChoice()), joiningGame: flow.draft?.startsFromScore == true)
+            ServingEditor(serving: draft(\.serving, otherwise: ServingChoice()), joiningGame: flow.draft?.startsFromScore == true, names: flow.draft?.playerNames ?? .empty)
         case .about:
             AboutView(usage: store.session.usage, tryScoreboard: { flow.path.append(.demo) }, settings: { flow.path.append(.settings) })
         case .demo:

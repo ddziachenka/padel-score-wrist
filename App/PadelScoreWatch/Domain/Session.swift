@@ -36,13 +36,15 @@ struct GameRecord: Hashable, Sendable, Codable {
     /// Oldest first; undo restores the last. Its length is not limited.
     var history: [HistoryEntry]
     var journal: GameJournal
+    var playerNames: PlayerNames
 
     /// A supplied snapshot has unknown earlier rallies. Real starts supply their own
     /// start checkpoint; migration and snapshot-only fixtures use a migration boundary.
-    init(game: GameSnapshot, history: [HistoryEntry], journal: GameJournal? = nil) {
+    init(game: GameSnapshot, history: [HistoryEntry], journal: GameJournal? = nil, playerNames: PlayerNames = .empty) {
         self.game = game
         self.history = history
         self.journal = journal ?? .migrated(game)
+        self.playerNames = playerNames
     }
 }
 
@@ -76,15 +78,17 @@ struct ArchivedResult: Hashable, Sendable, Codable, Identifiable {
     var finishedAt: Date?
     /// Nil means a legacy compact result with no recorded event detail.
     var journal: GameJournal? = nil
+    var playerNames: PlayerNames
     var id: GameID { game.id }
 
-    init(game: GameSnapshot, finishedAt: Date?, journal: GameJournal? = nil) {
+    init(game: GameSnapshot, finishedAt: Date?, journal: GameJournal? = nil, playerNames: PlayerNames = .empty) {
         self.game = game
         self.finishedAt = finishedAt
         self.journal = journal
+        self.playerNames = playerNames
     }
 
-    private enum CodingKeys: String, CodingKey { case game, finishedAt, journal }
+    private enum CodingKeys: String, CodingKey { case game, finishedAt, journal, playerNames }
 
     init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -93,6 +97,7 @@ struct ArchivedResult: Hashable, Sendable, Codable, Identifiable {
         // v3 writes explicit null for unavailable legacy detail. A missing field is
         // a damaged current file, not a reason to silently discard recorded events.
         journal = try values.decode(GameJournal?.self, forKey: .journal)
+        playerNames = try values.decode(PlayerNames.self, forKey: .playerNames)
     }
 
     func encode(to encoder: any Encoder) throws {
@@ -100,6 +105,7 @@ struct ArchivedResult: Hashable, Sendable, Codable, Identifiable {
         try values.encode(game, forKey: .game)
         try values.encodeIfPresent(finishedAt, forKey: .finishedAt)
         try values.encode(journal, forKey: .journal)
+        try values.encode(playerNames, forKey: .playerNames)
     }
 }
 
@@ -227,5 +233,13 @@ struct GameJournal: Hashable, Sendable, Codable {
             previousRevision = event.revision
         }
         return true
+    }
+}
+
+
+extension Session {
+    func playerNames(for gameID: GameID) -> PlayerNames {
+        if let current, current.game.id == gameID { return current.playerNames }
+        return archive.first { $0.id == gameID }?.playerNames ?? .empty
     }
 }

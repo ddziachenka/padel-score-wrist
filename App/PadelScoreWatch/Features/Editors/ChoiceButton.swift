@@ -41,3 +41,15 @@ struct ChoiceButton: View {
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
+
+
+extension ChoiceButton {
+    init(player: Player, names: PlayerNames, isSelected: Bool, action: @escaping () -> Void) {
+        self.init(
+            title: Text(verbatim: player.displayName(in: names)),
+            note: names[player] == nil ? nil : Text(player.name),
+            isSelected: isSelected,
+            action: action
+        )
+    }
+}

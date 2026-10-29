@@ -6,7 +6,8 @@ enum SessionCommand: Hashable, Sendable {
     /// finished one becomes the previous result.
     case start(GameSetup, id: GameID)
     /// Joins a continuable known state; no earlier rallies are inferred.
-    case startFromScore(GameFormat, id: GameID)
+    case startFromScore(GameFormat, id: GameID, playerNames: PlayerNames = .empty)
+    case renamePlayers(PlayerNames)
     case awardPoint(to: Team)
     /// Confirms the serving order of a new set in a regular match.
     case confirmService(order: ServiceOrder, firstServer: Player)
@@ -27,6 +28,7 @@ enum SessionOutcome: Hashable, Sendable {
     case match(MatchOutcome)
     case americano(AmericanoOutcome)
     case corrected
+    case playersRenamed
     case finished
     case resumed
     /// Undo took back a change of this kind.
@@ -82,11 +84,12 @@ extension Session {
         next.lastCommand = id
         let undoneDate = command == .undo ? current?.history.last?.beforeFinishedAt : nil
         let outcome = try next.apply(command, id: id, access: access)
-        if command != .deleteLocalData, let game = next.current?.game {
+        if command != .deleteLocalData, let record = next.current {
+            let game = record.game
             let existing = archive.first { $0.id == game.id }
             let date = command == .undo ? undoneDate : (existing != nil ? existing?.finishedAt : timestamp)
             if game.status == .finished {
-                let entry = ArchivedResult(game: game, finishedAt: date, journal: next.current?.journal.archiveDetail)
+                let entry = ArchivedResult(game: game, finishedAt: date, journal: record.journal.archiveDetail, playerNames: record.playerNames)
                 if let index = next.archive.firstIndex(where: { $0.id == game.id }) {
                     next.archive[index] = entry
                 } else {
@@ -103,8 +106,17 @@ extension Session {
         switch command {
         case let .start(setup, gameID):
             return try start(setup, id: gameID, command: id, access: access)
-        case let .startFromScore(format, gameID):
-            return try start(format, id: gameID, command: id, access: access, reason: .knownScore)
+        case let .startFromScore(format, gameID, names):
+            let outcome = try start(format, id: gameID, command: id, access: access, reason: .knownScore)
+            current?.playerNames = names
+            recentSettings.playerNames = names
+            return outcome
+        case .renamePlayers(let names):
+            var record = try recordInPlay()
+            record.playerNames = names
+            current = record
+            recentSettings.playerNames = names
+            return .playersRenamed
         case .awardPoint(let team):
             return try awardPoint(to: team, by: id, access: access)
         case let .confirmService(order, firstServer):
@@ -148,6 +160,7 @@ extension Session {
         guard activeGame == nil else { throw .gameInProgress }
         guard access.allowsNewGame(after: usage) else { throw .newGameNotAllowed }
         let outcome = try start(setup.startingFormat(), id: id, command: command, access: access, reason: .start)
+        current?.playerNames = setup.playerNames
         recentSettings.remember(setup)
         return outcome
     }

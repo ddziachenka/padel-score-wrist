@@ -181,7 +181,7 @@ struct GameEditorScreen: View {
             }
         case .serving:
             row(field, route: .editServing, label: Text("Serving"), problem: problem) {
-                ServingSummary(draft: editor.draft)
+                ServingSummary(draft: editor.draft, names: editor.playerNames)
             }
         }
     }
@@ -468,10 +468,11 @@ struct SetsSummary: View {
 /// Who serves next, with their place in a tie-break turn or a round's block.
 struct ServingSummary: View {
     let draft: CorrectionDraft
+    var names: PlayerNames = .empty
 
     var body: some View {
         VStack(alignment: .leading, spacing: Spacing.xs) {
-            Text(draft.serving.firstServer.name)
+            Text(verbatim: draft.serving.firstServer.displayName(in: names))
                 .font(Typography.body.weight(.medium))
                 .foregroundStyle(Palette.textPrimary)
             if let round = draft.round, let place = round.rallyInBlock, let block = round.ralliesPerServer {

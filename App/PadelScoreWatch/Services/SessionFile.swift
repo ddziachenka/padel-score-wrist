@@ -5,8 +5,8 @@ import Foundation
 /// and a migration from the old one, tested against the saved form of every version that
 /// shipped.
 struct SessionFile: Hashable, Sendable, Codable {
-    /// Version 3 adds flat event journals and prefix-based journal Undo.
-    static let currentSchemaVersion = 3
+    /// Version 4 adds per-game names without putting metadata in score history.
+    static let currentSchemaVersion = 4
 
     var schemaVersion: Int
     var session: Session
@@ -63,6 +63,9 @@ extension SessionFile {
         case 2:
             guard let legacy = try? decoder.decode(Version2.self, from: data) else { return .damaged }
             file = legacy.migrated
+        case 3:
+            guard let legacy = try? decoder.decode(Version3.self, from: data) else { return .damaged }
+            file = legacy.migrated
         case currentSchemaVersion:
             guard let decoded = try? decoder.decode(SessionFile.self, from: data) else { return .damaged }
             file = decoded
@@ -93,7 +96,7 @@ extension SessionFile {
         struct LegacySession: Decodable {
             let current: LegacyRecord?
             let previousResult: GameSnapshot?
-            let recentSettings: RecentSettings
+            let recentSettings: LegacySettings
             let usage: UsageLedger
             let revision: Int
             let lastCommand: CommandID?
@@ -112,7 +115,7 @@ extension SessionFile {
                 archive.append(ArchivedResult(game: game, finishedAt: nil))
             }
             return SessionFile(session: Session(
-                current: session.current?.migrated(revision: session.revision), archive: archive, recentSettings: session.recentSettings,
+                current: session.current?.migrated(revision: session.revision), archive: archive, recentSettings: session.recentSettings.migrated,
                 usage: session.usage, revision: session.revision, lastCommand: session.lastCommand
             ), notice: notice)
         }
@@ -136,7 +139,7 @@ extension SessionFile {
         struct LegacySession: Decodable {
             let current: LegacyRecord?
             let archive: [LegacyArchive]
-            let recentSettings: RecentSettings
+            let recentSettings: LegacySettings
             let usage: UsageLedger
             let revision: Int
             let lastCommand: CommandID?
@@ -152,7 +155,54 @@ extension SessionFile {
             SessionFile(session: Session(
                 current: session.current?.migrated(revision: session.revision),
                 archive: session.archive.map { ArchivedResult(game: $0.game, finishedAt: $0.finishedAt) },
-                recentSettings: session.recentSettings, usage: session.usage,
+                recentSettings: session.recentSettings.migrated, usage: session.usage,
+                revision: session.revision, lastCommand: session.lastCommand
+            ), notice: notice)
+        }
+    }
+
+    /// Frozen pre-name settings keep old files independent of schema-4 required fields.
+    private struct LegacySettings: Decodable {
+        let match: MatchRules?
+        let americano: AmericanoRules?
+        let serving: ServingSetup?
+        var migrated: RecentSettings { RecentSettings(match: match, americano: americano, serving: serving) }
+    }
+
+    private struct Version3: Decodable {
+        struct Record: Decodable {
+            let game: GameSnapshot
+            let history: [HistoryEntry]
+            let journal: GameJournal
+            var migrated: GameRecord { GameRecord(game: game, history: history, journal: journal) }
+        }
+        struct Archive: Decodable {
+            let game: GameSnapshot
+            let finishedAt: Date?
+            let journal: GameJournal?
+            private enum CodingKeys: String, CodingKey { case game, finishedAt, journal }
+            init(from decoder: any Decoder) throws {
+                let values = try decoder.container(keyedBy: CodingKeys.self)
+                game = try values.decode(GameSnapshot.self, forKey: .game)
+                finishedAt = try values.decodeIfPresent(Date.self, forKey: .finishedAt)
+                journal = try values.decode(GameJournal?.self, forKey: .journal)
+            }
+            var migrated: ArchivedResult { ArchivedResult(game: game, finishedAt: finishedAt, journal: journal) }
+        }
+        struct LegacySession: Decodable {
+            let current: Record?
+            let archive: [Archive]
+            let recentSettings: LegacySettings
+            let usage: UsageLedger
+            let revision: Int
+            let lastCommand: CommandID?
+        }
+        let session: LegacySession
+        let notice: StorageNotice?
+        var migrated: SessionFile {
+            SessionFile(session: Session(
+                current: session.current?.migrated, archive: session.archive.map(\.migrated),
+                recentSettings: session.recentSettings.migrated, usage: session.usage,
                 revision: session.revision, lastCommand: session.lastCommand
             ), notice: notice)
         }

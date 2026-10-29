@@ -294,3 +294,79 @@ extension SessionStoreTests {
         #expect(!folder.fileNames.contains("deletion-rollback.json"))
     }
 }
+
+extension SessionStoreTests {
+    @Test("Roster writes fail atomically, retry once and survive reopening", arguments: FaultyFileSystem.saveFaults)
+    func rosterSaveFailure(fault: FaultyFileSystem.Fault) async throws {
+        let files = FaultyFileSystem(location: folder.location)
+        let store = await openStore(files: files)
+        try await play([.start(.match(), id: .number(1)), .awardPoint(to: .us)], in: store)
+        let before = store.session
+        let names = PlayerNames(partner: "Мария", opponent1: "Zoë")
+        let id = CommandID.fresh()
+        files.inject(fault)
+        await #expect(throws: SessionStoreError.saveFailed) {
+            try await store.perform(.renamePlayers(names), id: id, revision: before.revision)
+        }
+        #expect(store.session == before)
+        #expect(await openStore().session == before)
+        files.repair()
+        #expect(try await store.retryFailedRequest() == .playersRenamed)
+        #expect(store.session.current?.playerNames == names)
+        #expect(store.session.current?.history == before.current?.history)
+        #expect(store.session.current?.journal == before.current?.journal)
+        #expect(try await store.perform(.renamePlayers(names), id: id, revision: before.revision) == .alreadyApplied)
+        #expect(await openStore().session == store.session)
+    }
+
+    @Test("Cancelled roster failure keeps old names and permits later scoring")
+    func discardRosterFailure() async throws {
+        let files = FaultyFileSystem(location: folder.location)
+        let store = await openStore(files: files)
+        try await play([.start(.americano(), id: .number(1)), .renamePlayers(PlayerNames(partner: "Old name"))], in: store)
+        let before = store.session
+        files.inject(.writeFails)
+        await #expect(throws: SessionStoreError.saveFailed) {
+            try await store.perform(.renamePlayers(PlayerNames(partner: "New name")), id: .fresh(), revision: before.revision)
+        }
+        store.discardFailedRequest()
+        files.repair()
+        try await store.perform(.awardPoint(to: .us), id: .fresh(), revision: before.revision)
+        #expect(store.session.current?.playerNames == before.current?.playerNames)
+        #expect(store.session.recentSettings.playerNames == before.recentSettings.playerNames)
+    }
+
+    @Test("Backup restores its own roster rather than newer unsaved or corrupted names")
+    func rosterBackup() async throws {
+        let store = await openStore()
+        try await play([.start(.match(), id: .number(1)), .renamePlayers(PlayerNames(partner: "Backup name"))], in: store)
+        let backup = store.session
+        try await store.perform(.renamePlayers(PlayerNames(partner: "Current name")), id: .fresh(), revision: backup.revision)
+        try folder.write(Data("damaged".utf8), to: folder.location.main)
+        let reopened = await openStore()
+        var expected = backup
+        expected.usage = expected.usage.uncertain()
+        #expect(reopened.session == expected)
+        #expect(reopened.notice == .restoredFromBackup)
+    }
+}
+
+
+extension SessionStoreTests {
+    @Test("Deleting local data removes names from current, archive, settings and backup files")
+    func deleteRosterData() async throws {
+        let store = await openStore()
+        let names = PlayerNames(partner: "Мария", opponent1: "Zoë")
+        try await play([.start(.match(), id: .number(1)), .renamePlayers(names), .awardPoint(to: .us), .finish], in: store)
+        #expect(store.session.archive.last?.playerNames == names)
+        try await store.perform(.deleteLocalData, id: .fresh(), revision: store.session.revision)
+        let reopened = await openStore()
+        #expect(reopened.session.current == nil)
+        #expect(reopened.session.archive.isEmpty)
+        #expect(reopened.session.recentSettings.playerNames == .empty)
+        #expect(folder.fileNames == ["session.json"])
+        let saved = try #require(folder.contents(of: folder.location.main))
+        #expect(!String(decoding: saved, as: UTF8.self).contains("Мария"))
+        #expect(!String(decoding: saved, as: UTF8.self).contains("Zoë"))
+    }
+}

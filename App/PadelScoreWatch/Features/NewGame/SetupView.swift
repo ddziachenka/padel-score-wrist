@@ -62,6 +62,7 @@ struct SetupView: View {
     @ViewBuilder
     private func rows(for draft: SetupDraft) -> some View {
         let missing = flow.missingFields
+        row(.players, label: "Players", value: playersValue(draft.playerNames), problem: nil)
         row(.startingScore, label: "Starting score", value: draft.startsFromScore ? Text("Current score") : Text("From zero"), problem: nil)
         switch draft.kind {
         case .match:
@@ -88,7 +89,7 @@ struct SetupView: View {
         row(
             .serving,
             label: "Serving",
-            value: servingValue(draft.serving),
+            value: servingValue(draft.serving, names: draft.playerNames),
             problem: missing.contains(.firstServer)
                 ? "Choose who serves first."
                 : missing.contains(.secondServer) ? "Choose who serves second." : nil
@@ -102,10 +103,16 @@ struct SetupView: View {
             .accessibilityIdentifier("setup.\(row)")
     }
 
-    private func servingValue(_ serving: ServingChoice) -> Text? {
+    private func playersValue(_ names: PlayerNames) -> Text {
+        if names.isEmpty { return Text("Optional names") }
+        return Text(verbatim: [Player.partner, .opponent1, .opponent2]
+            .map { $0.displayName(in: names) }.joined(separator: ", "))
+    }
+
+    private func servingValue(_ serving: ServingChoice, names: PlayerNames) -> Text? {
         guard let first = serving.first else { return nil }
-        guard let second = serving.second else { return Text("\(Text(first.name)) first") }
-        return Text("\(Text(first.name)), then \(Text(second.name))")
+        guard let second = serving.second else { return Text("\(Text(verbatim: first.displayName(in: names))) first") }
+        return Text("\(Text(verbatim: first.displayName(in: names))), then \(Text(verbatim: second.displayName(in: names)))")
     }
 
     /// Moves to the first value still missing, or reads out why the game did not start.
@@ -123,6 +130,7 @@ struct SetupView: View {
 /// A row of setup, which VoiceOver and scrolling can be sent to.
 private enum SetupRow: Hashable {
     case startingScore
+    case players
     case deuceRule
     case totalRallies
     case ralliesPerServer
@@ -144,6 +152,7 @@ private enum SetupRow: Hashable {
         case .totalRallies: self = .totalRallies
         case .ralliesPerServer: self = .ralliesPerServer
         case .serving: self = .serving
+        case .players: self = .players
         case .startingScore, .knownScore, .knownEditor, .reviewStart: self = .startingScore
         case .setup, .about, .demo, .history, .settings: return nil
         }
@@ -157,6 +166,7 @@ private enum SetupRow: Hashable {
         case .totalRallies: .totalRallies
         case .ralliesPerServer: .ralliesPerServer
         case .serving: .serving
+        case .players: .players
         }
     }
 }
@@ -287,13 +297,13 @@ struct KnownScoreView: View {
                 VStack(spacing: Spacing.sm) {
                     if !reviewing { Caption("Earlier rallies are unknown. Undo stops at this starting score.") }
                     if reviewing, let format = editor.draft.format {
-                        JournalScoreView(game: GameSnapshot(id: editor.draft.original.id, format: format))
+                        JournalScoreView(game: GameSnapshot(id: editor.draft.original.id, format: format), names: flow.draft?.playerNames ?? .empty)
                         rules(editor.draft)
                         if let match = editor.draft.match, !match.isTieBreak,
                            match.deuceRule == .oneAdvantage, match.points == EditedPoints(us: .forty, them: .forty) {
                             Text(match.deuceStage == .decidingPoint ? "Second deuce" : "First deuce")
                         }
-                        ServiceOrderList(sequence: editor.draft.serving.order.sequence(from: editor.draft.serving.firstServer))
+                        ServiceOrderList(sequence: editor.draft.serving.order.sequence(from: editor.draft.serving.firstServer), names: flow.draft?.playerNames ?? .empty)
                         servingDetail(editor.draft)
                         Caption("Earlier rallies are unknown. Undo stops at this starting score.")
                         StartSection(flow: flow, started: started, confirming: true)
@@ -309,7 +319,7 @@ struct KnownScoreView: View {
                         link(.points, label: editor.draft.match?.isTieBreak == true ? Text("Tie-break") : Text("Points"),
                              problem: editor.problems.first(at: .points)) { PointsSummary(draft: editor.draft, isStarting: true) }
                         link(.serving, label: Text("Serving"), problem: editor.problems.first(at: .serving)) {
-                            ServingSummary(draft: editor.draft)
+                            ServingSummary(draft: editor.draft, names: flow.draft?.playerNames ?? .empty)
                         }
                         if editor.problems.contains(.unplayable) { ProblemLabel(.unplayable) }
                         if editor.draft.leavesNoRoom || editor.draft.finishesRound {

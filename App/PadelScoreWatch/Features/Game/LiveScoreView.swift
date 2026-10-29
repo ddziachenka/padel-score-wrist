@@ -4,6 +4,7 @@ import SwiftUI
 /// Where the game screen and its result lead.
 enum GameRoute: Hashable, Sendable {
     case menu
+    case players
     case about
     /// The scoreboard demo, from About.
     case demo
@@ -43,7 +44,7 @@ enum GameRoute: Hashable, Sendable {
     /// A screen of a correction.
     var isEditor: Bool {
         switch self {
-        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .journal, .formats, .newGame: false
+        case .menu, .players, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .journal, .formats, .newGame: false
         default: true
         }
     }
@@ -130,7 +131,7 @@ struct LiveScoreView: View {
             // On return to the wrist the score comes first. A serving order being chosen stays, and
             // so does either correction flow, with its draft, while the app runs. The result
             // keeps its screens, and with them the next game being set up.
-            if phase != .active, live.editor == nil, !live.showsResult, !path.contains(.journal) {
+            if phase != .active, live.editor == nil, !live.showsResult, !path.contains(.journal), !path.contains(.players) {
                 path.removeAll { !$0.isServing }
             }
         }
@@ -224,6 +225,8 @@ struct LiveScoreView: View {
         switch route {
         case .menu:
             GameMenuView(live: live) { edit($0) }
+        case .players:
+            PlayerNamesEditor(names: live.playerNames, store: store)
         case .about:
             AboutView(usage: store.session.usage, tryScoreboard: { path.append(.demo) }, settings: { path.append(.settings) })
         case .demo:
@@ -239,10 +242,10 @@ struct LiveScoreView: View {
         case .history:
             HistoryView(store: store)
         case .journal:
-            JournalView(journal: store.session.current?.journal, store: store, live: live) { path.removeAll() }
+            JournalView(journal: store.session.current?.journal, names: live.playerNames, store: store, live: live) { path.removeAll() }
         case .lastResult:
             if let earlier = live.earlierResult {
-                EarlierResultView(game: earlier)
+                EarlierResultView(game: earlier, names: store.session.playerNames(for: earlier.id))
             }
         case .formats:
             if let newGame {
@@ -329,7 +332,7 @@ struct LiveScoreView: View {
             )
         case .format:
             FormatEditor(editor: editor)
-        case .menu, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .journal, .formats, .newGame:
+        case .menu, .players, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .journal, .formats, .newGame:
             EmptyView()
         }
     }
@@ -422,7 +425,7 @@ private struct ScoreScreen: View {
             // The serving text may reach under the empty margins of the round buttons' tap areas,
             // so a role such as Opponent 1 keeps its words whole.
             ZStack {
-                ServingBlock(board: board, layout: .columns, idPrefix: "game")
+                ServingBlock(board: board, layout: .columns, idPrefix: "game", names: live.playerNames)
                     .padding(.horizontal, IconButton.circleInset)
                 HStack(spacing: 0) {
                     undoButton
@@ -466,7 +469,7 @@ private struct ScoreScreen: View {
                 contextLine
                 ScoreArea(board: board, live: live, layout: .stacked, open: open)
                 DetailRows(details: board.details, idPrefix: "game")
-                ServingBlock(board: board, layout: .stacked, idPrefix: "game")
+                ServingBlock(board: board, layout: .stacked, idPrefix: "game", names: live.playerNames)
                 HStack {
                     undoButton
                     Spacer(minLength: Spacing.sm)
@@ -845,6 +848,7 @@ struct ServingBlock: View {
     let layout: ScoreLayout
     /// Begins the identifier UI tests find the block by.
     let idPrefix: String
+    var names: PlayerNames = .empty
 
     var body: some View {
         VStack(spacing: 0) {
@@ -855,7 +859,7 @@ struct ServingBlock: View {
                     .foregroundStyle(Palette.textSecondary)
                 // A long role must keep its player number. Two lines fit between the
                 // round controls as well as on the stacked accessibility layout.
-                Text(player.name)
+                Text(verbatim: player.displayName(in: names))
                     .font(Typography.caption.weight(.semibold))
                     .foregroundStyle(Palette.textPrimary)
                     .lineLimit(2)

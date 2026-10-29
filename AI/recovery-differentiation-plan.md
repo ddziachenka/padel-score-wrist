@@ -15,7 +15,8 @@ The product focus is recovering an accurate score without losing later recorded 
 | M22 | Watch journal, correction journey and read-only archived detail | M21 |
 | M23 | Start Match or Americano from a known current score | M22 |
 | M24 | Interactive iPhone correction and mid-game-start examples | M23 |
-| M25 | Six-domain experience revalidation and review materials | M24 |
+| M27 | Optional Watch player names (owner extension, 2026-10-29) | M24 |
+| M25 | Six-domain experience revalidation and review materials | M24, M27 |
 | M26 | Exact-candidate Release Readiness Revalidation | M25 |
 
 One Builder session completes one milestone. Each runs its full `make milestone ID=Mxx`; M26 additionally runs the unchanged exact-SHA release gate. The M18 consolidation and contrast exceptions are historical and do not apply to this work. No failed required check becomes a pass by owner acceptance carried from the old build.
@@ -39,3 +40,14 @@ M25 prepares honest screenshots, a short real Watch video and reproducible Revie
 ## Non-goals
 
 No rename, new bundle ID, iPad change, real-match iPhone sync, new scoring formats, tournament organizer, accounts, cloud, HealthKit or monetization change. Five free completed games, the existing lifetime purchase and neutral 14-locale Promotional Text remain. Historical M00–M18 completion and raw failures are retained.
+
+
+## Player-name extension — 2026-10-29
+
+The owner approved M27 optional per-game Partner/Opponent 1/Opponent 2 names,
+remembered latest roster, schema 4 migration and Watch-only editing before/during
+play. M27 follows M24 and precedes M25/M26; it is a convenience feature, not a claim
+of competitive uniqueness. The owner subsequently assigned all physical-Watch
+checks to M25 before release preparation, including native name entry, VoiceOver
+and lifecycle. M27 retains complete automated and Simulator validation. M25's
+current six-domain/material coverage must include the new names and migration.

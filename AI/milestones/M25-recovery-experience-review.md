@@ -2,7 +2,7 @@
 
 **ID:** M25
 **Status:** PLANNED
-**Depends on:** M24
+**Depends on:** M24, M27
 **Validation:** make milestone ID=M25
 **Handoff:** AI/handoffs/M25-handoff.md
 
@@ -14,7 +14,7 @@ Approved owner scope: [recovery plan](../recovery-differentiation-plan.md), 2026
 
 ## Scope
 
-Six ordered domains: functional, ui-ux, content, accessibility, product, release. Typed inventory and current records under AI/audits/M25-<domain>-revalidation.md. Physical-device journeys, localization, privacy and StoreKit coverage; native screenshots, short Watch video and Review Notes drafts.
+Six ordered domains: functional, ui-ux, content, accessibility, product, release. Typed inventory and current records under AI/audits/M25-<domain>-revalidation.md. Physical-device journeys (including all M27 player-name/native input/VoiceOver/lifecycle checks, explicitly assigned here by the owner on 2026-10-29), localization, privacy and StoreKit coverage; native screenshots, short Watch video and Review Notes drafts.
 
 ## Acceptance criteria
 
