@@ -488,6 +488,9 @@ final class CompanionUITests: XCTestCase {
                 XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
                 declineOptionalReview(app)
                 reveal(app.buttons["phone.start.gestures"], in: app).tap()
+                let explanation = app.staticTexts["phone.gesture.explanation"]
+                XCTAssertTrue(explanation.waitForExistence(timeout: 5))
+                XCTAssertGreaterThan(explanation.frame.height, 100, "Guidance must retain largest Dynamic Type scaling")
                 let action = reveal(app.buttons["phone.gesture.action"], in: app)
                 XCTAssertTrue(action.isHittable)
                 capture(app, "gesture-\(language)-\(appearance)-largest")
@@ -498,11 +501,11 @@ final class CompanionUITests: XCTestCase {
         }
     }
 
-    func testSpanishGestureExplanationContrastAtLargestText() throws {
+    func testGestureExplanationContrastAtLargestText() throws {
         let originalAppearance = XCUIDevice.shared.appearance
         defer { XCUIDevice.shared.appearance = originalAppearance }
         // Preserve the sequence that exposed this regression in the full matrix.
-        for (language, region) in [("en", "en_US"), ("es", "es_ES")] {
+        for (language, region) in [("en", "en_US"), ("es", "es_ES"), ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("de", "de_DE")] {
             for appearance in ["Light", "Dark"] {
                 XCUIDevice.shared.appearance = appearance == "Light" ? .light : .dark
                 XCTAssertEqual(XCUIDevice.shared.appearance, appearance == "Light" ? .light : .dark)
@@ -513,6 +516,9 @@ final class CompanionUITests: XCTestCase {
                 XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
                 declineOptionalReview(app)
                 reveal(app.buttons["phone.start.gestures"], in: app).tap()
+                let explanation = app.staticTexts["phone.gesture.explanation"]
+                XCTAssertTrue(explanation.waitForExistence(timeout: 5))
+                XCTAssertGreaterThan(explanation.frame.height, 100, "Guidance must retain largest Dynamic Type scaling")
                 reveal(app.buttons["phone.gesture.action"], in: app)
                 capture(app, "gesture-\(language)-\(appearance)-before-audit-largest")
                 try auditIncludingOccludedText(app)

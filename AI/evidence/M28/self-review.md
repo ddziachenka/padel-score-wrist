@@ -38,3 +38,11 @@ font scale) passed the same strengthened four-scenario regression. The guide now
 follows the native grouped-background introduction used by the adjacent recovery
 flow; its interactive card remains and its title has a heading trait. No native
 audit helper or assertion was loosened. Full matrix/gate still required.
+
+The next complete matrix exposed the same explanation in Portuguese (contrast)
+and German (clipping). Kept that full FAILED result. Teaching paragraphs now use
+native accessible UILabel measurement on explicit semantic surfaces, as already
+used by recovery guidance; no text is hidden or scaled down. The strengthened
+generic regression covers all failing locales, and both it and the full matrix
+require the real explanation element to retain largest-size height. No audit
+helper, category, exception, timing assertion or count parser changed.

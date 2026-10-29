@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 /// A phone cannot receive the Watch gesture. The labelled button simulates a
 /// native activation using the same reducer, with no real-game dependencies.
@@ -12,10 +13,10 @@ struct PhoneGestureView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Label("Gesture scoring", systemImage: "hand.pinch").font(.title2.bold())
                         .accessibilityAddTraits(.isHeader)
-                    Text("Simulation. Real gestures work on Apple Watch.")
-                        .foregroundStyle(.primary)
-                    Text("One series means touching your thumb and index finger together twice.")
-                    Text("One series: us. Two: them. Three: cancel. Wait three seconds to save.")
+                    GestureGuideText(text: String(localized: "Simulation. Real gestures work on Apple Watch."),
+                                     identifier: "phone.gesture.explanation")
+                    GestureGuideText(text: String(localized: "One series means touching your thumb and index finger together twice."))
+                    GestureGuideText(text: String(localized: "One series: us. Two: them. Three: cancel. Wait three seconds to save."))
                 }
                 PhoneCard {
                     HStack {
@@ -40,14 +41,15 @@ struct PhoneGestureView: View {
                         .accessibilityIdentifier("phone.gesture.action")
                     Button("Reset") { practice.reset() }
                         .frame(minHeight: 44).accessibilityIdentifier("phone.gesture.reset")
-                    Text("Practice only. Your games stay unchanged.")
-                        .foregroundStyle(.primary)
+                    GestureGuideText(text: String(localized: "Practice only. Your games stay unchanged."),
+                                     background: .secondarySystemGroupedBackground)
                 }
                 PhoneCard {
                     Text("Optional. Off for every new game.").font(.headline)
-                    Text("Enable Gesture scoring when setting up a game on your Watch, or in the game menu.")
-                    Text("Requires watchOS 11 and an Apple Watch that supports Double Tap, with the screen awake and system gestures enabled.")
-                        .foregroundStyle(.primary)
+                    GestureGuideText(text: String(localized: "Enable Gesture scoring when setting up a game on your Watch, or in the game menu."),
+                                     background: .secondarySystemGroupedBackground)
+                    GestureGuideText(text: String(localized: "Requires watchOS 11 and an Apple Watch that supports Double Tap, with the screen awake and system gestures enabled."),
+                                     background: .secondarySystemGroupedBackground)
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
@@ -67,5 +69,41 @@ struct PhoneGestureView: View {
         }
         .onChange(of: scenePhase) { _, phase in if phase != .active { practice.cancel() } }
         .onDisappear { practice.reset() }
+    }
+}
+
+/// Native measurement and an explicit semantic surface keep long localized
+/// guidance readable and auditable while it scrolls at accessibility sizes.
+private struct GestureGuideText: UIViewRepresentable {
+    let text: String
+    var background: UIColor = .systemGroupedBackground
+    var identifier = ""
+
+    func makeUIView(context: Context) -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.adjustsFontForContentSizeCategory = true
+        label.isAccessibilityElement = true
+        label.isOpaque = true
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
+        return label
+    }
+
+    func updateUIView(_ label: UILabel, context: Context) {
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = .label
+        label.backgroundColor = background
+        label.text = text
+        label.accessibilityLabel = text
+        label.accessibilityIdentifier = identifier
+        label.accessibilityLanguage = Bundle.main.preferredLocalizations.first
+    }
+
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView: UILabel, context: Context) -> CGSize? {
+        guard let width = proposal.width else { return nil }
+        uiView.preferredMaxLayoutWidth = width
+        let size = uiView.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude))
+        return CGSize(width: width, height: ceil(size.height))
     }
 }

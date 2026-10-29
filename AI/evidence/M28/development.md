@@ -149,3 +149,20 @@ is a VoiceOver heading. The same four-scenario focused regression now passes1/1,
 exit0 (`gesture-intro-sequence.xcresult`). Full thirteen-language matrix and fresh
 immutable milestone gate remain required. Audit helper/categories/obligations were
 not changed for these fixes.
+
+The complete26-variant matrix on the built4efe774 source still failed: natural
+exit65,3 definitions/2 passed/1 failed/0 skipped,19:28:21–19:45:36UTC.
+`phone-gesture-matrix-2.xcresult` preserves Portuguese PT/BR explanation contrast
+and German explanation clipping. The simulation and four-scenario focused test
+passed; that is not a matrix pass. Later source edits did not rebuild its already
+running binary. No required native result is waived.
+
+Long teaching paragraphs now use an ordinary accessible UILabel with native
+multiline measurement, preferred body Dynamic Type, primary text and an explicit
+matching semantic background, following the established recovery text approach.
+They remain real StaticText elements in every native audit. New presence/height
+assertions enforce maximum font scaling instead of allowing a smaller font to
+hide a failure. The focused regression is now named
+`testGestureExplanationContrastAtLargestText` and includes English, Spanish,
+Portuguese PT/BR and German in both actual appearances. Generic iPhone build
+passed (`native-guide-build.log`); native reruns remain required.
