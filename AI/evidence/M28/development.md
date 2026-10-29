@@ -179,3 +179,28 @@ The owner subsequently approved the narrow verification exception recorded in
 `owner-verification-exception.md`. Final complete phone suites include the stronger
 visibility assertions and unchanged native audit helper/categories; the prior
 complete Watch result is reused only after protected-input identity is proved.
+
+## First owner-approved component verification
+
+Clean REVIEW/main `67fd98de08a25339824818268a0f0b212db18d04` ran
+`bash .artifacts/M28/verify-phone-complete.sh`. Protected574 paths matched3db;
+static, independent package guards and phone units21/21 passed. The strengthened
+gesture regression passed all10 variants, and the full13-locale/two-appearance
+gesture matrix plus normal simulation passed. The original native-audit helper is
+byte-identical (SHA25659b724954af987c3a0e72eb272b2b48b91700006e1ed992ddb7fe57d2aed8b5d).
+
+The overall attempt remains FAILED: an existing Americano test's post-audit
+50ms tap at(69,450.75) did not open its numeric menu, so option10 was absent.
+Snapshot confirmed correct coordinates and a visible control. No pre-existing
+defect claim is made. The isolated unchanged case passed29.807s at the same source.
+The remaining long matrix was interrupted; native UI result13 definitions,
+11 passed/2 failed (one interrupted), no skips/expected failures. Main command
+exit65, report `owner-verification-1/report.md`; canceled xcodebuild exit75.
+Only its own600s diagnostic collector was terminated after cancellation; no
+Simulator/service restart or foreign process action.
+
+The post-audit interaction now first requires the whole picker frame visible,
+then performs one explicit200ms press. No retry, scoring expectation, draw/Undo
+assertion or gesture timing changed. The same focused case passed again
+(`americano-after.xcresult`, exit0). The complete phone suites must pass again;
+neither focused success is treated as a full verification pass.

@@ -54,3 +54,11 @@ original audit helper stays byte-identical. The interrupted preflight is not
 counted as passing; final full phone suites own these stronger checks. The later
 owner-authorized Watch-result reuse is a verification-policy exception, not a
 native audit exemption; it is recorded separately and expires after M28.
+
+First owner-verification attempt passed every new gesture variant but an ordinary
+post-audit picker tap in Americano failed to open its menu. Preserved the FAILED
+full result and the isolated unchanged pass; no pre-existing claim. Failure event
+coordinates matched the visible picker. The interaction now asserts its complete
+frame visible and uses one deliberate200ms press, retaining option10, completed
+score, draw and Undo expectations. No blind retry or timeout relaxation. Focused
+check passed; final complete phone rerun remains required.
