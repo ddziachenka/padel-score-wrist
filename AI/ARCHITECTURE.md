@@ -770,3 +770,19 @@ explicit version 1–3 decoding/migration to empty names, preserving all old sta
 Display resolution receives the game's roster, never a global recent roster; demos
 default to empty names. Editor drafts live in memory through background and save
 only on explicit confirmation; failed saves keep saved state and support retry.
+
+
+## M28 gesture input contract — 2026-10-29
+
+Use a pure three-second selection state machine and injected monotonic time;
+timers are cancellable and session/game/revision-bound. A dedicated visible
+SwiftUI primary-action control calls it on watchOS11+, only at the active playable
+score. Commit through LiveScore/SessionStore's ordinary atomic rally command and
+retry identity. No raw pinch classification, motion collection, permission, backend
+or fake SDK capability detection. Per-current-game gestureScoringEnabled is
+metadata outside snapshots, journals and Undo; changing it is revision-bound and
+atomic. New games always opt out. Schema5 explicitly decodes/migrates1–4, defaults
+off and preserves all legacy state; current files require the field. Pending
+selection is never encoded. Both practice surfaces reuse the input reducer with
+isolated in-memory scores; no purchase/usage/storage/review side effects.
+All required hardware evidence belongs to M29 before M26.

@@ -18,6 +18,7 @@ final class NewGameFlow {
         case ralliesPerServer
         case serving
         case players
+        case gesturePractice
         case about
         case history
         /// The scoreboard demo, from New game or About.
@@ -173,7 +174,7 @@ final class NewGameFlow {
                 refusedStarts += 1
                 return false
             }
-            command = .startFromScore(format, id: gameID, playerNames: draft.playerNames)
+            command = .startFromScore(format, id: gameID, playerNames: draft.playerNames, gestureScoringEnabled: draft.gestureScoringEnabled)
         } else {
             command = .start(setup, id: gameID)
         }

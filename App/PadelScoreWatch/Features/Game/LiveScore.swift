@@ -13,6 +13,7 @@ final class LiveScore {
     /// A request the screen sends.
     enum Action: Hashable, Sendable {
         case point(Team)
+        case inputPreference
         case undo
         case confirmService
         /// Saving a correction of the game or of its result.
@@ -74,6 +75,75 @@ final class LiveScore {
     /// is recorded behind it.
     private(set) var editor: GameEditor?
 
+    private(set) var gestureInput = GestureInput()
+    private(set) var gestureScreenActive = false
+    @ObservationIgnored private var gestureTask: Task<Void, Never>?
+    private var gestureGameID: GameID?
+    private var gestureRevision: Int?
+
+    var gestureScoringEnabled: Bool { store.session.current?.gestureScoringEnabled == true }
+    var canReceiveGesture: Bool {
+        gestureScreenActive && gestureScoringEnabled && isIdle && editor == nil && board?.acceptsPoints == true
+    }
+
+    func setGestureScreenActive(_ active: Bool) {
+        gestureScreenActive = active
+        if !active { cancelGesture() }
+    }
+
+    func cancelGesture() {
+        gestureTask?.cancel()
+        gestureTask = nil
+        gestureInput.cancel()
+        gestureGameID = nil
+        gestureRevision = nil
+    }
+
+    /// The native shortcut and its visible button share exactly this action.
+    func activateGesture() {
+        guard canReceiveGesture else { cancelGesture(); return }
+        if gestureInput.deadline != nil,
+           gestureGameID != game?.id || gestureRevision != store.session.revision {
+            cancelGesture()
+            return
+        }
+        let first = gestureInput.deadline == nil
+        gestureInput.activate(at: now())
+        guard let deadline = gestureInput.deadline else { cancelGesture(); return }
+        if first {
+            gestureGameID = game?.id
+            gestureRevision = store.session.revision
+            gestureTask = Task { [weak self] in
+                do { try await ContinuousClock().sleep(until: deadline) } catch { return }
+                guard !Task.isCancelled else { return }
+                await self?.commitGesture(expectedDeadline: deadline)
+            }
+        }
+    }
+
+    /// Revalidate every condition at commit; a queued timer never targets a new revision.
+    func commitGesture(expectedDeadline: ContinuousClock.Instant? = nil) async {
+        guard expectedDeadline == nil || expectedDeadline == gestureInput.deadline else { return }
+        guard canReceiveGesture, gestureGameID == game?.id, gestureRevision == store.session.revision else {
+            cancelGesture()
+            return
+        }
+        guard let team = gestureInput.takeDue(at: now()) else { return }
+        // A due timer is now the accepted writer. Do not cancel its own task
+        // while entering the repository; explicit/manual commits still cancel
+        // the separate scheduled task.
+        if expectedDeadline != nil { gestureTask = nil }
+        cancelGesture()
+        await award(team)
+    }
+
+    func setGestureScoring(_ enabled: Bool) async {
+        cancelGesture()
+        guard isIdle, editor == nil, game?.status == .active,
+              enabled != gestureScoringEnabled else { return }
+        await send(.setGestureScoring(enabled), as: .inputPreference)
+    }
+
     private let store: SessionStore
     private let haptics: any HapticPlayer
     private let now: () -> ContinuousClock.Instant
@@ -129,6 +199,7 @@ final class LiveScore {
     /// a correction is open, while the game takes no points, or for a second tap within the settle
     /// time.
     func award(_ team: Team) async {
+        cancelGesture()
         guard isIdle, editor == nil, board?.acceptsPoints == true else { return }
         let tap = now()
         if let lastRally, lastRally.duration(to: tap) < Self.settleTime { return }
@@ -154,6 +225,7 @@ final class LiveScore {
     /// correction opened to make room for Resume says so. The next tap on a team after it is a new
     /// rally.
     func beginEditing(toResume: Bool = false) {
+        cancelGesture()
         guard isIdle, editor == nil, let game else { return }
         lastRally = nil
         editor = GameEditor(
@@ -267,6 +339,7 @@ final class LiveScore {
     /// Lets a round that finished on screen move on to its result, or the screen move on to the next
     /// game. Nothing of the last game's feedback carries over.
     func leaveFinishedRound() {
+        cancelGesture()
         finishedRound = nil
         lastChange = nil
         lastRally = nil
@@ -281,6 +354,7 @@ final class LiveScore {
     /// Sends a request made against `revision`, by default the saved session's.
     @discardableResult
     private func send(_ command: SessionCommand, as action: Action, revision: Int? = nil) async -> SendResult {
+        cancelGesture()
         let before = board
         saving = action
         defer { saving = nil }
@@ -335,7 +409,7 @@ extension Haptic {
         case .match(.game), .match(.set): self = .gameOrSet
         case .americano(.roundComplete), .finished: self = .finished
         case .undone: self = .undo
-        case .match(.serviceConfirmed), .started, .corrected, .playersRenamed, .resumed, .deleted, .alreadyApplied: return nil
+        case .match(.serviceConfirmed), .started, .corrected, .playersRenamed, .inputChanged, .resumed, .deleted, .alreadyApplied: return nil
         }
     }
 }

@@ -339,7 +339,8 @@ final class CompanionUITests: XCTestCase {
             target = lookup()
             if target.exists, target.isHittable,
                target.frame.midY > top, target.frame.midY < bottom { return target }
-            let identifier = app.buttons["phone.recovery.close"].exists ? "phone.recovery.scroll"
+            let identifier = app.scrollViews["phone.gesture.scroll"].exists ? "phone.gesture.scroll"
+                : app.buttons["phone.recovery.close"].exists ? "phone.recovery.scroll"
                 : target.identifier.hasPrefix("phone.start.") ? "phone.start.scroll" : "phone.demo.scroll"
             let scroll = app.scrollViews[identifier]
             XCTAssertTrue(scroll.exists, "The target must have its named scroll view")
@@ -440,6 +441,57 @@ final class CompanionUITests: XCTestCase {
             XCTAssertFalse(app.buttons["phone.access.purchase"].exists)
             capture(app, "\(region)-04-access")
             app.terminate()
+        }
+    }
+
+    func testGestureSimulationScoresBothTeamsCancelsAndResetsOnLeaving() {
+        let app = app()
+        reveal(app.buttons["phone.start.gestures"], in: app).tap()
+        let action = app.buttons["phone.gesture.action"]
+        reveal(action, in: app).tap()
+        XCTAssertTrue(app.staticTexts["phone.gesture.pending"].label.contains("US"))
+        Thread.sleep(forTimeInterval: 3.3)
+        let score = app.descendants(matching: .any)["phone.gesture.score"]
+        XCTAssertEqual(score.value as? String, "1:0")
+        capture(app, "gesture-phone-simulation-us")
+        action.tap(withNumberOfTaps: 2, numberOfTouches: 1)
+        XCTAssertTrue(app.staticTexts["phone.gesture.pending"].label.contains("THEM"))
+        Thread.sleep(forTimeInterval: 3.3)
+        XCTAssertEqual(score.value as? String, "1:1")
+        action.tap(withNumberOfTaps: 3, numberOfTouches: 1)
+        XCTAssertFalse(app.staticTexts["phone.gesture.pending"].exists)
+        XCTAssertEqual(score.value as? String, "1:1")
+        capture(app, "gesture-phone-simulation-both-teams")
+        reveal(app.buttons["phone.gesture.reset"], in: app).tap()
+        action.tap()
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        reveal(app.buttons["phone.start.gestures"], in: app).tap()
+        XCTAssertFalse(app.staticTexts["phone.gesture.pending"].exists)
+        XCTAssertTrue(app.staticTexts["Simulation. Real gestures work on Apple Watch."].exists)
+        app.terminate()
+    }
+
+    func testGestureGuideAllLocalesLightDarkAndLargestText() throws {
+        let locales = [("en", "en_US"), ("es", "es_ES"), ("it", "it_IT"), ("fr", "fr_FR"),
+                       ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"),
+                       ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
+        for (language, region) in locales {
+            for appearance in ["Light", "Dark"] {
+                let app = XCUIApplication()
+                app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", region,
+                    "-AppleInterfaceStyle", appearance,
+                    "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+                app.launch()
+                XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+                declineOptionalReview(app)
+                reveal(app.buttons["phone.start.gestures"], in: app).tap()
+                let action = reveal(app.buttons["phone.gesture.action"], in: app)
+                XCTAssertTrue(action.isHittable)
+                capture(app, "gesture-\(language)-\(appearance)-largest")
+                try auditIncludingOccludedText(app)
+                reveal(app.buttons["phone.gesture.reset"], in: app).tap()
+                app.terminate()
+            }
         }
     }
 

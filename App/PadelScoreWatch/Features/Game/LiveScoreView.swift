@@ -5,6 +5,8 @@ import SwiftUI
 enum GameRoute: Hashable, Sendable {
     case menu
     case players
+    case gestures
+    case gesturePractice
     case about
     /// The scoreboard demo, from About.
     case demo
@@ -44,7 +46,7 @@ enum GameRoute: Hashable, Sendable {
     /// A screen of a correction.
     var isEditor: Bool {
         switch self {
-        case .menu, .players, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .journal, .formats, .newGame: false
+        case .menu, .players, .gestures, .gesturePractice, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .journal, .formats, .newGame: false
         default: true
         }
     }
@@ -118,7 +120,9 @@ struct LiveScoreView: View {
             // The correction was discarded or saved: its screens go.
             if isClosed { path.removeAll(where: \.isEditor) }
         }
+        .onChange(of: store.session.revision) { live.cancelGesture() }
         .onChange(of: path) { _, path in
+            if !path.isEmpty { live.setGestureScreenActive(false) }
             // Every screen of the correction was left: so is the correction.
             if live.editor != nil, !path.contains(where: \.isEditor) { live.endEditing() }
         }
@@ -128,6 +132,7 @@ struct LiveScoreView: View {
             if live.editor != nil, !path.contains(where: \.isEditor) { live.endEditing() }
         }
         .onChange(of: scenePhase) { _, phase in
+            if phase != .active { live.setGestureScreenActive(false) }
             // On return to the wrist the score comes first. A serving order being chosen stays, and
             // so does either correction flow, with its draft, while the app runs. The result
             // keeps its screens, and with them the next game being set up.
@@ -225,6 +230,10 @@ struct LiveScoreView: View {
         switch route {
         case .menu:
             GameMenuView(live: live) { edit($0) }
+        case .gestures:
+            GestureSettingsView(live: live)
+        case .gesturePractice:
+            GesturePracticeView()
         case .players:
             PlayerNamesEditor(names: live.playerNames, store: store)
         case .about:
@@ -332,7 +341,7 @@ struct LiveScoreView: View {
             )
         case .format:
             FormatEditor(editor: editor)
-        case .menu, .players, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .journal, .formats, .newGame:
+        case .menu, .players, .gestures, .gesturePractice, .about, .demo, .settings, .serving, .finish, .lastResult, .history, .journal, .formats, .newGame:
             EmptyView()
         }
     }
@@ -380,6 +389,7 @@ private struct SaveFailureView: View {
 
 /// The score itself, laid out for the text size.
 private struct ScoreScreen: View {
+    @State private var isVisible = false
     let board: ScoreBoard
     let live: LiveScore
     let open: (GameRoute) -> Void
@@ -408,6 +418,17 @@ private struct ScoreScreen: View {
         // The score draws its context in the clock row and has no navigation title.
         .toolbar(.visible, for: .navigationBar)
         .accessibilityElement(children: .contain)
+        .onAppear { isVisible = true; live.setGestureScreenActive(scenePhase == .active && !isLuminanceReduced) }
+        .onChange(of: scenePhase) { _, phase in live.setGestureScreenActive(isVisible && phase == .active && !isLuminanceReduced) }
+        .onChange(of: isLuminanceReduced) { _, reduced in live.setGestureScreenActive(isVisible && scenePhase == .active && !reduced) }
+        .onDisappear { isVisible = false; live.setGestureScreenActive(false) }
+        .sensoryFeedback(.selection, trigger: live.gestureInput.team) { _, selected in selected != nil }
+    }
+
+    @ViewBuilder private var gestureButton: some View {
+        if #available(watchOS 11, *), live.gestureScoringEnabled, !board.isFinished {
+            GestureActionButton(team: live.gestureInput.team, enabled: live.canReceiveGesture) { live.activateGesture() }
+        }
     }
 
     /// Both teams side by side, with the context in the clock's row. The counts and the bottom row
@@ -424,13 +445,24 @@ private struct ScoreScreen: View {
                 .fixedSize(horizontal: false, vertical: true)
             // The serving text may reach under the empty margins of the round buttons' tap areas,
             // so a role such as Opponent 1 keeps its words whole.
-            ZStack {
-                ServingBlock(board: board, layout: .columns, idPrefix: "game", names: live.playerNames)
-                    .padding(.horizontal, IconButton.circleInset)
-                HStack(spacing: 0) {
-                    undoButton
-                    Spacer(minLength: 0)
-                    trailingButton
+            Group {
+                if #available(watchOS 11, *), live.gestureScoringEnabled, !board.isFinished {
+                    HStack(spacing: 0) {
+                        undoButton
+                        GestureActionButton(team: live.gestureInput.team, enabled: live.canReceiveGesture,
+                            action: { live.activateGesture() }, serving: board, names: live.playerNames)
+                        trailingButton
+                    }
+                } else {
+                    ZStack {
+                        ServingBlock(board: board, layout: .columns, idPrefix: "game", names: live.playerNames)
+                            .padding(.horizontal, IconButton.circleInset)
+                        HStack(spacing: 0) {
+                            undoButton
+                            Spacer(minLength: 0)
+                            trailingButton
+                        }
+                    }
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
@@ -468,6 +500,7 @@ private struct ScoreScreen: View {
             VStack(spacing: Spacing.sm) {
                 contextLine
                 ScoreArea(board: board, live: live, layout: .stacked, open: open)
+                gestureButton
                 DetailRows(details: board.details, idPrefix: "game")
                 ServingBlock(board: board, layout: .stacked, idPrefix: "game", names: live.playerNames)
                 HStack {

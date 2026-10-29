@@ -947,3 +947,22 @@ Long names wrap in editors/results; the compact serving block keeps its two-line
 layout and full accessible label. Result details show a read-only roster when any
 custom name exists. Background preserves the open editor and draft. Translate new
 copy in all thirteen locales; keep literal user text out of localization lookup.
+
+
+## Gesture scoring — owner approved 2026-10-29
+
+This approved extension supersedes earlier exclusions of gesture score entry.
+Setup offers Gesture scoring OFF for each new game, with a short one/two-series
+explanation and a practice link. The game's menu can toggle it. One Double Tap
+series is two finger contacts; one series selects US, two select THEM, a third
+cancels. A fixed three-second window shows the pending team separately from saved
+score. The visible primary-action button remains on screen; no invisible target.
+Pending selection feedback is distinct from the existing saved-score confirmation.
+Native team buttons score immediately after cancelling pending input. Leaving,
+wrist-down/Always On, inactive/background, competing action and changed revision
+cancel without a delayed point. Gesture input never confirms other screens.
+Keep readable touch controls and native accessibility at largest text. Watch
+practice and phone simulation teach the same sequence without using real games.
+Actual recognition/feel and team feedback are validated only in M29.
+M25 generates and compares three explanatory artwork directions with imagegen,
+then composes actual app captures; no exclusivity claim or invented UI.

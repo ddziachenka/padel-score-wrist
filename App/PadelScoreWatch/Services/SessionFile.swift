@@ -5,8 +5,8 @@ import Foundation
 /// and a migration from the old one, tested against the saved form of every version that
 /// shipped.
 struct SessionFile: Hashable, Sendable, Codable {
-    /// Version 4 adds per-game names without putting metadata in score history.
-    static let currentSchemaVersion = 4
+    /// Version 5 adds per-game input preferences outside score history.
+    static let currentSchemaVersion = 5
 
     var schemaVersion: Int
     var session: Session
@@ -65,6 +65,9 @@ extension SessionFile {
             file = legacy.migrated
         case 3:
             guard let legacy = try? decoder.decode(Version3.self, from: data) else { return .damaged }
+            file = legacy.migrated
+        case 4:
+            guard let legacy = try? decoder.decode(Version4.self, from: data) else { return .damaged }
             file = legacy.migrated
         case currentSchemaVersion:
             guard let decoded = try? decoder.decode(SessionFile.self, from: data) else { return .damaged }
@@ -205,6 +208,34 @@ extension SessionFile {
                 recentSettings: session.recentSettings.migrated, usage: session.usage,
                 revision: session.revision, lastCommand: session.lastCommand
             ), notice: notice)
+        }
+    }
+
+    /// Frozen schema-4 record: missing input preferences are legacy only here.
+    private struct Version4: Decodable {
+        struct Record: Decodable {
+            let game: GameSnapshot
+            let history: [HistoryEntry]
+            let journal: GameJournal
+            let playerNames: PlayerNames
+            var migrated: GameRecord {
+                GameRecord(game: game, history: history, journal: journal, playerNames: playerNames)
+            }
+        }
+        struct LegacySession: Decodable {
+            let current: Record?
+            let archive: [ArchivedResult]
+            let recentSettings: RecentSettings
+            let usage: UsageLedger
+            let revision: Int
+            let lastCommand: CommandID?
+        }
+        let session: LegacySession
+        let notice: StorageNotice?
+        var migrated: SessionFile {
+            SessionFile(session: Session(current: session.current?.migrated,
+                archive: session.archive, recentSettings: session.recentSettings,
+                usage: session.usage, revision: session.revision, lastCommand: session.lastCommand), notice: notice)
         }
     }
 

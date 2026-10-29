@@ -51,7 +51,7 @@ enum ScoreAnnouncement {
             sentences.append(String(localized: "Game resumed.", comment: "VoiceOver, after a finished game was resumed exactly where it stopped."))
             sentences.append(points(after))
             if let context = contextSentence(after.context) { sentences.append(context) }
-        case .playersRenamed:
+        case .playersRenamed, .inputChanged:
             return String(localized: "Changes saved.")
         case .started, .deleted, .alreadyApplied:
             return nil

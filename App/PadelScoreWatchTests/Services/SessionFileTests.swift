@@ -53,11 +53,11 @@ struct SessionFileTests {
         #expect(SessionFile.read(json(text)) == .valid(expected))
     }
 
-    @Test("Migrated files save as version 4 without a duplicate previous result", arguments: fixtures)
-    func savingWritesVersion4(text: String, file: SessionFile) throws {
+    @Test("Migrated files save as version 5 without a duplicate previous result", arguments: fixtures)
+    func savingWritesVersion5(text: String, file: SessionFile) throws {
         let saved = try #require(JSONSerialization.jsonObject(with: file.encoded()) as? [String: Any])
         let session = try #require(saved["session"] as? [String: Any])
-        #expect(saved["schemaVersion"] as? Int == 4)
+        #expect(saved["schemaVersion"] as? Int == 5)
         #expect(session["previousResult"] == nil)
         #expect(session["archive"] != nil)
         #expect(SessionFile.read(try file.encoded()) == .valid(file))
@@ -183,6 +183,7 @@ extension SessionFileTests {
             return entry
         }
         current.removeValue(forKey: "playerNames")
+        #expect(current.removeValue(forKey: "gestureScoringEnabled") as? Bool == false)
         session["current"] = current
         var settings = try #require(session["recentSettings"] as? [String: Any])
         settings.removeValue(forKey: "playerNames")
@@ -289,10 +290,10 @@ extension SessionFileTests {
 
 
 extension SessionFileTests {
-    @Test("Schema 4 encoding matches its frozen fixture without requesting another migration")
-    func version4FixtureEncoding() throws {
+    @Test("Schema 5 encoding matches its frozen fixture without requesting another migration")
+    func version5FixtureEncoding() throws {
         let file = SessionFile(session: SessionFixtures.match)
-        let fixture = json(SessionFixtureFiles.matchVersion4)
+        let fixture = json(SessionFixtureFiles.matchVersion5)
         #expect(try JSONSerialization.jsonObject(with: file.encoded()) as? NSDictionary
                 == JSONSerialization.jsonObject(with: fixture) as? NSDictionary)
         #expect(!SessionFile.needsMigration(fixture))
@@ -321,7 +322,7 @@ extension SessionFileTests {
         #expect(SessionFile.read(data) == .valid(everyShape))
     }
 
-    @Test("Schema 4 refuses missing roster objects rather than silently losing names", arguments: ["current", "recentSettings", "archive"])
+    @Test("Current schema refuses missing roster objects rather than silently losing names", arguments: ["current", "recentSettings", "archive"])
     func missingNamesAreDamaged(location: String) throws {
         var object = try #require(JSONSerialization.jsonObject(with: everyShape.encoded()) as? [String: Any])
         var session = try #require(object["session"] as? [String: Any])

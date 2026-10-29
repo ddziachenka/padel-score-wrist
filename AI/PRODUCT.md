@@ -550,3 +550,19 @@ only, not score, usage, serving identities, rally events or Undo; score Undo kee
 names. Results/archive retain each game's own roster, displayed in result details
 and throughout serving/journal/correction/VoiceOver. Archived names are read-only.
 No phone management/sync, contacts or profiles.
+
+
+## Gesture scoring extension — owner approved 2026-10-29
+
+The approved [gesture plan](gesture-differentiation-plan.md) adds optional per-game
+gesture scoring (PD-23): off at every new setup, including Play again/known score,
+persisted for the current game and editable in its menu. One Double Tap series
+proposes US, two select THEM within a fixed three-second window, three cancel;
+exactly one rally is saved at the deadline. Each series is two finger contacts.
+Touch scoring stays immediate. Pending input is not a score and is cancelled by
+leaving/wrist-down/inactivity/any competing action or changed game/revision.
+Watch practice and explicitly simulated phone teaching are isolated. Minimum app
+OS stays watchOS10; actual native Double Tap requires watchOS11+ and supported
+hardware/settings. Completed sets have no overall Match winner by owner choice.
+M28 implements; M25 owns digital experience/materials, M29 all physical checks,
+M26 readiness, M30 the separately authorized response/resubmission.

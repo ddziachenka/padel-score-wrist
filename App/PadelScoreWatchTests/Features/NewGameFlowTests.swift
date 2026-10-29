@@ -327,8 +327,9 @@ final class KnownScoreFlowTests {
         let request = try #require(store.failedRequest)
         files.repair()
         #expect(await flow.retryStart())
-        guard case .startFromScore(let format, let id, let names) = request.command else { Issue.record("Expected known start"); return }
+        guard case .startFromScore(let format, let id, let names, let gestures) = request.command else { Issue.record("Expected known start"); return }
         #expect(names == .empty)
+        #expect(!gestures)
         #expect(store.session.game?.id == id)
         #expect(store.session.game?.format == format)
         #expect(await open().session == store.session)

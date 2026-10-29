@@ -1,8 +1,8 @@
-# M25 — Recovery Experience and Review Materials
+# M25 — Gesture Experience and Store Materials
 
 **ID:** M25
 **Status:** PLANNED
-**Depends on:** M24, M27
+**Depends on:** M28
 **Validation:** make milestone ID=M25
 **Handoff:** AI/handoffs/M25-handoff.md
 
@@ -14,14 +14,14 @@ Approved owner scope: [recovery plan](../recovery-differentiation-plan.md), 2026
 
 ## Scope
 
-Six ordered domains: functional, ui-ux, content, accessibility, product, release. Typed inventory and current records under AI/audits/M25-<domain>-revalidation.md. Physical-device journeys (including all M27 player-name/native input/VoiceOver/lifecycle checks, explicitly assigned here by the owner on 2026-10-29), localization, privacy and StoreKit coverage; native screenshots, short Watch video and Review Notes drafts.
+Six ordered domains: functional, ui-ux, content, accessibility, product, release. Typed inventory and current records under AI/audits/M25-<domain>-revalidation.md. Digital Simulator journeys, localization, privacy and StoreKit simulation; all Watch/iPhone/creative galleries in14ASC locales, three imagegen directions and selected refined artwork, site/metadata and Review Notes drafts. The approved gesture plan assigns every physical check and real Watch video to M29.
 
 ## Acceptance criteria
 
-- [ ] All six current domain records honestly cover the updated inventory and exact candidate inputs; no unresolved P0/P1.
-- [ ] Physical Watch/iPhone, VoiceOver/haptics, persistence/lifecycle and required StoreKit scenarios have current evidence; missing required coverage blocks.
+- [ ] All six digital domain records cover updated inventory and exact candidate inputs; no unresolved P0/P1. Physical rows explicitly belong to M29 and are not claimed passed here.
+- [ ] All required Simulator/runtime evidence is current; every physical Watch/iPhone/VoiceOver/haptic/StoreKit scenario is inventoried for M29.
 - [ ] All supported locales, minimum/current runtimes, light/dark and large text are checked in their applicable surfaces.
-- [ ] Materials demonstrate actual new behavior with provenance; no unsupported uniqueness or competitor-copying claims.
+- [ ] All active galleries are replaced locally with actual new UI/provenance, gesture-first narrative and selected generated explanatory artwork; hardware-dependent claims require M29 confirmation. No unsupported uniqueness claims.
 - [ ] Full make milestone ID=M25 passes; raw historical failures remain separate.
 
 ## Non-goals
@@ -31,3 +31,5 @@ No automatic publication, external reply, price change or resubmission.
 ## Validation
 
 `make milestone ID=M25` on a clean REVIEW commit. No skipped/failed mandatory test or inherited contrast waiver. Record exact SHA, commands, exits, bundles and counts; self-review is not independent review. Complete handoff, DONE commit, static/status/continuity, then stop.
+
+Owner-approved scope is now AI/gesture-differentiation-plan.md; M29 assembles final current six-domain records for M26.

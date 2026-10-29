@@ -28,6 +28,7 @@ struct SetupDraft: Hashable, Sendable {
     static let totalRalliesRange = 1...999
     static let ralliesPerServerRange = 1...99
 
+    var gestureScoringEnabled = false
     var startsFromScore = false
     let kind: GameKind
     var deuceRule: DeuceRule?
@@ -108,11 +109,11 @@ struct SetupDraft: Hashable, Sendable {
         switch kind {
         case .match:
             guard let deuceRule else { return nil }
-            return GameSetup(rules: .match(MatchRules(deuceRule: deuceRule, setPolicy: .tieBreakAtSixAll)), serving: servingSetup, playerNames: playerNames)
+            return GameSetup(rules: .match(MatchRules(deuceRule: deuceRule, setPolicy: .tieBreakAtSixAll)), serving: servingSetup, playerNames: playerNames, gestureScoringEnabled: gestureScoringEnabled)
         case .americano:
             guard let totalRallies, let ralliesPerServer else { return nil }
             let rules = AmericanoRules(totalRallies: totalRallies, ralliesPerServer: ralliesPerServer)
-            return GameSetup(rules: .americano(rules), serving: servingSetup, playerNames: playerNames)
+            return GameSetup(rules: .americano(rules), serving: servingSetup, playerNames: playerNames, gestureScoringEnabled: gestureScoringEnabled)
         }
     }
 }

@@ -163,6 +163,16 @@
 		EF5B0AD4F5B4BAA3D3641EBB /* JournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCBF19D61AA544D8F7448A8 /* JournalUITests.swift */; };
 		F29EC52B47C3D0ED8E6803BD /* PlayerNamesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B1E60C92DDC6FD8BC6665 /* PlayerNamesEditor.swift */; };
 		DCAB6C9087831CBABB572B93 /* PlayerNamesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B1E60C92DDC6FD8BC6665 /* PlayerNamesEditor.swift */; };
+		E894841F607ACC3B42E827AB /* GestureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE1E736540023FD06728273; };
+		7B29C9AC52801B71BC4C6D86 /* GestureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE1E736540023FD06728273; };
+		9553DBA44F21C5140B05A415 /* GestureScoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629926932C05D885C987ECAC; };
+		5991B9DF2B6C30DD231DAC22 /* PhoneGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C42913EB40446639FF6BB; };
+		50E85E444949CDC36A3A4248 /* GestureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE1E736540023FD06728273; };
+		E6FF715780AA027AECC4E9A2 /* PhoneGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C42913EB40446639FF6BB; };
+		6B0F058AD070A2C122E42493 /* GestureScoringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0A01E708E00A6B1F42AEF7; };
+		124E3414EBC947EDDB938430 /* GestureScoringUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77F0CBBE26D1D0F2A488E9; };
+		0E6CB0755B509ACE619CE77B /* GestureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE1E736540023FD06728273; };
+		4D9A7AC523FA69F1CF7F24B8 /* GestureScoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629926932C05D885C987ECAC; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,6 +403,11 @@
 		63F401B8F7D44CCFE384288F /* JournalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchTests/Features/JournalTests.swift"; sourceTree = SOURCE_ROOT; };
 		1CCBF19D61AA544D8F7448A8 /* JournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchUITests/JournalUITests.swift"; sourceTree = SOURCE_ROOT; };
 		A35B1E60C92DDC6FD8BC6665 /* PlayerNamesEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNamesEditor.swift; sourceTree = "<group>"; };
+		6EE1E736540023FD06728273 /* GestureInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatch/Domain/GestureInput.swift"; sourceTree = "<group>"; };
+		629926932C05D885C987ECAC /* GestureScoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatch/Features/Game/GestureScoringView.swift"; sourceTree = "<group>"; };
+		C79C42913EB40446639FF6BB /* PhoneGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScorePhone/PhoneGestureView.swift"; sourceTree = "<group>"; };
+		9D0A01E708E00A6B1F42AEF7 /* GestureScoringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchTests/Features/GestureScoringTests.swift"; sourceTree = "<group>"; };
+		9F77F0CBBE26D1D0F2A488E9 /* GestureScoringUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PadelScoreWatchUITests/GestureScoringUITests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -538,6 +553,11 @@
 			isa = PBXGroup;
 			sourceTree = "<group>";
 			children = (
+				9F77F0CBBE26D1D0F2A488E9 /* GestureScoringUITests.swift */,
+				9D0A01E708E00A6B1F42AEF7 /* GestureScoringTests.swift */,
+				C79C42913EB40446639FF6BB /* PhoneGestureView.swift */,
+				629926932C05D885C987ECAC /* GestureScoringView.swift */,
+				6EE1E736540023FD06728273 /* GestureInput.swift */,
 				7BF8673435EEC3697CA0F716,
 				A949ADACCC1A46B2E0687681,
 				D1D50D18D3527FE450910D47,
@@ -1147,6 +1167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0F058AD070A2C122E42493 /* GestureScoringTests.swift in Sources */,
 				CDAA782D488F9CBFA328D33F /* JournalTests.swift in Sources */,
 				2C3939CB7BDDC5C6194F6A4D /* AccessOfferTests.swift in Sources */,
 				CB741DF702C21F6A7EF22F31 /* PlayAgainTests.swift in Sources */,
@@ -1200,6 +1221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				124E3414EBC947EDDB938430 /* GestureScoringUITests.swift in Sources */,
 				EF5B0AD4F5B4BAA3D3641EBB /* JournalUITests.swift in Sources */,
 				F55F8C3148A23C8A0E60B3C3 /* PlayAgainUITests.swift in Sources */,
 				F31A6E4D6B52A4B68CB3AA25 /* AccessUITests.swift in Sources */,
@@ -1223,6 +1245,8 @@
 			buildActionMask = 2147483647;
 			runOnlyForDeploymentPostprocessing = 0;
 			files = (
+				9553DBA44F21C5140B05A415 /* GestureScoringView.swift in Sources */,
+				E894841F607ACC3B42E827AB /* GestureInput.swift in Sources */,
 				F29EC52B47C3D0ED8E6803BD /* PlayerNamesEditor.swift in Sources */,
 				8D510F1BE1F9B8E846C2BF3A /* RallyReviewView.swift in Sources */,
 				DD7BC95B9A5F2F675779CF35 /* JournalPresentation.swift in Sources */,
@@ -1307,6 +1331,8 @@
 			buildActionMask = 2147483647;
 			runOnlyForDeploymentPostprocessing = 0;
 			files = (
+				4D9A7AC523FA69F1CF7F24B8 /* GestureScoringView.swift in Sources */,
+				0E6CB0755B509ACE619CE77B /* GestureInput.swift in Sources */,
 				DCAB6C9087831CBABB572B93 /* PlayerNamesEditor.swift in Sources */,
 				8D510F1BE1F9B8E846C2BF3A /* RallyReviewView.swift in Sources */,
 				DD7BC95B9A5F2F675779CF35 /* JournalPresentation.swift in Sources */,
@@ -2013,6 +2039,8 @@
 			buildActionMask = 2147483647;
 			runOnlyForDeploymentPostprocessing = 0;
 			files = (
+				5991B9DF2B6C30DD231DAC22 /* PhoneGestureView.swift in Sources */,
+				7B29C9AC52801B71BC4C6D86 /* GestureInput.swift in Sources */,
 				B98680768A71E8D2DFEC58F6,
 				F6C2B0D28C17973C3840D228,
 				7399CA2916AFA16D6F6EACCB,
@@ -2370,6 +2398,8 @@
 			buildActionMask = 2147483647;
 			runOnlyForDeploymentPostprocessing = 0;
 			files = (
+				E6FF715780AA027AECC4E9A2 /* PhoneGestureView.swift in Sources */,
+				50E85E444949CDC36A3A4248 /* GestureInput.swift in Sources */,
 				7B5CFEAD8197240125653CD3,
 				BB04B73BA58F19CE952AF093,
 				E039CBC3DE343D041A29FED7,

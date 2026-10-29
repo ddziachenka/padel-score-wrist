@@ -18,6 +18,9 @@ struct GameMenuView: View {
                     .buttonStyle(RowButtonStyle())
                     .accessibilityIdentifier("menu.journal")
                 if let game = live.game, game.status == .active {
+                    NavigationLink(value: GameRoute.gestures) { rowLabel(Text("Gesture scoring")) }
+                        .buttonStyle(RowButtonStyle())
+                        .accessibilityIdentifier("menu.gestures")
                     NavigationLink(value: GameRoute.players) { rowLabel(Text("Players")) }
                         .buttonStyle(RowButtonStyle())
                         .allowsHitTesting(live.isIdle)

@@ -923,3 +923,20 @@ release policy. No generic gate/parser/config/test filtering changed. Record tha
 make milestone ID=M18 was consolidated and not executed, never passed. This narrow
 ordering exception changes no accepted failure scope. App/Config/Scripts continuity
 from exact M17 SHA is required; production changes create a new candidate.
+
+
+## Owner extension — gesture scoring and physical validation, 2026-10-29
+
+The owner approved AI/gesture-differentiation-plan.md. The active sequence is
+M28 → M25 → M29 → M26 → M30; existing DONE milestones remain historical. M28
+owns implementation, localization and all automated/Simulator coverage. M25 owns
+digital six-domain experience and local store/site/review materials. Every physical
+Watch/iPhone check, including outstanding M27 checks, belongs exclusively to M29.
+M25 records digital evidence and names hardware rows still owned by M29; no missing
+hardware is marked VERIFIED. M29 completes current six-domain records from that
+evidence plus actual hardware observations; M26 references those DONE records.
+Missing required hardware blocks M29 and release readiness. Later app changes need
+fresh affected physical evidence in the dedicated hardware work before M26.
+M30 is separate response/submission work and requires explicit owner distribution
+instruction. No old unsent reply is sent unchanged. One milestone per Builder
+session and full existing gates remain mandatory, without historical waivers.

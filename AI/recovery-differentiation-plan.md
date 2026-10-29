@@ -51,3 +51,13 @@ of competitive uniqueness. The owner subsequently assigned all physical-Watch
 checks to M25 before release preparation, including native name entry, VoiceOver
 and lifecycle. M27 retains complete automated and Simulator validation. M25's
 current six-domain/material coverage must include the new names and migration.
+
+
+## Superseding gesture extension — 2026-10-29
+
+Owner approved AI/gesture-differentiation-plan.md. Current sequence is
+M28→M25→M29→M26→M30. M25 digital/materials replaces its former hardware scope;
+M29 owns all physical coverage, including M27. M26 uses final M29 audit records.
+M30 is separately authorized response/resubmission. Earlier completed evidence
+and historical decisions above are retained, not current instructions to send
+the old unsent reply or attribute competitor exclusivity.

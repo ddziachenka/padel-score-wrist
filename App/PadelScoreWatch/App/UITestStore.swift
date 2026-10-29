@@ -28,6 +28,7 @@ struct UITestStore {
         case restorable
         /// A match under One advantage at 0–0, You serving first, then Opponent 1.
         case matchStart
+        case gestureMatch, gestureAmericano
         case journalLong
         case journalSetCrossing
         /// The same match at 5–4 in games and 40–0, with US one point from the first set.
@@ -124,7 +125,7 @@ struct UITestStore {
             write(lastSettings, to: location.backup)
             write(damaged, to: location.main)
         case .storeMatch, .storeGoldenPoint, .storeAmericano, .storeResult,
-             .journalLong, .journalSetCrossing, .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong,
+             .gestureMatch, .gestureAmericano, .journalLong, .journalSetCrossing, .matchStart, .matchSetPoint, .matchTieBreak, .americanoStart, .americanoLong,
              .matchFinished, .roundFinished, .roundEndedEarly, .afterResult, .matchFinishedFirstSet, .matchFinishedSets:
             write(Self.session(for: seed).flatMap { try? SessionFile(session: $0).encoded() }, to: location.main)
         }
@@ -156,6 +157,10 @@ struct UITestStore {
     /// A game being played or finished, reached point by point, so every change of it can be undone.
     static func session(for seed: Seed) -> Session? {
         switch seed {
+        case .gestureMatch, .gestureAmericano:
+            var saved = session(for: seed == .gestureMatch ? .matchStart : .americanoStart)
+            saved?.current?.gestureScoringEnabled = true
+            return saved
         case .journalLong:
             let setup = GameSetup(rules: .match(MatchRules(deuceRule: .advantage, setPolicy: .tieBreakAtSixAll)),
                                   serving: ServingSetup(order: .youThenOpponent1, firstServer: .you))

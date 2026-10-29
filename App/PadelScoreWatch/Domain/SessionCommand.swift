@@ -6,7 +6,8 @@ enum SessionCommand: Hashable, Sendable {
     /// finished one becomes the previous result.
     case start(GameSetup, id: GameID)
     /// Joins a continuable known state; no earlier rallies are inferred.
-    case startFromScore(GameFormat, id: GameID, playerNames: PlayerNames = .empty)
+    case startFromScore(GameFormat, id: GameID, playerNames: PlayerNames = .empty, gestureScoringEnabled: Bool = false)
+    case setGestureScoring(Bool)
     case renamePlayers(PlayerNames)
     case awardPoint(to: Team)
     /// Confirms the serving order of a new set in a regular match.
@@ -29,6 +30,7 @@ enum SessionOutcome: Hashable, Sendable {
     case americano(AmericanoOutcome)
     case corrected
     case playersRenamed
+    case inputChanged
     case finished
     case resumed
     /// Undo took back a change of this kind.
@@ -106,11 +108,17 @@ extension Session {
         switch command {
         case let .start(setup, gameID):
             return try start(setup, id: gameID, command: id, access: access)
-        case let .startFromScore(format, gameID, names):
+        case let .startFromScore(format, gameID, names, gestures):
             let outcome = try start(format, id: gameID, command: id, access: access, reason: .knownScore)
             current?.playerNames = names
+            current?.gestureScoringEnabled = gestures
             recentSettings.playerNames = names
             return outcome
+        case .setGestureScoring(let enabled):
+            var record = try recordInPlay()
+            record.gestureScoringEnabled = enabled
+            current = record
+            return .inputChanged
         case .renamePlayers(let names):
             var record = try recordInPlay()
             record.playerNames = names
@@ -161,6 +169,7 @@ extension Session {
         guard access.allowsNewGame(after: usage) else { throw .newGameNotAllowed }
         let outcome = try start(setup.startingFormat(), id: id, command: command, access: access, reason: .start)
         current?.playerNames = setup.playerNames
+        current?.gestureScoringEnabled = setup.gestureScoringEnabled
         recentSettings.remember(setup)
         return outcome
     }

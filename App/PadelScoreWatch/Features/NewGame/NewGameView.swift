@@ -131,6 +131,8 @@ struct NewGameDestination: View {
                 range: SetupDraft.ralliesPerServerRange,
                 number: draft(\.ralliesPerServer, otherwise: nil)
             )
+        case .gesturePractice:
+            GesturePracticeView()
         case .players:
             PlayerNamesEditor(names: flow.draft?.playerNames ?? .empty) { names in
                 flow.edit { $0.playerNames = names }

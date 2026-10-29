@@ -1,10 +1,10 @@
 # Project status
 
 **Phase:** implementation
-**Current milestone:** M27
+**Current milestone:** M28
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27
-**Next milestone:** M25
-**Blockers:** Existing app1.0(2) rejected4.3(a); reply draft unsent/on hold. No blocking M27 issue. M25–M26 remain planned; M25 owns all physical-Watch checks before M26 by explicit owner direction. No public release. See AI/recovery-differentiation-plan.md and AI/handoffs/ASC-review-20261027.md.
+**Next milestone:** M28
+**Blockers:** No blocking M28 issue. App1.0(2)4.3(a) remains unresolved; old reply unsent/on hold. M29 owns all physical checks before M26; M30 owns separately authorized response/resubmission. See AI/gesture-differentiation-plan.md.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -369,3 +369,15 @@ is claimed. M25 now depends on M24 and M27 and is the next Builder session;
 M25–M26 remain planned. Existing App Review4.3(a) and unsent/on-hold reply remain;
 no upload/submission/pricing/Promotional Text/public-release action. This session
 stops after DONE static/status/continuity against the exact verified SHA.
+
+
+## Gesture plan approved — 2026-10-29
+
+Owner explicitly requested implementation of AI/gesture-differentiation-plan.md.
+M28 IN_PROGRESS; sequence M28→M25→M29→M26→M30. Per-new-game gestures OFF,
+one/two Double Tap series US/THEM in3s, third cancels; existing Match result
+without overall winner retained by owner decision. All physical checks move to M29,
+including outstanding M27 coverage. M25 owns digital experience and three generated
+artwork directions/all14locale galleries; M30 replaces old reply and handles
+separately authorized resubmission. Owner clarified initial competitor research;
+old no-research wording must not be sent. No new app behavior is verified yet.

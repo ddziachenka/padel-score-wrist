@@ -37,10 +37,13 @@ struct GameRecord: Hashable, Sendable, Codable {
     var history: [HistoryEntry]
     var journal: GameJournal
     var playerNames: PlayerNames
+    /// Input preference, deliberately outside score snapshots and Undo.
+    var gestureScoringEnabled: Bool
 
     /// A supplied snapshot has unknown earlier rallies. Real starts supply their own
     /// start checkpoint; migration and snapshot-only fixtures use a migration boundary.
-    init(game: GameSnapshot, history: [HistoryEntry], journal: GameJournal? = nil, playerNames: PlayerNames = .empty) {
+    init(game: GameSnapshot, history: [HistoryEntry], journal: GameJournal? = nil, playerNames: PlayerNames = .empty, gestureScoringEnabled: Bool = false) {
+        self.gestureScoringEnabled = gestureScoringEnabled
         self.game = game
         self.history = history
         self.journal = journal ?? .migrated(game)

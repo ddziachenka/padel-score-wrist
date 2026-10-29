@@ -15,6 +15,7 @@ struct GameSetup: Hashable, Sendable {
     var rules: GameRules
     var serving: ServingSetup
     var playerNames: PlayerNames = .empty
+    var gestureScoringEnabled = false
 
     /// The game before its first point, when the chosen rules can be played.
     func startingFormat() throws(SessionError) -> GameFormat {

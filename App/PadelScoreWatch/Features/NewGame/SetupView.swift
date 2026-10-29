@@ -86,6 +86,7 @@ struct SetupView: View {
                 problem: missing.contains(.ralliesPerServer) ? "Choose the rallies per server." : nil
             )
         }
+        GestureSetupSection(flow: flow)
         row(
             .serving,
             label: "Serving",
@@ -154,7 +155,7 @@ private enum SetupRow: Hashable {
         case .serving: self = .serving
         case .players: self = .players
         case .startingScore, .knownScore, .knownEditor, .reviewStart: self = .startingScore
-        case .setup, .about, .demo, .history, .settings: return nil
+        case .setup, .about, .demo, .gesturePractice, .history, .settings: return nil
         }
     }
 

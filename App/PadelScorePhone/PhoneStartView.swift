@@ -16,6 +16,10 @@ struct PhoneStartView: View {
                 }
                 PhoneCard {
                     Text("phone.recovery.heading").font(.title2.bold()).accessibilityAddTraits(.isHeader)
+                    NavigationLink { PhoneGestureView() } label: {
+                        Label("Try gestures", systemImage: "hand.pinch")
+                            .frame(minHeight: 44, alignment: .leading)
+                    }.accessibilityIdentifier("phone.start.gestures")
                     Button { recovery(.correction) } label: {
                         Text("phone.recovery.correction").fixedSize(horizontal: false, vertical: true)
                             .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
