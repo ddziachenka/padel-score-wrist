@@ -45,7 +45,7 @@ for loc,row in manifest['locales'].items():
   return f'<figure><img src="{url}" width="368" height="448"{loading} alt="{esc(alt)}"><figcaption>{esc(captions[i])}</figcaption></figure>'
  body=f'''<main id="main" tabindex="-1" class="shell document landing">
 <section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow">Padel Score — Wrist · Apple Watch</p><h1 id="hero-title">{title}</h1><p class="lede">{esc(f['heading'])}</p><p>{esc(tr('Optional. Off for every new game.',lang))}</p>{availability}<p class="meta">{meta}</p></div>{figure(0,False)}</section>
-<section aria-labelledby="gesture-title"><h2 id="gesture-title">{esc(f['heading'])}</h2><p>{esc(f['gesture'])}</p><div class="screens screens-single">{figure(1)}</div></section>
+<section aria-labelledby="gesture-title"><h2 id="gesture-title">{esc(f['heading'])}</h2><p>{esc(f['gesture'])}</p><p>{esc(tr('phone.start.score.body',lang,phone))}</p><div class="screens screens-single">{figure(1)}</div></section>
 <section aria-labelledby="recovery-title"><h2 id="recovery-title">{esc(tr('phone.recovery.heading',lang,phone))}</h2><p>{esc(f['recovery'])}</p><div class="screens screens-pair">{figure(2)}{figure(3)}</div></section>
 <section aria-labelledby="formats-title"><h2 id="formats-title">{esc(tr('Match',lang))} · {esc(tr('Americano',lang))}</h2>{facts}<div class="screens screens-pair">{figure(4)}{figure(5)}{figure(6)}{figure(7)}</div></section>
 {purchase}{links}{iphone}</main>'''

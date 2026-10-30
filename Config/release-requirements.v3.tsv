@@ -88,4 +88,4 @@ REL-1304	all	functional,product	no	Selective change delete and insert preserve l
 REL-1305	all	functional,content,ui-ux	no	Known-score starts disclose unknown earlier rallies and require explicit validated serving before creating a normal game
 REL-1306	all	functional,accessibility	no	Optional native Watch names remain game-local and archived rosters remain immutable without consuming usage or Undo
 REL-1307	all	functional,product,release	no	Watch practice and phone simulation stay isolated from real games entitlement review eligibility and usage
-REL-1308	all	accessibility,release	no	Actual Double Tap recognition meets each-team success and wrong-team accidental-point criteria on supported physical Watch hardware
+REL-1308	all	functional,product,accessibility,release	no	Actual Double Tap recognition meets each-team success and wrong-team accidental-point criteria on supported physical Watch hardware

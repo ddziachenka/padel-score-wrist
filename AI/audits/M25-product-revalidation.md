@@ -40,6 +40,8 @@ record; capture-source inputs are recorded in the material manifest.
 - REL-1304 | OUTCOME=PENDING_DIGITAL | EVIDENCE=RallyCorrection/Journal real-file and UI change/delete/insert preview/cancel/apply/retry/whole Undo, stable IDs/later winner order and explicit serving ambiguity.
 - REL-1307 | OUTCOME=PENDING_DIGITAL | EVIDENCE=GesturePractice and CompanionDemo/Recovery models are memory-only with no real store/usage/entitlement/review dependencies; tab/cold-launch reset.
 
+- REL-1308 | OUTCOME=PENDING_M29 | EVIDENCE=Actual supported-Watch recognition requires at least95% each-team success, zero wrong-team/accidental points in one-hour play and real video. Simulator activation is not physical proof.
+
 ## Findings and fixes
 
 Gesture option stays off per new game, current-game choice persists; touch/Undo unchanged. Phone simulation is explicit and disposable. Main real-game value remains Watch scoring/service/history with five completed games free, one lifetime unlock. No new strategic/product decision.

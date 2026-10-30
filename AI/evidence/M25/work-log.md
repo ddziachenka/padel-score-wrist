@@ -113,3 +113,21 @@ currentiOS27; imported all98 originals with Watch112. Every shipping App fingerp
 matches4f16899. The owner completed ordinary ASC sign-in; current App Privacy UI
 now directly confirms Data Not Collected and the correct privacy URL, recorded in
 asc-privacy-readback.md. No external setting/content was saved or published.
+
+Minimum-watchOS10 full supplement on055bd1803f43c47bfd54d9a4c28da63a0a979973
+finished raw FAILED/exit65:489/490 definitions passed, zero skipped/expected/runtime
+warnings; native device summary927passed invocations and1failed. Only
+KnownScoreUITests/testKnownScoreDraftSurvivesBackgroundAndCancelPreservesLastResultAtLargestText
+failed before entering the draft: setup.start could not be scrolled into view.
+Video E61FE949-5B7C-4545-B712-5EC7C2A633B7.mp4, final frame47.9367s,
+shows the end of the unsupported Double Tap requirement paragraph after24 short
+held drags, with the setup action still below. It is not an unscrollable app state
+or called a pre-existing failure. The helper's finite navigation budget is now64,
+with immediate break when the existing isClear succeeds; the exact same hittable/
+clear-center assertion and safe tap remain. All actions, assertions and audit
+categories remain. A targeted fail-before/pass-after and complete fresh minimum
+supplement follow; the partial FAILED bundle is never reused as a full pass.
+
+REL-1308 now explicitly belongs to functional/product as well as accessibility/
+release; all four records keep actual recognition PENDING_M29. This strengthens
+physical coverage ownership without claiming a Simulator hardware pass.

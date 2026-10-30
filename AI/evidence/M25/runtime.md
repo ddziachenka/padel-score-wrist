@@ -51,8 +51,9 @@ not a claim that compilation emitted no warnings.
 
 ## Localized native galleries and runtime supplements
 
-Pending complete current runs. Only a complete14/14 Watch and2/2 phone gallery
-can be imported. Capture scripts hold managed leases and verify unchanged HEAD
+Complete watch-gallery-2 passed14/14 and phone-gallery-2 passed2/2, both exit0
+with zero failed/skipped/expected/runtime warnings. All210 originals were imported.
+The current native manifests and per-image proof are in AI/store-assets/m25/. Capture scripts hold managed leases and verify unchanged HEAD
 and App/Config/Scripts before/after. Each image retains native attachment name,
 source SHA, device, time, fixture/actions, original dimensions and byte hash.
 

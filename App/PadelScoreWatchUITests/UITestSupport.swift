@@ -84,8 +84,12 @@ extension XCUIElement {
     @MainActor
     func scrollToAndTap(in app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertTrue(waitForExistence(timeout: 5), "\(self) does not exist", file: file, line: line)
-        // Enough short drags to reach the end of the longest editor on the smallest Watch.
-        for _ in 0..<24 where !isClear(in: app) {
+        // Minimum watchOS shows extra unsupported-gesture guidance. At the largest
+        // text size, reaching the setup action needs more than 24 short drags.
+        // Keep the same strict visibility check, with bounded navigation and an
+        // immediate exit once the actual control is clear.
+        for _ in 0..<64 {
+            if isClear(in: app) { break }
             let below = frame.midY > app.windows.firstMatch.frame.midY
             let from = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: below ? 0.7 : 0.4))
             let to = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: below ? 0.45 : 0.65))

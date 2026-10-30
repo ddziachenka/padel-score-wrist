@@ -55,6 +55,8 @@ record; capture-source inputs are recorded in the material manifest.
 - REL-1306 | OUTCOME=PENDING_DIGITAL | EVIDENCE=PlayerNames native UI/model/real-file tests and archived roster immutability; actual dictation/Scribble/VoiceOver belongs to M29.
 - REL-1307 | OUTCOME=PENDING_DIGITAL | EVIDENCE=GesturePractice and CompanionDemo/Recovery models are memory-only with no real store/usage/entitlement/review dependencies; tab/cold-launch reset.
 
+- REL-1308 | OUTCOME=PENDING_M29 | EVIDENCE=Actual supported-Watch recognition requires at least95% each-team success, zero wrong-team/accidental points in one-hour play and real video. Simulator activation is not physical proof.
+
 ## Findings and fixes
 
 No new scoring/persistence defect found in source review. New capture-fixture underscores were rejected by the existing safe-name guard; fixed only the caller. Two exact installed build expectations were found stale after build3 increment; correction waits until the frozen captures finish.
