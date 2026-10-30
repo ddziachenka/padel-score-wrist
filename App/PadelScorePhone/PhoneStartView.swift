@@ -80,6 +80,7 @@ struct PhoneStartView: View {
                             .contentShape(Rectangle())
                     }
                         .accessibilityLabel(Text("phone.help.title"))
+                        .accessibilityActivationPoint(.center)
                         .accessibilityIdentifier("phone.start.help")
                     PhoneLegalLinks()
                 }

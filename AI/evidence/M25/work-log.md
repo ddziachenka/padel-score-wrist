@@ -273,3 +273,13 @@ XCUIElement reference across all gestures, unlike the established reveal helper'
 explicit repeated resolution. It now resolves Help again each iteration and after
 the diagnostic screenshot. Every final hittability/viewport/44pt/native assertion
 remains. This is another targeted hypothesis; no pass is inferred before execution.
+
+Fresh-element minimum-v10 still fails Help hittability, so repeated query resolution
+does not prove a fix. A newly created owned SE3/iOS17 device
+3BE6A0AE-B744-4E92-8F8B-7CAE17B8B733 reproduces the same appearance-case assertion
+on the exact83ff205 source; its first optional-access/clean-launch case passes.
+Old B9 data/binding are preserved and no simulator replacement is claimed as a
+solution. Next correction sets the real Help control's accessibility activation
+point to its visible center (SDK's public iOS14+ UnitPoint API), retaining the same
+actual button bounds, navigation and all test assertions. Native AT activation and
+hittability must be verified again; no result is accepted from the failed pair.
