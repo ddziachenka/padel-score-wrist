@@ -748,7 +748,7 @@ final class CompanionUITests: XCTestCase {
         }
     }
 
-    func testM25ActualAppearanceAcrossPhoneSurfaces() {
+    func testM25ActualAppearanceAcrossPhoneSurfaces() throws {
         let originalAppearance = XCUIDevice.shared.appearance
         defer { XCUIDevice.shared.appearance = originalAppearance }
         for dark in [false, true] {
@@ -773,6 +773,11 @@ final class CompanionUITests: XCTestCase {
             app.tabBars.buttons.element(boundBy: 2).tap()
             XCTAssertTrue(app.buttons["phone.access.restore"].waitForExistence(timeout: 10))
             capture(app, "m25-appearance-access-\(dark)")
+            app.tabBars.buttons.element(boundBy: 0).tap()
+            reveal(app.buttons["Help & getting started"], in: app).tap()
+            XCTAssertTrue(app.navigationBars["Help & getting started"].waitForExistence(timeout: 5))
+            capture(app, "m25-appearance-help-\(dark)")
+            try auditIncludingOccludedText(app)
             app.terminate()
         }
     }

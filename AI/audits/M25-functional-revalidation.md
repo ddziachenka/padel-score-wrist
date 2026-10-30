@@ -59,7 +59,7 @@ record; capture-source inputs are recorded in the material manifest.
 
 ## Findings and fixes
 
-No new scoring/persistence defect found in source review. New capture-fixture underscores were rejected by the existing safe-name guard; fixed only the caller. Two exact installed build expectations were found stale after build3 increment; correction waits until the frozen captures finish.
+No new scoring/persistence defect found in source review. New capture-fixture underscores were rejected by the existing safe-name guard; fixed only the caller. Two exact installed build expectations were found stale after build3 increment and corrected to exactly3 after frozen captures finished. Minimum-watchOS largest-text setup navigation exposed the helper's short drag budget; the unchanged visibility predicate now passes its targeted reproduction, with full fresh minimum/current suites still required.
 
 Full failure/reproduction history: [work log](../evidence/M25/work-log.md).
 Final-targeted native centered checks: [runtime](../evidence/M25/runtime.md).

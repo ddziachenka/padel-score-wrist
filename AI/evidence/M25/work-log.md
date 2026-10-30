@@ -131,3 +131,22 @@ supplement follow; the partial FAILED bundle is never reused as a full pass.
 REL-1308 now explicitly belongs to functional/product as well as accessibility/
 release; all four records keep actual recognition PENDING_M29. This strengthens
 physical coverage ownership without claiming a Simulator hardware pass.
+
+The targeted correction passes on unchanged implementation
+c178abf12c7dd6ff0f1c6c0b2669611556375831:
+M25_TARGETED_KNOWN=1 M25_SUPPLEMENT_RUN=watch-minimum-known-after bash
+.artifacts/M25/runtime-profile.sh watch-clean run bash
+.artifacts/M25/run-supplement.sh watch-minimum, exit0; native bundle
+watch-minimum-known-after.xcresult,1/1 definitions/invocations, zero
+failed/skipped/expected/runtime warnings. The complete fresh minimum rerun follows
+without the diagnostic single-case filter. Count exports for all seven accepted
+targeted/gallery bundles are in .artifacts/M25/accepted-targeted/counts.json.
+
+Final coverage review found the separate Help page missing from the actual-pixel
+appearance inventory. The existing testM25ActualAppearanceAcrossPhoneSurfaces now
+also opens the real English Help page in each theme, captures it with the same
+strict pixels check and runs all existing native audit categories. No shipping
+App input changes; stored native gallery fingerprints remain valid. The complete
+current-phone and final minimum-phone suites will execute this extended test.
+The earlier fourteen-capture appearance smoke remains exactly that earlier scope,
+not retroactively called a Help pass.
