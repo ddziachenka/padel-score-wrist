@@ -209,6 +209,16 @@ private final class M25PurchaseErrorRecorder: PurchaseClient {
         do { return try await client.purchase() }
         catch {
             print("M25_STOREKIT_ERROR type=\(String(reflecting: type(of: error)))")
+            if let storeError = error as? StoreKitError {
+                switch storeError {
+                case .unknown: print("M25_STOREKIT_ERROR case=unknown")
+                case .networkError(let value): print("M25_STOREKIT_ERROR case=networkError code=\(value.code.rawValue)")
+                case .systemError(let value):
+                    let ns = value as NSError
+                    print("M25_STOREKIT_ERROR case=systemError underlyingType=\(String(reflecting: type(of: value))) domain=\(ns.domain) code=\(ns.code)")
+                default: print("M25_STOREKIT_ERROR case=other")
+                }
+            }
             var current: NSError? = error as NSError
             for _ in 0..<8 {
                 guard let value = current else { break }
