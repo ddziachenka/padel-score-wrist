@@ -350,3 +350,26 @@ explicit environment hypothesis, requiring fresh execution, not a claimed fix.
 A reserved native-Xcode inspection did not start any test (native UI operations
 were unavailable/unreliable); its checkout/device/desktop lease is released. No
 user document, credential or foreign process is modified.
+
+Owner says Simulator cleanup may have affected the environment. Readback confirms
+all five relevant owned device IDs still exist/are available; no binding is
+replaced or data erased. Treat the two current StoreKit probe disagreements as
+observations of this test environment, not a universal SDK defect. Full baseline
+and current unit probes both record19/21 definitions and28/30 invocations passed,
+the same offline/unknown and cached Storefront.current USA-versus-DEU assertions
+failed, exit65, no skipped/expected/runtime warnings. Native product USD/EUR
+values and verified purchase/restore/refund/unverified/free-to-paid cases otherwise
+pass. Raw FAILED results and JSON summaries are retained; no assertion is weakened.
+The ineffective unit Run-scheme experiment is removed. App/Config/Scripts again
+match9a4dcdd exactly before the next real UI finding.
+
+The complete current UI run then exposes native contrast on the German largest-
+text recovery Close toolbar control. Its fixed navigation position means the
+existing strict occlusion helper cannot re-audit it inside the scrolling content
+viewport; it correctly fails rather than silently accepting a deferred issue.
+Actual screenshot retains a green label on the system pill. Preserve every audit
+category/predicate; use semantic primary text for the actual Close label and put
+the44pt minimum/content shape inside its label. Navigation/dismissal/copy/ID stay
+the same. Only owned xcodebuild34976 is interrupted; the partial full UI run remains
+raw failure and its later gallery stages do not execute. Fresh targeted minimum/
+current German largest checks and a fresh complete current UI run follow.

@@ -51,7 +51,13 @@ struct PhoneRecoveryView: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Close") { dismiss() }.frame(minHeight: 44).accessibilityIdentifier("phone.recovery.close")
+                    Button { dismiss() } label: {
+                        Text("Close")
+                            .foregroundStyle(Color.primary)
+                            .frame(minWidth: 44, minHeight: 44)
+                            .contentShape(Rectangle())
+                    }
+                    .accessibilityIdentifier("phone.recovery.close")
                 }
             }
             .accessibilityAction(.escape) { dismiss() }
