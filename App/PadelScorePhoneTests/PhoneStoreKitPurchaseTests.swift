@@ -121,8 +121,11 @@ final class StoreKitPurchaseTests: XCTestCase {
         defer { session.resetToDefaultState(); session.clearTransactions() }
         let owner = store()
         await owner.start()
+        print("M25_STOREKIT_NETWORK stage=inject-error")
         try await session.setSimulatedError(.generic(.networkError(URLError(.notConnectedToInternet))), forAPI: .purchase)
+        print("M25_STOREKIT_NETWORK stage=failed-purchase")
         await owner.purchase()
+        print("M25_STOREKIT_NETWORK stage=failed-purchase-returned")
         XCTAssertFalse(owner.isUnlocked)
         XCTAssertEqual(owner.message, .offline)
         try await session.setSimulatedError(nil, forAPI: .purchase)
@@ -130,14 +133,18 @@ final class StoreKitPurchaseTests: XCTestCase {
         // Keep transactions intact so the retry still exercises the same purchase history.
         session.resetToDefaultState()
         session.disableDialogs = true
+        print("M25_STOREKIT_NETWORK stage=retry-purchase")
         await owner.purchase()
+        print("M25_STOREKIT_NETWORK stage=retry-purchase-returned")
         XCTAssertTrue(owner.isUnlocked)
         try await session.setSimulatedError(.generic(.networkError(URLError(.notConnectedToInternet))), forAPI: .loadProducts)
         await owner.loadProduct()
         XCTAssertNil(owner.product)
         await owner.refresh()
         XCTAssertTrue(owner.isUnlocked)
+        print("M25_STOREKIT_NETWORK stage=restore")
         await owner.restore()
+        print("M25_STOREKIT_NETWORK stage=restore-returned")
         XCTAssertTrue(owner.isUnlocked)
     }
     func testZeroPriceClaimCancellationAndAccessAfterPaidPriceReturn() async throws {
