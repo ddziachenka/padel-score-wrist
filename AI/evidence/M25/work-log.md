@@ -151,11 +151,34 @@ current-phone and final minimum-phone suites will execute this extended test.
 The earlier fourteen-capture appearance smoke remains exactly that earlier scope,
 not retroactively called a Help pass.
 
-Before the new phone coverage executes, source review caught that Help's ordinary
-localized label has no phone.start identifier, so the shared test helper would
-incorrectly choose the retained Demo scroll view. Added an explicit optional scroll
-identifier for this known context; all existing callers keep identical selection,
-visibility/hittability checks, bounds and assertions. No shipping identifier is
-added. The centered regression also now explicitly asserts the heading's central
-axis in addition to all three actions, using the same named Start scroll context.
-These final test inputs run in the current-phone and complete milestone suites.
+Added an explicit optional scroll identifier for the heading's known Start
+context; all existing callers keep identical selection, visibility/hittability
+checks, bounds and assertions. The initial explanation incorrectly said Help had
+no phone.start identifier: source/runtime confirm its existing phone.start.help.
+Help also uses the explicit Start context, although its identifier already selects
+that view. No shipping identifier was added. The centered regression now explicitly
+asserts the heading's central axis in addition to all three actions. These final
+test inputs run in the current-phone and complete milestone suites.
+
+Current-watchOS27 supplement on5551a9f6b3bb315d145a6933854be7ca1cf23f5d
+passed exit0:496/496 definitions,934/934 invocations, zero failed/skipped/expected/
+runtime warnings. Bundle watch-current.xcresult; native exports in
+.artifacts/M25/accepted-watch-current/. Watch shipping/test/Config/Script inputs
+are unchanged by the subsequent phone-only work.
+
+The newly added actual Help appearance/native-audit test then exposed four muted
+Section headers in each theme: native phone-help-current.xcresult FAILED, exit65,
+0/1 passed, zero skipped/expected/runtime warnings. Source86b20f67ea0f87ae48c1c720bc97217d564acd0e.
+Eight original issue attachments report four Contrast nearly passed and four
+Contrast failed; no AX element is provided. Actual Light/Dark screenshots show the
+four low-emphasis section headings against grouped page backgrounds, while body
+copy is black/white. Set those four existing header labels to semantic primary;
+copy, actions, List layout and native audit categories remain unchanged. This is
+an in-scope finding, not called a pre-existing failure or waived. Targeted current/
+minimum appearance and centered regressions follow. All galleries must be freshly
+captured afterward to retain their strict complete shipping-input fingerprint.
+
+Initial concurrent xcresulttool reads failed64 while initializing native caches
+(permission/cache-database collision). Sequential escalated summary and attachment
+exports each passed0; original bundle/failures remain intact. Native exports must
+be sequential for a newly finalized bundle.

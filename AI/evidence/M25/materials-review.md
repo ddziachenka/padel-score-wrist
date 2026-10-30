@@ -28,9 +28,9 @@ native images, nonempty alt text, no main heading/paragraph/figure overflow and
 scrollWidth exactly equal to the viewport. Real375px English and1280px Russian
 hero/recovery sections were visually inspected. All eight Russian originals were
 brought into view and loaded at natural width368. Browser viewport override was
-reset after the check. The browser used Light appearance; website Dark variables
-were source-reviewed rather than claimed as another runtime pass. Native app
-Light/Dark coverage has its own current/minimum actual-pixel matrices.
+reset after the check. An expanded current-source site matrix below also renders
+the Dark CSS branch in an isolated preview. Native app Light/Dark coverage has
+its own current/minimum actual-pixel matrices.
 
 The new gesture section keeps ordinary tap-team/Undo guidance from the approved
 phone catalog. Previous truthful format/history/offline/deletion/independence facts,
@@ -61,3 +61,29 @@ any then-current required-display assignment belong to later authorized M30 work
 also informs the factual core-experience, evergreen/no-price/no-recognition-claim
 composition and centered hand focal point. Actual per-device ASC header crops are
 not claimed checked without saving/uploading the new assets.
+
+## Expanded local site matrix
+
+Current source86b20f67ea0f87ae48c1c720bc97217d564acd0e was checked through
+CUA/Chrome's documented DOM/viewport API: all52 pages (home/privacy/terms/support
+in13 routes),375×900 and1280×900, original Light and an isolated Dark-style
+preview. All208 combinations have exactly one h1, scrollWidth equal to innerWidth,
+nonempty image alt text and no main heading/paragraph/figure/list overflow. English
+375px Dark hero and Russian1280px Dark hero/recovery were visually inspected.
+Actual computed body backgrounds are rgb(255,255,255) and rgb(19,19,21).
+
+Chrome's exposed API has no media-preference emulation. The disposable preview is
+a byte-identical copy of Web/public except its single dark-media condition changes
+from @media(prefers-color-scheme:dark) to @media all. This validates the actual Dark
+styles/rendered layout, not a claim that Chrome's system preference was Dark
+(matchMedia remained false). No tracked Web file or system setting changed.
+Source CSS SHA256:278e46814edf3d460c3eea0c05616e668afd949c001909a38cfa237dfbac9b7e;
+preview CSS SHA256:48163665b8c472729e7582bf8f77dd9cbad51ed02a4a739794104de0b8b8844f.
+The copy/equality checks and observed matrix summary are stored in
+.artifacts/M25/dark-site-preview.json.
+
+Computed text/background contrast for body, muted text and links on page and
+callout surfaces is17.38/6.63/6.19 and16.23/6.20/5.78 in Light;
+16.45/7.68/7.60 and14.74/6.88/6.81 in Dark. This is a palette/layout check,
+not a complete browser accessibility audit. Viewport override was reset, the
+ephemeral preview tab closed, and both127.0.0.1 servers stopped with exit0.
