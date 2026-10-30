@@ -448,7 +448,7 @@ final class CompanionUITests: XCTestCase {
             capture(app, "\(region)-02-match")
             app.segmentedControls.buttons.element(boundBy: 1).tap()
             capture(app, "\(region)-03-americano")
-            app.tabBars.buttons.element(boundBy: 2).tap()
+            app.tabBars.buttons["Access"].tap()
             XCTAssertTrue(app.buttons["phone.access.restore"].waitForExistence(timeout: 15))
             XCTAssertTrue(app.staticTexts["phone.access.owned"].waitForExistence(timeout: 10))
             XCTAssertFalse(app.buttons["phone.access.purchase"].exists)
@@ -776,8 +776,21 @@ final class CompanionUITests: XCTestCase {
             app.tabBars.buttons.element(boundBy: 2).tap()
             XCTAssertTrue(app.buttons["phone.access.restore"].waitForExistence(timeout: 10))
             capture(app, "m25-appearance-access-\(dark)")
-            app.tabBars.buttons.element(boundBy: 0).tap()
-            reveal(app.buttons["Help & getting started"], in: app, scrollIdentifier: "phone.start.scroll").tap()
+            app.tabBars.buttons["Start"].tap()
+            XCTAssertTrue(app.tabBars.buttons["Start"].isSelected)
+            let help = app.buttons["phone.start.help"]
+            // iOS17 can retain a ScrollView AX object with an empty visible frame
+            // immediately after returning tabs. Scroll the active window and
+            // require the actual entry to be fully visible before tapping it.
+            for _ in 0..<20 {
+                if help.exists, help.isHittable, visibleViewport(app).contains(help.frame) { break }
+                app.swipeUp(velocity: .slow)
+            }
+            XCTAssertTrue(help.isHittable)
+            XCTAssertTrue(visibleViewport(app).contains(help.frame))
+            XCTAssertGreaterThanOrEqual(help.frame.width, 44)
+            XCTAssertGreaterThanOrEqual(help.frame.height, 44)
+            help.tap()
             XCTAssertTrue(app.navigationBars["Help & getting started"].waitForExistence(timeout: 5))
             capture(app, "m25-appearance-help-\(dark)")
             try auditIncludingOccludedText(app)

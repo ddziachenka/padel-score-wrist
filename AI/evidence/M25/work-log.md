@@ -200,3 +200,16 @@ explicit descriptions/IDs and44×44 minimum bounds. No audit predicate/category 
 changed. A fresh current/minimum targeted pair must pass before full phone suites
 and completely new galleries. The prior gallery validator correctly fails exit1
 on the changed PhoneStartView source (stale-gallery-guard.log); it is not relaxed.
+
+On f582513c7dabb6f08de380fa9d37f986b4b57c4b, the fresh current phone pair passes2/2
+(phone-help-centered-current-v3). The minimum pair remains raw FAILED/exit65,1/2:
+the complete centered/normal/largest EN/DE/RU case passes, while the new appearance
+case fails when the retained phone.start.scroll AX object cannot perform a swipe
+after Access→Start (visible frame empty). Its native hierarchy has Start selected
+and the real Root contents; no new contrast issue is reported. The new test now
+selects named tabs and the existing Help ID, scrolls the actual foreground window
+with a finite20 gestures, and requires the real entry fully visible/hittable before
+tap. All native audit categories and pixel assertions remain. The snapshot also
+shows the old Help entry AX height20.5 despite its outer44pt layout frame; move
+the44pt minimum and content shape into its label and add explicit44×44 assertions.
+No before-fix execution of those new assertions is claimed. Fresh pairs follow.

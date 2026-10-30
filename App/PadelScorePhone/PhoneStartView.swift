@@ -73,8 +73,12 @@ struct PhoneStartView: View {
                                       foreground: UIColor(named: "PhoneSecondaryText") ?? .secondaryLabel, textStyle: .footnote)
                 }
                 PhoneCard {
-                    NavigationLink { PhoneHelpView() } label: { Label("phone.help.title", systemImage: "questionmark.circle") }
-                        .frame(minHeight: 44).accessibilityIdentifier("phone.start.help")
+                    NavigationLink { PhoneHelpView() } label: {
+                        Label("phone.help.title", systemImage: "questionmark.circle")
+                            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                            .contentShape(Rectangle())
+                    }
+                        .accessibilityIdentifier("phone.start.help")
                     PhoneLegalLinks()
                 }
             }.padding(20)
