@@ -166,7 +166,7 @@ struct JournalScoreView: View {
             }
             switch board.serving {
             case .next(let player):
-                Text("\(Text(verbatim: player.displayName(in: names))) serves next")
+                Text("Next server: \(Text(verbatim: player.displayName(in: names)))")
                 if case .americano(let round) = game.format {
                     Text("Serve \(round.service.rallyInBlock) of \(round.rules.ralliesPerServer)")
                 }

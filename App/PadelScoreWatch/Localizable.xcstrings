@@ -28351,79 +28351,79 @@
         }
       }
     },
-    "%@ serves next": {
+    "Next server: %@": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ serves next"
+            "value": "Next server: %@"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ serve a continuación"
+            "value": "Siguiente sacador: %@"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ serve ensuite"
+            "value": "Prochain serveur : %@"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ schlägt als Nächstes auf"
+            "value": "Nächster Aufschläger: %@"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ serve dopo"
+            "value": "Prossimo al servizio: %@"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ serve a seguir"
+            "value": "Próximo sacador: %@"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ saca a seguir"
+            "value": "Próximo a servir: %@"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ serveert hierna"
+            "value": "Volgende serveerder: %@"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ servar härnäst"
+            "value": "Nästa servare: %@"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ server neste"
+            "value": "Neste server: %@"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ server næste gang"
+            "value": "Næste server: %@"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ syöttää seuraavaksi"
+            "value": "Seuraava syöttäjä: %@"
           }
         },
         "ru": {
@@ -28432,7 +28432,8 @@
             "value": "Следующая подача: %@"
           }
         }
-      }
+      },
+      "comment": "Name-neutral next-server label in rally review. The placeholder is a literal player name or self label."
     },
     "After": {
       "extractionState": "manual",
@@ -33677,6 +33678,90 @@
           "stringUnit": {
             "state": "translated",
             "value": "Prova gester"
+          }
+        }
+      }
+    },
+    "Reset": {
+      "comment": "Resets only the disposable gesture practice score and pending selection; never a real game.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restablecer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reimposta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réinitialiser"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repor"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reiniciar"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resetten"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zurücksetzen"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återställ"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nulstil"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nollaa"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nullstill"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сбросить"
           }
         }
       }

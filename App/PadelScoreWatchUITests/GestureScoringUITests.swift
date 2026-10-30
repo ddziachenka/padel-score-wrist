@@ -167,6 +167,31 @@ final class GestureScoringUITests: XCTestCase {
         attachScreenshot("Watch gesture teaching native audit")
     }
 
+    func testPracticeResetAllLocalesAtLargestText() throws {
+        let locales = [("en", "en_US"), ("es", "es_ES"), ("it", "it_IT"), ("fr", "fr_FR"),
+                       ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"),
+                       ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
+        let resetLabels = ["en": "Reset", "es": "Restablecer", "it": "Reimposta", "fr": "Réinitialiser",
+                           "pt-PT": "Repor", "pt-BR": "Reiniciar", "nl": "Resetten", "de": "Zurücksetzen",
+                           "sv": "Återställ", "da": "Nulstil", "fi": "Nollaa", "nb": "Nullstill", "ru": "Сбросить"]
+        for (language, region) in locales {
+            let app = launchApp(store: "gesture-reset-" + language, seed: "empty",
+                textSize: "UICTContentSizeCategoryAccessibilityXXXL", language: language, region: region)
+            app.buttons["newGame.match"].scrollToAndTap(in: app)
+            app.buttons["setup.gesturePractice"].scrollToAndTap(in: app)
+            app.buttons["gesture.action"].scrollToAndTap(in: app)
+            Thread.sleep(forTimeInterval: 3.3)
+            XCTAssertEqual(app.descendants(matching: .any)["gesture.practice.score"].value as? String, "1:0")
+            let reset = app.buttons["gesture.practice.reset"]
+            XCTAssertEqual(reset.label, try XCTUnwrap(resetLabels[language]))
+            reset.scrollToAndTap(in: app)
+            XCTAssertEqual(app.descendants(matching: .any)["gesture.practice.score"].value as? String, "0:0")
+            try app.performAccessibilityAudit()
+            attachScreenshot("Localized practice reset largest text " + language)
+            app.terminate()
+        }
+    }
+
     func testEnabledScoreAllLocalesAtLargestText() {
         let locales = [("en", "en_US"), ("es", "es_ES"), ("it", "it_IT"), ("fr", "fr_FR"),
                        ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"),

@@ -529,6 +529,9 @@ final class CompanionUITests: XCTestCase {
     func testGestureGuideAllLocalesLightDarkAndLargestText() throws {
         let originalAppearance = XCUIDevice.shared.appearance
         defer { XCUIDevice.shared.appearance = originalAppearance }
+        let resetLabels = ["en": "Reset", "es": "Restablecer", "it": "Reimposta", "fr": "Réinitialiser",
+                           "pt-PT": "Repor", "pt-BR": "Reiniciar", "nl": "Resetten", "de": "Zurücksetzen",
+                           "sv": "Återställ", "da": "Nulstil", "fi": "Nollaa", "nb": "Nullstill", "ru": "Сбросить"]
         let locales = [("en", "en_US"), ("es", "es_ES"), ("it", "it_IT"), ("fr", "fr_FR"),
                        ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"),
                        ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
@@ -552,7 +555,16 @@ final class CompanionUITests: XCTestCase {
                 XCTAssertTrue(action.isHittable)
                 capture(app, "gesture-\(language)-\(appearance)-largest")
                 try auditIncludingOccludedText(app)
+                reveal(app.buttons["phone.gesture.action"], in: app).tap()
+                Thread.sleep(forTimeInterval: 3.3)
+                XCTAssertEqual(app.descendants(matching: .any)["phone.gesture.score"].value as? String, "1:0")
+                let reset = reveal(app.buttons["phone.gesture.reset"], in: app)
+                XCTAssertEqual(reset.label, try XCTUnwrap(resetLabels[language]))
+                XCTAssertGreaterThanOrEqual(reset.frame.height, 44)
+                capture(app, "gesture-reset-\(language)-\(appearance)-largest")
+                try auditIncludingOccludedText(app)
                 reveal(app.buttons["phone.gesture.reset"], in: app).tap()
+                XCTAssertEqual(app.descendants(matching: .any)["phone.gesture.score"].value as? String, "0:0")
                 app.terminate()
             }
         }
@@ -811,6 +823,58 @@ final class CompanionUITests: XCTestCase {
             capture(app, "m25-appearance-help-\(dark)")
             try auditIncludingOccludedText(app)
             app.terminate()
+        }
+    }
+
+    func testM25LocalizedHelpAtLargestTextInBothAppearances() throws {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
+        let locales = [("en", "en_US"), ("es", "es_ES"), ("it", "it_IT"), ("fr", "fr_FR"),
+                       ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"),
+                       ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
+        for (language, region) in locales {
+            for dark in [false, true] {
+                setAppearance(dark)
+                let app = XCUIApplication()
+                app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", region,
+                    "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+                app.launch()
+                defer { app.terminate() }
+                XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+                declineOptionalReview(app)
+                let help = reveal(app.buttons["phone.start.help"], in: app)
+                XCTAssertTrue(help.isHittable)
+                XCTAssertGreaterThanOrEqual(help.frame.height, 44)
+                let title = help.label
+                XCTAssertFalse(title.isEmpty)
+                help.tap()
+                XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5))
+                capture(app, "m25-help-largest-\(region)-\(dark)-top")
+                try auditIncludingOccludedText(app)
+                // A long native List must retain a reachable final action.
+                // Scroll only; never activate the external review destination.
+                func rateLink() -> XCUIElement {
+                    app.descendants(matching: .any).matching(identifier: "phone.help.rate").firstMatch
+                }
+                for _ in 0..<64 {
+                    let rate = rateLink()
+                    if rate.exists, rate.isHittable, visibleViewport(app).contains(rate.frame) { break }
+                    if rate.exists, rate.frame.width > 0, rate.frame.height > 0,
+                       rate.frame.midY < visibleViewport(app).minY {
+                        app.swipeDown(velocity: .fast)
+                    } else {
+                        app.swipeUp(velocity: .fast)
+                    }
+                }
+                let rate = rateLink()
+                XCTAssertTrue(rate.isHittable)
+                XCTAssertTrue(visibleViewport(app).contains(rate.frame))
+                XCTAssertGreaterThanOrEqual(rate.frame.width, 44)
+                XCTAssertGreaterThanOrEqual(rate.frame.height, 44)
+                XCTAssertFalse(rate.label.isEmpty)
+                capture(app, "m25-help-largest-\(region)-\(dark)-footer")
+                try auditIncludingOccludedText(app)
+            }
         }
     }
 

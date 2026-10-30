@@ -47,6 +47,28 @@ struct AppConfigurationTests {
         #expect(launcherBundle.localizedString(forKey: launcherKey, value: nil, table: "Localizable") != launcherKey)
     }
 
+    @Test("Gesture reset and next-server labels ship in every language", arguments: [
+        ("en", "Reset", "Next server: %@"),
+        ("es", "Restablecer", "Siguiente sacador: %@"),
+        ("it", "Reimposta", "Prossimo al servizio: %@"),
+        ("fr", "Réinitialiser", "Prochain serveur : %@"),
+        ("pt-PT", "Repor", "Próximo a servir: %@"),
+        ("pt-BR", "Reiniciar", "Próximo sacador: %@"),
+        ("nl", "Resetten", "Volgende serveerder: %@"),
+        ("de", "Zurücksetzen", "Nächster Aufschläger: %@"),
+        ("sv", "Återställ", "Nästa servare: %@"),
+        ("da", "Nulstil", "Næste server: %@"),
+        ("fi", "Nollaa", "Seuraava syöttäjä: %@"),
+        ("nb", "Nullstill", "Neste server: %@"),
+        ("ru", "Сбросить", "Следующая подача: %@")
+    ])
+    func gestureCopy(_ language: String, _ reset: String, _ nextServer: String) throws {
+        let path = try #require(Bundle.main.path(forResource: language, ofType: "lproj"))
+        let localized = try #require(Bundle(path: path))
+        #expect(localized.localizedString(forKey: "Reset", value: nil, table: "Localizable") == reset)
+        #expect(localized.localizedString(forKey: "Next server: %@", value: nil, table: "Localizable") == nextServer)
+    }
+
     @Test("Russian denominators and Brazilian zero use native grammar")
     func numericGrammar() throws {
         func resource(_ language: String) throws -> Bundle {

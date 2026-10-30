@@ -974,3 +974,23 @@ centred at accessibility sizes, with full-width actions of at least44pt. Keep th
 three entries visually consistent; a leading decorative glyph must not offset only
 one label. Native text measurement and opaque semantic surfaces preserve legibility
 and auditability when the Start guidance scrolls at maximum text size.
+
+M25 digital accessibility refinement: Start and Help paragraphs, section headings
+and footer actions use explicitly measured native text on opaque semantic surfaces.
+Help keeps ordinary NavigationLink/Back navigation; support, privacy and terms use
+one vertical set of full-width44pt links. Retained tab navigation content exposes
+accessibility only while selected, preserving its navigation state when switching
+tabs. The primary demo icon stacks above its title at accessibility text sizes.
+
+Recovery guides use the standard xmark dismissal icon in a44pt native toolbar
+target, with semantic primary tint and the existing localized Close accessibility
+name. It avoids a long toolbar word inside the system material at maximum text
+size; content typography retains full Dynamic Type scaling. Dismiss and Escape
+behavior remain the same.
+
+M25 localized practice and serving copy: the disposable gesture reset action has
+an explicit translation in every supported language on both platforms. Rally
+review uses a name-neutral next-server label, rather than conjugating a verb after
+a literal self label or arbitrary player name. Score, service order, names and
+practice-reset behavior remain unchanged. Help must also be checked at maximum
+text size in all thirteen languages and both appearances.
