@@ -52,11 +52,15 @@ struct PhoneRecoveryView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { dismiss() } label: {
-                        Text("Close")
+                        Image(systemName: "xmark")
+                            .font(.system(size: 17, weight: .semibold))
                             .foregroundStyle(Color.primary)
-                            .frame(minWidth: 44, minHeight: 44)
+                            .frame(width: 44, height: 44)
                             .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
+                    .tint(Color.primary)
+                    .accessibilityLabel(Text("Close"))
                     .accessibilityIdentifier("phone.recovery.close")
                 }
             }

@@ -373,3 +373,18 @@ the44pt minimum/content shape inside its label. Navigation/dismissal/copy/ID sta
 the same. Only owned xcodebuild34976 is interrupted; the partial full UI run remains
 raw failure and its later gallery stages do not execute. Fresh targeted minimum/
 current German largest checks and a fresh complete current UI run follow.
+
+Semantic-primary text alone does not close the toolbar finding on39bc678;
+phone-close-current remains FAILED/65. Exported native occlusion attachments
+explicitly say Contrast failed for SwiftUI.AccessibilityNode on the visible Close
+button. The actual label is black after the change, so the visual change did
+apply; no successful contrast result is inferred from the screenshot. Use a
+standard17pt xmark with44×44 target, plain style, primary tint and the original
+localized Close accessibility label/ID. Dismiss and Escape behavior stay intact.
+All native audits and their strict existing helper remain unchanged.
+
+The new current27 profile also reproduces Dark getter versus Light pixels during
+the long case. Treat compositor preparation as a managed-environment operation:
+set Dark, restart only the reserved owned device, run actual-pixel checks in both
+themes, then restore original style/boot state. This extends the already observed
+minimum17 preparation, without a shipping theme override or service restart.
