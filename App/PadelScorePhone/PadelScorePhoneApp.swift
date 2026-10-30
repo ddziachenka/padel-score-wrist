@@ -45,12 +45,15 @@ struct CompanionRootView: View {
                 PhoneStartView(tryDemo: { selection = .demo }, access: { selection = .access },
                                recovery: { recovery = RecoveryPresentation(kind: $0) })
             }
+            .accessibilityHidden(selection != .start)
             .tabItem { Label("phone.tab.start", systemImage: "figure.tennis") }.tag(Tab.start)
             NavigationStack {
                 PhoneDemoView(demo: demo, completed: { review.completed($0) }, recover: { recovery = RecoveryPresentation(kind: $0) })
             }
+            .accessibilityHidden(selection != .demo)
             .tabItem { Label("phone.tab.demo", systemImage: "hand.tap") }.tag(Tab.demo)
             NavigationStack { PhoneAccessView() }
+                .accessibilityHidden(selection != .access)
                 .tabItem { Label("Access", systemImage: "checkmark.seal") }.tag(Tab.access)
         }
         .task {

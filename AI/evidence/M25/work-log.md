@@ -291,3 +291,15 @@ ID/label, dynamic multiline body font, semantic colors and minimum44pt measured
 height) and the same standard navigationDestination presentation. Parent display,
 copy and destination remain unchanged. The complete unchanged native hittability,
 geometry, appearance and accessibility checks still determine acceptance.
+
+Native UIButton source3de7b3f still fails the same minimum Help assertion; the
+control replacement is not a solution. Diagnostic9a12976 additionally checks Help
+on initial launch (passes) and logs actual UIKit hit-testing/ancestor bounds.
+After Access→Start, UIWindow.hitTest returns that same visible UIButton, but the
+containing navigation UILayoutContainerView reports accessibilityFrame.zero while
+its real375×667 bounds/frame remain correct. Initially its AX frame is375×667.
+This narrows the finding to navigation-container AX state after tab transitions,
+not button typography or touch geometry. The raw diagnostic remains FAILED.
+Next verify explicit selection-bound accessibilityHidden on each tab's navigation
+content; individual controls, native tabs and state/navigation remain intact.
+No assertion is removed, and no framework/pre-existing-defect claim is inferred.
