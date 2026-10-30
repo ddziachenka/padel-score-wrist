@@ -758,6 +758,11 @@ final class CompanionUITests: XCTestCase {
             setAppearance(dark)
             let app = app()
             capture(app, "m25-appearance-root-\(dark)")
+            let initialHelp = reveal(app.buttons["phone.start.help"], in: app)
+            XCTAssertTrue(initialHelp.isHittable)
+            initialHelp.tap()
+            XCTAssertTrue(app.navigationBars["Help & getting started"].waitForExistence(timeout: 5))
+            app.navigationBars.buttons.element(boundBy: 0).tap()
             reveal(app.buttons["phone.start.gestures"], in: app).tap()
             capture(app, "m25-appearance-gesture-\(dark)")
             app.navigationBars.buttons.element(boundBy: 0).tap()
@@ -793,6 +798,10 @@ final class CompanionUITests: XCTestCase {
             }
             capture(app, "m25-help-entry-before-tap-\(dark)")
             help = app.buttons["phone.start.help"]
+            let hierarchy = XCTAttachment(string: app.debugDescription)
+            hierarchy.name = "m25-help-entry-hierarchy-\(dark)"
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
             XCTAssertTrue(help.isHittable)
             XCTAssertTrue(visibleViewport(app).contains(help.frame))
             XCTAssertGreaterThanOrEqual(help.frame.width, 44)

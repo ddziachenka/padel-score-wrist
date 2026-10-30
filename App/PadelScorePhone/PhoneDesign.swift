@@ -152,6 +152,20 @@ struct PhoneNativeButton: UIViewRepresentable {
     @MainActor final class Coordinator: NSObject {
         var action: () -> Void
         init(_ action: @escaping () -> Void) { self.action = action; super.init() }
-        @objc func activate() { action() }
+        @objc func activate(_ sender: UIButton) {
+            #if DEBUG
+            if let window = sender.window {
+                let point = sender.convert(CGPoint(x: sender.bounds.midX, y: sender.bounds.midY), to: window)
+                let hit = window.hitTest(point, with: nil)
+                print("M25 HELP UIKit point=\(point) hit=\(String(describing: hit)) sender=\(sender)")
+                var ancestor: UIView? = sender
+                while let view = ancestor {
+                    print("M25 HELP ancestor \(type(of: view)) frame=\(view.frame) bounds=\(view.bounds) ax=\(view.accessibilityFrame) hidden=\(view.isHidden) alpha=\(view.alpha) interactive=\(view.isUserInteractionEnabled)")
+                    ancestor = view.superview
+                }
+            }
+            #endif
+            action()
+        }
     }
 }
