@@ -388,3 +388,27 @@ the long case. Treat compositor preparation as a managed-environment operation:
 set Dark, restart only the reserved owned device, run actual-pixel checks in both
 themes, then restore original style/boot state. This extends the already observed
 minimum17 preparation, without a shipping theme override or service restart.
+
+Final affb77170e60be36ff3c105c08f70c8ceb345ece dismissal passes both prepared
+German-largest targets1/1, exit0, each with all twelve native-audit checkpoints
+and actual Light/Dark capture pixels. No audit category/predicate/test was changed.
+Current originals were visually inspected: clear standard xmark, primary contrast,
+readable full-scale content and an obvious dismissal target in both themes. The
+complete current UI-v2 already repeats the previously failing German case with
+a pass; the remaining complete suite/galleries/full milestone are still pending.
+
+The prepared complete current UI-v2 repeats the corrected German-largest case
+with a pass and completes the five-locale explanation matrix. The subsequent
+thirteen-locale gesture matrix is terminated by XCTest's implicit10-minute
+DEFAULT allowance at600s, despite the helper specifying a30-minute MAXIMUM.
+Its native session explicitly records execution-time allowance Code13 and worker
+restart; this is an agent-introduced command-budget error, not an app hang or a
+completed/passed matrix. Raw timeout result is preserved; only owned65842 receives
+SIGINT, and later galleries do not execute.
+Set the additional full current suite's default AND maximum to3600s per matrix
+(the matrix includes26locale/theme launches and many native audit checkpoints).
+Set the capture helper's default AND maximum to1800s for its complete locale
+galleries. These budgets permit the already required exhaustive coverage; no
+test/filter/assertion/count/audit category or production performance requirement
+is changed. The generic declared milestone command remains untouched and must
+run in full. Start a fresh complete current UI19 run; no partial result is reused.

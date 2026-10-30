@@ -81,7 +81,7 @@ else
  m25_tests=(-only-testing:PadelScorePhoneUITests/CompanionUITests/testLocalizedGallery -only-testing:PadelScorePhoneUITests/CompanionUITests/testM25RecoveryGallery)
 fi
 m25_exit=0
-xcodebuild test -quiet -project "$PROJECT_PATH" -scheme "$SCHEME" -configuration "$CONFIGURATION_DEBUG" -destination "$(platform_simulator_destination "$IOSAI_SIMULATOR_UDID")" -derivedDataPath "$(derived_data_path)" -resultBundlePath "$m25_output.xcresult" "${m25_tests[@]}" -collect-test-diagnostics never -test-timeouts-enabled YES -maximum-test-execution-time-allowance 1800 > "$m25_output.log" 2>&1 || m25_exit=$?
+xcodebuild test -quiet -project "$PROJECT_PATH" -scheme "$SCHEME" -configuration "$CONFIGURATION_DEBUG" -destination "$(platform_simulator_destination "$IOSAI_SIMULATOR_UDID")" -derivedDataPath "$(derived_data_path)" -resultBundlePath "$m25_output.xcresult" "${m25_tests[@]}" -collect-test-diagnostics never -test-timeouts-enabled YES -default-test-execution-time-allowance 1800 -maximum-test-execution-time-allowance 1800 > "$m25_output.log" 2>&1 || m25_exit=$?
 printf '%s\n' "$m25_exit" > "$m25_output-exit.txt"
 xcrun xcresulttool get test-results summary --path "$m25_output.xcresult" --format json > "$m25_output-summary.json"
 xcrun xcresulttool export attachments --path "$m25_output.xcresult" --output-path "$m25_output-attachments" > "$m25_output-export.log"
