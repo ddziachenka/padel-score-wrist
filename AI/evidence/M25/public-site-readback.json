@@ -1,0 +1,422 @@
+{
+  "observed_at": "2026-10-30T06:12:21.752382+00:00",
+  "method": "GET only; local drafts not published",
+  "pages": [
+    {
+      "url": "https://padel-score-wrist.pages.dev/",
+      "final_url": "https://padel-score-wrist.pages.dev/",
+      "status": 200,
+      "bytes": 7668,
+      "sha256": "9e6ba01727571cfff4aeae241960b101a7ffd9b959102f8df84881435c08d5cf",
+      "saved": ".artifacts/M25/live/home.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/privacy/",
+      "status": 200,
+      "bytes": 7161,
+      "sha256": "cad9e3b73e2bf44bf7c839fc355f0501baee09fe05a7647db3d5c91c389a199c",
+      "saved": ".artifacts/M25/live/privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/terms/",
+      "status": 200,
+      "bytes": 6544,
+      "sha256": "49c27e7a0a14c741f7419d040e2c43a502f5de7173a0543ea7a1c2562c805080",
+      "saved": ".artifacts/M25/live/terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/support/",
+      "status": 200,
+      "bytes": 7454,
+      "sha256": "2095650b0532193b84679d57cabd4d8dac02547f498e4b8b0e0282c2d79a6ed8",
+      "saved": ".artifacts/M25/live/support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/es/",
+      "final_url": "https://padel-score-wrist.pages.dev/es/",
+      "status": 200,
+      "bytes": 8293,
+      "sha256": "7d3f2a19b0eece0363727e5aeaa783e514655b73d2dfe0e1afdfbf083af8bc3d",
+      "saved": ".artifacts/M25/live/es.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/es/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/es/privacy/",
+      "status": 200,
+      "bytes": 7915,
+      "sha256": "570e72a1e9a74940950be5f29281b1d0d2cfb70daf6d9f7caf3f26374c2742a7",
+      "saved": ".artifacts/M25/live/es-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/es/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/es/terms/",
+      "status": 200,
+      "bytes": 7201,
+      "sha256": "2b8d8a41fec5a92fa06d6e983b353ab0c302415c56326ef7a2f461e3a774ca46",
+      "saved": ".artifacts/M25/live/es-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/es/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/es/support/",
+      "status": 200,
+      "bytes": 8259,
+      "sha256": "c267e0ec14092bf12e82037b9ff28847ce1a844e219bbc347258a5ef897d37d4",
+      "saved": ".artifacts/M25/live/es-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/it/",
+      "final_url": "https://padel-score-wrist.pages.dev/it/",
+      "status": 200,
+      "bytes": 8242,
+      "sha256": "8b51fde9390dad673dd8976f956b80b338546bda518d1130c2365967fd521eaf",
+      "saved": ".artifacts/M25/live/it.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/it/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/it/privacy/",
+      "status": 200,
+      "bytes": 7825,
+      "sha256": "1541a62e4721c65b1f576ca855bd8355c27f87529e24ed5150c3714fe808bef3",
+      "saved": ".artifacts/M25/live/it-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/it/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/it/terms/",
+      "status": 200,
+      "bytes": 7154,
+      "sha256": "1ef0330c2ee1ef5cff2ec02fb9d0d85ba1ceff9febf3b55cf1635042a7ad237f",
+      "saved": ".artifacts/M25/live/it-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/it/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/it/support/",
+      "status": 200,
+      "bytes": 8184,
+      "sha256": "e4f35ba79a34d34ebef74644a5bb19d9b54ed4838c2ac23b7ca55a687a807847",
+      "saved": ".artifacts/M25/live/it-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/fr/",
+      "final_url": "https://padel-score-wrist.pages.dev/fr/",
+      "status": 200,
+      "bytes": 8622,
+      "sha256": "1445c6d292e8a285e6d938623948b7a6627005967e179a56ea7d9ef3627bb32d",
+      "saved": ".artifacts/M25/live/fr.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/fr/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/fr/privacy/",
+      "status": 200,
+      "bytes": 8326,
+      "sha256": "16ad8ee2e14e72e7922808b13ec67e67144d2254a2c00aca7e4d5283ec6cb64d",
+      "saved": ".artifacts/M25/live/fr-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/fr/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/fr/terms/",
+      "status": 200,
+      "bytes": 7604,
+      "sha256": "ba7bf756650cf262632057f92224bddb5a6b1f542720b612b60e993bad381d43",
+      "saved": ".artifacts/M25/live/fr-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/fr/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/fr/support/",
+      "status": 200,
+      "bytes": 8845,
+      "sha256": "fc318cc95f5c640057d5188db31c14020a5996f58af191b6a5ca9c02f31bbcba",
+      "saved": ".artifacts/M25/live/fr-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/pt-pt/",
+      "final_url": "https://padel-score-wrist.pages.dev/pt-pt/",
+      "status": 200,
+      "bytes": 8379,
+      "sha256": "f2d933f5f16aefe7308d6af15e5d7466c68b9bdd3619987fdb9a1fdc368945cb",
+      "saved": ".artifacts/M25/live/pt-pt.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/pt-pt/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/pt-pt/privacy/",
+      "status": 200,
+      "bytes": 8030,
+      "sha256": "bbadb8f7d621293f22d3842738389ff3b30669f07d23b2f68de6391e77449cf4",
+      "saved": ".artifacts/M25/live/pt-pt-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/pt-pt/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/pt-pt/terms/",
+      "status": 200,
+      "bytes": 7278,
+      "sha256": "260719ef93308b9a65fd57435fd55df61245a97b8b797fcba1e6cf8a831ff7a8",
+      "saved": ".artifacts/M25/live/pt-pt-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/pt-pt/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/pt-pt/support/",
+      "status": 200,
+      "bytes": 8309,
+      "sha256": "243333bc9fb63273f93012fe8e75cf130f45811d1a6a52583d7fa86e509bf5f0",
+      "saved": ".artifacts/M25/live/pt-pt-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/pt-br/",
+      "final_url": "https://padel-score-wrist.pages.dev/pt-br/",
+      "status": 200,
+      "bytes": 8368,
+      "sha256": "6a6eac06b2575ff54e13f5c381623afdaa5b86a606738a914730d4ab6e2e6ef2",
+      "saved": ".artifacts/M25/live/pt-br.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/pt-br/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/pt-br/privacy/",
+      "status": 200,
+      "bytes": 7963,
+      "sha256": "568bfcf0ac2a089b09cff373b1f8dd939fd977fae811e8a8bd68b9cb8922f0d6",
+      "saved": ".artifacts/M25/live/pt-br-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/pt-br/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/pt-br/terms/",
+      "status": 200,
+      "bytes": 7252,
+      "sha256": "6160e964d8b9d22cca8de2ba6b0801cbdfd85ca6c4fd5d3e327d73352e5dce16",
+      "saved": ".artifacts/M25/live/pt-br-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/pt-br/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/pt-br/support/",
+      "status": 200,
+      "bytes": 8276,
+      "sha256": "2ab2a0cace14a964080fb38a17a54cffa9428ca6a6953955b6ded9fb93c67818",
+      "saved": ".artifacts/M25/live/pt-br-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/nl/",
+      "final_url": "https://padel-score-wrist.pages.dev/nl/",
+      "status": 200,
+      "bytes": 8246,
+      "sha256": "64ac60f4adf153848e3d73162f2725792ce42c38e22ff909e61e44f8b55b6be9",
+      "saved": ".artifacts/M25/live/nl.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/nl/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/nl/privacy/",
+      "status": 200,
+      "bytes": 7708,
+      "sha256": "822328f81faf26e292b497e659e24fbfb6542299532e8e827abf186daba7b0fe",
+      "saved": ".artifacts/M25/live/nl-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/nl/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/nl/terms/",
+      "status": 200,
+      "bytes": 7241,
+      "sha256": "1440f2823a9e0bc81c6e0220cc4fe5b584c0e6481d50c5053a31873095241603",
+      "saved": ".artifacts/M25/live/nl-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/nl/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/nl/support/",
+      "status": 200,
+      "bytes": 8251,
+      "sha256": "05d2a948281f0ba681a08d178956bb4ced357882c8d7b5dee42b7780c8df921f",
+      "saved": ".artifacts/M25/live/nl-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/de/",
+      "final_url": "https://padel-score-wrist.pages.dev/de/",
+      "status": 200,
+      "bytes": 8540,
+      "sha256": "9b474d60c7c1c52c756b65ae5dc637646f3f2cd7f639a3e59217b499198329cb",
+      "saved": ".artifacts/M25/live/de.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/de/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/de/privacy/",
+      "status": 200,
+      "bytes": 7977,
+      "sha256": "fe5d63b70ba097e98183d3993d2c488f33b642e4f4733ee25e457a4b813e4b8e",
+      "saved": ".artifacts/M25/live/de-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/de/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/de/terms/",
+      "status": 200,
+      "bytes": 7411,
+      "sha256": "cf69d9685f2a1cfd63523154840190e8cf3d2966587a4faec714ceaa9f4f9a6d",
+      "saved": ".artifacts/M25/live/de-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/de/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/de/support/",
+      "status": 200,
+      "bytes": 8673,
+      "sha256": "a925469805ca37cdf69b2b751123b093566b120c4e700580dde4bdf508898751",
+      "saved": ".artifacts/M25/live/de-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/sv/",
+      "final_url": "https://padel-score-wrist.pages.dev/sv/",
+      "status": 200,
+      "bytes": 8036,
+      "sha256": "7f1475850ab1617bd2fde4e7d3173bcc18a53a462dc0b88457c37d6644074671",
+      "saved": ".artifacts/M25/live/sv.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/sv/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/sv/privacy/",
+      "status": 200,
+      "bytes": 7560,
+      "sha256": "de31e8e34b4804b30943567afab5761dc93d61c87ea36b07a9fb3939ef9c81c3",
+      "saved": ".artifacts/M25/live/sv-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/sv/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/sv/terms/",
+      "status": 200,
+      "bytes": 6943,
+      "sha256": "8ec2f1434950e82d971c7145fa39b610ee8b1f3c88b41a88d772c163d0ea4485",
+      "saved": ".artifacts/M25/live/sv-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/sv/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/sv/support/",
+      "status": 200,
+      "bytes": 8029,
+      "sha256": "bbdba16c9c2cbdb2891c196e11b4cc58ca6bdc02c9d622bb2a20a401aeb0a5de",
+      "saved": ".artifacts/M25/live/sv-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/da/",
+      "final_url": "https://padel-score-wrist.pages.dev/da/",
+      "status": 200,
+      "bytes": 7957,
+      "sha256": "29fb31fb9ce2f441cccf7f342d57f5d0602dcf7421828e51ed4ec5b3c5f5ad93",
+      "saved": ".artifacts/M25/live/da.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/da/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/da/privacy/",
+      "status": 200,
+      "bytes": 7631,
+      "sha256": "517ac332cad9f37288ad2730b0e3e29befb6d48d7b89913957d01a8acb084c2d",
+      "saved": ".artifacts/M25/live/da-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/da/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/da/terms/",
+      "status": 200,
+      "bytes": 6822,
+      "sha256": "7ac47bfe690dfc20dddee1b9e1ee7bb664a3f01a327e0313cced2859eb079e19",
+      "saved": ".artifacts/M25/live/da-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/da/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/da/support/",
+      "status": 200,
+      "bytes": 7911,
+      "sha256": "cc471eb24af1ceb0788dadefb8971623a84c8265894ce6cbd0af13afcee2dc8d",
+      "saved": ".artifacts/M25/live/da-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/fi/",
+      "final_url": "https://padel-score-wrist.pages.dev/fi/",
+      "status": 200,
+      "bytes": 8359,
+      "sha256": "644a835379ba02e1ed1b30a5c1e4d3c6a40a5d8d60075f8ad64a8f512c7a5ea0",
+      "saved": ".artifacts/M25/live/fi.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/fi/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/fi/privacy/",
+      "status": 200,
+      "bytes": 7769,
+      "sha256": "4e07fe3d35d3ef462a96a136f2ab9f0378753f8f9aced2b0652debbcb6c50192",
+      "saved": ".artifacts/M25/live/fi-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/fi/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/fi/terms/",
+      "status": 200,
+      "bytes": 7025,
+      "sha256": "b1828515043660099de0d233eec042bea6a9ed9757757fd725122e3ec82da276",
+      "saved": ".artifacts/M25/live/fi-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/fi/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/fi/support/",
+      "status": 200,
+      "bytes": 8138,
+      "sha256": "36c32700c5ac048786a24fa7248f4c71557825a00fefd5e370716be288b71752",
+      "saved": ".artifacts/M25/live/fi-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/nb/",
+      "final_url": "https://padel-score-wrist.pages.dev/nb/",
+      "status": 200,
+      "bytes": 8025,
+      "sha256": "d6ed014508478f1febb490604fb1d647c73e01d0264c8f74cf407e148b33e8aa",
+      "saved": ".artifacts/M25/live/nb.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/nb/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/nb/privacy/",
+      "status": 200,
+      "bytes": 7612,
+      "sha256": "86678e22c33df56cfa11b1514c7c98a9ab49a110904c17e47aae5820bd22f9ef",
+      "saved": ".artifacts/M25/live/nb-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/nb/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/nb/terms/",
+      "status": 200,
+      "bytes": 6878,
+      "sha256": "0ea3ae0528d982b4c4432a8f2b70e69a9562d0fed333518cb018b2fb3d6590ec",
+      "saved": ".artifacts/M25/live/nb-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/nb/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/nb/support/",
+      "status": 200,
+      "bytes": 7966,
+      "sha256": "90f949b477616d817a56439e36371fd9ebf214af9db20301d941318330cd67af",
+      "saved": ".artifacts/M25/live/nb-support.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/ru/",
+      "final_url": "https://padel-score-wrist.pages.dev/ru/",
+      "status": 200,
+      "bytes": 10561,
+      "sha256": "7d2897cde6e358e824f283d9365408633fb58dbd725d7446f44122d5ea34274d",
+      "saved": ".artifacts/M25/live/ru.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/ru/privacy/",
+      "final_url": "https://padel-score-wrist.pages.dev/ru/privacy/",
+      "status": 200,
+      "bytes": 10578,
+      "sha256": "9aa51cd06f29a1a07e3e3af5bf689bd30d1351adcd09bb8ba72651e1eae9f8d4",
+      "saved": ".artifacts/M25/live/ru-privacy.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/ru/terms/",
+      "final_url": "https://padel-score-wrist.pages.dev/ru/terms/",
+      "status": 200,
+      "bytes": 9772,
+      "sha256": "df7749fe807d6a8fc3b3e9c4622107af3b4d591dc53c141a6c717d7958b9f2f8",
+      "saved": ".artifacts/M25/live/ru-terms.html"
+    },
+    {
+      "url": "https://padel-score-wrist.pages.dev/ru/support/",
+      "final_url": "https://padel-score-wrist.pages.dev/ru/support/",
+      "status": 200,
+      "bytes": 11594,
+      "sha256": "4f7f1ad216064824e15e93433adfff92913f7ba4bcfc22f91a0dc2d960d5d374",
+      "saved": ".artifacts/M25/live/ru-support.html"
+    }
+  ]
+}

@@ -38,3 +38,15 @@ requested source refinement. Native report:11 passed,1 cancelled,12 recorded of1
 required; raw FAILED, command exit75, zero skipped/expected/runtime warnings.
 watch-gallery-1.xcresult and exports are retained. It is not a complete capture
 pass, and its partial locale results will not replace the fresh complete run.
+
+Expanded centered-card testing passed small iOS17 with normal/largest English,
+German and Russian, then exposed current-iOS27 native Contrast results on the
+hero demo label / gesture entry and Text clipped on the long DE/RU introduction.
+These are treated as in-scope digital findings, not accepted as false positives
+or called pre-existing. New explicit native text measurement/opaque semantic
+surfaces and a vertical icon/text arrangement at accessibility sizes address the
+rendered label and measurement. The root navigation bar is now opaque like the
+adjacent Demo/recovery surfaces. No audit category or helper was weakened.
+The first correction exposed an accessibility grouping wrapper that moved existing
+control IDs to an Other element; it was removed so the original single Button
+identity, native label and identifier remain. Raw failed bundles remain intact.

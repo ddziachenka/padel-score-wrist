@@ -966,3 +966,11 @@ practice and phone simulation teach the same sequence without using real games.
 Actual recognition/feel and team feedback are validated only in M29.
 M25 generates and compares three explanatory artwork directions with imagegen,
 then composes actual app captures; no exclusivity claim or invented UI.
+
+
+M25 owner refinement,2026-10-30: the iPhone Start recovery card centres its heading
+and all three entry labels on the same horizontal axis. Multiline labels remain
+centred at accessibility sizes, with full-width actions of at least44pt. Keep the
+three entries visually consistent; a leading decorative glyph must not offset only
+one label. Native text measurement and opaque semantic surfaces preserve legibility
+and auditability when the Start guidance scrolls at maximum text size.

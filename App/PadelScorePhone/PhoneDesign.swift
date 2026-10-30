@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 enum PhoneTheme {
     static let lime = Color(red: 0.78, green: 0.97, blue: 0.24)
@@ -56,5 +57,43 @@ struct CourtMark: View {
         }
         .frame(height: 126)
         .accessibilityHidden(true)
+    }
+}
+
+/// Explicit native text measurement and an opaque semantic surface keep long
+/// instructions and action labels readable at accessibility sizes while scrolling.
+struct PhoneMeasuredText: UIViewRepresentable {
+    let text: String
+    var foreground: UIColor = .label
+    var background: UIColor = .secondarySystemGroupedBackground
+    var textStyle: UIFont.TextStyle = .body
+    var alignment: NSTextAlignment = .natural
+
+    func makeUIView(context: Context) -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.adjustsFontForContentSizeCategory = true
+        label.isAccessibilityElement = true
+        label.isOpaque = true
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
+        return label
+    }
+
+    func updateUIView(_ label: UILabel, context: Context) {
+        label.text = text
+        label.font = UIFont.preferredFont(forTextStyle: textStyle)
+        label.textColor = foreground
+        label.backgroundColor = background
+        label.textAlignment = alignment
+        label.accessibilityLabel = text
+        label.accessibilityLanguage = Bundle.main.preferredLocalizations.first
+    }
+
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView: UILabel, context: Context) -> CGSize? {
+        guard let width = proposal.width else { return nil }
+        uiView.preferredMaxLayoutWidth = width
+        let size = uiView.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude))
+        return CGSize(width: width, height: ceil(size.height))
     }
 }

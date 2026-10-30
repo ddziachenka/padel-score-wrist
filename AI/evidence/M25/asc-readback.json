@@ -1,0 +1,59 @@
+{
+  "observed_at": "2026-10-30T07:51:46Z",
+  "method": "GET only; no metadata, pricing, build or submission mutation",
+  "app": {
+    "id": "6825393194",
+    "name": "Padel Score — Wrist",
+    "bundleId": "com.dziachenka.padelscore",
+    "primaryLocale": "en-US"
+  },
+  "app_infos": [
+    {
+      "id": "efabeb4f-a12c-4021-bc3a-8f08e2e07b8f",
+      "state": "REJECTED",
+      "primary_category": null,
+      "secondary_category": null,
+      "age_rating_declaration": {
+        "advertising": false,
+        "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+        "contests": "NONE",
+        "gambling": false,
+        "gamblingSimulated": "NONE",
+        "gunsOrOtherWeapons": "NONE",
+        "healthOrWellnessTopics": false,
+        "kidsAgeBand": null,
+        "lootBox": false,
+        "medicalOrTreatmentInformation": "NONE",
+        "messagingAndChat": false,
+        "parentalControls": false,
+        "profanityOrCrudeHumor": "NONE",
+        "ageAssurance": false,
+        "sexualContentGraphicAndNudity": "NONE",
+        "sexualContentOrNudity": "NONE",
+        "socialMedia": false,
+        "socialMediaAgeRestricted": false,
+        "horrorOrFearThemes": "NONE",
+        "matureOrSuggestiveThemes": "NONE",
+        "unrestrictedWebAccess": false,
+        "userGeneratedContent": false,
+        "violenceCartoonOrFantasy": "NONE",
+        "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+        "violenceRealistic": "NONE",
+        "ageRatingOverride": "NONE",
+        "ageRatingOverrideV2": "NONE",
+        "koreaAgeRatingOverride": "NONE",
+        "gracRatingClassificationNumber": null,
+        "developerAgeRatingInfoUrl": null
+      }
+    }
+  ],
+  "versions": [
+    {
+      "id": "c4b5fdd4-c48d-4b6b-ab00-60f16d9cf0f3",
+      "version": "1.0",
+      "platform": "IOS",
+      "state": "REJECTED",
+      "build": null
+    }
+  ]
+}

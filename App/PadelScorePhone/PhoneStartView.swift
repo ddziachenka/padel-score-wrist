@@ -1,6 +1,8 @@
 import SwiftUI
+import UIKit
 
 struct PhoneStartView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let tryDemo: () -> Void
     let access: () -> Void
     let recovery: (RecoveryScenario.Kind) -> Void
@@ -10,8 +12,16 @@ struct PhoneStartView: View {
                 PhoneCard {
                     CourtMark()
                     Text("phone.start.promise").font(.largeTitle.bold()).fixedSize(horizontal: false, vertical: true)
-                    Text("phone.start.explanation").foregroundStyle(PhoneTheme.secondaryText)
-                    Button(action: tryDemo) { Label("phone.start.try", systemImage: "hand.tap") }
+                    PhoneMeasuredText(text: String(localized: "phone.start.explanation"),
+                                      foreground: UIColor(named: "PhoneSecondaryText") ?? .secondaryLabel)
+                    Button(action: tryDemo) {
+                        if dynamicTypeSize.isAccessibilitySize {
+                            VStack(spacing: 8) { demoIcon; demoLabel }
+                        } else {
+                            HStack(spacing: 8) { demoIcon; demoLabel }
+                        }
+                    }
+                        .accessibilityLabel(Text("phone.start.try"))
                         .buttonStyle(PhonePrimaryStyle()).accessibilityIdentifier("phone.start.demo")
                 }
                 PhoneCard {
@@ -23,21 +33,20 @@ struct PhoneStartView: View {
                             .accessibilityAddTraits(.isHeader)
                             .accessibilityIdentifier("phone.recovery.start.heading")
                         NavigationLink { PhoneGestureView() } label: {
-                            Text("Try gestures")
-                                .fixedSize(horizontal: false, vertical: true)
-                                .frame(maxWidth: .infinity, minHeight: 44)
-                                .contentShape(Rectangle())
-                        }.accessibilityIdentifier("phone.start.gestures")
+                            recoveryLabel("Try gestures")
+                        }
+                            .accessibilityLabel(Text("Try gestures"))
+                            .accessibilityIdentifier("phone.start.gestures")
                         Button { recovery(.correction) } label: {
-                            Text("phone.recovery.correction").fixedSize(horizontal: false, vertical: true)
-                                .frame(maxWidth: .infinity, minHeight: 44)
-                                .contentShape(Rectangle())
-                        }.accessibilityIdentifier("phone.start.correction")
+                            recoveryLabel("phone.recovery.correction")
+                        }
+                            .accessibilityLabel(Text("phone.recovery.correction"))
+                            .accessibilityIdentifier("phone.start.correction")
                         Button { recovery(.knownScore) } label: {
-                            Text("phone.recovery.start").fixedSize(horizontal: false, vertical: true)
-                                .frame(maxWidth: .infinity, minHeight: 44)
-                                .contentShape(Rectangle())
-                        }.accessibilityIdentifier("phone.start.knownScore")
+                            recoveryLabel("phone.recovery.start")
+                        }
+                            .accessibilityLabel(Text("phone.recovery.start"))
+                            .accessibilityIdentifier("phone.start.knownScore")
                     }
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
@@ -53,12 +62,16 @@ struct PhoneStartView: View {
                 PhoneCard {
                     Text("phone.start.formats").font(.title2.bold()).accessibilityAddTraits(.isHeader)
                     Label("Match", systemImage: "rectangle.split.2x1").font(.headline)
-                    Text("phone.start.match.body").foregroundStyle(PhoneTheme.secondaryText)
+                    PhoneMeasuredText(text: String(localized: "phone.start.match.body"),
+                                      foreground: UIColor(named: "PhoneSecondaryText") ?? .secondaryLabel)
                     Label("Americano", systemImage: "arrow.triangle.2.circlepath").font(.headline)
-                    Text("phone.start.americano.body").foregroundStyle(PhoneTheme.secondaryText)
-                    Button(action: access) { Text("phone.start.access") }
+                    PhoneMeasuredText(text: String(localized: "phone.start.americano.body"),
+                                      foreground: UIColor(named: "PhoneSecondaryText") ?? .secondaryLabel)
+                    Button(action: access) { primaryLabel("phone.start.access") }
+                        .accessibilityLabel(Text("phone.start.access"))
                         .buttonStyle(PhonePrimaryStyle()).accessibilityIdentifier("phone.start.access")
-                    Text("phone.start.free").font(.footnote).foregroundStyle(PhoneTheme.secondaryText)
+                    PhoneMeasuredText(text: String(localized: "phone.start.free"),
+                                      foreground: UIColor(named: "PhoneSecondaryText") ?? .secondaryLabel, textStyle: .footnote)
                 }
                 PhoneCard {
                     NavigationLink { PhoneHelpView() } label: { Label("phone.help.title", systemImage: "questionmark.circle") }
@@ -71,15 +84,41 @@ struct PhoneStartView: View {
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Padel Score — Wrist")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(Color(.systemGroupedBackground), for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 
-    private func step(_ number: String, _ title: LocalizedStringKey, _ body: LocalizedStringKey, symbol: String) -> some View {
+    private var demoIcon: some View {
+        Image(systemName: "hand.tap").font(.headline).accessibilityHidden(true)
+    }
+
+    private var demoLabel: some View {
+        primaryLabel("phone.start.try")
+    }
+
+    private func primaryLabel(_ text: LocalizedStringResource) -> some View {
+        PhoneMeasuredText(text: String(localized: text),
+                          foreground: UIColor(PhoneTheme.ink),
+                          background: UIColor(PhoneTheme.lime),
+                          textStyle: .headline, alignment: .center)
+    }
+
+    private func recoveryLabel(_ text: LocalizedStringResource) -> some View {
+        PhoneMeasuredText(text: String(localized: text),
+                          foreground: UIColor(named: "PhoneAccent") ?? .label,
+                          alignment: .center)
+            .frame(maxWidth: .infinity, minHeight: 44)
+            .contentShape(Rectangle())
+    }
+
+    private func step(_ number: String, _ title: LocalizedStringKey, _ body: LocalizedStringResource, symbol: String) -> some View {
         HStack(alignment: .top, spacing: 12) {
-            Text(verbatim: number).font(.caption.bold().monospacedDigit()).foregroundStyle(PhoneTheme.accent)
-                .padding(10).background(PhoneTheme.accent.opacity(0.1), in: Circle()).accessibilityHidden(true)
+            Text(verbatim: number).font(.caption.bold().monospacedDigit()).foregroundStyle(Color.primary)
+                .padding(10).background(Color(.tertiarySystemGroupedBackground), in: Circle())
             VStack(alignment: .leading, spacing: 8) {
                 Label(title, systemImage: symbol).font(.headline)
-                Text(body).foregroundStyle(PhoneTheme.secondaryText).fixedSize(horizontal: false, vertical: true)
+                PhoneMeasuredText(text: String(localized: body),
+                                  foreground: UIColor(named: "PhoneSecondaryText") ?? .secondaryLabel)
             }
         }.accessibilityElement(children: .combine)
     }
