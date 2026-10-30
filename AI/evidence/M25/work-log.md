@@ -182,3 +182,21 @@ Initial concurrent xcresulttool reads failed64 while initializing native caches
 (permission/cache-database collision). Sequential escalated summary and attachment
 exports each passed0; original bundle/failures remain intact. Native exports must
 be sequential for a newly finalized bundle.
+
+The semantic-primary Help header correction improves actual Light/Dark headings
+but does not finish native validation: phone-help-centered-current-v2 on7657960
+remains FAILED/exit65,0/2, zero skipped/expected/runtime warnings. Four remaining
+Help Contrast issues provide no AX element (two per theme). Native screenshots
+show the legal footer partly beneath the floating tab bar. The expanded centered
+check also exposes a fully visible German largest-text heading Contrast issue
+(phone.recovery.start.heading, black text on the white card); its axis assertion
+passes. These remain current findings, not waived or called pre-existing.
+
+The recovery heading now uses the same explicitly measured opaque native UILabel
+as the already corrected body/actions, retaining title2/bold/center and native
+header/identifier semantics. Shared legal and Help rate links retain their original
+URLs and Link roles, with measured semantic accent labels on the row/card surface,
+explicit descriptions/IDs and44×44 minimum bounds. No audit predicate/category is
+changed. A fresh current/minimum targeted pair must pass before full phone suites
+and completely new galleries. The prior gallery validator correctly fails exit1
+on the changed PhoneStartView source (stale-gallery-guard.log); it is not relaxed.

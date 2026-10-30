@@ -68,6 +68,9 @@ struct PhoneMeasuredText: UIViewRepresentable {
     var background: UIColor = .secondarySystemGroupedBackground
     var textStyle: UIFont.TextStyle = .body
     var alignment: NSTextAlignment = .natural
+    var bold = false
+    var isHeader = false
+    var identifier: String?
 
     func makeUIView(context: Context) -> UILabel {
         let label = UILabel()
@@ -82,12 +85,19 @@ struct PhoneMeasuredText: UIViewRepresentable {
 
     func updateUIView(_ label: UILabel, context: Context) {
         label.text = text
-        label.font = UIFont.preferredFont(forTextStyle: textStyle)
+        let font = UIFont.preferredFont(forTextStyle: textStyle)
+        if bold, let descriptor = font.fontDescriptor.withSymbolicTraits(.traitBold) {
+            label.font = UIFont(descriptor: descriptor, size: font.pointSize)
+        } else {
+            label.font = font
+        }
         label.textColor = foreground
         label.backgroundColor = background
         label.textAlignment = alignment
         label.accessibilityLabel = text
         label.accessibilityLanguage = Bundle.main.preferredLocalizations.first
+        label.accessibilityTraits = isHeader ? [.staticText, .header] : .staticText
+        label.accessibilityIdentifier = identifier
     }
 
     func sizeThatFits(_ proposal: ProposedViewSize, uiView: UILabel, context: Context) -> CGSize? {

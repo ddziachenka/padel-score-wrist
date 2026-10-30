@@ -26,12 +26,11 @@ struct PhoneStartView: View {
                 }
                 PhoneCard {
                     VStack(alignment: .center, spacing: 12) {
-                        Text("phone.recovery.heading")
-                            .font(.title2.bold())
-                            .fixedSize(horizontal: false, vertical: true)
+                        PhoneMeasuredText(text: String(localized: "phone.recovery.heading"),
+                                          textStyle: .title2, alignment: .center,
+                                          bold: true, isHeader: true,
+                                          identifier: "phone.recovery.start.heading")
                             .frame(maxWidth: .infinity)
-                            .accessibilityAddTraits(.isHeader)
-                            .accessibilityIdentifier("phone.recovery.start.heading")
                         NavigationLink { PhoneGestureView() } label: {
                             recoveryLabel("Try gestures")
                         }
@@ -134,10 +133,20 @@ struct PhoneLegalLinks: View {
 
     private var links: some View {
         Group {
-            Link("Support", destination: PhoneLinks.page("support")).frame(minHeight: 44)
-            Link("Privacy", destination: PhoneLinks.page("privacy")).frame(minHeight: 44)
-            Link("Terms", destination: PhoneLinks.page("terms")).frame(minHeight: 44)
+            legalLink("Support", page: "support")
+            legalLink("Privacy", page: "privacy")
+            legalLink("Terms", page: "terms")
         }
+    }
+
+    private func legalLink(_ title: LocalizedStringResource, page: String) -> some View {
+        Link(destination: PhoneLinks.page(page)) {
+            PhoneMeasuredText(text: String(localized: title),
+                              foreground: UIColor(named: "PhoneAccent") ?? .link)
+        }
+        .accessibilityLabel(Text(String(localized: title)))
+        .frame(minWidth: 44, minHeight: 44)
+        .accessibilityIdentifier("phone.legal." + page)
     }
 }
 
@@ -156,7 +165,16 @@ struct PhoneHelpView: View {
             Section { Text("phone.help.history.body") } header: {
                 Text("phone.help.history.title").foregroundStyle(Color.primary)
             }
-            Section { PhoneLegalLinks(); Link("phone.help.rate", destination: PhoneLinks.review).frame(minHeight: 44) }
+            Section {
+                PhoneLegalLinks()
+                Link(destination: PhoneLinks.review) {
+                    PhoneMeasuredText(text: String(localized: "phone.help.rate"),
+                                      foreground: UIColor(named: "PhoneAccent") ?? .link)
+                }
+                .accessibilityLabel(Text("phone.help.rate"))
+                .frame(minWidth: 44, minHeight: 44)
+                .accessibilityIdentifier("phone.help.rate")
+            }
         }.navigationTitle("phone.help.title")
     }
 }
