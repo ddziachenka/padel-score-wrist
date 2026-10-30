@@ -45,6 +45,8 @@ struct CompanionRootView: View {
                 PhoneStartView(tryDemo: { selection = .demo }, access: { selection = .access },
                                recovery: { recovery = RecoveryPresentation(kind: $0) })
             }
+            // Keep retained navigation containers' accessibility visibility in
+            // sync with the actual tab, including when returning on iOS17.
             .accessibilityHidden(selection != .start)
             .tabItem { Label("phone.tab.start", systemImage: "figure.tennis") }.tag(Tab.start)
             NavigationStack {

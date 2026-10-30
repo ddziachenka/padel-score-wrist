@@ -303,3 +303,12 @@ not button typography or touch geometry. The raw diagnostic remains FAILED.
 Next verify explicit selection-bound accessibilityHidden on each tab's navigation
 content; individual controls, native tabs and state/navigation remain intact.
 No assertion is removed, and no framework/pre-existing-defect claim is inferred.
+
+Selection-bound accessibility visibility on ad84c3f passes the complete diagnostic
+appearance case1/1, exit0 (phone-help-diagnostic-v14), both Light/Dark, with all
+original hittability/viewport/44pt/pixel/native audit assertions. Initial Help
+reachability also passes. The temporary UIKit endpoint/logging is now removed,
+and the ordinary NavigationLink returns with the same measured44pt label. The
+initial-Help assertions and native hierarchy attachments remain useful regression
+coverage. Fresh minimum/current two-case verification must confirm this final
+standard-control source before full suites and new galleries.
