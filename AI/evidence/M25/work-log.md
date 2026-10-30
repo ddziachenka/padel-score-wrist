@@ -264,3 +264,12 @@ claimed. Replace that single NavigationLink with a normal Button and native
 navigationDestination binding, retaining title/destination/ID/44pt target and
 normal Back behavior. The same hittability and full native assertions remain;
 this is a scoped navigation implementation correction, not a failure exception.
+
+Current-v9 passes2/2 but the alternate Button/navigationDestination does not solve
+minimum Help hittability; the minimum appearance case still fails the unchanged
+assertions. Restore the simpler original NavigationLink, since no product
+navigation defect is demonstrated. The new window-scrolling test held one
+XCUIElement reference across all gestures, unlike the established reveal helper's
+explicit repeated resolution. It now resolves Help again each iteration and after
+the diagnostic screenshot. Every final hittability/viewport/44pt/native assertion
+remains. This is another targeted hypothesis; no pass is inferred before execution.

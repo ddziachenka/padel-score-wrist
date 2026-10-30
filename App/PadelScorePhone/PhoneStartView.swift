@@ -3,7 +3,6 @@ import UIKit
 
 struct PhoneStartView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @State private var showingHelp = false
     let tryDemo: () -> Void
     let access: () -> Void
     let recovery: (RecoveryScenario.Kind) -> Void
@@ -74,7 +73,7 @@ struct PhoneStartView: View {
                                       foreground: UIColor(named: "PhoneSecondaryText") ?? .secondaryLabel, textStyle: .footnote)
                 }
                 PhoneCard {
-                    Button { showingHelp = true } label: {
+                    NavigationLink { PhoneHelpView() } label: {
                         PhoneMeasuredText(text: String(localized: "phone.help.title"),
                                           foreground: UIColor(named: "PhoneAccent") ?? .link)
                             .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
@@ -92,7 +91,6 @@ struct PhoneStartView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Color(.systemGroupedBackground), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-        .navigationDestination(isPresented: $showingHelp) { PhoneHelpView() }
     }
 
     private var demoIcon: some View {

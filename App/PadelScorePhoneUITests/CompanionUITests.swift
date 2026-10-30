@@ -782,15 +782,17 @@ final class CompanionUITests: XCTestCase {
                 RunLoop.current.run(until: Date().addingTimeInterval(0.1))
             }
             XCTAssertTrue(app.tabBars.buttons["Start"].isSelected)
-            let help = app.buttons["phone.start.help"]
+            var help = app.buttons["phone.start.help"]
             // iOS17 can retain a ScrollView AX object with an empty visible frame
             // immediately after returning tabs. Scroll the active window and
             // require the actual entry to be fully visible before tapping it.
             for _ in 0..<20 {
+                help = app.buttons["phone.start.help"]
                 if help.exists, help.isHittable, visibleViewport(app).contains(help.frame) { break }
                 app.swipeUp(velocity: .slow)
             }
             capture(app, "m25-help-entry-before-tap-\(dark)")
+            help = app.buttons["phone.start.help"]
             XCTAssertTrue(help.isHittable)
             XCTAssertTrue(visibleViewport(app).contains(help.frame))
             XCTAssertGreaterThanOrEqual(help.frame.width, 44)
