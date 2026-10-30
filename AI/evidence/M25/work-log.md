@@ -283,3 +283,11 @@ solution. Next correction sets the real Help control's accessibility activation
 point to its visible center (SDK's public iOS14+ UnitPoint API), retaining the same
 actual button bounds, navigation and all test assertions. Native AT activation and
 hittability must be verified again; no result is accepted from the failed pair.
+
+The explicit activation-point pair again passes current2/2 but retains the same
+minimum hittability assertion. No activation-point solution is claimed. Replace
+only Help's action endpoint with a real UIKit UIButton (native button trait, exact
+ID/label, dynamic multiline body font, semantic colors and minimum44pt measured
+height) and the same standard navigationDestination presentation. Parent display,
+copy and destination remain unchanged. The complete unchanged native hittability,
+geometry, appearance and accessibility checks still determine acceptance.

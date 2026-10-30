@@ -107,3 +107,51 @@ struct PhoneMeasuredText: UIViewRepresentable {
         return CGSize(width: width, height: ceil(size.height))
     }
 }
+
+/// A native action endpoint keeps the complete 44pt text surface available to
+/// touch and accessibility clients on every supported UIKit runtime.
+struct PhoneNativeButton: UIViewRepresentable {
+    let text: String
+    let identifier: String
+    let action: () -> Void
+
+    func makeCoordinator() -> Coordinator { Coordinator(action) }
+
+    func makeUIView(context: Context) -> UIButton {
+        let button = UIButton(type: .system)
+        button.contentHorizontalAlignment = .leading
+        button.contentVerticalAlignment = .center
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
+        button.setContentCompressionResistancePriority(.required, for: .vertical)
+        button.addTarget(context.coordinator, action: #selector(Coordinator.activate), for: .touchUpInside)
+        return button
+    }
+
+    func updateUIView(_ button: UIButton, context: Context) {
+        context.coordinator.action = action
+        button.setTitle(text, for: .normal)
+        button.setTitleColor(UIColor(named: "PhoneAccent") ?? .link, for: .normal)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .body)
+        button.backgroundColor = .secondarySystemGroupedBackground
+        button.accessibilityLabel = text
+        button.accessibilityIdentifier = identifier
+        button.accessibilityLanguage = Bundle.main.preferredLocalizations.first
+        button.isAccessibilityElement = true
+        button.accessibilityTraits = .button
+    }
+
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView: UIButton, context: Context) -> CGSize? {
+        guard let width = proposal.width else { return nil }
+        uiView.titleLabel?.preferredMaxLayoutWidth = width
+        let size = uiView.titleLabel?.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude)) ?? .zero
+        return CGSize(width: width, height: max(44, ceil(size.height)))
+    }
+
+    @MainActor final class Coordinator: NSObject {
+        var action: () -> Void
+        init(_ action: @escaping () -> Void) { self.action = action; super.init() }
+        @objc func activate() { action() }
+    }
+}
