@@ -225,3 +225,13 @@ assertion; all44pt/visibility/pixel/native-audit checks remain. The prior minimu
 video final frame33.855s shows Demo still rendered during that failed immediate
 return, so its AX hierarchy alone was not proof of a settled visible Start page.
 No product tab-state defect or pre-existing failure is claimed from that evidence.
+
+Current-v5 passes2/2 after native Help body measurement. Minimum-v5 still records
+a Help-entry hittability failure despite its frame being entirely in the viewport,
+then reaches Help by the real tap and reports native Text clipped. The selected-tab
+wait passes. Shared legal links were native UILabel views inside both alternatives
+of ViewThatFits; the minimum-runtime behavior may involve those retained platform
+view hierarchies. Use one explicit vertical link layout instead, with full-width
+44pt label targets. Copy/URLs/roles stay intact; no condition skips the failing
+hittability or audit assertions. This is an implementation hypothesis requiring
+fresh verification, not a proven framework/pre-existing defect.

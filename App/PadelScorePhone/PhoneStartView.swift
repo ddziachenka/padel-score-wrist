@@ -129,10 +129,8 @@ struct PhoneStartView: View {
 
 struct PhoneLegalLinks: View {
     var body: some View {
-        ViewThatFits(in: .horizontal) {
-            HStack(spacing: 20) { links }.fixedSize(horizontal: true, vertical: false)
-            VStack(alignment: .leading, spacing: 4) { links }
-        }
+        VStack(alignment: .leading, spacing: 4) { links }
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var links: some View {
@@ -147,6 +145,8 @@ struct PhoneLegalLinks: View {
         Link(destination: PhoneLinks.page(page)) {
             PhoneMeasuredText(text: String(localized: title),
                               foreground: UIColor(named: "PhoneAccent") ?? .link)
+                .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                .contentShape(Rectangle())
         }
         .accessibilityLabel(Text(String(localized: title)))
         .frame(minWidth: 44, minHeight: 44)
