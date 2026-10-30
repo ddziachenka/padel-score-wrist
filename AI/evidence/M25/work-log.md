@@ -235,3 +235,23 @@ view hierarchies. Use one explicit vertical link layout instead, with full-width
 44pt label targets. Copy/URLs/roles stay intact; no condition skips the failing
 hittability or audit assertions. This is an implementation hypothesis requiring
 fresh verification, not a proven framework/pre-existing defect.
+
+The one-layout source4857f870bc7ca9033b6c7a13780bf362f18134aa passes current-v6
+2/2 but does not close the minimum finding. Its minimum-v6 pair remains FAILED;
+the new layout is not claimed to have resolved that behavior. A diagnostic restart
+of only the reserved, idle B9D3F5BC-7C0B-4F3B-A65F-3C1B67ACCEF2 now precedes the
+exact unchanged minimum-v7 pair. Preparation applies the previously verified Dark
+compositor startup and restores original appearance/boot state afterward. No erase,
+binding change, global restart, source/test predicate change or inherited waiver.
+Current source/gate/material acceptance remains pending.
+
+Restarted minimum-v7 remains raw FAILED/exit65,1/2, zero skipped/expected/runtime
+warnings; the diagnostic reboot did not resolve the finding. Native summary has
+two Text clipped issues across the appearance case (one per theme), plus entry
+hittability; centered remains passed. The entry and four Help headers now use
+the same measured native text component as the passing recovery heading/body,
+with explicit native header/label semantics. The decorative question glyph is
+removed from the Help entry; copy and destination stay unchanged. A direct native
+entry screenshot is captured before the same hittability/geometry assertions,
+so a future failure identifies the real visible state rather than AX data alone.
+No audit or assertion is removed. Fresh current/minimum pairs are required.

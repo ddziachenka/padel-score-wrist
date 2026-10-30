@@ -74,10 +74,12 @@ struct PhoneStartView: View {
                 }
                 PhoneCard {
                     NavigationLink { PhoneHelpView() } label: {
-                        Label("phone.help.title", systemImage: "questionmark.circle")
+                        PhoneMeasuredText(text: String(localized: "phone.help.title"),
+                                          foreground: UIColor(named: "PhoneAccent") ?? .link)
                             .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                             .contentShape(Rectangle())
                     }
+                        .accessibilityLabel(Text("phone.help.title"))
                         .accessibilityIdentifier("phone.start.help")
                     PhoneLegalLinks()
                 }
@@ -158,16 +160,16 @@ struct PhoneHelpView: View {
     var body: some View {
         List {
             Section { PhoneMeasuredText(text: String(localized: "phone.help.install.body")) } header: {
-                Text("phone.help.install.title").foregroundStyle(Color.primary)
+                helpHeading("phone.help.install.title")
             }
             Section { PhoneMeasuredText(text: String(localized: "phone.help.independent.body")) } header: {
-                Text("phone.help.independent.title").foregroundStyle(Color.primary)
+                helpHeading("phone.help.independent.title")
             }
             Section { PhoneMeasuredText(text: String(localized: "phone.help.purchase.body")) } header: {
-                Text("phone.help.purchase.title").foregroundStyle(Color.primary)
+                helpHeading("phone.help.purchase.title")
             }
             Section { PhoneMeasuredText(text: String(localized: "phone.help.history.body")) } header: {
-                Text("phone.help.history.title").foregroundStyle(Color.primary)
+                helpHeading("phone.help.history.title")
             }
             Section {
                 PhoneLegalLinks()
@@ -180,5 +182,10 @@ struct PhoneHelpView: View {
                 .accessibilityIdentifier("phone.help.rate")
             }
         }.navigationTitle("phone.help.title")
+    }
+
+    private func helpHeading(_ title: LocalizedStringResource) -> some View {
+        PhoneMeasuredText(text: String(localized: title), background: .systemGroupedBackground,
+                          textStyle: .headline, isHeader: true)
     }
 }

@@ -790,6 +790,7 @@ final class CompanionUITests: XCTestCase {
                 if help.exists, help.isHittable, visibleViewport(app).contains(help.frame) { break }
                 app.swipeUp(velocity: .slow)
             }
+            capture(app, "m25-help-entry-before-tap-\(dark)")
             XCTAssertTrue(help.isHittable)
             XCTAssertTrue(visibleViewport(app).contains(help.frame))
             XCTAssertGreaterThanOrEqual(help.frame.width, 44)
