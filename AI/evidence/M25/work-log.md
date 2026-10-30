@@ -312,3 +312,41 @@ and the ordinary NavigationLink returns with the same measured44pt label. The
 initial-Help assertions and native hierarchy attachments remain useful regression
 coverage. Fresh minimum/current two-case verification must confirm this final
 standard-control source before full suites and new galleries.
+
+Final standard NavigationLink source9a4dcdd15a4cfc280103e7366eed0e80ce1888ae
+passes both final targeted pairs2/2: current iOS27 and minimum iOS17, with no
+failed/skipped/expected/native runtime warnings. The selection-bound AX correction
+therefore passes with the original control, initial Help and post-tab Help,
+actual Light/Dark pixels, all native audits, centered normal/largest EN/DE/RU.
+
+The subsequent current-phone unit run stalls in the unchanged StoreKit network-
+error case after one design-token test passed. A UDID-targeted screenshot shows
+a system Sign in to Apple Account prompt despite the test's local-session and
+verified-Xcode-identity guards. No credential is entered. Native stdout and bounded
+process samples are retained. Only owned xcodebuild80927 receives SIGINT; the
+master exits75, not a pass, and later UI/gallery stages do not run. This is not
+labelled pre-existing: no identical baseline reproduction has been executed.
+A separate new owned iOS27 device53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C with its
+own DerivedData now tests the complete unchanged21-unit/19-UI scope; original
+device/data/binding are preserved. A finite30-minute execution ceiling preserves
+a failed result instead of indefinitely waiting for a native prompt. It does not
+turn any test/assertion/category into a pass or skip. Source remains frozen9a4.
+
+Fresh current-profile unit execution repeats the native sign-in prompt; it is
+interrupted as raw exit75. After its owned shutdown/reboot, the unchanged network
+case completes (purchase/retry/restore all return), but fails .offline versus .failed.
+The bounded stage/domain/case diagnostics each remain raw FAILED/65,1failed/1.
+Actual injected network failure is delivered as StoreKitError.unknown (domain
+StoreKit.StoreKitError,code2), with no underlying NSError. Therefore mapping all
+unknown errors to offline would fabricate information and is not implemented.
+Temporary test-only tracing/decorator is removed; the original test is restored
+byte-for-byte, retaining the exact offline assertion and real SDK operations.
+
+The unit host's scheme has a TestPlan StoreKit reference but no Run StoreKit
+configuration, unlike the existing working Watch scheme. Add the same ordinary
+LaunchAction StoreKitConfigurationFileReference to the isolated phone unit host,
+without modifying product/release code or any test expectation. This is another
+explicit environment hypothesis, requiring fresh execution, not a claimed fix.
+A reserved native-Xcode inspection did not start any test (native UI operations
+were unavailable/unreliable); its checkout/device/desktop lease is released. No
+user document, credential or foreign process is modified.

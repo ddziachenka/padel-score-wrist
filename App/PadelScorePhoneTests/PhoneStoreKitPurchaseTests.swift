@@ -119,14 +119,10 @@ final class StoreKitPurchaseTests: XCTestCase {
     func testNetworkFailureKeepsVerifiedOfflineAccessAndRestoreRemainsAvailable() async throws {
         let session = try await environment()
         defer { session.resetToDefaultState(); session.clearTransactions() }
-        let owner = EntitlementStore(client: M25PurchaseErrorRecorder(),
-                                     overrideDefaults: UserDefaults(suiteName: "M25-StoreKit-\(UUID().uuidString)")!)
+        let owner = store()
         await owner.start()
-        print("M25_STOREKIT_NETWORK stage=inject-error")
         try await session.setSimulatedError(.generic(.networkError(URLError(.notConnectedToInternet))), forAPI: .purchase)
-        print("M25_STOREKIT_NETWORK stage=failed-purchase")
         await owner.purchase()
-        print("M25_STOREKIT_NETWORK stage=failed-purchase-returned")
         XCTAssertFalse(owner.isUnlocked)
         XCTAssertEqual(owner.message, .offline)
         try await session.setSimulatedError(nil, forAPI: .purchase)
@@ -134,18 +130,14 @@ final class StoreKitPurchaseTests: XCTestCase {
         // Keep transactions intact so the retry still exercises the same purchase history.
         session.resetToDefaultState()
         session.disableDialogs = true
-        print("M25_STOREKIT_NETWORK stage=retry-purchase")
         await owner.purchase()
-        print("M25_STOREKIT_NETWORK stage=retry-purchase-returned")
         XCTAssertTrue(owner.isUnlocked)
         try await session.setSimulatedError(.generic(.networkError(URLError(.notConnectedToInternet))), forAPI: .loadProducts)
         await owner.loadProduct()
         XCTAssertNil(owner.product)
         await owner.refresh()
         XCTAssertTrue(owner.isUnlocked)
-        print("M25_STOREKIT_NETWORK stage=restore")
         await owner.restore()
-        print("M25_STOREKIT_NETWORK stage=restore-returned")
         XCTAssertTrue(owner.isUnlocked)
     }
     func testZeroPriceClaimCancellationAndAccessAfterPaidPriceReturn() async throws {
@@ -195,39 +187,6 @@ final class StoreKitPurchaseTests: XCTestCase {
         XCTAssertTrue(after.isUnlocked)
     }
 
-}
-
-@MainActor
-private final class M25PurchaseErrorRecorder: PurchaseClient {
-    let client = StoreKitPurchaseClient()
-    func product() async throws -> LifetimeProduct? { try await client.product() }
-    func entitlement() async -> PurchaseEntitlement { await client.entitlement() }
-    func sync() async throws { try await client.sync() }
-    func updates() -> AsyncStream<PurchaseTransaction> { client.updates() }
-    func finish(_ value: PurchaseTransaction) async { await client.finish(value) }
-    func purchase() async throws -> PurchaseOutcome {
-        do { return try await client.purchase() }
-        catch {
-            print("M25_STOREKIT_ERROR type=\(String(reflecting: type(of: error)))")
-            if let storeError = error as? StoreKitError {
-                switch storeError {
-                case .unknown: print("M25_STOREKIT_ERROR case=unknown")
-                case .networkError(let value): print("M25_STOREKIT_ERROR case=networkError code=\(value.code.rawValue)")
-                case .systemError(let value):
-                    let ns = value as NSError
-                    print("M25_STOREKIT_ERROR case=systemError underlyingType=\(String(reflecting: type(of: value))) domain=\(ns.domain) code=\(ns.code)")
-                default: print("M25_STOREKIT_ERROR case=other")
-                }
-            }
-            var current: NSError? = error as NSError
-            for _ in 0..<8 {
-                guard let value = current else { break }
-                print("M25_STOREKIT_ERROR domain=\(value.domain) code=\(value.code)")
-                current = value.userInfo[NSUnderlyingErrorKey] as? NSError
-            }
-            throw error
-        }
-    }
 }
 
 private extension GameID {
