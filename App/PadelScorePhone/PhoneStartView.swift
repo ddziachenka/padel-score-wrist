@@ -15,21 +15,32 @@ struct PhoneStartView: View {
                         .buttonStyle(PhonePrimaryStyle()).accessibilityIdentifier("phone.start.demo")
                 }
                 PhoneCard {
-                    Text("phone.recovery.heading").font(.title2.bold()).accessibilityAddTraits(.isHeader)
-                    NavigationLink { PhoneGestureView() } label: {
-                        Label("Try gestures", systemImage: "hand.pinch")
-                            .frame(minHeight: 44, alignment: .leading)
-                    }.accessibilityIdentifier("phone.start.gestures")
-                    Button { recovery(.correction) } label: {
-                        Text("phone.recovery.correction").fixedSize(horizontal: false, vertical: true)
-                            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                            .contentShape(Rectangle())
-                    }.accessibilityIdentifier("phone.start.correction")
-                    Button { recovery(.knownScore) } label: {
-                        Text("phone.recovery.start").fixedSize(horizontal: false, vertical: true)
-                            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                            .contentShape(Rectangle())
-                    }.accessibilityIdentifier("phone.start.knownScore")
+                    VStack(alignment: .center, spacing: 12) {
+                        Text("phone.recovery.heading")
+                            .font(.title2.bold())
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: .infinity)
+                            .accessibilityAddTraits(.isHeader)
+                            .accessibilityIdentifier("phone.recovery.start.heading")
+                        NavigationLink { PhoneGestureView() } label: {
+                            Text("Try gestures")
+                                .fixedSize(horizontal: false, vertical: true)
+                                .frame(maxWidth: .infinity, minHeight: 44)
+                                .contentShape(Rectangle())
+                        }.accessibilityIdentifier("phone.start.gestures")
+                        Button { recovery(.correction) } label: {
+                            Text("phone.recovery.correction").fixedSize(horizontal: false, vertical: true)
+                                .frame(maxWidth: .infinity, minHeight: 44)
+                                .contentShape(Rectangle())
+                        }.accessibilityIdentifier("phone.start.correction")
+                        Button { recovery(.knownScore) } label: {
+                            Text("phone.recovery.start").fixedSize(horizontal: false, vertical: true)
+                                .frame(maxWidth: .infinity, minHeight: 44)
+                                .contentShape(Rectangle())
+                        }.accessibilityIdentifier("phone.start.knownScore")
+                    }
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
                 }
                 PhoneCard {
                     Text("phone.start.steps").font(.title2.bold()).accessibilityAddTraits(.isHeader)

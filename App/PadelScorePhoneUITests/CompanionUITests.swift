@@ -720,6 +720,34 @@ final class CompanionUITests: XCTestCase {
         XCTFail("Requested \(dark ? "Dark" : "Light") but rendered page-margin RGB means were \(observed)", file: file, line: line)
     }
 
+    func testM25CenteredRecoveryEntriesRemainReachableAtLargestText() throws {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
+        setAppearance(false)
+        for (language, region, largest) in [("en", "en_US", false), ("en", "en_US", true),
+                                           ("de", "de_DE", true), ("ru", "ru_RU", true)] {
+            let app = XCUIApplication()
+            app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", region]
+            if largest { app.launchArguments += ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"] }
+            app.launch()
+            XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+            declineOptionalReview(app)
+            for id in ["phone.start.gestures", "phone.start.correction", "phone.start.knownScore"] {
+                let entry = reveal(app.buttons[id], in: app)
+                XCTAssertTrue(entry.isHittable)
+                XCTAssertGreaterThanOrEqual(entry.frame.height, 44)
+                XCTAssertEqual(entry.frame.midX, app.windows.firstMatch.frame.midX, accuracy: 1)
+                let label = entry.staticTexts.firstMatch
+                if label.exists {
+                    XCTAssertEqual(label.frame.midX, entry.frame.midX, accuracy: 1, "Visible label shares the card's central axis")
+                }
+                capture(app, "m25-centered-\(language)-\(largest)-\(id)")
+            }
+            try auditIncludingOccludedText(app)
+            app.terminate()
+        }
+    }
+
     func testM25ActualAppearanceAcrossPhoneSurfaces() {
         let originalAppearance = XCUIDevice.shared.appearance
         defer { XCUIDevice.shared.appearance = originalAppearance }

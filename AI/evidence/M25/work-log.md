@@ -25,3 +25,16 @@ managed commands work. The blocked companion diagnostic returned75 while the
 Watch test held the checkout lease; it did not run. Initial manual dark capture
 caught the blank launch surface, so it is not theme evidence; the next diagnosis
 waits for launch completion and changes appearance on an already running app.
+
+Owner UI refinement, same M25 session: “текст должно быть отцентровано друг
+относительно друга”, with the phone recovery-entry card screenshot. The card's
+heading and three action labels now share a full-width central axis and wrap
+centrally at large text. The decorative leading hand glyph was removed so it
+cannot shift only the first text label off that axis. Full-width44pt actions and
+localized strings are preserved. Small/large-phone native runtime checks follow.
+
+The first complete Watch gallery run was intentionally interrupted for this
+requested source refinement. Native report:11 passed,1 cancelled,12 recorded of14
+required; raw FAILED, command exit75, zero skipped/expected/runtime warnings.
+watch-gallery-1.xcresult and exports are retained. It is not a complete capture
+pass, and its partial locale results will not replace the fresh complete run.
