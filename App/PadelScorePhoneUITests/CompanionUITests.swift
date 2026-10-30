@@ -1,8 +1,16 @@
 import XCTest
 import StoreKitTest
+import CoreGraphics
+import ImageIO
 
 @MainActor
 final class CompanionUITests: XCTestCase {
+    private var requestedDarkAppearance: Bool?
+
+    private func setAppearance(_ dark: Bool) {
+        requestedDarkAppearance = dark
+        XCUIDevice.shared.appearance = dark ? .dark : .light
+    }
     private func app(locale: String = "en", region: String = "en_US") -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["-AppleLanguages", "(\(locale))", "-AppleLocale", region]
@@ -199,7 +207,7 @@ final class CompanionUITests: XCTestCase {
         let originalAppearance = XCUIDevice.shared.appearance
         defer { XCUIDevice.shared.appearance = originalAppearance }
         for dark in [false, true] {
-            XCUIDevice.shared.appearance = dark ? .dark : .light
+            setAppearance(dark)
             let app = app()
             reveal(app.buttons["phone.start.knownScore"], in: app).tap()
             reveal(app.buttons["phone.recovery.usGames"], in: app).tap()
@@ -234,7 +242,7 @@ final class CompanionUITests: XCTestCase {
         let originalAppearance = XCUIDevice.shared.appearance
         defer { XCUIDevice.shared.appearance = originalAppearance }
         for dark in [false, true] {
-            XCUIDevice.shared.appearance = dark ? .dark : .light
+            setAppearance(dark)
             let app = XCUIApplication()
             app.launchArguments = ["-AppleLanguages", "(de)", "-AppleLocale", "de_DE",
                 "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
@@ -271,7 +279,7 @@ final class CompanionUITests: XCTestCase {
                          ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
         for (language, region) in languages {
             for appearance in ["Light", "Dark"] {
-                XCUIDevice.shared.appearance = appearance == "Light" ? .light : .dark
+                setAppearance(appearance == "Dark")
                 XCTAssertEqual(XCUIDevice.shared.appearance, appearance == "Light" ? .light : .dark)
                 let app = XCUIApplication()
                 app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", region,
@@ -314,7 +322,7 @@ final class CompanionUITests: XCTestCase {
         let originalAppearance = XCUIDevice.shared.appearance
         defer { XCUIDevice.shared.appearance = originalAppearance }
         for dark in [false, true] {
-            XCUIDevice.shared.appearance = dark ? .dark : .light
+            setAppearance(dark)
             let app = XCUIApplication()
             app.launchArguments = ["-AppleLanguages", "(ru)", "-AppleLocale", "ru_RU",
                 "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
@@ -417,6 +425,9 @@ final class CompanionUITests: XCTestCase {
     }
 
     func testLocalizedGallery() async throws {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
+        setAppearance(true)
         let session = try localStore()
         defer { session.resetToDefaultState(); session.clearTransactions() }
         _ = try await session.buyProduct(identifier: "com.dziachenka.padelscore.lifetime")
@@ -447,6 +458,9 @@ final class CompanionUITests: XCTestCase {
     }
 
     func testM25RecoveryGallery() {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
+        setAppearance(true)
         let locales = [("en", "en_US"), ("es", "es_ES"), ("es", "es_MX"), ("it", "it_IT"), ("fr", "fr_FR"), ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"), ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
         for (language, region) in locales {
             let app = app(locale: language, region: region)
@@ -520,7 +534,7 @@ final class CompanionUITests: XCTestCase {
                        ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
         for (language, region) in locales {
             for appearance in ["Light", "Dark"] {
-                XCUIDevice.shared.appearance = appearance == "Light" ? .light : .dark
+                setAppearance(appearance == "Dark")
                 XCTAssertEqual(XCUIDevice.shared.appearance, appearance == "Light" ? .light : .dark)
                 let app = XCUIApplication()
                 app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", region,
@@ -550,7 +564,7 @@ final class CompanionUITests: XCTestCase {
         // Preserve the sequence that exposed this regression in the full matrix.
         for (language, region) in [("en", "en_US"), ("es", "es_ES"), ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("de", "de_DE")] {
             for appearance in ["Light", "Dark"] {
-                XCUIDevice.shared.appearance = appearance == "Light" ? .light : .dark
+                setAppearance(appearance == "Dark")
                 XCTAssertEqual(XCUIDevice.shared.appearance, appearance == "Light" ? .light : .dark)
                 let app = XCUIApplication()
                 app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", region,
@@ -679,9 +693,66 @@ final class CompanionUITests: XCTestCase {
         XCTAssertTrue(title.waitForNonExistence(timeout: 5), "Declining the review prompt must reveal the app")
     }
 
+    // iOS 17 can acknowledge a theme change while still rendering the previous
+    // appearance. Check the real opaque page margins, not the getter or filename.
+    private func assertRenderedAppearance(_ dark: Bool, file: StaticString = #filePath, line: UInt = #line) {
+        let deadline = Date().addingTimeInterval(8)
+        var observed: [Int] = []
+        repeat {
+            let data = XCUIScreen.main.screenshot().pngRepresentation
+            if let source = CGImageSourceCreateWithData(data as CFData, nil),
+               let image = CGImageSourceCreateImageAtIndex(source, 0, nil),
+               let context = CGContext(data: nil, width: image.width, height: image.height,
+                                       bitsPerComponent: 8, bytesPerRow: image.width * 4,
+                                       space: CGColorSpaceCreateDeviceRGB(),
+                                       bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue),
+               let address = context.data {
+                context.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
+                let bytes = address.assumingMemoryBound(to: UInt8.self)
+                observed = (3...7).map { fraction in
+                    let offset = (image.height * fraction / 10 * image.width + 2) * 4
+                    return (Int(bytes[offset]) + Int(bytes[offset + 1]) + Int(bytes[offset + 2])) / 3
+                }
+                if observed.allSatisfy({ dark ? $0 < 96 : $0 > 160 }) { return }
+            }
+            RunLoop.current.run(until: Date().addingTimeInterval(0.5))
+        } while Date() < deadline
+        XCTFail("Requested \(dark ? "Dark" : "Light") but rendered page-margin RGB means were \(observed)", file: file, line: line)
+    }
+
+    func testM25ActualAppearanceAcrossPhoneSurfaces() {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
+        for dark in [false, true] {
+            setAppearance(dark)
+            let app = app()
+            capture(app, "m25-appearance-root-\(dark)")
+            reveal(app.buttons["phone.start.gestures"], in: app).tap()
+            capture(app, "m25-appearance-gesture-\(dark)")
+            app.navigationBars.buttons.element(boundBy: 0).tap()
+            reveal(app.buttons["phone.start.correction"], in: app).tap()
+            capture(app, "m25-appearance-correction-\(dark)")
+            app.buttons["phone.recovery.close"].tap()
+            XCTAssertTrue(app.buttons["phone.recovery.close"].waitForNonExistence(timeout: 5))
+            reveal(app.buttons["phone.start.knownScore"], in: app).tap()
+            capture(app, "m25-appearance-known-score-\(dark)")
+            app.buttons["phone.recovery.close"].tap()
+            XCTAssertTrue(app.buttons["phone.recovery.close"].waitForNonExistence(timeout: 5))
+            reveal(app.buttons["phone.start.demo"], in: app).tap()
+            capture(app, "m25-appearance-match-\(dark)")
+            app.segmentedControls.buttons.element(boundBy: 1).tap()
+            capture(app, "m25-appearance-americano-\(dark)")
+            app.tabBars.buttons.element(boundBy: 2).tap()
+            XCTAssertTrue(app.buttons["phone.access.restore"].waitForExistence(timeout: 10))
+            capture(app, "m25-appearance-access-\(dark)")
+            app.terminate()
+        }
+    }
+
     private func capture(_ app: XCUIApplication, _ name: String) {
         // System chrome finishes its transition after the app's accessibility tree is idle.
         Thread.sleep(forTimeInterval: 1)
+        if let dark = requestedDarkAppearance { assertRenderedAppearance(dark) }
         let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }
