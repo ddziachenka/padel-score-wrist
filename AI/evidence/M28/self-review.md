@@ -80,3 +80,20 @@ action to avoid the reserved slot's excessive empty space at accessibility sizes
 The measured header passes all10 current-iOS variants; actual Light/Dark captures
 and independent device-style readback agree in this run. No theme override/filter
 or native audit helper change. New complete clean-source checks remain required.
+
+Final disposition: no known blocking M28 software finding. Complete clean E218
+phone verification passes21 unit definitions/30 invocations and16UI/16; final
+current supplement passes2/2, all zero failed/skipped/expected/runtime warnings.
+Watch619/1057 is reused only under the explicit owner exception and identical574
+protected inputs; minimum/current Watch supplements retain source continuity.
+Original full/partial failures remain failures. The native audit helper, categories,
+count parsers and timeouts remain unchanged; stimulus corrections retain all old
+expected values and add intermediate team/frame/header/height assertions.
+
+Final minimum/current app captures were inspected. Current actual Light/Dark and
+1:1 are confirmed. Some minimum-iOS Dark-labelled frames render Light despite
+XCTest setting assertions; the label is not accepted as pixel proof. This
+nonblocking digital-validation automation limitation is explicitly assigned to
+M25's comprehensive appearance/localization/gallery domain before M29/M26, rather
+than claimed as verified exhaustive Dark coverage. All real Watch/iPhone checks
+remain M29; no physical recognition, haptics or release approval is claimed.

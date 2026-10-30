@@ -12,8 +12,8 @@ checks, and a recorded exception before DONE. The owner selected:
 > Да, разовое исключение для M28 — примерно 1–2 часа (Recommended)
 
 This overrides the ordinary full-command prerequisite in AGENTS A6/A12 and the
-Builder verification sequence **for M28 only**. It does not waive a failed test,
-change a test/parser, authorize release, or extend to another milestone. M26 still
+Builder verification sequence **for M28 only**. It does not waive any failed iPhone result, permit weakened tests or changed count
+parsers/filters, authorize release, or extend to another milestone. M26 still
 requires its complete milestone gate and exact-SHA `make release`.
 
 ## Accepted verification

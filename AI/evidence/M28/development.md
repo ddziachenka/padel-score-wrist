@@ -275,3 +275,61 @@ No production theme override was added. The v1 capture discrepancy is retained a
 observed; its cause is not claimed established or used to waive coverage.
 Final complete current/minimum phone verification is still required after these
 corrections; original Watch574-path identity remains unchanged.
+
+## Final clean candidate — accepted native evidence
+
+`e21875871773f9b47419d526a9cb22e2a4d66fb1` passed the required current supplement:
+`M28_PHONE_RUN=phone-current-v3 bash .artifacts/M16/runtime-profile.sh phone-current run bash .artifacts/M28/check-phone-current.sh`,
+exit0,2026-10-29T23:26:59.870630Z–23:32:46.430483Z. Native2/2 definitions/2
+invocations, zero failed/skipped/expected/runtime warnings. All10 internal header/
+explanation variants plus separate simulated-series input/no-motion/reset/navigation
+passed. Actual current Light/Dark and normal1:1 were inspected in current-v3-captures.
+
+Owner4 on the same source passed static/build/package/unit21/30 and every new
+gesture test, but the original known-score set-boundary audit returned native
+Code-56 in its first Light iteration. Preserved FAILED command65/UI75,
+2026-10-29T23:33:17.920828Z–2026-10-30T00:04:30.466156Z; native UI10 definitions,
+8 passed/2 failed (one deliberately interrupted gallery), no skips/expected/runtime
+warnings. Only its own stopped Xcode and diagnostic child were signalled to finalize.
+No native audit category, helper, timeout, result parser or assertion changed.
+
+The old owned51FD3DAD device/data/binding were preserved and it was renamed/shut
+down. Official companion setup createdB9D3F5BC with the same committed SE3/iOS17
+configuration. The unchanged set-boundary case passed1/1 in both requested themes,
+exit0,75.167s (`fresh-phone-boundary.xcresult`). Three registered own idle Simulator
+were temporarily stopped to reduce contention; no foreign device or shared service
+was touched. The protected574-path manifest still matches3db exactly.
+
+Final **complete** phone command `bash .artifacts/M28/verify-phone-complete.sh owner-verification-5`
+passed exit0 on clean REVIEW/main E218,2026-10-30T00:08:36.860730Z–01:33:12.794777Z.
+Phone unit21/21 definitions/30 invocations, UI16/16/16, zero failures/skips/expected/
+native runtime warnings; static, Debug/package guards and before/after protected
+manifests pass. This is the owner-approved component verification, not a relabelled
+full milestone command. Reused Watch619/1057 remains source-identical; original
+full FAILED report stays unchanged. Strict final exports: final-results/counts.json.
+All three own devices were restored to their original Booted state, each exit0
+(restore-owned-results.json). The new primary binding remains; old data was not erased.
+
+Final visual inspection retained a minimum-iOS appearance automation discrepancy:
+some Dark-labelled screenshots still render Light although the XCTest getter
+assertion passes. Actual current-iOS final captures do show both themes. Names and
+getter state are not claimed as exhaustive minimum-iOS Dark pixel proof. A bounded
+supplemental explicit-system-Dark experiment preserves the same original guide
+matrix/audits; its actual result is recorded separately. M25's comprehensive digital
+appearance/localization/gallery domain owns resolving the per-surface pixel-proof
+limitation before M29/M26. No production theme override or failed-audit waiver was added.
+
+
+Supplemental theme diagnostic: `bash Scripts/simulator.sh --profile companion run -- bash .artifacts/M28/check-minimum-dark-matrix.sh`
+passed exit0 at the same E218 source,2026-10-30T01:36:53.719071Z–01:55:01.506474Z,
+1/1 native definition/invocation, all26 internal requested-theme variants and original
+audits; zero failed/skipped/expected/runtime warnings (`minimum-dark-matrix.xcresult`,
+summary/exit JSON). It did not establish actual Dark pixels solely from the labels.
+A separate leased manual app launch/system-theme comparison also returned exit0;
+the system Settings app itself rendered Light after the Dark setting, captured in
+`minimum-system-settings-dark.png`. This observation supports a Simulator-environment
+limitation rather than silently treating its getter as visual proof. Diagnostic
+helpers restore the original style; no production theme/source change was made.
+Actual current-iOS both-theme evidence remains valid; M25 owns the comprehensive
+actual-theme/store-image follow-up. Five original diagnostic PNGs have dimensions
+and hashes in `.artifacts/M28/appearance-diagnostic-provenance.json`.

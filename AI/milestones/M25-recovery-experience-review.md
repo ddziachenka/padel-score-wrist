@@ -33,3 +33,14 @@ No automatic publication, external reply, price change or resubmission.
 `make milestone ID=M25` on a clean REVIEW commit. No skipped/failed mandatory test or inherited contrast waiver. Record exact SHA, commands, exits, bundles and counts; self-review is not independent review. Complete handoff, DONE commit, static/status/continuity, then stop.
 
 Owner-approved scope is now AI/gesture-differentiation-plan.md; M29 assembles final current six-domain records for M26.
+
+
+## M28 digital handoff
+
+M28's required native full phone/current suites pass; some minimum-iOS17 captures
+labelled Dark still render Light despite XCTest's setting readback. The six-domain
+digital appearance/localization review owns resolving this automation discrepancy
+and recording actual per-surface/theme pixels across the store locales. Do not use
+capture labels/getter assertions alone as proof, and do not exempt native audits.
+M28 records actual current-iOS Light/Dark inspection and minimum-phone observations
+separately. This digital follow-up must be complete before M29/M26.

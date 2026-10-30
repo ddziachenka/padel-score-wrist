@@ -2,9 +2,9 @@
 
 **Phase:** implementation
 **Current milestone:** M28
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27
-**Next milestone:** M28
-**Blockers:** M28 REVIEW: header and series-input focused checks pass after current-iOS findings; final clean-source complete iPhone verification and current supplement pending. Actual current Light/Dark observed; original failed runs retained. Owner approved M28-only unchanged Watch reuse. M29 owns all physical checks before M26; M30 owns separately authorized App Review response/resubmission;4.3(a) remains unresolved.
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28
+**Next milestone:** M25
+**Blockers:** No M28 blocker. App1.0(2)4.3(a) remains unresolved and the old reply is unsent/on hold. M25 owns comprehensive digital/theme/gallery validation, including the documented iOS17 Simulator appearance-label discrepancy; M29 owns all physical checks before M26. M30 response/resubmission requires its separate owner instruction.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -393,3 +393,42 @@ After final compact-label correction, source872ed0f passed both supplements agai
 watchOS10 469/469/907, watchOS27 471/471/909, exits0. Final visuals inspected.
 M28 REVIEW now runs the complete unchanged milestone gate on a clean main commit.
 All required physical checks remain M29; no external distribution action.
+
+
+## M28 completed under owner exception — 2026-10-30 UTC
+
+M28 DONE. Exact clean REVIEW/main candidate
+`e21875871773f9b47419d526a9cb22e2a4d66fb1` passed
+`bash .artifacts/M28/verify-phone-complete.sh owner-verification-5`, exit0,
+00:08:36.860730Z–01:33:12.794777Z. Complete fresh phone unit21/21 definitions/30
+invocations and UI16/16/16; final current-iOS supplement2/2/2, exit0. Every accepted
+component has zero failed/skipped/expected/native runtime warnings. Static, Debug
+and packaging guards pass. Source-identical Watch619/1057 from3db is reused only
+under the explicit owner-approved M28 exception, proved against574 protected paths.
+The original full gate and all failed/partial attempts remain FAILED; no native
+audit/filter/parser/assertion was weakened or failed iPhone result accepted.
+
+Per-new-game OFF includes Match/Americano/known score/Play again; active-game opt-in
+persists, lives outside score Undo and can change in the menu. Fixed3s one/two/third
+series preview US/THEM/cancel; one atomic ordinary rally, immediate touch override
+and visibility/lifecycle/revision cancellation. Schema5 migrates1–4 OFF. Watch
+practice and explicit phone simulation are isolated; thirteen UI locales. Final
+measured native guidance and stationary input follow actual Simulator self-review.
+
+A fresh owned SE3/iOS17 Simulator and temporary own-idle-device isolation preceded
+the final complete pass after native Code-56 timeouts. Old device/data retained;
+all three temporarily stopped own devices restored Booted, exits0. No foreign
+device, global service restart or erase. Some minimum-iOS Dark-labelled captures
+render Light, including a separate system Settings observation; no exhaustive
+minimum-Dark pixel claim is made from XCTest getters. Actual current Light/Dark
+is inspected. The comprehensive digital follow-up belongs to M25 before M29/M26.
+
+Handoff: [M28](handoffs/M28-handoff.md); [exact component evidence](evidence/M28/milestone-verification.md),
+[runtime](evidence/M28/runtime.md), [owner exception](evidence/M28/owner-verification-exception.md).
+Builder self-review, not independent audit or release approval. No upload/reply/
+submission/pricing/site publication. All physical recognition/haptics/VoiceOver/
+purchases/recovery and remaining M27 checks remain mandatory in M29. M26 retains
+its full milestone and exact-SHA release gates; M30 is the separate resubmission task.
+A new Builder owns M25 — Gesture Experience and Store Materials, including three
+imagegen directions and all14 Store-localization galleries. Stop after DONE commit
+static/status/continuity against the verified SHA.
