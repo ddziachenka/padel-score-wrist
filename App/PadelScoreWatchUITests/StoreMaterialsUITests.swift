@@ -432,4 +432,124 @@ final class StoreMaterialsUITests: XCTestCase {
     func testLocalizedruCreation() {
         localizedCreation("ru", "ru_RU", ["score0": "Наш счёт: 0", "score15": "Наш счёт: 15", "delete": "Удалить данные"])
     }
+    // M25's active gallery uses real screens and interactions; generated artwork
+    // is composed separately and can never replace these unmodified attachments.
+    private func recoveryGallery(_ language: String, _ region: String) {
+        func start(_ seed: String, _ story: String) -> XCUIApplication {
+            launchForCapture(store: "m25-\(region.replacingOccurrences(of: "_", with: "-"))-\(story)", seed: seed, language: language, region: region)
+        }
+        func shot(_ story: String) { attachStoreCapture("m25-watch-\(region)-\(story)") }
+        var app = start("gestureMatch", "gesture")
+        XCTAssertTrue(app.buttons["gesture.action"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["game.us"].exists && app.buttons["game.them"].exists)
+        shot("01-gesture")
+        app.buttons["gesture.action"].tap()
+        Thread.sleep(forTimeInterval: 3.3)
+        XCTAssertTrue(app.buttons["game.undo"].isEnabled)
+        app.buttons["game.undo"].tap()
+        app.terminate()
+
+        app = start("empty", "opt-in")
+        app.buttons["newGame.match"].scrollToAndTap(in: app)
+        let toggle = app.switches["setup.gestures"]
+        XCTAssertTrue(toggle.waitForExistence(timeout: 5))
+        XCTAssertEqual(toggle.value as? String, "0")
+        toggle.scrollToAndTap(in: app)
+        XCTAssertEqual(toggle.value as? String, "1")
+        toggle.tap()
+        XCTAssertEqual(toggle.value as? String, "0")
+        shot("02-opt-in")
+        app.terminate()
+
+        app = start("storeMatch", "replacement")
+        app.buttons["game.menu"].tap()
+        app.buttons["menu.editScore"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["editor.games"].waitForExistence(timeout: 5))
+        app.buttons["editor.points"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["pair.us.increase"].waitForExistence(timeout: 5))
+        shot("03-agreed-score")
+        app.terminate()
+
+        app = start("matchStart", "journal")
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        for team in ["us", "them", "us"] {
+            app.buttons["game." + team].tap()
+            Thread.sleep(forTimeInterval: 0.65)
+        }
+        app.buttons["game.menu"].tap()
+        app.buttons["menu.journal"].scrollToAndTap(in: app)
+        app.buttons["journal.entry.2"].scrollToAndTap(in: app)
+        app.buttons["journal.change"].scrollToAndTap(in: app)
+        XCTAssertTrue(element("journal.before", in: app).exists)
+        XCTAssertTrue(element("journal.after", in: app).exists)
+        element("journal.after", in: app).scrollToAndTap(in: app)
+        shot("04-rally-correction")
+        app.buttons["journal.apply"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["game.undo"].waitForExistence(timeout: 5))
+        app.buttons["game.undo"].tap()
+        app.terminate()
+
+        app = start("storeResult", "sets")
+        XCTAssertTrue(element("result.set.3", in: app).waitForExistence(timeout: 10))
+        shot("05-sets")
+        app.terminate()
+        app = start("storeAmericano", "americano")
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        shot("06-americano")
+        app.terminate()
+
+        app = start("lastSettings", "known-score")
+        app.buttons["result.newGame"].scrollToAndTap(in: app)
+        app.buttons["newGame.match"].scrollToAndTap(in: app)
+        app.buttons["setup.startingScore"].scrollToAndTap(in: app)
+        app.buttons["startingScore.current"].scrollToAndTap(in: app)
+        app.buttons["setup.start"].scrollToAndTap(in: app)
+        app.buttons["knownScore.games"].scrollToAndTap(in: app)
+        app.buttons["pair.us.increase"].tap()
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["knownScore.serving"].scrollToAndTap(in: app)
+        app.buttons["serving.next.partner"].scrollToAndTap(in: app)
+        app.buttons["editor.done"].scrollToAndTap(in: app)
+        app.buttons["knownScore.review"].scrollToAndTap(in: app)
+        shot("07-known-score")
+        app.buttons["setup.start"].scrollToAndTap(in: app)
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        XCTAssertFalse(app.buttons["game.undo"].isEnabled)
+        app.terminate()
+
+        app = start("storeHistory", "history")
+        app.buttons["home.history"].scrollToAndTap(in: app)
+        XCTAssertEqual(app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'history.entry.'")).count, 3)
+        shot("08-history")
+        app.terminate()
+    }
+
+    func testM25GalleryenUS() { recoveryGallery("en", "en_US") }
+
+    func testM25GalleryesES() { recoveryGallery("es", "es_ES") }
+
+    func testM25GalleryesMX() { recoveryGallery("es", "es_MX") }
+
+    func testM25GalleryitIT() { recoveryGallery("it", "it_IT") }
+
+    func testM25GalleryfrFR() { recoveryGallery("fr", "fr_FR") }
+
+    func testM25GalleryptPT() { recoveryGallery("pt-PT", "pt_PT") }
+
+    func testM25GalleryptBR() { recoveryGallery("pt-BR", "pt_BR") }
+
+    func testM25GallerynlNL() { recoveryGallery("nl", "nl_NL") }
+
+    func testM25GallerydeDE() { recoveryGallery("de", "de_DE") }
+
+    func testM25GallerysvSE() { recoveryGallery("sv", "sv_SE") }
+
+    func testM25GallerydaDK() { recoveryGallery("da", "da_DK") }
+
+    func testM25GalleryfiFI() { recoveryGallery("fi", "fi_FI") }
+
+    func testM25GallerynbNO() { recoveryGallery("nb", "nb_NO") }
+
+    func testM25GalleryruRU() { recoveryGallery("ru", "ru_RU") }
+
 }

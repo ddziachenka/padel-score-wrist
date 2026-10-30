@@ -446,6 +446,33 @@ final class CompanionUITests: XCTestCase {
         }
     }
 
+    func testM25RecoveryGallery() {
+        let locales = [("en", "en_US"), ("es", "es_ES"), ("es", "es_MX"), ("it", "it_IT"), ("fr", "fr_FR"), ("pt-PT", "pt_PT"), ("pt-BR", "pt_BR"), ("nl", "nl_NL"), ("de", "de_DE"), ("sv", "sv_SE"), ("da", "da_DK"), ("fi", "fi_FI"), ("nb", "nb_NO"), ("ru", "ru_RU")]
+        for (language, region) in locales {
+            let app = app(locale: language, region: region)
+            reveal(app.buttons["phone.start.gestures"], in: app).tap()
+            XCTAssertTrue(app.staticTexts["phone.gesture.explanation"].waitForExistence(timeout: 5))
+            capture(app, "m25-phone-\(region)-01-gesture-simulation")
+            reveal(app.buttons["phone.gesture.action"], in: app).tap()
+            Thread.sleep(forTimeInterval: 3.3)
+            XCTAssertEqual(app.descendants(matching: .any)["phone.gesture.score"].value as? String, "1:0")
+            app.navigationBars.buttons.element(boundBy: 0).tap()
+            reveal(app.buttons["phone.start.correction"], in: app).tap()
+            reveal(app.buttons["phone.recovery.review"], in: app).tap()
+            XCTAssertTrue(app.staticTexts["phone.recovery.preview"].waitForExistence(timeout: 5))
+            capture(app, "m25-phone-\(region)-02-rally-correction")
+            reveal(app.buttons["phone.recovery.confirm"], in: app).tap()
+            XCTAssertTrue(app.staticTexts["phone.recovery.applied"].waitForExistence(timeout: 5))
+            app.buttons["phone.recovery.close"].tap()
+            XCTAssertTrue(app.buttons["phone.recovery.close"].waitForNonExistence(timeout: 5))
+            reveal(app.buttons["phone.start.knownScore"], in: app).tap()
+            reveal(app.buttons["phone.recovery.review"], in: app).tap()
+            XCTAssertTrue(app.staticTexts["phone.recovery.preview"].waitForExistence(timeout: 5))
+            capture(app, "m25-phone-\(region)-03-known-score")
+            app.terminate()
+        }
+    }
+
     func testGestureSimulationScoresBothTeamsCancelsAndResetsOnLeaving() {
         let app = app()
         reveal(app.buttons["phone.start.gestures"], in: app).tap()

@@ -1,7 +1,7 @@
 # M25 — Gesture Experience and Store Materials
 
 **ID:** M25
-**Status:** PLANNED
+**Status:** IN_PROGRESS
 **Depends on:** M28
 **Validation:** make milestone ID=M25
 **Handoff:** AI/handoffs/M25-handoff.md

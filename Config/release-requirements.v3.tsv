@@ -79,3 +79,13 @@ REL-1105	all	functional,release	yes	A recovery plan exists for releases that cha
 REL-1201	internal	release	no	The build installs on a wiped device through the intended internal channel
 REL-1202	internal	release	no	Internal certificate profile entitlements and expiry are verified
 REL-1203	internal	content,release	no	Recipients know how to obtain the internal build and what changed
+
+# Approved recovery, player-name and gesture extension; physical proofs belong to M29.
+REL-1301	all	functional,product	no	Every new game defaults gestures off and active-game opt-in persists outside score Undo
+REL-1302	all	functional,ui-ux	no	Gesture pending-team selection commits one rally after three seconds and cancels on third input touch navigation inactivity or revision change
+REL-1303	all	functional,release	no	Schema 1 through 4 migration to schema 5 preserves score journal roster archive usage and defaults gestures off
+REL-1304	all	functional,product	no	Selective change delete and insert preserve later winners and stable identifiers with atomic preview apply and whole-correction Undo
+REL-1305	all	functional,content,ui-ux	no	Known-score starts disclose unknown earlier rallies and require explicit validated serving before creating a normal game
+REL-1306	all	functional,accessibility	no	Optional native Watch names remain game-local and archived rosters remain immutable without consuming usage or Undo
+REL-1307	all	functional,product,release	no	Watch practice and phone simulation stay isolated from real games entitlement review eligibility and usage
+REL-1308	all	accessibility,release	no	Actual Double Tap recognition meets each-team success and wrong-team accidental-point criteria on supported physical Watch hardware
