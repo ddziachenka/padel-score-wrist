@@ -44,7 +44,11 @@ for locale in rows:
         expected_images.append(web_path)
         assert all(row.get(k) for k in ['attachment', 'fixture', 'actions', 'timestamp'])
         count += 1
+    # Historical originals above remain byte-checked. Active pages use the full
+    # current M25 narrative and must have every native capture in exact order.
+    active = json.loads((ASSETS / 'm25/manifest.json').read_text())['locales'][locale['store'][0]]
+    expected_images = ['/images/m25/' + locale['route'] + '/' + Path(row['file']).name for row in active['watch']]
     images = Images((ROOT / 'Web/public' / locale['route'] / 'index.html').read_text()).images
     assert [img['src'] for img in images] == expected_images
     assert all(img.get('alt', '').strip() for img in images)
-print(f'Localized store materials: {count} original 368 × 448 captures, hashes, provenance, web copies and alt text verified')
+print(f'Historical localized source assets: {count} original 368 × 448 captures, hashes, provenance, web copies and alt text verified')

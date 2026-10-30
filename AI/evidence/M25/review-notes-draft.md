@@ -4,6 +4,8 @@ Not sent. Replace the old unsent reply only in M30 after the new candidate is re
 and the owner gives the required distribution instruction. Do not attach old build2
 screenshots as proof of this build. M29's real Watch video is still required.
 
+## App Review Notes field (local draft; under4000 characters)
+
 Independent Apple Watch app (watchOS10+) with an iPhone companion (iOS17+).
 Real games are scored on Watch. iPhone provides interactive learning/demos and
 optional lifetime purchase/restore; its gesture button explicitly simulates input.
@@ -54,6 +56,8 @@ cloud sync, analytics, HealthKit or location access.
 
 Review contact: Dzmitry Dziachenka, dzmitry.dziachenka@gmail.com. The owner's phone
 number stays in App Store Connect and is not copied here.
+
+## Separate M30 response context (not part of the Notes field)
 
 M30 factual response context: the owner plays about4–6 recreational games/month
 and researched existing apps while building for personal use. Never repeat the old

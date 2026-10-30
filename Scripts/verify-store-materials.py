@@ -26,3 +26,6 @@ import subprocess
 import sys
 subprocess.run([sys.executable, str(ROOT / 'Scripts/verify-localized-store-materials.py')], check=True)
 subprocess.run([sys.executable, str(ROOT / 'Scripts/verify-iphone-store-materials.py')], check=True)
+
+# Current gesture/recovery galleries are mandatory in addition to historical source assets.
+subprocess.run([sys.executable, str(ROOT / "AI/store-assets/m25/tools/validate.py")], check=True)

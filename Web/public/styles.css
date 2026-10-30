@@ -240,6 +240,7 @@ figure img { display: block; width: 100%; max-width: 276px; height: auto; margin
 figcaption { margin-block-start: 1rem; color: var(--text-muted); text-align: center; }
 .screens { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-block: 2rem; }
 .screens-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; margin-inline: auto; }
+.screens-single { grid-template-columns: minmax(0, 1fr); max-width: 320px; margin-inline: auto; }
 .availability { display: inline-block; font-weight: 600; border-block-end: 2px solid var(--accent); padding-block-end: 0.2rem; }
 .landing .purchase { padding: clamp(1.15rem, 3vw, 2rem); }
 .landing .purchase p + p { margin-block-start: 1rem; }

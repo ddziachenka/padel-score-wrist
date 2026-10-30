@@ -23,7 +23,8 @@ def read_run(name,count):
  return {'prefix':p,'source_sha':source,'context':context,'attachments':attachments,'result_bundle':str(p.relative_to(ROOT))+'.xcresult'}
 w=read_run(args.watch_run,14);p=read_run(args.phone_run,2)
 assert w['source_sha']==p['source_sha'],'freeze source for both gallery runs'
-manifest={'schema':'m25-store-materials/1','status':'LOCAL_DRAFT_PENDING_M29','source_sha':w['source_sha'],'hardware_claims':'PENDING_M29; no publication/submission authorization','watch_order':WATCH,'phone_order':PHONE,'creative_order':['header','search'],'capture_kind':'native-xcuiscreen-unmodified','source_app_inputs':{},'runs':{},'locales':{}}
+assert w['context']['owner']==p['context']['owner']==str(ROOT),'capture checkout must match the importer'
+manifest={'schema':'m25-store-materials/1','status':'LOCAL_DRAFT_PENDING_M29','source_sha':w['source_sha'],'capture_checkout':str(ROOT),'hardware_claims':'PENDING_M29; no publication/submission authorization','watch_order':WATCH,'phone_order':PHONE,'creative_order':['header','search'],'capture_kind':'native-xcuiscreen-unmodified','source_app_inputs':{},'runs':{},'locales':{}}
 for kind,r in [('watch',w),('phone',p)]:
  name=args.watch_run if kind=='watch' else args.phone_run
  manifest['runs'][kind]={'source_sha':r['source_sha'],'result_bundle':r['result_bundle'],'context':r['context'],'attachments':f'provenance/{name}-attachments.json','summary':f'provenance/{name}-summary.json'}

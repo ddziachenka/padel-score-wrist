@@ -42,7 +42,7 @@ def validate():
             assert all(row.get(k) for k in ["attachment", "timestamp", "language", "region", "state"])
             paths.add(path)
     assert set(ASSETS.glob("*/*.png")) == paths, "unexpected or missing gallery image"
-    print("iPhone store materials: 56 native opaque 1320 × 2868 captures, 14 locales, order, hashes and provenance verified")
+    print("Historical iPhone source assets: 56 native opaque 1320 × 2868 captures, 14 locales, order, hashes and provenance verified")
 
 
 if __name__ == "__main__":

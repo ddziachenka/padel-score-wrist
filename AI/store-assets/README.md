@@ -1,3 +1,13 @@
+# Active App Store materials — M25 local draft
+
+The current gesture/recovery set is [M25](m25/README.md): fourteen Store locales,
+eight Watch and seven iPhone native scenes per locale, plus localized header and
+search compositions. Hardware claims remain pending M29. No M25 upload or site
+publication is performed. The original M15/M16 sets below are historical source
+evidence and remain checked byte-for-byte.
+
+---
+
 # App Store screenshots — M15
 
 Six English screenshots are direct XCTest captures of the real Watch app. No scaling,

@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-30T07:51:46Z",
+  "observed_at": "2026-10-30T08:08:02Z",
   "method": "GET only; no metadata, pricing, build or submission mutation",
   "app": {
     "id": "6825393194",
@@ -11,8 +11,8 @@
     {
       "id": "efabeb4f-a12c-4021-bc3a-8f08e2e07b8f",
       "state": "REJECTED",
-      "primary_category": null,
-      "secondary_category": null,
+      "primary_category": "SPORTS",
+      "secondary_category": "UTILITIES",
       "age_rating_declaration": {
         "advertising": false,
         "alcoholTobaccoOrDrugUseOrReferences": "NONE",

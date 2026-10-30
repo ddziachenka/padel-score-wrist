@@ -30,6 +30,11 @@ versions=get.call('/v1/apps/6825393194/appStoreVersions?limit=20')['data']
 result={observed_at:Time.now.utc.iso8601,method:'GET only; no metadata, pricing, build or submission mutation',app:{id:app['id'],name:app['attributes']['name'],bundleId:app['attributes']['bundleId'],primaryLocale:app['attributes']['primaryLocale']},app_infos:[],versions:[]}
 infos.each do |info|
  row={id:info['id'],state:info['attributes']['appStoreState'],primary_category:info.dig('relationships','primaryCategory','data','id'),secondary_category:info.dig('relationships','secondaryCategory','data','id')}
+ ['primaryCategory','secondaryCategory'].each do |category|
+  link=info.dig('relationships',category,'links','related')
+  related_category=link ? get.call(link)['data'] : nil
+  row[category=='primaryCategory' ? :primary_category : :secondary_category]=related_category && related_category['id']
+ end
  related=info.dig('relationships','ageRatingDeclaration','links','related')
  row[:age_rating_declaration]=get.call(related)['data']['attributes'] if related
  result[:app_infos] << row

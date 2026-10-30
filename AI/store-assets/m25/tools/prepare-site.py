@@ -6,6 +6,7 @@ ROOT=Path(__file__).resolve().parents[4]
 ASSETS=ROOT/'AI/store-assets/m25'
 manifest=json.loads((ASSETS/'manifest.json').read_text())
 feature=json.loads((ASSETS/'feature-copy.json').read_text())
+preserved=json.loads((ASSETS/'site-preserved-copy.json').read_text())
 watch=json.loads(next((ROOT/'App/PadelScoreWatch').rglob('Localizable.xcstrings')).read_text())
 phone=json.loads((ROOT/'App/PadelScorePhone/Localizable.xcstrings').read_text())
 def tr(key,lang,catalog=watch):
@@ -30,7 +31,8 @@ for loc,row in manifest['locales'].items():
  if loc=='es-MX':continue
  lang=row['language'];route=row['site_route'];folder=ROOT/'Web/public'/route;path=folder/'index.html';s=path.read_text();f=feature[lang]
  title=re.search(r'<h1[^>]*>(.*?)</h1>',s,re.S).group(1)
- meta=re.search(r'<p class="meta">(.*?)</p>',s,re.S).group(1).replace('12 languages','13 languages')
+ meta=preserved[route]['meta'].replace('12 languages','13 languages')
+ facts=''.join(preserved[route]['format_and_history_paragraphs'])
  availability=re.search(r'<p class="availability">.*?</p>',s,re.S).group(0)
  purchase=re.search(r'<section class="notice purchase".*?</section>',s,re.S).group(0)
  links=re.search(r'<ul class="card-links">.*?</ul>',s,re.S).group(0)
@@ -43,9 +45,9 @@ for loc,row in manifest['locales'].items():
   return f'<figure><img src="{url}" width="368" height="448"{loading} alt="{esc(alt)}"><figcaption>{esc(captions[i])}</figcaption></figure>'
  body=f'''<main id="main" tabindex="-1" class="shell document landing">
 <section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow">Padel Score — Wrist · Apple Watch</p><h1 id="hero-title">{title}</h1><p class="lede">{esc(f['heading'])}</p><p>{esc(tr('Optional. Off for every new game.',lang))}</p>{availability}<p class="meta">{meta}</p></div>{figure(0,False)}</section>
-<section aria-labelledby="gesture-title"><h2 id="gesture-title">{esc(f['heading'])}</h2><p>{esc(f['gesture'])}</p><div class="screens">{figure(1)}</div></section>
-<section aria-labelledby="recovery-title"><h2 id="recovery-title">{esc(tr('phone.recovery.heading',lang,phone))}</h2><p>{esc(f['recovery'])}</p><div class="screens">{figure(2)}{figure(3)}</div></section>
-<section aria-labelledby="formats-title"><h2 id="formats-title">{esc(tr('Match',lang))} · {esc(tr('Americano',lang))}</h2><div class="screens">{figure(4)}{figure(5)}{figure(6)}{figure(7)}</div></section>
+<section aria-labelledby="gesture-title"><h2 id="gesture-title">{esc(f['heading'])}</h2><p>{esc(f['gesture'])}</p><div class="screens screens-single">{figure(1)}</div></section>
+<section aria-labelledby="recovery-title"><h2 id="recovery-title">{esc(tr('phone.recovery.heading',lang,phone))}</h2><p>{esc(f['recovery'])}</p><div class="screens screens-pair">{figure(2)}{figure(3)}</div></section>
+<section aria-labelledby="formats-title"><h2 id="formats-title">{esc(tr('Match',lang))} · {esc(tr('Americano',lang))}</h2>{facts}<div class="screens screens-pair">{figure(4)}{figure(5)}{figure(6)}{figure(7)}</div></section>
 {purchase}{links}{iphone}</main>'''
  s=re.sub(r'<main\b.*?</main>',lambda _:body,s,count=1,flags=re.S);path.write_text(s)
  for page in ['support','privacy']:
@@ -54,7 +56,7 @@ for loc,row in manifest['locales'].items():
   else:
    addition=f'<section data-m25="local-data"><h2>{esc(tr("Gesture scoring",lang))}</h2><p>{esc(privacy[lang])}</p></section>'
    # A numeric ISO date is unambiguous in every supported language.
-   text=re.sub(r'(<p class="meta">)(.*?)(</p>)',lambda m:m[1]+m[2].split(':')[0]+': 2026-10-30'+m[3],text,count=1,flags=re.S)
+   text=re.sub(r'(<p class="(?:meta|small)">)(.*?)(</p>)',lambda m:m[1]+m[2].split(':')[0]+': 2026-10-30'+m[3],text,count=1,flags=re.S)
   text=re.sub(r'<section data-m25="(?:recovery|local-data)">.*?</section>','',text,flags=re.S)
   text=text.replace('</main>',addition+'</main>',1);target.write_text(text)
 print('Prepared13 localized landing/support/privacy drafts; retained purchase/legal terms and native original screenshot bytes')

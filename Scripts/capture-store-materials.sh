@@ -14,11 +14,16 @@ case "$m25_platform" in
   IOSAI_PLATFORM_PROFILE=m25-watch-gallery
   SIMULATOR_DEVICE_TYPE=com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-44mm-2nd-generation
   SIMULATOR_RUNTIME=com.apple.CoreSimulator.SimRuntime.watchOS-26-1 ;;
+ phone-current)
+  load_companion_profile
+  IOSAI_PLATFORM_PROFILE=m16-phone-current
+  SIMULATOR_DEVICE_TYPE=com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max
+  SIMULATOR_RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-0 ;;
  phone)
   load_companion_profile
   env_file_load "$IOSAI_ROOT/Config/companion-capture.env"
   IOSAI_PLATFORM_PROFILE=companion-capture ;;
- *) die "$EX_USAGE" 'usage: capture-store-materials.sh watch|phone setup|context|capture [run-name]' ;;
+ *) die "$EX_USAGE" 'usage: capture-store-materials.sh watch|phone|phone-current setup|context|capture [run-name]' ;;
 esac
 platform_config_validate
 simulator_config_validate

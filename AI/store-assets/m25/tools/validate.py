@@ -37,6 +37,10 @@ assert list(m['locales'])==LOCALES and m['watch_order']==WATCH and m['phone_orde
 assert m['creative_order']==['header','search'] and re.fullmatch('[0-9a-f]{40}',m['source_sha'])
 subprocess.run(['git','cat-file','-e',m['source_sha']+'^{commit}'],cwd=ROOT,check=True)
 assert m['source_app_inputs'],'shipping source fingerprint required'
+test_directories=['/PadelScoreWatchTests/','/PadelScoreWatchUITests/','/PadelScorePhoneTests/','/PadelScorePhoneUITests/','/PadelScoreStoreKitTests/']
+current_app_files=subprocess.check_output(['git','ls-files','App'],cwd=ROOT,text=True).splitlines()
+current_shipping={name for name in current_app_files if not any(part in name for part in test_directories)}
+assert current_shipping==set(m['source_app_inputs']),'shipping file membership changed after capture'
 for file,digest in m['source_app_inputs'].items():
  assert file.startswith('App/') and '..' not in Path(file).parts
  assert sha((ROOT/file).read_bytes())==digest,('rendered shipping source changed',file)
@@ -45,9 +49,10 @@ for kind,count in [('watch',14),('phone',2)]:
  run=m['runs'][kind];assert run['source_sha']==m['source_sha']
  summary=json.loads(safe(run['summary']).read_text());assert summary['result']=='Passed' and summary['totalTestCount']==count
  assert summary['passedTests']==count and all(summary[k]==0 for k in ['failedTests','skippedTests','expectedFailures']) and not summary.get('runtimeWarnings')
- assert run['context']['owner']==str(ROOT) and run['context']['udid']
+ assert Path(m['capture_checkout']).is_absolute()
+ assert run['context']['owner']==m['capture_checkout'] and run['context']['udid']
  exports[kind]=json.loads(safe(run['attachments']).read_text())
- paths=set();native_count=creative_count=0
+paths=set();native_count=creative_count=0
 for loc,row in m['locales'].items():
  assert all(row.get(k) for k in ['language','region'])
  meta=json.loads((ASSETS/'metadata'/f'{loc}.json').read_text())

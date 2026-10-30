@@ -1,28 +1,39 @@
-# App Store listing — English (US)
+# App Store listing — English (US), M25 local draft
 
-Prepared for app 6825393194, version 1.0. Submission is authorized after new-candidate release revalidation; M16 preparation does not establish readiness.
+Prepared for app6825393194, version1.0, local build3. Nothing in this milestone
+is saved to App Store Connect or submitted. Hardware-dependent gesture claims and
+real Watch video remain pending M29; M26 establishes fresh release readiness,
+and M30 owns a separately authorized response/resubmission.
 
 Name: Padel Score — Wrist
 
-Subtitle: Match & Americano scoring
+Subtitle: Match & Americano scorekeeper
 
-Categories: Sports; Utilities.
+Categories: Sports; Utilities (current read-only ASC confirmation in
+[evidence](evidence/M25/asc-readback.json)).
 
 ## Promotional text
 
-Keep your focus on the game. Score on your Watch with serving order, Undo, and local history. Try the demo. Five completed games free, then one lifetime unlock.
+Keep the score and next server in view. Score Match and Americano on your Apple Watch, undo a misplaced tap and revisit your finished games.
+
+This is the existing neutral evergreen draft, without a launch-offer promise or
+an invented offer-end date. Live pricing is not changed or inferred here.
 
 ## Keywords
 
-padel,scoreboard,counter,americano,match,serve,tiebreak,racket,court,doubles
+scoreboard,counter,serve,tiebreak,points,doubles,undo,deuce,golden,offline,history,watch
 
 ## Description
 
 Keep your focus on the game.
 
-See the score and the next server at a glance. Tap a team after each rally, use Undo for a mistaken tap, and keep scoring offline on your Apple Watch. Your Watch works independently. No account needed.
+Gesture scoring
+Optional. Off for every new game.
+One series means touching your thumb and index finger together twice.
+One series: us. Two: them. Three: cancel. Wait three seconds to save.
+Requires watchOS 11 and an Apple Watch that supports Double Tap, with the screen awake and system gestures enabled.
 
-Play your first five completed games free. Then unlock unlimited Match and Americano scoring with one lifetime purchase. One payment. No subscription.
+Recover an accurate score. Replace the current score with the score everyone agrees on, or change, remove or insert an earlier recorded rally while keeping later winners in order. Review the score and serving consequences before applying; one Undo restores the whole correction. Start Match or Americano from a known score with explicit serving. Earlier rallies remain unknown. Match sets are unrestricted; finish when you choose. Add optional player names on your Watch. Names and games stay local. Selective corrections apply only to the active game or latest editable result, after its last checkpoint.
 
 DURING THE GAME
 • Match: games and sets, with a tie-break at 6–6.
@@ -38,11 +49,6 @@ AFTER THE GAME
 • See an Americano round’s final points, including a draw or an early finish.
 • Use Play again from the latest result to reuse its rules and serving order. Check the first server before starting.
 • Browse all your finished games in local History, with dates and detailed results. History is free, including after the five-game limit.
-
-TRY IT ON YOUR WATCH
-Try the scoreboard opens a fixed Match example with a Demo label. Tap, Undo, or reset it without changing your games or using a free game. The example ends after one game, not a whole match.
-
-Add the Padel Score launcher to a compatible watch face or Smart Stack to open the app quickly. The launcher opens the app; it does not display a live score.
 
 FIVE GAMES FREE
 The first five completed real games are free automatically. After that, one lifetime purchase unlocks unlimited new games. Your current game, latest result, history, and demo stay accessible without purchasing. Deleting local game data does not reset the completed-game count.
@@ -61,12 +67,14 @@ Get started with a short guide, try interactive Match and Americano demos, and g
 
 ## Review notes
 
-Independent Watch app with an iPhone companion. iPhone tabs: Start (installation and help), Demo (isolated Match and Americano examples), Access (the same lifetime IAP and Restore). Real games are played on Apple Watch; iPhone only has demos. No sign-in or demo account. New game → Try the scoreboard (also in About) opens an isolated, fixed Match demo. It ends after one game; Undo and Reset demo let you explore again. Demo use does not consume free games.
+Use the [M25 local Review Notes draft](evidence/M25/review-notes-draft.md).
+It covers per-game opt-in, one/two/third-series behavior, the fixed three-second
+window, touch/Undo, correction checkpoints, known-score boundaries, isolated phone
+simulation, five free completed games and the lifetime gate. No demo account is
+required. Gated review instructions use ordinary small Americano rounds; no debug
+shortcut is offered to App Review. Real demonstration video remains pending M29.
 
-The first five completed games are free automatically. To reach the purchase gate quickly: choose Americano, set a small rally total and serving order, start, record rallies up to the total, then tap Done. Repeat with five separate games. Starting the sixth game shows Access. A game is counted once; resuming and finishing it again does not use another free game.
-
-The non-consumable com.dziachenka.padelscore.lifetime unlocks unlimited Match and Americano games for a one-time purchase. Close returns to setup without losing the last result. About → Access also offers purchase and Restore purchases. Current games, the last result, all local History, and the demo remain available without purchase. History is reachable from New game, the result, or the game menu. Play again on the latest result opens setup with its rules and serving order; starting is still subject to the five-game limit. Settings → Delete local data removes games and finished-game history while preserving the completed-game count and purchase entitlement.
-
-About contains offline Privacy, Terms, and Support. The purchase screen also links to Terms and Privacy. Scoring works offline; purchase/restore need App Store connectivity.
-
-Review contact: Dzmitry Dziachenka, dzmitry.dziachenka@gmail.com. Phone supplied by the owner and saved privately in App Store Connect; it is intentionally not copied into this repository.
+All fourteen locale JSON drafts, actual native captures, artwork and provenance
+are linked from [the active material set](store-assets/m25/README.md). The previous
+no-competitor-research wording is not approved for use: the owner did research
+existing apps; the replacement draft reflects that fact. No old reply is sent.
