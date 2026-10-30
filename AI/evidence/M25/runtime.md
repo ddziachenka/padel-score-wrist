@@ -63,3 +63,28 @@ All actual Double Tap recognition, actual VoiceOver/haptics, wrist/lock behavior
 real purchase/restore and remaining M27 scenarios are PENDING_M29. See
 [M29 inventory](M29-hardware-inventory.md). Simulator button activations and native
 accessibility audits never prove these physical requirements.
+
+## Fresh minimum-Watch supplement
+
+`M25_SUPPLEMENT_RUN=watch-minimum-v2 bash .artifacts/M25/runtime-profile.sh watch-clean run bash .artifacts/M25/run-supplement.sh watch-minimum`
+passed exit0 on source `c178abf12c7dd6ff0f1c6c0b2669611556375831`,
+2026-10-30T11:03:19.644Z–11:34:32.891Z. Owned SE2/40mm,watchOS10.0/21R355,
+UDID E28D3B30-45A1-4731-BA01-CBEFDB123059; new managed device, no existing data
+erased. Native bundle `.artifacts/M25/watch-minimum-v2.xcresult`:490/490
+definitions,928/928 invocations; zero failed/skipped/expected/runtime warnings.
+Summary/tests/count exports: `.artifacts/M25/accepted-minimum/`.
+
+Scope: all Watch unit tests and complete Journal/KnownScore/PlayerNames UI classes,
+minimum-OS gesture/touch fallback, optional first launch and exact installed About
+version. Includes thirteen-language largest-text names, native accessibility,
+background/cancel/retry/restore and the previously failing known-score case. The
+generated UI-target test environment receives the established Xcode private-
+framework compatibility path for watchOS10; shipping source/configuration and
+Release are untouched. The failed first full minimum bundle stays FAILED; no
+partial result was reused as this fresh pass.
+
+The later Help coverage commit5551a9f changes only phone UI tests/AI records;
+`git diff --quiet c178abf12c7dd6ff0f1c6c0b2669611556375831 HEAD -- App/PadelScoreWatch App/PadelScoreWatchTests App/PadelScoreWatchUITests Config Scripts`
+exits0. Shipping App fingerprints still match the captured4f16899 inputs. All
+phone sources/tests and the final implementation are checked again by the required
+complete immutable milestone gate; this supplement is not its substitute.

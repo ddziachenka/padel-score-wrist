@@ -339,7 +339,7 @@ final class CompanionUITests: XCTestCase {
         }
     }
 
-    @discardableResult private func reveal(_ lookup: @autoclosure () -> XCUIElement, in app: XCUIApplication) -> XCUIElement {
+    @discardableResult private func reveal(_ lookup: @autoclosure () -> XCUIElement, in app: XCUIApplication, scrollIdentifier: String? = nil) -> XCUIElement {
         // Resolve again after scrolling. Address the presented guide's named
         // scroll view; retained TabView scroll views belong to the background.
         let viewport = visibleViewport(app)
@@ -349,9 +349,9 @@ final class CompanionUITests: XCTestCase {
             target = lookup()
             if target.exists, target.isHittable,
                target.frame.midY > top, target.frame.midY < bottom { return target }
-            let identifier = app.scrollViews["phone.gesture.scroll"].exists ? "phone.gesture.scroll"
+            let identifier = scrollIdentifier ?? (app.scrollViews["phone.gesture.scroll"].exists ? "phone.gesture.scroll"
                 : app.buttons["phone.recovery.close"].exists ? "phone.recovery.scroll"
-                : target.identifier.hasPrefix("phone.start.") ? "phone.start.scroll" : "phone.demo.scroll"
+                : target.identifier.hasPrefix("phone.start.") ? "phone.start.scroll" : "phone.demo.scroll")
             let scroll = app.scrollViews[identifier]
             XCTAssertTrue(scroll.exists, "The target must have its named scroll view")
             if target.exists && target.frame.midY < top { scroll.swipeDown(velocity: .slow) }
@@ -732,6 +732,9 @@ final class CompanionUITests: XCTestCase {
             app.launch()
             XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
             declineOptionalReview(app)
+            let heading = reveal(app.staticTexts["phone.recovery.start.heading"], in: app, scrollIdentifier: "phone.start.scroll")
+            XCTAssertEqual(heading.frame.midX, app.windows.firstMatch.frame.midX, accuracy: 1,
+                           "Recovery heading shares the actions' central axis")
             for id in ["phone.start.gestures", "phone.start.correction", "phone.start.knownScore"] {
                 let entry = reveal(app.buttons[id], in: app)
                 XCTAssertTrue(entry.isHittable)
@@ -774,7 +777,7 @@ final class CompanionUITests: XCTestCase {
             XCTAssertTrue(app.buttons["phone.access.restore"].waitForExistence(timeout: 10))
             capture(app, "m25-appearance-access-\(dark)")
             app.tabBars.buttons.element(boundBy: 0).tap()
-            reveal(app.buttons["Help & getting started"], in: app).tap()
+            reveal(app.buttons["Help & getting started"], in: app, scrollIdentifier: "phone.start.scroll").tap()
             XCTAssertTrue(app.navigationBars["Help & getting started"].waitForExistence(timeout: 5))
             capture(app, "m25-appearance-help-\(dark)")
             try auditIncludingOccludedText(app)

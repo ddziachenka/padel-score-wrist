@@ -150,3 +150,12 @@ App input changes; stored native gallery fingerprints remain valid. The complete
 current-phone and final minimum-phone suites will execute this extended test.
 The earlier fourteen-capture appearance smoke remains exactly that earlier scope,
 not retroactively called a Help pass.
+
+Before the new phone coverage executes, source review caught that Help's ordinary
+localized label has no phone.start identifier, so the shared test helper would
+incorrectly choose the retained Demo scroll view. Added an explicit optional scroll
+identifier for this known context; all existing callers keep identical selection,
+visibility/hittability checks, bounds and assertions. No shipping identifier is
+added. The centered regression also now explicitly asserts the heading's central
+axis in addition to all three actions, using the same named Start scroll context.
+These final test inputs run in the current-phone and complete milestone suites.
