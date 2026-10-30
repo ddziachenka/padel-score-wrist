@@ -255,3 +255,12 @@ removed from the Help entry; copy and destination stay unchanged. A direct nativ
 entry screenshot is captured before the same hittability/geometry assertions,
 so a future failure identifies the real visible state rather than AX data alone.
 No audit or assertion is removed. Fresh current/minimum pairs are required.
+
+Current-v8 passes2/2. Minimum-v8 retains only the Help-entry hittability assertions;
+its native Help text-clipping/contrast findings are clear and centered passes. The
+new before-tap Light/Dark images prove the full Help control is visible above the
+legal footer, inside the viewport and not obscured. Thus no environmental fix is
+claimed. Replace that single NavigationLink with a normal Button and native
+navigationDestination binding, retaining title/destination/ID/44pt target and
+normal Back behavior. The same hittability and full native assertions remain;
+this is a scoped navigation implementation correction, not a failure exception.
