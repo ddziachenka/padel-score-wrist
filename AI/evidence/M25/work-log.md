@@ -213,3 +213,15 @@ tap. All native audit categories and pixel assertions remain. The snapshot also
 shows the old Help entry AX height20.5 despite its outer44pt layout frame; move
 the44pt minimum and content shape into its label and add explicit44×44 assertions.
 No before-fix execution of those new assertions is claimed. Fresh pairs follow.
+
+The current-v4 pair passes2/2 on87c411d24240c696a320f7e705f7b5f1aa32418d.
+Minimum-v4 reaches the real Help page and keeps centered/normal/largest2nd case
+passing, but remains raw FAILED/exit65,1/2: one immediate selected-tab assertion
+and six native Text clipped findings (three per theme, no AX element). The actual
+minimum screenshot shows the three long visible Help paragraphs; their native
+measurement now uses PhoneMeasuredText, retaining all text and body typography.
+The selected-tab predicate gains a bounded5s settling wait and the same final
+assertion; all44pt/visibility/pixel/native-audit checks remain. The prior minimum-v3
+video final frame33.855s shows Demo still rendered during that failed immediate
+return, so its AX hierarchy alone was not proof of a settled visible Start page.
+No product tab-state defect or pre-existing failure is claimed from that evidence.

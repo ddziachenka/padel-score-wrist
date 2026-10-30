@@ -777,6 +777,10 @@ final class CompanionUITests: XCTestCase {
             XCTAssertTrue(app.buttons["phone.access.restore"].waitForExistence(timeout: 10))
             capture(app, "m25-appearance-access-\(dark)")
             app.tabBars.buttons["Start"].tap()
+            let tabDeadline = Date().addingTimeInterval(5)
+            while !app.tabBars.buttons["Start"].isSelected, Date() < tabDeadline {
+                RunLoop.current.run(until: Date().addingTimeInterval(0.1))
+            }
             XCTAssertTrue(app.tabBars.buttons["Start"].isSelected)
             let help = app.buttons["phone.start.help"]
             // iOS17 can retain a ScrollView AX object with an empty visible frame

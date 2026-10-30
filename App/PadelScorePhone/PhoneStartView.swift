@@ -157,16 +157,16 @@ struct PhoneLegalLinks: View {
 struct PhoneHelpView: View {
     var body: some View {
         List {
-            Section { Text("phone.help.install.body") } header: {
+            Section { PhoneMeasuredText(text: String(localized: "phone.help.install.body")) } header: {
                 Text("phone.help.install.title").foregroundStyle(Color.primary)
             }
-            Section { Text("phone.help.independent.body") } header: {
+            Section { PhoneMeasuredText(text: String(localized: "phone.help.independent.body")) } header: {
                 Text("phone.help.independent.title").foregroundStyle(Color.primary)
             }
-            Section { Text("phone.help.purchase.body") } header: {
+            Section { PhoneMeasuredText(text: String(localized: "phone.help.purchase.body")) } header: {
                 Text("phone.help.purchase.title").foregroundStyle(Color.primary)
             }
-            Section { Text("phone.help.history.body") } header: {
+            Section { PhoneMeasuredText(text: String(localized: "phone.help.history.body")) } header: {
                 Text("phone.help.history.title").foregroundStyle(Color.primary)
             }
             Section {
