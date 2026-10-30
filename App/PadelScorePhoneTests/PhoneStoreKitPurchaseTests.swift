@@ -119,7 +119,8 @@ final class StoreKitPurchaseTests: XCTestCase {
     func testNetworkFailureKeepsVerifiedOfflineAccessAndRestoreRemainsAvailable() async throws {
         let session = try await environment()
         defer { session.resetToDefaultState(); session.clearTransactions() }
-        let owner = store()
+        let owner = EntitlementStore(client: M25PurchaseErrorRecorder(),
+                                     overrideDefaults: UserDefaults(suiteName: "M25-StoreKit-\(UUID().uuidString)")!)
         await owner.start()
         print("M25_STOREKIT_NETWORK stage=inject-error")
         try await session.setSimulatedError(.generic(.networkError(URLError(.notConnectedToInternet))), forAPI: .purchase)
@@ -194,6 +195,29 @@ final class StoreKitPurchaseTests: XCTestCase {
         XCTAssertTrue(after.isUnlocked)
     }
 
+}
+
+@MainActor
+private final class M25PurchaseErrorRecorder: PurchaseClient {
+    let client = StoreKitPurchaseClient()
+    func product() async throws -> LifetimeProduct? { try await client.product() }
+    func entitlement() async -> PurchaseEntitlement { await client.entitlement() }
+    func sync() async throws { try await client.sync() }
+    func updates() -> AsyncStream<PurchaseTransaction> { client.updates() }
+    func finish(_ value: PurchaseTransaction) async { await client.finish(value) }
+    func purchase() async throws -> PurchaseOutcome {
+        do { return try await client.purchase() }
+        catch {
+            print("M25_STOREKIT_ERROR type=\(String(reflecting: type(of: error)))")
+            var current: NSError? = error as NSError
+            for _ in 0..<8 {
+                guard let value = current else { break }
+                print("M25_STOREKIT_ERROR domain=\(value.domain) code=\(value.code)")
+                current = value.userInfo[NSUnderlyingErrorKey] as? NSError
+            }
+            throw error
+        }
+    }
 }
 
 private extension GameID {
