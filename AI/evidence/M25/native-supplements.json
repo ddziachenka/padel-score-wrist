@@ -1,0 +1,942 @@
+[
+  {
+    "label": "watch-minimum",
+    "bundle": ".artifacts/M25/watch-minimum-v2.xcresult",
+    "definitions": 490,
+    "passed_definitions": 490,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 928,
+    "invocation_results": {
+      "Passed": 928
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "E28D3B30-45A1-4731-BA01-CBEFDB123059",
+            "deviceName": "iosai-padel-score-m25-watch-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "Apple Watch SE",
+            "osBuildNumber": "21R355",
+            "osVersion": "10.0",
+            "platform": "watchOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 928,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScore · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793360072.891,
+      "passedTests": 490,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793358199.644,
+      "statistics": [
+        {
+          "subtitle": "539 test runs",
+          "title": "101 tests ran with dynamic parameters"
+        }
+      ],
+      "testFailures": [],
+      "title": "Test - PadelScore",
+      "topInsights": [
+        {
+          "category": "Longest Test Runs",
+          "impact": "30% of duration",
+          "text": "1 longest test run with outlier durations exceeding 421.85s (three standard deviations)"
+        },
+        {
+          "category": "Longest Test Runs",
+          "impact": "54% of duration",
+          "text": "4 longest test runs with outlier durations exceeding 0.09s (three standard deviations)"
+        }
+      ],
+      "totalTestCount": 490
+    },
+    "started_utc": "2026-10-30T11:03:19.644000+00:00",
+    "finished_utc": "2026-10-30T11:34:32.891000+00:00",
+    "source_sha": "c178abf12c7dd6ff0f1c6c0b2669611556375831"
+  },
+  {
+    "label": "watch-current",
+    "bundle": ".artifacts/M25/watch-current.xcresult",
+    "definitions": 496,
+    "passed_definitions": 496,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 934,
+    "invocation_results": {
+      "Passed": 934
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+            "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "Apple Watch SE 3",
+            "osBuildNumber": "24R362",
+            "osVersion": "27.0",
+            "platform": "watchOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 934,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScore · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793362730.089,
+      "passedTests": 496,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793360111.654,
+      "statistics": [
+        {
+          "subtitle": "539 test runs",
+          "title": "101 tests ran with dynamic parameters"
+        }
+      ],
+      "testFailures": [],
+      "title": "Test - PadelScore",
+      "topInsights": [
+        {
+          "category": "Longest Test Runs",
+          "impact": "44% of duration",
+          "text": "2 longest test runs with outlier durations exceeding 509.47s (three standard deviations)"
+        },
+        {
+          "category": "Longest Test Runs",
+          "impact": "60% of duration",
+          "text": "4 longest test runs with outlier durations exceeding 0.11s (three standard deviations)"
+        }
+      ],
+      "totalTestCount": 496
+    },
+    "started_utc": "2026-10-30T11:35:11.654000+00:00",
+    "finished_utc": "2026-10-30T12:18:50.089000+00:00",
+    "source_sha": "5551a9f6b3bb315d145a6933854be7ca1cf23f5d"
+  },
+  {
+    "label": "phone-current",
+    "bundle": ".artifacts/M25/phone-help-centered-current-v15.xcresult",
+    "definitions": 2,
+    "passed_definitions": 2,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 2,
+    "invocation_results": {
+      "Passed": 2
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+            "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone 17 Pro Max",
+            "osBuildNumber": "24A434",
+            "osVersion": "27.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 2,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793374051.745,
+      "passedTests": 2,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793373804.586,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [],
+      "totalTestCount": 2
+    },
+    "started_utc": "2026-10-30T15:23:24.586000+00:00",
+    "finished_utc": "2026-10-30T15:27:31.745000+00:00",
+    "source_sha": "9a4dcdd15a4cfc280103e7366eed0e80ce1888ae"
+  },
+  {
+    "label": "phone-minimum",
+    "bundle": ".artifacts/M25/phone-help-centered-minimum-v15.xcresult",
+    "definitions": 2,
+    "passed_definitions": 2,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 2,
+    "invocation_results": {
+      "Passed": 2
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "B9D3F5BC-7C0B-4F3B-A65F-3C1B67ACCEF2",
+            "deviceName": "iosai-padel-score-companion-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone SE (3rd generation)",
+            "osBuildNumber": "21A328",
+            "osVersion": "17.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 2,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793374279.847,
+      "passedTests": 2,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793374057.63,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [],
+      "totalTestCount": 2
+    },
+    "started_utc": "2026-10-30T15:27:37.630000+00:00",
+    "finished_utc": "2026-10-30T15:31:19.847000+00:00",
+    "source_sha": "9a4dcdd15a4cfc280103e7366eed0e80ce1888ae"
+  },
+  {
+    "label": "phone-close-current",
+    "bundle": ".artifacts/M25/phone-close-icon-current.xcresult",
+    "definitions": 1,
+    "passed_definitions": 1,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 1,
+    "invocation_results": {
+      "Passed": 1
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+            "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone 17 Pro Max",
+            "osBuildNumber": "24A434",
+            "osVersion": "27.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 1,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793381887.576,
+      "passedTests": 1,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793381680.354,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [],
+      "totalTestCount": 1
+    },
+    "source_sha": "affb77170e60be36ff3c105c08f70c8ceb345ece",
+    "started_utc": "2026-10-30T17:34:40.354000+00:00",
+    "finished_utc": "2026-10-30T17:38:07.576000+00:00"
+  },
+  {
+    "label": "phone-close-minimum",
+    "bundle": ".artifacts/M25/phone-close-icon-minimum.xcresult",
+    "definitions": 1,
+    "passed_definitions": 1,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 1,
+    "invocation_results": {
+      "Passed": 1
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "B9D3F5BC-7C0B-4F3B-A65F-3C1B67ACCEF2",
+            "deviceName": "iosai-padel-score-companion-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone SE (3rd generation)",
+            "osBuildNumber": "21A328",
+            "osVersion": "17.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 1,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793382117.801,
+      "passedTests": 1,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793381904.382,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [],
+      "totalTestCount": 1
+    },
+    "source_sha": "affb77170e60be36ff3c105c08f70c8ceb345ece",
+    "started_utc": "2026-10-30T17:38:24.382000+00:00",
+    "finished_utc": "2026-10-30T17:41:57.801000+00:00"
+  },
+  {
+    "label": "phone-current-complete",
+    "bundle": ".artifacts/M25/phone-current-ui-final-v3.xcresult",
+    "definitions": 19,
+    "passed_definitions": 19,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 19,
+    "invocation_results": {
+      "Passed": 19
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+            "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone 17 Pro Max",
+            "osBuildNumber": "24A434",
+            "osVersion": "27.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 19,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793389447.497,
+      "passedTests": 19,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793383653.85,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [
+        {
+          "category": "Longest Test Runs",
+          "impact": "45% of duration",
+          "text": "1 longest test run with outlier durations exceeding 2121.38s (three standard deviations)"
+        }
+      ],
+      "totalTestCount": 19
+    },
+    "source_sha": "67f9975c16689c3494e83443b81b7b48a9999ae0",
+    "started_utc": "2026-10-30T18:07:33.850000+00:00",
+    "finished_utc": "2026-10-30T19:44:07.497000+00:00"
+  },
+  {
+    "label": "watch-gallery-final",
+    "bundle": ".artifacts/M25/watch-gallery-3.xcresult",
+    "definitions": 14,
+    "passed_definitions": 14,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 14,
+    "invocation_results": {
+      "Passed": 14
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+            "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "Apple Watch SE",
+            "osBuildNumber": "23S36",
+            "osVersion": "26.1",
+            "platform": "watchOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 14,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScore · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793391989.775,
+      "passedTests": 14,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793389470.512,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScore",
+      "topInsights": [],
+      "totalTestCount": 14
+    },
+    "source_sha": "67f9975c16689c3494e83443b81b7b48a9999ae0",
+    "started_utc": "2026-10-30T19:44:30.512000+00:00",
+    "finished_utc": "2026-10-30T20:26:29.775000+00:00"
+  },
+  {
+    "label": "phone-gallery-final",
+    "bundle": ".artifacts/M25/phone-gallery-3.xcresult",
+    "definitions": 2,
+    "passed_definitions": 2,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 2,
+    "invocation_results": {
+      "Passed": 2
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+            "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone 17 Pro Max",
+            "osBuildNumber": "24A434",
+            "osVersion": "27.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 2,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793392866.981,
+      "passedTests": 2,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793392031.342,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [],
+      "totalTestCount": 2
+    },
+    "source_sha": "67f9975c16689c3494e83443b81b7b48a9999ae0",
+    "started_utc": "2026-10-30T20:27:11.342000+00:00",
+    "finished_utc": "2026-10-30T20:41:06.981000+00:00"
+  },
+  {
+    "label": "phone-fresh-minimum",
+    "bundle": ".artifacts/M25/phone-clean-final.xcresult",
+    "definitions": 3,
+    "passed_definitions": 3,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 3,
+    "invocation_results": {
+      "Passed": 3
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "D24D4F58-5AE8-42CD-B838-3D86E97B64EC",
+            "deviceName": "iosai-padel-score-m25-phone-clean-final-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone SE (3rd generation)",
+            "osBuildNumber": "21A328",
+            "osVersion": "17.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 3,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793393387.77,
+      "passedTests": 3,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793392993.011,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [],
+      "totalTestCount": 3
+    },
+    "source_sha": "67f9975c16689c3494e83443b81b7b48a9999ae0",
+    "started_utc": "2026-10-30T20:43:13.011000+00:00",
+    "finished_utc": "2026-10-30T20:49:47.770000+00:00"
+  },
+  {
+    "label": "phone-fresh-minimum-v4",
+    "bundle": ".artifacts/M25/phone-clean-v4.xcresult",
+    "definitions": 4,
+    "passed_definitions": 4,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 4,
+    "invocation_results": {
+      "Passed": 4
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "7C65E86E-4A9B-4715-981D-B7A31A28F358",
+            "deviceName": "iosai-padel-score-m25-phone-clean-v4-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone SE (3rd generation)",
+            "osBuildNumber": "21A328",
+            "osVersion": "17.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 4,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793396858.444,
+      "passedTests": 4,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793394468.585,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [],
+      "totalTestCount": 4
+    },
+    "source_sha": "f097a52d6a1154cf431156c30a81013a34d3cd47",
+    "started_utc": "2026-10-30T21:07:48.585000+00:00",
+    "finished_utc": "2026-10-30T21:47:38.444000+00:00"
+  },
+  {
+    "label": "watch-minimum-v4",
+    "bundle": ".artifacts/M25/watch-minimum-v4.xcresult",
+    "definitions": 492,
+    "passed_definitions": 492,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 942,
+    "invocation_results": {
+      "Passed": 942
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "E28D3B30-45A1-4731-BA01-CBEFDB123059",
+            "deviceName": "iosai-padel-score-m25-watch-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "Apple Watch SE",
+            "osBuildNumber": "21R355",
+            "osVersion": "10.0",
+            "platform": "watchOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 942,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScore · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793399297.968,
+      "passedTests": 492,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793396894.229,
+      "statistics": [
+        {
+          "subtitle": "552 test runs",
+          "title": "102 tests ran with dynamic parameters"
+        }
+      ],
+      "testFailures": [],
+      "title": "Test - PadelScore",
+      "topInsights": [
+        {
+          "category": "Longest Test Runs",
+          "impact": "46% of duration",
+          "text": "2 longest test runs with outlier durations exceeding 531.25s (three standard deviations)"
+        },
+        {
+          "category": "Longest Test Runs",
+          "impact": "52% of duration",
+          "text": "4 longest test runs with outlier durations exceeding 0.08s (three standard deviations)"
+        }
+      ],
+      "totalTestCount": 492
+    },
+    "source_sha": "f097a52d6a1154cf431156c30a81013a34d3cd47",
+    "started_utc": "2026-10-30T21:48:14.229000+00:00",
+    "finished_utc": "2026-10-30T22:28:17.968000+00:00"
+  },
+  {
+    "label": "watch-current-v4",
+    "bundle": ".artifacts/M25/watch-current-v4.xcresult",
+    "definitions": 498,
+    "passed_definitions": 498,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 948,
+    "invocation_results": {
+      "Passed": 948
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+            "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "Apple Watch SE 3",
+            "osBuildNumber": "24R362",
+            "osVersion": "27.0",
+            "platform": "watchOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 948,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScore · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793402464.115,
+      "passedTests": 498,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793399339.794,
+      "statistics": [
+        {
+          "subtitle": "552 test runs",
+          "title": "102 tests ran with dynamic parameters"
+        }
+      ],
+      "testFailures": [],
+      "title": "Test - PadelScore",
+      "topInsights": [
+        {
+          "category": "Longest Test Runs",
+          "impact": "18% of duration",
+          "text": "1 longest test run with outlier durations exceeding 585.99s (three standard deviations)"
+        },
+        {
+          "category": "Longest Test Runs",
+          "impact": "62% of duration",
+          "text": "4 longest test runs with outlier durations exceeding 0.11s (three standard deviations)"
+        }
+      ],
+      "totalTestCount": 498
+    },
+    "source_sha": "f097a52d6a1154cf431156c30a81013a34d3cd47",
+    "started_utc": "2026-10-30T22:28:59.794000+00:00",
+    "finished_utc": "2026-10-30T23:21:04.115000+00:00"
+  },
+  {
+    "label": "phone-current-ui-final-v4",
+    "bundle": ".artifacts/M25/phone-current-ui-final-v4.xcresult",
+    "definitions": 20,
+    "passed_definitions": 20,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 20,
+    "invocation_results": {
+      "Passed": 20
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+            "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone 17 Pro Max",
+            "osBuildNumber": "24A434",
+            "osVersion": "27.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 20,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793410298.881,
+      "passedTests": 20,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793402484.118,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [
+        {
+          "category": "Longest Test Runs",
+          "impact": "33% of duration",
+          "text": "1 longest test run with outlier durations exceeding 2464.40s (three standard deviations)"
+        }
+      ],
+      "totalTestCount": 20
+    },
+    "source_sha": "f097a52d6a1154cf431156c30a81013a34d3cd47",
+    "started_utc": "2026-10-30T23:21:24.118000+00:00",
+    "finished_utc": "2026-10-31T01:31:38.881000+00:00"
+  },
+  {
+    "label": "watch-gallery-4",
+    "bundle": ".artifacts/M25/watch-gallery-4.xcresult",
+    "definitions": 14,
+    "passed_definitions": 14,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 14,
+    "invocation_results": {
+      "Passed": 14
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+            "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "Apple Watch SE",
+            "osBuildNumber": "23S36",
+            "osVersion": "26.1",
+            "platform": "watchOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 14,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScore · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793412752.411,
+      "passedTests": 14,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793410321.544,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScore",
+      "topInsights": [],
+      "totalTestCount": 14
+    },
+    "source_sha": "f097a52d6a1154cf431156c30a81013a34d3cd47",
+    "started_utc": "2026-10-31T01:32:01.544000+00:00",
+    "finished_utc": "2026-10-31T02:12:32.411000+00:00"
+  },
+  {
+    "label": "phone-gallery-4",
+    "bundle": ".artifacts/M25/phone-gallery-4.xcresult",
+    "definitions": 2,
+    "passed_definitions": 2,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 2,
+    "invocation_results": {
+      "Passed": 2
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+            "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone 17 Pro Max",
+            "osBuildNumber": "24A434",
+            "osVersion": "27.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 2,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793413558.807,
+      "passedTests": 2,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793412788.539,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [],
+      "totalTestCount": 2
+    },
+    "source_sha": "f097a52d6a1154cf431156c30a81013a34d3cd47",
+    "started_utc": "2026-10-31T02:13:08.539000+00:00",
+    "finished_utc": "2026-10-31T02:25:58.807000+00:00"
+  }
+]

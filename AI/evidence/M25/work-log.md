@@ -412,3 +412,126 @@ galleries. These budgets permit the already required exhaustive coverage; no
 test/filter/assertion/count/audit category or production performance requirement
 is changed. The generic declared milestone command remains untouched and must
 run in full. Start a fresh complete current UI19 run; no partial result is reused.
+
+The fresh complete current UI-v3 passes19/19 definitions and19/19 native
+invocations, exit0, at frozen67f9975c16689c3494e83443b81b7b48a9999ae0.
+Native UTC18:07:33.850–19:44:07.497 on2026-10-30; zero failed/skipped/expected/
+runtime warnings. The13-language gesture matrix passes in1149.251s and the
+complete26-pair recovery matrix in2610.995s, without changing their coverage or
+audit helpers. Exact summary/tree counts are in accepted-current-complete and
+the durable native-supplements.json. The pipeline proceeds to new Watch/phone
+galleries on the same frozen HEAD. Final original normal/maximum centered captures
+were exported and visually inspected; the durable normal English image is updated
+to5CF10CA7-C49C-4759-8D55-F9FDB0ECFBA2.png from this full pass. Fresh minimum
+installation and unchanged full milestone verification still remain required.
+
+The final coverage review identifies one remaining runtime gap: Help's new native
+labels were audited in both themes at normal text, but not at maximum Dynamic Type
+in all13 languages. Keep the ongoing capture pipeline frozen, then add a separate
+localized maximum-text Help case and run it on minimum/current phones before the
+full immutable milestone gate. Existing19 passing methods stay unchanged; the
+new case adds coverage, with all original audit categories/strict rechecks intact.
+Shipping inputs will remain identical to the gallery source unless an actual
+runtime finding requires a product correction. No Help-largest pass is inferred
+from source or normal-size captures.
+
+The67f capture pipeline completes exit0: Watch14/14 and phone2/2, all210 native
+originals imported and28 creative outputs regenerated; strict assets/site checks
+pass. All112 Watch originals and the first9 phone locale contact sheets are
+reviewed. A fresh owned iOS17 profile D24D4F58-5AE8-42CD-B838-3D86E97B64EC
+passes3/3 first-launch/appearance/centering checks, zero failed/skipped/expected/
+runtime warnings; native listapps proves no companion installation beforehand.
+These remain exact historical67f evidence after the following copy corrections.
+
+Final visual review identifies M25-C2: Reset is still English in both gesture
+practice surfaces; neither catalog contains that key. C1 also affects several
+languages beyond the first EN/FR examples. Correct both now: add Reset in all13
+languages to both catalogs and use a name-neutral Next server label in Watch
+review. Score, persistence, service order and reset callbacks are unchanged.
+The earlier C1 deferral is superseded. Source localization verification passes
+exit0 (399 Watch keys, twelve added locales), and git diff --check passes.
+
+New recovery point f097a52d6a1154cf431156c30a81013a34d3cd47 adds an installed
+13-language copy regression, native Watch practice/reset/largest/audit coverage,
+explicit phone reset labels and score reset in its existing26-pair matrix, and
+the new26-pair largest Help case. No original method or audit is removed. The
+complete current-phone supplement now requires20/20, not19/19. The generic full
+milestone command remains untouched and will run every test on both platforms.
+
+The active67f gallery is deliberately rejected after this source change: strict
+validator exit1, stale-gallery3-guard.log, changed Phone Localizable.xcstrings.
+No source fingerprint is relaxed. A new owned first-install profile,
+7C65E86E-4A9B-4715-981D-B7A31A28F358/iOS17, runs four cases including largest
+Help. The frozen v4 pipeline then reruns complete scoped minimum/current Watch
+supplements, the whole current-phone20 suite and new Watch/phone gallery4 pair.
+All old bundles, counts, images and source SHAs remain historical, never passes
+for the changed copy. No external publication or submission occurs.
+
+Frozen f097 v4 fresh first-install phone4/4 and minimum-Watch492/942 pass exit0,
+with zero failed/skipped/expected/runtime warnings. All26 Help language/theme
+pairs complete on minimum17; thirteen native minimum-Watch reset originals are
+visually inspected, including largest German wrapping. Current-Watch finishes
+2026-10-30T23:21:04.115000+00:00:498/498 definitions/948 invocations, exit0, all zero adverse
+counts. Strict native summary/tests export passes. Complete current-phone20 is
+now running at unchanged f097; new gallery4 and the exact full gate remain
+required. No component reuse or historical contrast exception.
+
+Complete current-phone v4 finishes at2026-10-31T01:31:38.881Z, source f097,
+exit0,20/20 definitions/invocations, zero failed/skipped/expected/native runtime
+warnings. Native summary/tests export passes; durable native-supplements.json
+records exact configuration and interval. All26 gesture/reset pairs1571.405s,
+all26 largest Help pairs1698.962s and all26 recovery pairs2589.898s pass, along
+with actual eight-surface themes, centered normal/maximum EN/DE/RU, real input,
+Undo/cancel/tab/relaunch, localized captures and verified purchase ownership.
+No original method/category/assertion is removed. The frozen pipeline starts new
+watch-gallery-4, then phone-gallery-4. Final material import/review and unchanged
+complete make milestone ID=M25 remain required.
+
+Full current v4 attachments export exits0. Normal EN and maximum DE/RU centering
+originals are inspected; durable centered-recovery-current.png is now the raw
+CFC657F0-3579-4B31-B238-42B8C64E1B5F.png from f097. EN/DE/RU maximum Help
+heads/footers in Light/Dark are inspected; complete wrapping and reachable final
+links retained. New raw EN Light/Dark examples and64-attachment selection record
+are saved under AI/evidence/M25 before the immutable gate. Native image bytes
+are unmodified; diagnostic sheets stay ignored.
+
+New watch-gallery-4 completes 2026-10-31T02:12:32.411000+00:00, source f097, exit0,
+14/14 definitions/invocations, zero failed/skipped/expected/native runtime
+warnings. Strict export passes and durable native-supplements.json is updated.
+All112 originals are visually inspected in the fresh14 contact sheets: en_US,
+es_ES,es_MX,it_IT,fr_FR,pt_PT,pt_BR,nl_NL,de_DE,sv_SE,da_DK,fi_FI,nb_NO,ru_RU.
+Neutral next-server copy confirms C1 correction in all languages. Actual scores,
+OFF option, serving, correction After, three sets, Americano, known start and
+history agree. Native scroll viewports retain more content below their boundary;
+no original image is cropped/reconstructed. No P0/P1 found. Phone gallery4 runs
+concurrently at the same frozen source; final import/creative review/full gate
+remain required.
+
+Frozen v4 pipeline exits0 with HEAD unchanged at f097. New phone-gallery-4
+finishes 2026-10-31T02:25:58.807000+00:00, exit0,2/2 definitions/invocations, zero failed/
+skipped/expected/native runtime warnings. Both gallery source files equal f097;
+strict native export passes. The pair's raw export manifests are complete before
+material import. Finalizer now imports all210 originals, regenerates28 compositions
+and prepares local site copies; final visual/source validation and the unchanged
+full milestone gate remain required.
+
+Finalizer exits0:210 new f097 native originals imported,28 compositions
+regenerated, local site prepared, strict source/attachment/hash/dimension/opaque
+RGB/site-copy validation and make site-check pass. The final53 HTML/CSS files are
+byte-identical to source86b20f67ea0f87ae48c1c720bc97217d564acd0e used by the
+recorded208-combination browser layout/palette proof; updated identityJSON passes.
+All14 final phone and14 creative contact sheets are visually reviewed in addition
+to the14 final Watch sheets. C2 localized Reset, centered Start, correct scenario
+facts, distinct illustration/native screen, two-contact series wording and bounded
+hardware/OFF/default claims are confirmed; no P0/P1 found. Natural native scroll
+viewports remain original. No upload, reply, publication or submission. The exact
+full immutable milestone gate remains mandatory.
+
+Final mutable make static and project-status validate pass exit0 after new
+material review. Scoped primary computed DerivedData cleanup exits0, removes413MB
+only, retaining .artifacts. Owned minimum-phone B9 is initialized in Dark via
+its own reboot, then original Booted/light restored, both exits0, timestamp
+2026-10-31T02:41:05.107946Z. Actual theme pixels still must pass in the full gate.
+All final native/assets/self-review work is complete; M25 enters REVIEW for a
+clean committed full make milestone ID=M25, with no reused Watch component or
+contrast waiver. No DONE or full-gate pass is claimed yet.

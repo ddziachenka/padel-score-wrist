@@ -5,8 +5,8 @@
 **Record type:** Builder domain audit (interim digital scope)
 **Milestone:** M25
 **Domain prompt:** AI/prompts/audit-accessibility.md
-**Candidate:** 4f1689944480aadfad592629e3c8394a9582c6b7
-**Audited at:** 2026-10-30
+**Candidate:** f097a52d6a1154cf431156c30a81013a34d3cd47
+**Audited at:** 2026-10-31
 
 Builder self-review, not independent audit or release approval. The approved
 2026-10-29 workflow extension assigns all physical checks to M29; this is an
@@ -17,7 +17,7 @@ Final candidate/commands/counts will be bound in the M25 handoff and verificatio
 record; capture-source inputs are recorded in the material manifest.
 
 **Coverage result:** DIGITAL_IN_PROGRESS
-**Open P0/P1:** See findings; no unresolved product defect currently known.
+**Open P0/P1:** None currently identified in reviewed source. C1/C2 are corrected; f097 minimum/current Watch and complete current-phone20 pass. Both new gallery4 bundles, strict provenance/site checks and all42 visual reviews pass. The exact full milestone gate remains mandatory before DONE.
 
 ## Coverage
 
@@ -32,7 +32,7 @@ record; capture-source inputs are recorded in the material manifest.
 
 ## Findings and fixes
 
-Resolved current-iOS native Contrast and Text clipped findings on Start; raw failures retained. Removed a grouping wrapper that moved action identifiers to Other; native Button identity restored. No audit categories, helper or expected failures were removed. Final small/current centered regressions pass; full matrices remain pending.
+Resolved current-iOS native Contrast and Text clipped findings on Start; raw failures retained. Removed a grouping wrapper that moved action identifiers to Other; native Button identity restored. No audit categories, helper or expected failures were removed. Final small/current centered regressions and standard Help reachability pass. Selection-bound tab accessibility repairs the retained minimum-iOS navigation AX frame; the native xmark dismissal with localized Close label passes both German-largest/Light/Dark cases. Both earlier67f current-phone locale/theme/largest matrices pass within UI19/19; new f097 current UI20 passes, and the configured-floor full milestone gate remains pending.
 
 Full failure/reproduction history: [work log](../evidence/M25/work-log.md).
 Final-targeted native centered checks: [runtime](../evidence/M25/runtime.md).
@@ -47,7 +47,16 @@ No final readiness or actual hardware result is claimed.
 
 ## Targeted re-audit
 
-Final affected/runtime/material re-audit follows completion of current runs.
+Frozen f097 fresh minimum-phone4/4, minimum-Watch492/492 definitions/942
+invocations, current-Watch498/498/948 and complete current-phone20/20 pass,
+exit0, all zero failed/skipped/expected/native runtime-warning counts. This
+includes26 language/theme pairs each for gesture/reset, maximum-text Help and
+both recovery journeys, actual eight-surface theme pixels and centered EN/DE/RU.
+The strict accepted native summaries/leaf counts are in runtime.md and
+native-supplements.json. Both gallery4 bundles, strict material/site checks and all42 final visual contact
+reviews pass. The unchanged full milestone gate remains required. The additional baseline-matched current StoreKit
+probe stays FAILED/P2; storekit-current-runtime.md records the exact boundaries.
+Physical evidence remains PENDING_M29.
 
 ## Validation
 

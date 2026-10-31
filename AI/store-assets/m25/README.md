@@ -40,18 +40,18 @@ These are marketing compositions, distinct from the unmodified native galleries.
 
 ## Provenance and reproduction
 
-Capture source: `4f1689944480aadfad592629e3c8394a9582c6b7` on main, build1.0(3).
+Capture source: `f097a52d6a1154cf431156c30a81013a34d3cd47` on main, build1.0(3).
 All shipping App file membership/bytes match the current material fingerprints;
-subsequent installed-version test expectations and capture/validator tooling do
-not change rendered app inputs. Final milestone verification covers all final
-source and tests separately; these targeted captures are not its replacement.
+the complete final App/test source is frozen for both new captures. The full
+immutable gate verifies its own final source/tests/assets commit separately;
+these targeted captures are not its replacement.
 
-- Watch: `bash Scripts/capture-store-materials.sh watch capture watch-gallery-2`,
+- Watch: `bash Scripts/capture-store-materials.sh watch capture watch-gallery-4`,
   exit0,14/14 definitions/invocations, zero failures/skips/expected/runtime warnings.
   Owned44mm SE/watchOS26.1,22C79D99-DEA7-4525-AD2D-50FDCD6B8720.
-- Phone actual command: `bash .artifacts/M16/runtime-profile.sh phone-current run bash .artifacts/M25/run-phone-current-gallery.sh`,
+- Phone: `bash Scripts/capture-store-materials.sh phone-current capture phone-gallery-4`,
   exit0,2/2, zero failures/skips/expected/runtime warnings. Owned17ProMax/iOS27.0,
-  2D44D21F-290D-4325-8DED-B98D29977585. The identical current capture profile is now
+  2D44D21F-290D-4325-8DED-B98D29977585. The same current capture profile is
   reproducible through `bash Scripts/capture-store-materials.sh phone-current capture <new-safe-run-name>`.
 - The first phone/iOS26.5 gallery remains FAILED because its local StoreKit guard
   refused purchase setup; it is not imported. Current27 first passed a genuine
@@ -60,11 +60,11 @@ source and tests separately; these targeted captures are not its replacement.
 
 Durable native summaries/export manifests are in provenance/. Every native image
 records attachment, exact source SHA, device, timestamp, fixture/actions, dimensions
-and hash. Raw result bundles remain .artifacts/M25/watch-gallery-2.xcresult and
-phone-gallery-2.xcresult, never in Git. Rebuild after complete new native runs:
+and hash. Raw result bundles remain .artifacts/M25/watch-gallery-4.xcresult and
+phone-gallery-4.xcresult, never in Git. Rebuild after complete new native runs:
 
 ```sh
-python3 AI/store-assets/m25/tools/import-captures.py --watch-run watch-gallery-2 --phone-run phone-gallery-2
+python3 AI/store-assets/m25/tools/import-captures.py --watch-run watch-gallery-4 --phone-run phone-gallery-4
 python3 AI/store-assets/m25/tools/compose-creative.py
 python3 AI/store-assets/m25/tools/prepare-site.py
 python3 AI/store-assets/m25/tools/validate.py
@@ -86,3 +86,11 @@ terms were read back separately; local new site texts have not been deployed.
 The current authenticated ASC declaration says Data Not Collected, while build2
 and its old notes remain selected/live. M29 supplies actual recognition/video/
 physical checks; M26 verifies readiness; M30 requires its distribution instruction.
+
+All14 final Watch,14 phone and14 creative contact sheets were visually reviewed.
+Strict provenance/format/source/site validation passes; site-layout-identity.json
+binds the final52 HTML pages and CSS to the recorded208-combination browser proof.
+This is local draft preparation. The extra current-Simulator full StoreKit unit
+probe remains FAILED/P2 with identical baseline reproduction; see
+[bounded runtime evidence](../../evidence/M25/storekit-current-runtime.md).
+Actual recognition/VoiceOver/purchases and other hardware observations remain M29.

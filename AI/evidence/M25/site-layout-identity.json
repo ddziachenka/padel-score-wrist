@@ -1,0 +1,274 @@
+{
+  "browser_checked_source": "86b20f67ea0f87ae48c1c720bc97217d564acd0e",
+  "comparison_head": "f097a52d6a1154cf431156c30a81013a34d3cd47",
+  "checked_at_utc": "2026-10-31T02:29:15.706859+00:00",
+  "scope": "52 HTML pages and their CSS; actual current native image provenance/dimensions are checked separately by the active material validator",
+  "all_byte_identical": true,
+  "files": [
+    {
+      "file": "Web/public/da/index.html",
+      "sha256": "d6e7462cc21f45d2bceeaf740219e61debfafb08240cc575b207883e26d66659",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/da/privacy/index.html",
+      "sha256": "e7d4f80a33b2c243724bc92ffc74a4172defbc4d194fa5630853e1830813c2a6",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/da/support/index.html",
+      "sha256": "df7d8cb0b25b80ee32a5fb900d9d1783b853dcb43a79623f440d8902c19198fe",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/da/terms/index.html",
+      "sha256": "7ac47bfe690dfc20dddee1b9e1ee7bb664a3f01a327e0313cced2859eb079e19",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/de/index.html",
+      "sha256": "3f354aacac76507fa6de47e14b952e310bf8e0a39bc3d2dfce6d3072c8ddcdd0",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/de/privacy/index.html",
+      "sha256": "f1bcc1d1fbd0b896ad4991d1138ff583a48155320a47313fa26075767347c72b",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/de/support/index.html",
+      "sha256": "cda13654640b73da7311c17537d476783767c2fd75ef5433fae6bd6f002410cc",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/de/terms/index.html",
+      "sha256": "cf69d9685f2a1cfd63523154840190e8cf3d2966587a4faec714ceaa9f4f9a6d",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/es/index.html",
+      "sha256": "72079df7a5ce30bf0fe82d1eaaa68242ed75e6fc719ec3eb48a70bca522dace0",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/es/privacy/index.html",
+      "sha256": "0bac91a533433f70b2336d94fbf8cd452af8241dce866d89eaa5440d5fdc6e1b",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/es/support/index.html",
+      "sha256": "bec602da2587defcbc64bc7c992b4605cc3cc645ebda91ff5e00bc998dc0601c",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/es/terms/index.html",
+      "sha256": "2b8d8a41fec5a92fa06d6e983b353ab0c302415c56326ef7a2f461e3a774ca46",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/fi/index.html",
+      "sha256": "ae00bd7cf61415b605bf3502f6169eb5ebd93c0fbd67060e7984aa009aa7b112",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/fi/privacy/index.html",
+      "sha256": "e85494790681db76ff99bf4e1b652188341d00aadc462f2d4a0c2b83eed9f35b",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/fi/support/index.html",
+      "sha256": "1ea573d9ec228e655635f17cb3434ddda1b3a30fa53948130cd4059700497267",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/fi/terms/index.html",
+      "sha256": "b1828515043660099de0d233eec042bea6a9ed9757757fd725122e3ec82da276",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/fr/index.html",
+      "sha256": "bb193c9db284556640193769c642e6b7b130a7ce7c7d57ac07548c581a1ba1b1",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/fr/privacy/index.html",
+      "sha256": "316d3075d1bcbb6f52c18bcbaeeda4055ff3db4ac69f1baf4b82460d3c1bfc4a",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/fr/support/index.html",
+      "sha256": "06b5a9254d00ea2a3bec4be6f16a77c80c30273e1ae9aa124abfedde184024cc",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/fr/terms/index.html",
+      "sha256": "ba7bf756650cf262632057f92224bddb5a6b1f542720b612b60e993bad381d43",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/index.html",
+      "sha256": "a92dd51631bde60b32724210b247e872a93662e3cadf0cb1f775df573e81766e",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/it/index.html",
+      "sha256": "fe7546466a8b853785d52bbcf3cbb59a85554590579e249c148e7ff9f26c6595",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/it/privacy/index.html",
+      "sha256": "93ee3cdf27ffb450cf77bbcea6f1b03d47c36001009d04245fc4f5eec8449a9a",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/it/support/index.html",
+      "sha256": "00028ad4773b5ec3df6da263991efc8907e7f5382f088be572fd6d7a56505390",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/it/terms/index.html",
+      "sha256": "1ef0330c2ee1ef5cff2ec02fb9d0d85ba1ceff9febf3b55cf1635042a7ad237f",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/nb/index.html",
+      "sha256": "70e1f04391d4ef5f97ce59d54daca639c66015fb1ad0afcdcf483fdd918f9b15",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/nb/privacy/index.html",
+      "sha256": "cbc9586653be4e0be16a97360c843ce827db68d3a267867374ecf9035439cf3c",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/nb/support/index.html",
+      "sha256": "b63c13d56cbc9b772b7cac1b7f344a67f6788e64bb9ebe69b1fdb7ee6fda715f",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/nb/terms/index.html",
+      "sha256": "0ea3ae0528d982b4c4432a8f2b70e69a9562d0fed333518cb018b2fb3d6590ec",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/nl/index.html",
+      "sha256": "38b38bc2603c5b599c439a9c32a1ee6e0ae88bc4dae1fb305ec06b835cb2e91a",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/nl/privacy/index.html",
+      "sha256": "a4ca882c79a2f679b9e0ddf2f4ff798aa944cbf16236c6ab6e2e55c8be0cfc9f",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/nl/support/index.html",
+      "sha256": "d9377f1ab3757ea1397401b38b59287d57673e90dad594e0cd68fa5a3a06fdfb",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/nl/terms/index.html",
+      "sha256": "1440f2823a9e0bc81c6e0220cc4fe5b584c0e6481d50c5053a31873095241603",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/privacy/index.html",
+      "sha256": "3cc220ab5c025af2b9514904a36c5e32e52e03297450e01161fb70b0475ca58c",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/pt-br/index.html",
+      "sha256": "8a1342256f7bf1d65832e32494b420628e7c2d7f98420b3df8f68274c3ec011e",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/pt-br/privacy/index.html",
+      "sha256": "fa036f1722f4c8aa4b1f917c8529e218494b845c772d13dbfb90ab737012eee1",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/pt-br/support/index.html",
+      "sha256": "36b28686bf282c64f391f7c58d4bc88009bcc8cd79211ddfa12ef397a48809c7",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/pt-br/terms/index.html",
+      "sha256": "6160e964d8b9d22cca8de2ba6b0801cbdfd85ca6c4fd5d3e327d73352e5dce16",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/pt-pt/index.html",
+      "sha256": "24a2cce672bf15b62d31e08b862e43cbeb070e7b86752cb2fb48401383da06cb",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/pt-pt/privacy/index.html",
+      "sha256": "880255e28792eeac9182c2a5264fc554f0c6891b6b5d30b2a8b32a84458b33a8",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/pt-pt/support/index.html",
+      "sha256": "53bb2d4c2fb9b132ebda2d9cc857a68252cbc46603eb6dfa14e0e40573c8df97",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/pt-pt/terms/index.html",
+      "sha256": "260719ef93308b9a65fd57435fd55df61245a97b8b797fcba1e6cf8a831ff7a8",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/ru/index.html",
+      "sha256": "dadf117e77a9eb44c1b0caf759a3a54283e23a426750cfe05504f38451b0326b",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/ru/privacy/index.html",
+      "sha256": "0f05b76536d222fad7160d71e20e1b16e5315c92c840f8edf94ad5d10aefc5de",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/ru/support/index.html",
+      "sha256": "af918fe4a00318c9f24fd0cd9a667b7efc8ca8e9f78ba9ff797cd8831f2f75bd",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/ru/terms/index.html",
+      "sha256": "df7749fe807d6a8fc3b3e9c4622107af3b4d591dc53c141a6c717d7958b9f2f8",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/styles.css",
+      "sha256": "278e46814edf3d460c3eea0c05616e668afd949c001909a38cfa237dfbac9b7e",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/support/index.html",
+      "sha256": "46b73659bda25b2242cba241a9f077f5ecd8846dc3cc293e08976e56a3c8dc5e",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/sv/index.html",
+      "sha256": "edc02c1c6d20cb417412610b8c61c1c2f32e3d95c40db94515032f6c32b5de71",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/sv/privacy/index.html",
+      "sha256": "98c5aa35c4ab1aec75d752ef8e7696d22010970edf1addc645f94e2c87675a5c",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/sv/support/index.html",
+      "sha256": "798931d42a0549c719d1d55c7dab37a78d89b0c54ae57c1e8d42f939c587a950",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/sv/terms/index.html",
+      "sha256": "8ec2f1434950e82d971c7145fa39b610ee8b1f3c88b41a88d772c163d0ea4485",
+      "byte_identical": true
+    },
+    {
+      "file": "Web/public/terms/index.html",
+      "sha256": "49c27e7a0a14c741f7419d040e2c43a502f5de7173a0543ea7a1c2562c805080",
+      "byte_identical": true
+    }
+  ]
+}

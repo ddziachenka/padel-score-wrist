@@ -5,8 +5,8 @@
 **Record type:** Builder domain audit (interim digital scope)
 **Milestone:** M25
 **Domain prompt:** AI/prompts/audit-release.md
-**Candidate:** 4f1689944480aadfad592629e3c8394a9582c6b7
-**Audited at:** 2026-10-30
+**Candidate:** f097a52d6a1154cf431156c30a81013a34d3cd47
+**Audited at:** 2026-10-31
 
 Builder self-review, not independent audit or release approval. The approved
 2026-10-29 workflow extension assigns all physical checks to M29; this is an
@@ -17,7 +17,7 @@ Final candidate/commands/counts will be bound in the M25 handoff and verificatio
 record; capture-source inputs are recorded in the material manifest.
 
 **Coverage result:** DIGITAL_IN_PROGRESS
-**Open P0/P1:** See findings; no unresolved product defect currently known.
+**Open P0/P1:** None currently identified in reviewed source. C1/C2 are corrected; f097 minimum/current Watch and complete current-phone20 pass. Both new gallery4 bundles, strict provenance/site checks and all42 visual reviews pass. The exact full milestone gate remains mandatory before DONE.
 
 ## Coverage
 
@@ -48,7 +48,7 @@ record; capture-source inputs are recorded in the material manifest.
 - REL-1008 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Live and local13locale terms retain Apple Standard EULA link and governance; no new legal or pricing policy introduced.
 - REL-1101 | OUTCOME=PENDING_DIGITAL | EVIDENCE=DEBUG fixture/premium guards and mandatory package checks; no production test path or credential added.
 - REL-1102 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Marketing1.0/local build3 consistently across targets; exact installed bundle/About expectations updated2→3, not loosened.
-- REL-1103 | OUTCOME=PENDING_DIGITAL | EVIDENCE=No known unresolved product P0/P1 after scoped fixes; current ASC privacy evidence now agrees; remaining native runs/full gate are still pending.
+- REL-1103 | OUTCOME=PENDING_DIGITAL | EVIDENCE=No known unresolved product P0/P1 after scoped fixes; current ASC privacy evidence now agrees; the exact full gate is still pending.
 - REL-1105 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Frozen explicit schemas1–4 migrate to5, validate before write, preserve backup/future files and local names/journal/usage. Physical previous-data recovery remains M29.
 - REL-1303 | OUTCOME=PENDING_DIGITAL | EVIDENCE=SessionFile/GestureScoring migration tests freeze1–4 shapes and preserve independent current/archive rosters, journal, score, usage; gestures OFF.
 - REL-1307 | OUTCOME=PENDING_DIGITAL | EVIDENCE=GesturePractice and CompanionDemo/Recovery models are memory-only with no real store/usage/entitlement/review dependencies; tab/cold-launch reset.
@@ -66,12 +66,21 @@ no internal installation is inferred from Simulator.
 
 ## Deferred P2 / future product ideas
 
-None added. No cloud sync, tournament standings or real phone scoring is introduced.
+P2 current StoreKit probe:19/21 definitions and28/30 invocations passed; two synthetic error/storefront assertions identically fail at the baseline. Raw failures and exact scope are in ../evidence/M25/storekit-current-runtime.md; no test, required gate or product error is excused. No cloud sync, tournament standings or real phone scoring is introduced.
 No final readiness or actual hardware result is claimed.
 
 ## Targeted re-audit
 
-Final affected/runtime/material re-audit follows completion of current runs.
+Frozen f097 fresh minimum-phone4/4, minimum-Watch492/492 definitions/942
+invocations, current-Watch498/498/948 and complete current-phone20/20 pass,
+exit0, all zero failed/skipped/expected/native runtime-warning counts. This
+includes26 language/theme pairs each for gesture/reset, maximum-text Help and
+both recovery journeys, actual eight-surface theme pixels and centered EN/DE/RU.
+The strict accepted native summaries/leaf counts are in runtime.md and
+native-supplements.json. Both gallery4 bundles, strict material/site checks and all42 final visual contact
+reviews pass. The unchanged full milestone gate remains required. The additional baseline-matched current StoreKit
+probe stays FAILED/P2; storekit-current-runtime.md records the exact boundaries.
+Physical evidence remains PENDING_M29.
 
 ## Validation
 

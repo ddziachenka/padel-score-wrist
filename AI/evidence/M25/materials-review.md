@@ -1,53 +1,82 @@
 # M25 material and local-site review
 
-Builder review of final shipping UI, not independent approval. All210 native
-images and28 creative compositions were visually inspected using fourteen Watch,
-fourteen phone and fourteen creative contact sheets. Contact sheets are diagnostic
-only under .artifacts/M25/; active native PNG bytes were never processed.
+Builder review, not independent approval. Final shipping/test capture source is
+`f097a52d6a1154cf431156c30a81013a34d3cd47`, build1.0(3). Both new gallery4
+bundles pass: Watch14/14 and phone2/2 definitions/invocations, exits0, all zero
+failed/skipped/expected/native runtime warnings. All112 Watch and98 phone originals
+and28 new compositions are visually reviewed in42 final contact sheets. Import,
+composition, site preparation, strict source/attachment/format validation and
+site-check pass, exit0. The unchanged full milestone gate remains required.
+Earlier4f/67f reviews are historical and are not credited as final-source review.
+The stale gallery3 rejection is superseded by the new source-matching pair;
+no fingerprint is relaxed.
 
-Watch: eight real scenes in each locale, consistent scores/teams/server context,
-optional OFF setup, corrected40–0 After, known1–0 start, unrestricted three sets,
-Americano13–10 and local history/dates. Phone: explicit simulation and limitations,
-actual Before/After preview, known-score boundary, centered Start entries, ordinary
-40–30/10–10 demos and permanent verified ownership. No generated UI, fake price,
-overall Match winner, real phone gameplay or global uniqueness claim.
+## Current Watch originals
 
-All28 creative outputs retain a five-finger hand with visible thumb/index contact,
-three other fingers and one wrist/strap. Native image and illustration stay
-separate. Localized words explicitly explain two contacts per series and one/two/
-third-series teams/cancel with the original3s window. Hardware requirements/default
-OFF are present. Footer and body boxes do not overlap the hand/native screen; no
-text is clipped. All14typeset compositions were inspected, including DE/RU/FI/NO.
-The single-pose picture is explanatory, not proof of actual recognition; M29 owns
-measured success rates, one-hour play, real hardware feedback and video.
+All14 native-size contact sheets are inspected: en_US,es_ES,es_MX,it_IT,fr_FR,
+pt_PT,pt_BR,nl_NL,de_DE,sv_SE,da_DK,fi_FI,nb_NO,ru_RU. The native bundle is
+.artifacts/M25/watch-gallery-4.xcresult, exit0,14/14 definitions/invocations,
+zero failed/skipped/expected/native runtime warnings. Exact source, device and
+UTC interval are in native-supplements.json. Contacts are diagnostic only under
+.artifacts/M25/; original native PNG bytes are never processed.
 
-The local prepared site was served on127.0.0.1:42525 only, using Python's standard
-HTTP server; nothing was deployed. CUA/Chrome checked all thirteen observed language
-routes at375×900 and1280×900. All26 route/width combinations have one h1,eight
-native images, nonempty alt text, no main heading/paragraph/figure overflow and
-scrollWidth exactly equal to the viewport. Real375px English and1280px Russian
-hero/recovery sections were visually inspected. All eight Russian originals were
-brought into view and loaded at natural width368. Browser viewport override was
-reset after the check. An expanded current-source site matrix below also renders
-the Dark CSS branch in an isolated preview. Native app Light/Dark coverage has
-its own current/minimum actual-pixel matrices.
+The eight scenes show gesture-enabled0–0 real score; optional per-game OFF setup;
+agreed30–15 Points editor; correction After40–0; unrestricted6–4/4–6/6–3 sets
+with no invented overall winner; Americano13–10; known1–0 games with explicit
+Partner serving; and local history. Teams, scores, service and locale states agree.
+The neutral next-server labels confirm C1 correction across languages, including
+EN/ES/IT/FR/PT/DE/FI. Natural form/result viewports retain more content below the
+screen boundary; full explanations and actions remain scrollable. No original
+is cropped or reconstructed to conceal that behavior.
 
-The new gesture section keeps ordinary tap-team/Undo guidance from the approved
-phone catalog. Previous truthful format/history/offline/deletion/independence facts,
-neutral purchase notice, legal/support links and Apple Standard EULA remain.
-Localized support and privacy additions describe names/journals/checkpoints and
-memory-only pending gestures/practice/simulation without adding a collection claim.
-Live52/52 page availability is separately recorded in public-site-readback.json;
-new drafts are not falsely called published. Current authenticated ASC App Privacy
-readback confirms Data Not Collected, with the exact policy URL.
+## Current phone and creative review
 
-Nonblocking M25-C1 next-server grammatical agreement remains in the content audit.
-Natural Watch form viewports may continue below the captured screen; the screenshots
-are originals, full explanatory story text/captions is outside the native image,
-and the actual app's remaining content is scrollable. No mandatory native audit is
-exempted because of that observation. Final strict material/source checks and the
-unchanged complete milestone gate remain required.
+Final phone narrative: explicit gesture simulation and limitations; real Before/
+After correction; known-score/checkpoint boundary; centered Start actions; ordinary
+40–30/10–10 demos; and permanent verified owned Access. Complete current UI20
+already passes, including actual themes, all26 localized Reset pairs, all26
+largest Help pairs and all26 recovery pairs. EN/DE/RU center/Help originals have
+been inspected separately. The final14-region gallery passes2/2 native tests, exit0; all98 originals in
+14 fresh contact sheets are visually inspected. Localized Reset, centered Start,
+real preview/known-score facts, demos and verified ownership agree. Older phone
+screenshots are not substituted.
 
+Three imagegen directions, exact prompts and selected refined artwork are retained.
+The selected picture shows one five-finger hand, thumb/index contact, three other
+fingers and one wrist/strap. It is explanatory, not measured recognition evidence.
+Native screens and illustration remain separate. The deterministic compositions
+use localized app-catalog words explaining TWO contacts per series, one/two/third
+series and the original3s window; optional/OFF and hardware requirements remain.
+All28 final outputs are regenerated from the new pair; all14 creative contact
+sheets are visually inspected, including long DE/RU/FI/NO copy. Text boxes remain
+separate from hand/native image, without overlapping/clipped typeset words. No generated app screen, fake price, phone gameplay or global
+uniqueness claim is accepted. Actual recognition/feedback/play/video remain M29.
+
+## Copy, privacy and external boundary
+
+Fourteen metadata drafts retain title/subtitle/keywords and neutral evergreen
+Promotional Text, with factual gesture-first descriptions and existing truthful
+format/history/offline/legal/purchase information. The3381-character Review Notes
+field is a local draft, distinct from factual M30 response context. Owner context
+records4–6 recreational games/month and initial competitor research; the old
+no-research sentence must not be sent. No exclusivity or guaranteed review outcome
+is claimed. New store/site/review materials are not uploaded, published or sent.
+
+The prepared site adds ordinary tap/Undo alongside optional gestures, with names/
+journals/checkpoints and memory-only pending/practice/simulation privacy wording.
+All thirteen routes retain prior truthful scoring, service, history, independence,
+offline, deletion and purchase information; terms retain Apple Standard EULA.
+Live52/52 URL availability is the separate GET-only snapshot in
+public-site-readback.json. Authenticated ASC App Privacy at2026-10-30T10:08:50Z
+says Data Not Collected with the matching policy URL; asc-privacy-readback.md
+records direct UI evidence and its exact boundary. New local content is not falsely
+called published. After final gallery4 site preparation, check-site-layout-identity.py passes exit0:
+all52 HTML pages and CSS are byte-identical to the recorded browser proof source.
+site-layout-identity.json binds that prior208-combination layout/palette check to
+these final53 files. This is an identity comparison, not a new browser run; native
+PNG provenance/dimensions are validated separately.
+
+## Format references
 
 Current Apple format references were read on2026-10-30. The
 [creative specification](https://developer.apple.com/help/app-store-connect/reference/app-information/creative-assets-specifications)

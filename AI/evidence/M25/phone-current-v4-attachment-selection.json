@@ -1,0 +1,691 @@
+{
+  "source_sha": "f097a52d6a1154cf431156c30a81013a34d3cd47",
+  "result_bundle": ".artifacts/M25/phone-current-ui-final-v4.xcresult",
+  "export_directory": ".artifacts/M25/phone-current-ui-final-v4-attachments",
+  "durable_originals": {
+    "centered-recovery-current.png": {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "CFC657F0-3579-4B31-B238-42B8C64E1B5F.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-en-false-phone.start_0_BE434581-F5B0-49BC-A174-F84724351F98.knownScore",
+      "timestamp": 1793405305.358,
+      "durable_file": "AI/evidence/M25/centered-recovery-current.png",
+      "sha256": "4a475c2658af9dda015affcd128d0bf879b4f90a2437c18e7b1ec9bee41acfe0"
+    },
+    "help-largest-current-light.png": {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "68E894E4-13AB-455F-924C-75B9361F0C9F.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-en_US-false-top_0_257E4655-4878-42C4-8840-8518C56C5E00.png",
+      "timestamp": 1793405444.76,
+      "durable_file": "AI/evidence/M25/help-largest-current-light.png",
+      "sha256": "421981438d6b501aa9dbca8671dd7ac5eb2b653a6272fb5866cf5c2a4fbfa301"
+    },
+    "help-largest-current-dark.png": {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "0FDCD8B6-E43B-4019-9A5D-2527B89FCA78.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-en_US-true-top_0_5AC17510-698B-43E3-8365-4D8DF46A4471.png",
+      "timestamp": 1793405507.074,
+      "durable_file": "AI/evidence/M25/help-largest-current-dark.png",
+      "sha256": "f08ccd244cc29b0ad65d538ad63cd2609d4476d9987332d8c14c79273434ddb8"
+    }
+  },
+  "attachments": [
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "EC005CB9-940D-440F-B434-E33312B3F642.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-ru-true-phone.start_0_01E30220-CC7B-4A7C-BDDF-3CFBE682E321.knownScore",
+      "timestamp": 1793405386.091
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "73309CC7-F902-4AEB-A3C3-41187C758455.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-ru-true-phone.start_0_154895DB-D69E-49B5-A314-BCCB98B334E4.correction",
+      "timestamp": 1793405381.847
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "C82E94FC-406A-4506-B8C8-DEA56DE25CDC.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-ru-true-phone.start_0_5CDD9FDB-E064-4EA7-AE76-8957C4EB43E6.gestures",
+      "timestamp": 1793405380.31
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "FFE1E8A1-E15D-4436-8E7B-64D5400D89B7.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-de-true-phone.start_0_56E69225-0F43-4543-808D-E9A7ACB22F1A.knownScore",
+      "timestamp": 1793405361.901
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "65E68621-BA81-4CC0-BAC8-F9879F0100E5.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-de-true-phone.start_0_2F05616A-E4E1-4AAA-B825-DBF6C4688C04.correction",
+      "timestamp": 1793405357.649
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "134BEE1E-A5BC-4240-9E28-DFC1D87C44E1.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-de-true-phone.start_0_830C7A4C-9E19-4938-A835-E38ED1957862.gestures",
+      "timestamp": 1793405356.089
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "1C0E8CA3-FC70-4F9F-AF2B-04CF4CE3ADC9.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-en-true-phone.start_0_DDED3338-C5EA-4746-980B-872F6CFE94AC.knownScore",
+      "timestamp": 1793405326.949
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "E350BB41-C74F-4906-8F20-AD0C502C78F9.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-en-true-phone.start_0_D8AB46E4-B122-48C6-B978-E2EFF692DF9B.correction",
+      "timestamp": 1793405325.408
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "2C312812-E8F5-4A2A-928F-CAD5B9F70F93.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-en-true-phone.start_0_DD18900C-6AA6-4BEA-A67E-8B9BC5DC1071.gestures",
+      "timestamp": 1793405321.132
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "CFC657F0-3579-4B31-B238-42B8C64E1B5F.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-en-false-phone.start_0_BE434581-F5B0-49BC-A174-F84724351F98.knownScore",
+      "timestamp": 1793405305.358,
+      "durable_file": "AI/evidence/M25/centered-recovery-current.png",
+      "sha256": "4a475c2658af9dda015affcd128d0bf879b4f90a2437c18e7b1ec9bee41acfe0"
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "A14DEAC2-D677-4577-91B3-2E93C4AF9E1B.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-en-false-phone.start_0_C715E6A1-DD08-45F8-BC4C-FEE526647798.correction",
+      "timestamp": 1793405303.823
+    },
+    {
+      "test": "CompanionUITests/testM25CenteredRecoveryEntriesRemainReachableAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "46B8C1A6-15E8-497D-8CF9-9A5593588F00.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-centered-en-false-phone.start_0_FB5C9985-F46F-408C-8010-05D717C06E26.gestures",
+      "timestamp": 1793405302.299
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "8D7D5341-D1F3-4786-AFD6-51E8ECF39E15.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-ru_RU-true-footer_0_1042895A-F390-44D6-84EE-FD8305C77848.png",
+      "timestamp": 1793407097.203
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "58FDD802-AEC2-457F-8CB5-E8077C08E953.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-ru_RU-true-top_0_3FA70F5B-0B13-4961-8B02-0F5D1061A500.png",
+      "timestamp": 1793407075.936
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "B772AE56-6F83-4ECA-9487-B264A3F499AE.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-ru_RU-false-footer_0_2210B268-FDF3-41CA-82F3-18D57DC0D17F.png",
+      "timestamp": 1793407026.552
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "B4C8B7D6-E259-4B91-AAB7-0CEDDBBFBD97.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-ru_RU-false-top_0_4C327CE9-ECA6-49F2-BBDA-F96384E5D2FB.png",
+      "timestamp": 1793407005.235
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "5E8AD6FB-47F7-496A-8D55-80374E4F34E3.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-nb_NO-true-footer_0_6F930F9F-A3ED-410D-903D-518D57F8167B.png",
+      "timestamp": 1793406954.409
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "4CBF7B0A-DD2F-4524-8A25-5EC862C9090D.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-nb_NO-true-top_0_64D2E9D8-65AE-4CAA-84B2-1E27266D8502.png",
+      "timestamp": 1793406935.818
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "3545BED3-EFBC-4DA0-845A-AE09C2A4116F.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-nb_NO-false-footer_0_732757CF-5B96-450A-8897-DE893B18BB8B.png",
+      "timestamp": 1793406892.383
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "83428069-764E-4F70-A88B-3028E52D952F.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-nb_NO-false-top_0_22044251-AA3B-41A7-B8A2-7D6315DF7D97.png",
+      "timestamp": 1793406873.047
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "2C334757-4AB7-4699-AEBA-D640C3B6ADDB.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-fi_FI-true-footer_0_88BE3F49-C1DD-4D8A-AA9D-A6D53A14E4A7.png",
+      "timestamp": 1793406828.263
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "53D5E859-C737-488C-8BDF-7946F9FFEC54.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-fi_FI-true-top_0_A5711874-AE1F-412D-A0A0-3E31549E8C6E.png",
+      "timestamp": 1793406807.575
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "48837D31-F7F6-48B7-8544-61F3E0C0AF85.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-fi_FI-false-footer_0_3C1385D0-4548-4441-9C4E-BA46B3E70CA9.png",
+      "timestamp": 1793406761.867
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "F7BE3302-3262-42AE-8618-DFE0F612AC02.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-fi_FI-false-top_0_E9A825EA-8559-4B62-9A18-CB7ED6D98D54.png",
+      "timestamp": 1793406741.045
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "E97C7B5E-DDAA-4DCE-9CA6-04106713CEBE.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-da_DK-true-footer_0_AD974F5E-BB75-43CA-9DFA-CD2AA1BCB6EE.png",
+      "timestamp": 1793406695.079
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "20A47880-F801-483C-9A0A-AE5765961B5D.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-da_DK-true-top_0_C26E3C1A-99E1-46C5-A1FC-21968E693AFF.png",
+      "timestamp": 1793406677.553
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "B56E01F4-E8EE-4492-ADA5-C818CC2F9DE8.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-da_DK-false-footer_0_3EDB3EEB-ACAA-47E5-A7A0-94A14F5C1008.png",
+      "timestamp": 1793406634.494
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "7D9BDCCF-27DE-419B-8228-5A4A24FB4960.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-da_DK-false-top_0_4B2D172E-D1B7-41A7-8961-5D7AE6B698FF.png",
+      "timestamp": 1793406617.002
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "55E745D6-292A-483B-B9AC-74BDF0A74AEA.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-sv_SE-true-footer_0_3FA59E70-5451-4D91-BBA5-AD1559FA0187.png",
+      "timestamp": 1793406573.265
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "7EDC84DD-6765-46C0-91A0-BC6230B6B18D.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-sv_SE-true-top_0_830AA38F-56A9-418C-89D1-F26EF59A9ABD.png",
+      "timestamp": 1793406552.25
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "820B2B90-3AA2-4F14-A964-0CE259F77DC9.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-sv_SE-false-footer_0_3F4D3B5A-7852-4DDD-9DBE-7AACC7F51A45.png",
+      "timestamp": 1793406508.786
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "BA97E069-D927-4595-9137-118F808E8E65.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-sv_SE-false-top_0_02A81C6A-EDEB-44D7-BD6A-4311CE1BA851.png",
+      "timestamp": 1793406487.985
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "4345D93D-7979-4E79-9ADD-8F14BF93F89B.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-de_DE-true-footer_0_411E4066-99C5-4E99-8755-757182C42206.png",
+      "timestamp": 1793406445.013
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "D669A8FD-C189-434F-889F-984F4DF3B4C5.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-de_DE-true-top_0_7F740604-D8AB-46DA-9DD0-CD0F4DDCE385.png",
+      "timestamp": 1793406424.6
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "16DEE622-5B63-4EFC-BA1C-B4534CB0F135.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-de_DE-false-footer_0_ED2A8C16-6309-48D2-91DE-1DDBC8838237.png",
+      "timestamp": 1793406377.2
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "4A647B40-388B-489A-BEA4-F1144B3E4BEC.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-de_DE-false-top_0_8D9E1023-0F1D-4F5B-BB6D-497C35E20041.png",
+      "timestamp": 1793406356.802
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "F897364E-0AAE-42A0-9B67-C4AEF63742B7.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-nl_NL-true-footer_0_4D650D3B-C065-41F9-A458-7EFB0B0F32EB.png",
+      "timestamp": 1793406307.979
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "BA90F55E-A508-411C-B9EB-50BE8A3AA0A2.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-nl_NL-true-top_0_05EA9343-3998-4324-962A-34CB4A1C487D.png",
+      "timestamp": 1793406287.374
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "13147EB2-3782-4DA4-AC6B-6F362899C59F.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-nl_NL-false-footer_0_3D94971A-B922-4E30-BE0D-5AFE2EB1A740.png",
+      "timestamp": 1793406243.504
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "E9C0ADA7-6CBA-47DA-B7FA-361953C1400A.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-nl_NL-false-top_0_AB9E1554-82D4-418C-9B2D-9BE7D6E87C9F.png",
+      "timestamp": 1793406222.945
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "60398970-A416-4003-A49C-A3978CAA1A23.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-pt_BR-true-footer_0_D949DE33-2454-4C70-ACCE-C96CC4260971.png",
+      "timestamp": 1793406179.612
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "3812482F-29C1-43F5-9D4B-86B780CDB57C.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-pt_BR-true-top_0_42F1AA55-6E54-4913-8658-1B6867CDF3EC.png",
+      "timestamp": 1793406159.413
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "EFACD305-3BFB-4BFC-84A1-E34703793933.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-pt_BR-false-footer_0_FC254974-80F9-46FD-9239-5AC1937F420F.png",
+      "timestamp": 1793406114.461
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "0055C90B-5F36-4C2C-95BF-D9F023504981.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-pt_BR-false-top_0_5AC5390B-00FD-42C4-91D4-95F0BE7E9091.png",
+      "timestamp": 1793406094.085
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "4025DE28-476D-4366-AEDA-1B475F364650.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-pt_PT-true-footer_0_FF9D3F61-C15B-477F-8343-5BBDC8F57468.png",
+      "timestamp": 1793406050.025
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "DF25984E-772B-4A5B-8B6C-779901148CD2.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-pt_PT-true-top_0_DFF9F3C4-2D35-4DDB-B650-BE98B52C70C0.png",
+      "timestamp": 1793406029.762
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "2B8F8088-D198-4D1E-B077-68E950C4ED82.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-pt_PT-false-footer_0_AE0D9D68-A7B7-461C-B5CD-ED3EC1E9EA2D.png",
+      "timestamp": 1793405985.488
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "F318321C-4C96-4574-BD76-73D56C5BE612.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-pt_PT-false-top_0_BE5194A8-C1D5-4542-B8E2-E9A982D35F81.png",
+      "timestamp": 1793405965.041
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "7B74D467-91C2-4D9F-B60B-3A102DF016D7.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-fr_FR-true-footer_0_FABF3892-2C2B-46D5-A396-41DC440153AF.png",
+      "timestamp": 1793405920.988
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "F3D5C936-6B06-4037-8D3E-40687BC17275.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-fr_FR-true-top_0_4B88F9F0-D08F-43D7-B6B4-D70657B8B7A9.png",
+      "timestamp": 1793405899.041
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "86B6EA8A-53E7-488B-80FE-55971BE95484.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-fr_FR-false-footer_0_705AC226-A7B1-4919-91AB-A4E8CA765428.png",
+      "timestamp": 1793405853.121
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "5A79269B-F02B-45C0-98F2-C83D523E4E87.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-fr_FR-false-top_0_EF8CD4D1-DB12-4A9E-86A9-AF84413E33B4.png",
+      "timestamp": 1793405830.782
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "99CBA72A-9B78-44D6-A8C6-1B4482CD4F8B.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-it_IT-true-footer_0_C7EE7D15-76FA-424C-A7CB-307B0A7EEF67.png",
+      "timestamp": 1793405784.6
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "1FBF9B7C-3FEC-4DF6-AE40-3DAFCCAB0C2E.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-it_IT-true-top_0_9A0FE26D-78D6-47F2-AB90-26BB34B26EBF.png",
+      "timestamp": 1793405764.053
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "38C356F5-EFD2-4104-B159-0C178A94701B.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-it_IT-false-footer_0_25CC3BEC-C317-4F29-A107-581F403BCB12.png",
+      "timestamp": 1793405720.513
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "E03F6FBE-9149-4EE9-A866-AD6A1A2C3524.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-it_IT-false-top_0_40BA3774-7E95-4DA2-899B-27DCBCA54230.png",
+      "timestamp": 1793405699.229
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "B10B5268-479B-4F69-A302-CEF013F98708.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-es_ES-true-footer_0_41CD76FB-5CD6-4604-8803-B59B9C8FED82.png",
+      "timestamp": 1793405655.523
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "5E0ECE7D-1DEF-4C35-9085-1C998982CB1F.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-es_ES-true-top_0_26ECD96A-8B69-41B7-B7E9-DD849B9623EB.png",
+      "timestamp": 1793405634.422
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "E440A8E2-2DAC-4B70-8D09-1864942FAEDC.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-es_ES-false-footer_0_D0725E62-D4AE-4713-895F-DE473FD66100.png",
+      "timestamp": 1793405590.115
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "DBFF217F-ABDF-4B6D-A91D-9D96DED6C96F.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-es_ES-false-top_0_0F983473-67B0-4D62-ACAE-484C03E910E4.png",
+      "timestamp": 1793405569.57
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "0C9C5631-8300-42B6-9AE9-364FDB0BB69C.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-en_US-true-footer_0_1CD2C1B9-FD98-4FAF-8224-A6507F9ED36C.png",
+      "timestamp": 1793405525.603
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "0FDCD8B6-E43B-4019-9A5D-2527B89FCA78.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-en_US-true-top_0_5AC17510-698B-43E3-8365-4D8DF46A4471.png",
+      "timestamp": 1793405507.074,
+      "durable_file": "AI/evidence/M25/help-largest-current-dark.png",
+      "sha256": "f08ccd244cc29b0ad65d538ad63cd2609d4476d9987332d8c14c79273434ddb8"
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "B43E6C83-CB67-4A40-BF1E-FCC281EA4B37.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-en_US-false-footer_0_9F2A7A34-843D-4633-91A4-B7CB26AC8F44.png",
+      "timestamp": 1793405463.514
+    },
+    {
+      "test": "CompanionUITests/testM25LocalizedHelpAtLargestTextInBothAppearances()",
+      "configurationName": "Default",
+      "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+      "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "68E894E4-13AB-455F-924C-75B9361F0C9F.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "m25-help-largest-en_US-false-top_0_257E4655-4878-42C4-8840-8518C56C5E00.png",
+      "timestamp": 1793405444.76,
+      "durable_file": "AI/evidence/M25/help-largest-current-light.png",
+      "sha256": "421981438d6b501aa9dbca8671dd7ac5eb2b653a6272fb5866cf5c2a4fbfa301"
+    }
+  ]
+}

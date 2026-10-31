@@ -5,8 +5,8 @@
 **Record type:** Builder domain audit (interim digital scope)
 **Milestone:** M25
 **Domain prompt:** AI/prompts/audit-ui-ux.md
-**Candidate:** 4f1689944480aadfad592629e3c8394a9582c6b7
-**Audited at:** 2026-10-30
+**Candidate:** f097a52d6a1154cf431156c30a81013a34d3cd47
+**Audited at:** 2026-10-31
 
 Builder self-review, not independent audit or release approval. The approved
 2026-10-29 workflow extension assigns all physical checks to M29; this is an
@@ -17,7 +17,7 @@ Final candidate/commands/counts will be bound in the M25 handoff and verificatio
 record; capture-source inputs are recorded in the material manifest.
 
 **Coverage result:** DIGITAL_IN_PROGRESS
-**Open P0/P1:** See findings; no unresolved product defect currently known.
+**Open P0/P1:** None currently identified in reviewed source. C1/C2 are corrected; f097 minimum/current Watch and complete current-phone20 pass. Both new gallery4 bundles, strict provenance/site checks and all42 visual reviews pass. The exact full milestone gate remains mandatory before DONE.
 
 ## Coverage
 
@@ -33,8 +33,8 @@ record; capture-source inputs are recorded in the material manifest.
 - REL-604 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Original native contrast categories retained on both supported phone themes and Watch dark surface; Start findings corrected with measured opaque semantic labels.
 - REL-605 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Native hit-region audits and explicit44pt centered controls; Watch scrolling/reflow tests preserve tap reachability.
 - REL-606 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Labels, numbers, disabled states, Pending team text, score/service/Undo announcements carry meaning independently of lime.
-- REL-701 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Watch is approved dark-only. Phone real screenshot-margin pixels must prove Dark on7surfaces and every themed locale-matrix capture.
-- REL-702 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Phone real screenshot-margin pixels must prove Light on7surfaces and every themed locale-matrix capture. Watch light appearance is outside approved design.
+- REL-701 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Watch is approved dark-only. Phone real screenshot-margin pixels prove Dark on8surfaces and every themed locale-matrix capture.
+- REL-702 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Phone real screenshot-margin pixels prove Light on8surfaces and every themed locale-matrix capture. Watch light appearance is outside approved design.
 - REL-703 | OUTCOME=PENDING_DIGITAL | EVIDENCE=40mm Watch/minimum OS and SE3/iOS17 smallest-phone runtime checks; long body measurement and largest-text reflow inspected.
 - REL-704 | OUTCOME=INAPPLICABLE | EVIDENCE=reason=No iPad target/layout is approved or shipped; phone UIDeviceFamily is iPhone.
 - REL-705 | OUTCOME=INAPPLICABLE | EVIDENCE=reason=Phone is portrait-only; Watch uses system wrist/Crown orientation, not an application landscape layout.
@@ -61,7 +61,16 @@ No final readiness or actual hardware result is claimed.
 
 ## Targeted re-audit
 
-Final affected/runtime/material re-audit follows completion of current runs.
+Frozen f097 fresh minimum-phone4/4, minimum-Watch492/492 definitions/942
+invocations, current-Watch498/498/948 and complete current-phone20/20 pass,
+exit0, all zero failed/skipped/expected/native runtime-warning counts. This
+includes26 language/theme pairs each for gesture/reset, maximum-text Help and
+both recovery journeys, actual eight-surface theme pixels and centered EN/DE/RU.
+The strict accepted native summaries/leaf counts are in runtime.md and
+native-supplements.json. Both gallery4 bundles, strict material/site checks and all42 final visual contact
+reviews pass. The unchanged full milestone gate remains required. The additional baseline-matched current StoreKit
+probe stays FAILED/P2; storekit-current-runtime.md records the exact boundaries.
+Physical evidence remains PENDING_M29.
 
 ## Validation
 

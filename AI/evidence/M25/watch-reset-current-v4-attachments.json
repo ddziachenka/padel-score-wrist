@@ -1,0 +1,138 @@
+{
+  "source_sha": "f097a52d6a1154cf431156c30a81013a34d3cd47",
+  "result_bundle": ".artifacts/M25/watch-current-v4.xcresult",
+  "export_directory": ".artifacts/M25/watch-current-v4-attachments",
+  "review": "All13 actual 324x394 current-watchOS originals inspected at native size; translated Reset remains fully visible, including German two-line wrapping at maximum Dynamic Type. Native system scrolling title/fade retained. No native image edited.",
+  "attachments": [
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "D4A3430D-0062-407F-A3AE-4066CE07DCA5.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text ru_0_54E21541-4762-415C-9B23-6CBFD9C8D02B.png",
+      "timestamp": 1793400542.637
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "7C78610A-D220-4557-A566-1CFDD969D3CC.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text nb_0_D0CEB14C-E48C-4CA9-89A9-E981D810904D.png",
+      "timestamp": 1793400497.314
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "5040D370-987B-4E94-81D1-5EAF52489BBF.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text fi_0_C88CF360-CCED-42CC-B3F6-71C63203FEB5.png",
+      "timestamp": 1793400457.737
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "BF49032B-58D7-4C55-BCE4-1A2EF90720E0.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text da_0_DCDFF995-14AF-43BC-9DB9-4EEC91E3DE92.png",
+      "timestamp": 1793400412.867
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "F9F07F85-3A31-4591-B5F8-689C30F83BEF.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text sv_0_87C4A626-6961-436C-A42A-CD8E6250C648.png",
+      "timestamp": 1793400370.123
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "4145DA4B-69E8-4B2B-A9BD-9BA925833803.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text de_0_B0DDA6A2-4627-4729-9761-D539687EDF06.png",
+      "timestamp": 1793400329.694
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "BD1F004C-AE47-4D76-B247-B7FB9F2A9417.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text nl_0_E6BB286E-5B11-4FF1-9288-D90CCE527FA0.png",
+      "timestamp": 1793400284.389
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "DC83A152-50C6-4765-9F79-9422150549D2.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text pt-BR_0_5D1E79F8-DFA0-4853-8E56-29BAE65FBF12.png",
+      "timestamp": 1793400241.981
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "D5D94D35-5FBC-4F9A-8034-8BC25E8E73BE.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text pt-PT_0_D2EC7CA4-E401-48B6-8F4B-CA24952E4302.png",
+      "timestamp": 1793400197.883
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "BD7B1BA6-47D1-482D-AEE6-D7112CC971AF.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text fr_0_42934891-B8D3-402E-BD58-DF78636D1174.png",
+      "timestamp": 1793400155.16
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "8C3E8492-496F-4087-94FB-4F58CADF4981.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text it_0_235A356A-30A2-41AF-B3A9-5B7E80966836.png",
+      "timestamp": 1793400111.401
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "981FD7E7-0C8F-4358-9166-AF09DD31D40C.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text es_0_CBC0E04C-6A3C-4147-BC5B-573D610E55B4.png",
+      "timestamp": 1793400068.817
+    },
+    {
+      "test": "GestureScoringUITests/testPracticeResetAllLocalesAtLargestText()",
+      "configurationName": "Default",
+      "deviceId": "36C94878-A329-4B51-92E9-4D72A40B178B",
+      "deviceName": "iosai-padel-score-m16-watch-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+      "exportedFileName": "1D3B354A-9366-4338-9F59-6E3C34A35930.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "Localized practice reset largest text en_0_B9FFB51D-3134-4198-A084-1C6957CD7CB6.png",
+      "timestamp": 1793400021.927
+    }
+  ]
+}

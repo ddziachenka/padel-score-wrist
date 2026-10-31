@@ -5,8 +5,8 @@
 **Record type:** Builder domain audit (interim digital scope)
 **Milestone:** M25
 **Domain prompt:** AI/prompts/audit-functional.md
-**Candidate:** 4f1689944480aadfad592629e3c8394a9582c6b7
-**Audited at:** 2026-10-30
+**Candidate:** f097a52d6a1154cf431156c30a81013a34d3cd47
+**Audited at:** 2026-10-31
 
 Builder self-review, not independent audit or release approval. The approved
 2026-10-29 workflow extension assigns all physical checks to M29; this is an
@@ -17,11 +17,11 @@ Final candidate/commands/counts will be bound in the M25 handoff and verificatio
 record; capture-source inputs are recorded in the material manifest.
 
 **Coverage result:** DIGITAL_IN_PROGRESS
-**Open P0/P1:** See findings; no unresolved product defect currently known.
+**Open P0/P1:** None currently identified in reviewed source. C1/C2 are corrected; f097 minimum/current Watch and complete current-phone20 pass. Both new gallery4 bundles, strict provenance/site checks and all42 visual reviews pass. The exact full milestone gate remains mandatory before DONE.
 
 ## Coverage
 
-- REL-101 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Fresh managed Watch gallery device plus pending fresh iOS17 phone profile; Bootstrap/NewGame and optional Access first-launch journeys.
+- REL-101 | OUTCOME=PENDING_DIGITAL | EVIDENCE=Owned Watch first-launch/empty-store journeys and passing fresh iOS17 first-install4-case profile; Bootstrap/NewGame and optional Access first-launch journeys.
 - REL-102 | OUTCOME=PENDING_DIGITAL | EVIDENCE=NewGameUITests, HistoryUITests and CompanionUITests optional first launch; no forced paywall or onboarding.
 - REL-103 | OUTCOME=INAPPLICABLE | EVIDENCE=reason=No previously shipped public version; app1.0 is rejected. Development schema migration is covered separately.
 - REL-104 | OUTCOME=PENDING_DIGITAL | EVIDENCE=SessionFileTests/SessionRepositoryTests frozen schemas1–4, realistic history/long journals, damaged/future state and atomic backup/recovery.
@@ -59,7 +59,7 @@ record; capture-source inputs are recorded in the material manifest.
 
 ## Findings and fixes
 
-No new scoring/persistence defect found in source review. New capture-fixture underscores were rejected by the existing safe-name guard; fixed only the caller. Two exact installed build expectations were found stale after build3 increment and corrected to exactly3 after frozen captures finished. Minimum-watchOS largest-text setup navigation exposed the helper's short drag budget; the unchanged visibility predicate now passes its targeted reproduction, with full fresh minimum/current suites still required.
+No new scoring/persistence defect found in source review. New capture-fixture underscores were rejected by the existing safe-name guard; fixed only the caller. Two exact installed build expectations were found stale after build3 increment and corrected to exactly3 after frozen captures finished. Minimum-watchOS largest-text setup navigation exposed the helper's short drag budget; the unchanged visibility predicate now passes its targeted reproduction, with historical minimum/current Watch supplements490/928 and496/934; new f097 minimum492/942 and current498/948 both pass. Phone full gate remains required.
 
 Full failure/reproduction history: [work log](../evidence/M25/work-log.md).
 Final-targeted native centered checks: [runtime](../evidence/M25/runtime.md).
@@ -69,12 +69,26 @@ no internal installation is inferred from Simulator.
 
 ## Deferred P2 / future product ideas
 
-None added. No cloud sync, tournament standings or real phone scoring is introduced.
+P2 current-runtime StoreKit compatibility probe: two synthetic error/storefront
+assertions fail identically at the baseline. The additional probe remains FAILED;
+the required full gate is unchanged. See
+[exact bounded evidence](../evidence/M25/storekit-current-runtime.md). Actual
+current-device purchase/network/storefront checks remain mandatory in M29.
+No cloud sync, tournament standings or real phone scoring is introduced.
 No final readiness or actual hardware result is claimed.
 
 ## Targeted re-audit
 
-Final affected/runtime/material re-audit follows completion of current runs.
+Frozen f097 fresh minimum-phone4/4, minimum-Watch492/492 definitions/942
+invocations, current-Watch498/498/948 and complete current-phone20/20 pass,
+exit0, all zero failed/skipped/expected/native runtime-warning counts. This
+includes26 language/theme pairs each for gesture/reset, maximum-text Help and
+both recovery journeys, actual eight-surface theme pixels and centered EN/DE/RU.
+The strict accepted native summaries/leaf counts are in runtime.md and
+native-supplements.json. Both gallery4 bundles, strict material/site checks and all42 final visual contact
+reviews pass. The unchanged full milestone gate remains required. The additional baseline-matched current StoreKit
+probe stays FAILED/P2; storekit-current-runtime.md records the exact boundaries.
+Physical evidence remains PENDING_M29.
 
 ## Validation
 

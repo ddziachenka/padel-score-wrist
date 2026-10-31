@@ -1,0 +1,1094 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "05E84C8A-02C9-45C6-BBCE-BBEE6B7F60BD.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-da_DK-08-history_0_9F8280DC-3FB4-4950-A0AE-7424791B498E.png",
+        "timestamp": 1793389659.196
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "77BB6F63-91B9-4152-9B44-06B870F755F6.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-da_DK-07-known-score_0_D33A8987-532C-4284-9C98-DD1AD2646091.png",
+        "timestamp": 1793389636.439
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A494A3E4-E8A0-4714-9261-12B8E6174097.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-da_DK-06-americano_0_BDE130D3-6A97-4972-A5DC-FB1462841403.png",
+        "timestamp": 1793389565.894
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "EDD5CCD2-0D26-4FA6-BB3F-C595EB2ED148.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-da_DK-05-sets_0_550151D6-EABB-47AA-AC95-FF9C6D0D1D0E.png",
+        "timestamp": 1793389560.679
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "56D0B322-1D61-42AE-A459-8E0E80CD5052.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-da_DK-04-rally-correction_0_580A4962-8A87-49EA-8DE9-5234595D165E.png",
+        "timestamp": 1793389546.76
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "5AB2E0AB-1B0E-49B6-BF44-8AADD4880547.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-da_DK-03-agreed-score_0_A64C5283-7127-40E0-82D0-BBB5509699E3.png",
+        "timestamp": 1793389521.159
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "9053B6B5-E2F5-4340-B296-BD47E6CEC82F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-da_DK-02-opt-in_0_42432631-302D-4224-A330-FC1831BE9AB4.png",
+        "timestamp": 1793389507.953
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "12EE0CEA-74FE-4045-A307-D8BC7F2DDEBE.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-da_DK-01-gesture_0_2489B5F3-DE49-4989-B12A-FCAEB46B8925.png",
+        "timestamp": 1793389491.44
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GallerydaDK()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GallerydaDK"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "0AB0720F-E4AE-4770-A1E9-41AA1C311557.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-de_DE-08-history_0_D8B08008-BCA2-4F60-922D-7B76F5B96AA1.png",
+        "timestamp": 1793389845.136
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A163AACC-0404-44B4-BC44-7A984B4B55D3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-de_DE-07-known-score_0_9CEAEE17-76FC-4888-B778-7052E32D781E.png",
+        "timestamp": 1793389821.065
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "62213C1D-5248-4628-9FD4-181DD881CD6D.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-de_DE-06-americano_0_ED783409-F9E7-4BEC-9C99-432C3FD1DE73.png",
+        "timestamp": 1793389743.14
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "0FB43F1C-3781-4108-BD05-BE95344DE588.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-de_DE-05-sets_0_05F4CDAB-7ECD-4E41-9807-1F3A39FFCA1D.png",
+        "timestamp": 1793389737.733
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "703D01BE-0526-48B8-9BC5-43AF947F50FE.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-de_DE-04-rally-correction_0_14328922-1C05-4C99-8522-9597829F1FC9.png",
+        "timestamp": 1793389722.351
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BB14D7B1-4E8D-4272-A5CB-063995F8680A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-de_DE-03-agreed-score_0_F92E81EB-719A-477A-92B9-F0157DA94319.png",
+        "timestamp": 1793389697.095
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "8898E8D7-5D16-4CC2-944C-8947A4FADC48.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-de_DE-02-opt-in_0_01AFDA2B-8940-470E-9DE7-449FDC9D3BED.png",
+        "timestamp": 1793389682.156
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "22134A41-CA0C-4453-8FFF-CD5A64F3513F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-de_DE-01-gesture_0_E950C472-8D0E-4662-BE91-719DE29B91C4.png",
+        "timestamp": 1793389664.906
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GallerydeDE()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GallerydeDE"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "34BD73CF-AE0A-4897-AA42-506C5D7B8618.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-en_US-08-history_0_A37CB056-9049-4EE8-96A4-E1FEFA43821B.png",
+        "timestamp": 1793390015.232
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "C9E3561F-41A0-4332-B3EB-5A0166A47D95.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-en_US-07-known-score_0_21317138-E41D-42E4-B1C6-A5042AF90A76.png",
+        "timestamp": 1793389994.562
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "FB5FB1CC-001B-4C5B-B73C-BF1DEC14E301.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-en_US-06-americano_0_703D4460-0FF3-4671-AE23-2DBF6E3EC497.png",
+        "timestamp": 1793389923.834
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "0D651585-13E1-454B-A92E-0DA9E8134347.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-en_US-05-sets_0_3323B33E-2558-48DF-BCBE-D8DCB30D7DF4.png",
+        "timestamp": 1793389918.284
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "4C803060-080A-4CC3-99D0-1EBFADC4D33A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-en_US-04-rally-correction_0_6B4FAA7C-630F-4C12-A3B0-DA946816B1D2.png",
+        "timestamp": 1793389904.317
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "CC4F0B31-A3A9-4836-B1CE-04AD64ED6887.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-en_US-03-agreed-score_0_BBBBB53D-4F78-4810-8166-30C307F36067.png",
+        "timestamp": 1793389880.242
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "5EA49167-423A-4746-AE37-DF280B6CF0D1.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-en_US-02-opt-in_0_C2F35F2B-7C55-44DE-9607-5626508C71CA.png",
+        "timestamp": 1793389866.909
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A41E8F1D-2390-4D2C-856A-96D529F1424F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-en_US-01-gesture_0_3394B872-B3C0-490A-874F-439E6833B6F3.png",
+        "timestamp": 1793389850.767
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GalleryenUS()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GalleryenUS"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A63889E6-EFD4-4764-809D-D8213B339979.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_ES-08-history_0_C56C64AD-613D-4AA6-A658-90996E09B2B1.png",
+        "timestamp": 1793390197.316
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "17AA9591-0B6B-401D-8D63-77DDDA1E95D1.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_ES-07-known-score_0_09993EEF-F628-41DC-B202-2E50BB75D2A4.png",
+        "timestamp": 1793390173.19
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BC46FE11-B398-4745-B054-57ADC3388B88.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_ES-06-americano_0_41459E46-C8C6-4CAE-9834-E2C0D2C27430.png",
+        "timestamp": 1793390097.372
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "C9272144-021B-44CE-BD7F-D98BB50CC879.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_ES-05-sets_0_77E7B75B-D27B-46D9-A3D0-B7446D9AD081.png",
+        "timestamp": 1793390092.061
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "ABE91AD6-E416-49BD-A52A-F8B3E7D66154.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_ES-04-rally-correction_0_9978F6CD-F1A7-4828-A62E-1B001682E5DA.png",
+        "timestamp": 1793390078.133
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "D748FB57-4B99-4564-BC41-CE9A0CF838A2.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_ES-03-agreed-score_0_F52AB9CE-1D67-4FB9-A9D7-ED63D99B2B4D.png",
+        "timestamp": 1793390052.741
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "AB44680B-2C8A-49A3-922B-3D936175254A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_ES-02-opt-in_0_9250D82A-2D00-4840-B479-D8A7EAB6C25A.png",
+        "timestamp": 1793390037.707
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "60C5A11E-5DB8-4ACE-87C9-A7D38D955BFD.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_ES-01-gesture_0_9C6B904D-CB19-40CD-83C0-95FA9EF64810.png",
+        "timestamp": 1793390020.662
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GalleryesES()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GalleryesES"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "9986CD48-016F-45C4-8C7A-C3A58730C34D.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_MX-08-history_0_D160CC49-D975-481B-BDB5-265E780CCC60.png",
+        "timestamp": 1793390378.626
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "782CDA1F-DFC2-4C23-AF4D-3D69C3CEEE2B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_MX-07-known-score_0_BFFFE67B-1479-4C0B-B714-16F3B1F28FF1.png",
+        "timestamp": 1793390354.884
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "CBA9CD9F-4B28-426D-87C8-A5533B3A4DE9.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_MX-06-americano_0_CB8B9665-3935-4415-9B7A-5FDF99087BFD.png",
+        "timestamp": 1793390279.93
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "18F8B2FB-D3C7-4637-8230-D00FFB7015A7.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_MX-05-sets_0_1B4E9DB0-2402-4A9D-B7A8-BD40B625CE38.png",
+        "timestamp": 1793390274.754
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "34AABF8A-B42B-4BC5-92FA-57BB70E6E533.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_MX-04-rally-correction_0_869553E6-4AF4-4F56-A0C0-68B782CA397C.png",
+        "timestamp": 1793390261.249
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A9DA6358-E478-4CAB-8A66-F1AD29216FC1.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_MX-03-agreed-score_0_1DAF7D4A-5C90-40D0-9300-6057C4ADC9AE.png",
+        "timestamp": 1793390235.363
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "B227254C-4618-4332-980F-FDC1918190E6.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_MX-02-opt-in_0_75B71143-C38B-4611-BC50-84EC94D075CB.png",
+        "timestamp": 1793390220.479
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "4CAC2F2C-55EE-499A-8CFB-88F276EC4E4C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-es_MX-01-gesture_0_47DE6707-4C21-4ED7-AFD6-F9D0B7E28165.png",
+        "timestamp": 1793390202.717
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GalleryesMX()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GalleryesMX"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "1E2A2F3C-231D-48F3-B75A-2C56D3598511.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fi_FI-08-history_0_71A22A70-106E-4821-8A47-FF55892063B7.png",
+        "timestamp": 1793390563.163
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "B8ADDB58-6105-4179-A870-7CA5EC2DEB29.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fi_FI-07-known-score_0_E5A975E3-2244-4B83-8A34-CDF266F34D9D.png",
+        "timestamp": 1793390540.107
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "3062BF0D-EEC1-4FBC-A42C-FF0C0887DE82.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fi_FI-06-americano_0_5BF7C85E-27C8-4F9C-B01D-7484E9F0C0B9.png",
+        "timestamp": 1793390466.395
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "14C36584-7139-46B6-A06C-0D3F8283913F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fi_FI-05-sets_0_7D1DABAD-292E-4E6C-B073-FA02C158AEC8.png",
+        "timestamp": 1793390461.073
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "74368807-5DF9-4B2D-BFA9-D2543E19FB65.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fi_FI-04-rally-correction_0_A00F7026-F0A1-4F5E-84DE-C24BCF4EA3DD.png",
+        "timestamp": 1793390445.791
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "49713F65-22C1-4AE9-9B72-E0B5061F0DB8.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fi_FI-03-agreed-score_0_C55F9142-6D8D-4E05-B847-00F8FB67F144.png",
+        "timestamp": 1793390417.476
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "710FD05D-59E5-44D3-9FEA-CB8C819E4C6E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fi_FI-02-opt-in_0_6194B90D-E50B-42D7-804B-12BD3BE56F25.png",
+        "timestamp": 1793390401.828
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "5A30EA22-C04B-4BF1-A8A8-EF52FE7BE1A2.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fi_FI-01-gesture_0_41E12D73-5C35-422A-BFF7-24F048109FA1.png",
+        "timestamp": 1793390384.135
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GalleryfiFI()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GalleryfiFI"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A8D76755-4009-46D5-B2F4-CF564133D2E0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fr_FR-08-history_0_3B47A751-156A-4EC1-B28D-6DD0707C7E3C.png",
+        "timestamp": 1793390745.836
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "E6778F6B-FA9C-46B4-8957-DFBAE16E7297.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fr_FR-07-known-score_0_1C160E48-98C5-4349-A4CA-5A1B3517AB19.png",
+        "timestamp": 1793390721.609
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "059B1688-45CC-4323-B2C1-2A70D1BD6FB0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fr_FR-06-americano_0_EAF749B5-1EAB-4654-A082-36AFA1C8667B.png",
+        "timestamp": 1793390646.316
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "D3F73A48-C0FC-4D18-AAFE-DB191DA60AFC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fr_FR-05-sets_0_F6946813-A856-4759-B5CE-F649A657FAEB.png",
+        "timestamp": 1793390641.086
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BB5811F8-A589-4B1B-983C-DF689AF6ED0A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fr_FR-04-rally-correction_0_FB070F22-998B-45AE-A9BA-96B68169D82D.png",
+        "timestamp": 1793390626.569
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "33517D2D-5CD2-46A0-8DDC-27FF1903AC86.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fr_FR-03-agreed-score_0_37EBB38F-323D-4EAE-8ADA-B73BA9E1AE8A.png",
+        "timestamp": 1793390601.579
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "342569E1-CEA2-4D91-BEB3-41905F251D84.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fr_FR-02-opt-in_0_E44F1AA1-51C5-4A32-A412-30CAF0BBF58D.png",
+        "timestamp": 1793390585.481
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "F7CC85D1-E0F0-43E6-9C67-C2A55D543CEA.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-fr_FR-01-gesture_0_B3F19106-8D0E-4AA5-BB21-86CC71A535C5.png",
+        "timestamp": 1793390568.565
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GalleryfrFR()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GalleryfrFR"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "CB94D55D-3B9E-4280-AC3C-ABA134D3A7EC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-it_IT-08-history_0_D09838DF-48B1-449E-9816-51A500CEEF79.png",
+        "timestamp": 1793390923.542
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "53B9FF94-91B2-4F25-8F65-B563E44F5798.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-it_IT-07-known-score_0_BCA959D8-ADDF-430A-AB78-DA28BD6D3C99.png",
+        "timestamp": 1793390900.233
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "CACB4BEF-8540-46C8-8AE1-360542DEAFF3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-it_IT-06-americano_0_75912585-BF71-4235-97C7-31193693F9BF.png",
+        "timestamp": 1793390827.562
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BEFC058B-83C0-4CCA-8992-44B3F71FCBBA.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-it_IT-05-sets_0_17FDF082-89EB-4102-9AB0-B687124D675F.png",
+        "timestamp": 1793390821.757
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "37CDE430-503D-4E6C-A0BD-420FEC429694.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-it_IT-04-rally-correction_0_4E54EF9A-A327-4E22-99E5-CC4903D46007.png",
+        "timestamp": 1793390807.083
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "02D9FBE7-4883-4593-8ABA-63EFF20A5747.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-it_IT-03-agreed-score_0_2AE16CE4-1D45-488D-BB32-1CE5E500E260.png",
+        "timestamp": 1793390783.284
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "3C12A3A9-583F-4604-8157-517C0705B0AC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-it_IT-02-opt-in_0_6EB1705C-8434-4AC3-97C7-F7EAD48E28C2.png",
+        "timestamp": 1793390768.48
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "23594136-C828-4D6F-A437-604CA77E4FEF.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-it_IT-01-gesture_0_4C4F2219-4B74-4098-BE02-6CEB16DEDC5A.png",
+        "timestamp": 1793390751.279
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GalleryitIT()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GalleryitIT"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "1E58F22A-1EFD-4E2F-B856-CB919985ACD3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nb_NO-08-history_0_FB3E854A-5689-4CC4-ABDD-7D9D6ECA1A87.png",
+        "timestamp": 1793391096.884
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "D16E940F-999E-47EF-AEC6-39428FCF7E7C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nb_NO-07-known-score_0_0747BA9E-F7E7-43B1-8332-99A1C4D0EC12.png",
+        "timestamp": 1793391076.241
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "C78A4917-AF94-4E36-920B-8E5578D7560E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nb_NO-06-americano_0_2714AB4D-8727-462F-A3C7-5DEE84288961.png",
+        "timestamp": 1793391003.507
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "1E6D06BF-1195-45DE-8956-339F94656B1B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nb_NO-05-sets_0_20B2FCDF-8DCA-4F98-A41D-B5E372A0CE56.png",
+        "timestamp": 1793390998.143
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "B441613C-7B58-4B60-95A1-EE0FA5F55A94.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nb_NO-04-rally-correction_0_875A50EB-676F-4225-A6A2-A2989EDE7E58.png",
+        "timestamp": 1793390984.179
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "AF17211C-20A3-418B-B25E-AE7A36A6350F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nb_NO-03-agreed-score_0_C14CC361-F59E-4261-BF6F-703DF35F1CE5.png",
+        "timestamp": 1793390959.836
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "3BB70F82-C54A-448A-BD02-45C93F256B6D.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nb_NO-02-opt-in_0_E3DB9F90-7C89-46A9-9B14-F9DDA52C1EC4.png",
+        "timestamp": 1793390944.778
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "5002F113-97F9-42AE-BCAF-EFF5DAE9BEBF.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nb_NO-01-gesture_0_5CF7A8FC-5E71-4324-A569-56E737C28802.png",
+        "timestamp": 1793390929.239
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GallerynbNO()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GallerynbNO"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "36216145-F2A8-461A-B67A-07DF8C2402E3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nl_NL-08-history_0_5F3A726C-992D-4DED-93D5-A1CA6F097542.png",
+        "timestamp": 1793391276.839
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "AB0927C1-9C84-4A6E-87CE-2E20F6FFA424.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nl_NL-07-known-score_0_F46EE26B-08B2-493D-894E-B079208499E4.png",
+        "timestamp": 1793391253.363
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "85DB41D3-AACD-4864-B355-67F2ECA17869.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nl_NL-06-americano_0_704A8DF4-514D-4B93-B796-B3007349468A.png",
+        "timestamp": 1793391178.422
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "9D82BD4E-8C90-44C8-BEEF-205135BAD205.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nl_NL-05-sets_0_501BDE7D-0AE6-4822-9E5F-3A38E4F467AF.png",
+        "timestamp": 1793391172.967
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "87AC319F-34F4-4FD1-9FE1-9BDFD38E044D.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nl_NL-04-rally-correction_0_C6762696-06E3-4F3C-8EA5-39F6B4000B74.png",
+        "timestamp": 1793391159.074
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "046764A7-9B60-4790-B3DB-CFEA7A3DBC62.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nl_NL-03-agreed-score_0_EF1E1FAD-BE06-43C9-87E7-DA880B8250B6.png",
+        "timestamp": 1793391134.092
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "2E5B5AA4-C063-4BBB-B197-CBFF9ED47E1E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nl_NL-02-opt-in_0_9474F99E-B400-4182-BD57-379DD40A41EB.png",
+        "timestamp": 1793391119.404
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "6F680A46-5F72-4AD6-A09D-80EE99FE216B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-nl_NL-01-gesture_0_390BC76A-11CC-47B2-AAD1-FF007172D8C9.png",
+        "timestamp": 1793391102.385
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GallerynlNL()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GallerynlNL"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "9CB77AA7-9691-4968-A6D6-636C5346D6DB.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_BR-08-history_0_2CC9D07B-E3A9-4A7A-A3AA-E7B8F535EB8A.png",
+        "timestamp": 1793391456.597
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "F50FD2B0-5DB8-4A16-9FB2-765006AB7758.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_BR-07-known-score_0_96D07A38-3803-4BA1-8DD1-02C91F7424AF.png",
+        "timestamp": 1793391433.579
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "084437EE-C381-43FB-B5E8-84B81CE7B6C1.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_BR-06-americano_0_56B7CC6A-008D-4653-9D21-4EFCB1FA89C4.png",
+        "timestamp": 1793391359.408
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "2FF2DD60-5D09-43FF-9C44-12CA2B0011A9.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_BR-05-sets_0_E6ECBB78-57DA-4E2E-8744-683E9D7C0D6B.png",
+        "timestamp": 1793391354.059
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "E52B11D2-FDB6-4224-A7DD-13B277DBD84B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_BR-04-rally-correction_0_EFC7316A-E24D-47C7-A968-1E5A56A9AFDE.png",
+        "timestamp": 1793391340.03
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "AA456220-37E6-49CA-A313-73FD6D014478.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_BR-03-agreed-score_0_94620FDD-EED1-4A93-B282-F246B0DC4975.png",
+        "timestamp": 1793391314.318
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "5B524007-DAE0-4873-9DEA-230CDA49689A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_BR-02-opt-in_0_0BDD7F43-28E3-446C-966F-B36630935916.png",
+        "timestamp": 1793391299.294
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A9197948-6C77-4A8D-881F-BA4201122214.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_BR-01-gesture_0_B1EEFD12-7CB1-42C1-B4A0-785F8C197137.png",
+        "timestamp": 1793391282.24
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GalleryptBR()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GalleryptBR"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "D2521566-9C6B-4E97-A8F9-7CC4DEFE62CC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_PT-08-history_0_E7F76AF9-A399-4E0F-BAEA-46FF60FE8329.png",
+        "timestamp": 1793391635.86
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "0D9EAD87-4F0D-4F40-9BD7-903E8A9F153B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_PT-07-known-score_0_2D90C8B6-1DE9-4C2F-AA3D-329D099747AB.png",
+        "timestamp": 1793391612.227
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "3D248375-398A-4451-80D6-163DDE9E27BB.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_PT-06-americano_0_8A2795E3-22D5-4C38-86DE-2767060054A8.png",
+        "timestamp": 1793391539.341
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "033C4F38-280F-44DA-8CDE-685868FA7693.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_PT-05-sets_0_6DA1E928-E308-4C3A-A587-7488627A3AA0.png",
+        "timestamp": 1793391534.046
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "B44CA25D-0499-47BF-8749-0EAE1109E182.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_PT-04-rally-correction_0_A204FA1A-3592-4862-AA91-45520BC0609D.png",
+        "timestamp": 1793391520.03
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "21ABB865-CBF0-47B4-A4D1-9C10067A44C2.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_PT-03-agreed-score_0_D1FF5328-C2A9-4B13-90CE-FB7E4E739FA7.png",
+        "timestamp": 1793391494.369
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "2C72EAC3-E2C7-4DF6-B3AB-A9B0C307999A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_PT-02-opt-in_0_D13F371D-EBA2-4E46-955F-EDEC1E97EDA9.png",
+        "timestamp": 1793391479.124
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "240FE2F4-7C3F-473F-AF4C-EB0E0F9563F0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-pt_PT-01-gesture_0_0D12F9E9-42D7-4E0D-B432-84E85997D3B5.png",
+        "timestamp": 1793391462.07
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GalleryptPT()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GalleryptPT"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "569D3E67-162E-4423-82E7-CFD08389F870.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-ru_RU-08-history_0_D9748787-9D4A-4E19-AF57-A57C329095E8.png",
+        "timestamp": 1793391819.252
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "94B1FA3F-27A5-4618-B5CA-8388621C81F1.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-ru_RU-07-known-score_0_02FD8C41-E1E3-425E-A025-97F17417EC58.png",
+        "timestamp": 1793391794.947
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "84AA6074-1725-434E-920F-702E5B9391A7.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-ru_RU-06-americano_0_E9A824B5-A255-4A52-BEBE-BB3037CB1F31.png",
+        "timestamp": 1793391719.336
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "EE93C2C0-257C-4CD3-A570-5987D8B9C461.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-ru_RU-05-sets_0_E688FAD2-164B-48FA-9D64-77F1F638AFF5.png",
+        "timestamp": 1793391714.141
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BD930EDC-B5CB-4CAC-BD76-004FE4F0D455.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-ru_RU-04-rally-correction_0_F44C824F-9BAF-4834-98FB-5E4C5E232A50.png",
+        "timestamp": 1793391699.042
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "B0C1A181-F517-48F0-85A3-8C32AFE976FF.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-ru_RU-03-agreed-score_0_B60F4B25-37B4-4267-891A-633D5658C263.png",
+        "timestamp": 1793391673.203
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "72F75BBB-4F42-41ED-AD34-F1E66988FF5C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-ru_RU-02-opt-in_0_C0D12490-01D3-4381-8905-ADF5A03EFC88.png",
+        "timestamp": 1793391658.114
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "6EE0C551-B2A2-4969-B61F-743A315351AC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-ru_RU-01-gesture_0_ACF1FFC4-C836-4D14-AC5E-FFF117B26B0D.png",
+        "timestamp": 1793391641.214
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GalleryruRU()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GalleryruRU"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "DA57CD63-E903-4ED7-9837-BA112559781C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-sv_SE-08-history_0_7E88AD9D-0E6B-4D05-8DA7-157BC61BA85B.png",
+        "timestamp": 1793391988.249
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "05550935-E648-43E3-B96F-C91F51C96C93.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-sv_SE-07-known-score_0_83127F0D-BF40-4D95-9EB6-3DF04CE41316.png",
+        "timestamp": 1793391966.133
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "987FF972-E34E-4677-8FBB-0C780FB91599.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-sv_SE-06-americano_0_925DF2BC-EEF3-4AD4-A22B-98E9034A37FB.png",
+        "timestamp": 1793391897.63
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "EF939B27-6135-41F9-8373-30CBDE869538.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-sv_SE-05-sets_0_33807C9F-0CC3-4525-B25F-14DFAE587E28.png",
+        "timestamp": 1793391892.368
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "89040E65-1253-40D3-8015-65D618CB84A1.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-sv_SE-04-rally-correction_0_0F7E95DF-73DD-4EE2-8374-4017A393CA0C.png",
+        "timestamp": 1793391878.648
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "B7C6D1D1-F8A8-48D6-9B73-BBB99CC28CB7.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-sv_SE-03-agreed-score_0_D60DA7DB-4682-4854-A46D-18749F1EFC42.png",
+        "timestamp": 1793391855.106
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "2287F575-61D4-4A7B-B763-9875400DA84E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-sv_SE-02-opt-in_0_903C35BA-8F0B-4120-AB17-624A295A0766.png",
+        "timestamp": 1793391840.567
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BE2496E8-9E1F-4C7B-BB86-8E77592A0A2F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-watch-sv_SE-01-gesture_0_D9D1112C-3329-4057-8FB8-0541E99F69CA.png",
+        "timestamp": 1793391824.769
+      }
+    ],
+    "testIdentifier": "StoreMaterialsUITests/testM25GallerysvSE()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/StoreMaterialsUITests/testM25GallerysvSE"
+  }
+]
