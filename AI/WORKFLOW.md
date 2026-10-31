@@ -8,6 +8,13 @@ their recorded commits; they never override this file.
 
 ## The workflow
 
+M25-only owner exception,2026-10-31: the owner explicitly selected acceptance of
+the fully passing Watch and fresh complete phone suites on the exact same
+unchanged SHA. [Authorization/evidence](evidence/M25/owner-verification-exception.md).
+Original full reports remain FAILED; no test/category/parser is weakened and no
+failed phone result is accepted. This exception does not extend to M26 or later
+gates; all physical checks remain M29 before full M26 milestone/release checks.
+
 M28-only owner exception,2026-10-30 Tbilisi: the owner explicitly authorized reuse
 of the already passing Watch result when every protected input remains identical,
 with complete new iPhone verification, static/runtime/continuity before DONE.

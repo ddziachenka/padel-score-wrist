@@ -1,5 +1,10 @@
 # M25 minimum-phone native audit traversal
 
+**Final status:** Digital M25 complete under the explicit M25-only owner exception.
+[Verification](milestone-verification.md) and [authorization](owner-verification-exception.md)
+supersede earlier pending-gate notes below. Raw full reports remain FAILED;
+physical evidence remains PENDING_M29.
+
 The first exact full gate at `fa70662919cfddffa643de97c0036043c5a102e1`
 exposes a genuine verification-coverage failure: Portuguese-largest opt-in copy
 never reaches full visibility for the mandatory native re-audit. The run is
@@ -84,3 +89,16 @@ this proves compiled test-byte identity without calling the earlier dirty run a
 clean immutable gate. No production App input changes; gallery4 strict validation
 passes after the correction. The fresh complete exact milestone gate remains
 required; no DONE is claimed from the bounded regressions.
+
+## Owner-authorized component completion
+
+M25 is DONE under the explicit M25-only owner exception. Verified candidate
+`5eb65bbc17e9540d3922a520b44d3c8731947432`: watch 635/635 definitions/1085 invocations; phone-unit 21/21 definitions/30 invocations; phone-ui 21/21 definitions/21 invocations.
+Aggregate 677 definitions/1136 invocations, zero failed/skipped/
+expected/native runtime warnings in the accepted components. Both Debug/package
+guards pass. Complete new phone command `bash .artifacts/M25/runtime-profile.sh phone-companion verify phone-complete-same-candidate`, exit0,
+UTC2026-10-31T14:27:08Z–2026-10-31T16:45:19Z; report `.artifacts/M25/phone-complete-same-candidate/report.md`.
+The Watch component is from `.artifacts/milestone/M25/20261031T083305Z-38339/milestone.xcresult` at exactly the same SHA.
+The complete monolithic make remains FAILED/exit130, never relabelled passed.
+See [owner authorization](owner-verification-exception.md) and
+[exact verification](milestone-verification.md). All physical checks remain M29.

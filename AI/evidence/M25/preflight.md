@@ -1,5 +1,10 @@
 # M25 final development preflight
 
+**Final status:** Digital M25 complete under the explicit M25-only owner exception.
+[Verification](milestone-verification.md) and [authorization](owner-verification-exception.md)
+supersede earlier pending-gate notes below. Raw full reports remain FAILED;
+physical evidence remains PENDING_M29.
+
 App/test source `f097a52d6a1154cf431156c30a81013a34d3cd47`, main. This is mutable
 Builder preflight before the clean REVIEW candidate; it is not milestone or
 release verification. The exact full `make milestone ID=M25` still remains required.
@@ -54,3 +59,16 @@ then original Booted/light restored, restoration0, UTC
 foreign device or global service reset. Actual theme-pixel/audit assertions remain
 mandatory in the new complete gate. M25 returns to REVIEW with all acceptance
 boxes unchecked until that fresh exact committed candidate passes.
+
+## Owner-authorized component completion
+
+M25 is DONE under the explicit M25-only owner exception. Verified candidate
+`5eb65bbc17e9540d3922a520b44d3c8731947432`: watch 635/635 definitions/1085 invocations; phone-unit 21/21 definitions/30 invocations; phone-ui 21/21 definitions/21 invocations.
+Aggregate 677 definitions/1136 invocations, zero failed/skipped/
+expected/native runtime warnings in the accepted components. Both Debug/package
+guards pass. Complete new phone command `bash .artifacts/M25/runtime-profile.sh phone-companion verify phone-complete-same-candidate`, exit0,
+UTC2026-10-31T14:27:08Z–2026-10-31T16:45:19Z; report `.artifacts/M25/phone-complete-same-candidate/report.md`.
+The Watch component is from `.artifacts/milestone/M25/20261031T083305Z-38339/milestone.xcresult` at exactly the same SHA.
+The complete monolithic make remains FAILED/exit130, never relabelled passed.
+See [owner authorization](owner-verification-exception.md) and
+[exact verification](milestone-verification.md). All physical checks remain M29.

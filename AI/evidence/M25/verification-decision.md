@@ -1,6 +1,6 @@
-# M25 verification path — owner decision pending
+# M25 verification path — owner decision resolved
 
-**Status:** awaiting a new M25-only decision; not DONE and no exception inferred.
+**Status:** resolved by explicit owner selection of option1; see owner-verification-exception.md.
 **Candidate:** `5eb65bbc17e9540d3922a520b44d3c8731947432`, clean main throughout both component runs.
 
 ## Concrete completed evidence
@@ -55,7 +55,7 @@ See runtime.md, materials-review.md and minimum-gesture-audit-traversal.md.
 
 ## Why the decision is necessary
 
-The current M25 contract requires “Full make milestone ID=M25 passes” and a clean
+The original M25 contract required “Full make milestone ID=M25 passes” and a clean
 REVIEW run of that exact command. AGENTS A6/A12 and the Builder sequence require
 its passing verification before DONE. The M28 owner exception explicitly applies
 only to M28 and does not extend to later milestones. A new M25 exception cannot
@@ -78,3 +78,9 @@ pricing or physical-check waivers. Every physical case/video remains M29; M26
 still requires complete milestone and exact-SHA release verification. Additional
 current-runtime StoreKit probe remains FAILED/P2 with baseline-matched evidence.
 This is Builder self-review, not independent review or release approval.
+
+## Owner decision
+
+> Зачесть готовый Watch (Recommended)
+
+The first option is explicitly authorized for M25 only. See [authorization](owner-verification-exception.md) and [completion](milestone-verification.md).

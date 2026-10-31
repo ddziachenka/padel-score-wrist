@@ -2,9 +2,9 @@
 
 **Phase:** implementation
 **Current milestone:** M25
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28
-**Next milestone:** M25
-**Blockers:** M25 awaits verification-path choice: accept same-SHA Watch635/1085 plus fresh complete phone21/30 and21/21 (Recommended), or repeat full make (~6h). All components pass; monolithic report remains FAILED/130. Evidence/options: AI/evidence/M25/verification-decision.md. App Review4.3(a) unresolved; reply unsent. Physical checks M29; additional current StoreKit probe FAILED/P2; submission needs M30 instruction.
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25
+**Next milestone:** M29
+**Blockers:** M25 digital scope DONE under explicit M25-only same-candidate component acceptance; no known digital P0/P1. App Review4.3(a) unresolved; reply unsent/on hold. All physical checks/video remain mandatory M29 before M26. Additional baseline-matched current StoreKit probe remains FAILED/P2. M30 requires separate submission instruction.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -432,3 +432,28 @@ its full milestone and exact-SHA release gates; M30 is the separate resubmission
 A new Builder owns M25 — Gesture Experience and Store Materials, including three
 imagegen directions and all14 Store-localization galleries. Stop after DONE commit
 static/status/continuity against the verified SHA.
+
+
+## M25 completed under explicit owner exception — 2026-10-31 UTC
+
+M25 is DONE under the explicit M25-only owner exception. Verified candidate
+`5eb65bbc17e9540d3922a520b44d3c8731947432`: watch 635/635 definitions/1085 invocations; phone-unit 21/21 definitions/30 invocations; phone-ui 21/21 definitions/21 invocations.
+Aggregate 677 definitions/1136 invocations, zero failed/skipped/
+expected/native runtime warnings in the accepted components. Both Debug/package
+guards pass. Complete new phone command `bash .artifacts/M25/runtime-profile.sh phone-companion verify phone-complete-same-candidate`, exit0,
+UTC2026-10-31T14:27:08Z–2026-10-31T16:45:19Z; report `.artifacts/M25/phone-complete-same-candidate/report.md`.
+The Watch component is from `.artifacts/milestone/M25/20261031T083305Z-38339/milestone.xcresult` at exactly the same SHA.
+The complete monolithic make remains FAILED/exit130, never relabelled passed.
+See [owner authorization](evidence/M25/owner-verification-exception.md) and
+[exact verification](evidence/M25/milestone-verification.md). All physical checks remain M29.
+
+Centered recovery, native readable Start/Help, actual theme pixels,13 UI languages,
+minimum/current runtimes, maximum text, explicit Reset and neutral next-server
+copy pass.14ASC galleries contain210 unmodified native/28 creative assets;42
+final visual reviews and strict material/site/identity checks pass. All drafts
+remain local; App Privacy readback is Data Not Collected. Additional current
+StoreKit probe remains raw FAILED/P2, exactly baseline-matched, not credited as
+passing. Builder digital self-review is not independent review or release approval.
+No upload/reply/submission/pricing/publication. New Builder owns M29 physical
+validation; M26 retains complete final gates, M30 separate authorized resubmission.
+Handoff: [M25](handoffs/M25-handoff.md). Stop after DONE static/status/continuity.
