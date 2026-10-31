@@ -1,0 +1,28 @@
+[
+  {
+    "file": "AI/evidence/M25/audit-traversal-before-light.png",
+    "sha256": "2d39fdc88315c3fc8f441827eda17fdf59c74030c15d7cb2e69f47e5f3d75ee9",
+    "kind": "unmodified native XCTest attachment",
+    "original_file": ".artifacts/M25/portuguese-audit-before-diagnostics/5F6D4032-6B87-40ED-A794-8D235FDE78F3.png",
+    "bundle": ".artifacts/M25/portuguese-audit-before.xcresult",
+    "test": "CompanionUITests/testM25PortugueseGestureAuditAfterResetAtLargestText()",
+    "case": "failure, Portuguese-largest Light",
+    "base_sha": "fa70662919cfddffa643de97c0036043c5a102e1",
+    "test_source_patch": ".artifacts/M25/portuguese-audit-before-source.patch",
+    "test_source_patch_sha256": "e5ae9b221e37bb3aa62f7de80740b6a7ab5f9ca2bcfd8054b2c97aee852f844e",
+    "udid": "B9D3F5BC-7C0B-4F3B-A65F-3C1B67ACCEF2"
+  },
+  {
+    "file": "AI/evidence/M25/audit-traversal-after-dark.png",
+    "sha256": "27abd5e852171b15444c1b46bec66ac5a4577cac95e726a8fd81ac9fc7332a96",
+    "kind": "unmodified native XCTest attachment",
+    "original_file": ".artifacts/M25/portuguese-audit-64-native/92B2C140-568F-4A18-9367-93AF49E106BF.png",
+    "bundle": ".artifacts/M25/portuguese-audit-64.xcresult",
+    "test": "CompanionUITests/testM25PortugueseGestureAuditAfterResetAtLargestText()",
+    "case": "fully visible native re-audit, Portuguese-largest Dark",
+    "base_sha": "fa70662919cfddffa643de97c0036043c5a102e1",
+    "test_source_patch": ".artifacts/M25/portuguese-audit-64-source.patch",
+    "test_source_patch_sha256": "958e99931d66edef367ab75cd0c58bf9a55fb980bb62666e5efa48e0a2f1e4ef",
+    "udid": "B9D3F5BC-7C0B-4F3B-A65F-3C1B67ACCEF2"
+  }
+]

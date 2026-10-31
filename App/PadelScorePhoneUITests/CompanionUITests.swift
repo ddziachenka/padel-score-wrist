@@ -570,6 +570,35 @@ final class CompanionUITests: XCTestCase {
         }
     }
 
+    // Regression: on the minimum phone, repeated audits around the practice
+    // controls must also recheck the following opt-in heading fully on screen.
+    func testM25PortugueseGestureAuditAfterResetAtLargestText() throws {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
+        for dark in [false, true] {
+            setAppearance(dark)
+            let app = XCUIApplication()
+            app.launchArguments = ["-AppleLanguages", "(pt-PT)", "-AppleLocale", "pt_PT",
+                "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+            app.launch()
+            defer { app.terminate() }
+            XCTAssertTrue(app.buttons["phone.start.demo"].waitForExistence(timeout: 15))
+            declineOptionalReview(app)
+            reveal(app.buttons["phone.start.gestures"], in: app).tap()
+            try auditGestureExplanation(app)
+            reveal(app.buttons["phone.gesture.action"], in: app)
+            try auditIncludingOccludedText(app)
+            reveal(app.buttons["phone.gesture.action"], in: app).tap()
+            Thread.sleep(forTimeInterval: 3.3)
+            XCTAssertEqual(app.descendants(matching: .any)["phone.gesture.score"].value as? String, "1:0")
+            let reset = reveal(app.buttons["phone.gesture.reset"], in: app)
+            XCTAssertEqual(reset.label, "Repor")
+            try auditIncludingOccludedText(app)
+            reveal(app.buttons["phone.gesture.reset"], in: app).tap()
+            XCTAssertEqual(app.descendants(matching: .any)["phone.gesture.score"].value as? String, "0:0")
+        }
+    }
+
     func testGestureExplanationContrastAtLargestText() throws {
         let originalAppearance = XCUIDevice.shared.appearance
         defer { XCUIDevice.shared.appearance = originalAppearance }
@@ -672,7 +701,10 @@ final class CompanionUITests: XCTestCase {
         try audit()
         for page in 0..<24 {
             guard let target = pending.values.sorted(by: { $0.frame.minY < $1.frame.minY }).first else { return }
-            for _ in 0..<12 {
+            // At largest text, the native audit can return a target several
+            // pages away. Keep the same short drags and strict visibility check,
+            // with enough bounded travel to reach it before its native re-audit.
+            for _ in 0..<64 {
                 if fullyVisible(target) { break }
                 let middle = viewport().midY
                 let context = fittingScoreCard(target) ?? target
@@ -683,6 +715,13 @@ final class CompanionUITests: XCTestCase {
                              withVelocity: .slow, thenHoldForDuration: 0.2)
             }
             guard fullyVisible(target) else {
+                let fresh = app.descendants(matching: target.elementType)
+                    .matching(NSPredicate(format: "label == %@", target.label)).firstMatch
+                let diagnostic = XCTAttachment(string: "Viewport: \(viewport())\nAudit target: \(target.frame)\nFresh query: \(fresh.frame)\n" + app.debugDescription)
+                diagnostic.name = "ax-unrechecked-target-hierarchy"
+                diagnostic.lifetime = .keepAlways
+                add(diagnostic)
+                capture(app, "ax-unrechecked-target")
                 XCTFail("Deferred contrast element was never fully rechecked: " + target.debugDescription)
                 return
             }

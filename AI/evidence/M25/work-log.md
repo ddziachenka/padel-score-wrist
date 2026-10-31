@@ -535,3 +535,51 @@ its own reboot, then original Booted/light restored, both exits0, timestamp
 All final native/assets/self-review work is complete; M25 enters REVIEW for a
 clean committed full make milestone ID=M25, with no reused Watch component or
 contrast waiver. No DONE or full-gate pass is claimed yet.
+
+## First immutable full gate — interrupted after a real UI failure
+
+Clean REVIEW/main candidate `fa70662919cfddffa643de97c0036043c5a102e1` ran
+`make milestone ID=M25`, starting `2026-10-31T02:47:09Z`. Watch completes
+635/635 definitions and1085/1085 invocation leaves; phone unit21/21 and30/30,
+with zero failed/skipped/expected/native runtime warnings. Exact native exports:
+`.artifacts/M25/accepted-full-milestone/watch/` and `phone-unit/`. Both Debug and
+packaging guards pass. These successful components do not make the full gate pass.
+
+The minimum iOS17 phone UI reaches a strict deferred-audit traversal failure:
+`Deferred contrast element was never fully rechecked`, Portuguese-largest
+`Opcional. Desativado em cada novo jogo.`, frame `{40,468.5,279,249.5}` on the
+375×667pt SE3, partly behind the bottom bar. Native activity records show twelve
+center-origin upward drags without bringing the whole heading into the viewport.
+The original six native audit categories and final visibility assertion expose it;
+no pre-existing or Simulator-cleanup cause is claimed.
+
+To avoid spending the remaining UI runtime on a known failing candidate, the
+Builder interrupts that exact run. Make returns130; the raw report explicitly
+says `FAILED (exit 130; the console output states the reason)` at
+`.artifacts/milestone/M25/20261031T024708Z-29088/report.md`. The closed phone UI
+summary records4 passed/1 failed definitions, zero skipped/expected/runtime
+warnings; remaining cases were not executed, not passed. Raw summary:
+`.artifacts/M25/gate-1-ui-summary.json`; native interval
+`2026-10-31T06:45:04.211Z`–`2026-10-31T07:05:49.931Z`.
+Failure text, activity tree and unmodified Portuguese snapshots are retained under
+`.artifacts/M25/gate-1-*`. All managed leases release normally.
+
+M25 returns to IN_PROGRESS. A bounded Portuguese Light/Dark maximum-text regression
+is added without removing/narrowing the existing26-pair matrix; diagnostic evidence
+at an unrechecked target is additive. The unchanged shipping UI means existing
+gallery4 fingerprints remain applicable. The cause is under reproduction; a fresh
+complete gate is required after correction. No component reuse or waiver applies.
+
+Measured reproduction now isolates an insufficient traversal budget: the heading
+starts at y2148.5, each150pt drag moves140pt, and12 moves stop at y468.5 with its
+bottom718 below the viewport bottom617. Both original/fresh AX queries agree.
+Gutter-origin and stationary-swipe hypotheses are disproved and discarded; original
+drag coordinates/velocity remain. Only the bounded budget becomes64, with the
+same early break/full-visibility assertion and all six native audit categories.
+The new bounded Portuguese Light/Dark maximum-text practice/reset regression fails
+before and passes after, exit0,1/1 definitions/invocations, zero adverse counts;
+native interval07:26:48.739Z–07:29:32.749Z. Raw patch/source/commands/bundles,
+failed trial counts and visually inspected native originals are recorded in
+[the traversal evidence](minimum-gesture-audit-traversal.md). The production tree
+and active gallery4 shipping fingerprints stay unchanged; strict material validation
+passes exit0. A current-runtime regression and fresh full gate remain required.
