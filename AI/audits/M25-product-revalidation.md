@@ -5,7 +5,7 @@
 **Record type:** Builder domain audit (interim digital scope)
 **Milestone:** M25
 **Domain prompt:** AI/prompts/audit-product.md
-**Candidate:** f097a52d6a1154cf431156c30a81013a34d3cd47
+**Candidate:** 4720028cffdabc4082385506578f8af25c61450d
 **Audited at:** 2026-10-31
 
 Builder self-review, not independent audit or release approval. The approved
@@ -58,6 +58,15 @@ None added. No cloud sync, tournament standings or real phone scoring is introdu
 No final readiness or actual hardware result is claimed.
 
 ## Targeted re-audit
+
+Minimum-phone traversal correction: the first full fa70662 run is raw FAILED,
+not a passing gate. Measured short-drag travel was insufficient for the distant
+Portuguese-largest heading. The bounded64-drag correction preserves the exact
+full-visibility predicate and all six native categories. A new focused regression
+fails before and passes1/1 on minimum/current runtimes, zero adverse native counts;
+current run uses clean source4720028. Production/gallery4 shipping inputs remain
+unchanged. Exact source patches, commands, times, native counts and inspected
+originals: [traversal evidence](../evidence/M25/minimum-gesture-audit-traversal.md).
 
 Frozen f097 fresh minimum-phone4/4, minimum-Watch492/492 definitions/942
 invocations, current-Watch498/498/948 and complete current-phone20/20 pass,

@@ -109,3 +109,20 @@ none is claimed run, and no additional problem scanner is configured. The handof
 must record exact gate SHA/command/exit/report and native counts, followed by DONE
 static/status/continuity checks. Failed/interrupted attempts remain in
 [work-log.md](work-log.md), with all physical work in the [M29 inventory](M29-hardware-inventory.md).
+
+## Post-gate test traversal correction
+
+The first full fa70662 gate remains FAILED after its minimum-phone traversal
+failure; successful Watch/unit components are not reused. Source
+`4720028cffdabc4082385506578f8af25c61450d` changes only the phone UI test:
+bounded64 short drags, a fail-before/pass-after Portuguese-largest regression and
+failure-only diagnostics. The original six native audit categories, full-target
+visibility predicate, native re-audit and all existing matrices remain intact.
+Minimum development regression1/1 and clean current-runtime regression1/1 pass,
+exit0, zero failed/skipped/expected/native runtime warnings. The current run is
+`2026-10-31T07:35:35.957Z`–`2026-10-31T07:38:57.184Z`, owned iPhone17ProMax/iOS27
+53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C; exact commands/summary/leaf counts are
+in native-supplements.json and [the repair evidence](minimum-gesture-audit-traversal.md).
+Production App file membership/bytes equal the f097 gallery4 fingerprints;
+strict active material validation passes, exit0. Existing42 visual reviews remain
+applicable. The fresh exact full gate still must pass before DONE.

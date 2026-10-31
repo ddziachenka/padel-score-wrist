@@ -67,5 +67,20 @@ test and device are recorded in audit-traversal-native-provenance.json. The clos
 native result requires every pending element to receive its real full-visibility
 audit; the screenshots are not a substitute for that assertion.
 
-Current-runtime regression and the fresh complete exact milestone gate remain
-required. No DONE is claimed from this diagnosis.
+## Current-runtime confirmation
+
+Clean committed App/test source `4720028cffdabc4082385506578f8af25c61450d`
+passes the same bounded regression on owned iPhone17ProMax/iOS27 UDID
+53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C, exit0,1/1 definitions/invocations,
+zero failed/skipped/expected/native runtime warnings, UTC
+`2026-10-31T07:35:35.957Z`–`2026-10-31T07:38:57.184Z`.
+Command: `bash .artifacts/M25/runtime-profile.sh phone-current-clean run bash .artifacts/M25/gesture-audit-repro.sh portuguese-audit-current`.
+Bundle `.artifacts/M25/portuguese-audit-current.xcresult`; strict native export
+`.artifacts/M25/accepted-audit-current/`, exit0. Full exact arguments and summary
+are also in native-supplements.json. Initial appearance/boot state is restored.
+The minimum passing development test patch hashes exactly match
+`git diff fa70662919cfddffa643de97c0036043c5a102e1 4720028cffdabc4082385506578f8af25c61450d -- App/PadelScorePhoneUITests/CompanionUITests.swift`;
+this proves compiled test-byte identity without calling the earlier dirty run a
+clean immutable gate. No production App input changes; gallery4 strict validation
+passes after the correction. The fresh complete exact milestone gate remains
+required; no DONE is claimed from the bounded regressions.

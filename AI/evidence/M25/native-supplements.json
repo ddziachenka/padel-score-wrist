@@ -938,5 +938,63 @@
     "source_sha": "f097a52d6a1154cf431156c30a81013a34d3cd47",
     "started_utc": "2026-10-31T02:13:08.539000+00:00",
     "finished_utc": "2026-10-31T02:25:58.807000+00:00"
+  },
+  {
+    "label": "portuguese-audit-current",
+    "bundle": ".artifacts/M25/portuguese-audit-current.xcresult",
+    "definitions": 1,
+    "passed_definitions": 1,
+    "failed_definitions": 0,
+    "skipped_definitions": 0,
+    "expected_failures": 0,
+    "runtime_warnings": 0,
+    "invocations": 1,
+    "invocation_results": {
+      "Passed": 1
+    },
+    "summary": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C",
+            "deviceName": "iosai-padel-score-m25-phone-current-clean-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+            "modelName": "iPhone 17 Pro Max",
+            "osBuildNumber": "24A434",
+            "osVersion": "27.0",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 1,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Default"
+          }
+        }
+      ],
+      "environmentDescription": "PadelScorePhone · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1793432337.184,
+      "passedTests": 1,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1793432135.957,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - PadelScorePhone",
+      "topInsights": [],
+      "totalTestCount": 1
+    },
+    "source_sha": "4720028cffdabc4082385506578f8af25c61450d",
+    "source_state": "clean committed App/test inputs; production UI unchanged from f097a52d6a1154cf431156c30a81013a34d3cd47",
+    "scope": "Portuguese-largest Light/Dark native audit traversal and real practice reset regression",
+    "command": "bash .artifacts/M25/runtime-profile.sh phone-current-clean run bash .artifacts/M25/gesture-audit-repro.sh portuguese-audit-current",
+    "xcodebuild_command": "xcodebuild test -quiet -project App/PadelScore.xcodeproj -scheme PadelScorePhone -configuration Debug -destination platform=iOS\\ Simulator\\,id=53FFFA81-4A4C-4257-BD1D-1C4C59AEA96C -derivedDataPath /private/tmp/padel-score-1acada2a5b10/DerivedData-m25-phone-current-clean -resultBundlePath .artifacts/M25/portuguese-audit-current.xcresult -only-testing:PadelScorePhoneUITests/CompanionUITests/testM25PortugueseGestureAuditAfterResetAtLargestText -collect-test-diagnostics never -test-timeouts-enabled YES -default-test-execution-time-allowance 1800 -maximum-test-execution-time-allowance 1800",
+    "started_utc": "2026-10-31T07:35:35.957000+00:00",
+    "finished_utc": "2026-10-31T07:38:57.184000+00:00"
   }
 ]
