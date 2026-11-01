@@ -110,7 +110,7 @@ struct GestureSetupSection: View {
             .accessibilityIdentifier("setup.gestures")
             .disabled(!supportsNativeShortcut)
             Caption("Optional. Off for every new game.")
-            NavigationLink(value: NewGameFlow.Route.gesturePractice) { Text("Try gestures") }
+            Button { flow.path.append(.gesturePractice) } label: { Text("Try gestures") }
                 .buttonStyle(RowButtonStyle())
                 .accessibilityIdentifier("setup.gesturePractice")
             Caption("One series: us. Two: them. Three: cancel. Wait three seconds to save.")

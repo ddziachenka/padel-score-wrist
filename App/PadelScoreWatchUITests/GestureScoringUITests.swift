@@ -123,6 +123,45 @@ final class GestureScoringUITests: XCTestCase {
         XCTAssertFalse(app.buttons["game.us"].exists)
     }
 
+    func testSetupPracticeFromPlayAgainPreservesTheResultAndDraft() {
+        checkSetupPracticeFromResult(playAgain: true, store: "gestures-again-practice")
+    }
+
+    func testSetupPracticeFromNewGamePreservesTheResultAndDraft() {
+        checkSetupPracticeFromResult(playAgain: false, store: "gestures-new-practice")
+    }
+
+    private func checkSetupPracticeFromResult(playAgain: Bool, store: String) {
+        let app = launchApp(store: store, seed: "matchFinished")
+        let entry = app.buttons[playAgain ? "result.playAgain" : "result.newGame"]
+        XCTAssertTrue(entry.waitForExistence(timeout: 10))
+        entry.scrollToAndTap(in: app)
+        if !playAgain { app.buttons["newGame.match"].scrollToAndTap(in: app) }
+        let toggle = app.switches["setup.gestures"]
+        XCTAssertTrue(toggle.waitForExistence(timeout: 5))
+        XCTAssertEqual(toggle.value as? String, "0")
+
+        app.buttons["setup.gesturePractice"].scrollToAndTap(in: app)
+        let action = app.buttons["gesture.action"]
+        XCTAssertTrue(action.waitForExistence(timeout: 5), "Result-based setup must open practice in its own navigation stack")
+        action.scrollToAndTap(in: app)
+        let score = app.descendants(matching: .any)["gesture.practice.score"]
+        let settled = NSPredicate(format: "value == %@", "1:0")
+        expectation(for: settled, evaluatedWith: score)
+        waitForExpectations(timeout: 6)
+        attachScreenshot(playAgain ? "Practice from Play again" : "Practice from New game result")
+
+        app.goBack()
+        XCTAssertTrue(toggle.waitForExistence(timeout: 5))
+        XCTAssertEqual(toggle.value as? String, "0", "Practice must not enable real-game gestures")
+        XCTAssertTrue(app.buttons["setup.start"].exists, "The draft stays editable")
+        app.goBack()
+        if !playAgain { app.goBack() }
+        XCTAssertTrue(app.buttons["result.resume"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.descendants(matching: .any)["result.set.1"].value as? String, "Us 6, them 4")
+        XCTAssertFalse(app.buttons["game.us"].exists, "Practice must not start a real game")
+    }
+
     func testAlwaysOnRejectsGestureAndTouchInput() {
         let app = launchApp(store: "gestures-always-on", seed: "gestureMatch", alwaysOn: true)
         XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
