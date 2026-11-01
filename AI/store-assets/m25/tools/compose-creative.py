@@ -7,7 +7,9 @@ ROOT=Path(__file__).resolve().parents[4];ASSETS=ROOT/'AI/store-assets/m25'
 m=json.loads((ASSETS/'manifest.json').read_text());watch=json.loads(next((ROOT/'App/PadelScoreWatch').rglob('Localizable.xcstrings')).read_text())
 FONT='/System/Library/Fonts/SFNS.ttf'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
-def tr(key,lang):return key if lang=='en' else watch['strings'][key]['localizations'][lang]['stringUnit']['value']
+def tr(key,lang):
+ if isinstance(key,tuple):return ' '.join(tr(part,lang) for part in key)
+ return key if lang=='en' else watch['strings'][key]['localizations'][lang]['stringUnit']['value']
 def fit(draw,text,box,size,color):
  x,y,w,h=box
  for point in range(size,23,-1):
@@ -31,11 +33,11 @@ for loc,row in m['locales'].items():
   if kind=='header':
    art_box=(1700,80,813,1220);shot_box=(2780,390,680,828)
    brand_box=(240,110,1330,80);title_box=(240,260,1330,300)
-   blocks=[('One series means touching your thumb and index finger together twice.',(240,580,1280,250),64),('One series: us. Two: them. Three: cancel. Wait three seconds to save.',(240,850,1280,330),70),('Optional. Off for every new game.',(240,1210,1280,140),54),('Requires watchOS 11 and an Apple Watch that supports Double Tap, with the screen awake and system gestures enabled.',(240,1390,3220,170),42)]
+   blocks=[('One series means touching your thumb and index finger together twice.',(240,580,1280,250),64),(('One series: us. Two: them. Three: cancel. Wait five seconds to save.','For THEM, wait for “Pending: US”, then repeat the series: two finger contacts.'),(240,850,1280,330),70),('Optional. Off for every new game.',(240,1210,1280,140),54),('Requires watchOS 11 and an Apple Watch that supports Double Tap, with the screen awake and system gestures enabled.',(240,1390,3220,170),42)]
   else:
    art_box=(850,180,600,900);shot_box=(1470,530,340,414)
    brand_box=(120,100,1500,70);title_box=(120,235,730,220)
-   blocks=[('One series means touching your thumb and index finger together twice.',(120,490,700,230),46),('One series: us. Two: them. Three: cancel. Wait three seconds to save.',(120,740,700,260),48),('Optional. Off for every new game.',(120,1020,700,100),36),('Requires watchOS 11 and an Apple Watch that supports Double Tap, with the screen awake and system gestures enabled.',(120,1140,1680,100),28)]
+   blocks=[('One series means touching your thumb and index finger together twice.',(120,490,700,230),46),(('One series: us. Two: them. Three: cancel. Wait five seconds to save.','For THEM, wait for “Pending: US”, then repeat the series: two finger contacts.'),(120,740,700,260),48),('Optional. Off for every new game.',(120,1020,700,100),36),('Requires watchOS 11 and an Apple Watch that supports Double Tap, with the screen awake and system gestures enabled.',(120,1140,1680,100),28)]
   ax,ay,aw,ah=art_box;canvas.paste(Image.open(art).convert('RGB').resize((aw,ah),Image.Resampling.LANCZOS),(ax,ay))
   sx,sy,sw,sh=shot_box;canvas.paste(Image.open(shot).convert('RGB').resize((sw,sh),Image.Resampling.LANCZOS),(sx,sy))
   # All localizable words are programmatically typeset, never baked into generated art.

@@ -141,3 +141,69 @@ Owner also requests keeping the app open and avoiding inactivity. Apple document
 that ordinary apps cannot override frontmost duration in watchOS 7+; per-app
 Return to Clock and Wake Duration settings are investigated separately. No fake
 workout, motion collection, permissions or bypass of inactive-input cancellation.
+
+## Build 6 committed verification and local installation
+
+Exact source **ff87edd550f376b618d44ebb7904ef29f769b686** on main; no App input
+changes during these runs. Current watchOS 27 and minimum watchOS 10 each pass
+**32/32 definitions / 73/73 invocations**, exit **0**, zero failed/skipped/expected/
+runtime warnings. Current UTC2026-11-01T11:31:27.165Z–11:34:38.604Z; minimum
+UTC11:43:42.743Z–11:46:48.236Z. Bundles/logs/native summaries use
+`.artifacts/M29/teaching6-current*` and `teaching6-minimum*`. Minimum owns one
+lease across boot/test/cleanup and restores Shutdown, exit0. Explicit cue is
+visible and its explained US→THEM→0:1 practice sequence passes on both runtimes;
+current native accessibility and all gesture units/integration also pass.
+
+Phone UI simulation passes **1/1 definition/invocation**, exit **0**, zero adverse
+counts, UTC2026-11-01T11:41:12.102Z–11:42:19.977Z, bundle/log/native summary
+`.artifacts/M29/teaching6-phone-ui*`. It reads the cue, asserts no award at3.2s,
+settles at5.3s, then checks both teams, third-series cancel, Reset and leaving.
+The first preparation mistakenly selected the unit target in the UI-only scheme;
+Xcode rejected before executing any tests, exit70. `.artifacts/M29/teaching6-phone*`
+is preserved as failed preparation, never a unit or UI pass. Unit and UI own
+separate schemes/test plans; no scheme or test plan was changed. Full phone-unit
+coverage remains mandatory in the full M29 gate, not credited from this UI probe.
+
+Exact current and phone UI commands (each under its named runtime-profile `run`):
+
+```sh
+/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project App/PadelScore.xcodeproj -scheme PadelScore -configuration Debug -destination "platform=watchOS Simulator,id=36C94878-A329-4B51-92E9-4D72A40B178B" -derivedDataPath /private/tmp/padel-score-1acada2a5b10/DerivedData-m16-watch-current -resultBundlePath .artifacts/M29/teaching6-current.xcresult -parallel-testing-enabled NO "-only-testing:PadelScoreWatchTests/AppConfigurationTests" "-only-testing:PadelScoreWatchTests/GestureInputTests" "-only-testing:PadelScoreWatchTests/GestureScoringTests" "-only-testing:PadelScoreWatchUITests/BootstrapUITests/testAboutNavigationAndInstalledVersion" "-only-testing:PadelScoreWatchUITests/GestureScoringUITests/testPracticeExplainsTheSecondSeriesAfterTheFirstPreview" "-only-testing:PadelScoreWatchUITests/GestureScoringUITests/testEnabledScoreAndTeachingPassNativeAccessibilityAudit" "-only-testing:PadelScoreWatchUITests/GestureScoringUITests/testSetupOffersOffAndPracticeDoesNotStartGame" "-only-testing:PadelScoreWatchUITests/GestureScoringUITests/testSetupPracticeFromPlayAgainPreservesTheResultAndDraft" "-only-testing:PadelScoreWatchUITests/GestureScoringUITests/testSetupPracticeFromNewGamePreservesTheResultAndDraft" -collect-test-diagnostics never CODE_SIGNING_ALLOWED=NO test
+```
+
+```sh
+/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project App/PadelScore.xcodeproj -scheme PadelScorePhone -configuration Debug -destination "platform=iOS Simulator,id=2D44D21F-290D-4325-8DED-B98D29977585" -derivedDataPath /private/tmp/padel-score-1acada2a5b10/DerivedData-m16-phone-current -resultBundlePath .artifacts/M29/teaching6-phone-ui.xcresult -parallel-testing-enabled NO "-only-testing:PadelScorePhoneUITests/CompanionUITests/testGestureSimulationScoresBothTeamsCancelsAndResetsOnLeaving" -collect-test-diagnostics never CODE_SIGNING_ALLOWED=NO test
+```
+
+Exact minimum wrapper: `bash .artifacts/M25/runtime-profile.sh watch-minimum run python3 .artifacts/M29/run-teaching6-minimum.py`. Its Xcode argv:
+
+```sh
+xcodebuild -project App/PadelScore.xcodeproj -scheme PadelScore -configuration Debug -destination 'platform=watchOS Simulator,id=D5A214D9-F6B8-461F-BC2E-A32C0E4FF16C' -derivedDataPath /private/tmp/padel-score-1acada2a5b10/DerivedData-m16-watch-minimum -resultBundlePath .artifacts/M29/teaching6-minimum.xcresult -parallel-testing-enabled NO -only-testing:PadelScoreWatchTests/AppConfigurationTests -only-testing:PadelScoreWatchTests/GestureInputTests -only-testing:PadelScoreWatchTests/GestureScoringTests -only-testing:PadelScoreWatchUITests/BootstrapUITests/testAboutNavigationAndInstalledVersion -only-testing:PadelScoreWatchUITests/GestureScoringUITests/testPracticeExplainsTheSecondSeriesAfterTheFirstPreview -only-testing:PadelScoreWatchUITests/GestureScoringUITests/testSetupOffersOffAndPracticeDoesNotStartGame -only-testing:PadelScoreWatchUITests/GestureScoringUITests/testMinimumRuntimeKeepsTouchScoringAndOffSetup -only-testing:PadelScoreWatchUITests/GestureScoringUITests/testSetupPracticeFromPlayAgainPreservesTheResultAndDraft -only-testing:PadelScoreWatchUITests/GestureScoringUITests/testSetupPracticeFromNewGamePreservesTheResultAndDraft -collect-test-diagnostics never CODE_SIGNING_ALLOWED=NO test
+```
+
+Signed Release build, strict deep signature check, phone update and native phone
+readback all exit0. Phone is **1.0 (6)**. Exact source and phone/embedded Watch
+executable hashes: `.artifacts/M29/candidate-identity-build6.json`; build/install/
+readback/signature logs use build6 names. The phone update preserves data and
+carries the embedded Watch6 package; actual Watch upgrade is not independently
+confirmed. No further uninstall is used while the owner sets
+per-app return behavior. Build6 changes guidance/build identity only; gesture
+reducer is byte-identical to e9053e7's five-second implementation.
+
+The owner's separate activity/display question is investigated read-only in
+[the exact settings record](watch-activity-settings.md). Padel inherits Default/
+two minutes; Always On including Show Apps for Padel, Wrist Raise and tap-to-wake
+70 seconds are already On. Exact English setting directions are supplied. No
+system setting is changed and no permanent-awake promise or workout bypass is made.
+
+## Source-bound local draft refresh
+
+All fourteen Store descriptions and thirteen landing/support drafts now say five
+seconds and teach waiting for the first preview before repeating. Pricing,
+Promotional Text, legal/privacy substance and data architecture remain. All
+Store descriptions remain under4000 characters (maximum3919). Creative rules
+blocks include the same localized cue; all28 fit the original boxes with fonts
+37–61, above the unchanged24 minimum. Native image/artwork dimensions and the
+selected original hand artwork remain; nothing is uploaded/published/sent.
+New complete Watch/phone source-frozen captures, composition, browser layout/palette
+revalidation and strict static validation follow. Earlier native material provenance
+and the raw failed reports remain preserved.
