@@ -6,8 +6,9 @@ companion for interactive practice and lifetime purchase/restore.
 ## Made for real games
 
 - Optional gesture scoring for either team on compatible Apple Watch hardware
-  with watchOS 11 or later. One Double Tap series proposes US, a second selects
-  THEM, a third cancels. The fixed five-second window starts at the first series.
+  with watchOS 11 or later. Each Double Tap series is two thumb/index contacts.
+  One series proposes US; after Pending: US appears, a second selects THEM.
+  A third cancels. The fixed five-second window starts at the first series.
 - Correct the agreed current score or edit an earlier recorded rally, keeping later
   winners in order. Preview score and serving consequences before applying.
 - Play Match without a fixed set limit, or track your own Americano round.
@@ -27,6 +28,15 @@ checkout-specific simulators; read `AI/WORKFLOW.md` before running device tools.
 `make static` checks repository invariants; `make fast` is the development loop.
 Full milestone and release gates record the exact source commit and native results.
 GitHub hosts source/history; a push is not a verification result.
+
+## Architecture
+
+SwiftUI screens use deterministic Match/Americano scoring engines. `SessionStore`
+applies validated commands and publishes changes after a successful local save.
+A versioned Codable file, atomic replacement and a previous-copy backup protect
+the score and correction journal. StoreKit 2 supplies the verified lifetime
+entitlement. Practice and iPhone demos use disposable memory-only models, separate
+from real games and free-game usage.
 
 ## Product and development history
 

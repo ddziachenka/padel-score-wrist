@@ -55,7 +55,7 @@ The session turns your brief into `AI/PRODUCT.md`, `AI/ARCHITECTURE.md`,
 `AI/DESIGN.md`, a dependency-ordered milestone plan, and an updated
 `AI/PROJECT_STATUS.md`. It stops for your approval instead of quietly making the
 product decisions that are yours, and it never infers that approval. Full contract:
-[AI/prompts/initialize-product.md](AI/prompts/initialize-product.md).
+[AI/prompts/initialize-product.md](prompts/initialize-product.md).
 
 ### 2. Develop a milestone
 
@@ -70,8 +70,8 @@ One session owns exactly one milestone: implement → test → self-review → f
 verify → the configured extra problem scan where one applies → fix and reverify →
 `DONE` → stop. It does not pause for a separate reviewer session, and it does not
 start another milestone once this one is done. The sequence lives in
-[AI/WORKFLOW.md](AI/WORKFLOW.md) and
-[AI/prompts/execute-next-milestone.md](AI/prompts/execute-next-milestone.md).
+[AI/WORKFLOW.md](WORKFLOW.md) and
+[AI/prompts/execute-next-milestone.md](prompts/execute-next-milestone.md).
 
 When you want more work after a completed plan, ask for a milestone to be appended and
 use this prompt for it too.
@@ -89,7 +89,7 @@ Accessibility, Product Experience, and Release / App Store / Privacy / Monetizat
 in order. It fixes every valid P0/P1, makes only clearly beneficial low-risk P2
 changes, performs one targeted re-audit, writes one consolidated record, verifies the
 milestone and exact release candidate, reaches `READY_FOR_HUMAN`, and stops. Full
-contract: [AI/prompts/final-polish.md](AI/prompts/final-polish.md).
+contract: [AI/prompts/final-polish.md](prompts/final-polish.md).
 
 Every milestone builds and verifies English alone. Translating the finished app sits
 outside that milestone lifecycle, has its own prompts, and you send them yourself
@@ -176,7 +176,7 @@ the rest.
 New products default to managed simulator isolation: each checkout gets its own
 device, and all gates use its UDID. `make simulator-context` returns context for
 agent tools. Multi-step UI sessions reserve the device and, for mouse/keyboard
-control, the shared desktop; see [Simulator isolation](AI/WORKFLOW.md#simulator-isolation-on-one-mac).
+control, the shared desktop; see [Simulator isolation](WORKFLOW.md#simulator-isolation-on-one-mac).
 Older projects keep their existing template version; there is no migration step.
 
 Configuring writes `Config/project.env` and sets `TEMPLATE_REPOSITORY="false"`.
@@ -214,7 +214,7 @@ levels matter day to day:
 
 `make static` and `make template-check` are lightweight repository checks that need
 no build and no simulator. Exact semantics for every level are in
-[AI/WORKFLOW.md](AI/WORKFLOW.md#verification-levels).
+[AI/WORKFLOW.md](WORKFLOW.md#verification-levels).
 
 The optional pre-commit hook runs only lightweight static checks:
 
@@ -315,7 +315,7 @@ writes `AI/audits/<ID>-final-polish.md`. It then runs milestone verification and
 strict release verification against the same exact SHA, stops at
 `READY_FOR_HUMAN`, and starts no next milestone. This adds no role, milestone state,
 or publication step. The severities and convergence rule are in
-[AI/WORKFLOW.md](AI/WORKFLOW.md#final-product-polish-and-release-readiness).
+[AI/WORKFLOW.md](WORKFLOW.md#final-product-polish-and-release-readiness).
 
 ### New work after the plan is finished
 
@@ -407,7 +407,7 @@ and reports the remaining steps. It binds the full SHA, version/build, and chann
 an invalid or mismatched checklist is `NOT_READY`. Audit coverage comes from
 `Config/release-requirements.v3.tsv`; the three subsequent human steps are separate
 from that completed coverage. The exact format and verdicts are in
-[AI/WORKFLOW.md](AI/WORKFLOW.md#release).
+[AI/WORKFLOW.md](WORKFLOW.md#release).
 
 **`READY_FOR_HUMAN` means** those checks passed for the exact candidate and its
 human checklist is valid. The Builder records the evidence, marks Final Product
@@ -427,7 +427,7 @@ built from that checkout is built from the verified bytes.
 
 The checklist and report are ignored local evidence. Preserve them in a committed
 `AI/audits/release-<version>.md`, written from
-[AI/templates/release-audit-template.md](AI/templates/release-audit-template.md), once
+[AI/templates/release-audit-template.md](templates/release-audit-template.md), once
 human review is complete. Nothing here archives, uploads, submits, publishes, or grants
 approval. An independent AI release audit remains optional; publication is your
 decision.
@@ -516,7 +516,7 @@ did of its own strings, and it is additional quality assurance rather than a gat
 
 Do not copy a language between worktrees by hand, and do not use a worktree this way
 for anything but localization. The normative rules are in
-[AI/WORKFLOW.md](AI/WORKFLOW.md#localization-after-the-milestones).
+[AI/WORKFLOW.md](WORKFLOW.md#localization-after-the-milestones).
 
 ## Repository memory
 
@@ -537,8 +537,8 @@ App/        your Xcode project, added during M00
 Web/        the published privacy, terms, and support pages
 ```
 
-Read [AGENTS.md](AGENTS.md), [AI/WORKFLOW.md](AI/WORKFLOW.md), and
-[AI/PROJECT_STATUS.md](AI/PROJECT_STATUS.md) at the start of an AI session.
+Read [AGENTS.md](../AGENTS.md), [AI/WORKFLOW.md](WORKFLOW.md), and
+[AI/PROJECT_STATUS.md](PROJECT_STATUS.md) at the start of an AI session.
 
 ## The support site
 
@@ -546,7 +546,7 @@ Apple requires a working privacy policy URL and a working support URL for every 
 Store app, and Terms and Privacy links inside any app selling a subscription. The
 pages are part of the template so the content and release audits can verify them.
 
-[Web/](Web/) holds four static pages, deployed to Cloudflare Pages:
+[Web/](../Web/) holds four static pages, deployed to Cloudflare Pages:
 
 ```text
 https://<yourapp>.pages.dev/          landing
@@ -570,7 +570,7 @@ make site-deploy PRODUCTION=1   # the live site
 `make static` runs `site-check` every time. Deploying needs
 [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/) and
 your own Cloudflare account; nothing installs it for you and no verification gate ever
-publishes. [Web/README.md](Web/README.md) covers filling the pages in, previewing them
+publishes. [Web/README.md](../Web/README.md) covers filling the pages in, previewing them
 locally, and adding a language.
 
 ## Watch-only applications
