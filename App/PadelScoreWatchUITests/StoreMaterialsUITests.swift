@@ -443,8 +443,12 @@ final class StoreMaterialsUITests: XCTestCase {
         XCTAssertTrue(app.buttons["gesture.action"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.buttons["game.us"].exists && app.buttons["game.them"].exists)
         shot("01-gesture")
-        app.buttons["gesture.action"].tap()
-        Thread.sleep(forTimeInterval: 3.3)
+        let gesture = app.buttons["gesture.action"]
+        let idleLabel = gesture.label
+        gesture.tap()
+        XCTAssertNotEqual(gesture.label, idleLabel, "The first series must show its pending preview")
+        XCTAssertFalse(app.buttons["game.undo"].isEnabled, "Pending input must not create an undoable point")
+        Thread.sleep(forTimeInterval: 5.3)
         XCTAssertTrue(app.buttons["game.undo"].isEnabled)
         app.buttons["game.undo"].tap()
         app.terminate()
