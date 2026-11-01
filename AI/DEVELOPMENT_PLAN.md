@@ -119,3 +119,9 @@ managed device для утверждённой платформы. Минима�
 не выполнялись. Для завершения M10 нужны реальные evidence на согласованных
 устройствах, включая минимальную ОС, и публичные юридические адреса.
 Недоступная обязательная среда не считается успешной проверкой.
+
+## Approved final submission sequence — 2026-11-02
+
+M29 DONE → [M31](milestones/M31-gesture-brand-and-store-presentation.md) → M26 → M30.
+[Owner authorization](evidence/M31/owner-authorization.md) permits sequential completion
+in one task, without waiving gates. M30 uses an illustrated guide without video.

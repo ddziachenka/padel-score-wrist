@@ -2,7 +2,7 @@
 
 **ID:** M26
 **Status:** PLANNED
-**Depends on:** M29
+**Depends on:** M31
 **Validation:** make milestone ID=M26
 **Handoff:** AI/handoffs/M26-handoff.md
 **Revalidated domains:** functional, ui-ux, content, accessibility, product, release
@@ -39,3 +39,5 @@ No M18 gate consolidation, contrast waiver, automatic submission or promotion be
 `make milestone ID=M26` on a clean REVIEW commit. No skipped/failed mandatory test or inherited contrast waiver. Record exact SHA, commands, exits, bundles and counts; self-review is not independent review. Complete handoff, DONE commit, static/status/continuity, then stop.
 
 Also run `make release CANDIDATE=<full-SHA>` on that exact REVIEW candidate.
+
+Owner authorizes subsequent M30 distribution under [the current plan](../evidence/M31/owner-authorization.md); readiness remains mandatory.

@@ -1,10 +1,10 @@
 # Project status
 
 **Phase:** implementation
-**Current milestone:** M29
+**Current milestone:** M31
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29
-**Next milestone:** M26
-**Blockers:** None for M29: full make milestone ID=M29 passes at a908212c242663c2079427cd3d40ef923d73bd40; manual physical scope OWNER_ACCEPTED_BY_DECISION. M26 owns full readiness/release gates. App Review4.3(a), unsent reply and baseline-matched StoreKit FAILED/P2 retained; M30 needs separate distribution instruction. See AI/handoffs/M29-handoff.md.
+**Next milestone:** M31
+**Blockers:** M31 in progress; M26/M30 full gates pending. Owner authorized sequential completion, new icon, public GitHub push and resubmission without video. Old4.3(a) rejection remains unresolved; nothing newly uploaded/sent/submitted.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).

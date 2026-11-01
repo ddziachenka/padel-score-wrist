@@ -1004,3 +1004,10 @@ review uses a name-neutral next-server label, rather than conjugating a verb aft
 a literal self label or arbitrary player name. Score, service order, names and
 practice-reset behavior remain unchanged. Help must also be checked at maximum
 text size in all thirteen languages and both appearances.
+
+## M31 approved identity — 2026-11-02
+
+Owner selected ball+gesture identity. App/Design/M31 holds three original imagegen
+directions and provenance; B is selected for both app icons. Black/lime, no text,
+opaque1024square, circular Watch safe area. Existing ball renderer is historical.
+Runtime and small-size verification belongs to M31, not historical M29.

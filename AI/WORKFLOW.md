@@ -8,6 +8,11 @@ their recorded commits; they never override this file.
 
 ## The workflow
 
+Owner-approved2026-11-02 exception: complete M31 → M26 → M30 sequentially in
+one task, preserving every full gate/handoff/continuity check. Distribution and
+public GitHub push explicitly authorized after readiness; M30 uses an illustrated
+guide without video. [Exact scope](evidence/M31/owner-authorization.md).
+
 M29-only owner manual acceptance,2026-11-01: the owner accepts gestures/real play
 and explicitly credits all remaining manual physical scenarios. [Exact scope](evidence/M29/owner-physical-acceptance.md).
 This replaces further manual measurement/video collection for M29 without claiming

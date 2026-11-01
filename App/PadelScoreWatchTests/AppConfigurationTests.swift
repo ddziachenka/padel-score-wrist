@@ -26,7 +26,7 @@ struct AppConfigurationTests {
         #expect(bundle.developmentLocalization == "en")
         #expect(bundle.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String == "Padel Score — Wrist")
         #expect(bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String == "1.0")
-        #expect(bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String == "6")
+        #expect(bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String == "7")
     }
     @Test("Every shipped language is present in the installed Watch bundle", arguments: ["es", "it", "fr", "pt-PT", "pt-BR", "nl", "de", "sv", "da", "fi", "nb", "ru"])
     func installedLocalization(_ language: String) throws {
