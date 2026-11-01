@@ -1,9 +1,32 @@
-# M29 physical validation — work in progress
+# M29 physical validation — owner-accepted manual scope
 
-Started 2026-11-01. Builder observations only; no completed physical audit or
-release approval. The owner selected testing together and then instructed the
-agent to use iPhone Mirroring wherever possible, involving the owner only where
-physical action is necessary.
+Started 2026-11-01. Historical Builder observations and owner reports are retained
+below; they do not constitute an independent audit or release approval.
+
+## Current manual acceptance and automatic-gate status
+
+All manual physical inventory rows are **OWNER_ACCEPTED_BY_DECISION**, following
+the owner's explicit “все засчитываем” clarification. The canonical
+[decision and full question/answer](owner-physical-acceptance.md) cover gestures/
+play and the remaining VoiceOver, native-name, storage/recovery, Sandbox purchase/
+Restore/revocation and other manual scenarios. No repeat manual tests are requested.
+
+Exact per-team denominators, recognition percentages, elapsed play hour/zero-event
+counts and real Watch video were not recorded/supplied. Watch6 About was not
+independently read back. Acceptance does not manufacture those facts or convert
+them to measured passes; they are disclosures, not renewed manual blockers.
+
+M29 remains IN_PROGRESS. The full unchanged `make milestone ID=M29` has not run:
+final frozen material captures and domain records are being prepared before a
+clean REVIEW/main candidate. No M25 exception is inherited; no full-gate pass,
+independent audit or release/submission/distribution approval is claimed.
+
+## Historical observation log
+
+The owner initially selected testing together and then instructed the agent to
+use iPhone Mirroring wherever possible, involving the owner only where physical
+action is necessary. Earlier pending/blocked requests below describe their time
+in this log and are superseded for manual acceptance by the current decision.
 
 ## Candidate and environment
 
@@ -34,8 +57,9 @@ physical action is necessary.
 | `xcrun devicectl device install app --device 00008310-000823642660E01E --timeout 30 --json-output .artifacts/M29/watch-install-direct.json .artifacts/M29/device-derived-data/Build/Products/Release-watchos/PadelScoreWatch.app` | 1 | Same Bluetooth tunnel error; `.artifacts/M29/watch-install-direct.log`; no successful Watch update claimed |
 
 The build and connection commands run no tests; xcresult counts are inapplicable.
-`make milestone ID=M29` has not run: physical coverage must first be complete,
-then clean REVIEW/main is committed and the full unchanged gate runs.
+At this historical checkpoint, the full gate had not run because manual coverage
+was incomplete. That blocker is superseded by the current owner decision above;
+the unchanged full gate now awaits final material/domain preparation.
 
 ## Agent-observed phone checks
 
@@ -212,7 +236,7 @@ These phone simulations do not count toward actual Watch recognition thresholds.
 Capture paths above are under `.artifacts/M29/` and originate from the live
 Mirroring window. No real Watch gesture video exists yet.
 
-## Build 4 correction and paired installation — in progress
+## Historical build 4 correction and paired installation
 
 The setup practice navigation defect is reproduced and corrected at
 `0d535ac26a543d37333f3c457bbfba1316663d90`; see
@@ -246,7 +270,12 @@ until the input-mechanic decision is settled. One-hour play/video remain postpon
 by the owner; neither is passed. The setup navigation outcome was not reported
 separately from the gesture response.
 
-## Physical trial protocol — pending execution
+## Historical original physical trial protocol — acceptance superseded
+
+This original measurement protocol is retained for traceability, not requested
+again. Its manual evidence clauses are superseded for M29 by
+[OWNER_ACCEPTED_BY_DECISION](owner-physical-acceptance.md); none of the planned
+counts, duration or video below is relabelled as collected evidence.
 
 Use a confirmed current Watch installation and an identified disposable test game;
 preserve owner history and existing purchase state. Record actual wrist and racket
@@ -273,6 +302,7 @@ incomplete trial is recorded as such, never assumed successful.
 7. Capture continuous real Watch video with gesture and actual score visible:
    opt-in, one/two/third series, fixed deadline, touch override and Undo.
 
-All physical rows remain PENDING until their actual results are recorded. Final
-six-domain records must combine these results with M25 digital evidence. No M25
-exception carries into M29, M26 or release.
+At that earlier checkpoint all physical rows remained PENDING until actual
+results were recorded. Current manual outcomes are OWNER_ACCEPTED_BY_DECISION.
+Final six-domain records must distinguish accepted manual scope from measured
+digital evidence. No M25 exception carries into M29, M26 or release.

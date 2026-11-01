@@ -1,96 +1,153 @@
-# M25 active Store materials — local draft
+# Active Store materials — local draft, M29 build 6 refresh
 
-This is the current prepared gesture/recovery set:14 ASC locales,112 Watch and98
-iPhone original native captures,28 localized creative compositions. Hardware claims
-remain **PENDING_M29**; nothing is uploaded, published or sent by M25. Old M15/M16
-sets are historical source evidence and remain byte-checked separately.
+Current copy targets **1.0 (6)**: a fixed five-second window and an explicit cue
+to wait for the localized Pending: US preview, then repeat the series (two finger
+contacts). The target set is 14 ASC locales, 112 Watch and 98 iPhone native captures,
+plus 28 localized creative compositions.
+
+**Refresh status: local material-refresh scope PASS.** Both native galleries,
+210 originals, 28 compositions, 104 site copies, strict material validation,
+site-check, static and all 42 contact-sheet visual reviews passed. Current
+[manifest.json](manifest.json) identifies build 6 capture source
+`1367217b30ce0c5ffa2c464ea977786e28139439`. Final browser binding passes 208 layout
+rows, 12 palette pairs (minimum 5.778:1) and five final visual spot checks. See
+[M29 refresh](../../evidence/M29/material-refresh.md). Full M29 gate/DONE and any
+release/distribution approval are separate; they are not claimed here.
+
+The unchanged manifest/importer/validator schema retains the literal markers
+`LOCAL_DRAFT_PENDING_M29` and `PENDING_M29`. These are legacy M25 schema values;
+they do not reopen manual acceptance. M29's whole manual physical scope is
+**OWNER_ACCEPTED_BY_DECISION** in the [canonical owner record](../../evidence/M29/owner-physical-acceptance.md).
+No measured percentages, elapsed-hour/event counts or supplied real Watch video
+are implied. Keep guards unchanged and do not manufacture measurement/media proof.
+Nothing here authorizes upload, publication or submission.
 
 ## Native galleries
 
 Watch order: gesture-enabled real score; optional per-game OFF setup; agreed-score
 Points editor; selective rally correction After preview; unrestricted Match sets;
-Americano; known-score start review; local History. Each language/region has its
-own actual XCTest attachments, not translated overlays. Screenshots retain natural
-scroll viewports; the app's remaining text is reachable by scrolling.
+Americano; known-score start review; local History. Each language/region requires
+its own actual XCTest attachments, not translated overlays. Natural scroll
+viewports are retained; remaining app text stays reachable by scrolling.
 
 Phone order: explicit gesture simulation; correction preview; known-score preview;
 Start; ordinary Match demo; Americano demo; permanent StoreKit-verified owned Access.
 Real games run on Watch; the phone does not recognize Watch Double Tap. All seven
-images per locale are new actual captures of build3's final shipping UI.
+images per locale are fresh build 6 captures in this refresh.
 
-Locales: en-US,es-ES,es-MX,it,fr-FR,pt-PT,pt-BR,nl-NL,de-DE,sv,da,fi,no,ru.
+Locales: en-US, es-ES, es-MX, it, fr-FR, pt-PT, pt-BR, nl-NL, de-DE, sv, da, fi, no, ru.
 The thirteen public-site routes use es-ES for Spanish; the separate es-MX native
-Store capture is preserved. Watch PNGs368×448; iPhone PNGs1320×2868; opaque RGB.
-The104 site Watch images are byte-identical copies, scaled only by CSS.
+Store capture is retained. Watch PNGs 368×448; iPhone PNGs 1320×2868; opaque RGB.
+All 104 site Watch images are verified byte-identical copies, scaled only
+by CSS. Old M15/M16 sets remain historical evidence checked separately.
 
-## Artwork and creative composition
+## Artwork and composition
 
-[Selection](artwork/selection.md), [three exact direction prompts](artwork/prompts.json),
+[Selection](artwork/selection.md), [original direction prompts](artwork/prompts.json),
 [refinement prompt](artwork/refinement-prompt.txt), [selected hand](artwork/selected-hand.png).
-Built-in imagegen tool mode; the three directions and refined original are retained.
-One hand pose illustrates fingertip contact; programmatically typeset localized
-copy explicitly says TWO contacts per series. One/two/third series and fixed3s
-rules are words, never inferred from a single pose. No generated/reconstructed UI
-or fictional device display is used.
+The original imagegen directions and refined hand are retained. A fingertip-contact
+pose illustrates the action; localized words explicitly define TWO contacts per
+series. One/two/third-series semantics, fixed 5 s and the first-preview cue are words,
+not inferred from a pose. No generated/reconstructed UI or fictional display is used.
 
-Per locale, header3840×1646 and search1920×1280 combine the selected hand, an actual
-native Watch image and localized app-catalog text. Artwork/native transforms,
-font sizes, text boxes and source hashes are in [manifest.json](manifest.json).
-These are marketing compositions, distinct from the unmodified native galleries.
+Per locale, header 3840×1646 and search 1920×1280 combine the original hand, an actual
+native Watch capture and localized catalog text. The updated rules block includes
+the second-series cue. Copy-fit preflight passed all 28 blocks at 37–61 pt inside the
+existing boxes and unchanged 24 pt minimum; this is not final visual approval.
+Fresh composition and all 14 creative contact-sheet reviews PASS; see the
+[hash-bound review](../../evidence/M29/creative-visual-review.md). Final transforms,
+fonts, boxes and hashes are recorded in the manifest. Composites remain
+separate from unmodified native galleries.
 
-## Provenance and reproduction
+## Current freeze and reproduction
 
-Capture source: `f097a52d6a1154cf431156c30a81013a34d3cd47` on main, build1.0(3).
-All shipping App file membership/bytes match the current material fingerprints;
-the complete final App/test source is frozen for both new captures. The full
-immutable gate verifies its own final source/tests/assets commit separately;
-these targeted captures are not its replacement.
+Both complete native runs used unchanged App/Config/Scripts at main SHA
+**`1367217b30ce0c5ffa2c464ea977786e28139439`**, build 1.0 (6). This includes the gallery
+test's corrected 5.3 s wait and extra pending/no-early-Undo assertions. Shipping bytes
+remain unchanged from `ff87edd550f376b618d44ebb7904ef29f769b686`. The full milestone
+gate verifies its own clean final implementation/assets commit separately.
 
-- Watch: `bash Scripts/capture-store-materials.sh watch capture watch-gallery-4`,
-  exit0,14/14 definitions/invocations, zero failures/skips/expected/runtime warnings.
-  Owned44mm SE/watchOS26.1,22C79D99-DEA7-4525-AD2D-50FDCD6B8720.
-- Phone: `bash Scripts/capture-store-materials.sh phone-current capture phone-gallery-4`,
-  exit0,2/2, zero failures/skips/expected/runtime warnings. Owned17ProMax/iOS27.0,
-  2D44D21F-290D-4325-8DED-B98D29977585. The same current capture profile is
-  reproducible through `bash Scripts/capture-store-materials.sh phone-current capture <new-safe-run-name>`.
-- The first phone/iOS26.5 gallery remains FAILED because its local StoreKit guard
-  refused purchase setup; it is not imported. Current27 first passed a genuine
-  purchase/owned/relaunch smoke, then the complete gallery. No StoreKit guard was
-  removed. Raw cancelled/failed earlier runs remain in .artifacts/M25/.
+| Run/check | Required result | Recorded result |
+| --- | --- | --- |
+| `m29-watch-gallery-2` | 14/14 definitions/invocations, zero adverse native counts | PASS, exit 0 |
+| `m29-phone-gallery-2` | 2/2 definitions/invocations, zero adverse native counts | PASS, exit 0 |
+| 112 Watch + 98 phone originals | Exact attachments/source/device/hash/dimensions | PASS import and strict validation |
+| 28 creatives and 104 site copies | Exact new-native identity/composition/byte checks | PASS, strict validator exit 0 |
+| 14 Watch + 14 phone + 14 creative sheets | Actual final visual review | PASS, all 42 current sheets |
 
-Durable native summaries/export manifests are in provenance/. Every native image
-records attachment, exact source SHA, device, timestamp, fixture/actions, dimensions
-and hash. Raw result bundles remain .artifacts/M25/watch-gallery-4.xcresult and
-phone-gallery-4.xcresult, never in Git. Rebuild after complete new native runs:
+Watch uses owned 44 mm SE/watchOS 26.1, `22C79D99-DEA7-4525-AD2D-50FDCD6B8720`.
+Phone uses owned iPhone 17 Pro Max/iOS 27.0, `2D44D21F-290D-4325-8DED-B98D29977585`.
+Preserve raw bundles under `.artifacts/M25/m29-watch-gallery-2.xcresult` and
+`.artifacts/M25/m29-phone-gallery-2.xcresult`. The two-run freeze is complete.
+Watch native UTC: 2026-11-01T12:30:04.524Z–13:10:27.693Z; phone:
+13:11:43.049Z–13:24:42.517Z. After capture, root corrected REL1302 queued-input
+three-to-five-second prose in Config; shipping App bytes remain unchanged.
+
+The completed pipeline imported only after both passing source-matched runs:
 
 ```sh
-python3 AI/store-assets/m25/tools/import-captures.py --watch-run watch-gallery-4 --phone-run phone-gallery-4
+bash Scripts/capture-store-materials.sh watch capture m29-watch-gallery-2
+bash Scripts/capture-store-materials.sh phone-current capture m29-phone-gallery-2
+python3 AI/store-assets/m25/tools/import-captures.py --watch-run m29-watch-gallery-2 --phone-run m29-phone-gallery-2
 python3 AI/store-assets/m25/tools/compose-creative.py
 python3 AI/store-assets/m25/tools/prepare-site.py
 python3 AI/store-assets/m25/tools/validate.py
+python3 .artifacts/M29/make-final-contacts.py
 make site-check
 ```
 
+Root's `.artifacts/M29/refresh-materials.sh` uses `set -euo pipefail` and completed
+exit 0. Logs: `.artifacts/M29/material-{import,compose,site-prepare,validate,contacts}.log`
+and `.artifacts/M29/site-check-final.log`. The importer/validator retain all source,
+attachment, provenance, image and site-copy guards. `make static` separately
+passed exit 0 in `.artifacts/M29/static-materials-final.log`.
+
+[Watch](../../evidence/M29/watch-gallery-visual-review.md),
+[phone](../../evidence/M29/phone-gallery-visual-review.md) and
+[creative](../../evidence/M29/creative-visual-review.md) records bind all 42 sheets
+and final image hashes. [Browser review](../../evidence/M29/site-browser-review.md)
+records `python3 .artifacts/M29/prove-site-identity.py`, exit 0: all 53 HTML/CSS files
+match source `445859bde0740737ccd580ca0fb95dba429fb534`, the 208-row layout matrix
+passes, and all 12 computed palette pairs pass (minimum 5.778084694407478:1). Dark is an
+isolated CSS preview, not OS preference emulation. Five final post-import visual
+PNG spot checks pass for EN 375-wide Light and RU 1280-wide isolated Dark; exact
+hashes/dimensions are in [capture identity](../../evidence/M29/site-final-captures.json),
+including the 1280×581 RU recovery image. DOM/palette coverage, raster identity and
+visual spot checks retain their separate scope; no complete browser accessibility
+audit or full milestone-gate result is implied.
+
+## Historical evidence retained
+
+Previous imported M25 source `f097a52d6a1154cf431156c30a81013a34d3cd47`, build 1.0 (3),
+used `watch-gallery-4` 14/14 and `phone-gallery-4` 2/2; all 42 sheets were reviewed.
+Their durable summaries/export manifests remain in `provenance/` and raw bundles
+in `.artifacts/M25/`. Those passes do not prove this new build 6 refresh.
+
+The first phone/iOS 26.5 gallery remains **FAILED** because its local StoreKit guard
+refused purchase setup; it was not imported. Current 27 later passed a genuine
+purchase/owned/relaunch smoke and the complete M25 gallery. No StoreKit guard was
+removed. Raw cancelled/failed attempts remain preserved.
+
+M29 `m29-watch-gallery-1` remains **FAILED** / exit 65, 0/14 passed: the old 3.3 s Undo
+check preceded the approved 5 s save. A focused English scenario passes 1/1 after
+correcting to 5.3 s and adding assertions; it does not replace the full 14-locale result.
+See [prototype history](../../evidence/M29/five-second-prototype.md).
+
 ## Copy and external boundary
 
-metadata/ contains fourteen local JSON drafts under Apple's field limits. Title,
-subtitle, keywords and neutral evergreen Promotional Text are retained. Descriptions
-are gesture-first and explain touch/Undo, correction boundaries, unknown earlier
-rallies, independent Watch, five completed games and the lifetime purchase; no
-exclusivity or guaranteed review outcome. Existing truthful format/history/offline
-and legal site facts are preserved in site-preserved-copy.json.
+Fourteen local metadata JSON drafts stay within Apple's field limits. Title,
+subtitle, keywords, pricing and neutral evergreen Promotional Text are retained.
+Descriptions teach 5 s/first-preview cadence, touch/Undo, correction boundaries,
+unknown earlier rallies, independent Watch, five completed games and the lifetime
+purchase. No exclusivity, guaranteed recognition or review-outcome claim is added.
+Existing format/history/offline and legal facts remain in `site-preserved-copy.json`.
 
-[Review Notes draft](../../evidence/M25/review-notes-draft.md) has a separate field
-under4000characters and factual M30 response context. Published support/privacy/
-terms were read back separately; local new site texts have not been deployed.
-The current authenticated ASC declaration says Data Not Collected, while build2
-and its old notes remain selected/live. M29 supplies actual recognition/video/
-physical checks; M26 verifies readiness; M30 requires its distribution instruction.
-
-All14 final Watch,14 phone and14 creative contact sheets were visually reviewed.
-Strict provenance/format/source/site validation passes; site-layout-identity.json
-binds the final52 HTML pages and CSS to the recorded208-combination browser proof.
-This is local draft preparation. The extra current-Simulator full StoreKit unit
-probe remains FAILED/P2 with identical baseline reproduction; see
-[bounded runtime evidence](../../evidence/M25/storekit-current-runtime.md).
-Actual recognition/VoiceOver/purchases and other hardware observations remain M29.
+The [current M29 Review Notes draft](../../evidence/M29/review-notes-draft.md)
+updates build 6's five-second first-series deadline and second-series cue. It stays
+local; future M30 owns final candidate/material matching and separately authorized
+external use. The [M25 draft](../../evidence/M25/review-notes-draft.md) remains
+historical. M25 ASC/privacy readbacks are historical observations, not a fresh
+ASC-state claim. New local site copy is not deployed. The baseline-matched current Simulator
+StoreKit probe remains FAILED/P2 in [its record](../../evidence/M25/storekit-current-runtime.md),
+not accepted as passing here. M26 retains full readiness verification; M30 retains
+separately authorized distribution/review work.

@@ -82,7 +82,7 @@ REL-1203	internal	content,release	no	Recipients know how to obtain the internal 
 
 # Approved recovery, player-name and gesture extension; physical proofs belong to M29.
 REL-1301	all	functional,product	no	Every new game defaults gestures off and active-game opt-in persists outside score Undo
-REL-1302	all	functional,ui-ux	no	Gesture pending-team selection commits one rally after three seconds and cancels on third input touch navigation inactivity or revision change
+REL-1302	all	functional,ui-ux	no	Gesture pending-team selection commits one rally after five seconds and cancels on third input touch navigation inactivity or revision change
 REL-1303	all	functional,release	no	Schema 1 through 4 migration to schema 5 preserves score journal roster archive usage and defaults gestures off
 REL-1304	all	functional,product	no	Selective change delete and insert preserve later winners and stable identifiers with atomic preview apply and whole-correction Undo
 REL-1305	all	functional,content,ui-ux	no	Known-score starts disclose unknown earlier rallies and require explicit validated serving before creating a normal game

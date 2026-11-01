@@ -571,4 +571,14 @@ M29 prototype amendment, owner-approved 2026-11-01: the initial three-second
 window is extended to five seconds in test build 1.0 (5), after intermittent
 physical two-series recognition. This is an experiment in timing and comfort,
 not acceptance of recognition reliability. The deadline stays fixed from the
-first activation. All ≥95% per-team, zero wrong-team and one-hour criteria remain.
+first activation. At that prototype decision, the original ≥95% per-team,
+zero wrong-team and one-hour criteria remained.
+
+Later M29-only manual acceptance,2026-11-01: the owner accepted gestures/real
+play and explicitly credited all remaining physical scenarios (“все засчитываем”).
+[Exact scope and evidence limits](evidence/M29/owner-physical-acceptance.md).
+This replaces further manual measurement/video collection for the current M29
+candidate; no numerical recognition rate, measured hour/zero-event count or
+supplied real Watch video is claimed. Build6 adds the explicit Pending: US →
+repeat-two-contacts cue. All automatic verification and six-domain records remain
+required, as do M26's full gates and separate distribution authorization.

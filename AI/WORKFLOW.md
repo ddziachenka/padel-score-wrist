@@ -8,6 +8,14 @@ their recorded commits; they never override this file.
 
 ## The workflow
 
+M29-only owner manual acceptance,2026-11-01: the owner accepts gestures/real play
+and explicitly credits all remaining manual physical scenarios. [Exact scope](evidence/M29/owner-physical-acceptance.md).
+This replaces further manual measurement/video collection for M29 without claiming
+unrecorded metrics or observations. Full `make milestone ID=M29`, every strict
+automatic test/count/source/material guard and six final domain records remain
+mandatory. No M25/M28 automatic exception is inherited; no M26 milestone/release
+gate or distribution/submission decision is waived.
+
 M25-only owner exception,2026-10-31: the owner explicitly selected acceptance of
 the fully passing Watch and fresh complete phone suites on the exact same
 unchanged SHA. [Authorization/evidence](evidence/M25/owner-verification-exception.md).

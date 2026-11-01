@@ -6,6 +6,13 @@ sessions remain sequential, one milestone per session, on primary checkout/main.
 
 ## Product contract
 
+M29 manual acceptance amendment,2026-11-01: the owner accepts the physical-device
+scope with the explicit follow-up "все засчитываем". [Exact decision](evidence/M29/owner-physical-acceptance.md).
+Original numeric/hour/video goals remain disclosed as unmeasured/not supplied,
+not fabricated passes. Owner acceptance replaces further manual evidence gathering
+for this M29 candidate only. Full automatic M29/M26 gates and six-domain records
+remain unchanged; no App Review/distribution action is authorized.
+
 Gesture scoring is off for every new Match/Americano game, including Play again
 and known-score starts. Setup offers an opt-in switch and an explanation. The
 choice survives restart/resume for that game; the active-game menu can change it.

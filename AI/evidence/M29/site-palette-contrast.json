@@ -1,0 +1,125 @@
+{
+  "scope": "Computed site palette only; not a complete browser accessibility audit",
+  "rows": [
+    {
+      "theme": "Light",
+      "surface": "background",
+      "foreground": "text",
+      "colors": {
+        "background": "#ffffff",
+        "foreground": "#1a1a1c"
+      },
+      "contrast": 17.377657264466563
+    },
+    {
+      "theme": "Light",
+      "surface": "background",
+      "foreground": "text-muted",
+      "colors": {
+        "background": "#ffffff",
+        "foreground": "#5c5c63"
+      },
+      "contrast": 6.63278429165201
+    },
+    {
+      "theme": "Light",
+      "surface": "background",
+      "foreground": "accent",
+      "colors": {
+        "background": "#ffffff",
+        "foreground": "#0b5fbe"
+      },
+      "contrast": 6.186197171351488
+    },
+    {
+      "theme": "Light",
+      "surface": "surface",
+      "foreground": "text",
+      "colors": {
+        "background": "#f7f7f8",
+        "foreground": "#1a1a1c"
+      },
+      "contrast": 16.231227793623148
+    },
+    {
+      "theme": "Light",
+      "surface": "surface",
+      "foreground": "text-muted",
+      "colors": {
+        "background": "#f7f7f8",
+        "foreground": "#5c5c63"
+      },
+      "contrast": 6.19520980908665
+    },
+    {
+      "theme": "Light",
+      "surface": "surface",
+      "foreground": "accent",
+      "colors": {
+        "background": "#f7f7f8",
+        "foreground": "#0b5fbe"
+      },
+      "contrast": 5.778084694407478
+    },
+    {
+      "theme": "Dark isolated preview",
+      "surface": "background",
+      "foreground": "text",
+      "colors": {
+        "background": "#131315",
+        "foreground": "#f1f1f3"
+      },
+      "contrast": 16.45049896930869
+    },
+    {
+      "theme": "Dark isolated preview",
+      "surface": "background",
+      "foreground": "text-muted",
+      "colors": {
+        "background": "#131315",
+        "foreground": "#a6a6ae"
+      },
+      "contrast": 7.676360889021294
+    },
+    {
+      "theme": "Dark isolated preview",
+      "surface": "background",
+      "foreground": "accent",
+      "colors": {
+        "background": "#131315",
+        "foreground": "#6fa8f5"
+      },
+      "contrast": 7.595404793881051
+    },
+    {
+      "theme": "Dark isolated preview",
+      "surface": "surface",
+      "foreground": "text",
+      "colors": {
+        "background": "#1e1e21",
+        "foreground": "#f1f1f3"
+      },
+      "contrast": 14.741361815385492
+    },
+    {
+      "theme": "Dark isolated preview",
+      "surface": "surface",
+      "foreground": "text-muted",
+      "colors": {
+        "background": "#1e1e21",
+        "foreground": "#a6a6ae"
+      },
+      "contrast": 6.8788195118979125
+    },
+    {
+      "theme": "Dark isolated preview",
+      "surface": "surface",
+      "foreground": "accent",
+      "colors": {
+        "background": "#1e1e21",
+        "foreground": "#6fa8f5"
+      },
+      "contrast": 6.806274412089719
+    }
+  ]
+}

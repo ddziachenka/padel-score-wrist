@@ -4,7 +4,7 @@
 **Current milestone:** M29
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25
 **Next milestone:** M29
-**Blockers:** M29 IN_PROGRESS: build6 cue passes current/minimum Watch32/73 each and phone UI1/1. Phone6 installed; Watch6 identity and numeric gesture trials pending. Local material refresh underway. Owner postponed1h play/video; remaining physical rows, six domains and full gate required before M26. See AI/evidence/M29/five-second-prototype.md. App Review4.3(a), unsent reply and baseline-matched StoreKit FAILED/P2 retained; M30 needs separate submission instruction.
+**Blockers:** M29 REVIEW: all manual physical coverage OWNER_ACCEPTED_BY_DECISION; build6 targeted checks and fresh materials/static pass. Full unchanged make milestone ID=M29 and final domain/gate records pending. See AI/evidence/M29/owner-physical-acceptance.md and AI/handoffs/M29-handoff.md. M26 keeps full gates; M30 needs separate distribution instruction.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -458,7 +458,30 @@ No upload/reply/submission/pricing/publication. New Builder owns M29 physical
 validation; M26 retains complete final gates, M30 separate authorized resubmission.
 Handoff: [M25](handoffs/M25-handoff.md). Stop after DONE static/status/continuity.
 
-## M29 physical checkpoint — 2026-11-01
+## M29 current acceptance checkpoint — 2026-11-01
+
+All manual physical coverage is **OWNER_ACCEPTED_BY_DECISION**, following the
+owner's explicit “все засчитываем” clarification. The canonical
+[decision and full question/answer](evidence/M29/owner-physical-acceptance.md)
+close gestures/play, VoiceOver, native names, recovery, Sandbox purchase/Restore/
+revocation and all other manual inventory rows for M29. Missing measured
+denominators, recognition percentages, elapsed hour/zero-event counts, real Watch
+video and independent Watch6 About readback remain disclosed; they are not
+renewed manual blockers or claims of measured passes. No repeat manual tests are
+requested. [Reconciliation](evidence/M29/physical-coverage-reconciliation.md).
+
+M29 remains **IN_PROGRESS, not DONE**. Final frozen material captures and domain
+records are being prepared before committing the clean REVIEW/main candidate
+and running the entire unchanged `make milestone ID=M29`. No full-gate SHA,
+exit or counts exist yet. No M25 exception is inherited, and no release,
+App Review reply/submission or distribution is authorized. Current
+[handoff](handoffs/M29-handoff.md).
+
+## Historical M29 physical checkpoint — superseded, 2026-11-01
+
+The blocked status, pending mechanic choice and outstanding manual requests below
+describe the earlier checkpoint. The approved five-second choice and current
+owner acceptance above supersede them; original observations and failures remain.
 
 M29 BLOCKED, not DONE. Owner confirms Watch and phone 1.0 (4); two native series
 can select THEM but not reliably, with no numeric trial record. Owner asks about
@@ -478,3 +501,15 @@ Phone settings restored to owner-approved originals; no outstanding restore appr
 Strict material source fingerprint correctly blocks static until final-source
 complete captures are refreshed after the mechanic decision. No full M29 pass,
 independent audit, release approval, upload/reply/submission/publication claimed.
+
+
+## M29 final candidate preparation — 2026-11-01
+
+All manual physical scope is OWNER_ACCEPTED_BY_DECISION, with missing metrics/
+video/current-Watch readback disclosed. Watch14/14 and phone2/2 complete galleries
+pass at1367217b30ce0c5ffa2c464ea977786e28139439, all adverse counts0. Strict import/
+composition/site validators,42 final contact reviews,53-file/208-browser-layout
+binding,12 palette pairs and fresh static pass. Build6 shipping bytes stay equal
+to targeted-testedff87; REL-1302 prose matches approved5s. M29 now enters REVIEW
+for the complete unchanged make milestone ID=M29 on a clean committed main.
+No full-gate pass, DONE or release approval is claimed yet.

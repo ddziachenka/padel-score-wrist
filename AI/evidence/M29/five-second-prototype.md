@@ -2,8 +2,18 @@
 
 Owner selected “Прототип 5 секунд (Recommended)” on 2026-11-01 after intermittent
 physical two-series recognition on Watch build 4. [Decision](gesture-input-decision.md).
-This is an experiment, not a ≥95% recognition/comfort pass or release approval.
-M29 is IN_PROGRESS; the other physical requirements remain mandatory.
+The owner later accepted the entire M29 manual physical scope as
+**OWNER_ACCEPTED_BY_DECISION**. The [canonical decision and full question/answer](owner-physical-acceptance.md)
+supersede earlier outstanding manual requests, including VoiceOver, names,
+recovery and Sandbox purchase/Restore/revocation. No repeat tests are requested.
+Exact recognition denominators/percentages, elapsed hour/zero-event counts and
+real Watch video were not recorded/supplied; Watch6 About was not independently
+read back. These disclosures remain unmeasured, without reopening acceptance.
+
+M29 remains IN_PROGRESS. Final frozen material captures/domain records precede
+the clean REVIEW/main candidate and full unchanged `make milestone ID=M29`.
+Manual acceptance is not an automated-gate pass, independent audit or release/
+submission/distribution approval. No M25 exception is inherited.
 
 ## Implementation and self-review
 
@@ -56,7 +66,11 @@ exact installed identity/localizations. Bundle, log and native summary under
 `.artifacts/M29/five-second-source-inputs.json`; next commit will bind this exact
 input set before UI verification and signed local build/install.
 
-## Remaining work
+## Historical remaining-work checkpoint — superseded
+
+The following checkpoint preceded the later targeted runs and owner acceptance.
+It does not state current manual blockers; later observations remain distinct
+from outcomes accepted by decision.
 
 Committed-source current/minimum UI and phone simulation checks; build/sign/install
 1.0 (5), owner confirmation of Watch identity, and short real gesture/comfort

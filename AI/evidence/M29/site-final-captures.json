@@ -1,0 +1,45 @@
+{
+  "scope": "Final native-image browser visual spot checks; image file dimensions recorded exactly, not all900px high. Dark is isolated CSS preview, not OS preference.",
+  "captures": [
+    {
+      "file": ".artifacts/M29/site-final-en-375-cue.png",
+      "dimensions": [
+        375,
+        900
+      ],
+      "sha256": "cc822af9bdaa132a0e004688f19c1a92effd63d365dc699b32746829b0874426"
+    },
+    {
+      "file": ".artifacts/M29/site-final-en-375-hero.png",
+      "dimensions": [
+        375,
+        900
+      ],
+      "sha256": "990de02f3e9f90ed50fc66ad3fdef24e4c473a1e8acd8396a6082401763b32ea"
+    },
+    {
+      "file": ".artifacts/M29/site-final-en-375-recovery.png",
+      "dimensions": [
+        375,
+        900
+      ],
+      "sha256": "6046b160599b2587969ed15ebc560d9c4e1f83f422914e5748ad524d3662d485"
+    },
+    {
+      "file": ".artifacts/M29/site-final-ru-1280-dark-hero.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "12a921efb911c6ddbde4157885ddb4794cd9774743727fa446caf8581900ac2d"
+    },
+    {
+      "file": ".artifacts/M29/site-final-ru-1280-dark-recovery.png",
+      "dimensions": [
+        1280,
+        581
+      ],
+      "sha256": "093505049ec168eac64d29bd276c03a25d7f70fdd6daeb51588905d252d13a42"
+    }
+  ]
+}

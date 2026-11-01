@@ -1,0 +1,37 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "modelName": "iPhone 17 Pro Max",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "passedTests": 2,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Default"
+      }
+    }
+  ],
+  "environmentDescription": "PadelScorePhone \u00b7 Built with macOS 27.0.1",
+  "expectedFailures": 0,
+  "failedTests": 0,
+  "finishTime": 1793539482.517,
+  "passedTests": 2,
+  "result": "Passed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1793538703.049,
+  "statistics": [],
+  "testFailures": [],
+  "title": "Test - PadelScorePhone",
+  "topInsights": [],
+  "totalTestCount": 2
+}

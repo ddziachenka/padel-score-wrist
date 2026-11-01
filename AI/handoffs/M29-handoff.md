@@ -4,7 +4,7 @@
 
 ## Milestone
 
-`M29` — Physical Device Validation; status `IN_PROGRESS`, **not DONE**.
+`M29` — Physical Device Validation; status `REVIEW`, **not DONE**.
 
 ## Summary
 
@@ -14,7 +14,12 @@ before repeating, but that sequence was not initially obvious. Build 1.0 (6)
 adds that explicit teaching step on Watch/phone and matching accessibility hints
 in all13 UI languages. One/two/third-series semantics, fixed deadline, cancellations,
 atomic save/Undo and no-motion architecture remain. Phone6 is installed/read back;
-Watch6 About confirmation and numeric physical results are still absent.
+Watch6 About confirmation and numeric physical results were not independently
+recorded. All manual physical coverage is now **OWNER_ACCEPTED_BY_DECISION**:
+the owner's explicit “все засчитываем” closes the remaining inventory as well as
+gestures/play. The [canonical decision and full question/answer](../evidence/M29/owner-physical-acceptance.md)
+supersede earlier manual blockers. Missing measurements/media remain disclosures,
+not measured passes or requests to repeat accepted manual checks.
 
 Earlier physical feedback also exposed a result-based setup→Try gestures defect;
 route fixed and two fail-before/pass-after regressions added. Minimum-runtime
@@ -40,8 +45,8 @@ Phone appearance settings from earlier checks are restored after owner approval.
   cancelled/stale contexts, visible input, explicit cue and isolated scoring.
 - Owning product/architecture/design/plan docs — approved prototype and scope.
 - Active local metadata/creative/site drafts — five seconds and matching cue,
-  unchanged pricing/legal/privacy/Promotional Text; fresh native material capture
-  and browser proof are in progress. No publication or upload.
+  unchanged pricing/legal/privacy/Promotional Text;210 fresh native captures,28
+  compositions,42 visual contacts and source-bound browser proof pass. No publication or upload.
 - `AI/evidence/M29/`, status and milestone — observations, exact evidence, blockers.
 
 ## Validation
@@ -49,18 +54,21 @@ Phone appearance settings from earlier checks are restored after owner approval.
 | Field | Evidence |
 | --- | --- |
 | Verified SHA | **No full M29 verified SHA.** Latest targeted implementation `ff87edd550f376b618d44ebb7904ef29f769b686`; timing prototype `e9053e7afce11877225fd58e826fcbeebd866bcf`; earlier route correction `0d535ac26a543d37333f3c457bbfba1316663d90`. |
-| Exact command | Full required `make milestone ID=M29` **not run**: mandatory physical evidence incomplete; no eligible clean REVIEW candidate. Exact bounded commands in [prototype evidence](../evidence/M29/five-second-prototype.md), earlier [regression evidence](../evidence/M29/setup-practice-regression.md); build/install commands in [physical record](../evidence/M29/physical-validation.md). |
+| Exact command | Full required `make milestone ID=M29` **not run**: final materials/static pass; a clean REVIEW/main candidate is being committed for the complete command. Manual physical scope is accepted by owner decision. Exact bounded commands in [prototype evidence](../evidence/M29/five-second-prototype.md), earlier [regression evidence](../evidence/M29/setup-practice-regression.md); build/install commands in [physical record](../evidence/M29/physical-validation.md). |
 | Exit code | Build6 current/minimum Watch supplements and phone UI each0; signed Release build/strict signature/install/readback each0. Initial incompatible phone-plan preparation70, no tests executed; preserved, not a pass. No full-gate exit exists. |
 | Timestamp | Build6 current 2026-11-01T11:31:27.165Z–11:34:38.604Z; minimum11:43:42.743Z–11:46:48.236Z; phone UI11:41:12.102Z–11:42:19.977Z. |
 | Report | `.artifacts/M29/teaching6-current.xcresult`, `teaching6-minimum.xcresult`, `teaching6-phone-ui.xcresult`; matching logs/native summaries. Signed identity `.artifacts/M29/candidate-identity-build6.json`. |
-| Counts | **Current32/32 definitions/73 invocations; minimum32/32/73; phone UI1/1/1**, all zero failed/skipped/expected/native runtime warnings. Build/install commands run no tests. No physical success denominator or one-hour/video pass exists. |
+| Counts | **Current32/32 definitions/73 invocations; minimum32/32/73; phone UI1/1/1**, all zero failed/skipped/expected/native runtime warnings. Build/install commands run no tests. Physical denominators, elapsed hour/zero-event counts and real Watch video were not recorded/supplied; manual outcomes are OWNER_ACCEPTED_BY_DECISION. |
 
 Earlier passing targeted runs are retained with exact source/UTC/counts in their
 linked evidence; they are not substituted for the full M29 gate. Last `make static`
 on e9053e7 exits Make2/verifier65 solely on stale shipping-source material identity,
-`.artifacts/M29/static-prototype5.log`. Fresh complete native galleries, localized
-compositions/site copies and layout/palette revalidation are underway before a
-new strict static check. No source validator/hash/assertion/parser is weakened.
+`.artifacts/M29/static-prototype5.log`. Fresh complete galleries now pass at `1367217b30ce0c5ffa2c464ea977786e28139439`: Watch14/14 and phone2/2, all adverse counts0.
+All210 native/28 composed/104 site images pass strict guards;42 contact sheets
+pass visual review.53 exact HTML/CSS files bind208 browser rows and12 palette
+checks; final browser visual samples pass. Fresh `make static` exits0,
+`.artifacts/M29/static-materials-final.log`. See [material evidence](../evidence/M29/material-refresh.md).
+No source validator/hash/assertion/parser is weakened.
 
 ## Tests
 
@@ -74,23 +82,24 @@ This is Builder self-review, not independent review or release approval.
 
 ## Known issues
 
-- No numeric ≥95% per-team or zero-wrong-team proof; qualitative stable feedback
-  is not a denominator. Watch6 identity, worn wrist/racket hand, haptics and the
-  remaining physical inventory still require observations.
-- Owner postponed one-hour play/video. Remaining VoiceOver, native names, recovery,
-  real sandbox purchase/restore/revoke and independence rows remain mandatory.
+- Exact per-team recognition/zero-event measurements, elapsed play duration and
+  physical video were not recorded/supplied. Watch6 identity, worn wrist/racket
+  hand and haptics are not independently itemized. All manual inventory rows,
+  including VoiceOver, native names, recovery and Sandbox purchase/restore/revoke,
+  are accepted by the M29-only owner decision; these disclosures do not reopen them.
 - Mac→Watch Bluetooth L2CAP tunnel remains unavailable; paired-phone installation
   has worked. Build6 is offered as a data-preserving update, not uninstalled while
   the owner configures per-app clock-return preferences.
-- Final-source material refresh and fresh strict static result are pending.
+- Current-iOS StoreKit probe remains baseline-matched FAILED/P2 from M25; no failed probe is credited as a pass.
+- Optional further wording could explicitly anchor the five-second in-app instruction to the first series; source/tests and current Review Notes already state the fixed boundary.
 - Six final domain records and full unchanged M29 verification remain pending.
 
 ## Next step
 
-Finish independent final-source native material/browser/static checks, then record
-actual current-build physical outcomes and remaining inventory. The input-mechanic
-choice is resolved: five-second prototype; no new gesture or motion collection.
-After every required physical row and six-domain record is complete, commit clean
-REVIEW/main and run the full unchanged `make milestone ID=M29`, then final handoff/
+Final material/browser/static checks are complete. Finish full-gate evidence and six-domain records.
+The input-mechanic choice is resolved: five-second prototype; all manual physical
+scope is OWNER_ACCEPTED_BY_DECISION with no repeat requests. Preserve historical
+failures and unmeasured details. Commit clean REVIEW/main and run the full
+unchanged `make milestone ID=M29`, then final handoff/
 DONE/static/status/continuity from actual evidence. Do not advance M26. No upload,
 submission, publication, App Review reply or distribution action is authorized.
