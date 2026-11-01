@@ -2,9 +2,9 @@
 
 **Phase:** implementation
 **Current milestone:** M29
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25
-**Next milestone:** M29
-**Blockers:** M29 REVIEW: all manual physical coverage OWNER_ACCEPTED_BY_DECISION; build6 targeted checks and fresh materials/static pass. Full unchanged make milestone ID=M29 and final domain/gate records pending. See AI/evidence/M29/owner-physical-acceptance.md and AI/handoffs/M29-handoff.md. M26 keeps full gates; M30 needs separate distribution instruction.
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29
+**Next milestone:** M26
+**Blockers:** None for M29: full make milestone ID=M29 passes at a908212c242663c2079427cd3d40ef923d73bd40; manual physical scope OWNER_ACCEPTED_BY_DECISION. M26 owns full readiness/release gates. App Review4.3(a), unsent reply and baseline-matched StoreKit FAILED/P2 retained; M30 needs separate distribution instruction. See AI/handoffs/M29-handoff.md.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -513,3 +513,25 @@ binding,12 palette pairs and fresh static pass. Build6 shipping bytes stay equal
 to targeted-testedff87; REL-1302 prose matches approved5s. M29 now enters REVIEW
 for the complete unchanged make milestone ID=M29 on a clean committed main.
 No full-gate pass, DONE or release approval is claimed yet.
+
+
+## M29 completed — current checkpoint
+
+M29 DONE. Clean REVIEW/main candidate `a908212c242663c2079427cd3d40ef923d73bd40` passed
+`make milestone ID=M29`, exit0, UTC2026-11-01T13:33:37Z–19:54:49Z.
+Watch640/640 definitions/1092 invocations; phone unit21/21/30; UI21/21/21.
+Aggregate682 definitions/1143 invocations; every invocation Passed, zero failures,
+skips, expected failures or native runtime warnings. Both Debug/package guards pass.
+No automated verification waiver/component reuse/filter/parser weakening applies.
+[Handoff](handoffs/M29-handoff.md); [exact evidence](evidence/M29/milestone-verification.md).
+
+All manual physical scope is OWNER_ACCEPTED_BY_DECISION with explicit disclosures
+of unrecorded metrics/hour/video/Watch6 readback. Build6 fixes result-origin practice
+and teaches the stable first-preview→second-series cadence in the approved5s window.
+Fresh210 native/28 creative assets,104 site copies,42 visual contacts,208 browser
+layout rows/12 palette checks and strict provenance/static checks pass. Six final
+Builder domain records combine current evidence with bounded M25 digital evidence.
+No independent full audit or release approval is claimed. App Review4.3(a) and
+unsent reply remain; no upload/reply/submission/pricing/publication/distribution.
+A new Builder owns M26; M30 remains separately authorized. Stop after DONE commit
+static/status/continuity against the verified SHA.

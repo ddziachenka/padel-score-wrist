@@ -4,102 +4,90 @@
 
 ## Milestone
 
-`M29` — Physical Device Validation; status `REVIEW`, **not DONE**.
+`M29` — Physical Device Validation; status `DONE`.
 
 ## Summary
 
-Five-second prototype approved by owner after intermittent THEM recognition at
-three seconds. Owner now reports stable recognition when waiting for Pending: US
-before repeating, but that sequence was not initially obvious. Build 1.0 (6)
-adds that explicit teaching step on Watch/phone and matching accessibility hints
-in all13 UI languages. One/two/third-series semantics, fixed deadline, cancellations,
-atomic save/Undo and no-motion architecture remain. Phone6 is installed/read back;
-Watch6 About confirmation and numeric physical results were not independently
-recorded. All manual physical coverage is now **OWNER_ACCEPTED_BY_DECISION**:
-the owner's explicit “все засчитываем” closes the remaining inventory as well as
-gestures/play. The [canonical decision and full question/answer](../evidence/M29/owner-physical-acceptance.md)
-supersede earlier manual blockers. Missing measurements/media remain disclosures,
-not measured passes or requests to repeat accepted manual checks.
+Build1.0(6) fixes setup→Try gestures from result-based navigation and teaches the
+previously unclear sequence: wait for Pending: US, then repeat two finger contacts
+for THEM. The owner approved a fixed five-second window after intermittent
+three-second recognition and reports stable use with the learned cadence.
+One/two/third-series meanings, cancellation, ordinary atomic saving/Undo,
+permissions, data boundaries and pricing remain unchanged. Thirteen UI languages
+and fourteen local Store descriptions match. Final native/creative/site materials
+are refreshed and reviewed; all drafts remain local.
 
-Earlier physical feedback also exposed a result-based setup→Try gestures defect;
-route fixed and two fail-before/pass-after regressions added. Minimum-runtime
-follow-up corrected a baseline-reproduced clipped test tap, adding an explicit
-pending assertion without weakening the then-current deadline. All failed native
-reports remain preserved.
-
-The owner's idle/display question is investigated read-only. Padel inherits Default/
-two-minute Return to Clock. Always On, Show Apps for Padel, Wrist Raise and tap-to-wake
-70 seconds are already On. Exact English directions explain Custom→After1hour
-and the distinction between visible dim score and active gesture recognition.
-No Watch settings are changed; no fake workout or keep-alive bypass is added.
-Phone appearance settings from earlier checks are restored after owner approval.
+The owner explicitly accepts all manual physical coverage. This is
+**OWNER_ACCEPTED_BY_DECISION**, not invented numerical recognition measurements,
+a measured hour/zero-event result, supplied video or independently read Watch6
+identity. [Exact scope](../evidence/M29/owner-physical-acceptance.md).
 
 ## Changed files
 
-- `App/PadelScoreWatch/Domain/GestureInput.swift` — approved five-second prototype.
-- `App/PadelScoreWatch/Features/Game/GestureScoringView.swift` — correct setup route,
-  explicit recognition cue and localized accessibility hint.
-- `App/PadelScorePhone/PhoneGestureView.swift`, both catalogs — matching teaching.
-- Project build identities and exact assertions — distinguish build6.
-- Gesture unit/Watch UI/phone UI tests — exact new boundary, late second series,
-  cancelled/stale contexts, visible input, explicit cue and isolated scoring.
-- Owning product/architecture/design/plan docs — approved prototype and scope.
-- Active local metadata/creative/site drafts — five seconds and matching cue,
-  unchanged pricing/legal/privacy/Promotional Text;210 fresh native captures,28
-  compositions,42 visual contacts and source-bound browser proof pass. No publication or upload.
-- `AI/evidence/M29/`, status and milestone — observations, exact evidence, blockers.
+- Watch GestureInput/GestureScoringView and phone guide/catalogs — approved5s,
+  explicit cue/accessibility hint and correctly owned practice navigation.
+- Build identities/exact assertions and gesture/navigation/gallery tests — build6,
+  exact deadline, late second series, cancellation/isolation and visible input.
+- Product/design/architecture/plan/workflow/milestone — owner decisions and scope;
+  REL-1302 prose matches5s without changing any schema/count/coverage guard.
+- Active Store images/provenance, descriptions/composition and local site drafts —
+  210 native captures,28 compositions,104 site copies;42 visual contact reviews.
+- M29 evidence and six current domain records — actual results and disclosed limits.
 
 ## Validation
 
 | Field | Evidence |
 | --- | --- |
-| Verified SHA | **No full M29 verified SHA.** Latest targeted implementation `ff87edd550f376b618d44ebb7904ef29f769b686`; timing prototype `e9053e7afce11877225fd58e826fcbeebd866bcf`; earlier route correction `0d535ac26a543d37333f3c457bbfba1316663d90`. |
-| Exact command | Full required `make milestone ID=M29` **not run**: final materials/static pass; a clean REVIEW/main candidate is being committed for the complete command. Manual physical scope is accepted by owner decision. Exact bounded commands in [prototype evidence](../evidence/M29/five-second-prototype.md), earlier [regression evidence](../evidence/M29/setup-practice-regression.md); build/install commands in [physical record](../evidence/M29/physical-validation.md). |
-| Exit code | Build6 current/minimum Watch supplements and phone UI each0; signed Release build/strict signature/install/readback each0. Initial incompatible phone-plan preparation70, no tests executed; preserved, not a pass. No full-gate exit exists. |
-| Timestamp | Build6 current 2026-11-01T11:31:27.165Z–11:34:38.604Z; minimum11:43:42.743Z–11:46:48.236Z; phone UI11:41:12.102Z–11:42:19.977Z. |
-| Report | `.artifacts/M29/teaching6-current.xcresult`, `teaching6-minimum.xcresult`, `teaching6-phone-ui.xcresult`; matching logs/native summaries. Signed identity `.artifacts/M29/candidate-identity-build6.json`. |
-| Counts | **Current32/32 definitions/73 invocations; minimum32/32/73; phone UI1/1/1**, all zero failed/skipped/expected/native runtime warnings. Build/install commands run no tests. Physical denominators, elapsed hour/zero-event counts and real Watch video were not recorded/supplied; manual outcomes are OWNER_ACCEPTED_BY_DECISION. |
+| Verified SHA | `a908212c242663c2079427cd3d40ef923d73bd40`, clean REVIEW/main |
+| Exact command | `make milestone ID=M29` |
+| Exit code | 0 |
+| Timestamp | UTC2026-11-01T13:33:37Z–2026-11-01T19:54:49Z |
+| Report | `.artifacts/milestone/M29/20261101T133336Z-27916/report.md`; [durable full evidence](../evidence/M29/milestone-verification.md) |
+| Counts | Watch640/640 definitions/1092 invocations; phone unit21/21/30; phone UI21/21/21. Aggregate682/682 definitions/1143 invocations, every leaf Passed, zero failed/skipped/expected/native runtime warnings. Two Debug builds and two packaging/identity guards pass. |
 
-Earlier passing targeted runs are retained with exact source/UTC/counts in their
-linked evidence; they are not substituted for the full M29 gate. Last `make static`
-on e9053e7 exits Make2/verifier65 solely on stale shipping-source material identity,
-`.artifacts/M29/static-prototype5.log`. Fresh complete galleries now pass at `1367217b30ce0c5ffa2c464ea977786e28139439`: Watch14/14 and phone2/2, all adverse counts0.
-All210 native/28 composed/104 site images pass strict guards;42 contact sheets
-pass visual review.53 exact HTML/CSS files bind208 browser rows and12 palette
-checks; final browser visual samples pass. Fresh `make static` exits0,
-`.artifacts/M29/static-materials-final.log`. See [material evidence](../evidence/M29/material-refresh.md).
-No source validator/hash/assertion/parser is weakened.
+The entire command ran unchanged, without filters/component reuse/automatic
+verification exceptions. Exact native summaries/trees/leaf counts are in
+`.artifacts/M29/full-native-counts/`, exporter exit0. The six typed records are
+`AI/audits/M29-<domain>-revalidation.md`; explicit schema/coverage validation is
+recorded in `.artifacts/M29/domain-coverage-final.log`. Post-DONE static/status/
+continuity logs are `.artifacts/M29/post-done-{static,status,continuity}.log`.
+Only AI Markdown continuity records follow the verified candidate.
+
+Targeted build6 current/minimum Watch32/73 each and current phone UI1/1 pass;
+exact commands/source/UTC/bundles are in [prototype evidence](../evidence/M29/five-second-prototype.md).
+Complete final galleries pass at distinct capture source1367217b30ce0c5ffa2c464ea977786e28139439:
+Watch14/14 and phone2/2, all adverse counts0. Strict provenance/site/static checks,
+42 visual contacts,53-file/208-browser-layout binding,12 palette checks and final
+browser visual samples pass. [Material evidence](../evidence/M29/material-refresh.md).
+These captures are not mislabelled as the later gate SHA.
 
 ## Tests
 
-Builder self-review covers flow/path ownership, original result/editable draft,
-new-game OFF, isolated practice, exact build identity, native accessibility,
-five-second timing, touch override, lifecycle/revision cancellation, failures and
-Undo. New unit cases test second series at3500/4500/4999ms, no save at3s, commit at
-exactly5000ms and no repeated commit. UI teaches US→THEM and saves only0:1; phone
-also rejects the old3.2s commit. Cancellation checks remain beyond the new deadline.
-This is Builder self-review, not independent review or release approval.
+Fail-before/pass-after regressions cover both result-origin practice routes.
+Baseline-reproduced clipped input is corrected with a real visible-control tap
+and explicit Pending assertion. Tests cover second series3500/4500/4999ms,
+no old3s save, exact5000ms settlement, no deadline extension/repeat, third-series
+cancellation, stale timers/revisions, scene/navigation/touch cancellation, failed
+saves and Undo. The gallery correction waits beyond the approved5s deadline,
+retains committed Undo assertions and strengthens pending/no-early-Undo checks.
+All earlier failed bundles remain raw failures. Builder self-review is complete;
+separate scoped source/copy/evidence reviews are not an independent full audit or
+release approval.
 
 ## Known issues
 
-- Exact per-team recognition/zero-event measurements, elapsed play duration and
-  physical video were not recorded/supplied. Watch6 identity, worn wrist/racket
-  hand and haptics are not independently itemized. All manual inventory rows,
-  including VoiceOver, native names, recovery and Sandbox purchase/restore/revoke,
-  are accepted by the M29-only owner decision; these disclosures do not reopen them.
-- Mac→Watch Bluetooth L2CAP tunnel remains unavailable; paired-phone installation
-  has worked. Build6 is offered as a data-preserving update, not uninstalled while
-  the owner configures per-app clock-return preferences.
-- Current-iOS StoreKit probe remains baseline-matched FAILED/P2 from M25; no failed probe is credited as a pass.
-- Optional further wording could explicitly anchor the five-second in-app instruction to the first series; source/tests and current Review Notes already state the fixed boundary.
-- Six final domain records and full unchanged M29 verification remain pending.
+- Manual metrics/hour/zero-event/video/Watch6 readback were not recorded/supplied;
+  all manual rows are closed by the explicit M29-only owner decision.
+- Separate current-iOS StoreKit probe remains baseline-matched FAILED/P2 from M25;
+  no failed probe or M25 automatic exception is credited to this full M29 pass.
+- Further in-app wording could explicitly anchor five seconds to the first series
+  (P2); source/tests and current local Review Notes already state that boundary.
+- App Review4.3(a) and the old unsent/on-hold reply remain; no upload, submission,
+  site publication or distribution action was performed. M26 retains full gates.
 
 ## Next step
 
-Final material/browser/static checks are complete. Finish full-gate evidence and six-domain records.
-The input-mechanic choice is resolved: five-second prototype; all manual physical
-scope is OWNER_ACCEPTED_BY_DECISION with no repeat requests. Preserve historical
-failures and unmeasured details. Commit clean REVIEW/main and run the full
-unchanged `make milestone ID=M29`, then final handoff/
-DONE/static/status/continuity from actual evidence. Do not advance M26. No upload,
-submission, publication, App Review reply or distribution action is authorized.
+A new Builder session owns `M26`. This session stops after DONE commit and passing
+`make static`, project-status validation and continuity against the verified full
+SHA. M30 remains a separate response/resubmission task with its own authorization.
+No further physical-device action is requested for the accepted M29 manual scope.

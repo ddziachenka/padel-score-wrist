@@ -4,7 +4,8 @@
 **Record type:** Builder self-review, not independent audit or release approval
 **Baseline:** `d92b9e9e9250e309a074953faa10ed4c06eddffb`
 **Inspected source:** `1367217b30ce0c5ffa2c464ea977786e28139439`
-**Final state:** implementation/material review complete; full exact-candidate gate pending
+**Final state:** complete; no open P0/P1
+**Final verified candidate:** `a908212c242663c2079427cd3d40ef923d73bd40`
 
 ## Scope and corrections
 
@@ -51,8 +52,10 @@ All42 contact sheets are visually reviewed,210 native captures/28 compositions/
 208 browser-layout observations with12 passing palette checks. Final browser
 visual samples and `make static` pass; see [materials](material-refresh.md),
 [phone review](phone-gallery-visual-review.md), [creative review](creative-visual-review.md)
-and [browser review](site-browser-review.md). The unchanged full
-`make milestone ID=M29` remains pending before any DONE claim.
+and [browser review](site-browser-review.md). The unchanged full `make milestone ID=M29` now passes, exit0, on clean REVIEW/
+main `a908212c242663c2079427cd3d40ef923d73bd40`: Watch640/1092, phone unit21/30,
+phone UI21/21; aggregate682 definitions/1143 invocations, all adverse counts0.
+Both Debug/package guards pass. [Exact evidence](milestone-verification.md).
 
 The [owner decision](owner-physical-acceptance.md) closes all manual physical rows.
 It creates no recognition percentages, measured hour/zero counts, supplied video,
@@ -64,6 +67,6 @@ Separate delegated scoped [source](independent-scoped-code-review.md) and
 [copy](material-copy-review.md) reviews are identified as such; this Builder's
 self-review never becomes an independent full audit or release approval.
 The post-capture REL-1302 prose now says five seconds; row identity/domains and
-all guards are unchanged. Final exact full-gate evidence must be reconciled here
-before completion. No external upload/reply/publication/
+all guards are unchanged. Final full-gate/native-leaf evidence is reconciled above. Post-DONE static/status/
+continuity outputs are retained under `.artifacts/M29/post-done-*.log`. No external upload/reply/publication/
 submission is authorized or performed.

@@ -1,7 +1,7 @@
 # M29 — Physical Device Validation
 
 **ID:** M29
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M25
 **Validation:** make milestone ID=M29
 **Handoff:** AI/handoffs/M29-handoff.md
@@ -42,9 +42,9 @@ actual observations. Capture real gesture video and source/build identity.
 - [x] Gesture recognition accepted by the owner under the explicit M29 manual exception; original numerical target is not claimed measured.
 - [x] Ordinary-play behavior accepted by the owner under the same exception; original one-hour/zero-event measurement is not claimed.
 - [x] All manual physical inventory rows accepted by owner decision; missing observations/media disclosed in the canonical record.
-- [ ] Final six-domain records AI/audits/M29-<domain>-revalidation.md combine M25 digital and current physical evidence, no missing required coverage or P0/P1.
-- [ ] Later corrections trigger fresh affected evidence; prior reports are preserved.
-- [ ] Full make milestone ID=M29 passes, source continuity and compact handoff recorded.
+- [x] Final six-domain records AI/audits/M29-<domain>-revalidation.md combine M25 digital and current physical evidence, no missing required coverage or P0/P1.
+- [x] Later corrections trigger fresh affected evidence; prior reports are preserved.
+- [x] Full make milestone ID=M29 passes, source continuity and compact handoff recorded.
 
 ## Non-goals
 

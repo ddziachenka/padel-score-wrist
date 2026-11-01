@@ -306,3 +306,14 @@ At that earlier checkpoint all physical rows remained PENDING until actual
 results were recorded. Current manual outcomes are OWNER_ACCEPTED_BY_DECISION.
 Final six-domain records must distinguish accepted manual scope from measured
 digital evidence. No M25 exception carries into M29, M26 or release.
+
+
+## Final M29 outcome — 2026-11-01 UTC
+
+M29 full `make milestone ID=M29` passes, exit0, at `a908212c242663c2079427cd3d40ef923d73bd40`,
+UTC13:33:37Z–19:54:49Z. Aggregate682/682 definitions/1143 invocations, all adverse
+counts0; both Debug/package guards pass. [Exact final evidence](milestone-verification.md).
+All manual physical rows remain OWNER_ACCEPTED_BY_DECISION with the original
+unrecorded measurement/media/readback disclosures; no new physical observations
+are invented by this automatic pass. Earlier checkpoint requests/failures are
+historical. No distribution or App Review action is authorized.

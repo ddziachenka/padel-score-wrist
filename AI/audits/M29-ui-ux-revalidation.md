@@ -1,19 +1,20 @@
-# M29 domain revalidation — ui-ux (DRAFT)
+# M29 domain revalidation — ui-ux
 
 **Domain prompt:** AI/prompts/audit-ui-ux.md
 **Policy status:** current
 **Policy:** `solo-workflow/2`
-**Record type:** Builder domain audit — DRAFT for Builder finalization
+**Record type:** Builder domain audit
 **Milestone:** M29
-**Candidate:** 1367217b30ce0c5ffa2c464ea977786e28139439
-**Audited at:** 2026-11-01
+**Candidate:** a908212c242663c2079427cd3d40ef923d73bd40
+**Audited at:** 2026-11-01T19:54:49Z
 **Distribution channel:** app-store
-**Record status:** DRAFT — final candidate/full gate/counts and post-DONE continuity pending
+**Record status:** COMPLETE — domain coverage and exact-candidate milestone verification recorded
 
-This is delegated preparation of the owning Builder's record. The Builder must
-reconcile pending evidence and finalize it; this is not independent full domain
-validation or release approval. Typed coverage classifications are provisional
-within this DRAFT and do not make outstanding final checks pass.
+This is the owning Builder's completed domain record, assembled with delegated
+scoped reviews and actual exact-candidate validation. It is not an independent
+full domain audit or release/submission approval. Manual physical acceptance,
+native/material observations and automatic test results retain their separate
+scopes below.
 
 ## Candidate context
 
@@ -28,8 +29,9 @@ Baseline-to-candidate source comparison bounds shipping changes to gesture timin
 teaching/cue/catalog strings, setup-practice routing and build identity. Scoring,
 persistence/migration/recovery, native-name ownership, StoreKit/entitlement,
 permissions/privacy, rating eligibility and phone demo models are unchanged.
-M25 evidence for those areas is carried with that source-continuity boundary,
-not represented as a complete M29 rerun.
+Historical M25 evidence remains supplementary within that source-continuity
+boundary. M29 now additionally has a complete fresh automatic gate at the final
+candidate below; no M25/M28 automatic verification exception is inherited.
 
 Fresh affected evidence: e9053e7afce11877225fd58e826fcbeebd866bcf current Watch
 UI10/10 and minimum31 definitions/72 invocations; ff87edd550f376b618d44ebb7904ef29f769b686
@@ -71,8 +73,22 @@ desktop lease and two preview servers have been cleaned up by root.
 
 `make static` on the material-preparation tree exits0; log
 .artifacts/M29/static-materials-final.log. This is actual preflight static evidence,
-not a claimed full exact-candidate gate. Only final committed candidate/full gate/
-counts and post-DONE static/status/continuity remain pending in this DRAFT.
+separate from the full exact-candidate gate now recorded below.
+
+The unchanged `make milestone ID=M29` passed exit0 on clean REVIEW/main at
+`a908212c242663c2079427cd3d40ef923d73bd40`. Verification ran from
+2026-11-01T13:33:37Z to2026-11-01T19:54:49Z. The actual report is
+`.artifacts/milestone/M29/20261101T133336Z-27916/report.md`, verdict PASSED,
+VERIFIED_COMMIT equal to the candidate above. Both Debug builds/packaging guards
+pass. Watch640/640 definitions and1092/1092 invocations, phone-unit21/21 and30/30,
+phone-UI21/21 and21/21; aggregate682/682 definitions and1143/1143 invocations.
+Every component has zero failures, skips, expected failures and runtime warnings;
+all native leaves are Passed. Native summaries/counts are
+`.artifacts/M29/full-native-counts/{counts.json,watch-summary.json,phone-unit-summary.json,phone-ui-summary.json}`.
+See [exact milestone verification](../evidence/M29/milestone-verification.md).
+This verified gate source is distinct from frozen native-capture source1367217;
+shipping App inputs remain continuous. Post-DONE static/status/continuity runs
+follow the continuity commit and are not claimed performed by this audit.
 REL-1302 requirement prose was corrected from3 to5 seconds after both frozen
 captures; row/schema/guards and shipping App bytes are unchanged.
 
@@ -93,7 +109,7 @@ Separate scoped [code review](../evidence/M29/independent-scoped-code-review.md)
 and [copy review](../evidence/M29/material-copy-review.md) found no blocking
 source/copy issue within their limits; neither claims full M29 validation.
 
-**Coverage result:** DRAFT
+**Coverage result:** COMPLETE
 **Open P0/P1:** 0
 
 ## Coverage
@@ -105,7 +121,7 @@ source/copy issue within their limits; neither claims full M29 validation.
 - REL-205 | OUTCOME=VERIFIED | EVIDENCE=M25 source-continuous digital evidence: NewGame/Journal/KnownScore/PlayerNames failure cases and shared PurchaseMessages preserve data/rights and explain retry. Applicable remaining manual physical coverage is accepted by owner decision in owner-physical-acceptance.md.
 - REL-206 | OUTCOME=VERIFIED | EVIDENCE=M25 source-continuous digital evidence: History delete confirmation, manual replacement checkpoint, whole-correction Undo and known-score start cancellation. Applicable remaining manual physical coverage is accepted by owner decision in owner-physical-acceptance.md.
 - REL-407 | OUTCOME=VERIFIED | EVIDENCE=M25 source-continuous digital evidence: DESIGN comparison: no subscription/trial/dark-pattern savings, no paywall on phone cold launch, price comes from Apple. Applicable remaining manual physical coverage is accepted by owner decision in owner-physical-acceptance.md.
-- REL-602 | OUTCOME=VERIFIED | EVIDENCE=M25 native Watch/phone largest-text matrices and centered EN/DE/RU regressions remain source-continuous; ff87 current/minimum practice/cue tests pass. Final phone14locale frames show complete5s/preview cue, Watch/creative visuals pass within documented viewports; manual accessibility scope owner-accepted. Full automatic suite remains required.
+- REL-602 | OUTCOME=VERIFIED | EVIDENCE=M25 native Watch/phone largest-text matrices and centered EN/DE/RU regressions remain source-continuous; ff87 current/minimum practice/cue tests pass. Final phone14locale frames show complete5s/preview cue, Watch/creative visuals pass within documented viewports; manual accessibility scope owner-accepted. The complete final M29 automatic suite passes with all native leaves Passed.
 - REL-603 | OUTCOME=VERIFIED | EVIDENCE=M25 source/DesignSystem preserves information without animation; M29 explicit pending labels retain meaning. Physical Reduce Motion, assistive-display and haptic behavior accepted by owner decision.
 - REL-604 | OUTCOME=VERIFIED | EVIDENCE=M25 unchanged native contrast categories/opaque semantic fixes; M29 affected native accessibility and final Watch/phone/creative visuals pass. Browser12computed Light/isolated-Dark palette pairs min5.778,208layout checks and final raster spots pass; palette alone is not claimed a complete accessibility audit.
 - REL-605 | OUTCOME=VERIFIED | EVIDENCE=M25 source-continuous digital evidence: Native hit-region audits and explicit44pt centered controls; Watch scrolling/reflow tests preserve tap reachability. Applicable remaining manual physical coverage is accepted by owner decision in owner-physical-acceptance.md.
@@ -115,7 +131,7 @@ source/copy issue within their limits; neither claims full M29 validation.
 - REL-703 | OUTCOME=VERIFIED | EVIDENCE=M25 smallest40mm/minimum Watch and SE3/iOS17 reflow; fresh current/minimum setup/practice tests pass. Native14locale Watch/phone visuals and28creative layouts pass with explicit viewport limits; browser375/1280 matrix208/208 and final5raster checks pass.44mm Watch gallery is not substituted for40mm coverage; manual reachability owner-accepted.
 - REL-704 | OUTCOME=INAPPLICABLE | EVIDENCE=reason=No iPad target/layout is approved or shipped; phone UIDeviceFamily is iPhone.
 - REL-705 | OUTCOME=INAPPLICABLE | EVIDENCE=reason=Phone is portrait-only; Watch uses system wrist/Crown orientation, not an application landscape layout.
-- REL-706 | OUTCOME=VERIFIED | EVIDENCE=No public release exists. Approved baseline retained except5s/cue/routing. Scoped source/copy reviews and all42final contact sheets find no P0/P1.210native originals/28creatives pass strict validation; browser final identity/layout/palette/raster checks and preparation static pass. Full exact-candidate gate remains pending.
+- REL-706 | OUTCOME=VERIFIED | EVIDENCE=No public release exists. Approved baseline retained except5s/cue/routing. Scoped source/copy reviews and all42final contact sheets find no P0/P1.210native originals/28creatives pass strict validation; browser final identity/layout/palette/raster checks and preparation static pass. The full exact-candidate M29 gate passes exit0.
 - REL-804 | OUTCOME=VERIFIED | EVIDENCE=M25 DE/RU largest/native13locale matrices and fresh current/minimum cue/practice tests; final Watch14/phone14/creative14sheets pass with recorded scroll limits. Browser52pages×2width×2appearance208/208 and5final raster reviews pass; dense-language original spot checks have no required correction.
 - REL-805 | OUTCOME=INAPPLICABLE | EVIDENCE=reason=No right-to-left language ships in the approved locale set.
 - REL-1302 | OUTCOME=VERIFIED | EVIDENCE=Approved five-second fixed window supersedes historical three-second wording: e905 current live late-second/touch/Undo/cancel/background/save-failure and ff87 current/minimum reducer/integration/practice checks pass. First activation fixes deadline; timer/game/revision guards remain intact. Manual gesture/lifecycle scope accepted by owner decision.
@@ -127,7 +143,7 @@ source/copy issue within their limits; neither claims full M29 validation.
 | --- | --- | --- |
 | M29 navigation | Corrected | Reproduced result-origin route failure; flow-path correction and current/minimum regressions pass. |
 | M29 gallery timing | Corrected | Approved five-second timing exposed obsolete3.3s gallery wait;5.3s wait plus stronger pending/Undo assertions pass focused verification. Both complete captures and final42-sheet visual review pass. |
-| Final evidence | Note | Canonical manual acceptance/material/browser/static evidence is recorded; final exact-candidate full gate and post-DONE continuity remain pending. No COMPLETE/DONE verdict is asserted. |
+| Final evidence | Note | Canonical manual acceptance/material/browser evidence and full exact-candidate M29 gate pass are recorded. Domain coverage is COMPLETE; post-DONE continuity checks follow the Builder continuity commit. |
 
 ## Fixes
 
@@ -169,15 +185,16 @@ Complete captures/source-bound import/28-image composition/strict material and
 site checks now pass. All112 imported Watch PNGs match the reviewed raw hashes;
 Watch and phone visual reviews each pass14 locales; creative review passes28
 images/14 sheets. Browser208/208 plus final5image review/identity/12contrast pairs
-and preparation make static all pass in their actual scopes. Only final candidate,
-full automatic gate/counts and post-DONE continuity remain pending. Old captures
-are not relabelled build6; no hash-only provenance refresh is accepted.
+and preparation make static all pass in their actual scopes. The complete final
+M29 gate also passes exit0 at a908212 with682definitions/1143invocations and all
+adverse counts0. Post-DONE continuity checks follow the continuity commit. Old
+captures are not relabelled build6; no hash-only provenance refresh is accepted.
 
 ## Validation
 
 | Field | Evidence |
 | --- | --- |
-| Inspected preparation SHA | `1367217b30ce0c5ffa2c464ea977786e28139439` |
+| Frozen capture source | `1367217b30ce0c5ffa2c464ea977786e28139439`; preserved separately from the verified gate candidate |
 | Fresh affected native evidence | e905/ff87 commands/exits/counts/native bundles in five-second-prototype.md; focused gallery1/1 in gallery-timing-correction.md |
 | Canonical owner acceptance | Reviewed [exact M29-only decision](../evidence/M29/owner-physical-acceptance.md); OWNER_ACCEPTED_BY_DECISION for all manual rows; no fabricated measurements/media or automatic waiver |
 | Source-bound native captures/import | PASS: Watchgallery2 exit0,14/14; phonegallery2 exit0,2/2;112+98 imported originals at1367217; all adverse0; strict validator exit0 |
@@ -189,16 +206,20 @@ are not relabelled build6; no hash-only provenance refresh is accepted.
 | Final browser raster spot review | PASS:5 exact-dimension/hash-bound captures; site-final-captures.json, EN375 Light/RU1280 isolated-Dark, RU recovery1280×581 |
 | Preparation static | `make static` exit0; .artifacts/M29/static-materials-final.log; preparation tree, not the full gate candidate verdict |
 | Current Review Notes | [Build6 local draft](../evidence/M29/review-notes-draft.md), not sent; first-series five-second anchor and access steps match current scope |
-| Final candidate SHA | PENDING clean committed REVIEW/main candidate after frozen galleries |
-| Exact full command | `make milestone ID=M29` — NOT RUN for this draft |
-| Full gate exit code | PENDING |
-| Full gate report | PENDING `.artifacts/milestone/M29/<run>/report.md` |
-| Full gate counts | PENDING actual definitions/invocations/failures/skips/build/package counts |
-| Post-DONE static/status/continuity | PENDING exact commands/exits on continuity commit; no M25 exception inherited |
+| Verified final candidate SHA | `a908212c242663c2079427cd3d40ef923d73bd40`; clean REVIEW/main |
+| Exact full command | `make milestone ID=M29` |
+| Full gate exit code | 0 — PASSED milestone verification |
+| Full gate report | `.artifacts/milestone/M29/20261101T133336Z-27916/report.md`; [verification record](../evidence/M29/milestone-verification.md) |
+| Full gate UTC interval | 2026-11-01T13:33:37Z–2026-11-01T19:54:49Z |
+| Full gate counts | Watch640definitions/1092invocations; phone-unit21/30; phone-UI21/21; aggregate682/1143; all definitions/invocations Passed, all failures/skips/expected/runtime-warning counts0; both Debug/package guards pass |
+| Native count exports | `.artifacts/M29/full-native-counts/counts.json` and three component summaries, export exit0 |
+| Six-domain coverage validation | Current common.sh/schema/domain validators exit0;6domains/128rows (34/22/13/8/19/32); `.artifacts/M29/domain-coverage-final.log` |
+| Post-DONE static/status/continuity | Follow continuity commit: `make static`, `./Scripts/project-status.sh validate`, `./Scripts/project-status.sh continuity a908212c242663c2079427cd3d40ef923d73bd40`; not yet run here. Record actual exits in `.artifacts/M29/post-done-static.log`, `post-done-status.log`, `post-done-continuity.log` and the Builder handoff/verification record |
 
-Before COMPLETE, the Builder must reconcile affected row evidence and replace
-pending fields with actual results; validate six typed records; run the unchanged
-full gate on the exact clean candidate; record its SHA/exit/report/counts; and
-preserve raw failures/P2 dispositions. Only continuity Markdown follows verified
-source, then required static/status/continuity checks. No upload, publication,
-external message or App Review submission is authorized by this record.
+Coverage is complete from the recorded manual decision, current material/runtime
+observations and passing full exact-candidate automatic gate. Preserve raw
+failures/P2 dispositions. The Builder writes the compact handoff, marks M29 DONE,
+and commits only Markdown under AI/ after the verified source. Then run the
+post-DONE static/status/continuity checks named above and record their actual
+results; they are not fabricated here. No upload, publication, external message
+or App Review submission is authorized by this record.

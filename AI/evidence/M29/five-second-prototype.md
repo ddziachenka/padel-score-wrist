@@ -221,3 +221,14 @@ selected original hand artwork remain; nothing is uploaded/published/sent.
 New complete Watch/phone source-frozen captures, composition, browser layout/palette
 revalidation and strict static validation follow. Earlier native material provenance
 and the raw failed reports remain preserved.
+
+
+## Final M29 outcome — 2026-11-01 UTC
+
+M29 full `make milestone ID=M29` passes, exit0, at `a908212c242663c2079427cd3d40ef923d73bd40`,
+UTC13:33:37Z–19:54:49Z. Aggregate682/682 definitions/1143 invocations, all adverse
+counts0; both Debug/package guards pass. [Exact final evidence](milestone-verification.md).
+All manual physical rows remain OWNER_ACCEPTED_BY_DECISION with the original
+unrecorded measurement/media/readback disclosures; no new physical observations
+are invented by this automatic pass. Earlier checkpoint requests/failures are
+historical. No distribution or App Review action is authorized.
