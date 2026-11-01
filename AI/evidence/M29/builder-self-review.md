@@ -70,3 +70,10 @@ The post-capture REL-1302 prose now says five seconds; row identity/domains and
 all guards are unchanged. Final full-gate/native-leaf evidence is reconciled above. Post-DONE static/status/
 continuity outputs are retained under `.artifacts/M29/post-done-*.log`. No external upload/reply/publication/
 submission is authorized or performed.
+
+
+First DONE commit `f1d3942531ee549e9c264bc2ea1957a44eade849` passes `make static`,
+project-status validation and continuity against the verified candidate, each
+exit0 (recorded2026-11-01T19:59:54Z). Archived logs use
+`.artifacts/M29/post-done-initial-*.log`. Final-HEAD repeats follow this
+Markdown-only evidence update, with primary post-done logs retained.

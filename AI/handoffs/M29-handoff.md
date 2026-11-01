@@ -52,6 +52,10 @@ verification exceptions. Exact native summaries/trees/leaf counts are in
 recorded in `.artifacts/M29/domain-coverage-final.log`. Post-DONE static/status/
 continuity logs are `.artifacts/M29/post-done-{static,status,continuity}.log`.
 Only AI Markdown continuity records follow the verified candidate.
+First DONE commit `f1d3942531ee549e9c264bc2ea1957a44eade849` passes all three required
+post-DONE commands, each exit0, recorded2026-11-01T19:59:54Z; archived outputs
+`post-done-initial-{static,status,continuity}.log` under `.artifacts/M29/`.
+Final-HEAD repeats are retained at the primary post-DONE log paths above.
 
 Targeted build6 current/minimum Watch32/73 each and current phone UI1/1 pass;
 exact commands/source/UTC/bundles are in [prototype evidence](../evidence/M29/five-second-prototype.md).
@@ -87,7 +91,6 @@ release approval.
 
 ## Next step
 
-A new Builder session owns `M26`. This session stops after DONE commit and passing
-`make static`, project-status validation and continuity against the verified full
-SHA. M30 remains a separate response/resubmission task with its own authorization.
+A new Builder session owns `M26`. This session has passed DONE static/status/continuity at the recorded commit;
+final-HEAD repeats follow this Markdown-only evidence update, then it stops. M30 remains a separate response/resubmission task with its own authorization.
 No further physical-device action is requested for the accepted M29 manual scope.

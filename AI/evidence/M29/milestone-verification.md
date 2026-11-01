@@ -134,3 +134,19 @@ are not fabricated as part of the earlier candidate command.
 **Verdict:** PASSED milestone verification
 **Verification completed:** 20261101T195449Z
 
+## Post-DONE validation
+
+First DONE continuity commit `f1d3942531ee549e9c264bc2ea1957a44eade849` passes all three required commands,
+each exit0, recorded2026-11-01T19:59:54Z:
+
+```sh
+make static
+./Scripts/project-status.sh validate
+./Scripts/project-status.sh continuity a908212c242663c2079427cd3d40ef923d73bd40
+```
+
+Archived outputs: `.artifacts/M29/post-done-initial-{static,status,continuity}.log`.
+Continuity confirms exactly the build inputs of the verified candidate and only
+AI Markdown changes. Final-HEAD repeats follow this Markdown-only evidence update;
+their actual outputs use `.artifacts/M29/post-done-{static,status,continuity}.log`
+and `.artifacts/M29/post-done-final-head.txt`. No native result is re-labelled.

@@ -87,8 +87,8 @@ all native leaves are Passed. Native summaries/counts are
 `.artifacts/M29/full-native-counts/{counts.json,watch-summary.json,phone-unit-summary.json,phone-ui-summary.json}`.
 See [exact milestone verification](../evidence/M29/milestone-verification.md).
 This verified gate source is distinct from frozen native-capture source1367217;
-shipping App inputs remain continuous. Post-DONE static/status/continuity runs
-follow the continuity commit and are not claimed performed by this audit.
+shipping App inputs remain continuous. Post-DONE static/status/continuity each pass on the first DONE continuity
+commit; its exact identity/results are recorded in the Validation table below.
 REL-1302 requirement prose was corrected from3 to5 seconds after both frozen
 captures; row/schema/guards and shipping App bytes are unchanged.
 
@@ -173,7 +173,7 @@ Watch and phone visual reviews each pass14 locales; creative review passes28
 images/14 sheets. Browser208/208 plus final5image review/identity/12contrast pairs
 and preparation make static all pass in their actual scopes. The complete final
 M29 gate also passes exit0 at a908212 with682definitions/1143invocations and all
-adverse counts0. Post-DONE continuity checks follow the continuity commit. Old
+adverse counts0. Post-DONE continuity checks pass on the first DONE commit; see Validation below. Old
 captures are not relabelled build6; no hash-only provenance refresh is accepted.
 
 ## Validation
@@ -200,12 +200,12 @@ captures are not relabelled build6; no hash-only provenance refresh is accepted.
 | Full gate counts | Watch640definitions/1092invocations; phone-unit21/30; phone-UI21/21; aggregate682/1143; all definitions/invocations Passed, all failures/skips/expected/runtime-warning counts0; both Debug/package guards pass |
 | Native count exports | `.artifacts/M29/full-native-counts/counts.json` and three component summaries, export exit0 |
 | Six-domain coverage validation | Current common.sh/schema/domain validators exit0;6domains/128rows (34/22/13/8/19/32); `.artifacts/M29/domain-coverage-final.log` |
-| Post-DONE static/status/continuity | Follow continuity commit: `make static`, `./Scripts/project-status.sh validate`, `./Scripts/project-status.sh continuity a908212c242663c2079427cd3d40ef923d73bd40`; not yet run here. Record actual exits in `.artifacts/M29/post-done-static.log`, `post-done-status.log`, `post-done-continuity.log` and the Builder handoff/verification record |
+| Post-DONE static/status/continuity | First DONE commit `f1d3942531ee549e9c264bc2ea1957a44eade849`: `make static`, `./Scripts/project-status.sh validate` and `./Scripts/project-status.sh continuity a908212c242663c2079427cd3d40ef923d73bd40` each exit0, recorded2026-11-01T19:59:54Z. Archived logs `.artifacts/M29/post-done-initial-{static,status,continuity}.log`; final-HEAD repeats use `post-done-{static,status,continuity}.log`. |
 
 Coverage is complete from the recorded manual decision, current material/runtime
 observations and passing full exact-candidate automatic gate. Preserve raw
 failures/P2 dispositions. The Builder writes the compact handoff, marks M29 DONE,
-and commits only Markdown under AI/ after the verified source. Then run the
-post-DONE static/status/continuity checks named above and record their actual
-results; they are not fabricated here. No upload, publication, external message
+and commits only Markdown under AI/ after the verified source. The post-DONE static/status/continuity checks have passed on the first DONE
+commit as recorded above. Final-HEAD repeats follow this Markdown-only evidence
+update and retain their raw outputs in the named log destinations. No upload, publication, external message
 or App Review submission is authorized by this record.
