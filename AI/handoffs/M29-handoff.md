@@ -4,7 +4,7 @@
 
 ## Milestone
 
-`M29` — Physical Device Validation; status `BLOCKED`, **not DONE**.
+`M29` — Physical Device Validation; status `IN_PROGRESS`, **not DONE**.
 
 ## Summary
 
@@ -74,10 +74,10 @@ This is Builder self-review, not independent review or release approval.
 
 ## Next step
 
-Resolve M29's input-mechanic choice: **test a five-second prototype (Recommended)**,
-**investigate another gesture**, or **keep three seconds and measure**. The approved
-three-second/no-motion contract remains unchanged until the owner decides. Resume
-M29, implement the approved correction if any, gather affected hardware evidence,
+Owner resolved the choice: **test a five-second prototype (Recommended)**.
+The current candidate uses a fixed five-second window with no motion detector;
+one/two/third-series semantics and all thresholds remain. Build/test/install the
+distinguishable 1.0 (5) prototype, gather affected hardware evidence,
 refresh final-source galleries, finish all required physical rows and six-domain
 records, then run the full clean REVIEW/main milestone gate. Do not advance M26.
 No upload, submission, publication, App Review reply or distribution is authorized

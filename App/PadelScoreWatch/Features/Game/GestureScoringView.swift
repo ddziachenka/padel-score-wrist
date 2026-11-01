@@ -61,7 +61,7 @@ struct GestureActionButton: View {
         .accessibilityIdentifier("gesture.action")
         .accessibilityLabel(accessibilityTitle)
         .accessibilityValue(accessibilityDetail)
-        .accessibilityHint(Text("One series: us. Two: them. Three: cancel. Wait three seconds to save."))
+        .accessibilityHint(Text("One series: us. Two: them. Three: cancel. Wait five seconds to save."))
         .modifier(NativeGestureShortcut(enabled: enabled))
     }
 
@@ -93,7 +93,7 @@ struct GestureInstructions: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
             Caption("One series means touching your thumb and index finger together twice.")
-            Caption("One series: us. Two: them. Three: cancel. Wait three seconds to save.")
+            Caption("One series: us. Two: them. Three: cancel. Wait five seconds to save.")
             Caption("Requires watchOS 11 and an Apple Watch that supports Double Tap, with the screen awake and system gestures enabled.")
         }
     }
@@ -113,7 +113,7 @@ struct GestureSetupSection: View {
             Button { flow.path.append(.gesturePractice) } label: { Text("Try gestures") }
                 .buttonStyle(RowButtonStyle())
                 .accessibilityIdentifier("setup.gesturePractice")
-            Caption("One series: us. Two: them. Three: cancel. Wait three seconds to save.")
+            Caption("One series: us. Two: them. Three: cancel. Wait five seconds to save.")
             if !supportsNativeShortcut { GestureInstructions() }
         }
     }

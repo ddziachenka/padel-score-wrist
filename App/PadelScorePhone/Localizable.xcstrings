@@ -35981,86 +35981,86 @@
         }
       }
     },
-    "One series: us. Two: them. Three: cancel. Wait three seconds to save.": {
-      "comment": "M28 gesture scoring and isolated training. A series is one native Double Tap (two finger contacts).",
+    "One series: us. Two: them. Three: cancel. Wait five seconds to save.": {
+      "comment": "M29 owner-approved five-second timing prototype. A series is one native Double Tap (two finger contacts).",
       "extractionState": "manual",
       "localizations": {
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "En serie: os. To: dem. Tre: annuller. Vent tre sekunder for at gemme."
+            "value": "En serie: os. To: dem. Tre: annuller. Vent fem sekunder for at gemme."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eine Folge: wir. Zwei: sie. Drei: abbrechen. Zum Speichern drei Sekunden warten."
+            "value": "Eine Folge: wir. Zwei: sie. Drei: abbrechen. Zum Speichern fünf Sekunden warten."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "One series: us. Two: them. Three: cancel. Wait three seconds to save."
+            "value": "One series: us. Two: them. Three: cancel. Wait five seconds to save."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Una serie: nosotros. Dos: ellos. Tres: cancelar. Espera tres segundos para guardar."
+            "value": "Una serie: nosotros. Dos: ellos. Tres: cancelar. Espera cinco segundos para guardar."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yksi sarja: meille. Kaksi: heille. Kolme: peru. Odota kolme sekuntia tallennusta."
+            "value": "Yksi sarja: meille. Kaksi: heille. Kolme: peru. Odota viisi sekuntia tallennusta."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Une série : nous. Deux : eux. Trois : annuler. Attendez trois secondes pour enregistrer."
+            "value": "Une série : nous. Deux : eux. Trois : annuler. Attendez cinq secondes pour enregistrer."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Una sequenza: noi. Due: loro. Tre: annulla. Attendi tre secondi per salvare."
+            "value": "Una sequenza: noi. Due: loro. Tre: annulla. Attendi cinque secondi per salvare."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Én serie: oss. To: dem. Tre: avbryt. Vent tre sekunder for å lagre."
+            "value": "Én serie: oss. To: dem. Tre: avbryt. Vent fem sekunder for å lagre."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eén reeks: wij. Twee: zij. Drie: annuleren. Wacht drie seconden om op te slaan."
+            "value": "Eén reeks: wij. Twee: zij. Drie: annuleren. Wacht vijf seconden om op te slaan."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uma sequência: nós. Duas: eles. Três: cancelar. Aguarde três segundos para salvar."
+            "value": "Uma sequência: nós. Duas: eles. Três: cancelar. Aguarde cinco segundos para salvar."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uma sequência: nós. Duas: eles. Três: cancelar. Aguarde três segundos para guardar."
+            "value": "Uma sequência: nós. Duas: eles. Três: cancelar. Aguarde cinco segundos para guardar."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Одна серия — нам. Две — соперникам. Три — отмена. Подождите три секунды для записи."
+            "value": "Одна серия — нам. Две — соперникам. Три — отмена. Подождите пять секунд для записи."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "En serie: vi. Två: de. Tre: avbryt. Vänta tre sekunder för att spara."
+            "value": "En serie: vi. Två: de. Tre: avbryt. Vänta fem sekunder för att spara."
           }
         }
       }

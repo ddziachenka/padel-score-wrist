@@ -4,7 +4,7 @@ import Observation
 /// One native Double Tap is one activation, not one finger contact. Selection is
 /// transient; only the owner can turn a due selection into a saved rally.
 struct GestureInput: Equatable, Sendable {
-    static let window: Duration = .seconds(3)
+    static let window: Duration = .seconds(5)
     private(set) var team: Team?
     private(set) var deadline: ContinuousClock.Instant?
 

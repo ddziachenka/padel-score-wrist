@@ -557,7 +557,7 @@ No phone management/sync, contacts or profiles.
 The approved [gesture plan](gesture-differentiation-plan.md) adds optional per-game
 gesture scoring (PD-23): off at every new setup, including Play again/known score,
 persisted for the current game and editable in its menu. One Double Tap series
-proposes US, two select THEM within a fixed three-second window, three cancel;
+proposes US, two select THEM within a fixed five-second window, three cancel;
 exactly one rally is saved at the deadline. Each series is two finger contacts.
 Touch scoring stays immediate. Pending input is not a score and is cancelled by
 leaving/wrist-down/inactivity/any competing action or changed game/revision.
@@ -566,3 +566,9 @@ OS stays watchOS10; actual native Double Tap requires watchOS11+ and supported
 hardware/settings. Completed sets have no overall Match winner by owner choice.
 M28 implements; M25 owns digital experience/materials, M29 all physical checks,
 M26 readiness, M30 the separately authorized response/resubmission.
+
+M29 prototype amendment, owner-approved 2026-11-01: the initial three-second
+window is extended to five seconds in test build 1.0 (5), after intermittent
+physical two-series recognition. This is an experiment in timing and comfort,
+not acceptance of recognition reliability. The deadline stays fixed from the
+first activation. All ≥95% per-team, zero wrong-team and one-hour criteria remain.

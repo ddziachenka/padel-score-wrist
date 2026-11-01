@@ -10,7 +10,7 @@ Gesture scoring is off for every new Match/Americano game, including Play again
 and known-score starts. Setup offers an opt-in switch and an explanation. The
 choice survives restart/resume for that game; the active-game menu can change it.
 One Double Tap series means two thumb/index contacts; two series mean four.
-The first primary action proposes US; a second before the fixed three-second
+The first primary action proposes US; a second before the fixed five-second
 deadline selects THEM; a third cancels. At the deadline exactly one ordinary rally
 is recorded. Pending input is visible, memory-only, and never changes saved score,
 journal, Undo or usage. Ordinary team buttons cancel pending input and score at once.
@@ -66,7 +66,11 @@ submission. No reply/submission/publication is authorized in M28 or M25/M29/M26.
 
 ## Acceptance and defaults
 
-Keep three seconds as the initial fixed selection window; validate physical comfort
+Three seconds was the initial approved fixed window. On 2026-11-01, after actual
+two-series recognition was intermittent, the owner selected “Прототип 5 секунд
+(Recommended)”. The current M29 test candidate uses five seconds, fixed from the
+first activation, with unchanged one/two/third-series semantics. This is a prototype,
+not a recognition/release acceptance; validate physical comfort
 in M29. Start with >=95% successful commands separately for each team, zero wrong-team
 awards, zero accidental points over a one-hour play session. Record denominators,
 misses, device/OS, wrist/racket hand and circumstances. Any failed criterion blocks

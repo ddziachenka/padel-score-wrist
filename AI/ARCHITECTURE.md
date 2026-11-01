@@ -774,7 +774,7 @@ only on explicit confirmation; failed saves keep saved state and support retry.
 
 ## M28 gesture input contract — 2026-10-29
 
-Use a pure three-second selection state machine and injected monotonic time;
+Use a pure five-second selection state machine and injected monotonic time;
 timers are cancellable and session/game/revision-bound. A dedicated visible
 SwiftUI primary-action control calls it on watchOS11+, only at the active playable
 score. Commit through LiveScore/SessionStore's ordinary atomic rally command and
@@ -786,3 +786,8 @@ off and preserves all legacy state; current files require the field. Pending
 selection is never encoded. Both practice surfaces reuse the input reducer with
 isolated in-memory scores; no purchase/usage/storage/review side effects.
 All required hardware evidence belongs to M29 before M26.
+
+M29 owner-approved prototype, 2026-11-01: five seconds replaces the original three
+for build 1.0 (5); the boundary remains first-activation-relative and never slides.
+No raw motion collection or recognizer is introduced. Physical validation must
+establish whether the extra two seconds improve recognition and remain comfortable.

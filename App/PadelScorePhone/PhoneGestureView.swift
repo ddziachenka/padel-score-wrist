@@ -16,7 +16,7 @@ struct PhoneGestureView: View {
                     GestureGuideText(text: String(localized: "Simulation. Real gestures work on Apple Watch."),
                                      identifier: "phone.gesture.explanation")
                     GestureGuideText(text: String(localized: "One series means touching your thumb and index finger together twice."))
-                    GestureGuideText(text: String(localized: "One series: us. Two: them. Three: cancel. Wait three seconds to save."))
+                    GestureGuideText(text: String(localized: "One series: us. Two: them. Three: cancel. Wait five seconds to save."))
                 }
                 PhoneCard {
                     HStack {

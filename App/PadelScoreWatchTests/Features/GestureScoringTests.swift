@@ -3,16 +3,30 @@ import Testing
 @testable import PadelScoreWatch
 
 struct GestureInputTests {
+    @Test("The five-second prototype accepts a second series after three seconds without extending its deadline", arguments: [3500, 4500, 4999])
+    func secondSeriesInExtendedWindow(milliseconds: Int) {
+        let start = ContinuousClock.now
+        var input = GestureInput()
+        input.activate(at: start)
+        #expect(input.takeDue(at: start + .seconds(3)) == nil)
+        input.activate(at: start + .milliseconds(milliseconds))
+        #expect(input.team == .them)
+        #expect(input.deadline == start + .seconds(5))
+        #expect(input.takeDue(at: start + .milliseconds(4999)) == nil)
+        #expect(input.takeDue(at: start + .seconds(5)) == .them)
+        #expect(input.takeDue(at: start + .seconds(6)) == nil)
+    }
+
     @Test("The fixed window selects each team, with no early or repeated commit", arguments: [1, 2])
     func selection(series: Int) {
         let start = ContinuousClock.now
         var input = GestureInput()
         input.activate(at: start)
         if series == 2 { input.activate(at: start + .seconds(2)) }
-        #expect(input.deadline == start + .seconds(3))
-        #expect(input.takeDue(at: start + .milliseconds(2999)) == nil)
-        #expect(input.takeDue(at: start + .seconds(3)) == (series == 1 ? .us : .them))
-        #expect(input.takeDue(at: start + .seconds(4)) == nil)
+        #expect(input.deadline == start + .seconds(5))
+        #expect(input.takeDue(at: start + .milliseconds(4999)) == nil)
+        #expect(input.takeDue(at: start + .seconds(5)) == (series == 1 ? .us : .them))
+        #expect(input.takeDue(at: start + .seconds(6)) == nil)
         #expect(input == GestureInput())
     }
 
@@ -23,10 +37,10 @@ struct GestureInputTests {
         input.activate(at: start)
         input.activate(at: start + .seconds(1))
         if third { input.activate(at: start + .seconds(2)) } else { input.cancel() }
-        #expect(input.takeDue(at: start + .seconds(4)) == nil)
+        #expect(input.takeDue(at: start + .seconds(6)) == nil)
     }
 
-    @Test("An activation at or after the deadline cancels an expired selection", arguments: [3, 4])
+    @Test("An activation at or after the deadline cancels an expired selection", arguments: [5, 6])
     func expired(seconds: Int) {
         let start = ContinuousClock.now
         var input = GestureInput()
@@ -41,12 +55,12 @@ struct GestureInputTests {
         let a = GesturePractice(), b = GesturePractice()
         a.activate(at: start)
         a.activate(at: start + .seconds(1))
-        a.settle(at: start + .seconds(3))
+        a.settle(at: start + .seconds(5))
         #expect(a.us == 0 && a.them == 1)
         #expect(b.us == 0 && b.them == 0)
         a.activate(at: start + .seconds(5))
         a.cancel()
-        a.settle(at: start + .seconds(9))
+        a.settle(at: start + .seconds(11))
         #expect(a.us == 0 && a.them == 1)
         a.reset()
         #expect(a.us == 0 && a.them == 0 && a.input == GestureInput())
@@ -85,7 +99,7 @@ final class GestureScoringTests {
         if team == .them { clock.advance(by: .seconds(1)); live.activateGesture() }
         await live.commitGesture()
         #expect(store.session == before)
-        clock.advance(by: .seconds(3))
+        clock.advance(by: .seconds(5))
         await live.commitGesture()
         #expect(store.session.current?.history.count == 1)
         #expect(store.session.current?.journal.events.last?.kind == .rally(winner: team))
@@ -121,7 +135,7 @@ final class GestureScoringTests {
         case "disable": await live.setGestureScoring(false)
         default: live.cancelGesture()
         }
-        clock.advance(by: .seconds(4))
+        clock.advance(by: .seconds(6))
         live.endEditing()
         live.setGestureScreenActive(true)
         await live.commitGesture()
@@ -138,7 +152,7 @@ final class GestureScoringTests {
             : [.renamePlayers(PlayerNames(partner: "Alex", opponent1: nil, opponent2: nil))]
         for command in commands { try await store.perform(command, id: .fresh(), revision: store.session.revision) }
         let before = store.session
-        clock.advance(by: .seconds(4))
+        clock.advance(by: .seconds(6))
         await live.commitGesture()
         #expect(store.session == before)
         #expect(live.gestureInput.team == nil)
@@ -171,7 +185,7 @@ final class GestureScoringTests {
         let before = store.session
         files.inject(.publishFails)
         if toggle { await live.setGestureScoring(false) }
-        else { live.activateGesture(); clock.advance(by: .seconds(3)); await live.commitGesture() }
+        else { live.activateGesture(); clock.advance(by: .seconds(5)); await live.commitGesture() }
         #expect(store.session == before)
         #expect(live.failed != nil)
         #expect(live.gestureInput.team == nil)
@@ -228,7 +242,7 @@ final class GestureScoringTests {
         let (live, store) = try await game(format: format)
         let before = store.session
         let expected = try before.applying(.awardPoint(to: .us), id: .fresh(), expectedRevision: before.revision, access: OpenAccess())
-        live.activateGesture(); clock.advance(by: .seconds(3)); await live.commitGesture()
+        live.activateGesture(); clock.advance(by: .seconds(5)); await live.commitGesture()
         #expect(store.session.current?.game == expected.session.current?.game)
         #expect(store.session.usage == expected.session.usage)
         #expect(store.session.current?.history.count == 1)
@@ -272,13 +286,13 @@ final class GestureScoringTests {
         let clock = clock
         let live = LiveScore(store: store, haptics: haptics, now: { clock.now })
         live.setGestureScreenActive(true)
-        live.activateGesture(); clock.advance(by: .seconds(3)); await live.commitGesture()
+        live.activateGesture(); clock.advance(by: .seconds(5)); await live.commitGesture()
         #expect(store.session.usage.countedGames == [.number(1)])
         #expect(!live.canReceiveGesture)
         live.activateGesture()
         #expect(live.gestureInput.team == nil)
         await live.undo()
-        live.activateGesture(); clock.advance(by: .seconds(3)); await live.commitGesture()
+        live.activateGesture(); clock.advance(by: .seconds(5)); await live.commitGesture()
         #expect(store.session.usage.countedGames == [.number(1)])
         #expect(store.session.archive.count == 1)
         #expect(store.session.current?.history.count == 1)
@@ -293,7 +307,7 @@ final class GestureScoringTests {
         clock.advance(by: .seconds(1))
         live.activateGesture()
         let newDeadline = try #require(live.gestureInput.deadline)
-        clock.advance(by: .seconds(2))
+        clock.advance(by: .seconds(4))
         await live.commitGesture(expectedDeadline: oldDeadline)
         #expect(live.gestureInput.deadline == newDeadline)
         #expect(store.session.current?.history.isEmpty == true)

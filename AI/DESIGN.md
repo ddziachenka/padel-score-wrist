@@ -955,7 +955,7 @@ This approved extension supersedes earlier exclusions of gesture score entry.
 Setup offers Gesture scoring OFF for each new game, with a short one/two-series
 explanation and a practice link. The game's menu can toggle it. One Double Tap
 series is two finger contacts; one series selects US, two select THEM, a third
-cancels. A fixed three-second window shows the pending team separately from saved
+cancels. A fixed five-second window shows the pending team separately from saved
 score. The visible primary-action button remains on screen; no invisible target.
 Pending selection feedback is distinct from the existing saved-score confirmation.
 Native team buttons score immediately after cancelling pending input. Leaving,
@@ -964,6 +964,10 @@ cancel without a delayed point. Gesture input never confirms other screens.
 Keep readable touch controls and native accessibility at largest text. Watch
 practice and phone simulation teach the same sequence without using real games.
 Actual recognition/feel and team feedback are validated only in M29.
+M29 timing prototype approved 2026-11-01: extend the original three-second window
+to five seconds and make both Watch/phone teaching say five in every locale.
+The two-second extra save latency requires physical comfort validation; no
+reliability claim follows from the change alone.
 M25 generates and compares three explanatory artwork directions with imagegen,
 then composes actual app captures; no exclusivity claim or invented UI.
 

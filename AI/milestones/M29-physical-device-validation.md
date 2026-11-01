@@ -1,7 +1,7 @@
 # M29 — Physical Device Validation
 
 **ID:** M29
-**Status:** BLOCKED
+**Status:** IN_PROGRESS
 **Depends on:** M25
 **Validation:** make milestone ID=M29
 **Handoff:** AI/handoffs/M29-handoff.md
@@ -13,6 +13,11 @@ Deliver the approved M29 outcome.
 ## Scope
 
 Owner-approved [gesture plan](../gesture-differentiation-plan.md),2026-10-29.
+
+2026-11-01 owner decision after intermittent physical THEM recognition: test a
+five-second fixed-window prototype, build 1.0 (5). This authorizes the timing,
+matching localized teaching and boundary-test correction only. One/two/third
+series, cancellation rules and all physical acceptance thresholds remain intact.
 
 Own all physical Watch/iPhone verification including M27 names/native input/VoiceOver/
 lifecycle, gesture recognition, wrist-down/system restrictions, haptics, interruptions,

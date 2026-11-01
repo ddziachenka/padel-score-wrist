@@ -1,4 +1,4 @@
-# M29 — input mechanic decision pending
+# M29 — five-second prototype approved
 
 Builder record, 2026-11-01. No release approval or hardware recognition pass.
 Current shipping correction: `0d535ac26a543d37333f3c457bbfba1316663d90`,
@@ -48,6 +48,19 @@ AGENTS A4/A13 require the developer's decision for these product changes. No
 production timing or gesture changes have been made in response to this question.
 Capture refresh waits for the chosen mechanic so the source-bound galleries are
 recreated from the final shipping inputs, without weakening the fingerprint guard.
+
+## Owner choice — resolved
+
+Owner selected **“Прототип 5 секунд (Recommended)”** on 2026-11-01. The decision
+blocker is resolved. M29 resumes IN_PROGRESS with the five-second prototype and
+matching Watch/phone instructions in all 13 UI languages. Build 1.0 (5) will
+distinguish this timing experiment from build 4. The owning PRODUCT, ARCHITECTURE,
+DESIGN and gesture plan record this narrow amendment. No custom motion detector,
+new gesture, lower recognition threshold or acceptance waiver is approved.
+
+Earlier wording above records the decision as presented, not a still-pending
+question. The choice authorizes building/testing five seconds; physical evidence
+must still establish comfort and reliability before adoption/release readiness.
 
 ## Other blockers retained
 
