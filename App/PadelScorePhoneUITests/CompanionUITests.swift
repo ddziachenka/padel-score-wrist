@@ -490,6 +490,7 @@ final class CompanionUITests: XCTestCase {
     func testGestureSimulationScoresBothTeamsCancelsAndResetsOnLeaving() {
         let app = app()
         reveal(app.buttons["phone.start.gestures"], in: app).tap()
+        XCTAssertTrue(app.staticTexts["For THEM, wait for “Pending: US”, then repeat the series: two finger contacts."].exists)
         let action = app.buttons["phone.gesture.action"]
         reveal(action, in: app)
         let idleActionFrame = action.frame
@@ -497,8 +498,10 @@ final class CompanionUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["phone.gesture.pending"].label.contains("US"))
         XCTAssertEqual(action.frame.minY, idleActionFrame.minY, accuracy: 0.5,
                        "Pending selection must not move the repeated-input button")
-        Thread.sleep(forTimeInterval: 5.3)
         let score = app.descendants(matching: .any)["phone.gesture.score"]
+        Thread.sleep(forTimeInterval: 3.2)
+        XCTAssertEqual(score.value as? String, "0:0", "The five-second simulation must not commit at the old three-second deadline")
+        Thread.sleep(forTimeInterval: 2.1)
         XCTAssertEqual(score.value as? String, "1:0")
         capture(app, "gesture-phone-simulation-us")
         // One deliberate button activation simulates one native Watch Double

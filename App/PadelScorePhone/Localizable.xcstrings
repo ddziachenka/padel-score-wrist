@@ -36820,6 +36820,90 @@
           }
         }
       }
+    },
+    "For THEM, wait for “Pending: US”, then repeat the series: two finger contacts.": {
+      "comment": "M29 physical feedback: wait for the first recognized-series preview before repeating. Quote each locale’s exact Pending: US label; one series remains two finger contacts.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For THEM, wait for “Pending: US”, then repeat the series: two finger contacts."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For DEM: Vent på “Afventer: OS”, og gentag så serien med to fingerberøringer."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Für SIE: Auf „Vorgemerkt: WIR“ warten, dann die Folge mit zwei Fingerkontakten wiederholen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para ELLOS, espera «Pendiente: NOSOTROS» y repite la serie: dos contactos de los dedos."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heille: odota tekstiä ”Odottaa: ME” ja toista sarja: kaksi sormikosketusta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour EUX, attendez « En attente : NOUS », puis répétez la série : deux contacts des doigts."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per LORO, attendi «In attesa: NOI», poi ripeti la sequenza: due tocchi delle dita."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For DEM: Vent på «Venter: OSS», og gjenta deretter serien med to fingerberøringer."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voor de tegenstanders: wacht op ‘In afwachting: WIJ’ en herhaal de reeks: twee vingercontacten."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para ELES, aguarde “Pendente: NÓS” e repita a sequência: dois toques dos dedos."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para ELES, aguarde «Pendente: NÓS» e repita a sequência: dois toques dos dedos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Для очка соперникам дождитесь «Ожидает: МЫ», затем повторите серию: два касания пальцев."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För DEM: vänta på ”Väntar: VI” och upprepa sedan serien med två fingerkontakter."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

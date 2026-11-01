@@ -17,6 +17,7 @@ struct PhoneGestureView: View {
                                      identifier: "phone.gesture.explanation")
                     GestureGuideText(text: String(localized: "One series means touching your thumb and index finger together twice."))
                     GestureGuideText(text: String(localized: "One series: us. Two: them. Three: cancel. Wait five seconds to save."))
+                    GestureGuideText(text: String(localized: "For THEM, wait for “Pending: US”, then repeat the series: two finger contacts."))
                 }
                 PhoneCard {
                     HStack {

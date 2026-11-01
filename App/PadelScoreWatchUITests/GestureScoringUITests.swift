@@ -28,6 +28,26 @@ final class GestureScoringUITests: XCTestCase {
         attachScreenshot("Five-second prototype saves the late second series for them")
     }
 
+    func testPracticeExplainsTheSecondSeriesAfterTheFirstPreview() {
+        let app = launchApp(store: "gestures-second-series-cue", seed: "empty")
+        app.buttons["newGame.match"].scrollToAndTap(in: app)
+        app.buttons["setup.gesturePractice"].scrollToAndTap(in: app)
+        let cue = app.staticTexts["For THEM, wait for “Pending: US”, then repeat the series: two finger contacts."]
+        cue.scrollToAndTap(in: app)
+        attachScreenshot("Explicit second-series recognition cue")
+        let action = app.buttons["gesture.action"]
+        action.scrollToAndTap(in: app)
+        XCTAssertEqual(action.label, "Pending: US")
+        action.tap()
+        XCTAssertEqual(action.label, "Pending: THEM")
+        let score = app.descendants(matching: .any)["gesture.practice.score"]
+        expectation(for: NSPredicate(format: "value == %@", "0:1"), evaluatedWith: score)
+        waitForExpectations(timeout: 8)
+        app.goBack()
+        XCTAssertEqual(app.switches["setup.gestures"].value as? String, "0")
+        XCTAssertFalse(app.buttons["game.us"].exists)
+    }
+
     func testSeriesTouchUndoAndSavedPreferenceOnRelaunch() {
         let app = launchApp(store: "gestures-series", seed: "gestureMatch")
         let action = app.buttons["gesture.action"]

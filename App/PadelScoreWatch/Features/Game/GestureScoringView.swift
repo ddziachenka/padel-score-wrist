@@ -61,7 +61,8 @@ struct GestureActionButton: View {
         .accessibilityIdentifier("gesture.action")
         .accessibilityLabel(accessibilityTitle)
         .accessibilityValue(accessibilityDetail)
-        .accessibilityHint(Text("One series: us. Two: them. Three: cancel. Wait five seconds to save."))
+        .accessibilityHint(Text(verbatim: String(localized: "One series: us. Two: them. Three: cancel. Wait five seconds to save.")
+            + " " + String(localized: "For THEM, wait for “Pending: US”, then repeat the series: two finger contacts.")))
         .modifier(NativeGestureShortcut(enabled: enabled))
     }
 
@@ -94,6 +95,7 @@ struct GestureInstructions: View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
             Caption("One series means touching your thumb and index finger together twice.")
             Caption("One series: us. Two: them. Three: cancel. Wait five seconds to save.")
+            Caption("For THEM, wait for “Pending: US”, then repeat the series: two finger contacts.")
             Caption("Requires watchOS 11 and an Apple Watch that supports Double Tap, with the screen awake and system gestures enabled.")
         }
     }

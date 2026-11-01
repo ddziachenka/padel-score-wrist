@@ -968,6 +968,12 @@ M29 timing prototype approved 2026-11-01: extend the original three-second windo
 to five seconds and make both Watch/phone teaching say five in every locale.
 The two-second extra save latency requires physical comfort validation; no
 reliability claim follows from the change alone.
+M29 physical feedback, 2026-11-01: the owner finds two series stable when waiting
+for Pending: US before repeating, but that sequence was not obvious. Build 6 adds
+one explicit localized teaching step on Watch and phone: wait for the first
+recognized-series preview, then repeat the series (two finger contacts). The
+quoted preview must match each locale's actual Pending: US label. Keep this in
+teaching/accessibility hints; the live scoring control remains stationary.
 M25 generates and compares three explanatory artwork directions with imagegen,
 then composes actual app captures; no exclusivity claim or invented UI.
 
