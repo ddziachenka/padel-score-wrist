@@ -212,6 +212,40 @@ These phone simulations do not count toward actual Watch recognition thresholds.
 Capture paths above are under `.artifacts/M29/` and originate from the live
 Mirroring window. No real Watch gesture video exists yet.
 
+## Build 4 correction and paired installation — in progress
+
+The setup practice navigation defect is reproduced and corrected at
+`0d535ac26a543d37333f3c457bbfba1316663d90`; see
+[before/after evidence](setup-practice-regression.md). The signed Release build
+command above ran again with `.artifacts/M29/device-build-4.log`, exit 0. The
+same phone install command with `iphone-install-build4.json` / `.log` exited 0;
+native app readback `iphone-build4-readback.json` confirms phone **1.0 (4)**.
+Source and both executable hashes are in `candidate-identity-build4.json`.
+Embedded Watch app is also 1.0 (4), but this does not prove transfer to the Watch.
+
+Owner subsequently reports Watch still **1.0 (3)**. Paired-phone Watch settings
+showed the app installed with Show App on Apple Watch ON, without an explicit
+update action. Owner explicitly authorized discarding application data because
+the app is not released. Agent then turned Show App on Apple Watch OFF to remove
+the old test installation and enable a fresh paired-phone install. Completion
+and Watch build readback remain pending; no new physical behavior is credited.
+This narrow authorization does not authorize device erase, unpairing, account
+changes, or an App Store submission.
+
+Mirroring could not scroll the Watch app's Apps list to Available Apps, so the
+agent requested only that manual installation step. Owner completed it and
+confirmed Watch About **1.0 (4)**. Physical setup-practice and spaced-two-series
+diagnostic trials on that build are now requested; their outcomes are pending.
+
+Owner's build-4 diagnostic response: two series are recognized, **but not always**;
+owner asks whether THEM should use another gesture. There are still no numeric
+attempt/success/miss denominators or wrong-team counts. This establishes that a
+second native activation can reach the app, but does not establish the ≥95%
+criterion, comfort or safety in play. No large recognition trial is requested
+until the input-mechanic decision is settled. One-hour play/video remain postponed
+by the owner; neither is passed. The setup navigation outcome was not reported
+separately from the gesture response.
+
 ## Physical trial protocol — pending execution
 
 Use a confirmed current Watch installation and an identified disposable test game;

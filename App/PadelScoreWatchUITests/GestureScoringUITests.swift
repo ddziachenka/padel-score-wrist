@@ -113,7 +113,8 @@ final class GestureScoringUITests: XCTestCase {
         app.buttons["setup.gesturePractice"].scrollToAndTap(in: app)
         let action = app.buttons["gesture.action"]
         XCTAssertTrue(action.waitForExistence(timeout: 5))
-        action.tap()
+        action.scrollToAndTap(in: app)
+        XCTAssertEqual(action.label, "Pending: US", "The visible practice control must receive the tap before waiting for its deadline")
         Thread.sleep(forTimeInterval: 3.3)
         XCTAssertEqual(app.descendants(matching: .any)["gesture.practice.score"].value as? String, "1:0")
         attachScreenshot("Disposable Watch gesture practice")
