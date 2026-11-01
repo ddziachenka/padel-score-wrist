@@ -143,9 +143,25 @@ bash .artifacts/M25/runtime-profile.sh watch-minimum run python3 .artifacts/M29/
 | `practice-tap-current-after.xcresult` | 0 | 10:57:26.816–10:58:09.350 | 1/1 passed, including new pending assertion |
 
 All have zero skipped/expected/runtime warnings. Matching logs/native summaries,
-the original video and diagnostic frames remain in `.artifacts/M29/`. Full minimum
-supplement must now run with the corrected test. This is a test-input correction,
-not acceptance of either failed suite or an independent review.
+the original video and diagnostic frames remain in `.artifacts/M29/`. This is a
+test-input correction, not acceptance of either failed suite or independent review.
+
+### Final complete minimum supplement
+
+Clean committed source `9659e7c3017faf8dc4530c46ad49cb97f3c0eec9` on main passed:
+exit **0**, **15/15 definitions / 41/41 invocations**, zero failed, skipped,
+expected or native runtime warnings. UTC 2026-11-01T10:59:06.656Z–11:01:25.818Z.
+Report `.artifacts/M29/setup-practice-minimum-supplement-3.xcresult`, matching
+log, native summary and test tree. Exact command:
+
+```sh
+bash .artifacts/M25/runtime-profile.sh watch-minimum run xcodebuild -project App/PadelScore.xcodeproj -scheme PadelScore -configuration Debug -destination 'platform=watchOS Simulator,id=D5A214D9-F6B8-461F-BC2E-A32C0E4FF16C' -derivedDataPath /private/tmp/padel-score-1acada2a5b10/DerivedData-m16-watch-minimum -resultBundlePath .artifacts/M29/setup-practice-minimum-supplement-3.xcresult -parallel-testing-enabled NO -only-testing:PadelScoreWatchTests/AppConfigurationTests -only-testing:PadelScoreWatchTests/GestureInputTests -only-testing:PadelScoreWatchUITests/BootstrapUITests/testAboutNavigationAndInstalledVersion -only-testing:PadelScoreWatchUITests/GestureScoringUITests/testSetupOffersOffAndPracticeDoesNotStartGame -only-testing:PadelScoreWatchUITests/GestureScoringUITests/testMinimumRuntimeKeepsTouchScoringAndOffSetup -only-testing:PadelScoreWatchUITests/GestureScoringUITests/testSetupPracticeFromPlayAgainPreservesTheResultAndDraft -only-testing:PadelScoreWatchUITests/GestureScoringUITests/testSetupPracticeFromNewGamePreservesTheResultAndDraft -collect-test-diagnostics never CODE_SIGNING_ALLOWED=NO test
+```
+
+The only App/Config/Scripts difference between production-build source 0d535ac
+and this SHA is the stricter practice UI test. All shipping App bytes match build
+4; no owner-device rebuild was needed for the test-only follow-up. Current 27
+native accessibility evidence above remains source-identical for shipping code.
 
 Minimum runtime supplement, physical build 4 Watch installation/retest, and
 fresh galleries are still required. `make static` after the fix currently exits

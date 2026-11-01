@@ -1,7 +1,7 @@
 # M29 — Physical Device Validation
 
 **ID:** M29
-**Status:** IN_PROGRESS
+**Status:** BLOCKED
 **Depends on:** M25
 **Validation:** make milestone ID=M29
 **Handoff:** AI/handoffs/M29-handoff.md

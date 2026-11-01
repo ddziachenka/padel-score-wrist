@@ -4,7 +4,7 @@
 **Current milestone:** M29
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25
 **Next milestone:** M29
-**Blockers:** M29 physical validation in progress; current hardware evidence/video and full M29 gate remain required before M26. Owner participates where physical actions are necessary; agent uses iPhone Mirroring where possible. App Review4.3(a) unresolved; reply unsent/on hold. Additional baseline-matched current StoreKit probe remains FAILED/P2. M30 requires separate submission instruction.
+**Blockers:** M29 BLOCKED on owner input-mechanic decision after intermittent two-series recognition on Watch 1.0 (4): test a five-second prototype (Recommended), investigate another gesture, or keep three seconds and measure; see AI/evidence/M29/gesture-input-decision.md. One-hour play/video postponed by owner; remaining physical coverage, final-source gallery refresh, six-domain records and full M29 gate remain required before M26. App Review4.3(a) unresolved; reply unsent/on hold. Additional baseline-matched current StoreKit probe remains FAILED/P2. M30 requires separate submission instruction.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -457,3 +457,24 @@ passing. Builder digital self-review is not independent review or release approv
 No upload/reply/submission/pricing/publication. New Builder owns M29 physical
 validation; M26 retains complete final gates, M30 separate authorized resubmission.
 Handoff: [M25](handoffs/M25-handoff.md). Stop after DONE static/status/continuity.
+
+## M29 physical checkpoint — 2026-11-01
+
+M29 BLOCKED, not DONE. Owner confirms Watch and phone 1.0 (4); two native series
+can select THEM but not reliably, with no numeric trial record. Owner asks about
+another gesture. [Pending product choice](evidence/M29/gesture-input-decision.md):
+five-second prototype (Recommended), alternative-gesture investigation, or retain
+three seconds and measure. No production timing/motion change is approved yet.
+One-hour play/video postponed by owner; remaining physical rows and final gate
+remain mandatory before M26. [Handoff](handoffs/M29-handoff.md).
+
+Fixed result-based setup→Try gestures at `0d535ac26a543d37333f3c457bbfba1316663d90`:
+two new regressions fail before/pass after. Current27 supplement13/13 definitions/
+39 invocations, exit0. Test-only follow-up `9659e7c3017faf8dc4530c46ad49cb97f3c0eec9`
+fixes a baseline-reproduced clipped tap without loosening deadline/assertions;
+complete minimum10 supplement15/15/41, exit0, UTC10:59:06.656–11:01:25.818.
+Earlier failed bundles preserved. Exact [commands/SHA/reports/counts](evidence/M29/setup-practice-regression.md).
+Phone settings restored to owner-approved originals; no outstanding restore approval.
+Strict material source fingerprint correctly blocks static until final-source
+complete captures are refreshed after the mechanic decision. No full M29 pass,
+independent audit, release approval, upload/reply/submission/publication claimed.
