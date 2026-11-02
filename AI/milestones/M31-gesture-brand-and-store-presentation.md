@@ -1,7 +1,7 @@
 # M31 — Gesture Brand and Store Presentation
 
 **ID:** M31
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M29
 **Validation:** make milestone ID=M31
 **Handoff:** AI/handoffs/M31-handoff.md
@@ -39,8 +39,9 @@ M26 under the explicit owner multi-milestone authorization.
 
 ## Candidate verification checkpoint
 
-Full candidate16a7a094ac863a416b61aa701d3c7b37d14f445d failed one of640Watch
-definitions; phone suites did not run. Original report/counts remain FAILED.
-Investigate the gesture/touch UI sequence, correct from evidence, then run the
-complete gate again. No automatic exception or component reuse is approved.
-System icon runtime checks now pass; [evidence](../evidence/M31/icon-runtime.md).
+Original16a7 full report remains FAILED1/640Watch; phone not run. Narrow UI-test
+preconditions/strict pending-cancellation assertions pass5/5 at0340e58, with no
+production change or assertion weakening. [Exact correction evidence](../evidence/M31/gesture-touch-synchronization.md).
+System icon runtime checks pass; [evidence](../evidence/M31/icon-runtime.md).
+Now run complete fresh make milestone ID=M31 from the clean REVIEW candidate;
+no exception or component reuse. Domain completion/DONE wait for that result.

@@ -63,3 +63,14 @@ The phone-current/desktop reservation was released. A separate direct simctl
 screenshot of the owned phone was attempted under a fresh lease, but produced no
 image and was interrupted; it is not counted as a runtime visual pass. No global
 simulator reset/erase/restart or device state mutation was performed.
+
+## Current checkpoint — 2026-11-02
+
+Owner unlocked Mac; actual installed1.0(7)Watch circular-grid and phone Spotlight
+icon checks passed, no correction, leases released. See icon-runtime.md. FullM31
+16a7 failed one of640Watch definitions; no phone run. Raw failure preserved. Narrow
+UI-test correction0340 adds readiness/preceding-rally separation and stricter
+pending/cancel assertions;5/5targeted invocations and static pass. See
+gesture-touch-synchronization.md. Shipping sources remain capture-identical.
+The entire updated diff was self-reviewed; no known blocking production issue
+found. Fresh complete fullgate and final domain/handoff records remain required.
