@@ -240,18 +240,36 @@ final class CompanionUITests: XCTestCase {
             let originalCard = app.otherElements["phone.recovery.result"].frame
             let scoreIdentifiers = ["points", "context", "games", "sets", "server", "status"]
                 .map { "phone.recovery.result." + $0 }
-            for identifier in scoreIdentifiers {
-                XCTAssertTrue(app.staticTexts[identifier].exists, "Post-Undo score field must exist: \(identifier)")
+            // One coherent public snapshot per check; its children/attributes are
+            // captured data, so field assertions do not each resolve another query.
+            func postUndoScoreState() throws -> (labels: [String], undoEnabled: Bool) {
+                var pending: [XCUIElementSnapshot] = [try app.snapshot()]
+                var nodes: [XCUIElementSnapshot] = []
+                while let node = pending.popLast() {
+                    nodes.append(node)
+                    pending.append(contentsOf: node.children)
+                }
+                func unique(_ identifier: String, type: XCUIElement.ElementType) throws -> XCUIElementSnapshot {
+                    let matches = nodes.filter { $0.identifier == identifier && $0.elementType == type }
+                    XCTAssertEqual(matches.count, 1, "Post-Undo field must exist exactly once: \(identifier)")
+                    guard matches.count == 1, let element = matches.first else {
+                        throw NSError(domain: "CompanionUITests.PostUndoState", code: 1,
+                                      userInfo: [NSLocalizedDescriptionKey: "Missing or ambiguous field: \(identifier)"])
+                    }
+                    return element
+                }
+                let labels = try scoreIdentifiers.map { try unique($0, type: .staticText).label }
+                let undoEnabled = try unique("phone.recovery.undo", type: .button).isEnabled
+                return (labels, undoEnabled)
             }
-            let originalScoreLabels = scoreIdentifiers.map { app.staticTexts[$0].label }
-            let originalUndoEnabled = app.buttons["phone.recovery.undo"].isEnabled
-            func assertPostUndoScoreUnchanged() {
-                for (identifier, expected) in zip(scoreIdentifiers, originalScoreLabels) {
-                    XCTAssertTrue(app.staticTexts[identifier].exists)
-                    XCTAssertEqual(app.staticTexts[identifier].label, expected,
+            let originalScoreState = try postUndoScoreState()
+            func assertPostUndoScoreUnchanged() throws {
+                let current = try postUndoScoreState()
+                for (actual, expected) in zip(current.labels, originalScoreState.labels) {
+                    XCTAssertEqual(actual, expected,
                                    "Audit scrolling must not change the score or serving state")
                 }
-                XCTAssertEqual(app.buttons["phone.recovery.undo"].isEnabled, originalUndoEnabled)
+                XCTAssertEqual(current.undoEnabled, originalScoreState.undoEnabled)
             }
             func restorePostUndoViewport() throws {
                 for attempt in 0...24 {
@@ -286,14 +304,14 @@ final class CompanionUITests: XCTestCase {
             ]
             for (name, category) in categories {
                 try restorePostUndoViewport()
-                assertPostUndoScoreUnchanged()
+                try assertPostUndoScoreUnchanged()
                 XCTAssertTrue(app.buttons["phone.recovery.us"].isEnabled)
                 XCTAssertFalse(app.buttons["phone.recovery.serving"].exists)
                 XCTAssertTrue(app.staticTexts["Games 5–0"].exists)
                 try XCTContext.runActivity(named: "Post-Undo \(dark ? "Dark" : "Light") \(name)") { _ in
                     try auditIncludingOccludedText(app, auditTypes: category)
                 }
-                assertPostUndoScoreUnchanged()
+                try assertPostUndoScoreUnchanged()
             }
             capture(app, "known-score-set-serving-and-undo-\(dark ? "dark" : "light")")
             app.terminate()

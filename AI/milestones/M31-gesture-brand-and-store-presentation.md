@@ -74,3 +74,11 @@ passes both themes after bounded environment recovery,1/1.
 The later0c2dab8 full run also recorded the same native failure. Its final bundle
 and command exit must be preserved before the owner-approved bounded affected route
 above can be evaluated. No full-pass or P0/P1 conclusion is inferred from progress.
+
+
+The02d8 category-grouping correction failed its fixed five-each validation with
+two app-process crashes in XCTest's logging callback; all raw evidence remains
+FAILED. The latest bounded [snapshot correction](../evidence/M31/native-audit-snapshot-correction.md)
+reduces repeated state queries while retaining all assertions/categories. Its own
+clean-source fixed validation and reviewed source-bound coverage are required;
+no earlier diagnostic pass or old correction is accepted as milestone completion.
