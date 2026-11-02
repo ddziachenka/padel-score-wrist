@@ -32,3 +32,8 @@ Targeted unchanged-source repetition is diagnostic, not a replacement full gate.
 Its first iteration additionally failed the initial Pending: US observation; later
 iterations advanced normally. Final exact target-command result and correction
 verification will be recorded separately once the native bundle closes.
+
+The subsequent7f49552 full run passed Watch640/1092 and phone unit21/30, then
+failed native phone accessibility audit and was interrupted by the coordinator.
+See [exact failure and bounded recovery](native-phone-audit-failure.md).
+No component reuse; the next full command remains mandatory.

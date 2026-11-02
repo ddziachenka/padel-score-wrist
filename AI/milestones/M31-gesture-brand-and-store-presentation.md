@@ -45,3 +45,9 @@ production change or assertion weakening. [Exact correction evidence](../evidenc
 System icon runtime checks pass; [evidence](../evidence/M31/icon-runtime.md).
 Now run complete fresh make milestone ID=M31 from the clean REVIEW candidate;
 no exception or component reuse. Domain completion/DONE wait for that result.
+
+The7f49552 full gate passed Watch640/1092 and phone unit21/30 but failed a native
+phone audit timeout; coordinator stopped the doomed run. Unchanged focused case
+passes both themes after bounded environment recovery,1/1.
+[Failure/recovery evidence](../evidence/M31/native-phone-audit-failure.md).
+Fresh complete gate remains required; no automatic exception or component reuse.

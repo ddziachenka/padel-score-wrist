@@ -56,5 +56,4 @@ to corresponding public pages. Only purchase/restore and external links need a
 network. Names, games and journals remain locally on Watch, without an account,
 cloud sync, analytics, HealthKit or location access.
 
-Review contact: Dzmitry Dziachenka, dzmitry.dziachenka@gmail.com. The owner's phone
-number stays in App Store Connect and is not copied here.
+Review contact: Dzmitry Dziachenka, dzmitry.dziachenka@gmail.com.
