@@ -1,7 +1,7 @@
 # M26 — Release Readiness Revalidation
 
 **ID:** M26
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M31
 **Validation:** make milestone ID=M26
 **Handoff:** AI/handoffs/M26-handoff.md
@@ -25,10 +25,10 @@ Current six-domain records, migration/package validation, new archive/build iden
 
 ## Acceptance criteria
 
-- [ ] M29 DONE and all six domain records current with no missing required coverage or unaccepted failure.
-- [ ] Actual m26-preflight, release and m26-final stages pass on the same clean exact candidate, with validated reused/affected coverage and every unique Watch/iPhone Debug/Release build/package check preserved.
-- [ ] Actual package/version/build/provenance and migration evidence match the candidate; historical M18 acceptance is not transferred.
-- [ ] Monitor candidate/build guard is updated and read back before future publication work; submission remains a separate owner decision.
+- [x] M29 DONE and all six domain records current with no missing required coverage or unaccepted failure.
+- [x] Actual m26-preflight, release and m26-final stages pass on the same clean exact candidate, with validated reused/affected coverage and every unique Watch/iPhone Debug/Release build/package check preserved.
+- [x] Actual package/version/build/provenance and migration evidence match the candidate; historical M18 acceptance is not transferred.
+- [x] Monitor candidate/build guard is updated and read back before future publication work; submission remains a separate owner decision.
 
 ## Non-goals
 

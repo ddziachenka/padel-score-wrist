@@ -2,8 +2,8 @@
 
 **Phase:** release-preparation
 **Current milestone:** M26
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31
-**Next milestone:** M26
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26
+**Next milestone:** M30
 **Blockers:** none
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
@@ -577,3 +577,9 @@ Build1.0(7), selected gesture/ball icon,14 localized metadata sets,112 Watch+98 
 ## M26 exact-candidate verification — active
 
 M31 completion commit `c1ff702eb1618e53ad235e243f08de8fb5126e83` passed post-DONE static/status/continuity, all exit0. M26 REVIEW consumes the six current M31 domain records and source-bound affected coverage. The next clean commit is the exact candidate for all three typed preflight/release/final stages; no READY_FOR_HUMAN verdict or signed archive is claimed yet. No duplicate unaffected Debug suites will run.
+
+## M26 completed — 2026-11-03 Tbilisi
+
+M26 DONE; exact candidate `263be849dd7981b192bb6f4de49887b953007420` passed preflight, release READY_FOR_HUMAN and M26 final, all exit0. Four Watch/iPhone Debug/Release builds and package checks pass with version1.0(7). Coverage682 definitions is source-bound under the current owner policy; no duplicate unchanged native suites. [Evidence](evidence/M26/milestone-verification.md), [handoff](handoffs/M26-handoff.md).
+
+The missing original launch monitor was restored once under explicit owner approval; same id padel-score-lifetime and original target thread, ACTIVE hourly, exact configuration readback confirmed. Candidate guard READY_AWAITING_BUILD, no promotion until actual public availability. Continue authorized M30; no new archive/upload/reply/submission yet.
