@@ -2,9 +2,9 @@
 
 **Phase:** implementation
 **Current milestone:** M31
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29
-**Next milestone:** M31
-**Blockers:** M31 REVIEW: raw0c full gate FAILED; unaffected Watch/unit/19otherUI passes retained under explicit affected-only owner policy. Fixed02d8 series failed8/10invocations with two XCTest logging-callback crashes. Snapshot-only state-query mitigation prepared; new clean-source fixed validation and accepted coverage pending. M26/M30 pending; nothing uploaded/sent/submitted.
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31
+**Next milestone:** M26
+**Blockers:** none
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -567,3 +567,9 @@ preserving every field assertion, both themes and all native categories. Source 
 independent review, failed evidence and the next fixed five-each validation contract:
 [evidence/M31/native-audit-snapshot-correction.md](evidence/M31/native-audit-snapshot-correction.md).
 Current native validation remains pending; no release readiness or submission.
+
+## M31 completed — 2026-11-02
+
+M31 DONE under the explicit affected-only owner decision. Candidate `cb6bc1243e49cd51f1817d1d263e09e9028a7fe9` passed its fixed native correction,2 definitions/10 invocations, exit0, and strict impact validation, exit0. Coverage:682 unique definitions,680 reused/2 fresh,1143 normalized invocations/1151 evidence invocations; accepted components have zero adverse results. Raw full and earlier diagnostic failures remain FAILED.
+
+Build1.0(7), selected gesture/ball icon,14 localized metadata sets,112 Watch+98 iPhone originals and28 creatives are prepared. Six current Builder domain records preserve M29 manual acceptance limits and disclose absent video/recognition metrics. [Evidence](evidence/M31/milestone-verification.md), [handoff](handoffs/M31-handoff.md). Continue the authorized M26→M30 sequence; no build upload, reply or resubmission yet.

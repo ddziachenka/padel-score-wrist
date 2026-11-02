@@ -1,7 +1,7 @@
 # M31 — Gesture Brand and Store Presentation
 
 **ID:** M31
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M29
 **Validation:** make milestone ID=M31
 **Handoff:** AI/handoffs/M31-handoff.md
@@ -23,8 +23,8 @@ build7,14localized subtitles/promotional texts,112Watch+98phone captures,
 - [x] Selected original icon works at small sizes and circular Watch crop; provenance saved.
 - [x] Native galleries and creatives match final shipping source with strict validation.
 - [x] All14locales accurately describe gestures/compatibility without exclusivity claims.
-- [ ] Product README and affected domain records are current; no P0/P1 remains.
-- [ ] Owner-approved affected verification and source identity pass, all required coverage is accounted for, and exact separate evidence/handoff are recorded; raw full-command failures remain FAILED.
+- [x] Product README and affected domain records are current; no P0/P1 remains.
+- [x] Owner-approved affected verification and source identity pass, all required coverage is accounted for, and exact separate evidence/handoff are recorded; raw full-command failures remain FAILED.
 
 ## Non-goals
 
@@ -82,3 +82,7 @@ FAILED. The latest bounded [snapshot correction](../evidence/M31/native-audit-sn
 reduces repeated state queries while retaining all assertions/categories. Its own
 clean-source fixed validation and reviewed source-bound coverage are required;
 no earlier diagnostic pass or old correction is accepted as milestone completion.
+
+## Completed verification — 2026-11-02
+
+Candidate `cb6bc1243e49cd51f1817d1d263e09e9028a7fe9` passed the fixed affected native run (2 definitions/10 invocations, exit0) and the unchanged strict impact validator (IMPACT_COVERAGE_VERIFIED, exit0). Accepted coverage totals682 unique definitions;680 reused and2 freshly verified,1143 normalized invocations/1151 actual evidence invocations. Original full failures remain FAILED. See [actual evidence](../evidence/M31/milestone-verification.md) and [handoff](../handoffs/M31-handoff.md). No release or external submission is asserted.
