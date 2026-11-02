@@ -57,3 +57,7 @@ post-installation checks are recorded by the owning Builder. Future AI-only cons
 commits require new immutable manifests; existing inputs/contracts remain frozen.
 M29 physical acceptance, unavailable metrics/video and all historical diagnostic
 limits remain intact. This evidence is neither a fullmakePASS nor App Store approval.
+
+## Closure checks
+
+Closure commit `c1ff702eb1618e53ad235e243f08de8fb5126e83` passed `make static`, `Scripts/project-status.sh validate` and `Scripts/project-status.sh continuity cb6bc1243e49cd51f1817d1d263e09e9028a7fe9`, each exit0. Actual commands/times/logs: `.artifacts/M31/closure-checks-c1ff702/receipt.json`. Only AI Markdown differs from the verified source.

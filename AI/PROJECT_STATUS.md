@@ -1,7 +1,7 @@
 # Project status
 
-**Phase:** implementation
-**Current milestone:** M31
+**Phase:** release-preparation
+**Current milestone:** M26
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31
 **Next milestone:** M26
 **Blockers:** none
@@ -573,3 +573,7 @@ Current native validation remains pending; no release readiness or submission.
 M31 DONE under the explicit affected-only owner decision. Candidate `cb6bc1243e49cd51f1817d1d263e09e9028a7fe9` passed its fixed native correction,2 definitions/10 invocations, exit0, and strict impact validation, exit0. Coverage:682 unique definitions,680 reused/2 fresh,1143 normalized invocations/1151 evidence invocations; accepted components have zero adverse results. Raw full and earlier diagnostic failures remain FAILED.
 
 Build1.0(7), selected gesture/ball icon,14 localized metadata sets,112 Watch+98 iPhone originals and28 creatives are prepared. Six current Builder domain records preserve M29 manual acceptance limits and disclose absent video/recognition metrics. [Evidence](evidence/M31/milestone-verification.md), [handoff](handoffs/M31-handoff.md). Continue the authorized M26→M30 sequence; no build upload, reply or resubmission yet.
+
+## M26 exact-candidate verification — active
+
+M31 completion commit `c1ff702eb1618e53ad235e243f08de8fb5126e83` passed post-DONE static/status/continuity, all exit0. M26 REVIEW consumes the six current M31 domain records and source-bound affected coverage. The next clean commit is the exact candidate for all three typed preflight/release/final stages; no READY_FOR_HUMAN verdict or signed archive is claimed yet. No duplicate unaffected Debug suites will run.

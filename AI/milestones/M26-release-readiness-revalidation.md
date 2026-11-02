@@ -1,17 +1,17 @@
 # M26 — Release Readiness Revalidation
 
 **ID:** M26
-**Status:** PLANNED
+**Status:** REVIEW
 **Depends on:** M31
 **Validation:** make milestone ID=M26
 **Handoff:** AI/handoffs/M26-handoff.md
 **Revalidated domains:** functional, ui-ux, content, accessibility, product, release
-**functional revalidation record:** AI/audits/M29-functional-revalidation.md
-**ui-ux revalidation record:** AI/audits/M29-ui-ux-revalidation.md
-**content revalidation record:** AI/audits/M29-content-revalidation.md
-**accessibility revalidation record:** AI/audits/M29-accessibility-revalidation.md
-**product revalidation record:** AI/audits/M29-product-revalidation.md
-**release revalidation record:** AI/audits/M29-release-revalidation.md
+**functional revalidation record:** AI/audits/M31-functional-revalidation.md
+**ui-ux revalidation record:** AI/audits/M31-ui-ux-revalidation.md
+**content revalidation record:** AI/audits/M31-content-revalidation.md
+**accessibility revalidation record:** AI/audits/M31-accessibility-revalidation.md
+**product revalidation record:** AI/audits/M31-product-revalidation.md
+**release revalidation record:** AI/audits/M31-release-revalidation.md
 
 ## Objective
 
