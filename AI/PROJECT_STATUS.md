@@ -4,7 +4,7 @@
 **Current milestone:** M31
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29
 **Next milestone:** M31
-**Blockers:** M31 REVIEW:7f49552 full gate FAILED native phone audit timeout; Watch640/1092 and phone unit21/30 passed, phone UI incomplete. Bounded owned-simulator recovery: unchanged failing case passed1/1 including both themes. Fresh full gate required; no component reuse. M26/M30 pending; nothing uploaded/sent/submitted.
+**Blockers:** M31 REVIEW: finalized0c full gate FAILED solely at phone native audit Code−56; Watch640/1092, phone-unit21/30 and other20UI passed. Owner authorizes affected-only verification across M31/M26/release/M30. E5 singleton-category diagnostic passed2/2 in both themes; final reviewed correction and clean-source affected coverage remain pending. M26/M30 pending; nothing uploaded/sent/submitted.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -535,3 +535,22 @@ No independent full audit or release approval is claimed. App Review4.3(a) and
 unsent reply remain; no upload/reply/submission/pricing/publication/distribution.
 A new Builder owns M26; M30 remains separately authorized. Stop after DONE commit
 static/status/continuity against the verified SHA.
+
+
+## Current M31 verification scope — 2026-11-02
+
+The owner explicitly authorizes repeating only affected tests across M31, M26,
+release and M30, preserving all unique Release builds, packaging, signing and
+submission checks. [Exact decision](evidence/M31/owner-impact-verification-authorization.md).
+This supersedes the earlier fresh-full-run/no-component-reuse requirement above.
+
+Full candidate `0c2dab8d17f3212e3c426d715fd1297d57cb021c` finished with
+Make2/verifier1/phoneUI65: Watch640 definitions/1092 invocations, phone unit21/30
+and20of21UI passed; only the boundary native audit timed out. The complete raw
+report remains FAILED, not converted to a full pass. E1 unchanged sequence and
+E3/E4 diagnostics also failed. E5 split all six original native categories into
+separate calls from the same post-Undo viewport and passed the predecessor plus
+boundary,2/2, both themes, exit0 at19:01:31Z. That diagnostic changes timing and
+does not establish a root cause or final readiness. Final reviewed test correction,
+predeclared affected verification and source-bound reuse proof remain pending.
+No new gameplay behavior, upload, reply, submission or publication is claimed.

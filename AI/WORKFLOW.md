@@ -9,9 +9,32 @@ their recorded commits; they never override this file.
 ## The workflow
 
 Owner-approved2026-11-02 exception: complete M31 → M26 → M30 sequentially in
-one task, preserving every full gate/handoff/continuity check. Distribution and
+one task, preserving each required stage/handoff/continuity check. Distribution and
 public GitHub push explicitly authorized after readiness; M30 uses an illustrated
 guide without video. [Exact scope](evidence/M31/owner-authorization.md).
+
+### Current owner exception — affected verification, 2026-11-02
+
+The owner explicitly selected affected-test-only verification across **M31, M26,
+release and M30**, preserving all Release builds, packaging, signing and submission
+checks. [Exact question, answer and bounded scope](evidence/M31/owner-impact-verification-authorization.md).
+For this resubmission sequence, this fresh decision supersedes requirements below
+for repeated unchanged Debug suites in these four stages. It does not inherit an
+old waiver, alter closed milestones, accept known P0/P1 defects or change M29's
+physical-acceptance limits. All affected/failed coverage must genuinely pass under
+an explicit impact/identity record; original full failures remain FAILED.
+
+Use the committed owning contracts' actual impact-verification commands and typed
+receipts. Generic `Validation:` headers remain unchanged for existing parsers;
+never turn them into fabricated full-make execution receipts. M31 records
+IMPACT_COVERAGE_VERIFIED only after its bounded native/identity requirements pass.
+M26 preflight → unique release builds/package checks → M26 final share the exact
+candidate; M30 preflight precedes external sending/submission and checks current
+coverage/continuity. Preserve every unique build, domain/migration/security audit,
+archive/signature/distribution check and post-DONE static/status/continuity check.
+Any scope/identity mismatch requires fresh affected verification. Public upload,
+reply, submission and monitor results still require actual evidence; no planned
+receipt or targeted pass alone establishes release readiness.
 
 M29-only owner manual acceptance,2026-11-01: the owner accepts gestures/real play
 and explicitly credits all remaining manual physical scenarios. [Exact scope](evidence/M29/owner-physical-acceptance.md).

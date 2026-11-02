@@ -232,7 +232,69 @@ final class CompanionUITests: XCTestCase {
             XCTAssertTrue(app.buttons["phone.recovery.us"].isEnabled)
             XCTAssertFalse(app.buttons["phone.recovery.serving"].exists)
             XCTAssertTrue(app.staticTexts["Games 5–0"].exists)
-            try auditIncludingOccludedText(app)
+
+            // Audit every category separately from the same post-Undo viewport.
+            // The unchanged helper may scroll to recheck occluded text; restore the
+            // original post-Undo position before the NEXT independent category.
+            let originalViewport = visibleViewport(app)
+            let originalCard = app.otherElements["phone.recovery.result"].frame
+            let scoreIdentifiers = ["points", "context", "games", "sets", "server", "status"]
+                .map { "phone.recovery.result." + $0 }
+            for identifier in scoreIdentifiers {
+                XCTAssertTrue(app.staticTexts[identifier].exists, "Post-Undo score field must exist: \(identifier)")
+            }
+            let originalScoreLabels = scoreIdentifiers.map { app.staticTexts[$0].label }
+            let originalUndoEnabled = app.buttons["phone.recovery.undo"].isEnabled
+            func assertPostUndoScoreUnchanged() {
+                for (identifier, expected) in zip(scoreIdentifiers, originalScoreLabels) {
+                    XCTAssertTrue(app.staticTexts[identifier].exists)
+                    XCTAssertEqual(app.staticTexts[identifier].label, expected,
+                                   "Audit scrolling must not change the score or serving state")
+                }
+                XCTAssertEqual(app.buttons["phone.recovery.undo"].isEnabled, originalUndoEnabled)
+            }
+            func restorePostUndoViewport() throws {
+                for attempt in 0...24 {
+                    let viewport = visibleViewport(app)
+                    let card = app.otherElements["phone.recovery.result"].frame
+                    let valid = card.width > 0 && card.height > 0 &&
+                        card.minY.isFinite && abs(card.minX - originalCard.minX) <= 1 &&
+                        abs(card.width - originalCard.width) <= 1 && abs(card.height - originalCard.height) <= 1 &&
+                        abs(viewport.minY - originalViewport.minY) <= 1 &&
+                        abs(viewport.maxY - originalViewport.maxY) <= 1
+                    guard valid else {
+                        throw NSError(domain: "CompanionUITests.PostUndoViewport", code: 1,
+                                      userInfo: [NSLocalizedDescriptionKey: "Post-Undo layout changed: card=\(card), viewport=\(viewport)"])
+                    }
+                    if abs(card.minY - originalCard.minY) <= 1 { return }
+                    guard attempt < 24 else {
+                        throw NSError(domain: "CompanionUITests.PostUndoViewport", code: 2,
+                                      userInfo: [NSLocalizedDescriptionKey: "Original viewport not restored after 24 drags: target=\(originalCard), actual=\(card)"])
+                    }
+                    let delta = max(-120, min(120, originalCard.minY - card.minY))
+                    let origin = app.coordinate(withNormalizedOffset: .zero)
+                        .withOffset(CGVector(dx: viewport.midX, dy: viewport.midY))
+                    origin.press(forDuration: 0.1,
+                                 thenDragTo: origin.withOffset(CGVector(dx: 0, dy: delta)),
+                                 withVelocity: .slow, thenHoldForDuration: 0.2)
+                }
+            }
+            let categories: [(String, XCUIAccessibilityAuditType)] = [
+                ("contrast", .contrast), ("textClipped", .textClipped),
+                ("elementDetection", .elementDetection), ("hitRegion", .hitRegion),
+                ("sufficientElementDescription", .sufficientElementDescription), ("trait", .trait)
+            ]
+            for (name, category) in categories {
+                try restorePostUndoViewport()
+                assertPostUndoScoreUnchanged()
+                XCTAssertTrue(app.buttons["phone.recovery.us"].isEnabled)
+                XCTAssertFalse(app.buttons["phone.recovery.serving"].exists)
+                XCTAssertTrue(app.staticTexts["Games 5–0"].exists)
+                try XCTContext.runActivity(named: "Post-Undo \(dark ? "Dark" : "Light") \(name)") { _ in
+                    try auditIncludingOccludedText(app, auditTypes: category)
+                }
+                assertPostUndoScoreUnchanged()
+            }
             capture(app, "known-score-set-serving-and-undo-\(dark ? "dark" : "light")")
             app.terminate()
         }
@@ -654,7 +716,8 @@ final class CompanionUITests: XCTestCase {
     /// iOS17 also reports "contrast" for text occluded by a translucent system bar.
     /// Defer that element until it is fully visible, then run the SAME native audit.
     /// Every deferred element must be rechecked; real visible issues still fail.
-    private func auditIncludingOccludedText(_ app: XCUIApplication) throws {
+    private func auditIncludingOccludedText(_ app: XCUIApplication,
+        auditTypes: XCUIAccessibilityAuditType = [.contrast, .textClipped, .elementDetection, .hitRegion, .sufficientElementDescription, .trait]) throws {
         // Let the compositor finish score/scroll updates before pixel auditing.
         Thread.sleep(forTimeInterval: 1)
         var pending: [String: XCUIElement] = [:]
@@ -684,7 +747,7 @@ final class CompanionUITests: XCTestCase {
         }
         func audit() throws {
             let rechecked = pending.filter { fullyVisible($0.value) }.map(\.key)
-            try app.performAccessibilityAudit(for: [.contrast, .textClipped, .elementDetection, .hitRegion, .sufficientElementDescription, .trait]) { issue in
+            try app.performAccessibilityAudit(for: auditTypes) { issue in
                 if (issue.auditType == .contrast || issue.auditType == .textClipped), let element = issue.element,
                    element.frame.width > 0, element.frame.height > 0, !fullyVisible(element) {
                     let identity = key(element)

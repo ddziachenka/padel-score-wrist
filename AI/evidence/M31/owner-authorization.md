@@ -18,3 +18,12 @@ Supplementary original planning conversation, inspected and publicly readable:
 https://chatgpt.com/s/cx_6ae79dbd0bf88191b49d1e670d468457
 GitHub API confirmed PUBLIC, empty, ADMIN access. ASC GET confirmed only builds1/2;
 build7 is available. No upload, push, reply or submission is implied by this record.
+
+## Later verification-scope decision — 2026-11-02
+
+The owner subsequently selected affected-test-only verification across M31, M26,
+release and M30, preserving all unique Release/package/signing/submission checks.
+[Exact question and answer](owner-impact-verification-authorization.md). This fresh
+bounded decision supersedes the initial repeated-full-Debug requirement, without
+rewriting its historical execution evidence, importing old waivers or changing the
+already-approved distribution/no-video/M29-physical boundaries.
