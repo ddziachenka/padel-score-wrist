@@ -52,6 +52,11 @@ final class GestureScoringUITests: XCTestCase {
         let app = launchApp(store: "gestures-series", seed: "gestureMatch")
         let action = app.buttons["gesture.action"]
         XCTAssertTrue(action.waitForExistence(timeout: 10))
+        // Presence can precede the foreground scene becoming ready for input.
+        let ready = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "enabled == true AND hittable == true"), object: action
+        )
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 5), .completed)
         XCTAssertEqual(action.value as? String, "Serving: You")
         for identifier in ["game.us", "game.them", "game.games", "game.sets", "game.menu", "gesture.action"] {
             let element = app.descendants(matching: .any)[identifier]
@@ -67,9 +72,14 @@ final class GestureScoringUITests: XCTestCase {
         action.tap(withNumberOfTaps: 2, numberOfTouches: 1)
         waitForLabel(app.buttons["game.them"], "Their score, 15", timeout: 8)
         attachScreenshot("Gesture saved both teams")
+        // Start a new rally after the preceding saved point's 500 ms bounce guard.
+        // The overriding touch below must still immediately follow the new gesture.
+        Thread.sleep(forTimeInterval: 0.6)
         action.tap()
+        XCTAssertEqual(action.label, "Pending: US")
         app.buttons["game.them"].tap()
         waitForLabel(app.buttons["game.them"], "Their score, 30")
+        XCTAssertEqual(action.label, "Double Tap")
         Thread.sleep(forTimeInterval: 5.2)
         XCTAssertEqual(app.buttons["game.us"].label, "Our score, 15")
         app.buttons["game.undo"].tap()
