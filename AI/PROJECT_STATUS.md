@@ -1,7 +1,7 @@
 # Project status
 
 **Phase:** release-preparation
-**Current milestone:** M26
+**Current milestone:** M30
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26
 **Next milestone:** M30
 **Blockers:** none
@@ -583,3 +583,7 @@ M31 completion commit `c1ff702eb1618e53ad235e243f08de8fb5126e83` passed post-DON
 M26 DONE; exact candidate `263be849dd7981b192bb6f4de49887b953007420` passed preflight, release READY_FOR_HUMAN and M26 final, all exit0. Four Watch/iPhone Debug/Release builds and package checks pass with version1.0(7). Coverage682 definitions is source-bound under the current owner policy; no duplicate unchanged native suites. [Evidence](evidence/M26/milestone-verification.md), [handoff](handoffs/M26-handoff.md).
 
 The missing original launch monitor was restored once under explicit owner approval; same id padel-score-lifetime and original target thread, ACTIVE hourly, exact configuration readback confirmed. Candidate guard READY_AWAITING_BUILD, no promotion until actual public availability. Continue authorized M30; no new archive/upload/reply/submission yet.
+
+## M30 distribution candidate — active
+
+M26 closure checks all pass at de69ea679901d7834fb6eda89ded22a06402e5d6. M30 REVIEW freezes an AI-Markdown-only successor of verified263be849dd7981b192bb6f4de49887b953007420, shipping build1.0(7). Owner authorization covers preserved-history GitHub push, signed archive/upload,14locales/238placements, factual reply+guide before ordinary app+first-IAP resubmission and monitor binding. Restored monitor id remains padel-score-lifetime; no promotion before public availability. No external distribution result is asserted yet.

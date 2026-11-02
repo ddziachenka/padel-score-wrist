@@ -1,7 +1,7 @@
 # M30 — App Review Response and Resubmission
 
 **ID:** M30
-**Status:** PLANNED
+**Status:** REVIEW
 **Depends on:** M26
 **Validation:** make milestone ID=M30
 **Handoff:** AI/handoffs/M30-handoff.md

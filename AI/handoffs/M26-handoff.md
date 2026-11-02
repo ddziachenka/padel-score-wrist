@@ -75,3 +75,7 @@ and actual-public-availability launch semantics. Never label unexecuted original
 make commands successful or infer signed/public/submitted status from readiness.
 
 Owner explicitly chose “Восстановить один монитор (рекомендуется)” after the original update reported no existing automation. Creation and readback succeeded; no duplicate was created. Closure checks follow the completion commit.
+
+## Closure checks
+
+Commit `de69ea679901d7834fb6eda89ded22a06402e5d6` passed make static, status validate and continuity263be849dd7981b192bb6f4de49887b953007420, all exit0. Commands/times/logs: `.artifacts/M26/closure-checks/receipt.json`.
