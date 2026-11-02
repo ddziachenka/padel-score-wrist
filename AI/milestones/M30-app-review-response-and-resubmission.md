@@ -1,7 +1,7 @@
 # M30 — App Review Response and Resubmission
 
 **ID:** M30
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M26
 **Validation:** make milestone ID=M30
 **Handoff:** AI/handoffs/M30-handoff.md
@@ -20,11 +20,11 @@ accessible GitHub history/selected ChatGPT links as supplementary provenance.
 
 ## Acceptance criteria
 
-- [ ] M26 candidate/build/readiness and all new assets match; prior draft stays superseded.
-- [ ] Owner explicitly instructs distribution for this candidate before external reply/submission.
-- [ ] Actual metadata/screenshots/build and monitor identity are uploaded/read back.
-- [ ] Reply and ordinary resubmission are confirmed by actual server state, never inferred.
-- [ ] Actual owner-approved m30-preflight passes before external reply/submission, all unique archive/signature/distribution checks complete, and exact evidence/handoff are recorded.
+- [x] M26 candidate/build/readiness and all new assets match; prior draft stays superseded.
+- [x] Owner explicitly instructs distribution for this candidate before external reply/submission.
+- [x] Actual metadata/screenshots/build and monitor identity are uploaded/read back.
+- [x] Reply and ordinary resubmission are confirmed by actual server state, never inferred.
+- [x] Actual owner-approved m30-preflight passes before external reply/submission, all unique archive/signature/distribution checks complete, and exact evidence/handoff are recorded.
 
 ## Non-goals
 

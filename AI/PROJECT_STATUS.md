@@ -1,9 +1,9 @@
 # Project status
 
-**Phase:** release-preparation
-**Current milestone:** M30
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26
-**Next milestone:** M30
+**Phase:** app-review
+**Current milestone:** none
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30
+**Next milestone:** none
 **Blockers:** none
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
@@ -587,3 +587,34 @@ The missing original launch monitor was restored once under explicit owner appro
 ## M30 distribution candidate — active
 
 M26 closure checks all pass at de69ea679901d7834fb6eda89ded22a06402e5d6. M30 REVIEW freezes an AI-Markdown-only successor of verified263be849dd7981b192bb6f4de49887b953007420, shipping build1.0(7). Owner authorization covers preserved-history GitHub push, signed archive/upload,14locales/238placements, factual reply+guide before ordinary app+first-IAP resubmission and monitor binding. Restored monitor id remains padel-score-lifetime; no promotion before public availability. No external distribution result is asserted yet.
+
+## M30 completed — 2026-11-03 Tbilisi
+
+M30 DONE. Source/publication candidate `2d0e71b92592937c746a942d375b22e6e647eb96`
+passed the owner-approved affected preflight, exit0, after M26/release
+`263be849dd7981b192bb6f4de49887b953007420` READY_FOR_HUMAN. All unique Release,
+packaging, signing, archive/export, IPA identity and Apple validation checks passed.
+One upload produced VALID build1.0(7), ASC ID
+`20d3b56c-bf42-46b1-93e8-7a980dfd9db3`, selected and submitted with the first
+lifetime IAP. All14locales/42metadata records/238image placements were saved and
+read back;236unique image assets are ready. Full historical failures remain failed;
+no duplicate unchanged native suites or fictitious full-make pass.
+
+The wholly new response and three-page guide were sent before resubmission.
+The same guide is COMPLETE on the new version. Ordinary UI submission
+`7b10fa14-57eb-4f1d-9811-b26a1aebd857` was submitted at
+2026-11-02T21:22:35.821Z. UI and API confirm app1.0(7) and lifetime purchase
+WAITING_FOR_REVIEW; this is not approval or public release. AFTER_APPROVAL remains.
+The old unresolved submission was ordinarily canceled after sending the reply to
+restore editing; no disabled-control/API bypass was used.
+
+GitHub history is public at https://github.com/ddziachenka/padel-score-wrist with
+the exact source commit, preserved by ordinary push. The single restored monitor
+`padel-score-lifetime` is ACTIVE/hourly, bound to the actual new build/submission,
+and quiet on unchanged state. Promotion scheduling stays disabled until genuine
+public availability; no launch countdown has begun. M29 physical acceptance and
+its unmeasured/video limitations remain unchanged.
+
+[Final handoff](handoffs/M30-handoff.md), [exact evidence](evidence/M30/milestone-verification.md),
+[exact sent response](evidence/M30/app-review-response-sent.md).
+No development milestone remains. Next external event: Apple's review decision.
