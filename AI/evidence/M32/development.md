@@ -249,3 +249,11 @@ of the earlier passing Watch/phone-unit components and no inherited waiver.
 Pre-gate `make static`: exit 0, `.artifacts/M32/static-pre-gate-3.log`.
 `git diff --check`: exit 0. Only reviewed evidence/materials/contract paths changed
 since the corrected capture source.
+
+## Final full verification
+
+The corrected candidate `793268631ce273284b8bbd67b1dc0179ae9fe3f5` passed the fresh,
+complete `make milestone ID=M32`, exit0, UTC2026-11-06T14:56:22Z–21:20:58Z.
+Aggregate693 definitions/1156 invocations all Passed, zero adverse results.
+No proposed component reuse was applied. [Exact final evidence](milestone-verification.md)
+supersedes the pending gate statements above without relabelling earlier failures.

@@ -1,7 +1,7 @@
 # M32 — Next serve side
 
 **ID:** M32
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M30
 **Validation:** make milestone ID=M32
 **Handoff:** AI/handoffs/M32-handoff.md
@@ -27,15 +27,15 @@ change, upload or resubmission. M33 owns fresh release readiness and store mater
 
 ## Acceptance criteria
 
-- [ ] Match regular points alternate from R; deuce R, advantage L, deciding point
+- [x] Match regular points alternate from R; deuce R, advantage L, deciding point
       L/R with receivers' choice. Tie-break uses total-point parity.
-- [ ] Americano begins every server's block at R, using rallyInBlock after edits;
+- [x] Americano begins every server's block at R, using rallyInBlock after edits;
       arbitrary block lengths and shortened final blocks work.
-- [ ] Ended games and unconfirmed set service show no side. Undo, correction,
+- [x] Ended games and unconfirmed set service show no side. Undo, correction,
       selective replay, known-score start, restart, resume and failed saves stay exact.
-- [ ] Watch, demos and recovery previews agree. Long names, compact Watch, largest
+- [x] Watch, demos and recovery previews agree. Long names, compact Watch, largest
       text, Always On and phone light/dark retain readable score and controls.
-- [ ] All thirteen app locales include full side/choice/help text; L/R stays literal.
+- [x] All thirteen app locales include full side/choice/help text; L/R stays literal.
       VoiceOver reads the side in full. No extra interaction is required.
 - [ ] Full make milestone ID=M32 passes on clean REVIEW/main; handoff records exact
       SHA, command, exits, counts and reports. Closing static/status/continuity pass.

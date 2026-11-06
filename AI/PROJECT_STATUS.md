@@ -1,8 +1,8 @@
 # Project status
 
 **Phase:** implementation
-**Current milestone:** M32
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30
+**Current milestone:** none
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32
 **Next milestone:** M33
 **Blockers:** none
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
@@ -631,3 +631,26 @@ Owner personally withdrew build1.0(7). Authenticated API readback confirms
 DEVELOPER_REJECTED, submission COMPLETE, IAP READY_TO_SUBMIT. Existing hourly
 monitor now has a priority read-only hold; build7 cannot start promotion scheduling.
 Evidence: [withdrawal](evidence/M32/asc-withdrawal.md). No new submission authorized.
+
+
+## M32 completed — 2026-11-07 Tbilisi
+
+M32 DONE. Clean REVIEW/main candidate `793268631ce273284b8bbd67b1dc0179ae9fe3f5`
+passed the complete unchanged `make milestone ID=M32`, exit0,
+UTC2026-11-06T14:56:22Z–21:20:58Z. Watch650/650 definitions/1104 invocations;
+phone unit21/21/30; UI22/22/22. Aggregate693 definitions/1156 invocations, every
+invocation Passed, zero failed/skipped/expected/native runtime warnings. Both
+Debug builds and packaging guards pass. No old exception, component reuse or filter.
+
+Next-serve L/R, golden-point receivers' choice and Americano block-position rules
+are implemented across Watch/live/demo/recovery and phone/demo/recovery, with
+translated help/speech in all13 app locales. Long-name wrapping and phone recovery
+accessibility findings are fixed and pass regressions plus the complete gate.
+Earlier failures/interrupted results remain failed. Fresh source-bound materials
+and strict provenance/site checks pass; no public deployment.
+
+Owner withdrawal and the monitor's read-only hold remain recorded. No upload or
+resubmission. Fresh physical acceptance and release readiness belong to separate
+M33, which retains full milestone/release gates and no inherited exception.
+[Handoff](handoffs/M32-handoff.md); [exact evidence](evidence/M32/milestone-verification.md).
+Stop this Builder after the DONE commit's static/status/continuity checks.
