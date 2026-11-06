@@ -8,6 +8,16 @@ their recorded commits; they never override this file.
 
 ## The workflow
 
+### Current sequence — next serve side, 2026-11-06
+
+The owner approved M32 (implementation, depending on DONE M30), followed by a
+separate M33 Release Readiness Revalidation. Both use their full unchanged
+`make milestone ID=<ID>` gate; M33 also runs `make release CANDIDATE=<full-SHA>`.
+The November 2 affected-verification exception below is limited to its named
+M31/M26/M30 resubmission sequence and does not carry into M32, M33 or M33's release.
+One milestone per Builder session applies. The owner personally withdrew build 7;
+no resubmission is authorized by the serving-side plan.
+
 Owner-approved2026-11-02 exception: complete M31 → M26 → M30 sequentially in
 one task, preserving each required stage/handoff/continuity check. Distribution and
 public GitHub push explicitly authorized after readiness; M30 uses an illustrated

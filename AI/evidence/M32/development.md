@@ -16,8 +16,8 @@ Builder self-review, not an independent audit or release approval.
   the next side; the visible golden-point explanation is not read twice.
 - Reviewed compact Watch rendering in all thirteen locales. The first implementation
   spent too much height on the service footer. Corrected it to wrap name + symbol
-  using the existing two-line/0.75 minimum name scale in columns, unlimited lines
-  in the scrolling layout; a full-width golden-point note uses inter-row spacing.
+  using the existing two-line/0.75 minimum scale for built-in roles in columns,
+  unlimited custom-name lines and a scrolling fallback; a full-width golden-point note uses inter-row spacing.
   The note alone can scale to 0.8 in compact columns. Score size is unchanged.
   Final native golden-point captures all keep score, choice, name, L/R and both
   controls on screen at the ordinary Large size on the managed 40-mm Watch.
@@ -71,3 +71,55 @@ These mutable runs do not replace the clean full M32 gate.
 M33 owns fresh physical readability/VoiceOver acceptance and release readiness.
 No prior milestone exception is transferred. No upload, submission or public-site
 publication is part of M32.
+
+Corrected phone diagnostic:
+`Scripts/simulator.sh --profile companion run -- bash .artifacts/M32/test-phone-feature-2.sh`
+exited 0. `phone-unit.xcresult`: 21 definitions / 30 invocations; `phone-feature-2.xcresult`:
+1 UI test with both appearances and Match left → choice → Undo, then Americano
+right → left → new server right. Both summaries have zero failures, skips,
+expected failures or runtime warnings. Exported native attachments and visually
+inspected contact: `.artifacts/M32/phone-feature-attachments/` and
+`.artifacts/M32/phone-feature-contact.png`. Names, side, score and golden-point
+explanation are legible in both themes on the compact SE/iOS17 profile.
+
+Implementation frozen for material capture at
+`f2dee8278a8e910ded1564598d3cbbb751bf6512`. The mutable diagnostic source tree is
+identical to this commit's App inputs.
+
+Committed visual contacts for review: `compact-golden-locales.png` (all thirteen
+languages at ordinary Large size on 40-mm Watch) and `phone-serve-side-themes.png`
+(the six native UI-test attachments arranged for comparison). Contacts are overview
+compositions; the unmodified individual screenshots remain at the paths above.
+
+Watch material capture:
+`Scripts/capture-store-materials.sh watch capture m32-watch-gallery-1` exited 0.
+`.artifacts/M25/m32-watch-gallery-1.xcresult`: 14/14 tests, zero failures,
+skips, expected failures or runtime warnings. Inspected all fourteen store locale
+variants of live gesture Match (R) and Americano (L) using native attachments and
+`.artifacts/M32/watch-gallery-{01-gesture,06-americano}-contact.png`; score/name/side
+remain readable. The 44-mm native gallery does not replace the separate 40-mm
+inspection above.
+
+## Long custom-name correction
+
+Further self-review found that applying the two-line role limit to an unlimited
+custom name could truncate the trailing side too. Reproduced before fixing:
+`Scripts/simulator.sh run -- bash .artifacts/M32/test-long-name.sh before`, exit 65,
+`.artifacts/M32/long-name-before.xcresult` (1 test, 1 failure, no skips). The native
+attachment shows “Alexandra Maria de la…” and no R. This is a real implementation
+finding, not a pre-existing failure or an accepted exception.
+
+`ServingBlock` now limits only built-in roles in compact columns. Custom names have
+unlimited lines, so the whole name and trailing side reflow; the existing score
+screen selects its scrolling layout without shrinking the score. The same strict
+UI test passed after the fix:
+`Scripts/simulator.sh run -- bash .artifacts/M32/test-long-name.sh after`, exit 0,
+`.artifacts/M32/long-name-after.xcresult` (1/1 test; zero failed/skipped/expected or
+runtime-warning results). Visually inspected native `long-name-with-side.png`.
+
+The f2dee82 gallery source is superseded by this fix. Watch capture-1 passed for
+that source only; the ongoing obsolete phone capture-1 was explicitly cancelled
+(exit 75, its interrupted result preserved). Neither supplies final M32 materials.
+Both platforms must be captured again on the corrected frozen source. Earlier
+compact/default-role contacts still document their original source; that branch
+is unchanged by the custom-name correction.

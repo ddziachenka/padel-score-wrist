@@ -929,7 +929,9 @@ struct ServingBlock: View {
         let suffix = board.serveSide.map { " · " + $0.symbol } ?? ""
         let spokenSide = board.serveSide.map { String(localized: $0.spoken) }
         return Text(verbatim: name + suffix)
-            .lineLimit(layout == .columns ? 2 : nil)
+            // Custom names have no length limit: allow the whole line to reflow,
+            // including its trailing side, and let the screen choose its scrolling layout.
+            .lineLimit(layout == .columns && names[player] == nil ? 2 : nil)
             .minimumScaleFactor(0.75)
             .fixedSize(horizontal: false, vertical: true)
             .accessibilityLabel(Text(verbatim: [name, spokenSide].compactMap { $0 }.joined(separator: ". ")))

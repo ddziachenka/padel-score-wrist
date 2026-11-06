@@ -555,6 +555,27 @@ extension PlayerNamesUITests {
         XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 5))
     }
 
+    func testLongServerNameWrapsWithTheServingSide() {
+        let app = launchApp(store: "m32-long-server", seed: "americanoStart", textSize: "UICTContentSizeCategoryL")
+        let us = app.buttons["game.us"], them = app.buttons["game.them"]
+        XCTAssertTrue(us.waitForExistence(timeout: 10))
+        award(us, showing: "Our score, 1")
+        award(us, showing: "Our score, 2")
+        openPlayers(app)
+        let name = "Alexandra Maria de la Cruz Fernández de Córdoba y San Sebastián"
+        enterName(name, player: "opponent1", in: app)
+        savePlayers(app)
+        attachScreenshot("Long server name before scrolling")
+        XCTAssertLessThanOrEqual(us.frame.maxY, them.frame.minY,
+                                 "A long name must reflow instead of truncating its trailing serve side")
+        let server = app.descendants(matching: .any)["game.server"]
+        server.scrollToAndTap(in: app)
+        assertLabel(server, contains: name)
+        assertLabel(server, contains: "Serve from the right")
+        XCTAssertTrue(app.windows.firstMatch.frame.contains(server.frame))
+        attachScreenshot("Long server name and R fully wrapped")
+    }
+
     func testLiveNamesCancelBackgroundClearUndoAndArchivedRoster() {
         let app = launchApp(store: "names-live", seed: "americanoStart")
         let us = app.buttons["game.us"]
