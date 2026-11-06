@@ -249,12 +249,14 @@ final class CompanionUITests: XCTestCase {
             reveal(app.buttons["phone.recovery.us"], in: app).tap()
             XCTAssertFalse(app.buttons["phone.recovery.us"].isEnabled)
             XCTAssertTrue(app.buttons["phone.recovery.serving"].exists)
+            XCTAssertEqual(app.staticTexts["phone.recovery.result.server"].value as? String ?? "", "")
             try auditIncludingOccludedText(app)
             reveal(app.buttons["phone.recovery.firstServer"], in: app).tap()
             app.buttons["Opponent 2"].tap()
             reveal(app.buttons["phone.recovery.serving"], in: app).tap()
             XCTAssertTrue(app.buttons["phone.recovery.us"].isEnabled)
             XCTAssertTrue(app.staticTexts["Next server: Opponent 2"].exists)
+            XCTAssertEqual(app.staticTexts["phone.recovery.result.server"].value as? String, "Serve from the right")
             reveal(app.buttons["phone.recovery.undo"], in: app).tap()
             XCTAssertFalse(app.buttons["phone.recovery.us"].isEnabled)
             XCTAssertTrue(app.buttons["phone.recovery.serving"].exists)
@@ -262,6 +264,7 @@ final class CompanionUITests: XCTestCase {
             XCTAssertTrue(app.buttons["phone.recovery.us"].isEnabled)
             XCTAssertFalse(app.buttons["phone.recovery.serving"].exists)
             XCTAssertTrue(app.staticTexts["Games 5–0"].exists)
+            XCTAssertEqual(app.staticTexts["phone.recovery.result.server"].value as? String, "Serve from the left")
 
             // Audit every category separately from the same post-Undo viewport.
             // The unchanged helper may scroll to recheck occluded text; restore the
@@ -272,7 +275,7 @@ final class CompanionUITests: XCTestCase {
                 .map { "phone.recovery.result." + $0 }
             // One coherent public snapshot per check; its children/attributes are
             // captured data, so field assertions do not each resolve another query.
-            func postUndoScoreState() throws -> (labels: [String], undoEnabled: Bool) {
+            func postUndoScoreState() throws -> (labels: [String], serverSide: String?, undoEnabled: Bool) {
                 var pending: [XCUIElementSnapshot] = [try app.snapshot()]
                 var nodes: [XCUIElementSnapshot] = []
                 while let node = pending.popLast() {
@@ -289,8 +292,9 @@ final class CompanionUITests: XCTestCase {
                     return element
                 }
                 let labels = try scoreIdentifiers.map { try unique($0, type: .staticText).label }
+                let serverSide = try unique("phone.recovery.result.server", type: .staticText).value as? String
                 let undoEnabled = try unique("phone.recovery.undo", type: .button).isEnabled
-                return (labels, undoEnabled)
+                return (labels, serverSide, undoEnabled)
             }
             let originalScoreState = try postUndoScoreState()
             func assertPostUndoScoreUnchanged() throws {
@@ -300,6 +304,7 @@ final class CompanionUITests: XCTestCase {
                                    "Audit scrolling must not change the score or serving state")
                 }
                 XCTAssertEqual(current.undoEnabled, originalScoreState.undoEnabled)
+                XCTAssertEqual(current.serverSide, originalScoreState.serverSide)
             }
             func restorePostUndoViewport() throws {
                 for attempt in 0...24 {

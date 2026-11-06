@@ -158,3 +158,58 @@ Logs: `.artifacts/M32/material-{import,compose,validation}.log` and
 Site check also passes six tests and all twelve added app locales (405 keys each).
 The legacy `PENDING_M29` markers are fixed schema labels, not a claim of current
 physical acceptance; fresh acceptance belongs to M33. No public deployment ran.
+
+## Full-gate findings on 125d807
+
+Clean REVIEW candidate: `125d807173d2bdb13392a60e08f15028340427b6`.
+The full `make milestone ID=M32` was actually run without any test filters.
+
+1. `.artifacts/milestone/M32/20261106T084916Z-55521/report.md`: Make 2 /
+   verifier 1, before tests. The Debug build succeeded but the packaging guard
+   found a leftover `PadelScoreWatchTests.xctest` inside the owned Watch Debug
+   product from development testing. Evidence: `.artifacts/M32/packaging-cache-residue.txt`.
+   `make clean-derived-data` exited 0 (`cache-clean-before-milestone.log`), removing
+   only this checkout's computed default build cache. This is not a claimed
+   pre-existing source failure; no guard was changed.
+2. `.artifacts/milestone/M32/20261106T085327Z-78477/report.md`: both Debug builds
+   and package guards passed. Complete Watch 650/650 definitions, 1104 invocations;
+   complete phone unit 21/21 definitions, 30 invocations; zero failed, skipped,
+   expected failures or runtime warnings in those completed bundles.
+   Phone UI found a new `Text clipped` audit failure for
+   `phone.recovery.result.serveSide` in both Light and Dark in
+   `testKnownScoreSetBoundaryRequiresServingAndExactUndo`.
+   After diagnosing that implementation finding, the remaining obsolete run was
+   explicitly interrupted via SIGINT to its exact iPhone xcodebuild PID.
+   Final raw result: Make 2 / verifier 1 / phone UI xcodebuild 73, FAILED.
+   Partial phone UI: 13 definitions, 11 passed, one audit-failed, one canceled
+   (`testM25LocalizedHelpAtLargestTextInBothAppearances`), 0 skipped/expected/runtime
+   warnings. Unexecuted UI cases are not passes and no component-reuse waiver applies.
+
+Summaries: `.artifacts/M32/milestone-watch-summary.json`, `milestone-watch-tests.json`,
+`milestone-phone-unit-summary.json`, `failed-full-phone-summary.json`.
+Console: `.artifacts/M32/milestone-full-clean.log`; the original bundle/report remains
+FAILED. Exported failure attachments: `.artifacts/M32/failed-full-phone-attachments/`.
+The native screenshot shows the literal L fully visible; the native audit reports
+that the text may clip at larger Dynamic Type sizes. The one-letter Text carried
+a full-sentence accessibility label. This is a new M32 finding, not attributed to
+the baseline.
+
+Correction: the full localized side is now the server element's accessibility
+value in phone recovery. The visible L/R and choice explanation remain unchanged,
+and their redundant separate accessibility elements are hidden. VoiceOver can read
+server and side together. The existing strict native audit is unchanged; its test
+also asserts pending service has no side value, confirmed service is right, Undo
+restores left, and audit scrolling preserves that full spoken value.
+Targeted verification and fresh captures/full verification remain required.
+
+Targeted correction verified:
+`Scripts/simulator.sh --profile companion run -- bash .artifacts/M32/test-recovery-side.sh`
+exited 0. `.artifacts/M32/recovery-side-fixed.xcresult`: 1/1 definition/invocation,
+zero failed/skipped/expected/runtime-warning results. The test performs the same
+six native categories in both themes, now also checking the full server-side value
+across confirmation/Undo and every audit scroll. Visually inspected the exported
+light-theme native attachment: L and server remain fully visible, score unchanged.
+Summary/attachments: `recovery-side-fixed-summary.json`, `recovery-side-fixed-attachments/`.
+`git diff --check` and `./Scripts/project-status.sh validate` also exit 0.
+This is development evidence only; the previous full gate remains FAILED and the
+final complete M32 gate will run afresh.

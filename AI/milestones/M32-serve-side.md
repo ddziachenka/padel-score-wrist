@@ -1,7 +1,7 @@
 # M32 — Next serve side
 
 **ID:** M32
-**Status:** REVIEW
+**Status:** IN_PROGRESS
 **Depends on:** M30
 **Validation:** make milestone ID=M32
 **Handoff:** AI/handoffs/M32-handoff.md

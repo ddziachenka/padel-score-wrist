@@ -319,13 +319,16 @@ struct PhoneRecoveryView: View {
             }
             if let server = board.server {
                 Text("phone.demo.serving \(String(localized: server.name))")
+                    // The side describes this server. Keep its full spoken value on
+                    // that element rather than giving a one-letter glyph a sentence label.
+                    .accessibilityValue(Text(verbatim: board.serveSide.map { String(localized: $0.spoken) } ?? ""))
                     .accessibilityIdentifier("phone.recovery.\(id).server")
             }
             if let side = board.serveSide {
-                Text(verbatim: side.symbol).accessibilityLabel(Text(side.spoken))
-                    .accessibilityHidden(side == .receiversChoice)
+                Text(verbatim: side.symbol)
+                    .accessibilityHidden(true)
                     .accessibilityIdentifier("phone.recovery.\(id).serveSide")
-                if side == .receiversChoice { Text("Receivers’ choice") }
+                if side == .receiversChoice { Text("Receivers’ choice").accessibilityHidden(true) }
             }
             if case .ended(let result?) = board.serving {
                 Text(result.title).accessibilityIdentifier("phone.recovery.\(id).outcome")
