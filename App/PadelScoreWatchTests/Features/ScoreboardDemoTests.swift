@@ -207,7 +207,7 @@ final class ScoreboardDemoTests {
 
         tap(.us, on: demo)
         #expect(demo.lastChange?.announcement
-            == "Game to us. Games: us 3, them 2. Serving: Opponent 1. The demo ends after one game. Undo the point or reset the demo.")
+            == "Game to us. Games: us 3, them 2. Serving: Opponent 1. Serve from the right The demo ends after one game. Undo the point or reset the demo.")
 
         demo.undo()
         #expect(demo.lastChange?.announcement == "Action undone. Us 40, them 30. Serving: You. Serve from the left")
@@ -215,7 +215,7 @@ final class ScoreboardDemoTests {
         tap(.them, on: demo)
         tap(.them, on: demo)
         #expect(demo.lastChange?.announcement
-            == "Game to them. Games: us 2, them 3. Serving: Opponent 1. The demo ends after one game. Undo the point or reset the demo.")
+            == "Game to them. Games: us 2, them 3. Serving: Opponent 1. Serve from the right The demo ends after one game. Undo the point or reset the demo.")
 
         demo.reset()
         #expect(demo.lastChange?.announcement == "Demo reset. Us 40, them 30. Serving: You. Serve from the left")
