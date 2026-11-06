@@ -213,3 +213,39 @@ Summary/attachments: `recovery-side-fixed-summary.json`, `recovery-side-fixed-at
 `git diff --check` and `./Scripts/project-status.sh validate` also exit 0.
 This is development evidence only; the previous full gate remains FAILED and the
 final complete M32 gate will run afresh.
+
+## Final corrected-source material capture
+
+Frozen capture source: `424a7e2019d4d033e92866ab00819f94d477bc86`.
+
+- `Scripts/capture-store-materials.sh watch capture m32-watch-gallery-3`: exit 0;
+  `.artifacts/M25/m32-watch-gallery-3.xcresult`, 14/14 tests.
+- `Scripts/capture-store-materials.sh phone-current capture m32-phone-gallery-3`:
+  exit 0; `.artifacts/M25/m32-phone-gallery-3.xcresult`, 2/2 tests.
+- Both summaries have zero failed/skipped/expected/runtime-warning results and
+  record the same full source SHA. Capture-2 remains historical, superseded.
+- All112 Watch screenshots have exactly the previously inspected pixels outside
+  the system clock rectangle; inspected a fresh native English serving screenshot.
+  All98 phone screenshots retain the previous app pixels:96 differ only in the
+  status bar, and2 Norwegian shots additionally differ in the system home indicator
+  (x425–895,y2829–2843). Inspected those native images and a comparison contact.
+  Originals are unmodified. Comparison records:
+  `.artifacts/M32/{watch,phone}-gallery-3-visual-continuity.json`;
+  `phone-nb-04-start-comparison.png` and `phone-nb-05-match-demo-comparison.png`.
+
+Fresh import, composition, strict validation and site check all exit 0:
+
+- `python3 AI/store-assets/m25/tools/import-captures.py --watch-run m32-watch-gallery-3 --phone-run m32-phone-gallery-3`
+- `python3 AI/store-assets/m25/tools/compose-creative.py`
+- `python3 AI/store-assets/m25/tools/validate.py`
+- `make site-check`
+
+Exact command/exits/log paths: `.artifacts/M32/material-3-commands.json`.
+The unchanged strict guard validates112 Watch+98 phone originals,28 creatives,
+14 store locales and104 identical local web copies against current shipping inputs.
+The next clean REVIEW commit receives the complete fresh M32 gate, with no reuse
+of the earlier passing Watch/phone-unit components and no inherited waiver.
+
+Pre-gate `make static`: exit 0, `.artifacts/M32/static-pre-gate-3.log`.
+`git diff --check`: exit 0. Only reviewed evidence/materials/contract paths changed
+since the corrected capture source.
