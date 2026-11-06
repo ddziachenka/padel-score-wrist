@@ -14,11 +14,7 @@ struct GestureActionButton: View {
             Group {
                 if let serving, team == nil {
                     if serving.server != nil {
-                        HStack(spacing: 2) {
-                            Image(systemName: "hand.pinch")
-                                .font(.caption2).accessibilityHidden(true)
-                            ServingBlock(board: serving, layout: .columns, idPrefix: "game", names: names)
-                        }
+                        ServingBlock(board: serving, layout: .columns, idPrefix: "game", names: names, showsGestureSymbol: true)
                     }
                 } else if serving != nil {
                     VStack(spacing: 0) {

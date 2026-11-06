@@ -63,6 +63,20 @@ final class LiveScoreUITests: XCTestCase {
         XCTAssertFalse(undo.isEnabled)
     }
 
+    func testGoldenPointSideFitsWithTheScoreOnTheCompactWatch() {
+        let app = launchApp(store: "m32-golden-compact", seed: "storeGoldenPoint", textSize: "UICTContentSizeCategoryL")
+        XCTAssertTrue(app.buttons["game.us"].waitForExistence(timeout: 10))
+        let server = element("game.server", in: app)
+        assertLabel(server, contains: "Receivers’ choice")
+        XCTAssertEqual(app.buttons["game.us"].frame.minY, app.buttons["game.them"].frame.minY, accuracy: 1)
+        for id in ["game.us", "game.them", "game.games", "game.sets", "game.server", "game.undo", "game.menu"] {
+            let shown = element(id, in: app)
+            XCTAssertTrue(shown.exists, id)
+            XCTAssertTrue(app.windows.firstMatch.frame.contains(shown.frame), "Must remain visible: " + id)
+        }
+        attachScreenshot("M32 golden point and receivers’ choice without scrolling")
+    }
+
     func testEveryFortyAllStageReadsDifferently() {
         let app = launchApp(store: "live-deuce", seed: "matchStart")
         let us = app.buttons["game.us"]

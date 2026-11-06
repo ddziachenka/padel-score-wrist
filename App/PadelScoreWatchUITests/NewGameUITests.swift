@@ -568,6 +568,7 @@ extension PlayerNamesUITests {
         enterName(long, player: "opponent2", in: app)
         savePlayers(app)
         assertLabel(app.descendants(matching: .any)["game.server"], contains: long)
+        assertLabel(app.descendants(matching: .any)["game.server"], contains: "Serve from the right")
         attachScreenshot("Long player names on the live score")
         award(us, showing: "Our score, 3")
         app.buttons["game.undo"].tap()

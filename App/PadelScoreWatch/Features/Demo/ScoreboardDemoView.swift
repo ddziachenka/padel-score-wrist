@@ -104,7 +104,7 @@ private struct DemoScreen: View {
     /// Undo and who serves next.
     private var board: some View {
         let board = demo.board
-        return VStack(spacing: layout == .columns ? Spacing.xs : Spacing.sm) {
+        return VStack(spacing: layout == .columns ? (board.serveSide == .receiversChoice ? 0 : Spacing.xs) : Spacing.sm) {
             ContextLine(board: board, lastChange: demo.contextNotice, idPrefix: "demo")
             Group {
                 if let winner = demo.gameWinner {
@@ -121,10 +121,11 @@ private struct DemoScreen: View {
                 idealHeight: layout == .columns ? Metrics.minimumTap : nil,
                 maxHeight: layout == .columns ? .infinity : nil
             )
-            DetailRows(details: board.details, idPrefix: "demo")
+            DetailRows(details: board.details, idPrefix: "demo", compact: board.serveSide == .receiversChoice)
                 .fixedSize(horizontal: false, vertical: true)
             switch layout {
             case .columns:
+                if board.serveSide == .receiversChoice { ServeChoiceNote(compact: true) }
                 ZStack {
                     ServingBlock(board: board, layout: .columns, idPrefix: "demo")
                         .padding(.horizontal, IconButton.circleInset)

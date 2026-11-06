@@ -434,15 +434,17 @@ private struct ScoreScreen: View {
     /// Both teams side by side, with the context in the clock's row. The counts and the bottom row
     /// take their full height first; the score areas take what is left.
     private func columns(clockRow: CGFloat, width: CGFloat) -> some View {
-        VStack(spacing: Spacing.xs) {
+        // The choice explanation uses the ordinary inter-row space, not score height.
+        VStack(spacing: board.serveSide == .receiversChoice ? 0 : Spacing.xs) {
             // The system clock takes the right of this row: about a third of it on the smallest Watch.
             contextLine
                 .frame(height: clockRow)
                 .padding(.trailing, max(52, width * 0.3))
             ScoreArea(board: board, live: live, layout: .columns, open: open)
                 .frame(minHeight: 0, idealHeight: comfortableScoreHeight, maxHeight: .infinity)
-            DetailRows(details: board.details, idPrefix: "game")
+            DetailRows(details: board.details, idPrefix: "game", compact: board.serveSide == .receiversChoice)
                 .fixedSize(horizontal: false, vertical: true)
+            if board.serveSide == .receiversChoice { ServeChoiceNote(compact: true) }
             // The serving text may reach under the empty margins of the round buttons' tap areas,
             // so a role such as Opponent 1 keeps its words whole.
             Group {
@@ -501,7 +503,7 @@ private struct ScoreScreen: View {
                 contextLine
                 ScoreArea(board: board, live: live, layout: .stacked, open: open)
                 gestureButton
-                DetailRows(details: board.details, idPrefix: "game")
+                DetailRows(details: board.details, idPrefix: "game", compact: board.serveSide == .receiversChoice)
                 ServingBlock(board: board, layout: .stacked, idPrefix: "game", names: live.playerNames)
                 HStack {
                     undoButton
@@ -762,9 +764,11 @@ struct DetailRows: View {
     let details: ScoreBoard.Details
     /// Begins the identifiers UI tests find the rows by.
     let idPrefix: String
+    /// Makes room for the golden-point explanation without shrinking scores or names.
+    var compact = false
 
     var body: some View {
-        VStack(spacing: Spacing.xs) {
+        VStack(spacing: compact ? 0 : Spacing.xs) {
             switch details {
             case let .match(games, sets):
                 CountRow(label: "Games", counts: games, isEmphasized: true)
@@ -882,35 +886,28 @@ struct ServingBlock: View {
     /// Begins the identifier UI tests find the block by.
     let idPrefix: String
     var names: PlayerNames = .empty
+    var showsGestureSymbol = false
 
     var body: some View {
         VStack(spacing: 0) {
             switch board.serving {
             case .next(let player), .toConfirm(let player):
-                Text("Serving")
-                    .font(Typography.caption)
-                    .foregroundStyle(Palette.textSecondary)
-                // Preserve the full name and side; a narrow row wraps without
-                // shrinking either, and the score screen can use its stacked layout.
-                ViewThatFits(in: .horizontal) {
-                    HStack(spacing: Spacing.xs) {
-                        serverName(player)
-                        sideSymbol
+                if board.serveSide == .receiversChoice {
+                    if layout == .stacked { ServeChoiceNote() }
+                } else {
+                    Text("Serving")
+                        .font(Typography.caption)
+                        .foregroundStyle(Palette.textSecondary)
+                }
+                HStack(spacing: 2) {
+                    if showsGestureSymbol {
+                        Image(systemName: "hand.pinch")
+                            .font(.caption2).accessibilityHidden(true)
                     }
-                    .fixedSize(horizontal: true, vertical: false)
-                    VStack(spacing: 0) {
-                        serverName(player)
-                        sideSymbol
-                    }
+                    serverName(player)
                 }
                 .font(Typography.caption.weight(.semibold))
                 .foregroundStyle(Palette.textPrimary)
-                if board.serveSide == .receiversChoice {
-                    Text("Receivers’ choice")
-                        .font(Typography.caption)
-                        .foregroundStyle(Palette.textSecondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
             case .ended(let result):
                 if let result {
                     Text(result.title)
@@ -928,20 +925,33 @@ struct ServingBlock: View {
     }
 
     private func serverName(_ player: Player) -> some View {
-        Text(verbatim: player.displayName(in: names))
+        let name = player.displayName(in: names)
+        let suffix = board.serveSide.map { " · " + $0.symbol } ?? ""
+        let spokenSide = board.serveSide.map { String(localized: $0.spoken) }
+        return Text(verbatim: name + suffix)
+            .lineLimit(layout == .columns ? 2 : nil)
+            .minimumScaleFactor(0.75)
             .fixedSize(horizontal: false, vertical: true)
+            .accessibilityLabel(Text(verbatim: [name, spokenSide].compactMap { $0 }.joined(separator: ". ")))
             .id(player)
             .transition(.opacity)
     }
+}
 
-    @ViewBuilder private var sideSymbol: some View {
-        if let side = board.serveSide {
-            Text(verbatim: side.symbol)
-                .fixedSize()
-                .accessibilityLabel(Text(side.spoken))
-                // The choice is already read by the visible explanation below.
-                .accessibilityHidden(side == .receiversChoice)
-        }
+/// A full-width explanation keeps the compact footer from wrapping around its controls.
+/// The server's accessible label already includes this same information.
+struct ServeChoiceNote: View {
+    var compact = false
+
+    var body: some View {
+        Text("Receivers’ choice")
+            .font(.caption2)
+            .foregroundStyle(Palette.textSecondary)
+            .lineLimit(compact ? 1 : nil)
+            .minimumScaleFactor(0.8)
+            .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
+            .accessibilityHidden(true)
     }
 }
 

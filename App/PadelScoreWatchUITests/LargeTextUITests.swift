@@ -50,6 +50,7 @@ final class LargeTextUITests: XCTestCase {
         let server = app.descendants(matching: .any)["game.server"]
         XCTAssertTrue(server.waitForExistence(timeout: 10))
         assertLabel(server, contains: "Opponent 2")
+        assertLabel(server, contains: "Serve from the right")
         attachScreenshot("Americano started, largest text")
     }
 
@@ -87,6 +88,7 @@ final class LargeTextUITests: XCTestCase {
         let server = app.descendants(matching: .any)["game.server"]
         XCTAssertTrue(server.exists)
         assertLabel(server, contains: "Opponent 1")
+        assertLabel(server, contains: "Serve from the right")
         app.buttons["game.undo"].scrollToAndTap(in: app)
         waitForLabel(them, "Their score, 0")
         attachScreenshot("Live score, largest text, scrolled")
