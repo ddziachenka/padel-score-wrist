@@ -55,6 +55,7 @@ final class SessionStoreTests {
         let reopened = await openStore()
 
         #expect(reopened.session == store.session, "\(moment)")
+        #expect(reopened.session.game.map(ScoreBoard.init)?.serveSide == store.session.game.map(ScoreBoard.init)?.serveSide)
         #expect(reopened.session.canUndo)
 
         try await reopened.perform(.undo, id: .fresh(), revision: reopened.session.revision)
@@ -368,5 +369,24 @@ extension SessionStoreTests {
         let saved = try #require(folder.contents(of: folder.location.main))
         #expect(!String(decoding: saved, as: UTF8.self).contains("Мария"))
         #expect(!String(decoding: saved, as: UTF8.self).contains("Zoë"))
+    }
+}
+
+
+extension SessionStoreTests {
+    @Test("Known-score starts derive side immediately, persist and stop Undo at the boundary")
+    func knownScoreServingSide() async throws {
+        let store = await openStore()
+        let round = AmericanoState.fixture(total: 21, perServer: 3, us: 9, them: 7, rallyInBlock: 2)
+        try await play([.startFromScore(.americano(round), id: .number(1))], in: store)
+        #expect(store.session.game.map(ScoreBoard.init)?.serveSide == .left)
+        #expect(!store.session.canUndo)
+        try await play([.awardPoint(to: .us)], in: store)
+        #expect(store.session.game.map(ScoreBoard.init)?.serveSide == .right)
+        let reopened = await openStore()
+        #expect(reopened.session.game.map(ScoreBoard.init)?.serveSide == .right)
+        try await play([.undo], in: reopened)
+        #expect(reopened.session.game.map(ScoreBoard.init)?.serveSide == .left)
+        #expect(!reopened.session.canUndo)
     }
 }

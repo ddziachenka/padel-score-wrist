@@ -86,6 +86,7 @@ final class CompanionDemo {
         }
         if let player = board.server {
             sentences.append(String(localized: "phone.demo.serving \(String(localized: player.name))"))
+            if let side = board.serveSide { sentences.append(String(localized: side.spoken)) }
         } else if case .ended(let result?) = board.serving {
             sentences.append(String(localized: result.spoken))
         }

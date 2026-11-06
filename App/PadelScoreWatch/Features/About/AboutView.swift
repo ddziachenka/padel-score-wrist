@@ -110,6 +110,7 @@ enum LegalPage: String, CaseIterable, Identifiable {
             ]
         case .support:
             [
+                ("Serving side", "L means left and R means right, from the server’s viewpoint facing the net. The letter is for the next rally. At a golden point, the receivers choose the side. In Americano, every server starts their block on R, then alternates sides within the block."),
                 ("Scoring", "Use Undo for a mistaken tap, or the game menu for corrections. Confirm the serving order before a new set. Reopen the app to return to a saved game. If saving fails, free space if needed and retry."),
                 ("Purchases", "If a price cannot load, check the Watch’s connection and tap Retry in Access. Already paid? Use About → Access → Restore purchases with the same Apple Account. Pending purchases must be approved. Apple handles refund requests at reportaproblem.apple.com."),
                 ("History", "Open History from New game, your result, or the game menu. All finished games stay on this Watch, newest first, and are free to view. Only the current result can be edited or resumed. There is no sync or export."),

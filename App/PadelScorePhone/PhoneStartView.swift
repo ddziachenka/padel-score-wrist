@@ -168,6 +168,9 @@ struct PhoneHelpView: View {
             Section { PhoneMeasuredText(text: String(localized: "phone.help.purchase.body")) } header: {
                 helpHeading("phone.help.purchase.title")
             }
+            Section { PhoneMeasuredText(text: String(localized: "L means left and R means right, from the server’s viewpoint facing the net. The letter is for the next rally. At a golden point, the receivers choose the side. In Americano, every server starts their block on R, then alternates sides within the block.")) } header: {
+                helpHeading("Serving side")
+            }
             Section { PhoneMeasuredText(text: String(localized: "phone.help.history.body")) } header: {
                 helpHeading("phone.help.history.title")
             }

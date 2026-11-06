@@ -59,6 +59,7 @@ enum ScoreAnnouncement {
         switch after.serving {
         case .next(let player):
             if case .next(player) = before?.serving {} else { sentences.append(serving(player, names: names)) }
+            if let side = after.serveSide { sentences.append(String(localized: side.spoken)) }
         case .toConfirm:
             if case let .match(_, sets) = after.details {
                 let set = sets.us + sets.them + 1
@@ -81,6 +82,7 @@ enum ScoreAnnouncement {
             points(board),
         ]
         if let server = board.server { sentences.append(serving(server)) }
+        if let side = board.serveSide { sentences.append(String(localized: side.spoken)) }
         return sentences.joined(separator: " ")
     }
 

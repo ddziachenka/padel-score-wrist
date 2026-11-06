@@ -74,9 +74,18 @@ struct PhoneDemoView: View {
 
     @ViewBuilder private var servingAndResult: some View {
         if let player = demo.board.server {
-            Label { Text("phone.demo.serving \(String(localized: player.name))") }
+            Label {
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 6) { serverAndSide(player) }
+                        .fixedSize(horizontal: true, vertical: false)
+                    VStack(alignment: .leading, spacing: 4) { serverAndSide(player) }
+                }
+            }
             icon: { Image(systemName: "tennisball.fill") }
                 .font(.headline).accessibilityIdentifier("phone.demo.serving")
+            if demo.board.serveSide == .receiversChoice {
+                Text("Receivers’ choice").font(.subheadline)
+            }
         }
         if demo.isOver {
             Label("phone.demo.finished", systemImage: "checkmark.circle.fill")
@@ -84,6 +93,17 @@ struct PhoneDemoView: View {
                 .accessibilityIdentifier("phone.demo.finished")
             Text(demo.kind == .match ? "phone.demo.match.end" : "phone.demo.americano.end")
                 .font(.callout).foregroundStyle(PhoneTheme.secondaryText)
+        }
+    }
+
+    @ViewBuilder private func serverAndSide(_ player: Player) -> some View {
+        Text("phone.demo.serving \(String(localized: player.name))")
+            .fixedSize(horizontal: false, vertical: true)
+        if let side = demo.board.serveSide {
+            Text(verbatim: side.symbol)
+                .fixedSize()
+                .accessibilityLabel(Text(side.spoken))
+                .accessibilityHidden(side == .receiversChoice)
         }
     }
 

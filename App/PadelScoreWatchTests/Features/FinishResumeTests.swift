@@ -120,7 +120,7 @@ final class FinishResumeTests {
         #expect(!live.showsResult)
         #expect(screen(store, live) == .game)
         #expect(live.lastChange?.outcome == .resumed)
-        #expect(live.lastChange?.announcement == "Game resumed. Us 40, them 40. Serving: You.")
+        #expect(live.lastChange?.announcement == "Game resumed. Us 40, them 40. Serving: You. Serve from the right")
         #expect(haptics.played == [.finished], "Resume has no haptic of its own")
 
         clock.advance(by: .seconds(5))

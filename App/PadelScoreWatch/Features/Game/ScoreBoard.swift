@@ -65,6 +65,7 @@ struct ScoreBoard: Hashable, Sendable {
     let them: Points
     let details: Details
     let serving: Serving
+    let serveSide: ServeSide?
 
     /// Whether a tap on a team records a rally now.
     var acceptsPoints: Bool {
@@ -85,6 +86,7 @@ struct ScoreBoard: Hashable, Sendable {
     init(format: GameFormat, isFinished: Bool) {
         switch format {
         case .match(let state):
+            serveSide = isFinished ? nil : ServeSide.next(in: state)
             switch state.phase {
             case .game(let score):
                 (us, them) = Self.points(score)
@@ -103,6 +105,7 @@ struct ScoreBoard: Hashable, Sendable {
                 serving = state.service.isConfirmed ? .next(state.service.server) : .toConfirm(state.service.server)
             }
         case .americano(let round):
+            serveSide = isFinished ? nil : ServeSide.next(in: round)
             (us, them) = (.count(round.score.us), .count(round.score.them))
             if isFinished {
                 context = .roundFinished
@@ -134,6 +137,25 @@ struct ScoreBoard: Hashable, Sendable {
         switch serving {
         case .next(let player), .toConfirm(let player): player
         case .ended: nil
+        }
+    }
+}
+
+extension ServeSide {
+    /// Stable court notation in every locale. VoiceOver uses the full translation.
+    var symbol: String {
+        switch self {
+        case .left: "L"
+        case .right: "R"
+        case .receiversChoice: "L/R"
+        }
+    }
+
+    var spoken: LocalizedStringResource {
+        switch self {
+        case .left: "Serve from the left"
+        case .right: "Serve from the right"
+        case .receiversChoice: "Receivers’ choice"
         }
     }
 }

@@ -167,6 +167,11 @@ struct JournalScoreView: View {
             switch board.serving {
             case .next(let player):
                 Text("Next server: \(Text(verbatim: player.displayName(in: names)))")
+                if let side = board.serveSide {
+                    Text(verbatim: side.symbol).accessibilityLabel(Text(side.spoken))
+                    .accessibilityHidden(side == .receiversChoice)
+                    if side == .receiversChoice { Text("Receivers’ choice") }
+                }
                 if case .americano(let round) = game.format {
                     Text("Serve \(round.service.rallyInBlock) of \(round.rules.ralliesPerServer)")
                 }

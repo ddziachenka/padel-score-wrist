@@ -36904,6 +36904,426 @@
           }
         }
       }
+    },
+    "Serve from the left": {
+      "extractionState": "manual",
+      "comment": "Next serve side, viewed by the server facing the net. L/R are fixed court notation.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve from the left"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подача слева"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saca desde la izquierda"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servi da sinistra"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servez à gauche"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve do lado esquerdo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saque pela esquerda"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serveer vanaf links"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von links aufschlagen"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serva från vänster"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serv fra venstre"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syötä vasemmalta"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serv fra venstre"
+          }
+        }
+      }
+    },
+    "Serve from the right": {
+      "extractionState": "manual",
+      "comment": "Next serve side, viewed by the server facing the net. L/R are fixed court notation.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve from the right"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подача справа"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saca desde la derecha"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servi da destra"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servez à droite"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve do lado direito"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saque pela direita"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serveer vanaf rechts"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von rechts aufschlagen"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serva från höger"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serv fra højre"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syötä oikealta"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serv fra høyre"
+          }
+        }
+      }
+    },
+    "Receivers’ choice": {
+      "extractionState": "manual",
+      "comment": "Next serve side, viewed by the server facing the net. L/R are fixed court notation.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receivers’ choice"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выбор принимающих"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eligen los restadores"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scelta dei ribattitori"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choix des relanceurs"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha dos recebedores"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha dos recebedores"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ontvangers kiezen"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rückschläger wählen"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mottagarna väljer"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modtagerne vælger"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vastaanottajat valitsevat"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mottakerne velger"
+          }
+        }
+      }
+    },
+    "Serving side": {
+      "extractionState": "manual",
+      "comment": "Next serve side, viewed by the server facing the net. L/R are fixed court notation.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serving side"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сторона подачи"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lado de saque"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lato di servizio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Côté du service"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lado do serviço"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lado do saque"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servicekant"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufschlagseite"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servesida"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serveside"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syöttöpuoli"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serveside"
+          }
+        }
+      }
+    },
+    "L means left and R means right, from the server’s viewpoint facing the net. The letter is for the next rally. At a golden point, the receivers choose the side. In Americano, every server starts their block on R, then alternates sides within the block.": {
+      "extractionState": "manual",
+      "comment": "Next serve side, viewed by the server facing the net. L/R are fixed court notation.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L means left and R means right, from the server’s viewpoint facing the net. The letter is for the next rally. At a golden point, the receivers choose the side. In Americano, every server starts their block on R, then alternates sides within the block."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L — слева, R — справа с позиции подающего лицом к сетке. Буква обозначает сторону подачи в следующем розыгрыше. На golden point сторону выбирают принимающие. В Americano каждый подающий начинает свою серию справа (R), затем чередует стороны внутри серии."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L indica izquierda y R derecha, desde la posición de quien saca mirando a la red. La letra corresponde al próximo punto. En el punto de oro, la pareja restadora elige el lado. En Americano, cada jugador empieza su bloque de saques desde R y alterna los lados dentro del bloque."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L indica sinistra e R destra, dal punto di vista di chi serve guardando la rete. La lettera si riferisce al prossimo punto. Al punto decisivo, chi riceve sceglie il lato. In Americano, ogni giocatore inizia il proprio blocco di servizi da R, poi alterna i lati nel blocco."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L signifie gauche et R droite, du point de vue du serveur face au filet. La lettre concerne le prochain point. Au point décisif, les relanceurs choisissent le côté. En Americano, chaque serveur commence sa série à droite (R), puis alterne les côtés au sein de la série."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L significa esquerda e R direita, na perspetiva de quem serve, de frente para a rede. A letra refere-se ao próximo ponto. No ponto de ouro, a dupla que recebe escolhe o lado. No Americano, cada jogador começa o seu bloco de serviços à direita (R) e alterna os lados dentro do bloco."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L significa esquerda e R direita, na perspectiva de quem saca, de frente para a rede. A letra se refere ao próximo ponto. No ponto de ouro, a dupla que recebe escolhe o lado. No Americano, cada jogador começa seu bloco de saques pela direita (R) e alterna os lados dentro do bloco."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L betekent links en R rechts, gezien vanuit de serveerder die naar het net kijkt. De letter geldt voor het volgende punt. Bij een golden point kiezen de ontvangers de kant. In Americano begint elke serveerder zijn serviceblok rechts (R) en wisselt daarna binnen het blok van kant."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L bedeutet links und R rechts, aus Sicht der aufschlagenden Person mit Blick zum Netz. Der Buchstabe gilt für den nächsten Ballwechsel. Beim Golden Point wählt das annehmende Paar die Seite. Im Americano beginnt jeder Aufschlagblock rechts (R); danach wechseln die Seiten innerhalb des Blocks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L betyder vänster och R höger, sett från servaren vänd mot nätet. Bokstaven gäller nästa boll. Vid golden point väljer mottagarna sida. I Americano börjar varje servare sitt serveblock från höger (R) och växlar sedan sida inom blocket."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L betyder venstre og R højre, set fra serveren med ansigtet mod nettet. Bogstavet gælder næste bold. Ved golden point vælger modtagerne side. I Americano starter hver server sin serveserie fra højre (R) og skifter derefter side inden for serien."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L tarkoittaa vasenta ja R oikeaa puolta syöttäjän näkökulmasta verkkoon päin katsottaessa. Kirjain koskee seuraavaa pistettä. Ratkaisupisteessä vastaanottajat valitsevat puolen. Americanossa jokainen syöttäjä aloittaa syöttövuoronsa oikealta (R) ja vaihtaa sitten puolta jokaisen pisteen jälkeen vuoronsa sisällä."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L betyr venstre og R høyre, sett fra serveren vendt mot nettet. Bokstaven gjelder neste ball. Ved golden point velger mottakerne side. I Americano starter hver server sin serveserie fra høyre (R) og bytter deretter side innenfor serien."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

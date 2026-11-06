@@ -890,16 +890,27 @@ struct ServingBlock: View {
                 Text("Serving")
                     .font(Typography.caption)
                     .foregroundStyle(Palette.textSecondary)
-                // A long role must keep its player number. Two lines fit between the
-                // round controls as well as on the stacked accessibility layout.
-                Text(verbatim: player.displayName(in: names))
-                    .font(Typography.caption.weight(.semibold))
-                    .foregroundStyle(Palette.textPrimary)
-                    .lineLimit(2)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .minimumScaleFactor(layout == .columns ? 0.75 : 1)
-                    .id(player)
-                    .transition(.opacity)
+                // Preserve the full name and side; a narrow row wraps without
+                // shrinking either, and the score screen can use its stacked layout.
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: Spacing.xs) {
+                        serverName(player)
+                        sideSymbol
+                    }
+                    .fixedSize(horizontal: true, vertical: false)
+                    VStack(spacing: 0) {
+                        serverName(player)
+                        sideSymbol
+                    }
+                }
+                .font(Typography.caption.weight(.semibold))
+                .foregroundStyle(Palette.textPrimary)
+                if board.serveSide == .receiversChoice {
+                    Text("Receivers’ choice")
+                        .font(Typography.caption)
+                        .foregroundStyle(Palette.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             case .ended(let result):
                 if let result {
                     Text(result.title)
@@ -914,6 +925,23 @@ struct ServingBlock: View {
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("\(idPrefix).server")
         .accessibilitySortPriority(3)
+    }
+
+    private func serverName(_ player: Player) -> some View {
+        Text(verbatim: player.displayName(in: names))
+            .fixedSize(horizontal: false, vertical: true)
+            .id(player)
+            .transition(.opacity)
+    }
+
+    @ViewBuilder private var sideSymbol: some View {
+        if let side = board.serveSide {
+            Text(verbatim: side.symbol)
+                .fixedSize()
+                .accessibilityLabel(Text(side.spoken))
+                // The choice is already read by the visible explanation below.
+                .accessibilityHidden(side == .receiversChoice)
+        }
     }
 }
 

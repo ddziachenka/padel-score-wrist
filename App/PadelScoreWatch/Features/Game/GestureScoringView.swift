@@ -13,21 +13,12 @@ struct GestureActionButton: View {
         Button(action: action) {
             Group {
                 if let serving, team == nil {
-                    if let player = serving.server {
-                        VStack(spacing: 0) {
-                            Text("Serving").font(.caption2)
-                                .foregroundStyle(Palette.textSecondary)
-                            HStack(spacing: 2) {
-                                Image(systemName: "hand.pinch")
-                                    .font(.caption2).accessibilityHidden(true)
-                                Text(verbatim: player.displayName(in: names))
-                                    .font(Typography.caption.weight(.semibold))
-                                    .lineLimit(2).minimumScaleFactor(0.75)
-                            }
+                    if serving.server != nil {
+                        HStack(spacing: 2) {
+                            Image(systemName: "hand.pinch")
+                                .font(.caption2).accessibilityHidden(true)
+                            ServingBlock(board: serving, layout: .columns, idPrefix: "game", names: names)
                         }
-                        .multilineTextAlignment(.center)
-                        .accessibilityElement(children: .combine)
-                        .accessibilityIdentifier("game.server")
                     }
                 } else if serving != nil {
                     VStack(spacing: 0) {
@@ -68,7 +59,8 @@ struct GestureActionButton: View {
 
     private var accessibilityDetail: Text {
         if team == nil, let player = serving?.server {
-            Text(verbatim: String(localized: "Serving") + ": " + player.displayName(in: names))
+            Text(verbatim: String(localized: "Serving") + ": " + player.displayName(in: names)
+                 + (serving?.serveSide.map { ". " + String(localized: $0.spoken) } ?? ""))
         } else { Text(verbatim: "") }
     }
 

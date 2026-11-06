@@ -54,6 +54,36 @@ final class CompanionUITests: XCTestCase {
         app.terminate()
     }
 
+    func testServeSidesAndGoldenPointInBothAppearances() {
+        let originalAppearance = XCUIDevice.shared.appearance
+        defer { XCUIDevice.shared.appearance = originalAppearance }
+        for dark in [false, true] {
+            setAppearance(dark)
+            let app = app()
+            app.buttons["phone.start.demo"].tap()
+            let us = app.buttons["phone.demo.us"], them = app.buttons["phone.demo.them"]
+            XCTAssertTrue(us.waitForExistence(timeout: 5))
+            let left = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "Serve from the left")).firstMatch
+            XCTAssertTrue(left.waitForExistence(timeout: 5))
+            capture(app, "m32-match-left-\(dark)")
+            them.tap()
+            XCTAssertTrue(app.staticTexts["Receivers’ choice"].waitForExistence(timeout: 5))
+            capture(app, "m32-golden-choice-\(dark)")
+            app.buttons["phone.demo.undo"].tap()
+            XCTAssertTrue(left.waitForExistence(timeout: 5))
+            app.segmentedControls.buttons["Americano"].tap()
+            let right = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "Serve from the right")).firstMatch
+            XCTAssertTrue(right.waitForExistence(timeout: 5))
+            us.tap()
+            XCTAssertTrue(left.waitForExistence(timeout: 5))
+            Thread.sleep(forTimeInterval: 0.6)
+            them.tap()
+            XCTAssertTrue(right.waitForExistence(timeout: 5))
+            capture(app, "m32-americano-new-server-right-\(dark)")
+            app.terminate()
+        }
+    }
+
     func testAccessIsOptionalAndCanBeOpenedWithoutWatchInstallation() {
         let app = app()
         app.tabBars.buttons["Access"].tap()

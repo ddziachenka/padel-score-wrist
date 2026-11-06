@@ -189,3 +189,104 @@ struct ScoreBoardTests {
         #expect(String(localized: AmericanoResult.won(by: .them).spoken) == "Their team won")
     }
 }
+
+struct ServeSideTests {
+    @Test("Every ordinary score uses rally parity, not the displayed tennis number")
+    func regularScoreTable() {
+        let values: [GamePoint] = [.love, .fifteen, .thirty, .forty]
+        let expected: [[ServeSide]] = [
+            [.right, .left, .right, .left], [.left, .right, .left, .right],
+            [.right, .left, .right, .left], [.left, .right, .left, .right]
+        ]
+        for (u, us) in values.enumerated() {
+            for (t, them) in values.enumerated() where u != 3 || t != 3 {
+                let state = MatchState.fixture(phase: .game(.points(us: us, them: them)))
+                #expect(ServeSide.next(in: state) == expected[u][t])
+            }
+        }
+    }
+
+    @Test("Repeated deuce and advantage alternate, while either golden-point rule leaves a choice")
+    func deuceAndDecidingPoints() throws {
+        var session = try Session.empty.after([.start(.match(.advantage), id: .number(1))] + points("UUUTTT"))
+        for _ in 0..<4 {
+            #expect(session.game.map(ScoreBoard.init)?.serveSide == .right)
+            session = try session.after(.awardPoint(to: .us))
+            #expect(session.game.map(ScoreBoard.init)?.serveSide == .left)
+            session = try session.after(.awardPoint(to: .them))
+        }
+        for (rule, rallies) in [(DeuceRule.goldenPoint, "UUUTTT"), (.oneAdvantage, "UUUTTTUT")] {
+            let deciding = try Session.empty.after([.start(.match(rule), id: .number(2))] + points(rallies))
+            #expect(deciding.game.map(ScoreBoard.init)?.serveSide == .receiversChoice)
+            let next = try deciding.after(.awardPoint(to: .them))
+            #expect(next.game.map(ScoreBoard.init)?.serveSide == .right)
+            #expect(try next.after(.undo).game.map(ScoreBoard.init)?.serveSide == .receiversChoice)
+        }
+    }
+
+    @Test("Tie-break alternation survives server changes, set boundary and Undo")
+    func tieBreakAndNewSet() throws {
+        var session = Session.playing(.match(.fixture(games: SetGames(us: 6, them: 6),
+            phase: .tieBreak(.start), tieBreak: TieBreakServing(opener: .you, turn: .opening))))
+        let sides: [ServeSide] = [.right, .left, .right, .left, .right, .left, .right]
+        for side in sides {
+            #expect(session.game.map(ScoreBoard.init)?.serveSide == side)
+            session = try session.after(.awardPoint(to: .us))
+        }
+        #expect(session.game.map(ScoreBoard.init)?.serveSide == nil)
+        let pending = session
+        session = try session.after(.confirmService(order: .youThenOpponent1, firstServer: .opponent1))
+        #expect(session.game.map(ScoreBoard.init)?.serveSide == .right)
+        #expect(try session.after(.undo).game == pending.game)
+        #expect(try pending.after(.undo).game.map(ScoreBoard.init)?.serveSide == .right)
+    }
+
+    @Test("Americano resets each block, including odd lengths and the short final block", arguments: [1, 3, 4])
+    func americanoBlocks(length: Int) throws {
+        var session = try Session.empty.after(.start(.americano(total: 10, perServer: length), id: .number(1)))
+        for rally in 0..<10 {
+            let expected: ServeSide = (rally % length).isMultiple(of: 2) ? .right : .left
+            #expect(session.game.map(ScoreBoard.init)?.serveSide == expected)
+            session = try session.after(.awardPoint(to: rally.isMultiple(of: 2) ? .us : .them))
+        }
+        #expect(session.game.map(ScoreBoard.init)?.serveSide == nil)
+        let restored = try session.after(.undo)
+        #expect(restored.game.map(ScoreBoard.init)?.serveSide == ((9 % length).isMultiple(of: 2) ? .right : .left))
+    }
+
+    @Test("Corrected block position, not total score, determines Americano side")
+    func correctedBlock() throws {
+        var round = AmericanoState.fixture(total: 21, perServer: 3, us: 9, them: 7, rallyInBlock: 2)
+        let original = Session.playing(.americano(round))
+        #expect(original.game.map(ScoreBoard.init)?.serveSide == .left)
+        round.rules.ralliesPerServer = 5
+        round.service.rallyInBlock = 3
+        let corrected = try original.after(.correct(.americano(round)))
+        #expect(corrected.game.map(ScoreBoard.init)?.serveSide == .right)
+        #expect(try corrected.after(.undo).game.map(ScoreBoard.init)?.serveSide == .left)
+    }
+
+    @Test("Selective removal derives the preview and applied side from replay, with exact Undo")
+    func selectiveRecovery() throws {
+        let original = try Session.empty.after([.start(.match(), id: .number(1))] + points("UUT"))
+        let id = try #require(original.current?.journal.events[1].id)
+        let preview = try original.previewRallyCorrection(.remove(id), expectedRevision: original.revision)
+        #expect(ScoreBoard(game: preview.before).serveSide == .left)
+        #expect(preview.after.map(ScoreBoard.init)?.serveSide == .right)
+        let corrected = try original.after(.applyRallyCorrection(preview))
+        #expect(corrected.game.map(ScoreBoard.init)?.serveSide == .right)
+        #expect(try corrected.after(.undo).game.map(ScoreBoard.init)?.serveSide == .left)
+    }
+
+    @Test("Finishing hides the side and resuming restores it without a stored side")
+    func finishResume() throws {
+        let playing = try Session.empty.after([.start(.match(), id: .number(1))] + points("UUT"))
+        let finished = try playing.after(.finish)
+        #expect(finished.game.map(ScoreBoard.init)?.serveSide == nil)
+        #expect(try finished.after(.resume).game.map(ScoreBoard.init)?.serveSide == .left)
+        #expect(ServeSide.left.symbol == "L")
+        #expect(ServeSide.right.symbol == "R")
+        #expect(ServeSide.receiversChoice.symbol == "L/R")
+        #expect(String(localized: ServeSide.receiversChoice.spoken) == "Receivers’ choice")
+    }
+}

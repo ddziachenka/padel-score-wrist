@@ -25,11 +25,13 @@ final class LiveScoreUITests: XCTestCase {
         XCTAssertEqual(them.label, "Their score, 0")
         XCTAssertLessThan(us.frame.maxX, them.frame.minX, "US is on the left of THEM")
         assertLabel(server, contains: "You")
+        assertLabel(server, contains: "Serve from the right")
         XCTAssertEqual(element("game.context", in: app).label, "Set 1")
         XCTAssertFalse(undo.isEnabled)
         attachScreenshot("Match at 0–0")
 
         award(them, showing: "Their score, 15")
+        assertLabel(server, contains: "Serve from the left")
         XCTAssertEqual(us.label, "Our score, 0", "one tap records one rally, for the team tapped")
         award(us, showing: "Our score, 15")
         award(us, showing: "Our score, 30")
@@ -79,11 +81,13 @@ final class LiveScoreUITests: XCTestCase {
 
         award(us, showing: "Our score, Advantage")
         XCTAssertEqual(them.label, "Their score, 40")
+        assertLabel(element("game.server", in: app), contains: "Serve from the left")
         attachScreenshot("Advantage US")
 
         award(them, showing: "Their score, 40")
         XCTAssertEqual(us.label, "Our score, 40")
         waitForLabel(context, "Golden point")
+        assertLabel(element("game.server", in: app), contains: "Receivers’ choice")
         attachScreenshot("40–40, Golden point")
 
         award(them, showing: "Their score, 0")
@@ -177,10 +181,12 @@ final class LiveScoreUITests: XCTestCase {
         assertLabel(left, contains: "6")
         XCTAssertEqual(serve.label, "Serve 1 of 2")
         assertLabel(server, contains: "You")
+        assertLabel(server, contains: "Serve from the right")
         attachScreenshot("Americano at 0–0")
 
         award(us, showing: "Our score, 1")
         XCTAssertEqual(serve.label, "Serve 2 of 2")
+        assertLabel(server, contains: "Serve from the left")
         assertLabel(left, contains: "5")
         assertLabel(server, contains: "You")
         award(them, showing: "Their score, 1")
@@ -199,6 +205,7 @@ final class LiveScoreUITests: XCTestCase {
         XCTAssertFalse(them.isEnabled)
         assertLabel(server, contains: "Draw")
         assertLabel(server, lacks: "Serving")
+        assertLabel(server, lacks: "Serve from")
         assertLabel(left, contains: "0")
         attachScreenshot("Round finished, draw")
 
@@ -341,6 +348,7 @@ final class LiveScoreUITests: XCTestCase {
         let games = element("game.games", in: app)
         XCTAssertTrue(us.waitForExistence(timeout: 10))
         XCTAssertEqual(us.label, "Our score, 40")
+        assertLabel(element("game.server", in: app), contains: "Serve from the left")
         attachScreenshot("Always On")
 
         // The screen takes no touches with the wrist lowered, so tap where the controls are drawn.

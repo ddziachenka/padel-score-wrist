@@ -1011,3 +1011,16 @@ Owner selected ball+gesture identity. App/Design/M31 holds three original imageg
 directions and provenance; B is selected for both app icons. Black/lime, no text,
 opaque1024square, circular Watch safe area. Existing ball renderer is historical.
 Runtime and small-size verification belongs to M31, not historical M29.
+
+
+## Next serve side — M32, 2026-11-06
+
+Beside the server show literal R or L, never mirrored with team columns or locale.
+Use the existing serving typography; keep score and server-name sizes legible and
+wrap the side below the name when needed. Deciding points show L/R plus localized
+Receivers’ choice. The indicator is static, noninteractive, and works in Always On.
+VoiceOver reads Serve from the right / Serve from the left / Receivers’ choice.
+Watch live/demo, phone demo and recovery previews share the derived presentation.
+Hide it when finished or awaiting new-set service confirmation. Bundled help explains
+the server-facing-net perspective and the Americano per-block reset. Localize all
+explanations across the existing thirteen app locales; L/R remain literal.

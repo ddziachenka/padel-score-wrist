@@ -238,6 +238,7 @@ struct PhoneRecoveryView: View {
         }
         if case .toConfirm = board.serving { parts.append(String(localized: "Confirm serving")) }
         if let server = board.server { parts.append(String(localized: "phone.demo.serving \(String(localized: server.name))")) }
+        if let side = board.serveSide { parts.append(String(localized: side.spoken)) }
         parts.append(String(localized: game.status == .finished ? LocalizedStringResource("Game finished") : "phone.recovery.active"))
         if case .ended(let result?) = board.serving { parts.append(String(localized: result.spoken)) }
         return parts.joined(separator: "\n")
@@ -319,6 +320,12 @@ struct PhoneRecoveryView: View {
             if let server = board.server {
                 Text("phone.demo.serving \(String(localized: server.name))")
                     .accessibilityIdentifier("phone.recovery.\(id).server")
+            }
+            if let side = board.serveSide {
+                Text(verbatim: side.symbol).accessibilityLabel(Text(side.spoken))
+                    .accessibilityHidden(side == .receiversChoice)
+                    .accessibilityIdentifier("phone.recovery.\(id).serveSide")
+                if side == .receiversChoice { Text("Receivers’ choice") }
             }
             if case .ended(let result?) = board.serving {
                 Text(result.title).accessibilityIdentifier("phone.recovery.\(id).outcome")

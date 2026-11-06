@@ -582,3 +582,20 @@ candidate; no numerical recognition rate, measured hour/zero-event count or
 supplied real Watch video is claimed. Build6 adds the explicit Pending: US →
 repeat-two-contacts cue. All automatic verification and six-domain records remain
 required, as do M26's full gates and separate distribution authorization.
+
+
+## Next serve side — owner approved 2026-11-06 (M32)
+
+Show L/R for the next rally, from the server’s viewpoint facing the net, for every
+server in both formats. Regular Match games begin R and alternate by points played
+(0/15/30/40 mean 0/1/2/3); deuce is R and advantage L. Both deciding-point modes
+show L/R and Receivers’ choice instead of predicting their decision. Tie-break
+side is R for even total points and L for odd total points, independent of server
+turn changes. Americano deliberately starts EVERY service block on R; odd
+rallyInBlock is R, even is L, including manual corrections and shortened blocks.
+This is the app’s agreed Americano convention, not a claim of a universal rule.
+
+Derive the side from accepted state; never persist another field or infer Americano
+service from total score. No side for finished games or unconfirmed new-set service.
+Undo, known-score starts, selective recovery and relaunch derive the same side.
+No side toggle, extra required input, court-end tracking or receiver selection.

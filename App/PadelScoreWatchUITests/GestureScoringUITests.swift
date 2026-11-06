@@ -57,7 +57,7 @@ final class GestureScoringUITests: XCTestCase {
             predicate: NSPredicate(format: "enabled == true AND hittable == true"), object: action
         )
         XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 5), .completed)
-        XCTAssertEqual(action.value as? String, "Serving: You")
+        XCTAssertEqual(action.value as? String, "Serving: You. Serve from the right")
         for identifier in ["game.us", "game.them", "game.games", "game.sets", "game.menu", "gesture.action"] {
             let element = app.descendants(matching: .any)[identifier]
             XCTAssertTrue(element.exists)

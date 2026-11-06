@@ -65,6 +65,42 @@ enum GamePoint: String, Hashable, Sendable, CaseIterable, Codable {
     }
 }
 
+/// The next serve's side, from the server's viewpoint facing the net. This is
+/// derived from accepted state, never persisted or advanced separately.
+enum ServeSide: Hashable, Sendable {
+    case left
+    case right
+    case receiversChoice
+
+    static func next(in state: MatchState) -> ServeSide? {
+        guard state.service.isConfirmed else { return nil }
+        switch state.phase {
+        case .game(.points(let us, let them)):
+            return us.hasEvenPointCount == them.hasEvenPointCount ? .right : .left
+        case .game(.deuce): return .right
+        case .game(.advantage): return .left
+        case .game(.decidingPoint): return .receiversChoice
+        case .tieBreak(let score):
+            // Compare parity without adding potentially large corrected scores.
+            return score.us.isMultiple(of: 2) == score.them.isMultiple(of: 2) ? .right : .left
+        }
+    }
+
+    static func next(in round: AmericanoState) -> ServeSide? {
+        guard !round.isComplete else { return nil }
+        return round.service.rallyInBlock.isMultiple(of: 2) ? .left : .right
+    }
+}
+
+private extension GamePoint {
+    var hasEvenPointCount: Bool {
+        switch self {
+        case .love, .thirty: true
+        case .fifteen, .forty: false
+        }
+    }
+}
+
 /// Points in a tie-break, counted 0, 1, 2 and on.
 struct TieBreakScore: Hashable, Sendable, Codable {
     var us: Int

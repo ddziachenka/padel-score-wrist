@@ -57,7 +57,7 @@ final class GameEditorTests {
         #expect(store.session.current?.history.last?.change == .correction)
         #expect(live.editor == nil)
         #expect(live.lastChange?.outcome == .corrected)
-        #expect(live.lastChange?.announcement == "Changes saved. Us 30, them 30. Serving: Partner.")
+        #expect(live.lastChange?.announcement == "Changes saved. Us 30, them 30. Serving: Partner. Serve from the right")
         #expect(haptics.played.isEmpty, "a saved correction is told by the screen and VoiceOver, without a haptic")
     }
 

@@ -1,9 +1,9 @@
 # Project status
 
-**Phase:** release-preparation
-**Current milestone:** none
+**Phase:** implementation
+**Current milestone:** M32
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30
-**Next milestone:** none
+**Next milestone:** M33
 **Blockers:** none
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
@@ -618,3 +618,16 @@ its unmeasured/video limitations remain unchanged.
 [Final handoff](handoffs/M30-handoff.md), [exact evidence](evidence/M30/milestone-verification.md),
 [exact sent response](evidence/M30/app-review-response-sent.md).
 No development milestone remains. Next external event: Apple's review decision.
+
+
+## M32 started — 2026-11-06
+
+Owner approved next-serve L/R for Match and Americano. Each Americano block begins
+on R; deciding points show receivers’ choice. M32 owns implementation and complete
+automated/Simulator verification; M33 separately owns new release readiness,
+affected physical acceptance and store materials. Old impact waivers do not carry.
+
+Owner personally withdrew build1.0(7). Authenticated API readback confirms
+DEVELOPER_REJECTED, submission COMPLETE, IAP READY_TO_SUBMIT. Existing hourly
+monitor now has a priority read-only hold; build7 cannot start promotion scheduling.
+Evidence: [withdrawal](evidence/M32/asc-withdrawal.md). No new submission authorized.

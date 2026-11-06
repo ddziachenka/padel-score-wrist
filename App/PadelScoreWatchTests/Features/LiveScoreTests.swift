@@ -232,6 +232,7 @@ final class LiveScoreTests {
         #expect(live.failed == .point(.them))
         #expect(store.session == saved)
         #expect(live.board?.them == .game(.love))
+        #expect(live.board?.serveSide == .left)
         #expect(haptics.played == [.failure])
         #expect(!live.isIdle)
         #expect(!live.canUndo)
@@ -264,6 +265,7 @@ final class LiveScoreTests {
         #expect(live.failed == nil)
         #expect(store.session.current?.history.count == 2)
         #expect(live.board?.them == .game(.fifteen))
+        #expect(live.board?.serveSide == .right)
         #expect(haptics.played == [.failure, .failure, .point])
         #expect(await openStore().session == store.session)
     }
@@ -430,13 +432,13 @@ final class LiveScoreTests {
         await tap(.them, on: live)
         let point = try #require(live.lastChange)
         #expect(point.outcome == .match(.point))
-        #expect(point.announcement == "Us 40, them 15.")
+        #expect(point.announcement == "Us 40, them 15. Serve from the right")
 
         await tap(.us, on: live)
         let game = try #require(live.lastChange)
         #expect(game.number == point.number + 1)
         #expect(game.outcome == .match(.game(wonBy: .us)))
-        #expect(game.announcement == "Game to us. Games: us 1, them 0. Serving: Opponent 1.")
+        #expect(game.announcement == "Game to us. Games: us 1, them 0. Serving: Opponent 1. Serve from the right")
     }
 
     @Test("A recorded rally is there, with its server and Undo, after the app is closed and opened again")
