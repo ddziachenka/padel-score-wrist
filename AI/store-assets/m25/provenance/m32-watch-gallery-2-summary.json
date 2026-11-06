@@ -1,0 +1,37 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "22C79D99-DEA7-4525-AD2D-50FDCD6B8720",
+        "deviceName": "iosai-padel-score-m25-watch-gallery-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "modelName": "Apple Watch SE",
+        "osBuildNumber": "23S36",
+        "osVersion": "26.1",
+        "platform": "watchOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "passedTests": 14,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Default"
+      }
+    }
+  ],
+  "environmentDescription": "PadelScore \u00b7 Built with macOS 27.0.1",
+  "expectedFailures": 0,
+  "failedTests": 0,
+  "finishTime": 1793953788.869,
+  "passedTests": 14,
+  "result": "Passed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1793951329.708,
+  "statistics": [],
+  "testFailures": [],
+  "title": "Test - PadelScore",
+  "topInsights": [],
+  "totalTestCount": 14
+}

@@ -123,3 +123,38 @@ that source only; the ongoing obsolete phone capture-1 was explicitly cancelled
 Both platforms must be captured again on the corrected frozen source. Earlier
 compact/default-role contacts still document their original source; that branch
 is unchanged by the custom-name correction.
+
+Corrected capture source:
+`ac3522a2a94e5d0c75f9f9d134ad83ce9f8dc406`.
+`Scripts/capture-store-materials.sh watch capture m32-watch-gallery-2`:
+`.artifacts/M25/m32-watch-gallery-2.xcresult`, xcodebuild exit 0; 14/14 tests,
+zero failures, skips, expected failures or runtime warnings. The paired phone
+capture uses the same frozen SHA; final import/verification is recorded below.
+Fresh capture-2 visual review: `.artifacts/M32/watch-gallery-2-01-gesture-contact.png`
+and `watch-gallery-2-06-americano-contact.png` cover all fourteen store variants;
+built-in role names and R/L remain visible. Also inspected native English
+rally-correction and known-score previews, including their derived L/R. Preview
+cards retain their existing scrolling behavior. Release/editorial selection of
+screens explicitly illustrating golden point remains M33 scope.
+
+Final phone capture:
+`Scripts/capture-store-materials.sh phone-current capture m32-phone-gallery-2`,
+exit 0; `.artifacts/M25/m32-phone-gallery-2.xcresult`: 2/2 tests, zero failures,
+skips, expected failures or runtime warnings. Same full source SHA as Watch
+capture-2. Inspected all fourteen phone Match/Americano gallery variants in
+`phone-gallery-2-{05-match-demo,06-americano-demo}-contact.png` and the individual
+English Americano image; scores and side labels remain intact.
+
+Final material commands, all exit 0:
+
+- `python3 AI/store-assets/m25/tools/import-captures.py --watch-run m32-watch-gallery-2 --phone-run m32-phone-gallery-2`
+- `python3 AI/store-assets/m25/tools/compose-creative.py`
+- `python3 AI/store-assets/m25/tools/validate.py`
+- `make site-check`
+
+Logs: `.artifacts/M32/material-{import,compose,validation}.log` and
+`site-check.log`. Exact shipping-input hashes, 112 Watch + 98 phone native images,
+28 creatives, 14 store locales and 104 identical local web image copies verified.
+Site check also passes six tests and all twelve added app locales (405 keys each).
+The legacy `PENDING_M29` markers are fixed schema labels, not a claim of current
+physical acceptance; fresh acceptance belongs to M33. No public deployment ran.
