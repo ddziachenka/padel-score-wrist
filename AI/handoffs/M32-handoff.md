@@ -47,8 +47,12 @@ cannot start the withdrawn build's promotion. No resubmission occurred.
 
 The full command ran unchanged, with fresh suites and no verification exception,
 component reuse or filters. Native exporter exit 0; exact summaries/trees/counts
-in `.artifacts/M32/full-native-counts/`. Post-DONE static/status/continuity results
-are recorded after execution in the durable evidence; no pending check is called a pass.
+in `.artifacts/M32/full-native-counts/`. Post-DONE `make static`, status validation
+and continuity against the verified SHA all returned0 at `3082ab4e81f77bdb8338c766481e6d9091504ce4`,
+recorded 2026-11-06T21:24:14Z. Logs: `.artifacts/M32/post-done-initial-{static,status,continuity}.log`.
+Only AI Markdown closure records changed. The final evidence commit receives the
+same closing checks, recorded in `post-done-final-receipt.json` and final log paths
+under `.artifacts/M32/`. No native result is relabelled.
 
 ## Tests
 
@@ -80,7 +84,7 @@ Builder self-review is not independent audit or release approval.
 
 ## Next step
 
-Complete the required post-DONE static/status/continuity checks and stop this
-Builder session. A new Builder session owns `M33`: affected materials and Release
+Post-DONE static/status/continuity passed; final-HEAD repeats follow this evidence
+record, then this Builder stops. A new Builder session owns `M33`: affected materials and Release
 Readiness Revalidation, with its full milestone and exact-SHA release gates.
 App Review resubmission requires a separate explicit instruction.

@@ -37,7 +37,7 @@ change, upload or resubmission. M33 owns fresh release readiness and store mater
       text, Always On and phone light/dark retain readable score and controls.
 - [x] All thirteen app locales include full side/choice/help text; L/R stays literal.
       VoiceOver reads the side in full. No extra interaction is required.
-- [ ] Full make milestone ID=M32 passes on clean REVIEW/main; handoff records exact
+- [x] Full make milestone ID=M32 passes on clean REVIEW/main; handoff records exact
       SHA, command, exits, counts and reports. Closing static/status/continuity pass.
 
 ## Validation

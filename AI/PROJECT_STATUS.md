@@ -654,3 +654,8 @@ resubmission. Fresh physical acceptance and release readiness belong to separate
 M33, which retains full milestone/release gates and no inherited exception.
 [Handoff](handoffs/M32-handoff.md); [exact evidence](evidence/M32/milestone-verification.md).
 Stop this Builder after the DONE commit's static/status/continuity checks.
+
+Post-DONE `make static`, status validation and continuity against the verified SHA
+all pass, exit0, at `3082ab4e81f77bdb8338c766481e6d9091504ce4` (2026-11-06T21:24:14Z). Only AI Markdown
+closure records changed. Final evidence-commit repeats use
+`.artifacts/M32/post-done-final-receipt.json`; this Builder then stops. M33 remains PLANNED.

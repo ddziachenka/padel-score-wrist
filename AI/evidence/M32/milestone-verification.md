@@ -150,9 +150,24 @@ M33 remains separate and retains its complete milestone and exact-SHA release ga
 
 ## Post-DONE validation
 
-The first DONE commit is followed by `make static`,
-`./Scripts/project-status.sh validate`, and
-`./Scripts/project-status.sh continuity 793268631ce273284b8bbd67b1dc0179ae9fe3f5`.
-Their actual results will be recorded after execution; they are not part of the
-earlier candidate's native gate. Only AI Markdown closure records follow the
-verified candidate.
+The first DONE commit `3082ab4e81f77bdb8338c766481e6d9091504ce4` passed all three required checks,
+recorded at 2026-11-06T21:24:14Z. Each command returned exit0:
+
+```sh
+make static
+./Scripts/project-status.sh validate
+./Scripts/project-status.sh continuity 793268631ce273284b8bbd67b1dc0179ae9fe3f5
+```
+
+Actual outputs are `.artifacts/M32/post-done-initial-static.log`,
+`post-done-initial-status.log` and `post-done-initial-continuity.log`.
+Continuity confirms exactly the verified build inputs and only five changed AI
+Markdown closure records. The final acceptance checkbox is now checked from this
+evidence. No earlier skipped/pending check is represented as a pass.
+
+A final Markdown-only evidence commit records these results. Its final-HEAD
+static/status/continuity repeats are retained at
+`.artifacts/M32/post-done-final-{static,status,continuity}.log`, with actual HEAD
+and exits in `.artifacts/M32/post-done-final-receipt.json`. They do not alter or
+relabel the earlier native verification candidate. Builder work stops after those
+required closing checks; M33 remains PLANNED.
