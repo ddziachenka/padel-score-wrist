@@ -1,9 +1,9 @@
 # Project status
 
 **Phase:** release-preparation
-**Current milestone:** M34
+**Current milestone:** M35
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32, M33, M34
-**Next milestone:** None
+**Next milestone:** M35
 **Blockers:** None.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
@@ -784,3 +784,13 @@ Stop this Builder after DONE-commit static/status/continuity succeeds.
 Post-DONE static/status/continuity all passed, exit0, at `9a9b31378423fb210800ae2ee978893dd6a05050`
 (2026-11-07T17:01:43.434874+00:00). Final evidence-commit checks are retained in
 `.artifacts/M34/post-done-final-receipt.json`. This Builder stops after those checks.
+
+
+## M35 release authorized — 2026-11-07
+
+Owner confirms all human checks and explicitly requests release plus updated4.3(a)
+response including L/R. M34 remains DONE; new M35 owns unchanged-build distribution.
+Actual signed archive/export/validation/upload and current server readback remain
+required. Owner acceptance is recorded without invented Organizer logs.
+See evidence/M35/owner-release-authorization.md. AFTER_APPROVAL and pricing policy
+remain; no new submission result or public release is claimed yet.
