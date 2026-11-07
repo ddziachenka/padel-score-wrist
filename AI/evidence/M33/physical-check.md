@@ -77,3 +77,33 @@ with Wi-Fi/Bluetooth enabled, then report readiness (or an already installed1.0(
 Awaiting that connection/identity input. VoiceOver remains OWNER_CONFIRMED_VERIFIED.
 `./Scripts/project-status.sh validate` and `git diff --check` exited0 for the
 resumed documentation update. Full gate and remaining physical rows are pending.
+
+## Owner-connected installation — 2026-11-07
+
+Owner replied “Готово, устройства подключены”. Resume HEAD:
+f4f86bcc1fcbeee48c63d159adc3e819da1cfd09. The direct Watch install with the
+same app/device and timeout90 exited1 (Bluetooth L2CAP/tunnel failure), recorded
+in `.artifacts/M33/watch-install-connected.json`. Watch app-info lookup exited1
+with the same connection error (`watch-installed-connected.json`). Neither is a
+physical installation/identity pass.
+
+`xcrun xctrace list devices` exited0 and showed the iPhone connected, Watch offline,
+while CoreDevice discovery showed only the disconnected Watch. Saved readback:
+`.artifacts/M33/xctrace-connected-devices.txt` and connected-all-devices.json.
+
+Fallback succeeded, exit0:
+`xcrun devicectl device install app --device 00008150-000104A10284401C --timeout 90 --json-output .artifacts/M33/phone-install-connected.json .artifacts/M33/device-derived-data/Build/Products/Release-iphoneos/PadelScore.app`.
+This installed the signed1.0(8) phone app containing the matching Watch app.
+It does not itself prove delivery/installation on the Watch. No uninstall, erase,
+pairing change or synthetic test data was used.
+
+Awaiting owner readback of Watch About version and the isolated Match demo:
+40–30/L → THEM →40–40/LR/receivers choice →Undo→40–30/L, with on-wrist readability.
+If the watch update is pending, owner was directed to its normal iPhone Watch app
+installation status. Remaining physical rows stay pending; VoiceOver stays verified
+by the owner's explicit confirmation.
+
+Phone installed identity confirmed, exit0:
+`xcrun devicectl device info apps --device 00008150-000104A10284401C --bundle-id com.dziachenka.padelscore --timeout 30 --json-output .artifacts/M33/phone-installed-connected.json`
+returns PadelScore/com.dziachenka.padelscore, version1.0, bundleVersion8.
+Watch identity still awaits owner readback.
