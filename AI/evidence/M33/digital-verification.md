@@ -135,3 +135,11 @@ Final preparation checks recorded 2026-11-07T06:32:23.092225+00:00:
 `./Scripts/project-status.sh validate`, exit0; `git diff --check`, exit0.
 Only the evidence sentence was appended after those checks. A post-commit
 status/diff receipt is retained in `.artifacts/M33/closure-receipt.json`.
+
+The staged diff check subsequently exited2 because Git treated the new ASCII85
+PDF as text and flagged its generated stream/xref whitespace. The material commit
+2454d6901f137180875a3694166e07e35c585c72 preserved that exact reviewed PDF. An exact-path
+`.gitattributes` binary declaration now classifies this PDF correctly; no PDF bytes,
+source checks, tests or assertions are changed. The original staged failure is
+disclosed here, rather than described as a passing check. Final closure checks use
+the corrected file classification and preserve the PDF's recorded SHA256.
