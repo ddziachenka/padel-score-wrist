@@ -4,9 +4,14 @@
 
 ## Milestone
 
-`M33` — Serve-side Audit and Store Materials; status `BLOCKED`.
+`M33` — Serve-side Audit and Store Materials; status `IN_PROGRESS`.
 
 ## Summary
+
+Resumed2026-11-07: owner confirms VoiceOver verified and requests physical Watch
+checks now. VoiceOver is OWNER_CONFIRMED_VERIFIED; actual installed identity and
+remaining visual/interaction observations are pending. Earlier preparation and
+blocker details below are historical until the resumed physical record is complete.
 
 Applied the owner-approved M33 audit/materials → M34 readiness split while retaining
 all full gates. Prepared build1.0(8), refreshed14-locale materials and a four-page

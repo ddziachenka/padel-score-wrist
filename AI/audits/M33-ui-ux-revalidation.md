@@ -28,8 +28,10 @@ automatic waiver is transferred: complete fresh make milestone ID=M33 is require
 Historical manual M29 acceptance is retained only for unchanged behavior, with
 its unmeasured recognition/hour/video/current-Watch identity limits intact. It
 never covers new L/R readability or VoiceOver. Fresh physical status/protocol:
-[physical check](../evidence/M33/physical-check.md). The owner confirms the Watch is unavailable; unavailable hardware is not
-INAPPLICABLE. Actual installation has not succeeded. M33 is BLOCKED.
+[physical check](../evidence/M33/physical-check.md). The owner has resumed the physical check and explicitly confirms VoiceOver verified
+on2026-11-07 (OWNER_CONFIRMED_VERIFIED, not agent-observed audio). The previous
+unavailable-device checkpoint is historical. Installed build identity and remaining
+on-wrist visual/interaction checks are pending; M33 is IN_PROGRESS.
 
 ## Coverage
 

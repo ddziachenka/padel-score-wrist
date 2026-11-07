@@ -1,7 +1,7 @@
 # M33 — Serve-side Audit and Store Materials
 
 **ID:** M33
-**Status:** BLOCKED
+**Status:** IN_PROGRESS
 **Depends on:** M32
 **Validation:** make milestone ID=M33
 **Handoff:** AI/handoffs/M33-handoff.md

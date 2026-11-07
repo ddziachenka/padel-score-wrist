@@ -1,8 +1,15 @@
-# M33 fresh physical acceptance — pending
+# M33 fresh physical acceptance — in progress
 
 Source: `8eeec63f5287639b86e637803b436b005a6901da`, build 1.0 (8).
-This is a check protocol, not a record of completed observations. M29 acceptance
-is historical and does not satisfy these changed presentation/speech checks.
+Current status: VoiceOver is OWNER_CONFIRMED_VERIFIED from the owner's explicit
+2026-11-07 message: “VoiceOver отметь как проверенный, а физический Watch давай сейчас проверим”.
+This records the owner's verification, not agent-observed audio or invented device,
+language, timing or individual utterance measurements. No repeat VoiceOver request.
+Other fresh physical checks are IN_PROGRESS. M29 acceptance remains historical.
+
+The earlier unavailable-device/install-failure checkpoint below is preserved as
+history; the owner has now resumed the physical Watch check. Installed build8
+identity and visual/interaction observations will be recorded as actually obtained.
 
 ## Installation evidence
 
@@ -33,7 +40,7 @@ Use isolated Demo where possible; preserve the owner's real game and history.
    Do this only when safe for the owner’s existing game; the Watch demo is Match-only.
    The iPhone Americano demo is a supplementary isolated 10–10/R example. Confirm
    the server-facing-net meaning using bundled help.
-3. Enable VoiceOver and repeat the Watch Match demo and disposable Watch Americano flow. Record actual full localized side
+3. OWNER_CONFIRMED_VERIFIED on2026-11-07 (no repeat requested). Original protocol: enable VoiceOver and repeat the Watch Match demo and disposable Watch Americano flow. Record actual full localized side
    speech, readable order, no duplicate receivers' choice, scoring/Undo/Reset
    usability and absence of a letter-only or stale-side announcement.
 4. In a disposable real game (only when safe for existing data), check an odd
@@ -44,10 +51,29 @@ Use isolated Demo where possible; preserve the owner's real game and history.
    results or failures per row; do not replace audio/on-wrist evidence with
    Simulator accessibility labels or screenshots.
 
-Status: BLOCKED. On 2026-11-07 the owner answered the fresh-check availability
+Historical checkpoint — BLOCKED. Earlier on 2026-11-07 the owner answered the fresh-check availability
 question with “The Watch is unavailable”. This resolves availability, not acceptance:
 no repeated request or physical check is scheduled until the device is available.
 Complete independent digital preparation, preserve the failed connection evidence,
 and leave M33 BLOCKED. AGENTS.md A10 and M33's first acceptance criterion require
 actual affected physical evidence before DONE; M34 remains PLANNED.
 No recognition-rate, elapsed play duration or physical VoiceOver pass is asserted.
+
+## Resumed connection attempt — 2026-11-07
+
+Current main at resume:3d2ad927390a8897e1a8d15f87ff928893a99c4e.
+`xcrun devicectl list devices --timeout 20 --json-output .artifacts/M33/device-readiness-now.json`
+exited0: physical Watch Ultra3/watchOS27.0.1 is paired/available but disconnected;
+paired iPhone is unavailable. This discovery is not installed-build verification.
+
+`xcrun devicectl device install app --device 00008310-000823642660E01E --timeout 45 --json-output .artifacts/M33/watch-install-resumed.json .artifacts/M33/device-derived-data/Build/Products/Release-watchos/PadelScoreWatch.app`
+exited1 in sandbox, CoreDeviceService initialization timeout. Same installation
+outside sandbox with JSON output watch-install-resumed-unsandboxed.json exited1:
+Bluetooth connection invalidated before tunnel creation, L2CAP open-channel error.
+No installation success or new on-device observation is claimed.
+
+Requested owner connect/unlock the paired iPhone by cable and unlock nearby Watch
+with Wi-Fi/Bluetooth enabled, then report readiness (or an already installed1.0(8)).
+Awaiting that connection/identity input. VoiceOver remains OWNER_CONFIRMED_VERIFIED.
+`./Scripts/project-status.sh validate` and `git diff --check` exited0 for the
+resumed documentation update. Full gate and remaining physical rows are pending.
