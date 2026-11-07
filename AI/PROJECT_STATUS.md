@@ -2,8 +2,8 @@
 
 **Phase:** release-preparation
 **Current milestone:** M35
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32, M33, M34
-**Next milestone:** M35
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32, M33, M34, M35
+**Next milestone:** None
 **Blockers:** None.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
@@ -836,3 +836,18 @@ threads have no Reply control, so the exact updated response is in the COMPLETE
 six-page review attachment, explicitly referenced in Review Notes. No fictitious
 conversation message is claimed. Existing monitor now binds the actual submission;
 no publication/countdown/price write. M35 REVIEW awaits final evidence validation.
+
+
+## M35 completed — submitted for review
+
+M35 DONE. Exact closure candidate `0f4a649fb8893d6d78f17bf8f68a8ef202354d56`
+passed actual distribution validation,exit0,M35_DISTRIBUTION_VERIFIED. Uploaded
+source remains `85e49918d004d73b526ae04582d6b18e3250e3b7`; only AI Markdown
+changed. Actual joint submission `1827bb2a-e66d-4ef9-9b01-9faf11baafd3`,
+app1.0(8) and lifetime IAP6825393394 are WAITING_FOR_REVIEW. Exact L/R response
+is delivered in the COMPLETE six-page Review Information attachment, with a pointer
+in Review Notes; no new conversation message is claimed. Existing hourly monitor
+binds this submission and remains read-only. AFTER_APPROVAL unchanged; no public
+launch, promotion countdown or price write. No next development milestone.
+[Handoff](handoffs/M35-handoff.md); [final evidence](evidence/M35/milestone-verification.md).
+Stop after post-DONE static/status/continuity and source synchronization.

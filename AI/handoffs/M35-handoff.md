@@ -4,68 +4,62 @@
 
 ## Milestone
 
-`M35` — Serve-side Release and Resubmission; status `BLOCKED`.
+`M35` — Serve-side Release and Resubmission; status `DONE`.
 
 ## Summary
 
-Owner accepted M34 human checks and authorized release. Build1.0(8) was archived,
-signed, inspected, Apple-validated, uploaded once, processed VALID and selected.
-Current metadata,238 images and the four-page L/R guide are saved and verified.
-Revised4.3(a) response is ready. Sending and joint app+IAP submission require the
-owner to restore the expired App Store Connect browser login; neither has occurred.
+Build1.0(8) and the first lifetime IAP were submitted together through ordinary ASC
+UI and are WAITING_FOR_REVIEW. The exact updated L/R response was delivered in a
+six-page review attachment: two response pages plus the four unchanged guide pages.
+Old Removed submissions offered no Reply control, so no separate sent message is
+claimed. AFTER_APPROVAL is preserved; no publication or price countdown yet.
 
 ## Changed files
 
-- `AI/evidence/M35/` — owner acceptance, exact response/notes and distribution proof.
-- M35 contract, `AI/PROJECT_STATUS.md`, this handoff — actual state and resume steps.
-- M34 handoff — follow-up link to owner acceptance, preserving historical readiness.
-- Ignored `.artifacts/M35/` — signed archive/IPA, server receipts, local helpers,
-  assets/readbacks and existing monitor binding. Preserve this directory.
+- `AI/evidence/M35/` — owner acceptance, final response/Notes, preparation and final verification.
+- M35 contract and `AI/PROJECT_STATUS.md` — actual submission and completion.
+- M34 handoff — accepted human-check follow-up; M34 remains fully DONE.
+- Ignored `.artifacts/M35/` — archive/IPA, raw server/UI evidence, six-page PDF and monitor binding. Preserve it.
 
 ## Validation
 
 | Field | Evidence |
 | --- | --- |
-| Verified source SHA | `85e49918d004d73b526ae04582d6b18e3250e3b7` |
+| Verified closure SHA | `0f4a649fb8893d6d78f17bf8f68a8ef202354d56` |
+| Uploaded archive source | `85e49918d004d73b526ae04582d6b18e3250e3b7` |
 | M34 readiness SHA | `38c5e0ee38ae076df8264210c2d0c65c5058f580` |
-| Exact preparation command | `/Applications/Xcode.app/Contents/Developer/usr/bin/python3 .artifacts/M35/validate-distribution.py --prepared-only` |
+| Exact command | `/Applications/Xcode.app/Contents/Developer/usr/bin/python3 .artifacts/M35/validate-distribution.py` |
 | Exit code | 0 |
-| Timestamp | 2026-11-07T18:25:00.409191+00:00–2026-11-07T18:25:00.428000+00:00 |
-| Report | `.artifacts/M35/evidence/prepared-validation.json` |
-| Verdict | DISTRIBUTION_PREPARED_NOT_SUBMITTED; not M35 completion |
-| Counts | Reused693 definitions/1156 invocations,0 failures/skips/expected/runtime warnings; fresh tests0; signed archive/export1,IPA inspection1,Apple validation1,upload1;42 metadata records,238 placements/233 unique images/14locales |
+| Timestamp | 2026-11-07T19:04:10.792761+00:00–2026-11-07T19:04:11.101797+00:00 |
+| Report | `.artifacts/M35/evidence/distribution-validation.json` |
+| Counts | Reused693definitions/1156invocations,zero adverse;fresh tests0;one signed archive/export,IPA inspection,Apple validation and upload;42metadata records,238placements/233unique images/14locales;6PDF pages |
+| Verdict | M35_DISTRIBUTION_VERIFIED; application and IAP WAITING_FOR_REVIEW |
 
-[Detailed commands, exits and bindings](../evidence/M35/distribution-preparation.md).
-Full `make milestone ID=M35` was NOT RUN under the unchanged-input owner route;
-final distribution validation was NOT RUN because reply/submission evidence does
-not exist. No fabricated passing receipt or UI message/submission ID.
+[Exact commands, raw proof paths and limits](../evidence/M35/milestone-verification.md).
+Full `make milestone ID=M35` NOT RUN under the owner-approved unchanged-input route.
+Post-DONE static/status/continuity and source synchronization must pass before stopping.
 
 ## Tests
 
-No app/test/configuration changes. M35 preflight validated M34 readiness, unchanged
-inputs and complete prior native results; current static/status/continuity passed.
-Self-review checked metadata claims and demo instructions against the approved
-M33 behavior and guide. German/French descriptions were shortened within4000
-characters; the response is3991 characters. Review attachment replacement preserved
-the original record/bytes; Apple processing eventually reached COMPLETE. This is
-Builder self-review, not independent review.
+No app/test/configuration changes or repeated full suites. Complete prior M33
+results remain verified through M34. Fresh signed distribution/package/upload and
+server checks passed. The full response text, original guide page/image bytes,
+COMPLETE upload checksum and actual joint submission were verified. All six PDF
+pages were visually reviewed. This is Builder self-review, not independent review.
 
 ## Known issues
 
-Expired App Store Connect browser session prevents final reply and ordinary
-submission. API readback18:25:10Z: PREPARE_FOR_SUBMISSION, AFTER_APPROVAL,
-build8 selected/VALID, IAP READY_TO_SUBMIT; only historical submissions COMPLETE.
-No public availability or offer-end date. Existing monitor remains read-only until
-actual submission binding and a compatible M34/M35 pricing-proof guard are complete;
-historical M30 scheduler must not run against build8.
+No blocking distribution issue. Apple review and future public availability remain
+external states. Submission`1827bb2a-e66d-4ef9-9b01-9faf11baafd3` contains selected
+VALID build`da38d24f-dd8f-4c6e-a512-7c2771b3262b` and IAP6825393394.
+Existing monitor is bound to this submission and remains read-only. Future offer
+scheduling requires compatible M34/M35 pricing proofs; the historical M30 scheduler
+must not be applied to build8. No countdown or price mutation occurred.
 
 ## Next step
 
-Owner signs in to the existing App Store Connect Chrome tab. Resume M35 directly:
-send `.artifacts/M35/reply.txt` with `AI/store-assets/m33-review/review-guide.pdf`,
-observe the sent message/attachment, then ordinary app+first IAP submission. Preserve
-actual evidence and update existing `padel-score-lifetime`, not a new automation.
-Run final `validate-distribution.py`, mark DONE only after success, then required
-static/status/continuity and source synchronization. Do not re-upload build8,
-recreate COMPLETE assets or rewrite immutable upload/readiness receipts. Later
-AI-only closure commits preserve the canonical archive source above.
+No next development milestone. Await Apple review through the existing hourly
+monitor. On a substantive new review message, respond to that actual message; do
+not resend the already delivered PDF or recreate the submission. On genuine public
+availability, correlate exact build/submission/release date before any offer action.
+This Builder stops after closure checks and public source synchronization.

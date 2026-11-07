@@ -1,7 +1,7 @@
 # M35 — Serve-side Release and Resubmission
 
 **ID:** M35
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M34
 **Validation:** make milestone ID=M35
 **Handoff:** AI/handoffs/M35-handoff.md
@@ -27,9 +27,9 @@ submission bypass or publication/launch countdown before genuine availability.
 
 - [x] Owner confirmation and distribution authorization are recorded; M34 DONE and its exact readiness evidence validates against unchanged inputs.
 - [x] Signed1.0(8) archive/export, three bundled executable/profile/signature identities, IPA reinspection and Apple validation pass; one upload processes VALID and is selected.
-- [ ] Actual metadata/images, L/R Review Notes and four-page guide are saved and read back; updated factual response is delivered to App Review with ordinary joint app+first lifetime IAP resubmission.
-- [ ] Actual server submission/build/IAP state, source provenance and the existing monitor identity agree, with no promotion countdown before public availability.
-- [ ] Distribution evidence validation and post-DONE static/status/continuity pass; exact commands, exits, SHA and reports are recorded.
+- [x] Actual metadata/images, L/R Review Notes and four-page guide are saved and read back; updated factual response is delivered to App Review with ordinary joint app+first lifetime IAP resubmission.
+- [x] Actual server submission/build/IAP state, source provenance and the existing monitor identity agree, with no promotion countdown before public availability.
+- [x] Distribution evidence validation and post-DONE static/status/continuity pass; exact commands, exits, SHA and reports are recorded.
 
 ## Validation for unchanged verified release
 
@@ -74,3 +74,11 @@ Ordinary UI confirmed 2 Items Submitted; server readback confirms submission
 WAITING_FOR_REVIEW. The exact response and guide were delivered as the COMPLETE
 six-page review attachment with a pointer in Review Notes. Final distribution
 validation is next; no separate conversation message was sent.
+
+
+## Completion
+
+Actual final distribution validation exit0 at
+`0f4a649fb8893d6d78f17bf8f68a8ef202354d56`: M35_DISTRIBUTION_VERIFIED.
+[Final evidence](../evidence/M35/milestone-verification.md). Post-DONE closure
+checks are required before this Builder stops.
