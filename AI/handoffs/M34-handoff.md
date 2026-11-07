@@ -60,3 +60,7 @@ were not run. No upload, submission, publication, price or monitor change.
 No next development milestone. The developer owns the three candidate-bound human
 rows: subjective candidate review, Archive/Organizer validation and distribution
 decision. Nothing is submitted by this milestone. Stop after closure checks pass.
+
+Closure: all three required post-DONE checks passed, exit0, at
+`9a9b31378423fb210800ae2ee978893dd6a05050`. Final evidence-commit checks use
+`.artifacts/M34/post-done-final-receipt.json`.

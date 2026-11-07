@@ -116,3 +116,18 @@ Run `make static`, `./Scripts/project-status.sh validate` and
 Actual completion-commit receipt: `.artifacts/M34/post-done-initial-receipt.json`.
 Final evidence-commit receipt: `.artifacts/M34/post-done-final-receipt.json`.
 These are not claimed successful until their actual recorded exit0 results.
+
+Completion commit `9a9b31378423fb210800ae2ee978893dd6a05050` passed all three exact closure commands,
+exit0 each, UTC 2026-11-07T17:01:12.793425+00:00–2026-11-07T17:01:43.434874+00:00.
+Only AI Markdown continuity records changed since the verified candidate.
+The final evidence commit repeats the same checks in the final receipt above.
+
+## Validation helper bindings
+
+| File | SHA256 |
+| --- | --- |
+| `.artifacts/M34/reuse-validation/run.py` | `9ec4fd3c8dd182d1ca84590afc199d442927bbe02d2f287deea1de4e2ca6820e` |
+| `.artifacts/M34/reuse-validation/worker.sh` | `176a50b5203bac4e7873a5d548167ead1fa97ac4b8cbe6fa1f2beb81d6b7503f` |
+| `.artifacts/M34/reuse-validation/package.py` | `02592d1854bb1379a157d5208af65d85c9643316e5b9e3df1e21ddaf3c125e29` |
+| `.artifacts/M31/impact-reuse-policy/validate-coverage.py` | `90a162f65ebfc27a5459862931f32db900bce5ea41219862a15a3aab4604a7c8` |
+| `AI/evidence/M34/owner-verification-reuse.md` | `c4b083635b663b4bd3d2daafe80d0a4267157c8b677dd99d36ea7fde72b76921` |

@@ -780,3 +780,7 @@ PENDING: subjective review, Archive/Organizer and distribution decision. No uplo
 submission, push, publication, price or monitor change. No next development milestone.
 [Handoff](handoffs/M34-handoff.md); [exact evidence](evidence/M34/milestone-verification.md).
 Stop this Builder after DONE-commit static/status/continuity succeeds.
+
+Post-DONE static/status/continuity all passed, exit0, at `9a9b31378423fb210800ae2ee978893dd6a05050`
+(2026-11-07T17:01:43.434874+00:00). Final evidence-commit checks are retained in
+`.artifacts/M34/post-done-final-receipt.json`. This Builder stops after those checks.
