@@ -65,3 +65,10 @@ After the plan decision, set M33 IN_PROGRESS and implement the chosen contract.
 Prepare build 1.0 (8), source-bound local materials/Review Notes, the affected
 physical check and truthful six-domain evidence. Build 7 remains withdrawn with
 the existing monitor hold; no distribution or submission is authorized here.
+
+## Later execution checkpoint
+
+The approved split was applied in8eeec63f5287639b86e637803b436b005a6901da.
+Planning is no longer blocked. The later owner answer “The Watch is unavailable”
+creates a separate physical-environment blocker; current M33 status is BLOCKED.
+See physical-check.md and digital-verification.md for actual completed preparation.

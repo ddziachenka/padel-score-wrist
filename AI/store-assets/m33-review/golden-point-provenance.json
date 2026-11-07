@@ -1,0 +1,21 @@
+{
+  "source_sha": "8eeec63f5287639b86e637803b436b005a6901da",
+  "build": "1.0 (8)",
+  "sha256": "0ad81c7ea991343958261fda9438c32b27fdb962f732618caf1aabf90e85295d",
+  "capture_kind": "native-simctl-unmodified",
+  "command": "Scripts/simulator.sh run -- bash .artifacts/M33/inspect-watch.sh",
+  "exit_code": 0,
+  "device_udid": "A7CBB23C-F823-4850-BE4B-CAD76922DD08",
+  "runtime": "watchOS26.1",
+  "dimensions": [
+    324,
+    394
+  ],
+  "seed": "storeGoldenPoint",
+  "language": "en",
+  "region": "en_US",
+  "content_size": "Large",
+  "original": ".artifacts/M33/watch-storeGoldenPoint.png",
+  "captured_at": "2026-11-07T05:06:50.795967+00:00",
+  "limits": "Simulator screenshot; no physical VoiceOver/gesture/readability claim"
+}

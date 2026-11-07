@@ -1,0 +1,896 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "3529D17B-2B97-4ED4-ACAC-0DA18CE826E1.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "ru_RU-04-access_0_BDF44356-029E-480A-869B-D14F0577B28F.png",
+        "timestamp": 1794028467.35
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "0FF748B4-30EF-41A9-ADB3-CFDB54E63332.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "ru_RU-03-americano_0_20953490-EFE2-4A8A-BFE4-6EBDA280917C.png",
+        "timestamp": 1794028461.935
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BE603AB2-A24C-49B3-A033-67829CF44EF7.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "ru_RU-02-match_0_03AE9E16-3EE2-40FD-92CC-9F7F89FB8884.png",
+        "timestamp": 1794028458.757
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "D000802F-0D5B-4893-914E-15CA100456BF.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "ru_RU-01-start_0_FD3CC80A-6D78-4708-83B2-1F92F7C5B65F.png",
+        "timestamp": 1794028455.271
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BAA20AA1-9FF5-443C-BB1E-8B73191D134A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "nb_NO-04-access_0_0E6344FD-BB17-4783-A6E1-DB417FF12E45.png",
+        "timestamp": 1794028445.845
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "DEDF1C07-5576-4DD6-BAB0-D4637B7911B7.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "nb_NO-03-americano_0_ED2195B4-DC22-4232-AA64-A9E26FD625A6.png",
+        "timestamp": 1794028440.414
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "E46E9E02-AD45-4DE5-B939-91BA247070F3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "nb_NO-02-match_0_9B8F0417-B6B4-41FD-9F7B-47C35EC792B2.png",
+        "timestamp": 1794028437.276
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "0E2B6B1F-6402-4E74-9CAD-467CF9ABFE48.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "nb_NO-01-start_0_5EBF7139-7CB0-4BBC-BA5A-906AF3F85F52.png",
+        "timestamp": 1794028433.783
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "08B9DAC9-51A2-40CF-8055-2ED69CB1E31C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "fi_FI-04-access_0_9BED3686-D0E4-4AE0-8F67-E8073AB8C1B3.png",
+        "timestamp": 1794028424.433
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "78A99E84-3C64-443E-9B4A-7B3B74F7D41A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "fi_FI-03-americano_0_3F3E1520-F9C5-4B77-A050-8C49F0F0A6A2.png",
+        "timestamp": 1794028419.002
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BC8FB9E7-591D-486C-9CDB-1BCF91561135.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "fi_FI-02-match_0_75153507-8AEB-467E-90FF-E895A8C59E1E.png",
+        "timestamp": 1794028415.865
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BE941B26-5D27-482B-929C-704F6E600774.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "fi_FI-01-start_0_615D56E0-5AAA-4FA6-93DA-1438C0F105C4.png",
+        "timestamp": 1794028412.362
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "03CEBBD9-1F62-44CE-80B9-E4F71292893A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "da_DK-04-access_0_31506E83-04F5-4881-8140-B12C8B1E36CF.png",
+        "timestamp": 1794028403.019
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "DDCEAA73-93A6-4E0C-BE0F-8793BA7F3F19.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "da_DK-03-americano_0_62E4A6FE-9FDC-4457-8455-A9F47F03F45E.png",
+        "timestamp": 1794028397.536
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "9B53CC8E-E46F-4338-9C8F-D94EBC57EBD3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "da_DK-02-match_0_4D018DF2-F1CF-4C55-B953-EEDD666DB041.png",
+        "timestamp": 1794028394.363
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "61FF2E33-D5BD-422F-B4E1-B2EF3E7F435F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "da_DK-01-start_0_E526AF20-FE8A-4420-84B2-1E7067D055FB.png",
+        "timestamp": 1794028390.886
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "7C946A7D-87F5-4E6A-90DF-4A11C82FA6BA.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "sv_SE-04-access_0_BFB60EB4-E017-4B3D-BF79-2D2D05390E6C.png",
+        "timestamp": 1794028381.479
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "15709E84-4D62-41D2-932C-3BF825DD8EB7.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "sv_SE-03-americano_0_B7119B60-2815-4D20-A958-EC9E3AA874B1.png",
+        "timestamp": 1794028375.995
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "5D8DD7CF-7FBF-4A2A-82F1-C0D0E18F29BD.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "sv_SE-02-match_0_D736D931-327A-4FE9-AAFC-A84884C17F26.png",
+        "timestamp": 1794028372.843
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "259F4EF3-36A0-42CD-8693-7E206C452244.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "sv_SE-01-start_0_412DA0E7-7BFD-4557-9CDE-B07AC014A143.png",
+        "timestamp": 1794028369.371
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "D28367C9-6D1F-45D1-9086-D87F2382253C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "de_DE-04-access_0_1976503B-FE81-40C3-B5A0-4CD462E08309.png",
+        "timestamp": 1794028359.903
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "F791B621-B621-4980-A743-C7D2F45A2C1F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "de_DE-03-americano_0_7C20EB29-101E-4CCA-9679-CB80992C9518.png",
+        "timestamp": 1794028354.425
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "54745C98-F411-4D7A-A48B-A901B12B5EF0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "de_DE-02-match_0_777B0966-19FC-4D78-8F16-8049A0F61D7F.png",
+        "timestamp": 1794028351.305
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "5C3E144A-02B8-4E75-A2AD-96922A74A880.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "de_DE-01-start_0_F8BA2C1C-A997-4C9E-9D2E-C7C64567C371.png",
+        "timestamp": 1794028347.768
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "AA00A5B0-08C6-40FD-AF92-AF24A15C58AD.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "nl_NL-04-access_0_549DDDC2-C34A-415C-8864-710EC55B8FD2.png",
+        "timestamp": 1794028338.163
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "FD04960A-C78E-46E4-B9BE-6B1C8D0CFDD8.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "nl_NL-03-americano_0_7BD8FBA3-1C77-4C20-BC2B-C306DCF5FEB8.png",
+        "timestamp": 1794028332.675
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "F980DCCC-1E9C-4FBA-A97B-B1FB344DB84B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "nl_NL-02-match_0_7FC5BBBD-540E-4A79-8326-5C49A162C5DB.png",
+        "timestamp": 1794028329.543
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "1071AB14-11F1-4613-9C07-759E7BCD998B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "nl_NL-01-start_0_220F043B-07C3-4DBD-A1AA-AB44A31BB252.png",
+        "timestamp": 1794028326.046
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "B7B4D91D-4679-4A5E-943F-864522C02E90.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "pt_BR-04-access_0_8C7FC9C9-754A-4173-ADD3-772EC074CB51.png",
+        "timestamp": 1794028316.436
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "8F7FEB57-39DB-4657-BF91-5A11FA0B3E01.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "pt_BR-03-americano_0_31FF16F6-680A-485F-886A-9631EC643C4E.png",
+        "timestamp": 1794028310.979
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "66CD67D5-6E41-4328-9480-EDD4B1D3F2A5.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "pt_BR-02-match_0_3A9FA10F-5AD1-4E1B-9B59-B79237C9123E.png",
+        "timestamp": 1794028307.848
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BEE4B36C-D19D-4602-B03B-6D2F71806221.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "pt_BR-01-start_0_E8791231-AA35-493B-A589-04137C3C31A9.png",
+        "timestamp": 1794028304.335
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "49D75F0D-2550-41F0-9A3D-D2E6C564DEC6.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "pt_PT-04-access_0_B7748E8B-DAD4-42A1-A147-23DAFBF36376.png",
+        "timestamp": 1794028294.981
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "42A22DD2-AF2F-4303-A7BA-2D88B59D7BDE.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "pt_PT-03-americano_0_26AED42B-D204-414D-8405-2A1422D1C4C4.png",
+        "timestamp": 1794028289.563
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "4224985F-D266-48E7-9127-A054808495C3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "pt_PT-02-match_0_CFFF8367-2EEA-494B-BB57-DEF7FA298EB5.png",
+        "timestamp": 1794028286.43
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A0D4F537-5BD4-4D0C-8CCD-8B88FD8259B0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "pt_PT-01-start_0_51EBD981-DEA2-484E-BA96-1A5CE9F208AC.png",
+        "timestamp": 1794028282.967
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "216AE241-19B1-432D-8F6B-8AE8AB523A30.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "fr_FR-04-access_0_CB21570A-BD49-49BA-A55F-F7A8A0A9FBB9.png",
+        "timestamp": 1794028273.61
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "0E75128B-8390-485B-A0EB-37A35F475459.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "fr_FR-03-americano_0_DDBB2045-9180-4B6B-996E-F0554B96F69E.png",
+        "timestamp": 1794028268.153
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A1D50742-C2F1-4D03-8F85-2688834DE942.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "fr_FR-02-match_0_C3B6DC02-42DF-478B-91E8-190B382927E7.png",
+        "timestamp": 1794028264.989
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "D9DF103B-ED97-4618-BE4F-D25DE8EC38EF.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "fr_FR-01-start_0_43C3A458-6AC8-4C14-942E-B07F4DFB6E57.png",
+        "timestamp": 1794028261.485
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "6B249810-7939-412F-9E61-CAC064FB1D48.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "it_IT-04-access_0_C3294E54-2C86-4FCD-9391-F3B3A97A7096.png",
+        "timestamp": 1794028252.109
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "4B19760C-5EA1-4AA8-91CC-AFD94752C92F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "it_IT-03-americano_0_72EAF9BA-DC82-4826-A780-CD03F8505B7C.png",
+        "timestamp": 1794028246.67
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "1EC0CCFF-EA95-4065-9610-8E8DBDF5155A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "it_IT-02-match_0_C3724D8E-1186-4554-8BBD-75E41A4A7FE8.png",
+        "timestamp": 1794028243.543
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "4FDEE4A4-C68C-43CF-B0F3-DFC20F0E8BBC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "it_IT-01-start_0_CF894D89-3F6F-4A08-B65E-4725D08AB450.png",
+        "timestamp": 1794028240.042
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "99B1B4AD-CAB9-4536-AF63-F69ED8BFB05C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "es_MX-04-access_0_9F80D37B-6AB2-4040-AEEF-F2FD3731D2D9.png",
+        "timestamp": 1794028230.606
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "C749AB6B-ECC5-46AC-B0A1-C7E849284D78.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "es_MX-03-americano_0_6150ED4D-85B0-4A16-B56F-289FB117EE32.png",
+        "timestamp": 1794028225.137
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "F135674A-2836-4E04-8B24-99AE80237665.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "es_MX-02-match_0_D933DB3E-8F0F-4829-91FC-21758007E0E6.png",
+        "timestamp": 1794028221.966
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "4EB1F8B6-6868-499A-88C5-0B456752FB97.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "es_MX-01-start_0_F379D11B-B848-47EF-9C78-A25DA235280B.png",
+        "timestamp": 1794028218.483
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "1898979A-0349-4EA8-B3E7-C7D00C1C81DA.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "es_ES-04-access_0_8BDF2C03-40FD-4021-B953-43640E15AF9D.png",
+        "timestamp": 1794028209.073
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "83AC5A24-369E-4840-B4D2-48151DD2B2E9.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "es_ES-03-americano_0_06DA6A64-2254-480D-BBE4-57A1176B2E79.png",
+        "timestamp": 1794028203.599
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "69E125AE-870A-4CBF-BE43-F9025520B824.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "es_ES-02-match_0_DC4BEA07-D422-4629-9310-6D4DC2FE36E7.png",
+        "timestamp": 1794028200.462
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "95012F0D-A1C5-441B-9C4B-AA7D2F61A867.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "es_ES-01-start_0_9EBD56D8-61C1-4657-9CD9-787DA6D7AA69.png",
+        "timestamp": 1794028196.889
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "F7572D19-0B8D-4309-BA5F-022EAA5373FC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "en_US-04-access_0_0AC7BAB5-CDE9-4369-9D68-B1C1F712FB0D.png",
+        "timestamp": 1794028187.076
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "41F73037-C15B-477D-BA3A-1B27F31DBFAE.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "en_US-03-americano_0_8F53E768-E8A4-4BD2-A1B8-5737D9F90122.png",
+        "timestamp": 1794028181.431
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "DF2D5381-02B9-4754-8EE3-040E3D53DF19.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "en_US-02-match_0_B75997FA-6E2D-44A2-B815-17226FB135B0.png",
+        "timestamp": 1794028178.273
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "D36978C8-999F-44C4-95A4-E317DC65EB02.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "en_US-01-start_0_A6D556EF-CF36-4386-A2B7-9F25FF367C14.png",
+        "timestamp": 1794028174.705
+      }
+    ],
+    "testIdentifier": "CompanionUITests/testLocalizedGallery()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScorePhoneUITests/CompanionUITests/testLocalizedGallery"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BA52790E-5979-4BE3-AC8A-BFB2C5170DC0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-ru_RU-03-known-score_0_AF616FEF-74D6-4A93-8018-7FD61A2336EB.png",
+        "timestamp": 1794028923.663
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "F2C0AA7D-EBC9-4DDD-AB55-EBE947E3A5FE.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-ru_RU-02-rally-correction_0_80A063E6-9C69-4221-B9EB-32C10D269F5E.png",
+        "timestamp": 1794028914.193
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "451C8FB1-5BD8-4857-A0EB-CF0B562FC993.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-ru_RU-01-gesture-simulation_0_555CF2A8-0F87-4123-8253-213E91588A5E.png",
+        "timestamp": 1794028902.117
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BE30DFA0-4A85-47EC-8499-415D0E10B162.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-nb_NO-03-known-score_0_5B9A02A3-A655-44D4-81B6-A34C1B6ECC56.png",
+        "timestamp": 1794028890.704
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "3885BF5D-FFC5-4645-877C-66B5128FD01E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-nb_NO-02-rally-correction_0_F928EBA4-FA67-411D-9578-61698ADE54B7.png",
+        "timestamp": 1794028881.328
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "FEBA87CC-C927-448D-B05C-A2F89FCCCCA0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-nb_NO-01-gesture-simulation_0_735AE5E3-1A17-4A77-AB46-661EC60EFEDC.png",
+        "timestamp": 1794028869.366
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "B9A4ADB9-DEE8-44D6-89F3-4BDCE61573DA.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-fi_FI-03-known-score_0_A501B9D1-3E9C-44A1-8558-CC259DB38479.png",
+        "timestamp": 1794028857.95
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "C5F719D7-E32C-46B1-9819-B05EEBAA8CAC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-fi_FI-02-rally-correction_0_EBEC436F-4038-43CC-A90A-37772D1D1CAB.png",
+        "timestamp": 1794028848.69
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "082E8DBD-A7CC-4B54-8609-B70F957E371C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-fi_FI-01-gesture-simulation_0_A5A0FAF6-F740-4E61-810C-4A29D6D305F4.png",
+        "timestamp": 1794028836.81
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "2E95DA0B-C6F6-4010-ADB0-D37B9B19358F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-da_DK-03-known-score_0_EA9EE762-D30E-48BB-9C02-9FDF44A91367.png",
+        "timestamp": 1794028825.531
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "0587A8C0-14E8-43D8-8E02-9415BBA38E35.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-da_DK-02-rally-correction_0_E2901D1D-4D6B-4E8A-B296-43152D7CDA7D.png",
+        "timestamp": 1794028816.306
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "E41260C8-C3ED-4E0D-B3BC-9B1A23B58D88.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-da_DK-01-gesture-simulation_0_046A6CDF-0602-413F-880F-689E6A9230A3.png",
+        "timestamp": 1794028804.378
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "30EBD784-C236-4174-86F2-1A08B55CE241.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-sv_SE-03-known-score_0_1AA1E70B-766A-4EEE-929D-6753BE8BA7E7.png",
+        "timestamp": 1794028793.076
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A29D1BC8-92E9-48F7-9CA9-D1AAEC4263B4.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-sv_SE-02-rally-correction_0_0DF6D225-F4BB-48B4-8430-EFAED1025327.png",
+        "timestamp": 1794028783.872
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "0E4D5014-F5B2-4D01-9B2D-C62EED9627EF.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-sv_SE-01-gesture-simulation_0_A3D36869-1A93-440A-9D10-C68C1A5E2FA6.png",
+        "timestamp": 1794028771.989
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "502EA877-E713-4610-9E16-A49BD92F5381.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-de_DE-03-known-score_0_A2244B09-F940-4E0D-B694-854011D8F649.png",
+        "timestamp": 1794028760.702
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "4AD359BD-A9B3-4C3D-A54E-42A382D81568.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-de_DE-02-rally-correction_0_7DC817C3-0C46-490D-83AB-AD1CFA5B9B9B.png",
+        "timestamp": 1794028751.474
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "62573A9B-11E2-4272-9F6B-DEB61226B8A2.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-de_DE-01-gesture-simulation_0_564624CA-A28B-4789-9809-103BCF0E02C1.png",
+        "timestamp": 1794028739.563
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "CDC01BE8-D96F-49C2-B1DB-FF6D5AD2426F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-nl_NL-03-known-score_0_29EBB718-C964-4394-A3B0-8B3413F2701C.png",
+        "timestamp": 1794028728.202
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "36BD3EC2-15C2-4626-B7FD-89335C016ED3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-nl_NL-02-rally-correction_0_9CFCDC81-EF18-475D-8E2B-1C9084D3D318.png",
+        "timestamp": 1794028718.985
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "E1FC6E11-096B-484B-9C13-A3FF1F6F1387.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-nl_NL-01-gesture-simulation_0_339846F0-635F-4618-AD32-E30360C4D2F8.png",
+        "timestamp": 1794028707.067
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "B0DC763C-F665-47C4-94FE-1BAFF8390148.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-pt_BR-03-known-score_0_D110A14D-A31C-4EFA-A316-C17EFE855446.png",
+        "timestamp": 1794028695.795
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A41E2B08-03E8-4BEF-84CE-7D1436C253B9.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-pt_BR-02-rally-correction_0_BF747554-D52B-4C47-BB49-3A44FD5B1A28.png",
+        "timestamp": 1794028686.67
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "4E18FA3F-F4A1-45B0-9FC2-A046F571CC4F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-pt_BR-01-gesture-simulation_0_90C8BEEF-3B07-44D2-A144-D316F41A0106.png",
+        "timestamp": 1794028674.71
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "7B29E4DF-4134-48C1-99EF-F8429C51B3CD.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-pt_PT-03-known-score_0_FD3AA857-3D3B-4E99-9883-809FD7A89266.png",
+        "timestamp": 1794028663.356
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "BA2CF3C5-557C-4133-9BF2-5E4A76253CF4.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-pt_PT-02-rally-correction_0_F7075B5D-8BB6-43D3-9555-B66C82A270B9.png",
+        "timestamp": 1794028654.023
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "5362FC17-0DBC-4794-8314-E918B029F8E8.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-pt_PT-01-gesture-simulation_0_AE33AEED-FB41-4C78-91A8-252B76DD92E6.png",
+        "timestamp": 1794028641.983
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "7F661DE6-C633-40C1-A929-EE1973318770.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-fr_FR-03-known-score_0_8A1388FE-8B25-4946-85B0-4C0AC4EACEAA.png",
+        "timestamp": 1794028630.663
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "274D3495-25E4-4488-846A-EBCCFB3B7F22.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-fr_FR-02-rally-correction_0_F9820948-9871-4FE3-8AE9-BD2CA4A71DEE.png",
+        "timestamp": 1794028621.413
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "E92F8E9A-434C-47FC-A518-5F219FCAAFB7.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-fr_FR-01-gesture-simulation_0_F6D529A8-4A16-48FB-912F-8B4D4DBE8BE0.png",
+        "timestamp": 1794028609.376
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "9B57DD01-30C7-4AC9-8D63-4FBBC1221CBD.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-it_IT-03-known-score_0_BCC8BD92-8A51-4AE3-8606-B4039D0F09BE.png",
+        "timestamp": 1794028598.073
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "5D2F4EE6-D2E0-4695-A690-D2EE18DD6ADA.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-it_IT-02-rally-correction_0_07C38189-4EF8-45AE-8596-DB7EF96BB6F2.png",
+        "timestamp": 1794028588.654
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "9416B018-EED3-4D37-A34D-3F8AA6E8CA6F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-it_IT-01-gesture-simulation_0_D09A7958-3B5E-4535-8EDA-BFD9F854EC87.png",
+        "timestamp": 1794028576.618
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "9F79C3BE-E7ED-48AF-89ED-617EF87ADD80.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-es_MX-03-known-score_0_E5D69C6D-F849-4047-A4B0-7CE58A62CBBD.png",
+        "timestamp": 1794028565.222
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "B4EBFBA9-B060-4EAC-9B62-8FC2FF1B940A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-es_MX-02-rally-correction_0_8E314FBE-C19F-4447-AE69-637F8F1C8AFE.png",
+        "timestamp": 1794028556.013
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "2E2CCE1C-FEB7-4356-91FA-003205BDE22E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-es_MX-01-gesture-simulation_0_4A1C8DCD-A8BB-4C3C-AEFA-D626A59CBE45.png",
+        "timestamp": 1794028544.133
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "E47F2951-D116-4D9A-8C54-E383CABA34B6.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-es_ES-03-known-score_0_ADD39B16-9FFE-4D43-A7E5-9B289941FC16.png",
+        "timestamp": 1794028532.84
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "7BB0E7B2-54BC-4335-A166-82021310ADFF.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-es_ES-02-rally-correction_0_2FC679BD-F0FE-4DD8-A0FC-23B3924CA86F.png",
+        "timestamp": 1794028523.672
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "0E1BAAF0-1135-444F-BD65-5BF44936EFD9.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-es_ES-01-gesture-simulation_0_2E68A2E1-CDCF-4630-9AAE-6BE6961018F9.png",
+        "timestamp": 1794028511.742
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "A301280D-2DE0-4AC7-B989-9E9FA57BC60B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-en_US-03-known-score_0_210019DF-2726-4E8D-8473-5C65ED44E925.png",
+        "timestamp": 1794028500.375
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "7C20481C-F7AE-4C93-B563-E1EF5C72DB84.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-en_US-02-rally-correction_0_6220F893-E368-4EF4-86B4-86053CC6C40D.png",
+        "timestamp": 1794028491.101
+      },
+      {
+        "configurationName": "Default",
+        "deviceId": "2D44D21F-290D-4325-8DED-B98D29977585",
+        "deviceName": "iosai-padel-score-m16-phone-current-1acada2a5b10847bfaf2560f32b377e90644a8e36834e70e0bb178b50151ae99",
+        "exportedFileName": "49B3CC54-967E-401C-BB5A-9FE49C7B2D55.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "m25-phone-en_US-01-gesture-simulation_0_4F90D93B-B91C-42CB-A4AD-ACFD8559344B.png",
+        "timestamp": 1794028479.029
+      }
+    ],
+    "testIdentifier": "CompanionUITests/testM25RecoveryGallery()",
+    "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScorePhoneUITests/CompanionUITests/testM25RecoveryGallery"
+  }
+]

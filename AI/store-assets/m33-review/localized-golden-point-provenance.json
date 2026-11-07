@@ -1,0 +1,107 @@
+{
+  "source_sha": "8eeec63f5287639b86e637803b436b005a6901da",
+  "build": "1.0 (8)",
+  "command": "Scripts/simulator.sh run -- bash .artifacts/M33/inspect-watch.sh",
+  "exit_code": 0,
+  "device_udid": "A7CBB23C-F823-4850-BE4B-CAD76922DD08",
+  "runtime": "watchOS26.1",
+  "dimensions": [
+    324,
+    394
+  ],
+  "capture_kind": "native-simctl-unmodified",
+  "scope": "local review-guide supplements; not replacements for the canonical ASC gallery or physical acceptance",
+  "captures": [
+    {
+      "language": "en",
+      "file": "localized-golden-point/en.png",
+      "original": ".artifacts/M33/watch-storeGoldenPoint.png",
+      "sha256": "0ad81c7ea991343958261fda9438c32b27fdb962f732618caf1aabf90e85295d",
+      "captured_at": "2026-11-07T05:06:50.795967+00:00"
+    },
+    {
+      "language": "es",
+      "file": "localized-golden-point/es.png",
+      "original": ".artifacts/M33/golden-es.png",
+      "sha256": "79b88c53f1f32219edfd0892863f1c67053662faf7a481d0b7d2532db12e0df7",
+      "captured_at": "2026-11-07T05:07:12.650786+00:00"
+    },
+    {
+      "language": "it",
+      "file": "localized-golden-point/it.png",
+      "original": ".artifacts/M33/golden-it.png",
+      "sha256": "23f6be9013751ff9620232b26c7bb84fbec820488c0acc5df44358d165cf2786",
+      "captured_at": "2026-11-07T05:07:17.055703+00:00"
+    },
+    {
+      "language": "fr",
+      "file": "localized-golden-point/fr.png",
+      "original": ".artifacts/M33/golden-fr.png",
+      "sha256": "4e750461b2a2a750e2a355c948b84004591ae4d3dd07b972e94cc1ee430f6f4b",
+      "captured_at": "2026-11-07T05:07:21.437980+00:00"
+    },
+    {
+      "language": "pt-PT",
+      "file": "localized-golden-point/pt-PT.png",
+      "original": ".artifacts/M33/golden-pt-PT.png",
+      "sha256": "b1a3e9cf924748adfaaa56236f051e6804fbf6e8d05e39c7308140b4c4374e85",
+      "captured_at": "2026-11-07T05:07:25.802500+00:00"
+    },
+    {
+      "language": "pt-BR",
+      "file": "localized-golden-point/pt-BR.png",
+      "original": ".artifacts/M33/golden-pt-BR.png",
+      "sha256": "70ecae2d768f59352ef25c06da469a2a9763db2c5a64d2e04c97bce2332122ef",
+      "captured_at": "2026-11-07T05:07:30.194750+00:00"
+    },
+    {
+      "language": "nl",
+      "file": "localized-golden-point/nl.png",
+      "original": ".artifacts/M33/golden-nl.png",
+      "sha256": "5daed6e00426ca88e1d2d39c136f57ff4bd6b17990fcb6063aa7736f34193028",
+      "captured_at": "2026-11-07T05:07:34.582466+00:00"
+    },
+    {
+      "language": "de",
+      "file": "localized-golden-point/de.png",
+      "original": ".artifacts/M33/golden-de.png",
+      "sha256": "469f823bd4c4ab80de9a4a78b2f59ce549af739b022fc99c152327d52fc45e30",
+      "captured_at": "2026-11-07T05:07:38.938761+00:00"
+    },
+    {
+      "language": "sv",
+      "file": "localized-golden-point/sv.png",
+      "original": ".artifacts/M33/golden-sv.png",
+      "sha256": "257baee8585cc10dc2cc677bb1bafd85c95950c179b710df959dd8c2f153373c",
+      "captured_at": "2026-11-07T05:07:43.292895+00:00"
+    },
+    {
+      "language": "da",
+      "file": "localized-golden-point/da.png",
+      "original": ".artifacts/M33/golden-da.png",
+      "sha256": "4f21164d196de32865cdcf9a13fdf4f76eeed61e558ce32abd6dbe85a5e1ce50",
+      "captured_at": "2026-11-07T05:07:47.692460+00:00"
+    },
+    {
+      "language": "fi",
+      "file": "localized-golden-point/fi.png",
+      "original": ".artifacts/M33/golden-fi.png",
+      "sha256": "c2d1ccee6b57bf00330551d40a34147d2ea902dd820c26213d609758e2474199",
+      "captured_at": "2026-11-07T05:07:52.086558+00:00"
+    },
+    {
+      "language": "nb",
+      "file": "localized-golden-point/nb.png",
+      "original": ".artifacts/M33/golden-nb.png",
+      "sha256": "8477c6dfd6cd8f88bef92f7d72994b67bc41de9cd3d427fd6571bcbb55d4ee29",
+      "captured_at": "2026-11-07T05:07:56.462659+00:00"
+    },
+    {
+      "language": "ru",
+      "file": "localized-golden-point/ru.png",
+      "original": ".artifacts/M33/golden-ru.png",
+      "sha256": "a54152c33561a93814eec4aec6dda8928c6275e47c3d91bce86cadb2224fbd71",
+      "captured_at": "2026-11-07T05:07:08.281207+00:00"
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "source_sha": "8eeec63f5287639b86e637803b436b005a6901da",
+  "scope": "bounded preparation, not full milestone verification",
+  "passed_bundles": [
+    {
+      "label": "watch-gallery",
+      "bundle": ".artifacts/M25/m33-watch-gallery-1.xcresult",
+      "definitions": 14,
+      "passed_definitions": 14,
+      "failed_definitions": 0,
+      "skipped_definitions": 0,
+      "expected_failures": 0,
+      "runtime_warnings": 0,
+      "invocations": 14,
+      "invocation_results": {
+        "Passed": 14
+      },
+      "startTime": "2026-11-07T04:24:58.019000Z",
+      "finishTime": "2026-11-07T05:05:54.699000Z"
+    },
+    {
+      "label": "phone-gallery",
+      "bundle": ".artifacts/M25/m33-phone-gallery-1.xcresult",
+      "definitions": 2,
+      "passed_definitions": 2,
+      "failed_definitions": 0,
+      "skipped_definitions": 0,
+      "expected_failures": 0,
+      "runtime_warnings": 0,
+      "invocations": 2,
+      "invocation_results": {
+        "Passed": 2
+      },
+      "startTime": "2026-11-07T05:08:55.880000Z",
+      "finishTime": "2026-11-07T05:22:05.696000Z"
+    },
+    {
+      "label": "watch-minimum",
+      "bundle": ".artifacts/M33/watch-feature.xcresult",
+      "definitions": 500,
+      "passed_definitions": 500,
+      "failed_definitions": 0,
+      "skipped_definitions": 0,
+      "expected_failures": 0,
+      "runtime_warnings": 0,
+      "invocations": 954,
+      "invocation_results": {
+        "Passed": 954
+      },
+      "startTime": "2026-11-07T05:22:47.012000Z",
+      "finishTime": "2026-11-07T05:32:06.551000Z"
+    },
+    {
+      "label": "watch-current",
+      "bundle": ".artifacts/M33/watch-current-feature.xcresult",
+      "definitions": 6,
+      "passed_definitions": 6,
+      "failed_definitions": 0,
+      "skipped_definitions": 0,
+      "expected_failures": 0,
+      "runtime_warnings": 0,
+      "invocations": 6,
+      "invocation_results": {
+        "Passed": 6
+      },
+      "startTime": "2026-11-07T05:58:16.201000Z",
+      "finishTime": "2026-11-07T06:00:27.122000Z"
+    },
+    {
+      "label": "phone-unit",
+      "bundle": ".artifacts/M33/phone-unit.xcresult",
+      "definitions": 21,
+      "passed_definitions": 21,
+      "failed_definitions": 0,
+      "skipped_definitions": 0,
+      "expected_failures": 0,
+      "runtime_warnings": 0,
+      "invocations": 30,
+      "invocation_results": {
+        "Passed": 30
+      },
+      "startTime": "2026-11-07T06:00:54.149000Z",
+      "finishTime": "2026-11-07T06:01:09.196000Z"
+    },
+    {
+      "label": "phone-ui",
+      "bundle": ".artifacts/M33/phone-feature.xcresult",
+      "definitions": 2,
+      "passed_definitions": 2,
+      "failed_definitions": 0,
+      "skipped_definitions": 0,
+      "expected_failures": 0,
+      "runtime_warnings": 0,
+      "invocations": 2,
+      "invocation_results": {
+        "Passed": 2
+      },
+      "startTime": "2026-11-07T06:01:13.272000Z",
+      "finishTime": "2026-11-07T06:03:44.652000Z"
+    },
+    {
+      "label": "watch-minimum-name",
+      "bundle": ".artifacts/M33/watch-minimum-name-recovered.xcresult",
+      "definitions": 1,
+      "passed_definitions": 1,
+      "failed_definitions": 0,
+      "skipped_definitions": 0,
+      "expected_failures": 0,
+      "runtime_warnings": 0,
+      "invocations": 1,
+      "invocation_results": {
+        "Passed": 1
+      },
+      "startTime": "2026-11-07T06:10:50.716000Z",
+      "finishTime": "2026-11-07T06:11:32.005000Z"
+    },
+    {
+      "label": "watch-current-name",
+      "bundle": ".artifacts/M33/watch-current-name-recovered.xcresult",
+      "definitions": 1,
+      "passed_definitions": 1,
+      "failed_definitions": 0,
+      "skipped_definitions": 0,
+      "expected_failures": 0,
+      "runtime_warnings": 0,
+      "invocations": 1,
+      "invocation_results": {
+        "Passed": 1
+      },
+      "startTime": "2026-11-07T06:29:40.510000Z",
+      "finishTime": "2026-11-07T06:30:25.392000Z"
+    }
+  ],
+  "total_definitions_across_bundles": 547,
+  "total_invocations_across_bundles": 1010,
+  "deduplicated": false,
+  "failed_attempts": [
+    {
+      "bundle": ".artifacts/M33/watch-minimum-name.xcresult",
+      "exit_code": 65,
+      "definitions": 1,
+      "failed": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "runtime_warnings": 0,
+      "failures": [
+        {
+          "failureText": "Application 'com.dziachenka.padelscore.watchkitapp' has not loaded accessibility",
+          "targetName": "PadelScoreWatchUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "PlayerNamesUITests/testLongServerNameWrapsWithTheServingSide()",
+          "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/PlayerNamesUITests/testLongServerNameWrapsWithTheServingSide",
+          "testName": "testLongServerNameWrapsWithTheServingSide()"
+        }
+      ],
+      "start": "2026-11-07T06:04:52.648000+00:00",
+      "finish": "2026-11-07T06:08:07.880000+00:00",
+      "status": "FAILED; preserved, not converted to pass"
+    },
+    {
+      "bundle": ".artifacts/M33/watch-current-name.xcresult",
+      "exit_code": 65,
+      "definitions": 1,
+      "failed": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "runtime_warnings": 0,
+      "failures": [
+        {
+          "failureText": "XCTAssertEqual failed: (\"Our score, 0\") is not equal to (\"Our score, 1\")",
+          "targetName": "PadelScoreWatchUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "PlayerNamesUITests/testLongServerNameWrapsWithTheServingSide()",
+          "testIdentifierURL": "test://com.apple.xcode/PadelScore/PadelScoreWatchUITests/PlayerNamesUITests/testLongServerNameWrapsWithTheServingSide",
+          "testName": "testLongServerNameWrapsWithTheServingSide()"
+        }
+      ],
+      "start": "2026-11-07T06:08:23.551000+00:00",
+      "finish": "2026-11-07T06:08:44.717000+00:00",
+      "status": "FAILED; preserved, not converted to pass"
+    }
+  ]
+}

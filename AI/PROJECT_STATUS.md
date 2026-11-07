@@ -4,7 +4,7 @@
 **Current milestone:** M33
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32
 **Next milestone:** M33
-**Blockers:** Fresh affected physical Watch readability/VoiceOver acceptance is pending in M33; preparation can proceed. Audit-ownership conflict resolved by owner-approved M33 audit/materials then M34 readiness split. See AI/evidence/M33/planning-blocker.md.
+**Blockers:** M33 required fresh physical Watch readability/VoiceOver acceptance: owner confirms “The Watch is unavailable” on 2026-11-07. Digital preparation is recorded in the M33 handoff, but M33 cannot be DONE and M34 cannot start. Audit-ownership conflict resolved by approved M33→M34 split. See AI/evidence/M33/physical-check.md.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -659,3 +659,22 @@ Post-DONE `make static`, status validation and continuity against the verified S
 all pass, exit0, at `3082ab4e81f77bdb8338c766481e6d9091504ce4` (2026-11-06T21:24:14Z). Only AI Markdown
 closure records changed. Final evidence-commit repeats use
 `.artifacts/M32/post-done-final-receipt.json`; this Builder then stops. M33 remains PLANNED.
+
+
+## M33 digital preparation — BLOCKED, 2026-11-07
+
+Owner-approved split applied: M33 owns audit/materials and M34 later readiness;
+every full gate remains. Build1.0(8) source8eeec63f5287639b86e637803b436b005a6901da
+has signed Release/package checks and fresh14-locale materials:210 native images,
+28 creatives,104 local site copies,13 compact golden-point locales and4page guide.
+All images/guide pages were visually reviewed; nothing published or sent.
+
+Eight successful preparatory native bundles total547 definitions/1010 invocations
+(summed, not unique coverage), zero adverse counts. Two initial long-name attempts
+remain FAILED; the same test passed on each runtime after bounded owned-device
+restarts. Exact commands, UTC/counts/failures: [digital evidence](evidence/M33/digital-verification.md).
+Static/template/site/material/localization/status checks pass. No full M33 gate
+has run: owner says “The Watch is unavailable”, so required fresh on-wrist side
+readability and VoiceOver acceptance are BLOCKED. Six domain records are INCOMPLETE.
+M33 is not DONE, M34 remains PLANNED, and no READY_FOR_HUMAN is claimed.
+[Handoff](handoffs/M33-handoff.md); [physical protocol](evidence/M33/physical-check.md).
