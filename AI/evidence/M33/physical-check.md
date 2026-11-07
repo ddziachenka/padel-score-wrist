@@ -107,3 +107,21 @@ Phone installed identity confirmed, exit0:
 `xcrun devicectl device info apps --device 00008150-000104A10284401C --bundle-id com.dziachenka.padelscore --timeout 30 --json-output .artifacts/M33/phone-installed-connected.json`
 returns PadelScore/com.dziachenka.padelscore, version1.0, bundleVersion8.
 Watch identity still awaits owner readback.
+
+## Watch still on an older build — owner readback
+
+Owner replied “На Watch пока другая версия” to the build8/Match-demo question.
+This is explicitly NOT a build8 identity or demo/readability pass. Do not credit
+the requested physical scenarios from the earlier installed version.
+
+The locally installed phone package is1.0(8) and contains the Watch1.0(8) bundle
+with WKRunsIndependentlyOfCompanionApp=true and the correct companion identifier.
+Phone connection details exited0 and confirm connected/wired, Developer Mode
+enabled (`.artifacts/M33/phone-connection-details.json`). The read-only
+`devicectl device pairings list` attempt exited1 with ArgumentParser validation
+error, providing no pairing result (`phone-watch-pairing.json`).
+
+Asked owner to inspect iPhone Watch → My Watch → Padel Score, use the normal
+Install button if offered, and report installation/progress/already-installed state.
+Explicitly instructed not to remove the app or turn off Show App on Apple Watch.
+Awaiting this state to advance delivery without risking existing real game data.
