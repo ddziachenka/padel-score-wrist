@@ -8,6 +8,17 @@ their recorded commits; they never override this file.
 
 ## The workflow
 
+### M34 owner exception — full M33 verification reuse, 2026-11-07
+
+The owner explicitly permits crediting the complete passing M33 checks when code
+remains unchanged. [Exact instruction and bounded route](evidence/M34/owner-verification-reuse.md).
+For M34 only, this supersedes the duplicated full test runs stated below: prove
+unchanged code/test/configuration/material inputs and validate M33's native results;
+retain fresh release-specific builds, packaging, policy and exact-SHA checklist.
+Original full M34 make commands are not run or reported passed. Actual helper
+receipts establish owner-authorized readiness. No old waiver or distribution
+permission is inherited; post-DONE static/status/continuity remain mandatory.
+
 ### Current sequence — next serve side, 2026-11-06
 
 The owner approved M32 (implementation, depending on DONE M30). On 2026-11-07 the

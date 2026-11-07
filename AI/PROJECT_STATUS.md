@@ -4,7 +4,7 @@
 **Current milestone:** M34
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32, M33
 **Next milestone:** M34
-**Blockers:** None. M33 DONE: full gate passed; affected physical checks are owner-confirmed. M34 remains PLANNED for separate release readiness verification.
+**Blockers:** None.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -726,3 +726,41 @@ Post-DONE static/status/continuity all passed, exit0, at
 closure records changed since the verified candidate. The final evidence-commit
 checks are retained in `.artifacts/M33/post-done-final-receipt.json`; this Builder
 then stops. M34 remains PLANNED.
+
+
+## M34 started — 2026-11-07
+
+M34 IN_PROGRESS. Baseline `a80826a35ddd319875ef18b000c099ee95fba353` is clean main.
+M33 is DONE with six complete typed domain records, zero open product P0/P1,
+and owner-confirmed affected physical checks. Revalidation preserves historical
+failed results and physical-evidence limits. Only AI Markdown closure records
+changed since verified M33; build1.0(8) and prepared materials remain identical.
+Next: self-review readiness/identity, freeze REVIEW, run full make milestone ID=M34,
+then full make release on the same exact SHA. No old verification waiver applies.
+No upload, submission, publication, price or monitor change is authorized here.
+
+
+## M34 candidate freeze — full gates pending
+
+M34 REVIEW. Builder self-review confirms six complete M33 domain records and
+unchanged build1.0(8)/material inputs. The Blockers field is normalized to exact
+None for the existing strict release parser. See evidence/M34/preparation.md.
+The next clean commit is the candidate for both full gates. No readiness verdict
+is claimed until actual exact-SHA release success.
+
+
+## M34 owner-directed verification reuse
+
+Owner explicitly permits crediting complete M33 checks when code is unchanged.
+M34 returns to IN_PROGRESS to prepare identity-bound reuse and fresh release-only
+validation. Exact instruction: evidence/M34/owner-verification-reuse.md. No full
+M34 make command has started or passed. Build1.0(8) inputs remain unchanged.
+
+
+## M34 revised candidate freeze
+
+M34 REVIEW under the fresh owner-authorized full M33 reuse decision. No app, test,
+configuration or material bytes changed. The actual same-SHA helper will validate
+full M33 native coverage and run every unique release check; original M34 make
+commands will remain explicitly NOT RUN. Current static and strict native parser
+smoke checks pass. Exact result and candidate-bound human checklist are pending.
