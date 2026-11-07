@@ -10,11 +10,13 @@ their recorded commits; they never override this file.
 
 ### Current sequence — next serve side, 2026-11-06
 
-The owner approved M32 (implementation, depending on DONE M30), followed by a
-separate M33 Release Readiness Revalidation. Both use their full unchanged
-`make milestone ID=<ID>` gate; M33 also runs `make release CANDIDATE=<full-SHA>`.
+The owner approved M32 (implementation, depending on DONE M30). On 2026-11-07 the
+owner explicitly split the unfinished follow-up into M33 Serve-side Audit and Store
+Materials, then M34 Release Readiness Revalidation depending on DONE M33's six
+domain records. [Decision](evidence/M33/planning-blocker.md). Each uses its full
+unchanged `make milestone ID=<ID>` gate; M34 also runs `make release CANDIDATE=<full-SHA>`.
 The November 2 affected-verification exception below is limited to its named
-M31/M26/M30 resubmission sequence and does not carry into M32, M33 or M33's release.
+M31/M26/M30 resubmission sequence and does not carry into M32, M33, M34 or M34's release.
 One milestone per Builder session applies. The owner personally withdrew build 7;
 no resubmission is authorized by the serving-side plan.
 
