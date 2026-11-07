@@ -124,3 +124,10 @@ send the prepared response+guide, observe actual sent evidence, submit app+first
 IAP normally, verify actual server IDs, bind monitor, run final validation and only
 then mark M35 DONE. Required closure checks remain explicit; preparation alone is
 not a completed distribution milestone.
+
+Checkpoint `c10d5928deb155b9d19954be1dfe1fa002f7de8b` passed `make static`,
+`./Scripts/project-status.sh validate` and
+`./Scripts/project-status.sh continuity 85e49918d004d73b526ae04582d6b18e3250e3b7`,
+all exit0. Exact UTC intervals, commands and log hashes:
+`.artifacts/M35/checkpoint/receipt.json`. This verifies the blocked handoff and
+AI-only continuity; it does not turn preparation into completed submission.
