@@ -2,6 +2,12 @@
 
 **Policy status:** current
 
+Current owner follow-up,2026-11-07: all three human rows below were subsequently
+confirmed VERIFIED by the owner, who authorized distribution. Their original
+PENDING state remains historical readiness evidence. See
+[accepted checklist](../evidence/M35/owner-human-checklist.md) and
+[M35 distribution handoff](M35-handoff.md). M34 is fully DONE.
+
 ## Milestone
 
 `M34` — Release Readiness Revalidation; status `DONE`.

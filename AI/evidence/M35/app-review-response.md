@@ -18,7 +18,7 @@ I compared existing padel scorekeepers when defining these requirements. The app
 https://github.com/ddziachenka/padel-score-wrist
 https://chatgpt.com/s/cx_6ae79dbd0bf88191b49d1e670d468457
 
-The discussion is historical; the attached guide and current Review Notes describe build 8. The repository also includes a reusable development-workflow scaffold, distinct from the app implementation.
+The discussion is historical; the guide and Review Notes describe build 8. The repository also includes a reusable development-workflow scaffold, distinct from the app implementation.
 
 Please reassess the updated Watch experience. If a concern remains about a particular binary component, asset, metadata element or workflow, could you identify it so I can address it precisely?
 

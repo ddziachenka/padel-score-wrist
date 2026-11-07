@@ -4,7 +4,7 @@
 **Current milestone:** M35
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32, M33, M34
 **Next milestone:** M35
-**Blockers:** None.
+**Blockers:** M35 awaits owner sign-in to App Store Connect to send the prepared response and submit app1.0(8) with the first lifetime IAP.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -794,3 +794,28 @@ Actual signed archive/export/validation/upload and current server readback remai
 required. Owner acceptance is recorded without invented Organizer logs.
 See evidence/M35/owner-release-authorization.md. AFTER_APPROVAL and pricing policy
 remain; no new submission result or public release is claimed yet.
+
+## M35 distribution prepared — awaiting browser login
+
+M34 remains fully DONE; all three human rows are owner-confirmed VERIFIED in
+evidence/M35/owner-human-checklist.md. M35 is BLOCKED only by expired browser
+authentication. Owner asks for autonomous routine work; no renewed release
+permission is needed.
+
+Source `85e49918d004d73b526ae04582d6b18e3250e3b7`: signed1.0(8) archive/export,
+IPA reinspection, Apple validation and one upload all passed. ASC build
+`da38d24f-dd8f-4c6e-a512-7c2771b3262b` is VALID and selected. All42 metadata
+records,238 ordered placements/14locales and the four-page guide are saved and
+verified. Review Notes describe L/R; the revised3991-character rejection response
+is prepared but NOT SENT. Public main contains the archive source.
+
+Actual preparation gate exit0: `.artifacts/M35/evidence/prepared-validation.json`,
+2026-11-07T18:25:00Z, DISTRIBUTION_PREPARED_NOT_SUBMITTED. Fresh ASC readback shows
+PREPARE_FOR_SUBMISSION, AFTER_APPROVAL, lifetime READY_TO_SUBMIT and no new
+submission. Existing hourly monitor `padel-score-lifetime` now binds build8 in
+BUILD_BOUND_AWAITING_SUBMISSION, read-only; no launch countdown or price change.
+
+After login, send the existing response+guide, use ordinary joint app+IAP submission,
+record actual IDs/readbacks, update the same monitor and complete final validation.
+No code changes or repeated full tests are needed for this documentation-only
+continuation. [Handoff](handoffs/M35-handoff.md); [evidence](evidence/M35/distribution-preparation.md).
