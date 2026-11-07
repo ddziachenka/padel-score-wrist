@@ -1,15 +1,13 @@
-# M33 fresh physical acceptance — in progress
+# M33 fresh physical acceptance — complete by owner verification
 
-Source: `8eeec63f5287639b86e637803b436b005a6901da`, build 1.0 (8).
-Current status: VoiceOver is OWNER_CONFIRMED_VERIFIED from the owner's explicit
-2026-11-07 message: “VoiceOver отметь как проверенный, а физический Watch давай сейчас проверим”.
-This records the owner's verification, not agent-observed audio or invented device,
-language, timing or individual utterance measurements. No repeat VoiceOver request.
-Other fresh physical checks are IN_PROGRESS. M29 acceptance remains historical.
-
-The earlier unavailable-device/install-failure checkpoint below is preserved as
-history; the owner has now resumed the physical Watch check. Installed build8
-identity and visual/interaction observations will be recorded as actually obtained.
+Source:`8eeec63f5287639b86e637803b436b005a6901da`, build1.0(8).
+Current result: OWNER_CONFIRMED_VERIFIED for affected VoiceOver, installed Watch
+build, Match/golden/Undo, odd-block Americano, largest text/long name, Always On,
+correction/relaunch, finished state, known-score preview and pending-set state.
+Exact questions/answers and observation limits: [owner-physical-verification.md](owner-physical-verification.md).
+No agent-observed audio, physical video, timings or recognition metrics are claimed.
+Full automatic M33 gate remains mandatory. The chronology below preserves earlier
+failed installations, pending protocols and the superseded unavailable-device state.
 
 ## Installation evidence
 
@@ -125,3 +123,9 @@ Asked owner to inspect iPhone Watch → My Watch → Padel Score, use the normal
 Install button if offered, and report installation/progress/already-installed state.
 Explicitly instructed not to remove the app or turn off Show App on Apple Watch.
 Awaiting this state to advance delivery without risking existing real game data.
+
+## Physical checkpoint closed
+
+All protocol rows are now supplied by the owner reports linked above. Prior
+BLOCKED/pending text is chronology, not the current result. M33 proceeds to its
+full gate; it is not DONE or READY_FOR_HUMAN from physical acceptance alone.

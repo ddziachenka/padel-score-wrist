@@ -4,20 +4,16 @@
 
 ## Milestone
 
-`M33` — Serve-side Audit and Store Materials; status `IN_PROGRESS`.
+`M33` — Serve-side Audit and Store Materials; status `REVIEW`.
 
 ## Summary
 
-Resumed2026-11-07: owner confirms VoiceOver verified and requests physical Watch
-checks now. VoiceOver is OWNER_CONFIRMED_VERIFIED; actual installed identity and
-remaining visual/interaction observations are pending. Earlier preparation and
-blocker details below are historical until the resumed physical record is complete.
-
-Applied the owner-approved M33 audit/materials → M34 readiness split while retaining
-all full gates. Prepared build1.0(8), refreshed14-locale materials and a four-page
-review guide, and completed bounded digital preparation. The owner explicitly
-confirms the physical Watch is unavailable. Fresh affected on-wrist readability
-and VoiceOver acceptance remain mandatory; M33 is not DONE and M34 is unstarted.
+Build1.0(8),14-locale materials and four-page review guide are prepared. The owner
+has now confirmed installed Watch build and all affected physical checks, including
+VoiceOver. Exact reports/limits: AI/evidence/M33/owner-physical-verification.md.
+Six Builder domain records have complete applicable typed coverage and zero known
+product P0/P1. M33 enters REVIEW for its full unchanged clean-main gate; no full
+pass or DONE is claimed yet. The approved M33→M34 split retains every gate.
 
 ## Changed files
 
@@ -29,7 +25,7 @@ and VoiceOver acceptance remain mandatory; M33 is not DONE and M34 is unstarted.
   28 creatives, provenance and104 local site copies from the same capture source.
 - `AI/store-assets/m33-review/` — four-page PDF, source-bound golden-point captures
   and14 localized explanatory snippets. Review Notes remain an unsent draft.
-- `AI/audits/M33-*-revalidation.md`, `AI/evidence/M33/` — six INCOMPLETE Builder
+- `AI/audits/M33-*-revalidation.md`, `AI/evidence/M33/` — six complete Builder
   records, actual digital evidence, preserved failure details and physical protocol.
 
 ## Validation
@@ -40,14 +36,14 @@ and VoiceOver acceptance remain mandatory; M33 is not DONE and M34 is unstarted.
 | Build/test/material source | `8eeec63f5287639b86e637803b436b005a6901da` |
 | Baseline | `57e0d5918c265abab071435ce5c7e8dbb7a6b286` |
 | Exact declared command | `make milestone ID=M33` |
-| Exit code | Not executed: scope incomplete because required physical Watch unavailable |
+| Exit code | Pending full clean REVIEW/main run; physical prerequisite now complete |
 | Timestamp | 2026-11-07 UTC; exact native intervals in digital-verification.md and native summaries |
 | Report | `AI/evidence/M33/digital-verification.md`; actual bundles/logs under `.artifacts/M33/` and gallery bundles under `.artifacts/M25/` |
 | Counts | Eight successful bundles:547 definitions /1010 invocations, summed not deduplicated; all pass, zero adverse. Two prior failed attempts preserved separately. No full M33 count or release verdict |
 
 Signed Release device build and package/signature checks pass, exit0, actual
-phone/Watch/launcher1.0(8). Physical installation failed, exit1; no installed
-candidate or physical pass is claimed. Fresh static, template, material, site,
+phone/Watch/launcher1.0(8). Initial direct Watch installation failed, exit1; subsequent phone1.0(8) install
+and API readback passed, and owner confirms Watch installation/physical checks. Fresh static, template, material, site,
 localization and project-status checks pass. Optional disabled analyzers did not
 run and are not credited as passes. Exact commands/results are in the linked report.
 
@@ -66,20 +62,17 @@ applies only to unchanged behavior and cannot close the new serve-side checks.
 
 ## Known issues
 
-Required physical readability/VoiceOver is BLOCKED by hardware availability.
-The signed candidate could not connect to the Watch (Bluetooth L2CAP/tunnel error).
-No verified installation identity or physical observations exist for build8.
-Two initial long-name test attempts failed (accessibility launch on10, first tap
-on27); each passed after a bounded owned-device restart. Original failures remain
-FAILED, root cause not established, no test/assertion changed.
-Six domain records remain INCOMPLETE; zero observed product P0/P1 is not a completed
-audit. Earlier failures are preserved. App Review4.3(a) resolution is not guaranteed.
+No known reproducible product P0/P1. Initial Watch connection failures remain
+preserved; the phone install/API1.0(8) succeeded and the owner confirms new Watch
+installation. Physical results are owner-reported, without agent screen/audio
+capture or invented metrics. Two initial long-name native failures remain FAILED;
+unchanged tests subsequently passed after bounded owned-device restarts.
+The full milestone gate must pass before DONE; supplements never substitute for it.
 
 ## Next step
 
-Resume M33 when the Watch is available: preserve owner data, establish installed
-build8 identity and complete physical-check.md, resolve any findings, finalize the
-six records, commit clean REVIEW/main and run full `make milestone ID=M33`.
-Only after DONE/static/status/continuity may a new session execute M34's full
-milestone and exact-SHA release gates. No upload, reply, submission, public push,
-deployment, price or monitor change occurred in this M33 work.
+From the next committed clean REVIEW/main candidate run the complete unchanged
+`make milestone ID=M33`, inspect exact native counts, fix any blocking findings and
+rerun as required, then record actual evidence/DONE and static/status/continuity.
+M34 remains PLANNED for a separate session. No upload, reply, submission, public
+push, deployment, price or monitor change is authorized by this checkpoint.

@@ -1,7 +1,7 @@
 # M33 — Serve-side Audit and Store Materials
 
 **ID:** M33
-**Status:** IN_PROGRESS
+**Status:** REVIEW
 **Depends on:** M32
 **Validation:** make milestone ID=M33
 **Handoff:** AI/handoffs/M33-handoff.md
@@ -33,7 +33,7 @@ old readiness/monitor guard remain historical. No inherited affected-only waiver
 
 ## Acceptance criteria
 
-- [ ] Current applicable six-domain coverage and affected device checks are complete;
+- [x] Current applicable six-domain coverage and affected device checks are complete;
       unavailable required hardware blocks readiness, and all P0/P1 issues are fixed.
 - [x] Updated local screenshots and review text demonstrate R/L and receivers' choice,
       without claiming competitor uniqueness or guaranteed review acceptance.

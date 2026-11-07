@@ -76,3 +76,10 @@ Physical acceptance and the unchanged full M33 milestone gate are NOT complete.
 The owner explicitly says the Watch is unavailable. Six domain records remain
 INCOMPLETE and M33 BLOCKED; M34 is PLANNED. No readiness verdict, App Review
 submission, uploaded build, public deployment or promotion change.
+
+## Later physical closure
+
+The earlier physical blocker is superseded by owner-physical-verification.md:
+all requested affected physical checks are owner-confirmed. Six domain records
+are completed for the clean REVIEW/main full gate. No source/material byte changed
+as part of physical closure; historical failures remain preserved.
