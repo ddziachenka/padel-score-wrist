@@ -1,10 +1,10 @@
-# Build 1.0 (8) Review Notes
+BUILD 8 RESUBMISSION: The attached six-page PDF contains our updated response to Guideline 4.3(a) (pages 1-2), followed by the illustrated L/R review guide (pages 3-6). Prior submissions were removed, so their message threads no longer offer Reply.
 
 Independent Apple Watch app (watchOS10+) with iPhone companion (iOS17+). Real games run on Watch without the phone. iPhone offers interactive examples and optional purchase/restore. No account/sign-in required.
 
 NEW IN BUILD8: Next-serve side beside the server. R/L are right/left from the server facing the net, for the NEXT rally. Match alternates from the score, including tie-breaks; deuce is R and advantage L. Both golden-point rules show L/R and Receivers’ choice. Americano uses the documented convention: EVERY server block starts R, then alternates within the block, including odd-length blocks. Undo/correction previews derive side from restored score/service. Side is hidden after Finish or while new-set serving awaits confirmation. VoiceOver reads the full side name.
 
-Quick check: Watch About → Try the scoreboard (or iPhone Demo → Match) starts40–30/L. Award THEM:40–40/LR/Receivers’ choice. Undo:L. iPhone Demo → Americano starts10–10/R; one point:L; next server block:R. Disposable examples do not affect real games or consume free games. See the attached four-page build8 guide.
+Quick check: Watch About → Try the scoreboard (or iPhone Demo → Match) starts40–30/L. Award THEM:40–40/LR/Receivers’ choice. Undo:L. iPhone Demo → Americano starts10–10/R; one point:L; next server block:R. Disposable examples do not affect real games or consume free games. See the attached build8 guide.
 
 GESTURES: Optional and OFF for each new game. Compatible Watch/watchOS11+ with Double Tap enabled in system settings. Enable Gesture scoring in setup/game menu; keep playable score visible and awake. One series=TWO thumb/index contacts, proposing US. Wait for Pending: US, then repeat TWO contacts for THEM. A third series cancels. Five-second deadline is fixed from the first recognized series; later series do not extend it. One uncancelled rally saves at deadline. Touch team buttons cancel pending input and score immediately. Leaving/lowering wrist cancels. Practice from setup/menu never changes real games. iPhone practice explicitly simulates input.
 

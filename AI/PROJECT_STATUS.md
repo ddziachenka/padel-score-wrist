@@ -4,7 +4,7 @@
 **Current milestone:** M35
 **Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32, M33, M34
 **Next milestone:** M35
-**Blockers:** M35 awaits owner sign-in to App Store Connect to send the prepared response and submit app1.0(8) with the first lifetime IAP.
+**Blockers:** None.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -819,3 +819,20 @@ After login, send the existing response+guide, use ordinary joint app+IAP submis
 record actual IDs/readbacks, update the same monitor and complete final validation.
 No code changes or repeated full tests are needed for this documentation-only
 continuation. [Handoff](handoffs/M35-handoff.md); [evidence](evidence/M35/distribution-preparation.md).
+
+
+## M35 resumed after owner login
+
+Owner reports ready; authenticated ASC session observed. Continue the prepared
+response and ordinary app+IAP submission. No new binary or asset upload.
+
+
+## M35 submitted, final closure pending
+
+App1.0(8) and first lifetime IAP submitted together at2026-11-07T18:53:50.524Z.
+Submission `1827bb2a-e66d-4ef9-9b01-9faf11baafd3` and both products are
+WAITING_FOR_REVIEW; build8 remains VALID, AFTER_APPROVAL unchanged. Closed old
+threads have no Reply control, so the exact updated response is in the COMPLETE
+six-page review attachment, explicitly referenced in Review Notes. No fictitious
+conversation message is claimed. Existing monitor now binds the actual submission;
+no publication/countdown/price write. M35 REVIEW awaits final evidence validation.
