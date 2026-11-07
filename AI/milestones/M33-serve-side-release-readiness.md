@@ -40,5 +40,5 @@ old readiness/monitor guard remain historical. No inherited affected-only waiver
 - [x] Full make milestone ID=M33 passes at clean REVIEW/main with exact SHA,
       exit, counts and report in the handoff; all six records have complete typed
       coverage and zero open P0/P1 findings.
-- [ ] Static/status/continuity validate the DONE record; human distribution decision
+- [x] Static/status/continuity validate the DONE record; human distribution decision
       remains pending and this session submits nothing.

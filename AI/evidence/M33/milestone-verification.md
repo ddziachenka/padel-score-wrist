@@ -135,3 +135,27 @@ deployment, price change or promotion-monitor mutation occurred here.
 **VERIFIED_COMMIT:** `fd27bdc459a23e7880b3beb16711b92e6fc962aa`
 **Verdict:** PASSED milestone verification
 **Verification completed:** 20261107T144743Z
+
+## Post-DONE validation
+
+DONE commit `197cb7e696074634418ae096a57bcf5f04725a36` passed all three required checks,
+recorded at 2026-11-07T14:51:03.013221Z. Each returned exit0:
+
+```sh
+make static
+./Scripts/project-status.sh validate
+./Scripts/project-status.sh continuity fd27bdc459a23e7880b3beb16711b92e6fc962aa
+```
+
+Actual outputs are `.artifacts/M33/post-done-initial-static.log`,
+`post-done-initial-status.log` and `post-done-initial-continuity.log`; the exact
+HEAD/command/exit receipt is `.artifacts/M33/post-done-initial-receipt.json`.
+Continuity confirms identical verified build inputs, with only twelve AI Markdown
+closure records changed. The final acceptance checkbox is checked from these
+results, not from a skipped or pending check.
+
+The final Markdown-only evidence commit will receive the same three required
+checks. Their actual final-HEAD results are retained under
+`.artifacts/M33/post-done-final-{static,status,continuity}.log` and
+`.artifacts/M33/post-done-final-receipt.json`. This Builder stops after they pass;
+M34 remains PLANNED for a new session.

@@ -72,7 +72,8 @@ remain disclosed in the domain records; neither is a new required-gate failure.
 
 ## Next step
 
-M34 — Release Readiness Revalidation, in a new session after this Builder's required
-post-DONE static/status/continuity checks. M34 retains its full milestone and exact-
+M34 — Release Readiness Revalidation, in a new session. Required post-DONE
+static/status/continuity passed at197cb7e696074634418ae096a57bcf5f04725a36, exit0;
+exact receipts and final evidence-commit checks are linked in milestone-verification.md. M34 retains its full milestone and exact-
 SHA release gates. No upload, reply, submission, public push, deployment, price or
 monitor change occurred in M33. No release approval is claimed.
