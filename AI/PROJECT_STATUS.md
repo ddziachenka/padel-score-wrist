@@ -1,9 +1,9 @@
 # Project status
 
-**Phase:** implementation
+**Phase:** release-preparation
 **Current milestone:** M34
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32, M33
-**Next milestone:** M34
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32, M33, M34
+**Next milestone:** None
 **Blockers:** None.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
@@ -764,3 +764,19 @@ configuration or material bytes changed. The actual same-SHA helper will validat
 full M33 native coverage and run every unique release check; original M34 make
 commands will remain explicitly NOT RUN. Current static and strict native parser
 smoke checks pass. Exact result and candidate-bound human checklist are pending.
+
+
+## M34 completed — 2026-11-07
+
+M34 DONE. Candidate `38c5e0ee38ae076df8264210c2d0c65c5058f580` reached owner-authorized READY_FOR_HUMAN, exit0.
+The owner explicitly credited full M33 verification for unchanged inputs. Actual
+helper validated693 reused definitions/1156 invocations with zero adverse results
+and executed four fresh Watch/iPhone Debug/Release builds plus all policy/package
+checks. Full M34 make commands were NOT RUN and are not reported passed.
+
+Six M33 domains remain COMPLETE, physical acceptance retains its original limits,
+and build1.0(8)/materials are unchanged. Three candidate-bound human rows remain
+PENDING: subjective review, Archive/Organizer and distribution decision. No upload,
+submission, push, publication, price or monitor change. No next development milestone.
+[Handoff](handoffs/M34-handoff.md); [exact evidence](evidence/M34/milestone-verification.md).
+Stop this Builder after DONE-commit static/status/continuity succeeds.

@@ -1,7 +1,7 @@
 # M34 — Release Readiness Revalidation
 
 **ID:** M34
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M33
 **Validation:** make milestone ID=M34
 **Handoff:** AI/handoffs/M34-handoff.md
@@ -31,13 +31,13 @@ publication. Build 7's withdrawal and monitor hold remain historical facts.
 
 ## Acceptance criteria
 
-- [ ] M33 is DONE with complete applicable six-domain coverage, affected physical
+- [x] M33 is DONE with complete applicable six-domain coverage, affected physical
       acceptance and zero open P0/P1 findings.
-- [ ] Owner-authorized M33 reuse validates complete native coverage and unchanged
+- [x] Owner-authorized M33 reuse validates complete native coverage and unchanged
       inputs at clean REVIEW/main.
-- [ ] Fresh release-specific checks report owner-authorized READY_FOR_HUMAN for
+- [x] Fresh release-specific checks report owner-authorized READY_FOR_HUMAN for
       the same exact SHA, with commands, exits, reports and counts in the handoff.
-- [ ] Static/status/continuity validate the DONE record; candidate-bound human
+- [x] Static/status/continuity validate the DONE record; candidate-bound human
       checklist rows are reported honestly and distribution remains the owner's decision.
 
 Owner approved this split on 2026-11-07; AI/evidence/M33/planning-blocker.md.
