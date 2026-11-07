@@ -851,3 +851,10 @@ binds this submission and remains read-only. AFTER_APPROVAL unchanged; no public
 launch, promotion countdown or price write. No next development milestone.
 [Handoff](handoffs/M35-handoff.md); [final evidence](evidence/M35/milestone-verification.md).
 Stop after post-DONE static/status/continuity and source synchronization.
+
+Post-DONE checks passed at `948535e354127e395ab100bea129f7415ef7a6a2`: `make static`,
+`./Scripts/project-status.sh validate` and
+`./Scripts/project-status.sh continuity 0f4a649fb8893d6d78f17bf8f68a8ef202354d56`,
+all exit0; completed 2026-11-07T19:06:45.063935+00:00. Exact logs/hashes:
+`.artifacts/M35/post-done/receipt.json`. Final evidence-commit checks are retained
+under `.artifacts/M35/post-done-final/`.
