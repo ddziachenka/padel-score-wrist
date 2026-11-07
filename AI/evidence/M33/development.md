@@ -83,3 +83,13 @@ The earlier physical blocker is superseded by owner-physical-verification.md:
 all requested affected physical checks are owner-confirmed. Six domain records
 are completed for the clean REVIEW/main full gate. No source/material byte changed
 as part of physical closure; historical failures remain preserved.
+
+## Full verification closure
+
+The fresh unchanged full make milestone ID=M33 passed at
+fd27bdc459a23e7880b3beb16711b92e6fc962aa, exit0, UTC2026-11-07T08:24:19Z–14:47:43Z.
+All693 definitions/1156 invocations passed, zero adverse results; both Debug and
+package guards passed. See milestone-verification.md for exact commands, bundles,
+counts and the retained raw report. This supersedes the historical pending gate
+and physical-blocker statements above. Only AI Markdown closure records follow
+the verified candidate; M34 remains separate.

@@ -1,7 +1,7 @@
 # M33 — Serve-side Audit and Store Materials
 
 **ID:** M33
-**Status:** REVIEW
+**Status:** DONE
 **Depends on:** M32
 **Validation:** make milestone ID=M33
 **Handoff:** AI/handoffs/M33-handoff.md
@@ -37,7 +37,7 @@ old readiness/monitor guard remain historical. No inherited affected-only waiver
       unavailable required hardware blocks readiness, and all P0/P1 issues are fixed.
 - [x] Updated local screenshots and review text demonstrate R/L and receivers' choice,
       without claiming competitor uniqueness or guaranteed review acceptance.
-- [ ] Full make milestone ID=M33 passes at clean REVIEW/main with exact SHA,
+- [x] Full make milestone ID=M33 passes at clean REVIEW/main with exact SHA,
       exit, counts and report in the handoff; all six records have complete typed
       coverage and zero open P0/P1 findings.
 - [ ] Static/status/continuity validate the DONE record; human distribution decision

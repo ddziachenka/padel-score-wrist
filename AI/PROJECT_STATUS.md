@@ -1,10 +1,10 @@
 # Project status
 
 **Phase:** implementation
-**Current milestone:** M33
-**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32
-**Next milestone:** M33
-**Blockers:** None in completed M33 physical/material preparation. Owner confirms build8 and all affected physical checks, including VoiceOver. M33 is REVIEW awaiting the full unchanged milestone gate; M34 remains PLANNED. No release verdict or submission.
+**Current milestone:** M34
+**Completed milestones:** M00, M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M27, M28, M25, M29, M31, M26, M30, M32, M33
+**Next milestone:** M34
+**Blockers:** None. M33 DONE: full gate passed; affected physical checks are owner-confirmed. M34 remains PLANNED for separate release readiness verification.
 **Important decisions:** Contracts approved; watchOS 10 min; Padel Score — Wrist; independent Watch + iPhone companion (M16); approved 2026-10-23: English + 11 languages (12 added locales), localization before M10; bundle com.dziachenka.padelscore(.watchkitapp). H2 unchanged. H4: 5 completed games free, count kept on deletion, then one $4.99 USD lifetime unlock; no trial wording. ASC app 6825393194 / IAP 6825393394, 175 regions; submitted Oct25, rejected4.3(a) Oct27. H1 approved; site live. Plan 2026-10-22 (AI/purchase-appeal-plan.md): history free for all, fixed Match demo, M11–M15 before M10.
 
 Localization preparation and coordinator editorial/visual audit complete under the owner exception in WORKFLOW: 11 added languages / 12 added locales, 48 added site pages, store drafts and 72 new raw screenshots. Exact candidate `8dd50d72b04689da93bfaed2599eb28bd26e3591` passed full integration (exit 0; 510/510 definitions, 884 invocations, no failed/skipped/expected); report `AI/localization/evidence/integration-final.md`, handoff `AI/localization/HANDOFF.md`. Owner has now confirmed all physical-device checks; M10 is DONE against the multilingual build. At the M10 checkpoint the prepared multilingual site was published with owner approval; ASC archive/upload/submission had not yet been performed (see the later preparation record below).
@@ -699,3 +699,24 @@ Six Builder domain records now contain complete typed applicable coverage and ze
 open product P0/P1. M33 REVIEW freezes the next clean main candidate for full
 make milestone ID=M33; no old automatic waiver or supplementary-bundle substitution.
 No full-gate result, DONE or READY_FOR_HUMAN is claimed yet. M34 remains PLANNED.
+
+## M33 completed — 2026-11-07
+
+M33 DONE. Clean REVIEW/main candidate `fd27bdc459a23e7880b3beb16711b92e6fc962aa`
+passed the complete unchanged make milestone ID=M33, exit0,
+UTC2026-11-07T08:24:19Z–14:47:43Z. Watch650/650 definitions/1104 invocations;
+phone unit21/21/30; UI22/22/22. Aggregate693 definitions/1156 invocations,
+all Passed, zero failed/skipped/expected failures/native runtime warnings.
+Both Debug/package checks pass; no old waiver or component reuse applied.
+
+Build1.0(8), six complete Builder domain records,210 native/28 creative images,
+13 compact golden-point locales,14 Store locales,104 local site copies and4page
+review guide are complete. Fresh affected physical checks, including VoiceOver,
+are owner-confirmed with original limitations retained. Earlier failures remain
+FAILED. [Exact evidence](evidence/M33/milestone-verification.md),
+[handoff](handoffs/M33-handoff.md).
+
+M34 is the next ready milestone in a new session and retains its full milestone
+and exact-SHA release gates. No release verdict, upload, submission, public push,
+deployment, price or monitor change. Stop this Builder after required DONE-commit
+static/status/continuity checks.

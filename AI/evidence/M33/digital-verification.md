@@ -1,5 +1,10 @@
 # M33 bounded digital preparation — not milestone verification
 
+Historical preparatory checkpoint. The later complete full-gate pass is recorded
+in [milestone-verification.md](milestone-verification.md); physical closure is in
+[owner-physical-verification.md](owner-physical-verification.md). Pending statements
+below describe preparation before those results and are preserved as history.
+
 Source SHA: `8eeec63f5287639b86e637803b436b005a6901da`, main, build1.0(8).
 App/Config/Scripts inputs remained unchanged throughout these runs. Only local
 AI records/materials and corresponding website images changed after that commit.
